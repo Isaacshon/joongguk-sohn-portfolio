@@ -55,17 +55,15 @@
 @utility bg-cutting-mat {
   background-color: var(--mat);
   background-image:
-    radial-gradient(circle at 28% 32%, oklch(0.92 0.02 170 / 0.1) 0 0.7px, transparent 0.95px),
-    radial-gradient(circle at 72% 68%, oklch(0.18 0.03 185 / 0.1) 0 0.75px, transparent 1px),
-    repeating-linear-gradient(112deg, transparent 0 34px, oklch(0.86 0.02 175 / 0.026) 35px 36px, transparent 37px 84px),
-    linear-gradient(125deg, transparent 0%, oklch(0.78 0.04 180 / 0.045) 46%, transparent 58%),
     linear-gradient(to right, var(--mat-line-strong) 1px, transparent 1px),
     linear-gradient(to bottom, var(--mat-line-strong) 1px, transparent 1px),
     linear-gradient(to right, var(--mat-line) 1px, transparent 1px),
     linear-gradient(to bottom, var(--mat-line) 1px, transparent 1px),
+    url("./assets/clean-gray-paper.png"),
     radial-gradient(ellipse at center, oklch(0.45 0.06 185) 0%, oklch(0.36 0.05 185) 100%);
-  background-position: 0 0, 11px 7px, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, center;
-  background-size: 19px 23px, 31px 29px, 170px 170px, 100% 100%, 200px 200px, 200px 200px, 40px 40px, 40px 40px, 100% 100%;
+  background-blend-mode: normal, normal, normal, normal, soft-light, normal;
+  background-position: 0 0, 0 0, 0 0, 0 0, center, center;
+  background-size: 200px 200px, 200px 200px, 40px 40px, 40px 40px, 512px 512px, 100% 100%;
 }
 
 @utility polaroid {
