@@ -8,10 +8,10 @@ import photo4 from "@/assets/photo4.jpg";
 export const Route = createFileRoute("/work")({
   head: () => ({
     meta: [
-      { title: "Work — Uthinh Pham" },
+      { title: "Work — Isaac Sohn" },
       { name: "description", content: "Selected projects in brand design, visual identity, and creative direction." },
-      { property: "og:title", content: "Work — Uthinh Pham" },
-      { property: "og:description", content: "Selected projects by Uthinh Pham." },
+      { property: "og:title", content: "Work — Isaac Sohn" },
+      { property: "og:description", content: "Selected projects by Isaac Sohn." },
     ],
   }),
   component: Work,

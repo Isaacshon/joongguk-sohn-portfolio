@@ -47,14 +47,14 @@ export function MatLayout({ children }: { children: ReactNode }) {
           <Link to="/">
             <img
               src={avatar}
-              alt="Uthinh avatar"
+              alt="Isaac avatar"
               width={120}
               height={120}
               className="h-28 w-28 transition-transform duration-300 hover:rotate-6 hover:scale-110"
             />
           </Link>
           <p className="max-w-[240px] text-[15px] leading-relaxed text-sidebar-fg">
-            Hey there! I'm Uthinh, a multi-disciplinary creative specialized in
+            Hey there! I'm Isaac, a multi-disciplinary creative specialized in
             brand design, visual identity, and creative direction.
           </p>
 
@@ -72,7 +72,7 @@ export function MatLayout({ children }: { children: ReactNode }) {
               <a href="#" className="block transition-colors hover:text-foreground">Newsletter</a>
               <a href="#" className="block transition-colors hover:text-foreground">Web Store</a>
             </div>
-            <p className="pt-6 text-xs text-muted-foreground">2023 © Uthinh Pham</p>
+            <p className="pt-6 text-xs text-muted-foreground">2023 © Isaac Sohn</p>
           </div>
         </aside>
 

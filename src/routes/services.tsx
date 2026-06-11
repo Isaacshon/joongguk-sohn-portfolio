@@ -4,9 +4,9 @@ import { MatLayout } from "@/components/MatLayout";
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services — Uthinh Pham" },
+      { title: "Services — Isaac Sohn" },
       { name: "description", content: "Brand design, visual identity, and creative direction services." },
-      { property: "og:title", content: "Services — Uthinh Pham" },
+      { property: "og:title", content: "Services — Isaac Sohn" },
       { property: "og:description", content: "How we can work together." },
     ],
   }),

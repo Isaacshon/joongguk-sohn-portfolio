@@ -10,13 +10,13 @@ import photo4 from "@/assets/photo4.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Uthinh Pham — Multi-disciplinary Creative" },
+      { title: "Isaac Sohn — Multi-disciplinary Creative" },
       {
         name: "description",
         content:
-          "Portfolio of Uthinh Pham — brand design, visual identity, and creative direction.",
+          "Portfolio of Isaac Sohn — brand design, visual identity, and creative direction.",
       },
-      { property: "og:title", content: "Uthinh Pham" },
+      { property: "og:title", content: "Isaac Sohn" },
       {
         property: "og:description",
         content: "Brand design, visual identity, and creative direction.",
@@ -55,7 +55,7 @@ function Index() {
           className="title-in font-serif text-[clamp(3rem,9vw,8rem)] font-medium italic leading-none text-[#f5efe2]"
           style={{ textShadow: "0 2px 14px rgba(0,0,0,0.35)" }}
         >
-          Uthinh Pham
+          Isaac Sohn
         </h1>
 
         <Link
