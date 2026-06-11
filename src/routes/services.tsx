@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { MatLayout } from "@/components/MatLayout";
 import photo1 from "@/assets/photo1.jpg";
 import photo2 from "@/assets/photo2.jpg";
@@ -67,12 +67,12 @@ function Services() {
           ))}
         </div>
 
-        <a
-          href="#"
+        <Link
+          to="/book"
           className="mt-12 inline-block font-serif text-2xl italic tracking-wide text-[#f5efe2] underline decoration-white/40 underline-offset-8 hover:decoration-white"
         >
-          Book a project →
-        </a>
+          Book a project ↗
+        </Link>
       </div>
     </MatLayout>
   );

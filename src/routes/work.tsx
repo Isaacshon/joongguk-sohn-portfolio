@@ -18,41 +18,45 @@ export const Route = createFileRoute("/work")({
 });
 
 const projects = [
-  { src: photo1, title: "Portrait Study", year: "2024", rotate: -3 },
-  { src: photo2, title: "Storefront Series", year: "2024", rotate: 2 },
-  { src: photo3, title: "Garage Meet", year: "2023", rotate: -2 },
-  { src: photo4, title: "Desk Setup", year: "2023", rotate: 3 },
+  {
+    src: photo1,
+    title: "Portrait Study",
+    category: "Creative Direction, Visual Identity",
+  },
+  {
+    src: photo2,
+    title: "Storefront Series",
+    category: "Photography, Brand System",
+  },
+  {
+    src: photo3,
+    title: "Garage Meet",
+    category: "Event Direction, Fliers",
+  },
+  {
+    src: photo4,
+    title: "Desk Setup",
+    category: "Digital Design, Motion",
+  },
 ];
 
 function Work() {
   return (
-    <MatLayout>
-      <div className="relative z-10 mx-auto max-w-5xl px-4 pb-10 pt-2 md:px-6">
-        <h1 className="font-serif text-5xl italic text-[#f5efe2] md:text-6xl">
-          Selected Work
-        </h1>
-        <p className="mt-3 max-w-xl text-white/70">
-          A scattered archive of recent projects — drag, click, explore.
-        </p>
-
-        <div className="mt-8 grid grid-cols-2 gap-5 lg:grid-cols-4">
-          {projects.map((p, i) => (
-            <a
-              key={i}
-              href="#"
-              className="polaroid group block"
-              style={{ transform: `rotate(${p.rotate}deg)`, transition: "transform 300ms" }}
-              onMouseEnter={(e) => (e.currentTarget.style.transform = "rotate(0deg) scale(1.03)")}
-              onMouseLeave={(e) => (e.currentTarget.style.transform = `rotate(${p.rotate}deg)`)}
-            >
-              <img src={p.src} alt={p.title} className="block aspect-[4/5] w-full object-cover" />
-              <div className="px-1 pt-3 font-serif italic">
-                <div className="text-base text-[#222]">{p.title}</div>
-                <div className="text-xs text-[#888]">{p.year}</div>
-              </div>
-            </a>
-          ))}
-        </div>
+    <MatLayout surface="plain" contentClassName="pt-14">
+      <div className="grid grid-cols-1 gap-x-3 gap-y-5 lg:grid-cols-2">
+        {projects.map((project) => (
+          <a key={project.title} href="#" className="group block">
+            <div className="overflow-hidden rounded-md bg-muted">
+              <img
+                src={project.src}
+                alt={project.title}
+                className="block aspect-[1.46/1] w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+              />
+            </div>
+            <div className="mt-2 text-[15px] leading-tight text-foreground">{project.title}</div>
+            <div className="mt-1 text-[14px] leading-tight text-muted-foreground">{project.category}</div>
+          </a>
+        ))}
       </div>
     </MatLayout>
   );
