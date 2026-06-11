@@ -1,6 +1,7 @@
 import { Link, type LinkProps } from "@tanstack/react-router";
 import { useRef, useState, type ReactNode, type PointerEvent as RPE } from "react";
-import avatar from "@/assets/avatar.png";
+import face1 from "@/assets/face1.png";
+import face2 from "@/assets/face2.png";
 
 const navLinks: { to: LinkProps["to"]; label: string }[] = [
   { to: "/work", label: "📁 Work" },
@@ -68,19 +69,27 @@ export function MatLayout({ children, surface = "mat", contentClassName = "" }: 
     <div className="min-h-screen w-full bg-background text-foreground">
       <div className="grid min-h-screen w-full grid-cols-1 md:grid-cols-[360px_minmax(0,1fr)] xl:grid-cols-[398px_minmax(0,1fr)]">
         <aside className="flex flex-col gap-8 px-8 py-10 lg:px-10">
-          <Link to="/">
+          <Link to="/" className="group relative block h-28 w-28" aria-label="Go home">
             <img
-              src={avatar}
+              src={face1}
               alt="Isaac avatar"
               width={120}
               height={120}
-              className="h-28 w-28 transition-transform duration-300 hover:rotate-6 hover:scale-110"
+              className="absolute inset-0 h-full w-full object-contain transition duration-500 ease-[cubic-bezier(.2,.8,.2,1)] group-hover:-rotate-6 group-hover:scale-105 group-hover:opacity-0"
+            />
+            <img
+              src={face2}
+              alt=""
+              aria-hidden
+              width={120}
+              height={120}
+              className="absolute inset-0 h-full w-full rotate-6 scale-95 object-contain opacity-0 transition duration-500 ease-[cubic-bezier(.2,.8,.2,1)] group-hover:rotate-0 group-hover:scale-110 group-hover:opacity-100"
             />
           </Link>
 
           <p className="max-w-[260px] text-[15px] leading-relaxed text-sidebar-fg">
-            Hey there! I'm Isaac, a multi-disciplinary creative specialized in
-            brand design, visual identity, and creative direction.
+            Hey there! I'm Isaac. I create web and app designs, visual artwork,
+            and expressive digital experiences with a creative point of view.
           </p>
 
           <div className="mt-auto space-y-4 text-[14px]">
