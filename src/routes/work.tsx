@@ -27,7 +27,7 @@ const projects = [
 function Work() {
   return (
     <MatLayout>
-      <div className="relative z-10 px-6 pb-16 pt-4 md:px-10">
+      <div className="relative z-10 mx-auto max-w-5xl px-4 pb-10 pt-2 md:px-6">
         <h1 className="font-serif text-5xl italic text-[#f5efe2] md:text-6xl">
           Selected Work
         </h1>
@@ -35,7 +35,7 @@ function Work() {
           A scattered archive of recent projects — drag, click, explore.
         </p>
 
-        <div className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid grid-cols-2 gap-5 lg:grid-cols-4">
           {projects.map((p, i) => (
             <a
               key={i}
@@ -47,7 +47,7 @@ function Work() {
             >
               <img src={p.src} alt={p.title} className="block aspect-[4/5] w-full object-cover" />
               <div className="px-1 pt-3 font-serif italic">
-                <div className="text-lg text-[#222]">{p.title}</div>
+                <div className="text-base text-[#222]">{p.title}</div>
                 <div className="text-xs text-[#888]">{p.year}</div>
               </div>
             </a>

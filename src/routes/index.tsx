@@ -27,10 +27,10 @@ export const Route = createFileRoute("/")({
 });
 
 const polaroids = [
-  { src: photo1, alt: "Portrait", top: 8, left: 28, width: 220, rotate: -6 },
-  { src: photo2, alt: "Car at storefront", top: 14, left: 62, width: 260, rotate: 7 },
-  { src: photo3, alt: "Garage meet", top: 55, left: 18, width: 230, rotate: -9 },
-  { src: photo4, alt: "Desk setup", top: 58, left: 60, width: 260, rotate: 5 },
+  { src: photo1, alt: "Portrait", top: 4, left: 8, width: 188, rotate: -6 },
+  { src: photo2, alt: "Car at storefront", top: 5, left: 72, width: 210, rotate: 7 },
+  { src: photo3, alt: "Garage meet", top: 58, left: 9, width: 192, rotate: -9 },
+  { src: photo4, alt: "Desk setup", top: 57, left: 70, width: 212, rotate: 5 },
 ];
 
 function Index() {
@@ -47,10 +47,10 @@ function Index() {
         width={140}
         height={140}
         loading="lazy"
-        className="pin-wobble pointer-events-none absolute right-[18%] top-[48%] w-[120px] drop-shadow-[0_18px_12px_rgba(0,0,0,0.4)]"
+        className="pin-wobble pointer-events-none absolute right-[20%] top-[48%] w-[90px] drop-shadow-[0_18px_12px_rgba(0,0,0,0.4)]"
       />
 
-      <div className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center text-center">
+      <div className="pointer-events-none absolute inset-0 z-30 flex flex-col items-center justify-center text-center">
         <h1
           className="title-in font-serif text-[clamp(3rem,9vw,8rem)] font-medium italic leading-none text-[#f5efe2]"
           style={{ textShadow: "0 2px 14px rgba(0,0,0,0.35)" }}

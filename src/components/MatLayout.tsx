@@ -98,7 +98,17 @@ export function MatLayout({ children }: { children: ReactNode }) {
               boxShadow: "inset 0 0 200px rgba(0,0,0,0.35)",
             }}
           >
-            {children}
+            <div
+              className="absolute overflow-visible"
+              style={{
+                left: "220px",
+                right: "220px",
+                top: "296px",
+                bottom: "272px",
+              }}
+            >
+              {children}
+            </div>
           </div>
 
           {/* Top nav stays fixed above the panning board */}

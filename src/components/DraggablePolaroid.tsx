@@ -40,7 +40,7 @@ export function DraggablePolaroid({
     };
     vel.current = { vx: 0, vy: 0 };
     setDragging(true);
-    setZTop(50);
+    setZTop(20);
     el.setPointerCapture(e.pointerId);
   };
 
