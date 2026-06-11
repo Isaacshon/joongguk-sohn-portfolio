@@ -72,7 +72,7 @@ export function MatLayout({ children }: { children: ReactNode }) {
               <a href="#" className="block transition-colors hover:text-foreground">Newsletter</a>
               <a href="#" className="block transition-colors hover:text-foreground">Web Store</a>
             </div>
-            <p className="pt-6 text-xs text-muted-foreground">2023 © Isaac Sohn</p>
+            <p className="pt-6 text-xs text-muted-foreground">2026 © Isaac Sohn</p>
           </div>
         </aside>
 
