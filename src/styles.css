@@ -1,0 +1,94 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-mat: var(--mat);
+  --color-mat-line: var(--mat-line);
+  --color-mat-line-strong: var(--mat-line-strong);
+  --color-sidebar-fg: var(--sidebar-fg);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --font-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.5rem;
+  --background: oklch(0.98 0.005 90);
+  --foreground: oklch(0.2 0.01 250);
+  --sidebar-fg: oklch(0.25 0.015 250);
+  --muted: oklch(0.95 0.005 90);
+  --muted-foreground: oklch(0.5 0.01 250);
+  --border: oklch(0.9 0.005 90);
+  --primary: oklch(0.35 0.07 180);
+  --primary-foreground: oklch(0.98 0.005 90);
+
+  /* Cutting mat */
+  --mat: oklch(0.42 0.06 185);
+  --mat-line: oklch(0.55 0.07 185 / 0.55);
+  --mat-line-strong: oklch(0.7 0.08 185 / 0.7);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html, body { height: 100%; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Cutting mat background with grid */
+@utility bg-cutting-mat {
+  background-color: var(--mat);
+  background-image:
+    linear-gradient(to right, var(--mat-line-strong) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--mat-line-strong) 1px, transparent 1px),
+    linear-gradient(to right, var(--mat-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--mat-line) 1px, transparent 1px),
+    radial-gradient(ellipse at center, oklch(0.45 0.06 185) 0%, oklch(0.36 0.05 185) 100%);
+  background-size: 200px 200px, 200px 200px, 40px 40px, 40px 40px, 100% 100%;
+}
+
+@utility polaroid {
+  background: #fbfaf6;
+  padding: 12px 12px 44px 12px;
+  box-shadow:
+    0 1px 2px rgba(0,0,0,0.18),
+    0 18px 30px -10px rgba(0,0,0,0.45);
+  border-radius: 2px;
+}
+
+@keyframes pin-wobble {
+  0%, 100% { transform: rotate(-4deg); }
+  50% { transform: rotate(4deg); }
+}
+.pin-wobble { animation: pin-wobble 4s ease-in-out infinite; transform-origin: 50% 20%; }
+
+@keyframes title-in {
+  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.title-in { animation: title-in 1s cubic-bezier(.2,.8,.2,1) both; }
+
+.story-link { position: relative; display: inline-block; }
+.story-link::after {
+  content: ""; position: absolute; left: 0; bottom: -2px;
+  width: 100%; height: 2px; background: currentColor;
+  transform: scaleX(0); transform-origin: right;
+  transition: transform .3s ease;
+}
+.story-link:hover::after { transform: scaleX(1); transform-origin: left; }
