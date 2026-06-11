@@ -42,8 +42,8 @@ export function MatLayout({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen w-full bg-background text-foreground">
-      <div className="mx-auto grid min-h-screen w-full max-w-[1600px] grid-cols-1 md:grid-cols-[260px_1fr] lg:grid-cols-[300px_1fr]">
-        <aside className="flex flex-col gap-8 px-8 py-10">
+      <div className="grid min-h-screen w-full grid-cols-1 md:grid-cols-[360px_minmax(0,1fr)] xl:grid-cols-[398px_minmax(0,1fr)]">
+        <aside className="flex flex-col gap-8 px-8 py-10 lg:px-10">
           <Link to="/">
             <img
               src={avatar}
@@ -82,7 +82,7 @@ export function MatLayout({ children }: { children: ReactNode }) {
           onPointerMove={onMove}
           onPointerUp={onUp}
           onPointerCancel={onUp}
-          className="relative m-4 min-h-[calc(100vh-2rem)] overflow-hidden rounded-md md:min-h-[calc(100vh-3rem)] lg:m-6 touch-none"
+          className="relative min-h-screen overflow-hidden touch-none"
           style={{ cursor: dragging ? "grabbing" : "grab" }}
         >
           {/* Pannable board: oversized so you can drag in any direction */}
@@ -103,8 +103,8 @@ export function MatLayout({ children }: { children: ReactNode }) {
               style={{
                 left: "220px",
                 right: "220px",
-                top: "296px",
-                bottom: "272px",
+                top: "264px",
+                bottom: "220px",
               }}
             >
               {children}
@@ -112,13 +112,13 @@ export function MatLayout({ children }: { children: ReactNode }) {
           </div>
 
           {/* Top nav stays fixed above the panning board */}
-          <nav className="pointer-events-none absolute inset-x-0 top-0 z-40 flex items-center justify-between px-6 py-5 text-[15px] font-medium text-white/95">
+          <nav className="pointer-events-none absolute inset-x-0 top-0 z-40 flex h-11 items-center justify-between bg-background px-4 text-[18px] font-normal text-foreground">
             {navLinks.map((l) => (
               <Link
                 key={l.label}
                 to={l.to}
                 data-no-pan
-                className="pointer-events-auto transition-all duration-200 hover:scale-110 hover:opacity-80"
+                className="pointer-events-auto transition-all duration-200 hover:opacity-70"
                 activeProps={{ className: "underline underline-offset-4" }}
                 activeOptions={{ exact: true }}
               >

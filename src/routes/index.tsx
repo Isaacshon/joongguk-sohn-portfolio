@@ -27,10 +27,10 @@ export const Route = createFileRoute("/")({
 });
 
 const polaroids = [
-  { src: photo1, alt: "Portrait", top: 4, left: 8, width: 188, rotate: -6 },
-  { src: photo2, alt: "Car at storefront", top: 5, left: 72, width: 210, rotate: 7 },
-  { src: photo3, alt: "Garage meet", top: 58, left: 9, width: 192, rotate: -9 },
-  { src: photo4, alt: "Desk setup", top: 57, left: 70, width: 212, rotate: 5 },
+  { src: photo1, alt: "Portrait", top: 9, left: 25, width: 220, rotate: -6 },
+  { src: photo2, alt: "Car at storefront", top: 10, left: 66, width: 220, rotate: 7 },
+  { src: photo3, alt: "Garage meet", top: 60, left: 22, width: 210, rotate: -9 },
+  { src: photo4, alt: "Desk setup", top: 59, left: 64, width: 220, rotate: 5 },
 ];
 
 function Index() {
