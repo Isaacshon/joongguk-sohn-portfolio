@@ -1,7 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { MatLayout } from "@/components/MatLayout";
 import { DraggablePolaroid } from "@/components/DraggablePolaroid";
+import { WindupAirplane } from "@/components/WindupAirplane";
 import { WindupCar } from "@/components/WindupCar";
+import airplane from "@/assets/airplane.png";
 import carboard from "@/assets/carboard.png";
 import pushpins from "@/assets/pushpins.png";
 import photo1 from "@/assets/photo1.jpg";
@@ -51,6 +53,17 @@ function Index() {
         heading={8}
         z={10}
         delay={420}
+      />
+
+      <WindupAirplane
+        src={airplane}
+        alt="Wind-up toy airplane"
+        top={41}
+        left={42}
+        width={150}
+        heading={-18}
+        z={11}
+        delay={520}
       />
 
       <img

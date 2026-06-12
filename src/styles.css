@@ -96,8 +96,23 @@
   transform-origin: center;
 }
 
+@keyframes windup-flight {
+  0%, 100% { transform: translateY(-1px) rotate(-0.9deg); }
+  50% { transform: translateY(2px) rotate(1.1deg); }
+}
+.windup-plane-img.is-wound {
+  animation: windup-buzz 80ms ease-in-out infinite alternate;
+  transform-origin: center;
+}
+.windup-plane-img.is-flying {
+  animation: windup-flight 620ms ease-in-out infinite;
+  transform-origin: center;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .windup-car-img.is-wound { animation: none; }
+  .windup-plane-img.is-wound,
+  .windup-plane-img.is-flying { animation: none; }
 }
 
 .story-link { position: relative; display: inline-block; }
