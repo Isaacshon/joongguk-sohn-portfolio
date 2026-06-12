@@ -87,6 +87,19 @@
 }
 .title-in { animation: title-in 1s cubic-bezier(.2,.8,.2,1) both; }
 
+@keyframes windup-buzz {
+  from { transform: translateX(-1px) rotate(-0.7deg); }
+  to { transform: translateX(1px) rotate(0.7deg); }
+}
+.windup-car-img.is-wound {
+  animation: windup-buzz 90ms ease-in-out infinite alternate;
+  transform-origin: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .windup-car-img.is-wound { animation: none; }
+}
+
 .story-link { position: relative; display: inline-block; }
 .story-link::after {
   content: ""; position: absolute; left: 0; bottom: -2px;

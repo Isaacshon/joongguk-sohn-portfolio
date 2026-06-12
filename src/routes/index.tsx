@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { MatLayout } from "@/components/MatLayout";
 import { DraggablePolaroid } from "@/components/DraggablePolaroid";
+import { WindupCar } from "@/components/WindupCar";
+import carboard from "@/assets/carboard.png";
 import pushpins from "@/assets/pushpins.png";
 import photo1 from "@/assets/photo1.jpg";
 import photo2 from "@/assets/photo2.jpg";
@@ -39,6 +41,17 @@ function Index() {
       {polaroids.map((p, i) => (
         <DraggablePolaroid key={i} {...p} z={i + 1} delay={i * 120} />
       ))}
+
+      <WindupCar
+        src={carboard}
+        alt="Wind-up toy car"
+        top={37}
+        left={50}
+        width={145}
+        heading={8}
+        z={10}
+        delay={420}
+      />
 
       <img
         src={pushpins}
