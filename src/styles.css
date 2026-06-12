@@ -507,20 +507,12 @@
 
 @keyframes polaroid-tear-left {
   0%,
-  16% {
+  18% {
     transform: translate3d(0, 0, 0) rotate(0deg);
   }
-  30% {
-    transform: translate3d(-18px, -1px, 0) rotate(-1.4deg);
-  }
-  48% {
-    transform: translate3d(-50px, -5px, 0) rotate(-4.6deg);
-  }
-  70% {
+  38%,
+  74% {
     transform: translate3d(-52px, -5px, 0) rotate(-4.8deg);
-  }
-  86% {
-    transform: translate3d(-16px, -1px, 0) rotate(-1.4deg);
   }
   100% {
     transform: translate3d(0, 0, 0) rotate(0deg);
@@ -529,20 +521,12 @@
 
 @keyframes polaroid-tear-right {
   0%,
-  16% {
+  18% {
     transform: translate3d(0, 0, 0) rotate(0deg);
   }
-  30% {
-    transform: translate3d(18px, 1px, 0) rotate(1.4deg);
-  }
-  48% {
-    transform: translate3d(50px, 5px, 0) rotate(4.6deg);
-  }
-  70% {
+  38%,
+  74% {
     transform: translate3d(52px, 5px, 0) rotate(4.8deg);
-  }
-  86% {
-    transform: translate3d(16px, 1px, 0) rotate(1.4deg);
   }
   100% {
     transform: translate3d(0, 0, 0) rotate(0deg);
