@@ -92,6 +92,12 @@ function BoardDimEvent({ onDone }: { onDone: () => void }) {
 
 function Index() {
   const [tearRun, setTearRun] = useState(0);
+  const [dimRun, setDimRun] = useState(0);
+
+  const triggerCrossEvent = () => {
+    setTearRun((current) => current + 1);
+    setDimRun((current) => current + 1);
+  };
 
   return (
     <MatLayout>
@@ -127,8 +133,8 @@ function Index() {
         delay={520}
       />
 
-      <CrossRelic onTrigger={() => setTearRun((current) => current + 1)} />
-      {tearRun > 0 && <BoardDimEvent key={tearRun} onDone={() => setTearRun(0)} />}
+      <CrossRelic onTrigger={triggerCrossEvent} />
+      {dimRun > 0 && <BoardDimEvent key={dimRun} onDone={() => setDimRun(0)} />}
 
       <img
         src={pushpins}

@@ -84,12 +84,18 @@
 }
 
 @utility polaroid {
+  background: transparent;
+  border-radius: 2px;
+}
+
+.polaroid-card {
   background: #fbfaf6;
   padding: 12px 12px 44px 12px;
   box-shadow:
     0 1px 2px rgba(0, 0, 0, 0.18),
     0 18px 30px -10px rgba(0, 0, 0, 0.45);
   border-radius: 2px;
+  width: 100%;
 }
 
 @keyframes pin-wobble {
@@ -307,10 +313,6 @@
   background: #111;
 }
 
-.polaroid.is-tearing .polaroid-photo-frame {
-  overflow: visible;
-}
-
 .polaroid-image {
   transition: opacity 160ms ease;
 }
@@ -329,7 +331,7 @@
   animation: polaroid-tear-lift 3400ms cubic-bezier(0.22, 0.7, 0.1, 1) both;
 }
 
-.polaroid.is-tearing .polaroid-image {
+.polaroid.is-tearing .polaroid-card-base {
   animation: veil-base-vanish 3400ms cubic-bezier(0.22, 0.7, 0.1, 1) both;
 }
 
@@ -339,22 +341,28 @@
 
 .polaroid-tear-half {
   position: absolute;
-  top: -1%;
-  bottom: -1%;
-  width: 51.4%;
-  background-image: var(--tear-image);
-  background-repeat: no-repeat;
-  background-size: 200% 100%;
-  box-shadow: 0 18px 28px rgba(0, 0, 0, 0.28);
-  filter: contrast(1.04) saturate(0.96) brightness(0.92);
+  top: -2px;
+  bottom: -2px;
+  width: 52%;
+  overflow: hidden;
+  filter: brightness(0.92) contrast(1.03);
   transform-origin: center center;
   backface-visibility: hidden;
   will-change: transform;
 }
 
+.polaroid-tear-card {
+  position: absolute;
+  top: 2px;
+  width: var(--polaroid-card-width);
+  pointer-events: none;
+  box-shadow:
+    0 8px 14px rgba(0, 0, 0, 0.22),
+    0 28px 36px -14px rgba(0, 0, 0, 0.48);
+}
+
 .polaroid-tear-left {
-  left: 0;
-  background-position: left center;
+  left: -1px;
   clip-path: polygon(
     0 0,
     100% 0,
@@ -371,9 +379,12 @@
   animation: polaroid-tear-left 3400ms cubic-bezier(0.22, 0.7, 0.1, 1) both;
 }
 
+.polaroid-tear-left .polaroid-tear-card {
+  left: 1px;
+}
+
 .polaroid-tear-right {
-  right: 0;
-  background-position: right center;
+  right: -1px;
   clip-path: polygon(
     9% 0,
     100% 0,
@@ -388,6 +399,10 @@
   );
   transform-origin: 4% 8%;
   animation: polaroid-tear-right 3400ms cubic-bezier(0.22, 0.7, 0.1, 1) both;
+}
+
+.polaroid-tear-right .polaroid-tear-card {
+  right: 1px;
 }
 
 @keyframes cross-board-dim {

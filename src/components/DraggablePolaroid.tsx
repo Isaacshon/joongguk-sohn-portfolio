@@ -18,6 +18,31 @@ type Props = {
   tearRun?: number;
 };
 
+function PolaroidCard({
+  src,
+  alt,
+  className = "",
+  ariaHidden = false,
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+  ariaHidden?: boolean;
+}) {
+  return (
+    <div className={`polaroid-card ${className}`} aria-hidden={ariaHidden || undefined}>
+      <div className="polaroid-photo-frame">
+        <img
+          src={src}
+          alt={ariaHidden ? "" : alt}
+          draggable={false}
+          className="polaroid-image pointer-events-none block h-auto w-full object-cover"
+        />
+      </div>
+    </div>
+  );
+}
+
 export function DraggablePolaroid({
   src,
   alt,
@@ -36,6 +61,7 @@ export function DraggablePolaroid({
   const [zTop, setZTop] = useState(z);
   const [mounted, setMounted] = useState(false);
   const [tearing, setTearing] = useState(false);
+  const [tearKey, setTearKey] = useState(0);
   const start = useRef({ x: 0, y: 0, top: 0, left: 0, parentW: 1, parentH: 1, t: 0 });
   const vel = useRef({ vx: 0, vy: 0 });
 
@@ -48,7 +74,10 @@ export function DraggablePolaroid({
     if (!tearRun) return;
 
     setTearing(false);
-    const startTimer = window.setTimeout(() => setTearing(true), 24);
+    const startTimer = window.setTimeout(() => {
+      setTearKey(tearRun);
+      setTearing(true);
+    }, 24);
     const endTimer = window.setTimeout(() => setTearing(false), 3400);
 
     return () => {
@@ -113,10 +142,11 @@ export function DraggablePolaroid({
   const scale = dragging ? 1.06 : hover ? 1.04 : 1;
   const lift = dragging ? 14 : hover ? 6 : 0;
 
-  const style: CSSProperties & { "--tear-image": string } = {
+  const style: CSSProperties & { "--polaroid-card-width": string } = {
     top: `${pos.top}%`,
     left: `${pos.left}%`,
     width: `${width}px`,
+    "--polaroid-card-width": `${width}px`,
     transform: `translateY(${-lift}px) rotate(${tilt}deg) scale(${mounted ? scale : 0.6})`,
     opacity: mounted ? 1 : 0,
     transformOrigin: "center",
@@ -130,7 +160,6 @@ export function DraggablePolaroid({
       : hover
         ? "0 4px 8px rgba(0,0,0,.22), 0 30px 40px -10px rgba(0,0,0,.5)"
         : undefined,
-    "--tear-image": `url(${src})`,
   };
 
   return (
@@ -145,18 +174,17 @@ export function DraggablePolaroid({
       className={`polaroid absolute select-none touch-none ${tearing ? "is-tearing" : ""}`}
       style={style}
     >
-      <div className="polaroid-photo-frame">
-        <img
-          src={src}
-          alt={alt}
-          draggable={false}
-          className="polaroid-image pointer-events-none block h-auto w-full object-cover"
-        />
-        <div className="polaroid-tear-layer" aria-hidden>
-          <div className="polaroid-tear-half polaroid-tear-left" />
-          <div className="polaroid-tear-half polaroid-tear-right" />
+      <PolaroidCard src={src} alt={alt} className="polaroid-card-base" />
+      {tearing && (
+        <div key={tearKey} className="polaroid-tear-layer" aria-hidden>
+          <div className="polaroid-tear-half polaroid-tear-left">
+            <PolaroidCard src={src} alt={alt} className="polaroid-tear-card" ariaHidden />
+          </div>
+          <div className="polaroid-tear-half polaroid-tear-right">
+            <PolaroidCard src={src} alt={alt} className="polaroid-tear-card" ariaHidden />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
