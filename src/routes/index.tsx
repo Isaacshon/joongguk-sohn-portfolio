@@ -47,22 +47,22 @@ function Index() {
       <WindupCar
         src={carboard}
         alt="Wind-up toy car"
-        top={37}
-        left={50}
+        top={57}
+        left={76}
         width={145}
-        heading={8}
-        z={10}
+        heading={132}
+        z={22}
         delay={420}
       />
 
       <WindupAirplane
         src={airplane}
         alt="Wind-up toy airplane"
-        top={41}
-        left={42}
+        top={31}
+        left={34}
         width={150}
-        heading={-18}
-        z={11}
+        heading={-38}
+        z={23}
         delay={520}
       />
 

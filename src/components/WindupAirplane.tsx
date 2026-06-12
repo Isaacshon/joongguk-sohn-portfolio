@@ -21,10 +21,10 @@ type Point = { top: number; left: number };
 type Velocity = { vx: number; vy: number };
 
 const MAX_WIND = 1;
-const MIN_SPEED = 190;
-const MAX_SPEED = 920;
-const FRICTION = 205;
-const STOP_SPEED = 12;
+const MIN_SPEED = 85;
+const MAX_SPEED = 430;
+const FRICTION = 72;
+const STOP_SPEED = 7;
 
 const clamp = (value: number, min: number, max: number) =>
   Math.max(min, Math.min(max, value));
