@@ -23,11 +23,10 @@ type Velocity = { vx: number; vy: number };
 const MAX_WIND = 1;
 const MIN_SPEED = 85;
 const MAX_SPEED = 430;
-const FRICTION = 72;
-const STOP_SPEED = 7;
+const FRICTION = 285;
+const STOP_SPEED = 14;
 
-const clamp = (value: number, min: number, max: number) =>
-  Math.max(min, Math.min(max, value));
+const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
 
 export function WindupAirplane({
   src,
@@ -100,8 +99,8 @@ export function WindupAirplane({
   const clampPosition = (next: Point, dims = measure()) => {
     if (!dims) return next;
 
-    const xPad = (dims.planeW * 0.26) / dims.parentW * 100;
-    const yPad = (dims.planeH * 0.3) / dims.parentH * 100;
+    const xPad = ((dims.planeW * 0.26) / dims.parentW) * 100;
+    const yPad = ((dims.planeH * 0.3) / dims.parentH) * 100;
 
     return {
       top: clamp(next.top, yPad, 100 - yPad),
@@ -309,9 +308,10 @@ export function WindupAirplane({
         transformOrigin: "center",
         cursor: dragging ? "grabbing" : "grab",
         zIndex: dragging || flying ? 28 : z,
-        transition: dragging || flying
-          ? "opacity 300ms, filter 120ms"
-          : "transform 520ms cubic-bezier(.2,.8,.2,1), opacity 650ms, filter 250ms",
+        transition:
+          dragging || flying
+            ? "opacity 300ms, filter 120ms"
+            : "transform 520ms cubic-bezier(.2,.8,.2,1), opacity 650ms, filter 250ms",
         filter: `drop-shadow(0 ${shadowOffset}px ${shadowBlur}px rgba(0,0,0,${flying ? 0.22 : 0.32}))`,
       }}
     >

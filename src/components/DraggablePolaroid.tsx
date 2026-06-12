@@ -1,4 +1,10 @@
-import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type PointerEvent as ReactPointerEvent,
+} from "react";
 
 type Props = {
   src: string;
@@ -9,10 +15,19 @@ type Props = {
   rotate: number;
   z?: number;
   delay?: number;
+  tearRun?: number;
 };
 
 export function DraggablePolaroid({
-  src, alt, top, left, width, rotate, z = 1, delay = 0,
+  src,
+  alt,
+  top,
+  left,
+  width,
+  rotate,
+  z = 1,
+  delay = 0,
+  tearRun = 0,
 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [pos, setPos] = useState({ top, left });
@@ -20,6 +35,7 @@ export function DraggablePolaroid({
   const [hover, setHover] = useState(false);
   const [zTop, setZTop] = useState(z);
   const [mounted, setMounted] = useState(false);
+  const [tearing, setTearing] = useState(false);
   const start = useRef({ x: 0, y: 0, top: 0, left: 0, parentW: 1, parentH: 1, t: 0 });
   const vel = useRef({ vx: 0, vy: 0 });
 
@@ -28,14 +44,34 @@ export function DraggablePolaroid({
     return () => clearTimeout(t);
   }, [delay]);
 
+  useEffect(() => {
+    if (!tearRun) return;
+
+    setTearing(false);
+    const startTimer = window.setTimeout(() => setTearing(true), 24);
+    const endTimer = window.setTimeout(() => setTearing(false), 3400);
+
+    return () => {
+      window.clearTimeout(startTimer);
+      window.clearTimeout(endTimer);
+    };
+  }, [tearRun]);
+
   const onPointerDown = (e: ReactPointerEvent<HTMLDivElement>) => {
-    const el = ref.current; if (!el) return;
-    const parent = el.parentElement; if (!parent) return;
+    if (tearing) return;
+
+    const el = ref.current;
+    if (!el) return;
+    const parent = el.parentElement;
+    if (!parent) return;
     const rect = parent.getBoundingClientRect();
     start.current = {
-      x: e.clientX, y: e.clientY,
-      top: pos.top, left: pos.left,
-      parentW: rect.width, parentH: rect.height,
+      x: e.clientX,
+      y: e.clientY,
+      top: pos.top,
+      left: pos.left,
+      parentW: rect.width,
+      parentH: rect.height,
       t: performance.now(),
     };
     vel.current = { vx: 0, vy: 0 };
@@ -51,8 +87,8 @@ export function DraggablePolaroid({
     const now = performance.now();
     const dt = Math.max(1, now - start.current.t);
     vel.current = {
-      vx: (e.movementX / start.current.parentW) * 100 / dt * 16,
-      vy: (e.movementY / start.current.parentH) * 100 / dt * 16,
+      vx: (((e.movementX / start.current.parentW) * 100) / dt) * 16,
+      vy: (((e.movementY / start.current.parentH) * 100) / dt) * 16,
     };
     setPos({
       top: Math.max(-5, Math.min(95, start.current.top + dyPct)),
@@ -77,6 +113,26 @@ export function DraggablePolaroid({
   const scale = dragging ? 1.06 : hover ? 1.04 : 1;
   const lift = dragging ? 14 : hover ? 6 : 0;
 
+  const style: CSSProperties & { "--tear-image": string } = {
+    top: `${pos.top}%`,
+    left: `${pos.left}%`,
+    width: `${width}px`,
+    transform: `translateY(${-lift}px) rotate(${tilt}deg) scale(${mounted ? scale : 0.6})`,
+    opacity: mounted ? 1 : 0,
+    transformOrigin: "center",
+    cursor: dragging ? "grabbing" : "grab",
+    zIndex: tearing ? 46 : zTop,
+    transition: dragging
+      ? "transform 80ms ease, opacity 400ms"
+      : "transform 500ms cubic-bezier(.2,.8,.2,1), opacity 600ms, box-shadow 300ms",
+    boxShadow: dragging
+      ? "0 6px 12px rgba(0,0,0,.3), 0 50px 70px -10px rgba(0,0,0,.6)"
+      : hover
+        ? "0 4px 8px rgba(0,0,0,.22), 0 30px 40px -10px rgba(0,0,0,.5)"
+        : undefined,
+    "--tear-image": `url(${src})`,
+  };
+
   return (
     <div
       ref={ref}
@@ -86,32 +142,21 @@ export function DraggablePolaroid({
       onPointerCancel={onPointerUp}
       onPointerEnter={() => setHover(true)}
       onPointerLeave={() => setHover(false)}
-      className="polaroid absolute select-none touch-none"
-      style={{
-        top: `${pos.top}%`,
-        left: `${pos.left}%`,
-        width: `${width}px`,
-        transform: `translateY(${-lift}px) rotate(${tilt}deg) scale(${mounted ? scale : 0.6})`,
-        opacity: mounted ? 1 : 0,
-        transformOrigin: "center",
-        cursor: dragging ? "grabbing" : "grab",
-        zIndex: zTop,
-        transition: dragging
-          ? "transform 80ms ease, opacity 400ms"
-          : "transform 500ms cubic-bezier(.2,.8,.2,1), opacity 600ms, box-shadow 300ms",
-        boxShadow: dragging
-          ? "0 6px 12px rgba(0,0,0,.3), 0 50px 70px -10px rgba(0,0,0,.6)"
-          : hover
-          ? "0 4px 8px rgba(0,0,0,.22), 0 30px 40px -10px rgba(0,0,0,.5)"
-          : undefined,
-      }}
+      className={`polaroid absolute select-none touch-none ${tearing ? "is-tearing" : ""}`}
+      style={style}
     >
-      <img
-        src={src}
-        alt={alt}
-        draggable={false}
-        className="block h-auto w-full object-cover pointer-events-none"
-      />
+      <div className="polaroid-photo-frame">
+        <img
+          src={src}
+          alt={alt}
+          draggable={false}
+          className="polaroid-image pointer-events-none block h-auto w-full object-cover"
+        />
+        <div className="polaroid-tear-layer" aria-hidden>
+          <div className="polaroid-tear-half polaroid-tear-left" />
+          <div className="polaroid-tear-half polaroid-tear-right" />
+        </div>
+      </div>
     </div>
   );
 }

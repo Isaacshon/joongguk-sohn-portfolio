@@ -23,22 +23,12 @@ type Velocity = { vx: number; vy: number };
 const MAX_WIND = 1;
 const MIN_SPEED = 140;
 const MAX_SPEED = 760;
-const FRICTION = 340;
-const STOP_SPEED = 10;
+const FRICTION = 980;
+const STOP_SPEED = 16;
 
-const clamp = (value: number, min: number, max: number) =>
-  Math.max(min, Math.min(max, value));
+const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
 
-export function WindupCar({
-  src,
-  alt,
-  top,
-  left,
-  width,
-  heading = 0,
-  z = 12,
-  delay = 0,
-}: Props) {
+export function WindupCar({ src, alt, top, left, width, heading = 0, z = 12, delay = 0 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const frame = useRef<number | null>(null);
   const lastFrame = useRef(0);
@@ -99,8 +89,8 @@ export function WindupCar({
   const clampPosition = (next: Point, dims = measure()) => {
     if (!dims) return next;
 
-    const xPad = (dims.carW * 0.36) / dims.parentW * 100;
-    const yPad = (dims.carH * 0.36) / dims.parentH * 100;
+    const xPad = ((dims.carW * 0.36) / dims.parentW) * 100;
+    const yPad = ((dims.carH * 0.36) / dims.parentH) * 100;
 
     return {
       top: clamp(next.top, yPad, 100 - yPad),
@@ -303,12 +293,14 @@ export function WindupCar({
         transformOrigin: "center",
         cursor: dragging ? "grabbing" : "grab",
         zIndex: dragging || moving ? 26 : z,
-        transition: dragging || moving
-          ? "opacity 300ms, filter 160ms"
-          : "transform 500ms cubic-bezier(.2,.8,.2,1), opacity 650ms, filter 250ms",
-        filter: dragging || moving
-          ? "drop-shadow(0 24px 18px rgba(0,0,0,.42))"
-          : "drop-shadow(0 16px 12px rgba(0,0,0,.34))",
+        transition:
+          dragging || moving
+            ? "opacity 300ms, filter 160ms"
+            : "transform 500ms cubic-bezier(.2,.8,.2,1), opacity 650ms, filter 250ms",
+        filter:
+          dragging || moving
+            ? "drop-shadow(0 24px 18px rgba(0,0,0,.42))"
+            : "drop-shadow(0 16px 12px rgba(0,0,0,.34))",
       }}
     >
       <div
