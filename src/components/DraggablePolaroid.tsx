@@ -71,7 +71,10 @@ export function DraggablePolaroid({
   }, [delay]);
 
   useEffect(() => {
-    if (!tearRun) return;
+    if (!tearRun) {
+      setTearing(false);
+      return;
+    }
 
     setTearing(false);
     const startTimer = window.setTimeout(() => {

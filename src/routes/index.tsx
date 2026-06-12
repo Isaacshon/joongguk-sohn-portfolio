@@ -91,11 +91,20 @@ function BoardDimEvent({ onDone }: { onDone: () => void }) {
 }
 
 function Index() {
-  const [tearRun, setTearRun] = useState(0);
+  const [tearEvent, setTearEvent] = useState({ run: 0, targetIndex: 0 });
   const [dimRun, setDimRun] = useState(0);
 
   const triggerCrossEvent = () => {
-    setTearRun((current) => current + 1);
+    setTearEvent((current) => {
+      let targetIndex = Math.floor(Math.random() * polaroids.length);
+
+      if (polaroids.length > 1 && targetIndex === current.targetIndex) {
+        targetIndex =
+          (targetIndex + 1 + Math.floor(Math.random() * (polaroids.length - 1))) % polaroids.length;
+      }
+
+      return { run: current.run + 1, targetIndex };
+    });
     setDimRun((current) => current + 1);
   };
 
@@ -107,7 +116,7 @@ function Index() {
           {...p}
           z={i + 1}
           delay={i * 120}
-          tearRun={i === 0 ? tearRun : 0}
+          tearRun={i === tearEvent.targetIndex ? tearEvent.run : 0}
         />
       ))}
 
