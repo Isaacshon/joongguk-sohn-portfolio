@@ -34,10 +34,10 @@ export const Route = createFileRoute("/")({
 });
 
 const polaroids = [
-  { src: photo1, alt: "Portrait", top: 9, left: 25, width: 220, rotate: -6 },
-  { src: photo2, alt: "Car at storefront", top: 10, left: 66, width: 220, rotate: 7 },
-  { src: photo3, alt: "Garage meet", top: 60, left: 22, width: 210, rotate: -9 },
-  { src: photo4, alt: "Desk setup", top: 59, left: 64, width: 220, rotate: 5 },
+  { src: photo1, alt: "Portrait", top: 8, left: 11, width: 205, rotate: -6 },
+  { src: photo2, alt: "Car at storefront", top: 8, left: 73, width: 205, rotate: 7 },
+  { src: photo3, alt: "Garage meet", top: 66, left: 11, width: 195, rotate: -9 },
+  { src: photo4, alt: "Desk setup", top: 64, left: 72, width: 205, rotate: 5 },
 ];
 
 function CrossRelic({ onTrigger }: { onTrigger: () => void }) {
@@ -50,7 +50,7 @@ function CrossRelic({ onTrigger }: { onTrigger: () => void }) {
         event.stopPropagation();
         onTrigger();
       }}
-      className="cross-relic absolute left-[86%] top-[36%] z-[24] h-[112px] w-[112px] select-none"
+      className="cross-relic absolute left-[50%] top-[79%] z-[24] h-[112px] w-[112px] select-none"
     >
       <img
         src={crossShadow}
@@ -123,10 +123,10 @@ function Index() {
       <WindupCar
         src={carboard}
         alt="Wind-up toy car"
-        top={57}
-        left={76}
-        width={145}
-        heading={132}
+        top={52}
+        left={87}
+        width={126}
+        heading={126}
         z={22}
         delay={420}
       />
@@ -134,10 +134,10 @@ function Index() {
       <WindupAirplane
         src={airplane}
         alt="Wind-up toy airplane"
-        top={31}
-        left={34}
-        width={150}
-        heading={-38}
+        top={28}
+        left={50}
+        width={138}
+        heading={-30}
         z={23}
         delay={520}
       />
@@ -152,7 +152,7 @@ function Index() {
         width={140}
         height={140}
         loading="lazy"
-        className="pin-wobble pointer-events-none absolute right-[20%] top-[48%] w-[90px] drop-shadow-[0_18px_12px_rgba(0,0,0,0.4)]"
+        className="pin-wobble pointer-events-none absolute left-[59%] top-[55%] w-[72px] drop-shadow-[0_18px_12px_rgba(0,0,0,0.4)]"
       />
 
       <div className="pointer-events-none absolute inset-0 z-30 flex flex-col items-center justify-center text-center">
