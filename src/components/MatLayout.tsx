@@ -64,7 +64,16 @@ export function MatLayout({ children, surface = "mat", contentClassName = "" }: 
   const wrapRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [dragging, setDragging] = useState(false);
+  const [medalTooltip, setMedalTooltip] = useState<{ label: string; x: number; y: number } | null>(null);
   const drag = useRef({ x: 0, y: 0, ox: 0, oy: 0, moved: false });
+
+  const showMedalTooltip = (label: string, e: RPE<HTMLImageElement>) => {
+    setMedalTooltip({
+      label,
+      x: Math.max(120, Math.min(window.innerWidth - 120, e.clientX)),
+      y: e.clientY,
+    });
+  };
 
   const onDown = (e: RPE<HTMLDivElement>) => {
     const t = e.target as HTMLElement;
@@ -163,7 +172,7 @@ export function MatLayout({ children, surface = "mat", contentClassName = "" }: 
             <div className="space-y-2 pt-6">
               <p className="text-xs text-muted-foreground">2026 © Isaac Sohn</p>
               <div
-                className="flex w-fit max-w-full flex-nowrap gap-[3px] opacity-70 transition-opacity hover:opacity-100"
+                className="flex w-full max-w-[318px] flex-nowrap items-end justify-between opacity-80 transition-opacity hover:opacity-100"
                 aria-label="Certifications"
               >
                 {certificationMedals.map((medal) => (
@@ -171,9 +180,11 @@ export function MatLayout({ children, surface = "mat", contentClassName = "" }: 
                     key={medal.label}
                     src={medal.image}
                     alt={medal.label}
-                    title={medal.label}
                     loading="lazy"
-                    className="h-[18px] w-[11px] object-contain drop-shadow-[0_1px_1px_rgba(0,0,0,0.2)] transition duration-200 hover:-translate-y-0.5 hover:scale-150"
+                    onPointerEnter={(e) => showMedalTooltip(medal.label, e)}
+                    onPointerMove={(e) => showMedalTooltip(medal.label, e)}
+                    onPointerLeave={() => setMedalTooltip(null)}
+                    className="h-6 w-3 object-contain drop-shadow-[0_1px_1px_rgba(0,0,0,0.22)] transition duration-200 hover:-translate-y-1 hover:scale-[1.4]"
                   />
                 ))}
               </div>
@@ -237,6 +248,18 @@ export function MatLayout({ children, surface = "mat", contentClassName = "" }: 
           </div>
         )}
       </div>
+      {medalTooltip && (
+        <div
+          className="pointer-events-none fixed z-50 max-w-[240px] rounded-md border border-black/10 bg-[#fbfaf6]/95 px-2.5 py-1.5 text-center text-[11px] font-medium leading-tight text-foreground shadow-[0_8px_24px_rgba(0,0,0,0.18)] backdrop-blur-sm"
+          style={{
+            left: medalTooltip.x,
+            top: medalTooltip.y,
+            transform: "translate(-50%, calc(-100% - 12px))",
+          }}
+        >
+          {medalTooltip.label}
+        </div>
+      )}
     </div>
   );
 }
