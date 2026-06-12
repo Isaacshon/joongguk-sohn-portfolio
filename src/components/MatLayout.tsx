@@ -9,6 +9,34 @@ const navLinks: { to: LinkProps["to"]; label: string }[] = [
   { to: "/services", label: "💡 Services" },
 ];
 
+const certificationBadges: { label: string; kind?: "group" }[] = [
+  { label: "Google Skillshop / Google Ads", kind: "group" },
+  { label: "Google Ads Search Certification" },
+  { label: "Google Ads Display Certification" },
+  { label: "Google Ads Video Certification" },
+  { label: "Google Ads Apps Certification" },
+  { label: "Google Ads Creative Certification" },
+  { label: "Google Ads - Measurement Certification" },
+  { label: "AI-Powered Performance Ads Certification" },
+  { label: "AI-Powered Shopping Ads Certification" },
+  { label: "Grow Offline Sales Certification" },
+  { label: "Google Marketing Platform", kind: "group" },
+  { label: "Campaign Manager 360 Certification" },
+  { label: "Display & Video 360 Certification" },
+  { label: "Search Ads 360 Certification" },
+  { label: "Analytics / SEO / Ads", kind: "group" },
+  { label: "Google Analytics Certification" },
+  { label: "HubSpot SEO Certification" },
+  { label: "Microsoft Advertising Search Certification" },
+  { label: "LinkedIn Advertising Fundamentals" },
+  { label: "AI / IBM / Anthropic", kind: "group" },
+  { label: "Artificial Intelligence Fundamentals — IBM SkillsBuild" },
+  { label: "Team Essentials for Designing AI Solutions — IBM SkillsBuild" },
+  { label: "Claude 101 — Anthropic Education" },
+  { label: "Claude Code 101 — Anthropic Education" },
+  { label: "AI Fluency for Small Businesses — PayPal + Anthropic" },
+];
+
 type MatLayoutProps = {
   children: ReactNode;
   surface?: "mat" | "plain";
@@ -115,7 +143,27 @@ export function MatLayout({ children, surface = "mat", contentClassName = "" }: 
               <a href="#" className="block transition-colors hover:text-foreground">Web Store</a>
             </div>
 
-            <p className="pt-6 text-xs text-muted-foreground">2026 © Isaac Sohn</p>
+            <div className="space-y-2 pt-6">
+              <p className="text-xs text-muted-foreground">2026 © Isaac Sohn</p>
+              <div
+                className="flex max-w-full gap-1.5 overflow-x-auto whitespace-nowrap pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                aria-label="Certifications"
+              >
+                {certificationBadges.map((badge) => (
+                  <span
+                    key={badge.label}
+                    title={badge.label}
+                    className={
+                      badge.kind === "group"
+                        ? "shrink-0 rounded-full border border-primary/30 bg-primary/10 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.12em] text-primary"
+                        : "shrink-0 rounded-full border border-black/10 bg-white/70 px-2.5 py-1 text-[10px] leading-none text-muted-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.7)]"
+                    }
+                  >
+                    {badge.label}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
         </aside>
 
