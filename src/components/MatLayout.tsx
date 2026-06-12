@@ -131,20 +131,20 @@ export function MatLayout({ children, surface = "mat", contentClassName = "" }: 
     <div className="min-h-screen w-full bg-background text-foreground">
       <div className="grid min-h-screen w-full grid-cols-1 md:grid-cols-[360px_minmax(0,1fr)] xl:grid-cols-[398px_minmax(0,1fr)]">
         <aside className="flex flex-col gap-8 px-8 py-10 lg:px-10">
-          <Link to="/" className="group relative block h-28 w-28" aria-label="Go home">
+          <Link to="/" className="group relative block h-36 w-36" aria-label="Go home">
             <img
               src={face1}
               alt="Isaac avatar"
-              width={120}
-              height={120}
+              width={144}
+              height={144}
               className="absolute inset-0 h-full w-full object-contain transition duration-500 ease-[cubic-bezier(.2,.8,.2,1)] group-hover:-rotate-6 group-hover:scale-105 group-hover:opacity-0"
             />
             <img
               src={face2}
               alt=""
               aria-hidden
-              width={120}
-              height={120}
+              width={144}
+              height={144}
               className="absolute inset-0 h-full w-full rotate-6 scale-95 object-contain opacity-0 transition duration-500 ease-[cubic-bezier(.2,.8,.2,1)] group-hover:rotate-0 group-hover:scale-110 group-hover:opacity-100"
             />
           </Link>
