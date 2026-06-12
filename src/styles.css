@@ -123,3 +123,49 @@
   transition: transform .3s ease;
 }
 .story-link:hover::after { transform: scaleX(1); transform-origin: left; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+
+.fliers-canvas {
+  background-color: #3f9f68;
+  background-image:
+    linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px),
+    url("./assets/clean-gray-paper.png");
+  background-size: 56px 56px, 56px 56px, 512px 512px;
+  background-blend-mode: normal, normal, multiply;
+}
+
+.fliers-canvas[data-dragging="true"] {
+  cursor: grabbing !important;
+}
+
+.fliers-poster {
+  transform: rotate(var(--poster-rotate)) translateZ(0);
+  transition:
+    transform 240ms cubic-bezier(.2,.8,.2,1),
+    filter 240ms ease,
+    box-shadow 240ms ease;
+  contain: layout paint style;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .fliers-canvas:not([data-dragging="true"]) .fliers-poster:hover {
+    z-index: 3;
+    filter: saturate(1.08) contrast(1.03);
+    transform: rotate(0deg) scale(1.025) translateZ(0);
+    box-shadow:
+      0 3px 9px rgba(0,0,0,.25),
+      0 26px 40px -22px rgba(0,0,0,.6);
+    will-change: transform;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fliers-poster,
+  .fliers-canvas:not([data-dragging="true"]) .fliers-poster:hover {
+    transition: none;
+    transform: rotate(var(--poster-rotate)) translateZ(0);
+  }
+}

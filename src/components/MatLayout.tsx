@@ -25,9 +25,9 @@ import medal20 from "@/assets/medals/medal-20.png";
 import medal21 from "@/assets/medals/medal-21.png";
 
 const navLinks: { to: LinkProps["to"]; label: string }[] = [
-  { to: "/work", label: "📁 Work" },
-  { to: "/", label: "👨🏻‍💻 About Me" },
-  { to: "/services", label: "💡 Services" },
+  { to: "/work", label: "Work" },
+  { to: "/", label: "About Me" },
+  { to: "/services", label: "Services" },
 ];
 
 const certificationMedals: { label: string; image: string }[] = [
@@ -64,7 +64,9 @@ export function MatLayout({ children, surface = "mat", contentClassName = "" }: 
   const wrapRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [dragging, setDragging] = useState(false);
-  const [medalTooltip, setMedalTooltip] = useState<{ label: string; x: number; y: number } | null>(null);
+  const [medalTooltip, setMedalTooltip] = useState<{ label: string; x: number; y: number } | null>(
+    null,
+  );
   const drag = useRef({ x: 0, y: 0, ox: 0, oy: 0, moved: false });
 
   const showMedalTooltip = (label: string, e: RPE<HTMLImageElement>) => {
@@ -76,8 +78,10 @@ export function MatLayout({ children, surface = "mat", contentClassName = "" }: 
   };
 
   const onDown = (e: RPE<HTMLDivElement>) => {
-    const t = e.target as HTMLElement;
-    if (t.closest("a, button, input, textarea, select, label, .polaroid, [data-no-pan]")) return;
+    const target = e.target as HTMLElement;
+    if (target.closest("a, button, input, textarea, select, label, .polaroid, [data-no-pan]"))
+      return;
+
     drag.current = { x: e.clientX, y: e.clientY, ox: offset.x, oy: offset.y, moved: false };
     setDragging(true);
     wrapRef.current?.setPointerCapture(e.pointerId);
@@ -85,9 +89,11 @@ export function MatLayout({ children, surface = "mat", contentClassName = "" }: 
 
   const onMove = (e: RPE<HTMLDivElement>) => {
     if (!dragging) return;
+
     const dx = e.clientX - drag.current.x;
     const dy = e.clientY - drag.current.y;
     if (Math.abs(dx) + Math.abs(dy) > 3) drag.current.moved = true;
+
     const max = 220;
     setOffset({
       x: Math.max(-max, Math.min(max, drag.current.ox + dx)),
@@ -97,23 +103,25 @@ export function MatLayout({ children, surface = "mat", contentClassName = "" }: 
 
   const onUp = (e: RPE<HTMLDivElement>) => {
     setDragging(false);
-    wrapRef.current?.releasePointerCapture(e.pointerId);
+    if (wrapRef.current?.hasPointerCapture(e.pointerId)) {
+      wrapRef.current.releasePointerCapture(e.pointerId);
+    }
   };
 
   const reset = () => setOffset({ x: 0, y: 0 });
 
   const topNav = (
     <nav className="pointer-events-none absolute inset-x-0 top-0 z-40 flex h-11 items-center justify-between bg-background px-4 text-[18px] font-normal text-foreground">
-      {navLinks.map((l) => (
+      {navLinks.map((link) => (
         <Link
-          key={l.label}
-          to={l.to}
+          key={link.label}
+          to={link.to}
           data-no-pan
           className="pointer-events-auto transition-all duration-200 hover:opacity-70"
           activeProps={{ className: "underline underline-offset-4" }}
           activeOptions={{ exact: true }}
         >
-          {l.label}
+          {link.label}
         </Link>
       ))}
     </nav>
@@ -142,18 +150,25 @@ export function MatLayout({ children, surface = "mat", contentClassName = "" }: 
           </Link>
 
           <p className="max-w-[260px] text-[15px] leading-relaxed text-sidebar-fg">
-            Hey there! I'm Isaac. I create web and app designs, visual artwork,
-            and expressive digital experiences with a creative point of view.
+            Hey there! I'm Isaac. I create web and app designs, visual artwork, and expressive
+            digital experiences with a creative point of view.
           </p>
 
           <div className="mt-auto space-y-4 text-[14px]">
-            <Link to="/book" className="block w-fit font-semibold tracking-[0.18em] text-primary story-link">
-              BOOK A PROJECT ↗
+            <Link
+              to="/book"
+              className="block w-fit font-semibold tracking-[0.18em] text-primary story-link"
+            >
+              BOOK A PROJECT &rarr;
             </Link>
 
             <div className="space-y-1.5">
-              <Link to="/work" className="block story-link w-fit">📁 Projects ↗</Link>
-              <a href="#" className="block story-link w-fit">📁 Fliers ↗</a>
+              <Link to="/work" className="block w-fit story-link">
+                Projects &rarr;
+              </Link>
+              <Link to="/fliers" className="block w-fit story-link">
+                Fliers &rarr;
+              </Link>
             </div>
 
             <div className="space-y-1 pt-2 text-muted-foreground">
@@ -165,12 +180,16 @@ export function MatLayout({ children, surface = "mat", contentClassName = "" }: 
               >
                 Instagram
               </a>
-              <a href="#" className="block transition-colors hover:text-foreground">Newsletter</a>
-              <a href="#" className="block transition-colors hover:text-foreground">Web Store</a>
+              <a href="#" className="block transition-colors hover:text-foreground">
+                Newsletter
+              </a>
+              <a href="#" className="block transition-colors hover:text-foreground">
+                Web Store
+              </a>
             </div>
 
             <div className="space-y-2 pt-6">
-              <p className="text-xs text-muted-foreground">2026 © Isaac Sohn</p>
+              <p className="text-xs text-muted-foreground">2026 &copy; Isaac Sohn</p>
               <div
                 className="flex w-full max-w-[318px] flex-nowrap items-end justify-between opacity-80 transition-opacity hover:opacity-100"
                 aria-label="Certifications"
@@ -195,9 +214,7 @@ export function MatLayout({ children, surface = "mat", contentClassName = "" }: 
         {surface === "plain" ? (
           <div className="relative min-h-screen overflow-y-auto border-l border-black/70 bg-background">
             {topNav}
-            <main className={`px-3 pb-12 pt-16 md:px-3 ${contentClassName}`}>
-              {children}
-            </main>
+            <main className={`px-3 pb-12 pt-16 md:px-3 ${contentClassName}`}>{children}</main>
           </div>
         ) : (
           <div
@@ -248,6 +265,7 @@ export function MatLayout({ children, surface = "mat", contentClassName = "" }: 
           </div>
         )}
       </div>
+
       {medalTooltip && (
         <div
           className="pointer-events-none fixed z-50 max-w-[240px] rounded-md border border-black/10 bg-[#fbfaf6]/95 px-2.5 py-1.5 text-center text-[11px] font-medium leading-tight text-foreground shadow-[0_8px_24px_rgba(0,0,0,0.18)] backdrop-blur-sm"

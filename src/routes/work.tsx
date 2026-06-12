@@ -1,53 +1,28 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { MatLayout } from "@/components/MatLayout";
-
-type Project = {
-  title: string;
-  category: string;
-  cover: string;
-};
+import { projects } from "@/lib/projects";
 
 export const Route = createFileRoute("/work")({
   head: () => ({
     meta: [
-      { title: "Work — Isaac Sohn" },
-      { name: "description", content: "Selected projects in brand design, visual identity, and creative direction." },
-      { property: "og:title", content: "Work — Isaac Sohn" },
+      { title: "Work - Isaac Sohn" },
+      {
+        name: "description",
+        content: "Selected projects in web design, app design, and visual artwork.",
+      },
+      { property: "og:title", content: "Work - Isaac Sohn" },
       { property: "og:description", content: "Selected projects by Isaac Sohn." },
     ],
   }),
   component: Work,
 });
 
-const projects: Project[] = [
-  {
-    title: "Eknoc",
-    category: "Web Design, App Interface, Brand System",
-    cover: "linear-gradient(135deg, #0f3b35 0%, #5fb6a5 52%, #f2efe4 100%)",
-  },
-  {
-    title: "Wemplate",
-    category: "Template System, Web Experience, Visual Identity",
-    cover: "linear-gradient(135deg, #151515 0%, #6b63ff 48%, #f5d56f 100%)",
-  },
-  {
-    title: "Blessie",
-    category: "Creative Direction, App Design, Digital Artwork",
-    cover: "linear-gradient(135deg, #efe7d0 0%, #cf6f8f 46%, #2f5f73 100%)",
-  },
-  {
-    title: "3D Fashion",
-    category: "3D Art Direction, Fashion Visualization, Motion",
-    cover: "linear-gradient(135deg, #1f2933 0%, #8ea0a8 45%, #f7f4ed 100%)",
-  },
-];
-
 function Work() {
   return (
     <MatLayout surface="plain" contentClassName="pt-14">
       <div className="grid grid-cols-1 gap-x-3 gap-y-5 lg:grid-cols-2">
         {projects.map((project) => (
-          <a key={project.title} href="#" className="group block">
+          <a key={project.slug} href={`/project/${project.slug}`} className="group block">
             <div className="overflow-hidden rounded-md bg-muted">
               <div
                 className="relative flex aspect-[1.46/1] w-full items-center justify-center overflow-hidden px-8 text-center transition duration-500 group-hover:scale-[1.03]"
@@ -61,7 +36,9 @@ function Work() {
               </div>
             </div>
             <div className="mt-2 text-[15px] leading-tight text-foreground">{project.title}</div>
-            <div className="mt-1 text-[14px] leading-tight text-muted-foreground">{project.category}</div>
+            <div className="mt-1 text-[14px] leading-tight text-muted-foreground">
+              {project.category}
+            </div>
           </a>
         ))}
       </div>
