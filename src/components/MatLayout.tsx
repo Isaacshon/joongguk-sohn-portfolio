@@ -2,6 +2,27 @@ import { Link, type LinkProps } from "@tanstack/react-router";
 import { useRef, useState, type ReactNode, type PointerEvent as RPE } from "react";
 import face1 from "@/assets/face1.png";
 import face2 from "@/assets/face2.png";
+import medal01 from "@/assets/medals/medal-01.png";
+import medal02 from "@/assets/medals/medal-02.png";
+import medal03 from "@/assets/medals/medal-03.png";
+import medal04 from "@/assets/medals/medal-04.png";
+import medal05 from "@/assets/medals/medal-05.png";
+import medal06 from "@/assets/medals/medal-06.png";
+import medal07 from "@/assets/medals/medal-07.png";
+import medal08 from "@/assets/medals/medal-08.png";
+import medal09 from "@/assets/medals/medal-09.png";
+import medal10 from "@/assets/medals/medal-10.png";
+import medal11 from "@/assets/medals/medal-11.png";
+import medal12 from "@/assets/medals/medal-12.png";
+import medal13 from "@/assets/medals/medal-13.png";
+import medal14 from "@/assets/medals/medal-14.png";
+import medal15 from "@/assets/medals/medal-15.png";
+import medal16 from "@/assets/medals/medal-16.png";
+import medal17 from "@/assets/medals/medal-17.png";
+import medal18 from "@/assets/medals/medal-18.png";
+import medal19 from "@/assets/medals/medal-19.png";
+import medal20 from "@/assets/medals/medal-20.png";
+import medal21 from "@/assets/medals/medal-21.png";
 
 const navLinks: { to: LinkProps["to"]; label: string }[] = [
   { to: "/work", label: "📁 Work" },
@@ -9,32 +30,28 @@ const navLinks: { to: LinkProps["to"]; label: string }[] = [
   { to: "/services", label: "💡 Services" },
 ];
 
-const certificationBadges: { label: string; kind?: "group" }[] = [
-  { label: "Google Skillshop / Google Ads", kind: "group" },
-  { label: "Google Ads Search Certification" },
-  { label: "Google Ads Display Certification" },
-  { label: "Google Ads Video Certification" },
-  { label: "Google Ads Apps Certification" },
-  { label: "Google Ads Creative Certification" },
-  { label: "Google Ads - Measurement Certification" },
-  { label: "AI-Powered Performance Ads Certification" },
-  { label: "AI-Powered Shopping Ads Certification" },
-  { label: "Grow Offline Sales Certification" },
-  { label: "Google Marketing Platform", kind: "group" },
-  { label: "Campaign Manager 360 Certification" },
-  { label: "Display & Video 360 Certification" },
-  { label: "Search Ads 360 Certification" },
-  { label: "Analytics / SEO / Ads", kind: "group" },
-  { label: "Google Analytics Certification" },
-  { label: "HubSpot SEO Certification" },
-  { label: "Microsoft Advertising Search Certification" },
-  { label: "LinkedIn Advertising Fundamentals" },
-  { label: "AI / IBM / Anthropic", kind: "group" },
-  { label: "Artificial Intelligence Fundamentals — IBM SkillsBuild" },
-  { label: "Team Essentials for Designing AI Solutions — IBM SkillsBuild" },
-  { label: "Claude 101 — Anthropic Education" },
-  { label: "Claude Code 101 — Anthropic Education" },
-  { label: "AI Fluency for Small Businesses — PayPal + Anthropic" },
+const certificationMedals: { label: string; image: string }[] = [
+  { label: "Google Ads Search Certification", image: medal01 },
+  { label: "Google Ads Display Certification", image: medal02 },
+  { label: "Google Ads Video Certification", image: medal03 },
+  { label: "Google Ads Apps Certification", image: medal04 },
+  { label: "Google Ads Creative Certification", image: medal05 },
+  { label: "Google Ads - Measurement Certification", image: medal06 },
+  { label: "AI-Powered Performance Ads Certification", image: medal07 },
+  { label: "AI-Powered Shopping Ads Certification", image: medal08 },
+  { label: "Grow Offline Sales Certification", image: medal09 },
+  { label: "Campaign Manager 360 Certification", image: medal10 },
+  { label: "Display & Video 360 Certification", image: medal11 },
+  { label: "Search Ads 360 Certification", image: medal12 },
+  { label: "Google Analytics Certification", image: medal13 },
+  { label: "HubSpot SEO Certification", image: medal14 },
+  { label: "Microsoft Advertising Search Certification", image: medal15 },
+  { label: "LinkedIn Advertising Fundamentals", image: medal16 },
+  { label: "Artificial Intelligence Fundamentals — IBM SkillsBuild", image: medal17 },
+  { label: "Team Essentials for Designing AI Solutions — IBM SkillsBuild", image: medal18 },
+  { label: "Claude 101 — Anthropic Education", image: medal19 },
+  { label: "Claude Code 101 — Anthropic Education", image: medal20 },
+  { label: "AI Fluency for Small Businesses — PayPal + Anthropic", image: medal21 },
 ];
 
 type MatLayoutProps = {
@@ -146,21 +163,18 @@ export function MatLayout({ children, surface = "mat", contentClassName = "" }: 
             <div className="space-y-2 pt-6">
               <p className="text-xs text-muted-foreground">2026 © Isaac Sohn</p>
               <div
-                className="flex max-w-full gap-1.5 overflow-x-auto whitespace-nowrap pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                className="flex w-fit max-w-full flex-nowrap gap-[3px] opacity-70 transition-opacity hover:opacity-100"
                 aria-label="Certifications"
               >
-                {certificationBadges.map((badge) => (
-                  <span
-                    key={badge.label}
-                    title={badge.label}
-                    className={
-                      badge.kind === "group"
-                        ? "shrink-0 rounded-full border border-primary/30 bg-primary/10 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.12em] text-primary"
-                        : "shrink-0 rounded-full border border-black/10 bg-white/70 px-2.5 py-1 text-[10px] leading-none text-muted-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.7)]"
-                    }
-                  >
-                    {badge.label}
-                  </span>
+                {certificationMedals.map((medal) => (
+                  <img
+                    key={medal.label}
+                    src={medal.image}
+                    alt={medal.label}
+                    title={medal.label}
+                    loading="lazy"
+                    className="h-[18px] w-[11px] object-contain drop-shadow-[0_1px_1px_rgba(0,0,0,0.2)] transition duration-200 hover:-translate-y-0.5 hover:scale-150"
+                  />
                 ))}
               </div>
             </div>
