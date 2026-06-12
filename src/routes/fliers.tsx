@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
+  useCallback,
   useEffect,
   useMemo,
   useRef,
@@ -7,6 +8,10 @@ import {
   type CSSProperties,
   type PointerEvent as RPE,
 } from "react";
+import fashionPoster from "@/assets/project-fliers/3d-fashion.svg";
+import blessiePoster from "@/assets/project-fliers/blessie.svg";
+import eknocPoster from "@/assets/project-fliers/eknoc.svg";
+import wemplatePoster from "@/assets/project-fliers/wemplate.svg";
 
 export const Route = createFileRoute("/fliers")({
   head: () => ({
@@ -37,15 +42,10 @@ const DRAG_RESPONSE = 0.68;
 const MAX_VELOCITY = 18;
 
 const fliers = [
-  "https://framerusercontent.com/images/NCGs0svjlA8ox1EoR8VuBu2vWuE.png",
-  "https://framerusercontent.com/images/CbFwEcRZ8Hpjwuf1xNziQS8Z84.png",
-  "https://framerusercontent.com/images/14AXL18lJBuxwzQ1fTkLiBtF7MQ.png",
-  "https://framerusercontent.com/images/74vexQqwEqqt3giEdDftP2k4lY.png",
-  "https://framerusercontent.com/images/bVyO34KR0oEQy2kAQ2CjcIKkK0.png",
-  "https://framerusercontent.com/images/Fa1kGbRYvGd64YjssqimIzOlro.png",
-  "https://framerusercontent.com/images/AuVG6QXTJNSCaAFNhv1KvRJyhjw.png",
-  "https://framerusercontent.com/images/Fx6AAg8WKQgMw629sokpPYQwJ9I.png",
-  "https://framerusercontent.com/images/ieoJtVHXPQq9vrYUmfkj5uIGXI.png",
+  { src: eknocPoster, title: "Eknoc" },
+  { src: wemplatePoster, title: "Wemplate" },
+  { src: blessiePoster, title: "Blessie" },
+  { src: fashionPoster, title: "3D Fashion" },
 ];
 
 const posterLayout = Array.from({ length: ROWS * COLUMNS }, (_, index) => {
@@ -104,19 +104,63 @@ function Fliers() {
     [tileGrid],
   );
 
-  const applyTransform = () => {
+  const applyTransform = useCallback(() => {
     const strip = stripRef.current;
     if (!strip) return;
 
     const x = -TILE_WIDTH + wrap(offset.current.x, TILE_WIDTH);
     const y = -TILE_HEIGHT + wrap(offset.current.y, TILE_HEIGHT);
     strip.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-  };
+  }, []);
 
-  const addVelocity = (x: number, y: number) => {
+  const addVelocity = useCallback((x: number, y: number) => {
     velocity.current.x = clamp(velocity.current.x + x, MAX_VELOCITY);
     velocity.current.y = clamp(velocity.current.y + y, MAX_VELOCITY);
-  };
+  }, []);
+
+  const moveDrag = useCallback(
+    (clientX: number, clientY: number, timeStamp: number) => {
+      if (!drag.current.active) return;
+
+      const dx = clientX - drag.current.x;
+      const dy = clientY - drag.current.y;
+
+      offset.current = {
+        x: drag.current.ox + dx * DRAG_RESPONSE,
+        y: drag.current.oy + dy * DRAG_RESPONSE,
+      };
+
+      const dt = Math.max(8, timeStamp - drag.current.lt);
+      const vx = ((clientX - drag.current.lx) / dt) * 16.667;
+      const vy = ((clientY - drag.current.ly) / dt) * 16.667;
+      velocity.current = {
+        x: clamp(velocity.current.x * 0.25 + vx * 0.06, MAX_VELOCITY),
+        y: clamp(velocity.current.y * 0.25 + vy * 0.06, MAX_VELOCITY),
+      };
+      drag.current.lx = clientX;
+      drag.current.ly = clientY;
+      drag.current.lt = timeStamp;
+      applyTransform();
+    },
+    [applyTransform],
+  );
+
+  const endDrag = useCallback((pointerId: number) => {
+    if (drag.current.pointerId !== pointerId) return;
+
+    drag.current.active = false;
+    drag.current.pointerId = null;
+    offset.current.x = wrap(offset.current.x, TILE_WIDTH);
+    offset.current.y = wrap(offset.current.y, TILE_HEIGHT);
+
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    delete canvas.dataset.dragging;
+    if (canvas.hasPointerCapture(pointerId)) {
+      canvas.releasePointerCapture(pointerId);
+    }
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -184,12 +228,34 @@ function Fliers() {
       resizeObserver.disconnect();
       motionQuery.removeEventListener("change", syncReducedMotion);
     };
-  }, []);
+  }, [addVelocity, applyTransform]);
+
+  useEffect(() => {
+    const onWindowMove = (event: PointerEvent) => {
+      if (!drag.current.active || drag.current.pointerId !== event.pointerId) return;
+      if (event.cancelable) event.preventDefault();
+      moveDrag(event.clientX, event.clientY, event.timeStamp);
+    };
+    const onWindowUp = (event: PointerEvent) => {
+      endDrag(event.pointerId);
+    };
+
+    window.addEventListener("pointermove", onWindowMove, { passive: false });
+    window.addEventListener("pointerup", onWindowUp);
+    window.addEventListener("pointercancel", onWindowUp);
+
+    return () => {
+      window.removeEventListener("pointermove", onWindowMove);
+      window.removeEventListener("pointerup", onWindowUp);
+      window.removeEventListener("pointercancel", onWindowUp);
+    };
+  }, [endDrag, moveDrag]);
 
   const onDown = (e: RPE<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
     if (target.closest("a, button")) return;
 
+    e.preventDefault();
     drag.current = {
       active: true,
       pointerId: e.pointerId,
@@ -204,41 +270,6 @@ function Fliers() {
     velocity.current = { x: 0, y: 0 };
     e.currentTarget.dataset.dragging = "true";
     e.currentTarget.setPointerCapture(e.pointerId);
-  };
-
-  const onMove = (e: RPE<HTMLDivElement>) => {
-    if (!drag.current.active || drag.current.pointerId !== e.pointerId) return;
-
-    const dx = e.clientX - drag.current.x;
-    const dy = e.clientY - drag.current.y;
-    e.preventDefault();
-    offset.current = {
-      x: drag.current.ox + dx * DRAG_RESPONSE,
-      y: drag.current.oy + dy * DRAG_RESPONSE,
-    };
-    const dt = Math.max(8, e.timeStamp - drag.current.lt);
-    const vx = ((e.clientX - drag.current.lx) / dt) * 16.667;
-    const vy = ((e.clientY - drag.current.ly) / dt) * 16.667;
-    velocity.current = {
-      x: clamp(velocity.current.x * 0.25 + vx * 0.06, MAX_VELOCITY),
-      y: clamp(velocity.current.y * 0.25 + vy * 0.06, MAX_VELOCITY),
-    };
-    drag.current.lx = e.clientX;
-    drag.current.ly = e.clientY;
-    drag.current.lt = e.timeStamp;
-    applyTransform();
-  };
-
-  const onUp = (e: RPE<HTMLDivElement>) => {
-    if (drag.current.pointerId !== e.pointerId) return;
-    drag.current.active = false;
-    drag.current.pointerId = null;
-    offset.current.x = wrap(offset.current.x, TILE_WIDTH);
-    offset.current.y = wrap(offset.current.y, TILE_HEIGHT);
-    delete e.currentTarget.dataset.dragging;
-    if (e.currentTarget.hasPointerCapture(e.pointerId)) {
-      e.currentTarget.releasePointerCapture(e.pointerId);
-    }
   };
 
   return (
@@ -256,9 +287,6 @@ function Fliers() {
         ref={canvasRef}
         data-no-pan
         onPointerDown={onDown}
-        onPointerMove={onMove}
-        onPointerUp={onUp}
-        onPointerCancel={onUp}
         className="fliers-canvas absolute inset-0 z-20 overflow-hidden touch-none"
         style={{ cursor: "grab" }}
       >
@@ -291,7 +319,7 @@ function Fliers() {
               }}
             >
               {posterLayout.map((poster, index) => {
-                const src =
+                const flier =
                   fliers[(poster.col + poster.row * 3 + tile.x * 2 + tile.y * 5) % fliers.length];
                 const style: PosterStyle = {
                   left: poster.x,
@@ -307,8 +335,8 @@ function Fliers() {
                     style={style}
                   >
                     <img
-                      src={src}
-                      alt={`Flier poster ${index + 1}`}
+                      src={flier.src}
+                      alt={`${flier.title} project poster`}
                       decoding="async"
                       draggable={false}
                       loading={index < 12 ? "eager" : "lazy"}
