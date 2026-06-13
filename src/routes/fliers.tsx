@@ -41,6 +41,7 @@ const DRAG_VELOCITY_TRANSFER = 0.34;
 const MAX_VELOCITY = 54;
 const VELOCITY_DECAY = 0.952;
 const CLICK_SUPPRESS_DISTANCE = 8;
+const CURSOR_TILT_LERP = 0.1;
 
 const fliers = [
   { src: eknocPoster, title: "Eknoc", slug: "eknoc" },
@@ -89,6 +90,11 @@ type PosterStyle = CSSProperties & {
   "--poster-z": number;
 };
 
+type CursorTiltState = {
+  x: number;
+  y: number;
+};
+
 function Fliers() {
   const [metrics, setMetrics] = useState(() => createMetrics(1280));
   const [tileGrid, setTileGrid] = useState({ cols: 4, rows: 4 });
@@ -101,6 +107,9 @@ function Fliers() {
   const reducedMotion = useRef(false);
   const initializedLayout = useRef(false);
   const suppressClickUntil = useRef(0);
+  const cursorTiltFrame = useRef(0);
+  const cursorTiltPointer = useRef({ x: 0, y: 0, active: false });
+  const cursorTiltState = useRef(new Map<HTMLElement, CursorTiltState>());
   const drag = useRef({
     active: false,
     pointerId: null as number | null,
@@ -158,6 +167,94 @@ function Fliers() {
     velocity.current.x = clamp(velocity.current.x + x, MAX_VELOCITY);
     velocity.current.y = clamp(velocity.current.y + y, MAX_VELOCITY);
   }, []);
+
+  const resetCursorTilt = useCallback(() => {
+    if (cursorTiltFrame.current) {
+      window.cancelAnimationFrame(cursorTiltFrame.current);
+      cursorTiltFrame.current = 0;
+    }
+
+    cursorTiltState.current.forEach((_, poster) => {
+      poster.style.setProperty("--tilt-x", "0deg");
+      poster.style.setProperty("--tilt-y", "0deg");
+      poster.style.setProperty("--shine-x", "50%");
+      poster.style.setProperty("--shine-y", "50%");
+    });
+    cursorTiltState.current.clear();
+    cursorTiltPointer.current.active = false;
+  }, []);
+
+  const applyCursorTilt = useCallback(() => {
+    cursorTiltFrame.current = 0;
+    const canvas = canvasRef.current;
+    if (
+      !canvas ||
+      reducedMotion.current ||
+      drag.current.active ||
+      !cursorTiltPointer.current.active
+    ) {
+      return;
+    }
+
+    let needsNextFrame = false;
+    const visiblePosters = new Set<HTMLElement>();
+    const buffer = metricsRef.current.posterWidth * 0.35;
+
+    canvas.querySelectorAll<HTMLElement>(".fliers-poster").forEach((poster) => {
+      const rect = poster.getBoundingClientRect();
+      const inViewport =
+        rect.right > -buffer &&
+        rect.bottom > -buffer &&
+        rect.left < window.innerWidth + buffer &&
+        rect.top < window.innerHeight + buffer;
+
+      if (!inViewport) return;
+
+      visiblePosters.add(poster);
+      const targetX = cursorTiltPointer.current.x - rect.left;
+      const targetY = cursorTiltPointer.current.y - rect.top;
+      const state = cursorTiltState.current.get(poster) ?? { x: targetX, y: targetY };
+      state.x += (targetX - state.x) * CURSOR_TILT_LERP;
+      state.y += (targetY - state.y) * CURSOR_TILT_LERP;
+      cursorTiltState.current.set(poster, state);
+
+      const xRatio = state.x / rect.width;
+      const yRatio = state.y / rect.height;
+      poster.style.setProperty("--tilt-x", `${((0.5 - yRatio) * 8).toFixed(2)}deg`);
+      poster.style.setProperty("--tilt-y", `${((xRatio - 0.5) * 8).toFixed(2)}deg`);
+      poster.style.setProperty("--shine-x", `${(xRatio * 100).toFixed(1)}%`);
+      poster.style.setProperty("--shine-y", `${(yRatio * 100).toFixed(1)}%`);
+
+      if (Math.abs(targetX - state.x) > 0.35 || Math.abs(targetY - state.y) > 0.35) {
+        needsNextFrame = true;
+      }
+    });
+
+    cursorTiltState.current.forEach((_, poster) => {
+      if (visiblePosters.has(poster)) return;
+      cursorTiltState.current.delete(poster);
+      poster.style.setProperty("--tilt-x", "0deg");
+      poster.style.setProperty("--tilt-y", "0deg");
+      poster.style.setProperty("--shine-x", "50%");
+      poster.style.setProperty("--shine-y", "50%");
+    });
+
+    if (needsNextFrame) {
+      cursorTiltFrame.current = window.requestAnimationFrame(applyCursorTilt);
+    }
+  }, []);
+
+  const queueCursorTilt = useCallback(
+    (clientX: number, clientY: number) => {
+      if (drag.current.active || reducedMotion.current) return;
+
+      cursorTiltPointer.current = { x: clientX, y: clientY, active: true };
+      if (!cursorTiltFrame.current) {
+        cursorTiltFrame.current = window.requestAnimationFrame(applyCursorTilt);
+      }
+    },
+    [applyCursorTilt],
+  );
 
   const moveDrag = useCallback(
     (clientX: number, clientY: number, timeStamp: number) => {
@@ -298,8 +395,9 @@ function Fliers() {
       canvas.removeEventListener("wheel", onNativeWheel);
       resizeObserver.disconnect();
       motionQuery.removeEventListener("change", syncReducedMotion);
+      resetCursorTilt();
     };
-  }, [addVelocity, applyTransform]);
+  }, [addVelocity, applyTransform, resetCursorTilt]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -336,6 +434,7 @@ function Fliers() {
 
     e.preventDefault();
     wheel.current = { x: 0, y: 0 };
+    resetCursorTilt();
     drag.current = {
       active: true,
       pointerId: e.pointerId,
@@ -353,24 +452,13 @@ function Fliers() {
     e.currentTarget.setPointerCapture(e.pointerId);
   };
 
-  const onPosterPointerMove = (e: RPE<HTMLAnchorElement>) => {
-    if (drag.current.active || reducedMotion.current) return;
-
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const xRatio = x / rect.width;
-    const yRatio = y / rect.height;
-
-    e.currentTarget.style.setProperty("--tilt-x", `${((0.5 - yRatio) * 8).toFixed(2)}deg`);
-    e.currentTarget.style.setProperty("--tilt-y", `${((xRatio - 0.5) * 8).toFixed(2)}deg`);
-    e.currentTarget.style.setProperty("--shine-x", `${(xRatio * 100).toFixed(1)}%`);
-    e.currentTarget.style.setProperty("--shine-y", `${(yRatio * 100).toFixed(1)}%`);
+  const onCanvasPointerMove = (e: RPE<HTMLDivElement>) => {
+    if (e.pointerType !== "mouse") return;
+    queueCursorTilt(e.clientX, e.clientY);
   };
 
-  const onPosterPointerLeave = (e: RPE<HTMLAnchorElement>) => {
-    e.currentTarget.style.setProperty("--tilt-x", "0deg");
-    e.currentTarget.style.setProperty("--tilt-y", "0deg");
+  const onCanvasPointerLeave = () => {
+    resetCursorTilt();
   };
 
   const onPosterClick = (e: RME<HTMLAnchorElement>) => {
@@ -394,6 +482,8 @@ function Fliers() {
         ref={canvasRef}
         data-no-pan
         onPointerDown={onDown}
+        onPointerMove={onCanvasPointerMove}
+        onPointerLeave={onCanvasPointerLeave}
         className="fliers-canvas absolute inset-0 z-20 overflow-hidden touch-none"
         style={{ cursor: "grab" }}
       >
@@ -442,8 +532,6 @@ function Fliers() {
                     href={`/project/${flier.slug}`}
                     key={`${tile.x}-${tile.y}-${index}`}
                     onClick={onPosterClick}
-                    onPointerMove={onPosterPointerMove}
-                    onPointerLeave={onPosterPointerLeave}
                     className="fliers-poster absolute block select-none overflow-visible rounded-[2px]"
                     style={style}
                   >
