@@ -234,42 +234,11 @@
   transform-style: preserve-3d;
   transition:
     transform 700ms linear,
+    box-shadow 360ms ease,
     filter 360ms ease;
   will-change: transform;
-}
-
-.fliers-poster__paper-frame {
-  left: -12%;
-  top: -12%;
-  z-index: 1;
-  width: 124%;
-  height: 124%;
-  border-radius: 4px;
-  background: url("./assets/clean-gray-paper.png");
-  background-size: 220px 220px;
   box-shadow:
-    inset 0 0 0 clamp(13px, 6.8%, 18px) rgba(248, 245, 232, 0.66),
-    inset 0 0 0 1px rgba(58, 45, 31, 0.12),
-    inset 0 0 24px rgba(73, 55, 37, 0.1);
-  opacity: 0.58;
-}
-
-.fliers-poster__paper-shadow {
-  left: 10%;
-  top: 4%;
-  z-index: 0;
-  width: 110%;
-  height: 110%;
-  border-radius: 5px;
-  background: rgba(28, 48, 36, 0.34);
-  filter: blur(1.5px);
-  opacity: 0.76;
-}
-
-.fliers-poster__image {
-  z-index: 5;
-  box-shadow:
-    0 2px 6px rgba(0, 0, 0, 0.22),
+    0 2px 6px rgba(0, 0, 0, 0.24),
     0 18px 30px -18px rgba(0, 0, 0, 0.55);
 }
 
@@ -291,14 +260,11 @@
 
   .fliers-canvas:not([data-dragging="true"]) .fliers-poster:hover .fliers-poster__inner {
     transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) scale(1.02) translateZ(0);
-    transition-duration: 1000ms;
-    transition-timing-function: ease-out;
-  }
-
-  .fliers-canvas:not([data-dragging="true"]) .fliers-poster:hover .fliers-poster__image {
     box-shadow:
       0 3px 9px rgba(0, 0, 0, 0.25),
       0 26px 40px -22px rgba(0, 0, 0, 0.6);
+    transition-duration: 1000ms;
+    transition-timing-function: ease-out;
   }
 
   .fliers-canvas:not([data-dragging="true"]) .fliers-poster:hover .fliers-poster__shine {

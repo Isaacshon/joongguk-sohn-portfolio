@@ -31,7 +31,7 @@ export const Route = createFileRoute("/fliers")({
 
 const COLUMNS = 16;
 const ROWS = 5;
-const POSTER_RATIO = 661 / 496;
+const POSTER_RATIO = 24 / 18;
 const DESKTOP_CARD_RATIO = 0.18;
 const MOBILE_CARD_RATIO = 0.4;
 const DESKTOP_GUTTER_RATIO = 0.068;
@@ -584,20 +584,16 @@ function Fliers() {
                     className="fliers-poster absolute block select-none overflow-visible rounded-[2px]"
                     style={style}
                   >
-                    <span className="fliers-poster__inner pointer-events-none absolute inset-0 block">
-                      <span className="fliers-poster__paper-shadow pointer-events-none absolute" />
-                      <span className="fliers-poster__paper-frame pointer-events-none absolute" />
-                      <span className="fliers-poster__image pointer-events-none relative block h-full w-full overflow-hidden rounded-[2px] bg-[#fbfaf6]">
-                        <img
-                          src={flier.src}
-                          alt={`${flier.title} project poster`}
-                          decoding="async"
-                          draggable={false}
-                          loading={index < 12 ? "eager" : "lazy"}
-                          className="block h-full w-full select-none object-cover"
-                        />
-                        <span className="fliers-poster__shine pointer-events-none absolute inset-0" />
-                      </span>
+                    <span className="fliers-poster__inner pointer-events-none block h-full w-full overflow-hidden rounded-[2px] bg-[#fbfaf6]">
+                      <img
+                        src={flier.src}
+                        alt={`${flier.title} project poster`}
+                        decoding="async"
+                        draggable={false}
+                        loading={index < 12 ? "eager" : "lazy"}
+                        className="block h-full w-full select-none object-cover"
+                      />
+                      <span className="fliers-poster__shine pointer-events-none absolute inset-0" />
                     </span>
                   </a>
                 );
