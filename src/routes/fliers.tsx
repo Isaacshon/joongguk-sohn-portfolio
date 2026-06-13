@@ -584,16 +584,20 @@ function Fliers() {
                     className="fliers-poster absolute block select-none overflow-visible rounded-[2px]"
                     style={style}
                   >
-                    <span className="fliers-poster__inner pointer-events-none block h-full w-full overflow-hidden rounded-[2px] bg-[#fbfaf6] shadow-[0_2px_6px_rgba(0,0,0,0.22),0_18px_30px_-18px_rgba(0,0,0,0.55)]">
-                      <img
-                        src={flier.src}
-                        alt={`${flier.title} project poster`}
-                        decoding="async"
-                        draggable={false}
-                        loading={index < 12 ? "eager" : "lazy"}
-                        className="block h-full w-full select-none object-cover"
-                      />
-                      <span className="fliers-poster__shine pointer-events-none absolute inset-0" />
+                    <span className="fliers-poster__inner pointer-events-none absolute inset-0 block">
+                      <span className="fliers-poster__paper-shadow pointer-events-none absolute" />
+                      <span className="fliers-poster__paper-frame pointer-events-none absolute" />
+                      <span className="fliers-poster__image pointer-events-none relative block h-full w-full overflow-hidden rounded-[2px] bg-[#fbfaf6]">
+                        <img
+                          src={flier.src}
+                          alt={`${flier.title} project poster`}
+                          decoding="async"
+                          draggable={false}
+                          loading={index < 12 ? "eager" : "lazy"}
+                          className="block h-full w-full select-none object-cover"
+                        />
+                        <span className="fliers-poster__shine pointer-events-none absolute inset-0" />
+                      </span>
                     </span>
                   </a>
                 );
