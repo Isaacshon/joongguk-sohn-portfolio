@@ -42,6 +42,7 @@ const MAX_VELOCITY = 54;
 const VELOCITY_DECAY = 0.952;
 const CLICK_SUPPRESS_DISTANCE = 8;
 const CURSOR_TILT_LERP = 0.1;
+const MOUSE_DRAG_POINTER_ID = -1;
 
 const fliers = [
   { src: eknocPoster, title: "Eknoc", slug: "eknoc" },
@@ -104,7 +105,6 @@ function Fliers() {
   const offset = useRef({ x: -3022, y: -873 });
   const velocity = useRef({ x: -0.12, y: 0.06 });
   const wheel = useRef({ x: 0, y: 0 });
-  const reducedMotion = useRef(false);
   const initializedLayout = useRef(false);
   const suppressClickUntil = useRef(0);
   const cursorTiltFrame = useRef(0);
@@ -187,12 +187,7 @@ function Fliers() {
   const applyCursorTilt = useCallback(() => {
     cursorTiltFrame.current = 0;
     const canvas = canvasRef.current;
-    if (
-      !canvas ||
-      reducedMotion.current ||
-      drag.current.active ||
-      !cursorTiltPointer.current.active
-    ) {
+    if (!canvas || drag.current.active || !cursorTiltPointer.current.active) {
       return;
     }
 
@@ -213,7 +208,10 @@ function Fliers() {
       visiblePosters.add(poster);
       const targetX = cursorTiltPointer.current.x - rect.left;
       const targetY = cursorTiltPointer.current.y - rect.top;
-      const state = cursorTiltState.current.get(poster) ?? { x: targetX, y: targetY };
+      const state = cursorTiltState.current.get(poster) ?? {
+        x: rect.width / 2,
+        y: rect.height / 2,
+      };
       state.x += (targetX - state.x) * CURSOR_TILT_LERP;
       state.y += (targetY - state.y) * CURSOR_TILT_LERP;
       cursorTiltState.current.set(poster, state);
@@ -246,7 +244,7 @@ function Fliers() {
 
   const queueCursorTilt = useCallback(
     (clientX: number, clientY: number) => {
-      if (drag.current.active || reducedMotion.current) return;
+      if (drag.current.active) return;
 
       cursorTiltPointer.current = { x: clientX, y: clientY, active: true };
       if (!cursorTiltFrame.current) {
@@ -302,7 +300,7 @@ function Fliers() {
     if (!canvas) return;
 
     delete canvas.dataset.dragging;
-    if (canvas.hasPointerCapture(pointerId)) {
+    if (pointerId !== MOUSE_DRAG_POINTER_ID && canvas.hasPointerCapture(pointerId)) {
       canvas.releasePointerCapture(pointerId);
     }
   }, []);
@@ -310,14 +308,6 @@ function Fliers() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-
-    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const syncReducedMotion = () => {
-      reducedMotion.current = motionQuery.matches;
-      if (reducedMotion.current) velocity.current = { x: 0, y: 0 };
-    };
-    syncReducedMotion();
-    motionQuery.addEventListener("change", syncReducedMotion);
 
     let frame = 0;
     let lastTime = performance.now();
@@ -369,9 +359,7 @@ function Fliers() {
 
       if (!drag.current.active) {
         if (wheel.current.x || wheel.current.y) {
-          if (!reducedMotion.current) {
-            addVelocity(-wheel.current.x * 0.055, -wheel.current.y * 0.055);
-          }
+          addVelocity(-wheel.current.x * 0.055, -wheel.current.y * 0.055);
           wheel.current = { x: 0, y: 0 };
         }
 
@@ -394,7 +382,6 @@ function Fliers() {
       window.cancelAnimationFrame(frame);
       canvas.removeEventListener("wheel", onNativeWheel);
       resizeObserver.disconnect();
-      motionQuery.removeEventListener("change", syncReducedMotion);
       resetCursorTilt();
     };
   }, [addVelocity, applyTransform, resetCursorTilt]);
@@ -426,6 +413,72 @@ function Fliers() {
     };
   }, [endDrag, moveDrag]);
 
+  useEffect(() => {
+    const onDocumentMouseMove = (event: MouseEvent) => {
+      if (drag.current.active && drag.current.pointerId === MOUSE_DRAG_POINTER_ID) {
+        if (event.cancelable) event.preventDefault();
+        moveDrag(event.clientX, event.clientY, event.timeStamp);
+        return;
+      }
+
+      queueCursorTilt(event.clientX, event.clientY);
+    };
+    const onDocumentPointerMove = (event: PointerEvent) => {
+      if (event.pointerType !== "mouse") return;
+      queueCursorTilt(event.clientX, event.clientY);
+    };
+    const onDocumentMouseLeave = () => {
+      resetCursorTilt();
+    };
+    const onDocumentMouseUp = () => {
+      if (drag.current.pointerId !== MOUSE_DRAG_POINTER_ID) return;
+      endDrag(MOUSE_DRAG_POINTER_ID);
+    };
+
+    document.addEventListener("mousemove", onDocumentMouseMove, {
+      capture: true,
+      passive: false,
+    });
+    document.addEventListener("pointermove", onDocumentPointerMove, {
+      capture: true,
+      passive: true,
+    });
+    document.addEventListener("mouseleave", onDocumentMouseLeave);
+    document.addEventListener("mouseup", onDocumentMouseUp);
+
+    return () => {
+      document.removeEventListener("mousemove", onDocumentMouseMove, true);
+      document.removeEventListener("pointermove", onDocumentPointerMove, true);
+      document.removeEventListener("mouseleave", onDocumentMouseLeave);
+      document.removeEventListener("mouseup", onDocumentMouseUp);
+    };
+  }, [endDrag, moveDrag, queueCursorTilt, resetCursorTilt]);
+
+  const beginDrag = (
+    canvas: HTMLDivElement,
+    clientX: number,
+    clientY: number,
+    timeStamp: number,
+    pointerId: number,
+  ) => {
+    wheel.current = { x: 0, y: 0 };
+    resetCursorTilt();
+    drag.current = {
+      active: true,
+      pointerId,
+      x: clientX,
+      y: clientY,
+      ox: offset.current.x,
+      oy: offset.current.y,
+      lx: clientX,
+      ly: clientY,
+      lt: timeStamp,
+      distance: 0,
+    };
+    velocity.current = { x: 0, y: 0 };
+    canvas.dataset.dragging = "true";
+  };
+
   const onDown = (e: RPE<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
     if (target.closest("[data-no-drag]")) return;
@@ -433,32 +486,27 @@ function Fliers() {
     if (e.pointerType === "mouse" && e.button !== 0) return;
 
     e.preventDefault();
-    wheel.current = { x: 0, y: 0 };
-    resetCursorTilt();
-    drag.current = {
-      active: true,
-      pointerId: e.pointerId,
-      x: e.clientX,
-      y: e.clientY,
-      ox: offset.current.x,
-      oy: offset.current.y,
-      lx: e.clientX,
-      ly: e.clientY,
-      lt: e.timeStamp,
-      distance: 0,
-    };
-    velocity.current = { x: 0, y: 0 };
-    e.currentTarget.dataset.dragging = "true";
+    beginDrag(e.currentTarget, e.clientX, e.clientY, e.timeStamp, e.pointerId);
     e.currentTarget.setPointerCapture(e.pointerId);
+  };
+
+  const onCanvasMouseDown = (e: RME<HTMLDivElement>) => {
+    const target = e.target as HTMLElement;
+    if (target.closest("[data-no-drag]")) return;
+    if (drag.current.active) return;
+    if (e.button !== 0) return;
+
+    e.preventDefault();
+    beginDrag(e.currentTarget, e.clientX, e.clientY, e.timeStamp, MOUSE_DRAG_POINTER_ID);
+  };
+
+  const onCanvasMouseMove = (e: RME<HTMLDivElement>) => {
+    queueCursorTilt(e.clientX, e.clientY);
   };
 
   const onCanvasPointerMove = (e: RPE<HTMLDivElement>) => {
     if (e.pointerType !== "mouse") return;
     queueCursorTilt(e.clientX, e.clientY);
-  };
-
-  const onCanvasPointerLeave = () => {
-    resetCursorTilt();
   };
 
   const onPosterClick = (e: RME<HTMLAnchorElement>) => {
@@ -482,8 +530,9 @@ function Fliers() {
         ref={canvasRef}
         data-no-pan
         onPointerDown={onDown}
+        onMouseDown={onCanvasMouseDown}
         onPointerMove={onCanvasPointerMove}
-        onPointerLeave={onCanvasPointerLeave}
+        onMouseMove={onCanvasMouseMove}
         className="fliers-canvas absolute inset-0 z-20 overflow-hidden touch-none"
         style={{ cursor: "grab" }}
       >

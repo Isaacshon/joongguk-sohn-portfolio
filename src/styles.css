@@ -282,11 +282,6 @@
   .fliers-canvas:not([data-dragging="true"]) .fliers-poster:hover {
     transform: rotate(var(--poster-rotate)) translateZ(0);
   }
-
-  .fliers-poster__inner,
-  .fliers-canvas:not([data-dragging="true"]) .fliers-poster:hover .fliers-poster__inner {
-    transform: none;
-  }
 }
 
 .cross-relic {
