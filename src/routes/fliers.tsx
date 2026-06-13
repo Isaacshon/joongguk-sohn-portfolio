@@ -6,6 +6,7 @@ import {
   useRef,
   useState,
   type CSSProperties,
+  type MouseEvent as RME,
   type PointerEvent as RPE,
 } from "react";
 import fashionPoster from "@/assets/project-fliers/3d-fashion.svg";
@@ -28,40 +29,35 @@ export const Route = createFileRoute("/fliers")({
   component: Fliers,
 });
 
-const POSTER_WIDTH = 346;
-const POSTER_HEIGHT = 461;
-const GAP_X = 130;
-const GAP_Y = 130;
-const PITCH_X = POSTER_WIDTH + GAP_X;
-const PITCH_Y = POSTER_HEIGHT + GAP_Y;
 const COLUMNS = 16;
 const ROWS = 5;
-const TILE_WIDTH = COLUMNS * PITCH_X;
-const TILE_HEIGHT = ROWS * PITCH_Y;
-const DRAG_RESPONSE = 0.68;
-const MAX_VELOCITY = 18;
+const POSTER_RATIO = 661 / 496;
+const DESKTOP_CARD_RATIO = 0.18;
+const MOBILE_CARD_RATIO = 0.4;
+const DESKTOP_GUTTER_RATIO = 0.068;
+const MOBILE_GUTTER_RATIO = 0.1;
+const DRAG_RESPONSE = 0.82;
+const DRAG_VELOCITY_TRANSFER = 0.34;
+const MAX_VELOCITY = 54;
+const VELOCITY_DECAY = 0.952;
+const CLICK_SUPPRESS_DISTANCE = 8;
 
 const fliers = [
-  { src: eknocPoster, title: "Eknoc" },
-  { src: wemplatePoster, title: "Wemplate" },
-  { src: blessiePoster, title: "Blessie" },
-  { src: fashionPoster, title: "3D Fashion" },
+  { src: eknocPoster, title: "Eknoc", slug: "eknoc" },
+  { src: wemplatePoster, title: "Wemplate", slug: "wemplate" },
+  { src: blessiePoster, title: "Blessie", slug: "blessie" },
+  { src: fashionPoster, title: "3D Fashion", slug: "3d-fashion" },
 ];
 
-const posterLayout = Array.from({ length: ROWS * COLUMNS }, (_, index) => {
-  const row = Math.floor(index / COLUMNS);
-  const col = index % COLUMNS;
-  const rowOffsets = [0, 303, 0, 303, 0];
-
-  return {
-    col,
-    row,
-    x: col * PITCH_X + rowOffsets[row],
-    y: row * PITCH_Y,
-    w: POSTER_WIDTH,
-    r: 0,
-  };
-});
+type FliersMetrics = {
+  posterWidth: number;
+  posterHeight: number;
+  gutter: number;
+  pitchX: number;
+  pitchY: number;
+  tileWidth: number;
+  tileHeight: number;
+};
 
 const wrap = (value: number, size: number) => ((value % size) + size) % size;
 const clamp = (value: number, max: number) => Math.max(-max, Math.min(max, value));
@@ -69,20 +65,42 @@ const normalizeWheel = (event: WheelEvent) => {
   const unit = event.deltaMode === 1 ? 18 : event.deltaMode === 2 ? window.innerHeight : 1;
   return { x: event.deltaX * unit, y: event.deltaY * unit };
 };
+const createMetrics = (width: number): FliersMetrics => {
+  const isDesktop = width >= 1024;
+  const posterWidth = Math.round(width * (isDesktop ? DESKTOP_CARD_RATIO : MOBILE_CARD_RATIO));
+  const posterHeight = Math.round(posterWidth * POSTER_RATIO);
+  const gutter = Math.round(width * (isDesktop ? DESKTOP_GUTTER_RATIO : MOBILE_GUTTER_RATIO));
+  const pitchX = posterWidth + gutter;
+  const pitchY = posterHeight + gutter;
+
+  return {
+    posterWidth,
+    posterHeight,
+    gutter,
+    pitchX,
+    pitchY,
+    tileWidth: COLUMNS * pitchX,
+    tileHeight: ROWS * pitchY,
+  };
+};
 
 type PosterStyle = CSSProperties & {
   "--poster-rotate": string;
+  "--poster-z": number;
 };
 
 function Fliers() {
+  const [metrics, setMetrics] = useState(() => createMetrics(1280));
   const [tileGrid, setTileGrid] = useState({ cols: 4, rows: 4 });
   const canvasRef = useRef<HTMLDivElement>(null);
   const stripRef = useRef<HTMLDivElement>(null);
+  const metricsRef = useRef(metrics);
   const offset = useRef({ x: -3022, y: -873 });
   const velocity = useRef({ x: -0.12, y: 0.06 });
   const wheel = useRef({ x: 0, y: 0 });
   const reducedMotion = useRef(false);
-  const drift = useRef({ tick: 0 });
+  const initializedLayout = useRef(false);
+  const suppressClickUntil = useRef(0);
   const drag = useRef({
     active: false,
     pointerId: null as number | null,
@@ -93,7 +111,10 @@ function Fliers() {
     lx: 0,
     ly: 0,
     lt: 0,
+    distance: 0,
   });
+
+  metricsRef.current = metrics;
 
   const tiles = useMemo(
     () =>
@@ -104,12 +125,32 @@ function Fliers() {
     [tileGrid],
   );
 
+  const posterLayout = useMemo(
+    () =>
+      Array.from({ length: ROWS * COLUMNS }, (_, index) => {
+        const row = Math.floor(index / COLUMNS);
+        const col = index % COLUMNS;
+        const rowOffset = row % 2 === 0 ? 0 : -metrics.posterWidth / 2;
+
+        return {
+          col,
+          row,
+          x: col * metrics.pitchX + rowOffset,
+          y: row * metrics.pitchY,
+          r: 0,
+          z: 1 + ((row + col) % 4),
+        };
+      }),
+    [metrics],
+  );
+
   const applyTransform = useCallback(() => {
     const strip = stripRef.current;
     if (!strip) return;
 
-    const x = -TILE_WIDTH + wrap(offset.current.x, TILE_WIDTH);
-    const y = -TILE_HEIGHT + wrap(offset.current.y, TILE_HEIGHT);
+    const { tileWidth, tileHeight } = metricsRef.current;
+    const x = -tileWidth + wrap(offset.current.x, tileWidth);
+    const y = -tileHeight + wrap(offset.current.y, tileHeight);
     strip.style.transform = `translate3d(${x}px, ${y}px, 0)`;
   }, []);
 
@@ -134,12 +175,13 @@ function Fliers() {
       const vx = ((clientX - drag.current.lx) / dt) * 16.667;
       const vy = ((clientY - drag.current.ly) / dt) * 16.667;
       velocity.current = {
-        x: clamp(velocity.current.x * 0.25 + vx * 0.06, MAX_VELOCITY),
-        y: clamp(velocity.current.y * 0.25 + vy * 0.06, MAX_VELOCITY),
+        x: clamp(velocity.current.x * 0.18 + vx * DRAG_VELOCITY_TRANSFER, MAX_VELOCITY),
+        y: clamp(velocity.current.y * 0.18 + vy * DRAG_VELOCITY_TRANSFER, MAX_VELOCITY),
       };
       drag.current.lx = clientX;
       drag.current.ly = clientY;
       drag.current.lt = timeStamp;
+      drag.current.distance = Math.max(drag.current.distance, Math.hypot(dx, dy));
       applyTransform();
     },
     [applyTransform],
@@ -148,10 +190,16 @@ function Fliers() {
   const endDrag = useCallback((pointerId: number) => {
     if (drag.current.pointerId !== pointerId) return;
 
+    const { tileWidth, tileHeight } = metricsRef.current;
     drag.current.active = false;
     drag.current.pointerId = null;
-    offset.current.x = wrap(offset.current.x, TILE_WIDTH);
-    offset.current.y = wrap(offset.current.y, TILE_HEIGHT);
+    offset.current.x = wrap(offset.current.x, tileWidth);
+    offset.current.y = wrap(offset.current.y, tileHeight);
+    wheel.current = { x: 0, y: 0 };
+
+    if (drag.current.distance > CLICK_SUPPRESS_DISTANCE) {
+      suppressClickUntil.current = performance.now() + 260;
+    }
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -178,13 +226,38 @@ function Fliers() {
     let lastTime = performance.now();
     const resizeObserver = new ResizeObserver(([entry]) => {
       const { width, height } = entry.contentRect;
+      const nextMetrics = createMetrics(width);
+      metricsRef.current = nextMetrics;
+      setMetrics(nextMetrics);
+
+      if (!initializedLayout.current) {
+        const imgMidIndex = Math.floor(COLUMNS / 2);
+        const rowMidIndex = Math.floor(ROWS / 2);
+        offset.current = {
+          x:
+            nextMetrics.tileWidth -
+            (imgMidIndex * nextMetrics.pitchX + nextMetrics.posterWidth / 2) +
+            width / 2,
+          y:
+            nextMetrics.tileHeight -
+            (rowMidIndex * nextMetrics.pitchY + nextMetrics.posterHeight / 2) +
+            height / 2,
+        };
+        initializedLayout.current = true;
+      }
+
       setTileGrid({
-        cols: Math.max(3, Math.ceil(width / TILE_WIDTH) + 2),
-        rows: Math.max(3, Math.ceil(height / TILE_HEIGHT) + 2),
+        cols: Math.max(3, Math.ceil(width / nextMetrics.tileWidth) + 2),
+        rows: Math.max(3, Math.ceil(height / nextMetrics.tileHeight) + 2),
       });
+      applyTransform();
     });
     const onNativeWheel = (event: WheelEvent) => {
       if (event.cancelable) event.preventDefault();
+      if (drag.current.active) {
+        wheel.current = { x: 0, y: 0 };
+        return;
+      }
       const delta = normalizeWheel(event);
       wheel.current.x += delta.x;
       wheel.current.y += delta.y;
@@ -198,23 +271,21 @@ function Fliers() {
       lastTime = now;
 
       if (!drag.current.active) {
-        if (!reducedMotion.current && (wheel.current.x || wheel.current.y)) {
-          addVelocity(-wheel.current.x * 0.018 - wheel.current.y * 0.06, wheel.current.y * 0.032);
+        if (wheel.current.x || wheel.current.y) {
+          if (!reducedMotion.current) {
+            addVelocity(-wheel.current.x * 0.055, -wheel.current.y * 0.055);
+          }
           wheel.current = { x: 0, y: 0 };
         }
 
-        drift.current.tick += 1;
-        const driftY = reducedMotion.current ? 0 : Math.sin(drift.current.tick / 92) * 0.026;
+        const { tileWidth, tileHeight } = metricsRef.current;
+        offset.current.x = wrap(offset.current.x + velocity.current.x * dt, tileWidth);
+        offset.current.y = wrap(offset.current.y + velocity.current.y * dt, tileHeight);
+        velocity.current.x *= Math.pow(VELOCITY_DECAY, dt);
+        velocity.current.y *= Math.pow(VELOCITY_DECAY, dt);
 
-        offset.current.x = wrap(offset.current.x + velocity.current.x * dt, TILE_WIDTH);
-        offset.current.y = wrap(offset.current.y + velocity.current.y * dt + driftY, TILE_HEIGHT);
-        velocity.current.x *= Math.pow(0.88, dt);
-        velocity.current.y *= Math.pow(0.88, dt);
-
-        if (!reducedMotion.current && Math.abs(velocity.current.x) < 0.12)
-          velocity.current.x = -0.12;
-        if (!reducedMotion.current && Math.abs(velocity.current.y) < 0.06)
-          velocity.current.y = 0.06;
+        if (Math.abs(velocity.current.x) < 0.012) velocity.current.x = 0;
+        if (Math.abs(velocity.current.y) < 0.012) velocity.current.y = 0;
       }
 
       applyTransform();
@@ -231,6 +302,7 @@ function Fliers() {
   }, [addVelocity, applyTransform]);
 
   useEffect(() => {
+    const canvas = canvasRef.current;
     const onWindowMove = (event: PointerEvent) => {
       if (!drag.current.active || drag.current.pointerId !== event.pointerId) return;
       if (event.cancelable) event.preventDefault();
@@ -239,23 +311,31 @@ function Fliers() {
     const onWindowUp = (event: PointerEvent) => {
       endDrag(event.pointerId);
     };
+    const onLostPointerCapture = (event: PointerEvent) => {
+      endDrag(event.pointerId);
+    };
 
     window.addEventListener("pointermove", onWindowMove, { passive: false });
     window.addEventListener("pointerup", onWindowUp);
     window.addEventListener("pointercancel", onWindowUp);
+    canvas?.addEventListener("lostpointercapture", onLostPointerCapture);
 
     return () => {
       window.removeEventListener("pointermove", onWindowMove);
       window.removeEventListener("pointerup", onWindowUp);
       window.removeEventListener("pointercancel", onWindowUp);
+      canvas?.removeEventListener("lostpointercapture", onLostPointerCapture);
     };
   }, [endDrag, moveDrag]);
 
   const onDown = (e: RPE<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
-    if (target.closest("a, button")) return;
+    if (target.closest("[data-no-drag]")) return;
+    if (drag.current.active) return;
+    if (e.pointerType === "mouse" && e.button !== 0) return;
 
     e.preventDefault();
+    wheel.current = { x: 0, y: 0 };
     drag.current = {
       active: true,
       pointerId: e.pointerId,
@@ -266,19 +346,46 @@ function Fliers() {
       lx: e.clientX,
       ly: e.clientY,
       lt: e.timeStamp,
+      distance: 0,
     };
     velocity.current = { x: 0, y: 0 };
     e.currentTarget.dataset.dragging = "true";
     e.currentTarget.setPointerCapture(e.pointerId);
   };
 
+  const onPosterPointerMove = (e: RPE<HTMLAnchorElement>) => {
+    if (drag.current.active || reducedMotion.current) return;
+
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const xRatio = x / rect.width;
+    const yRatio = y / rect.height;
+
+    e.currentTarget.style.setProperty("--tilt-x", `${((0.5 - yRatio) * 8).toFixed(2)}deg`);
+    e.currentTarget.style.setProperty("--tilt-y", `${((xRatio - 0.5) * 8).toFixed(2)}deg`);
+    e.currentTarget.style.setProperty("--shine-x", `${(xRatio * 100).toFixed(1)}%`);
+    e.currentTarget.style.setProperty("--shine-y", `${(yRatio * 100).toFixed(1)}%`);
+  };
+
+  const onPosterPointerLeave = (e: RPE<HTMLAnchorElement>) => {
+    e.currentTarget.style.setProperty("--tilt-x", "0deg");
+    e.currentTarget.style.setProperty("--tilt-y", "0deg");
+  };
+
+  const onPosterClick = (e: RME<HTMLAnchorElement>) => {
+    if (performance.now() < suppressClickUntil.current) {
+      e.preventDefault();
+    }
+  };
+
   return (
     <div className="fixed inset-0 overflow-hidden bg-[#3f9f68] text-[#f7f2e8]">
       <nav className="fixed left-5 top-5 z-50 flex gap-5 text-[15px] font-medium mix-blend-difference">
-        <Link to="/" className="story-link">
+        <Link to="/" data-no-drag className="story-link">
           Isaac Sohn
         </Link>
-        <Link to="/work" className="story-link">
+        <Link to="/work" data-no-drag className="story-link">
           Work
         </Link>
       </nav>
@@ -302,9 +409,9 @@ function Fliers() {
           ref={stripRef}
           className="absolute left-0 top-0 will-change-transform"
           style={{
-            width: TILE_WIDTH * tileGrid.cols,
-            height: TILE_HEIGHT * tileGrid.rows,
-            transform: `translate3d(${-TILE_WIDTH}px, ${-TILE_HEIGHT}px, 0)`,
+            width: metrics.tileWidth * tileGrid.cols,
+            height: metrics.tileHeight * tileGrid.rows,
+            transform: `translate3d(${-metrics.tileWidth}px, ${-metrics.tileHeight}px, 0)`,
           }}
         >
           {tiles.map((tile) => (
@@ -312,10 +419,10 @@ function Fliers() {
               key={`${tile.x}-${tile.y}`}
               className="absolute"
               style={{
-                left: tile.x * TILE_WIDTH,
-                top: tile.y * TILE_HEIGHT,
-                width: TILE_WIDTH,
-                height: TILE_HEIGHT,
+                left: tile.x * metrics.tileWidth,
+                top: tile.y * metrics.tileHeight,
+                width: metrics.tileWidth,
+                height: metrics.tileHeight,
               }}
             >
               {posterLayout.map((poster, index) => {
@@ -324,25 +431,34 @@ function Fliers() {
                 const style: PosterStyle = {
                   left: poster.x,
                   top: poster.y,
-                  width: poster.w,
+                  width: metrics.posterWidth,
+                  height: metrics.posterHeight,
                   "--poster-rotate": `${poster.r}deg`,
+                  "--poster-z": poster.z,
                 };
 
                 return (
-                  <article
+                  <a
+                    href={`/project/${flier.slug}`}
                     key={`${tile.x}-${tile.y}-${index}`}
-                    className="fliers-poster absolute select-none overflow-hidden rounded-[2px] bg-[#fbfaf6] shadow-[0_2px_6px_rgba(0,0,0,0.22),0_18px_30px_-18px_rgba(0,0,0,0.55)]"
+                    onClick={onPosterClick}
+                    onPointerMove={onPosterPointerMove}
+                    onPointerLeave={onPosterPointerLeave}
+                    className="fliers-poster absolute block select-none overflow-visible rounded-[2px]"
                     style={style}
                   >
-                    <img
-                      src={flier.src}
-                      alt={`${flier.title} project poster`}
-                      decoding="async"
-                      draggable={false}
-                      loading={index < 12 ? "eager" : "lazy"}
-                      className="pointer-events-none block h-[461px] w-full select-none object-cover"
-                    />
-                  </article>
+                    <span className="fliers-poster__inner pointer-events-none block h-full w-full overflow-hidden rounded-[2px] bg-[#fbfaf6] shadow-[0_2px_6px_rgba(0,0,0,0.22),0_18px_30px_-18px_rgba(0,0,0,0.55)]">
+                      <img
+                        src={flier.src}
+                        alt={`${flier.title} project poster`}
+                        decoding="async"
+                        draggable={false}
+                        loading={index < 12 ? "eager" : "lazy"}
+                        className="block h-full w-full select-none object-cover"
+                      />
+                      <span className="fliers-poster__shine pointer-events-none absolute inset-0" />
+                    </span>
+                  </a>
                 );
               })}
             </div>

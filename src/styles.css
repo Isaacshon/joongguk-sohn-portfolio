@@ -213,31 +213,79 @@
 }
 
 .fliers-poster {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --shine-x: 50%;
+  --shine-y: 50%;
+  z-index: var(--poster-z);
   transform: rotate(var(--poster-rotate)) translateZ(0);
+  transform-origin: 50% 50%;
   transition:
-    transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    filter 240ms ease,
-    box-shadow 240ms ease;
-  contain: layout paint style;
+    transform 520ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 360ms ease;
+  contain: layout style;
+  perspective: 800px;
+  will-change: transform;
+}
+
+.fliers-poster__inner {
+  position: relative;
+  transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateZ(0);
+  transform-style: preserve-3d;
+  transition:
+    transform 700ms linear,
+    box-shadow 360ms ease,
+    filter 360ms ease;
+  will-change: transform;
+}
+
+.fliers-poster__shine {
+  opacity: 0;
+  background: radial-gradient(
+    circle at var(--shine-x) var(--shine-y),
+    rgba(255, 255, 255, 0.3) 8%,
+    transparent 72%
+  );
+  transition: opacity 700ms ease-out;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .fliers-canvas:not([data-dragging="true"]) .fliers-poster:hover {
-    z-index: 3;
+    z-index: 20;
     filter: saturate(1.08) contrast(1.03);
-    transform: rotate(0deg) scale(1.025) translateZ(0);
+  }
+
+  .fliers-canvas:not([data-dragging="true"]) .fliers-poster:hover .fliers-poster__inner {
+    transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) scale(1.02) translateZ(0);
     box-shadow:
       0 3px 9px rgba(0, 0, 0, 0.25),
       0 26px 40px -22px rgba(0, 0, 0, 0.6);
-    will-change: transform;
+    transition-duration: 1000ms;
+    transition-timing-function: ease-out;
+  }
+
+  .fliers-canvas:not([data-dragging="true"]) .fliers-poster:hover .fliers-poster__shine {
+    opacity: 1;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .fliers-poster,
-  .fliers-canvas:not([data-dragging="true"]) .fliers-poster:hover {
+  .fliers-poster__inner,
+  .fliers-poster__shine,
+  .fliers-canvas:not([data-dragging="true"]) .fliers-poster:hover,
+  .fliers-canvas:not([data-dragging="true"]) .fliers-poster:hover .fliers-poster__inner {
     transition: none;
+  }
+
+  .fliers-poster,
+  .fliers-canvas:not([data-dragging="true"]) .fliers-poster:hover {
     transform: rotate(var(--poster-rotate)) translateZ(0);
+  }
+
+  .fliers-poster__inner,
+  .fliers-canvas:not([data-dragging="true"]) .fliers-poster:hover .fliers-poster__inner {
+    transform: none;
   }
 }
 
