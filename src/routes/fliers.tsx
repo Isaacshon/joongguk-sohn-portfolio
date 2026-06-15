@@ -9,6 +9,8 @@ import {
   type MouseEvent as RME,
   type PointerEvent as RPE,
 } from "react";
+import fritillariaGreenPoster from "@/assets/project-fliers/fritillaria-thunbergii-green.png";
+import fritillariaPinkPoster from "@/assets/project-fliers/fritillaria-thunbergii-pink.png";
 import pfConf2026Poster1 from "@/assets/project-fliers/pf-conf-2026-1.png";
 import pfConf2026Poster2 from "@/assets/project-fliers/pf-conf-2026-2.png";
 import pfConf2026Poster3 from "@/assets/project-fliers/pf-conf-2026-3.png";
@@ -57,6 +59,8 @@ const fliers = [
   { src: pfConf2026Poster3, title: "PassionFruits Conference 2026 Poster 3" },
   { src: pfConf2026Poster4, title: "PassionFruits Conference 2026 Poster 4" },
   { src: pfConf2026Poster5, title: "PassionFruits Conference 2026 Poster 5" },
+  { src: fritillariaGreenPoster, title: "Fritillaria Thunbergii Green Poster" },
+  { src: fritillariaPinkPoster, title: "Fritillaria Thunbergii Pink Poster" },
 ] satisfies Flier[];
 
 type FliersMetrics = {
@@ -107,6 +111,7 @@ type CursorTiltState = {
 function Fliers() {
   const [metrics, setMetrics] = useState(() => createMetrics(1280));
   const [tileGrid, setTileGrid] = useState({ cols: 4, rows: 4 });
+  const [activeFlier, setActiveFlier] = useState<Flier | null>(null);
   const canvasRef = useRef<HTMLDivElement>(null);
   const stripRef = useRef<HTMLDivElement>(null);
   const metricsRef = useRef(metrics);
@@ -462,6 +467,19 @@ function Fliers() {
     };
   }, [endDrag, moveDrag, queueCursorTilt, resetCursorTilt]);
 
+  useEffect(() => {
+    if (!activeFlier) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setActiveFlier(null);
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [activeFlier]);
+
   const beginDrag = (
     canvas: HTMLDivElement,
     clientX: number,
@@ -517,10 +535,14 @@ function Fliers() {
     queueCursorTilt(e.clientX, e.clientY);
   };
 
-  const onPosterClick = (e: RME<HTMLAnchorElement>) => {
+  const onPosterClick = (e: RME<HTMLElement>, flier: Flier) => {
+    e.preventDefault();
+
     if (performance.now() < suppressClickUntil.current) {
-      e.preventDefault();
+      return;
     }
+
+    setActiveFlier(flier);
   };
 
   return (
@@ -598,26 +620,17 @@ function Fliers() {
                   </span>
                 );
 
-                return flier.slug ? (
-                  <a
-                    href={`/project/${flier.slug}`}
+                return (
+                  <button
                     key={`${tile.x}-${tile.y}-${index}`}
-                    onClick={onPosterClick}
+                    aria-label={`View ${flier.title}`}
                     className="fliers-poster absolute block select-none overflow-visible rounded-[2px]"
+                    onClick={(e) => onPosterClick(e, flier)}
                     style={style}
+                    type="button"
                   >
                     {posterContent}
-                  </a>
-                ) : (
-                  <div
-                    key={`${tile.x}-${tile.y}-${index}`}
-                    aria-label={flier.title}
-                    className="fliers-poster absolute block select-none overflow-visible rounded-[2px]"
-                    role="img"
-                    style={style}
-                  >
-                    {posterContent}
-                  </div>
+                  </button>
                 );
               })}
             </div>
@@ -626,6 +639,35 @@ function Fliers() {
 
         <div className="pointer-events-none absolute inset-0 z-30 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.025)_55%,rgba(0,0,0,0.19)_100%)]" />
       </div>
+
+      {activeFlier ? (
+        <div
+          aria-label={`${activeFlier.title} enlarged poster`}
+          aria-modal="true"
+          className="fliers-lightbox"
+          data-no-drag
+          onClick={() => setActiveFlier(null)}
+          role="dialog"
+        >
+          <button
+            aria-label="Close enlarged poster"
+            className="fliers-lightbox__close"
+            onClick={() => setActiveFlier(null)}
+            type="button"
+          >
+            ×
+          </button>
+          <div className="fliers-lightbox__image-wrap" onClick={(e) => e.stopPropagation()}>
+            <img
+              alt={`${activeFlier.title} enlarged`}
+              className="fliers-lightbox__image"
+              decoding="async"
+              draggable={false}
+              src={activeFlier.src}
+            />
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
