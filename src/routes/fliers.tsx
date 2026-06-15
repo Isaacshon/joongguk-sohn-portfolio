@@ -9,10 +9,11 @@ import {
   type MouseEvent as RME,
   type PointerEvent as RPE,
 } from "react";
-import fashionPoster from "@/assets/project-fliers/3d-fashion.svg";
-import blessiePoster from "@/assets/project-fliers/blessie.svg";
-import eknocPoster from "@/assets/project-fliers/eknoc.svg";
-import wemplatePoster from "@/assets/project-fliers/wemplate.svg";
+import pfConf2026Poster1 from "@/assets/project-fliers/pf-conf-2026-1.png";
+import pfConf2026Poster2 from "@/assets/project-fliers/pf-conf-2026-2.png";
+import pfConf2026Poster3 from "@/assets/project-fliers/pf-conf-2026-3.png";
+import pfConf2026Poster4 from "@/assets/project-fliers/pf-conf-2026-4.png";
+import pfConf2026Poster5 from "@/assets/project-fliers/pf-conf-2026-5.png";
 
 export const Route = createFileRoute("/fliers")({
   head: () => ({
@@ -44,12 +45,19 @@ const CLICK_SUPPRESS_DISTANCE = 8;
 const CURSOR_TILT_LERP = 0.1;
 const MOUSE_DRAG_POINTER_ID = -1;
 
+type Flier = {
+  src: string;
+  title: string;
+  slug?: string;
+};
+
 const fliers = [
-  { src: eknocPoster, title: "Eknoc", slug: "eknoc" },
-  { src: wemplatePoster, title: "Wemplate", slug: "wemplate" },
-  { src: blessiePoster, title: "Blessie", slug: "blessie" },
-  { src: fashionPoster, title: "3D Fashion", slug: "3d-fashion" },
-];
+  { src: pfConf2026Poster1, title: "PassionFruits Conference 2026 Poster 1" },
+  { src: pfConf2026Poster2, title: "PassionFruits Conference 2026 Poster 2" },
+  { src: pfConf2026Poster3, title: "PassionFruits Conference 2026 Poster 3" },
+  { src: pfConf2026Poster4, title: "PassionFruits Conference 2026 Poster 4" },
+  { src: pfConf2026Poster5, title: "PassionFruits Conference 2026 Poster 5" },
+] satisfies Flier[];
 
 type FliersMetrics = {
   posterWidth: number;
@@ -576,7 +584,21 @@ function Fliers() {
                   "--poster-z": poster.z,
                 };
 
-                return (
+                const posterContent = (
+                  <span className="fliers-poster__inner pointer-events-none block h-full w-full overflow-hidden rounded-[2px] bg-[#fbfaf6]">
+                    <img
+                      src={flier.src}
+                      alt={`${flier.title} flyer poster`}
+                      decoding="async"
+                      draggable={false}
+                      loading={index < 12 ? "eager" : "lazy"}
+                      className="block h-full w-full select-none object-cover"
+                    />
+                    <span className="fliers-poster__shine pointer-events-none absolute inset-0" />
+                  </span>
+                );
+
+                return flier.slug ? (
                   <a
                     href={`/project/${flier.slug}`}
                     key={`${tile.x}-${tile.y}-${index}`}
@@ -584,18 +606,18 @@ function Fliers() {
                     className="fliers-poster absolute block select-none overflow-visible rounded-[2px]"
                     style={style}
                   >
-                    <span className="fliers-poster__inner pointer-events-none block h-full w-full overflow-hidden rounded-[2px] bg-[#fbfaf6]">
-                      <img
-                        src={flier.src}
-                        alt={`${flier.title} project poster`}
-                        decoding="async"
-                        draggable={false}
-                        loading={index < 12 ? "eager" : "lazy"}
-                        className="block h-full w-full select-none object-cover"
-                      />
-                      <span className="fliers-poster__shine pointer-events-none absolute inset-0" />
-                    </span>
+                    {posterContent}
                   </a>
+                ) : (
+                  <div
+                    key={`${tile.x}-${tile.y}-${index}`}
+                    aria-label={flier.title}
+                    className="fliers-poster absolute block select-none overflow-visible rounded-[2px]"
+                    role="img"
+                    style={style}
+                  >
+                    {posterContent}
+                  </div>
                 );
               })}
             </div>
