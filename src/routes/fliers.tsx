@@ -11,6 +11,9 @@ import {
 } from "react";
 import fritillariaGreenPoster from "@/assets/project-fliers/fritillaria-thunbergii-green.png";
 import fritillariaPinkPoster from "@/assets/project-fliers/fritillaria-thunbergii-pink.png";
+import fritillariaPoster9 from "@/assets/project-fliers/fritillaria-thunbergii-9.png";
+import fritillariaPoster15 from "@/assets/project-fliers/fritillaria-thunbergii-15.png";
+import fritillariaPoster21 from "@/assets/project-fliers/fritillaria-thunbergii-21.png";
 import pfConf2026Poster2 from "@/assets/project-fliers/pf-conf-2026-2.png";
 import pfConf2026Poster4 from "@/assets/project-fliers/pf-conf-2026-4.png";
 import pfConf2026Poster5 from "@/assets/project-fliers/pf-conf-2026-5.png";
@@ -44,6 +47,8 @@ const VELOCITY_DECAY = 0.952;
 const CLICK_SUPPRESS_DISTANCE = 8;
 const CURSOR_TILT_LERP = 0.1;
 const MOUSE_DRAG_POINTER_ID = -1;
+const LIGHTBOX_OPEN_MS = 430;
+const LIGHTBOX_CLOSE_MS = 560;
 
 type Flier = {
   src: string;
@@ -57,6 +62,9 @@ const fliers = [
   { src: pfConf2026Poster5, title: "PassionFruits Conference 2026 Poster 5" },
   { src: fritillariaGreenPoster, title: "Fritillaria Thunbergii Green Poster" },
   { src: fritillariaPinkPoster, title: "Fritillaria Thunbergii Pink Poster" },
+  { src: fritillariaPoster9, title: "Fritillaria Thunbergii Banana Poster" },
+  { src: fritillariaPoster15, title: "Fritillaria Thunbergii Apple Poster" },
+  { src: fritillariaPoster21, title: "Fritillaria Thunbergii Durian Poster" },
 ] satisfies Flier[];
 
 type FliersMetrics = {
@@ -104,13 +112,54 @@ type CursorTiltState = {
   y: number;
 };
 
+type LightboxPhase = "opening" | "open" | "closing";
+
+type LightboxStyle = CSSProperties & {
+  "--flier-start-x": string;
+  "--flier-start-y": string;
+  "--flier-start-scale": string;
+  "--flier-target-w": string;
+  "--flier-target-h": string;
+};
+
+type ActiveLightbox = {
+  flier: Flier;
+  phase: LightboxPhase;
+  style: LightboxStyle;
+};
+
+const createLightboxStyle = (rect: DOMRect): LightboxStyle => {
+  const viewportWidth = window.innerWidth;
+  const viewportHeight = window.innerHeight;
+  const maxTargetHeight = Math.min(viewportHeight * 0.88, 980);
+  const targetWidth = Math.max(
+    1,
+    Math.min(viewportWidth * 0.78, 760, maxTargetHeight / POSTER_RATIO),
+  );
+  const targetHeight = targetWidth * POSTER_RATIO;
+  const startX = rect.left + rect.width / 2 - viewportWidth / 2;
+  const startY = rect.top + rect.height / 2 - viewportHeight / 2;
+  const startScale = rect.width / targetWidth;
+
+  return {
+    "--flier-start-x": `${startX}px`,
+    "--flier-start-y": `${startY}px`,
+    "--flier-start-scale": startScale.toFixed(4),
+    "--flier-target-w": `${targetWidth}px`,
+    "--flier-target-h": `${targetHeight}px`,
+  };
+};
+
 function Fliers() {
   const [metrics, setMetrics] = useState(() => createMetrics(1280));
   const [tileGrid, setTileGrid] = useState({ cols: 4, rows: 4 });
-  const [activeFlier, setActiveFlier] = useState<Flier | null>(null);
+  const [activeLightbox, setActiveLightbox] = useState<ActiveLightbox | null>(null);
   const canvasRef = useRef<HTMLDivElement>(null);
   const stripRef = useRef<HTMLDivElement>(null);
   const metricsRef = useRef(metrics);
+  const lightboxActiveRef = useRef(false);
+  const openTimerRef = useRef<number | null>(null);
+  const closeTimerRef = useRef<number | null>(null);
   const offset = useRef({ x: -3022, y: -873 });
   const velocity = useRef({ x: -0.12, y: 0.06 });
   const wheel = useRef({ x: 0, y: 0 });
@@ -161,6 +210,53 @@ function Fliers() {
       }),
     [metrics],
   );
+
+  useEffect(() => {
+    lightboxActiveRef.current = Boolean(activeLightbox);
+  }, [activeLightbox]);
+
+  const clearLightboxTimers = useCallback(() => {
+    if (openTimerRef.current !== null) {
+      window.clearTimeout(openTimerRef.current);
+      openTimerRef.current = null;
+    }
+
+    if (closeTimerRef.current !== null) {
+      window.clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+  }, []);
+
+  const closeLightbox = useCallback(() => {
+    clearLightboxTimers();
+    setActiveLightbox((current) =>
+      current && current.phase !== "closing" ? { ...current, phase: "closing" } : current,
+    );
+    closeTimerRef.current = window.setTimeout(() => {
+      setActiveLightbox(null);
+      closeTimerRef.current = null;
+    }, LIGHTBOX_CLOSE_MS);
+  }, [clearLightboxTimers]);
+
+  const openLightbox = useCallback(
+    (flier: Flier, rect: DOMRect) => {
+      clearLightboxTimers();
+      setActiveLightbox({
+        flier,
+        phase: "opening",
+        style: createLightboxStyle(rect),
+      });
+      openTimerRef.current = window.setTimeout(() => {
+        setActiveLightbox((current) =>
+          current && current.flier === flier ? { ...current, phase: "open" } : current,
+        );
+        openTimerRef.current = null;
+      }, LIGHTBOX_OPEN_MS);
+    },
+    [clearLightboxTimers],
+  );
+
+  useEffect(() => () => clearLightboxTimers(), [clearLightboxTimers]);
 
   const applyTransform = useCallback(() => {
     const strip = stripRef.current;
@@ -366,7 +462,7 @@ function Fliers() {
       const dt = Math.min(2.4, Math.max(0.25, (now - lastTime) / 16.667));
       lastTime = now;
 
-      if (!drag.current.active) {
+      if (!drag.current.active && !lightboxActiveRef.current) {
         if (wheel.current.x || wheel.current.y) {
           addVelocity(-wheel.current.x * 0.055, -wheel.current.y * 0.055);
           wheel.current = { x: 0, y: 0 };
@@ -380,6 +476,8 @@ function Fliers() {
 
         if (Math.abs(velocity.current.x) < 0.012) velocity.current.x = 0;
         if (Math.abs(velocity.current.y) < 0.012) velocity.current.y = 0;
+      } else if (lightboxActiveRef.current) {
+        wheel.current = { x: 0, y: 0 };
       }
 
       applyTransform();
@@ -464,17 +562,17 @@ function Fliers() {
   }, [endDrag, moveDrag, queueCursorTilt, resetCursorTilt]);
 
   useEffect(() => {
-    if (!activeFlier) return;
+    if (!activeLightbox) return;
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setActiveFlier(null);
+        closeLightbox();
       }
     };
 
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [activeFlier]);
+  }, [activeLightbox, closeLightbox]);
 
   const beginDrag = (
     canvas: HTMLDivElement,
@@ -507,7 +605,6 @@ function Fliers() {
     if (drag.current.active) return;
     if (e.pointerType === "mouse" && e.button !== 0) return;
 
-    e.preventDefault();
     beginDrag(e.currentTarget, e.clientX, e.clientY, e.timeStamp, e.pointerId);
     e.currentTarget.setPointerCapture(e.pointerId);
   };
@@ -518,7 +615,6 @@ function Fliers() {
     if (drag.current.active) return;
     if (e.button !== 0) return;
 
-    e.preventDefault();
     beginDrag(e.currentTarget, e.clientX, e.clientY, e.timeStamp, MOUSE_DRAG_POINTER_ID);
   };
 
@@ -534,11 +630,11 @@ function Fliers() {
   const onPosterClick = (e: RME<HTMLElement>, flier: Flier) => {
     e.preventDefault();
 
-    if (performance.now() < suppressClickUntil.current) {
+    if (performance.now() < suppressClickUntil.current || activeLightbox) {
       return;
     }
 
-    setActiveFlier(flier);
+    openLightbox(flier, e.currentTarget.getBoundingClientRect());
   };
 
   return (
@@ -636,30 +732,39 @@ function Fliers() {
         <div className="pointer-events-none absolute inset-0 z-30 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.025)_55%,rgba(0,0,0,0.19)_100%)]" />
       </div>
 
-      {activeFlier ? (
+      {activeLightbox ? (
         <div
-          aria-label={`${activeFlier.title} enlarged poster`}
+          aria-label={`${activeLightbox.flier.title} enlarged poster`}
           aria-modal="true"
           className="fliers-lightbox"
+          data-state={activeLightbox.phase}
           data-no-drag
-          onClick={() => setActiveFlier(null)}
+          onClick={closeLightbox}
           role="dialog"
         >
           <button
             aria-label="Close enlarged poster"
             className="fliers-lightbox__close"
-            onClick={() => setActiveFlier(null)}
+            onClick={(e) => {
+              e.stopPropagation();
+              closeLightbox();
+            }}
             type="button"
           >
             ×
           </button>
-          <div className="fliers-lightbox__image-wrap" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fliers-lightbox__image-wrap"
+            data-state={activeLightbox.phase}
+            onClick={(e) => e.stopPropagation()}
+            style={activeLightbox.style}
+          >
             <img
-              alt={`${activeFlier.title} enlarged`}
+              alt={`${activeLightbox.flier.title} enlarged`}
               className="fliers-lightbox__image"
               decoding="async"
               draggable={false}
-              src={activeFlier.src}
+              src={activeLightbox.flier.src}
             />
           </div>
         </div>
