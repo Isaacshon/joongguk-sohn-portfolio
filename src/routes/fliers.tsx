@@ -36,6 +36,7 @@ export const Route = createFileRoute("/fliers")({
 
 const COLUMNS = 16;
 const ROWS = 5;
+const FLIER_MIX = [3, 0, 6, 1, 7, 2, 5, 4];
 const POSTER_RATIO = 24 / 18;
 const DESKTOP_CARD_RATIO = 0.18;
 const MOBILE_CARD_RATIO = 0.4;
@@ -80,6 +81,12 @@ type FliersMetrics = {
 
 const wrap = (value: number, size: number) => ((value % size) + size) % size;
 const clamp = (value: number, max: number) => Math.max(-max, Math.min(max, value));
+const seededRandom = (seed: number) => {
+  const value = Math.sin(seed * 12.9898) * 43758.5453;
+  return value - Math.floor(value);
+};
+const randomRange = (seed: number, min: number, max: number) =>
+  min + (max - min) * seededRandom(seed);
 const normalizeWheel = (event: WheelEvent) => {
   const unit = event.deltaMode === 1 ? 18 : event.deltaMode === 2 ? window.innerHeight : 1;
   return { x: event.deltaX * unit, y: event.deltaY * unit };
@@ -204,15 +211,22 @@ function Fliers() {
       Array.from({ length: ROWS * COLUMNS }, (_, index) => {
         const row = Math.floor(index / COLUMNS);
         const col = index % COLUMNS;
-        const rowOffset = row % 2 === 0 ? 0 : -metrics.posterWidth / 2;
+        const seed = index + 1;
+        const rowOffset =
+          row % 2 === 0
+            ? randomRange(row * 131 + 9, -metrics.posterWidth * 0.1, metrics.posterWidth * 0.16)
+            : -metrics.posterWidth * randomRange(row * 149 + 5, 0.32, 0.68);
+        const xJitter = randomRange(seed * 17 + 3, -metrics.gutter * 0.58, metrics.gutter * 0.58);
+        const yJitter = randomRange(seed * 23 + 7, -metrics.gutter * 0.46, metrics.gutter * 0.46);
 
         return {
           col,
           row,
-          x: col * metrics.pitchX + rowOffset,
-          y: row * metrics.pitchY,
-          r: 0,
-          z: 1 + ((row + col) % 4),
+          seed,
+          x: col * metrics.pitchX + rowOffset + xJitter,
+          y: row * metrics.pitchY + yJitter,
+          r: randomRange(seed * 29 + 11, -4.8, 4.8),
+          z: 1 + Math.floor(seededRandom(seed * 31 + 13) * 6),
         };
       }),
     [metrics],
@@ -733,8 +747,9 @@ function Fliers() {
               }}
             >
               {posterLayout.map((poster, index) => {
-                const flier =
-                  fliers[(poster.col + poster.row * 3 + tile.x * 2 + tile.y * 5) % fliers.length];
+                const flierMixIndex =
+                  (poster.col * 3 + poster.row * 5 + tile.x * 2 + tile.y * 3) % fliers.length;
+                const flier = fliers[FLIER_MIX[flierMixIndex]];
                 const style: PosterStyle = {
                   left: poster.x,
                   top: poster.y,
