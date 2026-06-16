@@ -81,6 +81,8 @@ type FliersMetrics = {
 
 const wrap = (value: number, size: number) => ((value % size) + size) % size;
 const clamp = (value: number, max: number) => Math.max(-max, Math.min(max, value));
+const createStripTransform = (point: { x: number; y: number }, metrics: FliersMetrics) =>
+  `translate3d(${-metrics.tileWidth + wrap(point.x, metrics.tileWidth)}px, ${-metrics.tileHeight + wrap(point.y, metrics.tileHeight)}px, 0)`;
 const seededRandom = (seed: number) => {
   const value = Math.sin(seed * 12.9898) * 43758.5453;
   return value - Math.floor(value);
@@ -174,7 +176,7 @@ function Fliers() {
   const openTimerRef = useRef<number | null>(null);
   const closeTimerRef = useRef<number | null>(null);
   const pendingPosterClick = useRef<PendingPosterClick | null>(null);
-  const offset = useRef({ x: -3022, y: -873 });
+  const offset = useRef({ x: 64, y: 64 });
   const velocity = useRef({ x: -0.12, y: 0.06 });
   const wheel = useRef({ x: 0, y: 0 });
   const initializedLayout = useRef(false);
@@ -212,12 +214,9 @@ function Fliers() {
         const row = Math.floor(index / COLUMNS);
         const col = index % COLUMNS;
         const seed = index + 1;
-        const rowOffset =
-          row % 2 === 0
-            ? randomRange(row * 131 + 9, -metrics.posterWidth * 0.1, metrics.posterWidth * 0.16)
-            : -metrics.posterWidth * randomRange(row * 149 + 5, 0.32, 0.68);
-        const xJitter = randomRange(seed * 17 + 3, -metrics.gutter * 0.58, metrics.gutter * 0.58);
-        const yJitter = randomRange(seed * 23 + 7, -metrics.gutter * 0.46, metrics.gutter * 0.46);
+        const rowOffset = row % 2 === 0 ? 0 : -metrics.posterWidth * 0.18;
+        const xJitter = randomRange(seed * 17 + 3, -metrics.gutter * 0.14, metrics.gutter * 0.14);
+        const yJitter = randomRange(seed * 23 + 7, -metrics.gutter * 0.1, metrics.gutter * 0.1);
 
         return {
           col,
@@ -225,8 +224,8 @@ function Fliers() {
           seed,
           x: col * metrics.pitchX + rowOffset + xJitter,
           y: row * metrics.pitchY + yJitter,
-          r: randomRange(seed * 29 + 11, -4.8, 4.8),
-          z: 1 + Math.floor(seededRandom(seed * 31 + 13) * 6),
+          r: randomRange(seed * 29 + 11, -1.8, 1.8),
+          z: 1 + Math.floor(seededRandom(seed * 31 + 13) * 3),
         };
       }),
     [metrics],
@@ -283,10 +282,7 @@ function Fliers() {
     const strip = stripRef.current;
     if (!strip) return;
 
-    const { tileWidth, tileHeight } = metricsRef.current;
-    const x = -tileWidth + wrap(offset.current.x, tileWidth);
-    const y = -tileHeight + wrap(offset.current.y, tileHeight);
-    strip.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+    strip.style.transform = createStripTransform(offset.current, metricsRef.current);
   }, []);
 
   const addVelocity = useCallback((x: number, y: number) => {
@@ -458,17 +454,9 @@ function Fliers() {
       setMetrics(nextMetrics);
 
       if (!initializedLayout.current) {
-        const imgMidIndex = Math.floor(COLUMNS / 2);
-        const rowMidIndex = Math.floor(ROWS / 2);
         offset.current = {
-          x:
-            nextMetrics.tileWidth -
-            (imgMidIndex * nextMetrics.pitchX + nextMetrics.posterWidth / 2) +
-            width / 2,
-          y:
-            nextMetrics.tileHeight -
-            (rowMidIndex * nextMetrics.pitchY + nextMetrics.posterHeight / 2) +
-            height / 2,
+          x: Math.max(48, nextMetrics.gutter * 0.72),
+          y: Math.max(52, Math.min(height * 0.09, nextMetrics.gutter * 0.78)),
         };
         initializedLayout.current = true;
       }
@@ -732,7 +720,7 @@ function Fliers() {
           style={{
             width: metrics.tileWidth * tileGrid.cols,
             height: metrics.tileHeight * tileGrid.rows,
-            transform: `translate3d(${-metrics.tileWidth}px, ${-metrics.tileHeight}px, 0)`,
+            transform: createStripTransform(offset.current, metrics),
           }}
         >
           {tiles.map((tile) => (
@@ -748,7 +736,7 @@ function Fliers() {
             >
               {posterLayout.map((poster, index) => {
                 const flierMixIndex =
-                  (poster.col * 3 + poster.row * 5 + tile.x * 2 + tile.y * 3) % fliers.length;
+                  (poster.col + poster.row * 4 + tile.x * 3 + tile.y * 5) % fliers.length;
                 const flier = fliers[FLIER_MIX[flierMixIndex]];
                 const style: PosterStyle = {
                   left: poster.x,
