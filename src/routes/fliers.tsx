@@ -11,7 +11,6 @@ import {
 } from "react";
 import fritillariaGreenPoster from "@/assets/project-fliers/fritillaria-thunbergii-green.png";
 import fritillariaPinkPoster from "@/assets/project-fliers/fritillaria-thunbergii-pink.png";
-import pfConf2026Poster1 from "@/assets/project-fliers/pf-conf-2026-1.png";
 import pfConf2026Poster2 from "@/assets/project-fliers/pf-conf-2026-2.png";
 import pfConf2026Poster4 from "@/assets/project-fliers/pf-conf-2026-4.png";
 import pfConf2026Poster5 from "@/assets/project-fliers/pf-conf-2026-5.png";
@@ -53,7 +52,6 @@ type Flier = {
 };
 
 const fliers = [
-  { src: pfConf2026Poster1, title: "PassionFruits Conference 2026 Poster 1" },
   { src: pfConf2026Poster2, title: "PassionFruits Conference 2026 Poster 2" },
   { src: pfConf2026Poster4, title: "PassionFruits Conference 2026 Poster 4" },
   { src: pfConf2026Poster5, title: "PassionFruits Conference 2026 Poster 5" },
