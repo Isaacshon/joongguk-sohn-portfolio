@@ -206,6 +206,9 @@
     56px 56px,
     512px 512px;
   background-blend-mode: normal, normal, multiply;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
 }
 
 .fliers-canvas[data-dragging="true"] {
@@ -224,6 +227,7 @@
   color: inherit;
   cursor: zoom-in;
   text-align: inherit;
+  touch-action: none;
   z-index: var(--poster-z);
   transform: rotate(var(--poster-rotate)) translateZ(0);
   transform-origin: 50% 50%;

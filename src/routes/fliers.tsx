@@ -6,6 +6,7 @@ import {
   useRef,
   useState,
   type CSSProperties,
+  type KeyboardEvent as RKE,
   type MouseEvent as RME,
   type PointerEvent as RPE,
 } from "react";
@@ -128,6 +129,11 @@ type ActiveLightbox = {
   style: LightboxStyle;
 };
 
+type PendingPosterClick = {
+  flier: Flier;
+  rect: DOMRect;
+};
+
 const createLightboxStyle = (rect: DOMRect): LightboxStyle => {
   const viewportWidth = window.innerWidth;
   const viewportHeight = window.innerHeight;
@@ -160,6 +166,7 @@ function Fliers() {
   const lightboxActiveRef = useRef(false);
   const openTimerRef = useRef<number | null>(null);
   const closeTimerRef = useRef<number | null>(null);
+  const pendingPosterClick = useRef<PendingPosterClick | null>(null);
   const offset = useRef({ x: -3022, y: -873 });
   const velocity = useRef({ x: -0.12, y: 0.06 });
   const wheel = useRef({ x: 0, y: 0 });
@@ -387,28 +394,42 @@ function Fliers() {
     [applyTransform],
   );
 
-  const endDrag = useCallback((pointerId: number) => {
-    if (drag.current.pointerId !== pointerId) return;
+  const endDrag = useCallback(
+    (pointerId: number) => {
+      if (drag.current.pointerId !== pointerId) return;
 
-    const { tileWidth, tileHeight } = metricsRef.current;
-    drag.current.active = false;
-    drag.current.pointerId = null;
-    offset.current.x = wrap(offset.current.x, tileWidth);
-    offset.current.y = wrap(offset.current.y, tileHeight);
-    wheel.current = { x: 0, y: 0 };
+      const clickCandidate = pendingPosterClick.current;
+      const shouldOpenPoster =
+        Boolean(clickCandidate) &&
+        drag.current.distance <= CLICK_SUPPRESS_DISTANCE &&
+        !lightboxActiveRef.current;
+      const { tileWidth, tileHeight } = metricsRef.current;
+      drag.current.active = false;
+      drag.current.pointerId = null;
+      offset.current.x = wrap(offset.current.x, tileWidth);
+      offset.current.y = wrap(offset.current.y, tileHeight);
+      wheel.current = { x: 0, y: 0 };
+      pendingPosterClick.current = null;
 
-    if (drag.current.distance > CLICK_SUPPRESS_DISTANCE) {
-      suppressClickUntil.current = performance.now() + 260;
-    }
+      if (drag.current.distance > CLICK_SUPPRESS_DISTANCE) {
+        suppressClickUntil.current = performance.now() + 260;
+      }
 
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+      const canvas = canvasRef.current;
+      if (canvas) {
+        delete canvas.dataset.dragging;
+        if (pointerId !== MOUSE_DRAG_POINTER_ID && canvas.hasPointerCapture(pointerId)) {
+          canvas.releasePointerCapture(pointerId);
+        }
+      }
 
-    delete canvas.dataset.dragging;
-    if (pointerId !== MOUSE_DRAG_POINTER_ID && canvas.hasPointerCapture(pointerId)) {
-      canvas.releasePointerCapture(pointerId);
-    }
-  }, []);
+      if (shouldOpenPoster && clickCandidate) {
+        suppressClickUntil.current = performance.now() + 260;
+        openLightbox(clickCandidate.flier, clickCandidate.rect);
+      }
+    },
+    [openLightbox],
+  );
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -605,6 +626,10 @@ function Fliers() {
     if (drag.current.active) return;
     if (e.pointerType === "mouse" && e.button !== 0) return;
 
+    if (!target.closest(".fliers-poster")) {
+      pendingPosterClick.current = null;
+    }
+    if (e.cancelable) e.preventDefault();
     beginDrag(e.currentTarget, e.clientX, e.clientY, e.timeStamp, e.pointerId);
     e.currentTarget.setPointerCapture(e.pointerId);
   };
@@ -615,6 +640,10 @@ function Fliers() {
     if (drag.current.active) return;
     if (e.button !== 0) return;
 
+    if (!target.closest(".fliers-poster")) {
+      pendingPosterClick.current = null;
+    }
+    if (e.cancelable) e.preventDefault();
     beginDrag(e.currentTarget, e.clientX, e.clientY, e.timeStamp, MOUSE_DRAG_POINTER_ID);
   };
 
@@ -627,7 +656,24 @@ function Fliers() {
     queueCursorTilt(e.clientX, e.clientY);
   };
 
-  const onPosterClick = (e: RME<HTMLElement>, flier: Flier) => {
+  const registerPosterPointer = (e: RPE<HTMLButtonElement>, flier: Flier) => {
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    pendingPosterClick.current = {
+      flier,
+      rect: e.currentTarget.getBoundingClientRect(),
+    };
+  };
+
+  const registerPosterMouseDown = (e: RME<HTMLButtonElement>, flier: Flier) => {
+    if (e.button !== 0) return;
+    pendingPosterClick.current = {
+      flier,
+      rect: e.currentTarget.getBoundingClientRect(),
+    };
+  };
+
+  const onPosterKeyDown = (e: RKE<HTMLButtonElement>, flier: Flier) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
     e.preventDefault();
 
     if (performance.now() < suppressClickUntil.current || activeLightbox) {
@@ -717,7 +763,9 @@ function Fliers() {
                     key={`${tile.x}-${tile.y}-${index}`}
                     aria-label={`View ${flier.title}`}
                     className="fliers-poster absolute block select-none overflow-visible rounded-[2px]"
-                    onClick={(e) => onPosterClick(e, flier)}
+                    onKeyDown={(e) => onPosterKeyDown(e, flier)}
+                    onMouseDownCapture={(e) => registerPosterMouseDown(e, flier)}
+                    onPointerDownCapture={(e) => registerPosterPointer(e, flier)}
                     style={style}
                     type="button"
                   >
