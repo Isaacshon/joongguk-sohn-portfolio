@@ -694,6 +694,9 @@ function Fliers() {
         <Link to="/work" data-no-drag className="story-link">
           Work
         </Link>
+        <Link to="/interactive" data-no-drag className="story-link">
+          Interactive
+        </Link>
       </nav>
 
       <div

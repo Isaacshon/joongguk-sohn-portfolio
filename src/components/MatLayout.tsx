@@ -31,27 +31,27 @@ const navLinks: { to: LinkProps["to"]; label: string }[] = [
 ];
 
 const certificationMedals: { label: string; image: string }[] = [
-  { label: "Google - Google Ads Search Certification", image: medal01 },
-  { label: "Google - Google Ads Display Certification", image: medal02 },
-  { label: "Google - Google Ads Video Certification", image: medal03 },
-  { label: "Google - Google Ads Apps Certification", image: medal04 },
-  { label: "Google - Google Ads Creative Certification", image: medal05 },
-  { label: "Google - Google Ads Measurement Certification", image: medal06 },
-  { label: "Google - AI-Powered Performance Ads Certification", image: medal07 },
-  { label: "Google - AI-Powered Shopping Ads Certification", image: medal08 },
-  { label: "Google - Grow Offline Sales Certification", image: medal09 },
-  { label: "Google Marketing Platform - Campaign Manager 360 Certification", image: medal10 },
-  { label: "Google Marketing Platform - Display & Video 360 Certification", image: medal11 },
-  { label: "Google Marketing Platform - Search Ads 360 Certification", image: medal12 },
-  { label: "Google Analytics - Google Analytics Certification", image: medal13 },
-  { label: "HubSpot - SEO Certification", image: medal14 },
-  { label: "Microsoft Advertising - Search Certification", image: medal15 },
-  { label: "LinkedIn - Advertising Fundamentals", image: medal16 },
-  { label: "IBM SkillsBuild - Artificial Intelligence Fundamentals", image: medal17 },
-  { label: "IBM SkillsBuild - Team Essentials for Designing AI Solutions", image: medal18 },
-  { label: "Anthropic Education - Claude 101", image: medal19 },
-  { label: "Anthropic Education - Claude Code 101", image: medal20 },
-  { label: "PayPal + Anthropic - AI Fluency for Small Businesses", image: medal21 },
+  { label: "Google", image: medal01 },
+  { label: "Google", image: medal02 },
+  { label: "Google", image: medal03 },
+  { label: "Google", image: medal04 },
+  { label: "Google", image: medal05 },
+  { label: "Google", image: medal06 },
+  { label: "Google", image: medal07 },
+  { label: "Google", image: medal08 },
+  { label: "Google", image: medal09 },
+  { label: "Google Marketing Platform", image: medal10 },
+  { label: "Google Marketing Platform", image: medal11 },
+  { label: "Google Marketing Platform", image: medal12 },
+  { label: "Google Analytics", image: medal13 },
+  { label: "HubSpot", image: medal14 },
+  { label: "Microsoft", image: medal15 },
+  { label: "LinkedIn", image: medal16 },
+  { label: "IBM", image: medal17 },
+  { label: "IBM", image: medal18 },
+  { label: "Anthropic", image: medal19 },
+  { label: "Anthropic", image: medal20 },
+  { label: "PayPal + Anthropic", image: medal21 },
 ];
 
 type MatLayoutProps = {
@@ -168,6 +168,9 @@ export function MatLayout({ children, surface = "mat", contentClassName = "" }: 
               </Link>
               <Link to="/fliers" className="block w-fit story-link">
                 Fliers &rarr;
+              </Link>
+              <Link to="/interactive" className="block w-fit story-link">
+                Interactive &rarr;
               </Link>
             </div>
 
