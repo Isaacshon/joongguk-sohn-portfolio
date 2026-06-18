@@ -930,3 +930,154 @@
     transform: translate(-50%, -50%) rotate(-4deg);
   }
 }
+
+@keyframes sidequest-mascot-idle {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -3px, 0);
+  }
+}
+
+@keyframes sidequest-mascot-hop {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  38% {
+    transform: translate3d(0, -12px, 0) rotate(-2deg);
+  }
+  62% {
+    transform: translate3d(0, -5px, 0) rotate(2deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+}
+
+@keyframes sidequest-mascot-cheer {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+  24% {
+    transform: translate3d(-4px, -14px, 0) rotate(-4deg) scale(1.03);
+  }
+  52% {
+    transform: translate3d(4px, -8px, 0) rotate(4deg) scale(1.02);
+  }
+  76% {
+    transform: translate3d(0, -16px, 0) rotate(0deg) scale(1.04);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes sidequest-mascot-excited {
+  0%,
+  100% {
+    filter: brightness(1) saturate(1);
+  }
+  50% {
+    filter: brightness(1.08) saturate(1.12);
+  }
+}
+
+@keyframes sidequest-pop {
+  0% {
+    opacity: 0;
+    transform: translate3d(-50%, 8px, 0) scale(0.88);
+  }
+  18%,
+  68% {
+    opacity: 1;
+    transform: translate3d(-50%, 0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(-50%, -12px, 0) scale(0.96);
+  }
+}
+
+@keyframes sidequest-treat {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0) scale(0.8);
+  }
+  22%,
+  68% {
+    opacity: 1;
+    transform: translate3d(0, -4px, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(0, -24px, 0) scale(0.86);
+  }
+}
+
+@keyframes sidequest-firework-pop {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0);
+  }
+  12% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  54% {
+    opacity: 1;
+    transform: translate3d(var(--firework-x), var(--firework-y), 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--firework-x), var(--firework-y), 0) scale(0);
+  }
+}
+
+.sidequest-mascot-idle {
+  animation: sidequest-mascot-idle 1700ms steps(2, end) infinite;
+}
+
+.sidequest-mascot-hop {
+  animation: sidequest-mascot-hop 460ms steps(3, end) both;
+}
+
+.sidequest-mascot-cheer {
+  animation: sidequest-mascot-cheer 760ms steps(4, end) both;
+}
+
+.sidequest-mascot-excited {
+  animation: sidequest-mascot-excited 520ms steps(2, end) both;
+}
+
+.sidequest-pop {
+  animation: sidequest-pop 1050ms cubic-bezier(0.18, 0.82, 0.24, 1) both;
+}
+
+.sidequest-treat {
+  animation: sidequest-treat 900ms steps(4, end) both;
+  animation-delay: var(--treat-delay);
+}
+
+.sidequest-firework-dot {
+  width: 8px;
+  height: 8px;
+  box-shadow:
+    8px 0 0 currentColor,
+    0 8px 0 currentColor;
+  animation: sidequest-firework-pop 1300ms steps(5, end) infinite;
+  animation-delay: var(--firework-delay);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidequest-mascot-idle,
+  .sidequest-mascot-hop,
+  .sidequest-mascot-cheer,
+  .sidequest-mascot-excited,
+  .sidequest-pop,
+  .sidequest-treat,
+  .sidequest-firework-dot {
+    animation: none;
+  }
+}
