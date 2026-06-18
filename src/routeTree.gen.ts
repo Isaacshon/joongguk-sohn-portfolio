@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WorkRouteImport } from './routes/work'
+import { Route as SidequestRouteImport } from './routes/sidequest'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as InteractiveRouteImport } from './routes/interactive'
 import { Route as FliersRouteImport } from './routes/fliers'
@@ -20,6 +21,11 @@ import { Route as ProjectSlugRouteImport } from './routes/project.$slug'
 const WorkRoute = WorkRouteImport.update({
   id: '/work',
   path: '/work',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SidequestRoute = SidequestRouteImport.update({
+  id: '/sidequest',
+  path: '/sidequest',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/fliers': typeof FliersRoute
   '/interactive': typeof InteractiveRoute
   '/services': typeof ServicesRoute
+  '/sidequest': typeof SidequestRoute
   '/work': typeof WorkRoute
   '/project/$slug': typeof ProjectSlugRoute
 }
@@ -68,6 +75,7 @@ export interface FileRoutesByTo {
   '/fliers': typeof FliersRoute
   '/interactive': typeof InteractiveRoute
   '/services': typeof ServicesRoute
+  '/sidequest': typeof SidequestRoute
   '/work': typeof WorkRoute
   '/project/$slug': typeof ProjectSlugRoute
 }
@@ -78,6 +86,7 @@ export interface FileRoutesById {
   '/fliers': typeof FliersRoute
   '/interactive': typeof InteractiveRoute
   '/services': typeof ServicesRoute
+  '/sidequest': typeof SidequestRoute
   '/work': typeof WorkRoute
   '/project/$slug': typeof ProjectSlugRoute
 }
@@ -89,6 +98,7 @@ export interface FileRouteTypes {
     | '/fliers'
     | '/interactive'
     | '/services'
+    | '/sidequest'
     | '/work'
     | '/project/$slug'
   fileRoutesByTo: FileRoutesByTo
@@ -98,6 +108,7 @@ export interface FileRouteTypes {
     | '/fliers'
     | '/interactive'
     | '/services'
+    | '/sidequest'
     | '/work'
     | '/project/$slug'
   id:
@@ -107,6 +118,7 @@ export interface FileRouteTypes {
     | '/fliers'
     | '/interactive'
     | '/services'
+    | '/sidequest'
     | '/work'
     | '/project/$slug'
   fileRoutesById: FileRoutesById
@@ -117,6 +129,7 @@ export interface RootRouteChildren {
   FliersRoute: typeof FliersRoute
   InteractiveRoute: typeof InteractiveRoute
   ServicesRoute: typeof ServicesRoute
+  SidequestRoute: typeof SidequestRoute
   WorkRoute: typeof WorkRoute
   ProjectSlugRoute: typeof ProjectSlugRoute
 }
@@ -128,6 +141,13 @@ declare module '@tanstack/react-router' {
       path: '/work'
       fullPath: '/work'
       preLoaderRoute: typeof WorkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sidequest': {
+      id: '/sidequest'
+      path: '/sidequest'
+      fullPath: '/sidequest'
+      preLoaderRoute: typeof SidequestRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -181,6 +201,7 @@ const rootRouteChildren: RootRouteChildren = {
   FliersRoute: FliersRoute,
   InteractiveRoute: InteractiveRoute,
   ServicesRoute: ServicesRoute,
+  SidequestRoute: SidequestRoute,
   WorkRoute: WorkRoute,
   ProjectSlugRoute: ProjectSlugRoute,
 }
