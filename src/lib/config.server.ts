@@ -20,7 +20,8 @@ export function getServerConfig() {
   return {
     nodeEnv: process.env.NODE_ENV,
     resendApiKey: process.env.RESEND_API_KEY,
-    sidequestToEmail: process.env.SIDEQUEST_TO_EMAIL ?? process.env.CONTACT_TO_EMAIL,
+    sidequestToEmail:
+      process.env.SIDEQUEST_TO_EMAIL ?? process.env.CONTACT_TO_EMAIL ?? "thswndrnr80@gmail.com",
     sidequestFromEmail: process.env.SIDEQUEST_FROM_EMAIL ?? "Sidequest <onboarding@resend.dev>",
     // Add server-only values here, e.g.:
     //   databaseUrl: process.env.DATABASE_URL,

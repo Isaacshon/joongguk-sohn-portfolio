@@ -1,6 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState, type CSSProperties } from "react";
+import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 
+import sidequestReferenceBunny from "@/assets/sidequest-reference-bunny.png";
+import sidequestRewardStar from "@/assets/sidequest-reward-star.png";
 import { submitSidequestMeasurement } from "@/lib/api/sidequest.functions";
 
 export const Route = createFileRoute("/sidequest")({
@@ -153,72 +155,11 @@ const SUCCESS_QUEST_INDEX = 6;
 type SubmitState = "idle" | "sending" | "sent" | "error";
 type RewardEvent = { message: string; stamp: number };
 type MascotEvent = { message: string; stamp: number };
+const MASCOT_EFFECT_MS = 1400;
 
 /* ─── Mascot & scene data ─── */
 
-const spriteColors: Record<string, string> = {
-  A: "#64d3df",
-  B: "#bf355e",
-  C: "#ff7f94",
-  D: "#ff9aad",
-  E: "#4b0908",
-  H: "#ffe4e9",
-  L: "#fff8f5",
-  M: "#c9f2eb",
-  N: "#7c1824",
-  P: "#ffc0ca",
-  T: "#2f829f",
-  W: "#ffffff",
-};
-
-const mascotSprites = {
-  idle: [
-    "........BBB.....BBB........",
-    ".......BHHB.....BHHB.......",
-    ".......BHPB.....BPHB.......",
-    ".......BHPB.....BPHB.......",
-    "......BBPPB...BPPBB......",
-    ".....BPPPPBBBBBPPPPB.....",
-    "....BPPPPPPPPPPPPPPPB....",
-    "...BPPHPPPPPPPPPPHPPB...",
-    "..BPPHPEEPPPPPEEPHPPB..",
-    "..BPPPPEPPPPPPPPEPPPB..",
-    "..BPPPCPPPNNPPPCPPPB..",
-    "...BPPPCPPDDPPCPPPB...",
-    "....BPPPPPPPPPPPPPB....",
-    ".....BBPPPPPPPPPBB.....",
-    ".....TTBBPPPPPBBTT.....",
-    "....TTAAABWWWBAAATT....",
-    "...TTAWWAAWWWAAWWATT...",
-    "..TTAAAMAAWWAAMAAATT..",
-    "...TTTMMMMMMMMMMTTT...",
-    "....TTTTTTTTTTTTTT....",
-  ],
-  happy: [
-    "........BBB.....BBB........",
-    ".......BHHB.....BHHB.......",
-    ".......BHPB.....BPHB.......",
-    ".......BHPB.....BPHB.......",
-    "......BBPPB...BPPBB......",
-    ".....BPPPPBBBBBPPPPB.....",
-    "....BPPPPPPPPPPPPPPPB....",
-    "...BPPHPPPPPPPPPPHPPB...",
-    "..BPPHPBBPPPPPBBPHPPB..",
-    "..BPPPPPPPPPPPPPPPPPB..",
-    "..BPPPCPPBNNBPPCPPPB..",
-    "...BPPPCPPDDPPCPPPB...",
-    "....BPPPPPPPPPPPPPB....",
-    ".....BBPPPPPPPPPBB.....",
-    ".....TTBBPPPPPBBTT.....",
-    "....TTAAABWWWBAAATT....",
-    "...TTAWWAAWWWAAWWATT...",
-    "..TTAAAMAAWWAAMAAATT..",
-    "...TTTMMMMMMMMMMTTT...",
-    "....TTTTTTTTTTTTTT....",
-  ],
-};
-type MascotMood = keyof typeof mascotSprites;
-const mascotPixelSize = 5;
+type MascotMood = "idle" | "happy";
 const mascotClearMessages = [
   "Ready!",
   "Good cut!",
@@ -342,34 +283,55 @@ const propSprites = {
 
 type PropSpriteName = keyof typeof propSprites;
 
-const treatColors: Record<string, string> = {
-  B: "#bf355e",
-  G: "#8fe88a",
-  P: "#ff9fc8",
-  W: "#fff9c9",
-  Y: "#ffe08a",
-};
-const treatSprites = [
-  ["..G.", ".GYY", "GYYB", ".BB."],
-  [".PP.", "PWWP", ".PP.", "...."],
-  [".Y..", "YYY.", ".Y..", "...."],
+const rewardStarBursts = [
+  {
+    left: "-20px",
+    top: "6px",
+    size: "40px",
+    x: "-22px",
+    y: "-34px",
+    rotate: "-14deg",
+    delay: "0ms",
+  },
+  { left: "54px", top: "-20px", size: "48px", x: "0px", y: "-42px", rotate: "6deg", delay: "70ms" },
+  {
+    left: "128px",
+    top: "10px",
+    size: "38px",
+    x: "24px",
+    y: "-30px",
+    rotate: "15deg",
+    delay: "120ms",
+  },
+  {
+    left: "8px",
+    top: "74px",
+    size: "30px",
+    x: "-30px",
+    y: "2px",
+    rotate: "-10deg",
+    delay: "170ms",
+  },
+  {
+    left: "116px",
+    top: "72px",
+    size: "32px",
+    x: "28px",
+    y: "0px",
+    rotate: "12deg",
+    delay: "220ms",
+  },
 ];
-const fireworkDots = [
-  { x: "18%", y: "22%", dx: "-28px", dy: "-22px", color: "#ff9fc8", delay: "0ms" },
-  { x: "18%", y: "22%", dx: "0px", dy: "-34px", color: "#ffe08a", delay: "80ms" },
-  { x: "18%", y: "22%", dx: "26px", dy: "-20px", color: "#64d3df", delay: "130ms" },
-  { x: "18%", y: "22%", dx: "-22px", dy: "18px", color: "#fff9c9", delay: "180ms" },
-  { x: "18%", y: "22%", dx: "24px", dy: "20px", color: "#ff7f94", delay: "230ms" },
-  { x: "79%", y: "25%", dx: "-24px", dy: "-26px", color: "#64d3df", delay: "260ms" },
-  { x: "79%", y: "25%", dx: "8px", dy: "-36px", color: "#fff9c9", delay: "310ms" },
-  { x: "79%", y: "25%", dx: "30px", dy: "-12px", color: "#ff9fc8", delay: "360ms" },
-  { x: "79%", y: "25%", dx: "-28px", dy: "20px", color: "#ffe08a", delay: "410ms" },
-  { x: "79%", y: "25%", dx: "22px", dy: "24px", color: "#64d3df", delay: "460ms" },
-  { x: "50%", y: "15%", dx: "-30px", dy: "-14px", color: "#ff7f94", delay: "520ms" },
-  { x: "50%", y: "15%", dx: "0px", dy: "-32px", color: "#ffe08a", delay: "580ms" },
-  { x: "50%", y: "15%", dx: "30px", dy: "-14px", color: "#64d3df", delay: "640ms" },
-  { x: "50%", y: "15%", dx: "-18px", dy: "22px", color: "#fff9c9", delay: "700ms" },
-  { x: "50%", y: "15%", dx: "18px", dy: "22px", color: "#ff9fc8", delay: "760ms" },
+const fireworkStars = [
+  { x: "16%", y: "24%", dx: "-28px", dy: "-28px", size: "34px", delay: "0ms", rotate: "-16deg" },
+  { x: "16%", y: "24%", dx: "12px", dy: "-42px", size: "28px", delay: "110ms", rotate: "8deg" },
+  { x: "16%", y: "24%", dx: "34px", dy: "-12px", size: "24px", delay: "220ms", rotate: "18deg" },
+  { x: "78%", y: "23%", dx: "-34px", dy: "-18px", size: "28px", delay: "260ms", rotate: "-12deg" },
+  { x: "78%", y: "23%", dx: "8px", dy: "-44px", size: "36px", delay: "360ms", rotate: "10deg" },
+  { x: "78%", y: "23%", dx: "30px", dy: "8px", size: "24px", delay: "460ms", rotate: "18deg" },
+  { x: "50%", y: "15%", dx: "-36px", dy: "-16px", size: "30px", delay: "560ms", rotate: "-14deg" },
+  { x: "50%", y: "15%", dx: "0px", dy: "-42px", size: "40px", delay: "660ms", rotate: "6deg" },
+  { x: "50%", y: "15%", dx: "36px", dy: "-16px", size: "30px", delay: "760ms", rotate: "14deg" },
 ];
 
 /* ─── Pixel rendering components ─── */
@@ -418,20 +380,25 @@ function PixelTreatBurst({ stamp }: { stamp: number }) {
 
   return (
     <div key={stamp} aria-hidden className="pointer-events-none absolute inset-0 z-20">
-      {treatSprites.map((sprite, index) => (
-        <span
-          key={index}
-          className="sidequest-treat absolute"
+      {rewardStarBursts.map((star, index) => (
+        <img
+          key={`${stamp}-${index}`}
+          src={sidequestRewardStar}
+          alt=""
+          draggable={false}
+          className="sidequest-reward-star absolute"
           style={
             {
-              left: `${26 + index * 24}%`,
-              top: `${18 + (index % 2) * 10}%`,
-              "--treat-delay": `${index * 90}ms`,
+              left: star.left,
+              top: star.top,
+              width: star.size,
+              "--star-delay": star.delay,
+              "--star-x": star.x,
+              "--star-y": star.y,
+              "--star-rotate": star.rotate,
             } as CSSProperties
           }
-        >
-          <PixelArt sprite={sprite} colors={treatColors} pixelSize={4} />
-        </span>
+        />
       ))}
     </div>
   );
@@ -440,19 +407,22 @@ function PixelTreatBurst({ stamp }: { stamp: number }) {
 function PixelFireworks() {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 z-20 overflow-hidden">
-      {fireworkDots.map((dot, index) => (
-        <span
+      {fireworkStars.map((star, index) => (
+        <img
           key={index}
-          className="sidequest-firework-dot absolute"
+          src={sidequestRewardStar}
+          alt=""
+          draggable={false}
+          className="sidequest-firework-star absolute"
           style={
             {
-              left: dot.x,
-              top: dot.y,
-              color: dot.color,
-              backgroundColor: dot.color,
-              "--firework-x": dot.dx,
-              "--firework-y": dot.dy,
-              "--firework-delay": dot.delay,
+              left: star.x,
+              top: star.y,
+              width: star.size,
+              "--firework-x": star.dx,
+              "--firework-y": star.dy,
+              "--firework-delay": star.delay,
+              "--firework-rotate": star.rotate,
             } as CSSProperties
           }
         />
@@ -474,34 +444,13 @@ function PixelSparkle({ className, delay = 0 }: { className: string; delay?: num
 /* ─── Mascot ─── */
 
 function PixelMascot({ mood = "idle" }: { mood?: MascotMood }) {
-  const spriteRows = mascotSprites[mood];
-  const width = Math.max(...spriteRows.map((row) => row.length));
-
   return (
-    <div className={mood === "happy" ? "sidequest-mascot-excited" : "sidequest-mascot-idle"}>
-      <div
-        aria-hidden
-        className="grid drop-shadow-[4px_5px_0_rgba(191,53,94,.18)]"
-        style={{ gridTemplateColumns: `repeat(${width}, ${mascotPixelSize}px)` }}
-      >
-        {spriteRows.flatMap((row, rowIndex) =>
-          Array.from({ length: width }, (_, columnIndex) => {
-            const pixel = row[columnIndex] ?? ".";
-
-            return (
-              <span
-                key={`${rowIndex}-${columnIndex}`}
-                style={{
-                  width: mascotPixelSize,
-                  height: mascotPixelSize,
-                  backgroundColor: spriteColors[pixel] ?? "transparent",
-                  opacity: pixel === "." ? 0 : 1,
-                }}
-              />
-            );
-          }),
-        )}
-      </div>
+    <div
+      className={`sidequest-reference-mascot ${
+        mood === "happy" ? "sidequest-mascot-excited" : "sidequest-mascot-idle"
+      }`}
+    >
+      <img src={sidequestReferenceBunny} alt="" aria-hidden draggable={false} />
     </div>
   );
 }
@@ -543,14 +492,12 @@ function GameScene({
   rewardStamp: number;
   playEvent: MascotEvent | null;
 }) {
-  const mascotStamp = Math.max(rewardStamp, playEvent?.stamp ?? 0);
-  const isCelebrating = rewardStamp > 0 || activeQuest === SUCCESS_QUEST_INDEX;
+  const isSuccess = activeQuest === SUCCESS_QUEST_INDEX;
+  const isMascotEffectActive = Boolean(playEvent) || isSuccess;
+  const mascotStamp = playEvent?.stamp ?? (isSuccess ? rewardStamp : 0);
 
   return (
-    <div
-      aria-label="Pixel quest scene"
-      className="sq-panel relative h-40 overflow-hidden"
-    >
+    <div aria-label="Pixel quest scene" className="sq-panel relative h-40 overflow-hidden">
       {/* Sky gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#e8f8ff] via-[#fff5f8] to-[#c9f2eb]" />
 
@@ -578,7 +525,7 @@ function GameScene({
           key={playEvent.stamp}
           role="status"
           aria-live="polite"
-          className="sidequest-pop pointer-events-none absolute left-1/2 top-1 z-20 -translate-x-1/2 rounded-lg border-[3px] border-[#54334f] bg-[#fff9c9] px-3 py-1 font-mono text-[11px] font-black uppercase tracking-wider text-[#bf355e] shadow-[2px_3px_0_rgba(84,51,79,.3)]"
+          className="sidequest-pop sq-pop-bubble sq-caption pointer-events-none absolute left-1/2 top-1 z-20 -translate-x-1/2 px-3 py-1"
         >
           {playEvent.message}
         </div>
@@ -587,12 +534,12 @@ function GameScene({
       {/* Mascot */}
       <div className="absolute left-1/2 top-5 z-10 -translate-x-1/2">
         <div className="relative">
-          <PixelTreatBurst stamp={rewardStamp} />
+          <PixelTreatBurst stamp={playEvent?.stamp ?? 0} />
           <span
             key={mascotStamp}
-            className={`block ${isCelebrating ? "sidequest-mascot-cheer" : ""}`}
+            className={`block ${isMascotEffectActive ? "sidequest-mascot-cheer" : ""}`}
           >
-            <PixelMascot mood={isCelebrating ? "happy" : "idle"} />
+            <PixelMascot mood={isMascotEffectActive ? "happy" : "idle"} />
           </span>
         </div>
       </div>
@@ -605,13 +552,7 @@ function GameScene({
 
 /* ─── Kairosoft-style HP Bar ─── */
 
-function QuestProgressBar({
-  activeQuest,
-  total,
-}: {
-  activeQuest: number;
-  total: number;
-}) {
+function QuestProgressBar({ activeQuest, total }: { activeQuest: number; total: number }) {
   const progressPercent = useMemo(
     () => `${((activeQuest + 1) / total) * 100}%`,
     [activeQuest, total],
@@ -621,18 +562,16 @@ function QuestProgressBar({
     <div className="sq-panel p-3">
       {/* Top row: stage label & counter */}
       <div className="flex items-center justify-between gap-2">
-        <span className="rounded border-2 border-[#54334f] bg-[#ffe08a] px-2 py-0.5 font-mono text-[10px] font-black uppercase tracking-widest text-[#54334f]">
-          Stage {String(activeQuest + 1).padStart(2, "0")}
-        </span>
-        <span className="font-mono text-[16px] font-black leading-none text-[#bf355e]">
+        <span className="sq-chip sq-caption">Stage {String(activeQuest + 1).padStart(2, "0")}</span>
+        <span className="sq-counter">
           {activeQuest + 1}/{total}
         </span>
       </div>
 
       {/* HP-style bar */}
-      <div className="mt-2 h-5 overflow-hidden rounded-full border-[3px] border-[#54334f] bg-[#2a1a2e]">
+      <div className="sq-progress-track mt-2">
         <div
-          className="sq-hp-fill h-full rounded-full transition-[width] duration-500 ease-out"
+          className="sq-hp-fill h-full transition-[width] duration-500 ease-out"
           style={{ width: progressPercent }}
         />
       </div>
@@ -651,7 +590,7 @@ function QuestProgressBar({
             <span
               key={quest.title}
               aria-label={`Stage ${index + 1}`}
-              className={`h-[10px] rounded-sm border-2 border-[#54334f] transition-all duration-300 ${
+              className={`sq-progress-step transition-all duration-300 ${
                 isActive
                   ? "bg-[#ff9fc8] sidequest-dot-active"
                   : isCleared
@@ -686,23 +625,19 @@ function QuestIntro({ onStart }: { onStart: () => void }) {
 
         {/* Dialog box */}
         <div className="sq-dialog mx-3 -mt-4 mb-4 relative z-10">
-          <p className="rounded border-2 border-[#bf355e] bg-[#bf355e] px-2 py-0.5 font-mono text-[10px] font-black uppercase tracking-widest text-white inline-block">
-            Side Quest
-          </p>
-          <h1 className="mt-2 text-[26px] font-black leading-[1.1] text-[#54334f]">
-            A tiny task appeared.
-          </h1>
-          <p className="mt-2 text-[14px] font-semibold leading-[1.5] text-[#5f4a59]">
+          <p className="sq-chip sq-chip-accent sq-caption">Side Quest</p>
+          <h1 className="sq-title sq-title-lg mt-3">A tiny task appeared.</h1>
+          <p className="sq-body sq-body-lg mt-2">
             Clear seven quick steps and send one millimeter number.
           </p>
 
           <button
             type="button"
             onClick={onStart}
-            className="sq-btn sq-btn-primary mt-4 w-full"
+            className="sq-btn sq-btn-primary sq-btn-start mt-5 w-full"
           >
-            <PixelIcon name="check" className="text-[#54334f]" pixelSize={3} />
-            Start Quest
+            <PixelIcon name="check" className="text-[#54334f]" pixelSize={4} />
+            <span>Start Quest</span>
           </button>
         </div>
       </div>
@@ -720,9 +655,26 @@ function Sidequest() {
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [rewardEvent, setRewardEvent] = useState<RewardEvent | null>(null);
   const [playEvent, setPlayEvent] = useState<MascotEvent | null>(null);
+  const mascotEffectTimerRef = useRef<ReturnType<typeof window.setTimeout> | null>(null);
 
   const active = quests[activeQuest];
   const isSubmitting = submitState === "sending";
+
+  useEffect(() => {
+    return () => {
+      if (mascotEffectTimerRef.current) {
+        window.clearTimeout(mascotEffectTimerRef.current);
+      }
+    };
+  }, []);
+
+  const clearMascotEffect = () => {
+    if (mascotEffectTimerRef.current) {
+      window.clearTimeout(mascotEffectTimerRef.current);
+      mascotEffectTimerRef.current = null;
+    }
+    setPlayEvent(null);
+  };
 
   const showClearText = (message: string) => {
     const stamp = Date.now();
@@ -731,10 +683,33 @@ function Sidequest() {
       message: mascotClearMessages[activeQuest] ?? "Nice!",
       stamp,
     });
+    if (mascotEffectTimerRef.current) {
+      window.clearTimeout(mascotEffectTimerRef.current);
+    }
+    mascotEffectTimerRef.current = window.setTimeout(() => {
+      setPlayEvent((current) => (current?.stamp === stamp ? null : current));
+      mascotEffectTimerRef.current = null;
+    }, MASCOT_EFFECT_MS);
   };
 
   const unlockQuest = (nextQuest: number) => {
     setActiveQuest(nextQuest);
+  };
+
+  const goBack = () => {
+    if (!hasStarted || isSubmitting) return;
+
+    setInputError("");
+    setRewardEvent(null);
+    clearMascotEffect();
+    setSubmitState("idle");
+
+    if (activeQuest === 0) {
+      setHasStarted(false);
+      return;
+    }
+
+    setActiveQuest((current) => current - 1);
   };
 
   const validateCircumference = () => {
@@ -804,25 +779,45 @@ function Sidequest() {
             }}
           />
           {/* Floating sparkles */}
-          <span className="absolute left-[10%] top-[15%] h-2 w-2 rounded-sm bg-[#ffe08a]/40 sidequest-sparkle" style={{ animationDelay: "200ms" }} />
-          <span className="absolute left-[75%] top-[10%] h-2 w-2 rounded-sm bg-[#64d3df]/35 sidequest-sparkle" style={{ animationDelay: "900ms" }} />
-          <span className="absolute left-[50%] top-[40%] h-[6px] w-[6px] rounded-sm bg-[#ff9fc8]/30 sidequest-sparkle" style={{ animationDelay: "1600ms" }} />
-          <span className="absolute left-[25%] top-[65%] h-[5px] w-[5px] rounded-sm bg-[#fff9c9]/35 sidequest-sparkle" style={{ animationDelay: "2200ms" }} />
-          <span className="absolute left-[82%] top-[55%] h-[7px] w-[7px] rounded-sm bg-[#c9f2eb]/40 sidequest-sparkle" style={{ animationDelay: "600ms" }} />
+          <span
+            className="absolute left-[10%] top-[15%] h-2 w-2 bg-[#ffe08a]/40 sidequest-sparkle"
+            style={{ animationDelay: "200ms" }}
+          />
+          <span
+            className="absolute left-[75%] top-[10%] h-2 w-2 bg-[#64d3df]/35 sidequest-sparkle"
+            style={{ animationDelay: "900ms" }}
+          />
+          <span
+            className="absolute left-[50%] top-[40%] h-[6px] w-[6px] bg-[#ff9fc8]/30 sidequest-sparkle"
+            style={{ animationDelay: "1600ms" }}
+          />
+          <span
+            className="absolute left-[25%] top-[65%] h-[5px] w-[5px] bg-[#fff9c9]/35 sidequest-sparkle"
+            style={{ animationDelay: "2200ms" }}
+          />
+          <span
+            className="absolute left-[82%] top-[55%] h-[7px] w-[7px] bg-[#c9f2eb]/40 sidequest-sparkle"
+            style={{ animationDelay: "600ms" }}
+          />
         </div>
 
         {/* Top bar — Kairosoft game header */}
-        <header className="relative z-10 flex min-h-10 items-center justify-between gap-2">
-          <Link
-            to="/"
-            className="sq-btn inline-flex h-9 items-center gap-1.5 px-2.5 text-[11px]"
-          >
-            <PixelIcon name="back" className="text-[#54334f]" pixelSize={2} />
-            Back
-          </Link>
-          <div className="rounded-lg border-[3px] border-[#54334f] bg-[#bf355e] px-3 py-1 font-mono text-[11px] font-black uppercase tracking-widest text-white shadow-[2px_3px_0_rgba(0,0,0,.25)]">
-            Sidequest
-          </div>
+        <header className="relative z-10 flex min-h-12 items-center justify-between gap-2">
+          {hasStarted ? (
+            <button
+              type="button"
+              onClick={goBack}
+              disabled={isSubmitting}
+              className="sq-btn sq-btn-header"
+              aria-label={activeQuest === 0 ? "Back to intro" : "Previous stage"}
+            >
+              <PixelIcon name="back" className="text-[#54334f]" pixelSize={2} />
+              <span>Back</span>
+            </button>
+          ) : (
+            <div className="h-11 w-[94px]" aria-hidden />
+          )}
+          <div className="sq-header-title sq-caption px-3 py-2">Sidequest</div>
         </header>
 
         {!hasStarted ? <QuestIntro onStart={() => setHasStarted(true)} /> : null}
@@ -843,24 +838,16 @@ function Sidequest() {
             <div className="sq-dialog flex-1">
               {/* Icon + title row */}
               <div className="flex items-start gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border-[3px] border-[#54334f] bg-[#ffe08a] shadow-[2px_2px_0_rgba(84,51,79,.3)]">
-                  <PixelIcon name={active.icon} className="text-[#54334f]" pixelSize={3} />
+                <div className="sq-icon-tile">
+                  <PixelIcon name={active.icon} className="text-[#54334f]" pixelSize={4} />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <h2 className="text-[20px] font-black leading-[1.15] text-[#54334f]">
-                    {active.title}
-                  </h2>
-                  <p className="mt-1 text-[13px] font-semibold leading-[1.5] text-[#5f4a59]">
-                    {active.detail}
-                  </p>
+                  <h2 className="sq-title">{active.title}</h2>
+                  <p className="sq-body mt-1">{active.detail}</p>
                 </div>
               </div>
 
-              {active.hint && (
-                <p className="mt-2 rounded border-2 border-[#d4c8d2] bg-[#f5f0f4] px-2 py-1.5 text-[11px] font-semibold leading-[1.4] text-[#9a8498]">
-                  💡 {active.hint}
-                </p>
-              )}
+              {active.hint && <p className="sq-info sq-note mt-3 font-semibold">{active.hint}</p>}
 
               {/* Reward message */}
               {rewardEvent &&
@@ -870,22 +857,19 @@ function Sidequest() {
                     key={rewardEvent.stamp}
                     role="status"
                     aria-live="polite"
-                    className="mt-3 rounded-lg border-[3px] border-[#54334f] bg-white px-3 py-2 font-mono text-[12px] font-black uppercase tracking-wider text-[#bf355e] shadow-[2px_2px_0_rgba(84,51,79,.2)]"
+                    className="sq-reward sq-caption mt-3"
                   >
-                    ✨ {rewardEvent.message}
+                    {rewardEvent.message}
                   </p>
                 )}
 
               {/* Input field */}
               {activeQuest === INPUT_QUEST_INDEX && (
                 <div className="mt-3">
-                  <label
-                    htmlFor="fingerCircumference"
-                    className="block font-mono text-[11px] font-black uppercase tracking-wider text-[#54334f]"
-                  >
+                  <label htmlFor="fingerCircumference" className="sq-caption block text-[#54334f]">
                     Finger circumference
                   </label>
-                  <div className="mt-1.5 flex items-center overflow-hidden rounded-lg border-[3px] border-[#54334f] bg-[#fff9dc] shadow-[2px_2px_0_rgba(84,51,79,.25)] focus-within:border-[#ff78b4] focus-within:ring-2 focus-within:ring-[#ff78b4]/30">
+                  <div className="sq-input-shell mt-2">
                     <input
                       id="fingerCircumference"
                       name="fingerCircumference"
@@ -899,17 +883,13 @@ function Sidequest() {
                         setFingerCircumference(event.target.value);
                         if (inputError) setInputError("");
                       }}
-                      className="h-11 min-w-0 flex-1 bg-transparent px-3 text-[22px] font-black text-[#54334f] outline-none"
+                      className="sq-input"
                       aria-describedby={inputError ? "fingerCircumference-error" : undefined}
                     />
-                    <span className="pr-3 text-[14px] font-black text-[#6f5a1c]">mm</span>
+                    <span className="sq-unit">mm</span>
                   </div>
                   {inputError && (
-                    <p
-                      id="fingerCircumference-error"
-                      className="mt-2 rounded-lg border-[3px] border-[#d44] bg-[#ffe0d4] px-3 py-2 text-[12px] font-black text-[#982514] shadow-[2px_2px_0_rgba(84,51,79,.25)]"
-                      role="alert"
-                    >
+                    <p id="fingerCircumference-error" className="sq-error mt-2" role="alert">
                       {inputError}
                     </p>
                   )}
@@ -918,11 +898,9 @@ function Sidequest() {
 
               {/* Success state */}
               {activeQuest === SUCCESS_QUEST_INDEX && (
-                <div className="mt-4 flex items-center gap-2.5 rounded-lg border-[3px] border-[#2a7a3a] bg-[#d8ffd8] px-3 py-2.5 shadow-[2px_2px_0_rgba(30,80,40,.25)]">
+                <div className="sq-success mt-4 flex items-center gap-2.5">
                   <PixelIcon name="trophy" className="text-[#173d29]" pixelSize={3} />
-                  <p className="text-[13px] font-black uppercase leading-snug text-[#173d29]">
-                    Sent. Thank you, Alyssa.
-                  </p>
+                  <p className="sq-caption text-[#173d29]">Sent. Thank you, Alyssa.</p>
                 </div>
               )}
             </div>
@@ -931,12 +909,12 @@ function Sidequest() {
 
         {/* Sticky bottom action button */}
         {hasStarted && activeQuest !== SUCCESS_QUEST_INDEX ? (
-          <div className="relative z-10 sticky bottom-0 -mx-3 mt-3 bg-[#3a6b4e]/90 px-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-2 backdrop-blur-sm">
+          <div className="sq-action-bar relative z-10 sticky bottom-0 -mx-3 mt-3 px-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-2">
             <button
               type="button"
               onClick={completeQuest}
               disabled={isSubmitting}
-              className="sq-btn sq-btn-primary w-full h-12"
+              className="sq-btn sq-btn-primary sq-btn-action w-full"
             >
               {isSubmitting ? (
                 <PixelSpinner />
@@ -948,10 +926,7 @@ function Sidequest() {
               </span>
             </button>
             {submitState === "error" && !inputError && (
-              <p
-                className="mt-2 text-center text-[12px] font-bold text-[#ffb0a0]"
-                role="alert"
-              >
+              <p className="sq-action-error mt-2" role="alert">
                 Email delivery failed. Try again.
               </p>
             )}
