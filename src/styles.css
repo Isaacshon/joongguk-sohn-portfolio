@@ -1692,9 +1692,7 @@
 }
 
 .sidequest-heart-shade {
-  background:
-    radial-gradient(circle at 50% 45%, rgba(255, 105, 145, 0.13), transparent 38%),
-    rgba(0, 0, 0, 0.64);
+  background: #262222;
   animation: sidequest-heart-shade 6000ms ease both;
 }
 
