@@ -6,6 +6,9 @@ import sidequestReferenceBunny from "@/assets/sidequest-reference-bunny.png";
 import sidequestRewardStar from "@/assets/sidequest-reward-star.png";
 import { submitSidequestMeasurement } from "@/lib/api/sidequest.functions";
 
+const sidequestUrl = "https://joongguk-sohn-portfolio.vercel.app/sidequest";
+const sidequestOgImageUrl = "https://joongguk-sohn-portfolio.vercel.app/sidequest-og.png";
+
 export const Route = createFileRoute("/sidequest")({
   head: () => ({
     meta: [
@@ -20,6 +23,20 @@ export const Route = createFileRoute("/sidequest")({
         property: "og:description",
         content: "A mobile pixel quest hidden inside Isaac Sohn's portfolio.",
       },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: sidequestUrl },
+      { property: "og:image", content: sidequestOgImageUrl },
+      { property: "og:image:secure_url", content: sidequestOgImageUrl },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: "START QUEST in pink pixel letters." },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Sidequest - Isaac Sohn" },
+      {
+        name: "twitter:description",
+        content: "A mobile pixel quest hidden inside Isaac Sohn's portfolio.",
+      },
+      { name: "twitter:image", content: sidequestOgImageUrl },
     ],
   }),
   component: Sidequest,
