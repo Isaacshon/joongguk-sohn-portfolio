@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 
+import sidequestHeart from "@/assets/sidequest-heart.png";
 import sidequestReferenceBunny from "@/assets/sidequest-reference-bunny.png";
 import sidequestRewardStar from "@/assets/sidequest-reward-star.png";
 import { submitSidequestMeasurement } from "@/lib/api/sidequest.functions";
@@ -132,7 +133,7 @@ const quests: Quest[] = [
   {
     title: "Measure the marked strip",
     detail: "Use the ruler to read the millimeters.",
-    hint: "If you already know the number, you can skip ahead and enter it.",
+    hint: "If you already know the number, it is okay to move on and enter it.",
     clearText: "Measured.",
     icon: "ruler",
   },
@@ -151,13 +152,13 @@ const quests: Quest[] = [
 ];
 
 const INPUT_QUEST_INDEX = 5;
-const MEASURE_QUEST_INDEX = 4;
 const SUCCESS_QUEST_INDEX = 6;
 
 type SubmitState = "idle" | "sending" | "sent" | "error";
 type RewardEvent = { message: string; stamp: number };
 type MascotEvent = { message: string; stamp: number };
 const MASCOT_EFFECT_MS = 1400;
+const HEART_BALLOON_MS = 6000;
 
 /* ─── Mascot & scene data ─── */
 
@@ -335,6 +336,21 @@ const fireworkStars = [
   { x: "50%", y: "15%", dx: "0px", dy: "-42px", size: "40px", delay: "660ms", rotate: "6deg" },
   { x: "50%", y: "15%", dx: "36px", dy: "-16px", size: "30px", delay: "760ms", rotate: "14deg" },
 ];
+const heartBalloons = [
+  { left: "5%", size: "42px", delay: "0ms", drift: "18px", sway: "-9deg" },
+  { left: "15%", size: "30px", delay: "380ms", drift: "-14px", sway: "7deg" },
+  { left: "25%", size: "58px", delay: "120ms", drift: "22px", sway: "-8deg" },
+  { left: "36%", size: "36px", delay: "720ms", drift: "-20px", sway: "10deg" },
+  { left: "48%", size: "70px", delay: "250ms", drift: "16px", sway: "-6deg" },
+  { left: "61%", size: "34px", delay: "980ms", drift: "-18px", sway: "8deg" },
+  { left: "72%", size: "52px", delay: "520ms", drift: "24px", sway: "-10deg" },
+  { left: "84%", size: "28px", delay: "860ms", drift: "-16px", sway: "6deg" },
+  { left: "91%", size: "62px", delay: "160ms", drift: "12px", sway: "-7deg" },
+  { left: "10%", size: "64px", delay: "1240ms", drift: "-18px", sway: "8deg" },
+  { left: "31%", size: "26px", delay: "1480ms", drift: "15px", sway: "-6deg" },
+  { left: "55%", size: "46px", delay: "1360ms", drift: "-22px", sway: "9deg" },
+  { left: "78%", size: "40px", delay: "1700ms", drift: "20px", sway: "-8deg" },
+];
 
 /* ─── Pixel rendering components ─── */
 
@@ -425,6 +441,37 @@ function PixelFireworks() {
               "--firework-y": star.dy,
               "--firework-delay": star.delay,
               "--firework-rotate": star.rotate,
+            } as CSSProperties
+          }
+        />
+      ))}
+    </div>
+  );
+}
+
+function PixelHeartBalloons({ stamp }: { stamp: number | null }) {
+  if (!stamp) return null;
+
+  return (
+    <div
+      key={stamp}
+      aria-hidden
+      className="sidequest-heart-overlay pointer-events-none fixed inset-0"
+    >
+      {heartBalloons.map((heart, index) => (
+        <img
+          key={`${stamp}-${index}`}
+          src={sidequestHeart}
+          alt=""
+          draggable={false}
+          className="sidequest-heart-balloon absolute"
+          style={
+            {
+              left: heart.left,
+              width: heart.size,
+              "--heart-delay": heart.delay,
+              "--heart-drift": heart.drift,
+              "--heart-sway": heart.sway,
             } as CSSProperties
           }
         />
@@ -657,7 +704,9 @@ function Sidequest() {
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [rewardEvent, setRewardEvent] = useState<RewardEvent | null>(null);
   const [playEvent, setPlayEvent] = useState<MascotEvent | null>(null);
+  const [heartEventStamp, setHeartEventStamp] = useState<number | null>(null);
   const mascotEffectTimerRef = useRef<ReturnType<typeof window.setTimeout> | null>(null);
+  const heartEffectTimerRef = useRef<ReturnType<typeof window.setTimeout> | null>(null);
 
   const active = quests[activeQuest];
   const isSubmitting = submitState === "sending";
@@ -666,6 +715,9 @@ function Sidequest() {
     return () => {
       if (mascotEffectTimerRef.current) {
         window.clearTimeout(mascotEffectTimerRef.current);
+      }
+      if (heartEffectTimerRef.current) {
+        window.clearTimeout(heartEffectTimerRef.current);
       }
     };
   }, []);
@@ -676,6 +728,25 @@ function Sidequest() {
       mascotEffectTimerRef.current = null;
     }
     setPlayEvent(null);
+  };
+
+  const clearHeartEffect = () => {
+    if (heartEffectTimerRef.current) {
+      window.clearTimeout(heartEffectTimerRef.current);
+      heartEffectTimerRef.current = null;
+    }
+    setHeartEventStamp(null);
+  };
+
+  const showHeartEffect = (stamp: number) => {
+    if (heartEffectTimerRef.current) {
+      window.clearTimeout(heartEffectTimerRef.current);
+    }
+    setHeartEventStamp(stamp);
+    heartEffectTimerRef.current = window.setTimeout(() => {
+      setHeartEventStamp((current) => (current === stamp ? null : current));
+      heartEffectTimerRef.current = null;
+    }, HEART_BALLOON_MS);
   };
 
   const showClearText = (message: string) => {
@@ -692,19 +763,12 @@ function Sidequest() {
       setPlayEvent((current) => (current?.stamp === stamp ? null : current));
       mascotEffectTimerRef.current = null;
     }, MASCOT_EFFECT_MS);
+
+    return stamp;
   };
 
   const unlockQuest = (nextQuest: number) => {
     setActiveQuest(nextQuest);
-  };
-
-  const jumpToInputQuest = () => {
-    if (isSubmitting) return;
-    setInputError("");
-    setRewardEvent(null);
-    clearMascotEffect();
-    setSubmitState("idle");
-    setActiveQuest(INPUT_QUEST_INDEX);
   };
 
   const goBack = () => {
@@ -713,6 +777,7 @@ function Sidequest() {
     setInputError("");
     setRewardEvent(null);
     clearMascotEffect();
+    clearHeartEffect();
     setSubmitState("idle");
 
     if (activeQuest === 0) {
@@ -762,7 +827,8 @@ function Sidequest() {
 
     if (result.ok) {
       setSubmitState("sent");
-      showClearText(quests[INPUT_QUEST_INDEX].clearText);
+      const stamp = showClearText(quests[INPUT_QUEST_INDEX].clearText);
+      showHeartEffect(stamp);
       unlockQuest(SUCCESS_QUEST_INDEX);
       return;
     }
@@ -777,6 +843,7 @@ function Sidequest() {
 
   return (
     <main className="sq-page min-h-dvh overflow-hidden font-sans text-[#54334f]">
+      <PixelHeartBalloons stamp={heartEventStamp} />
       <div className="relative mx-auto flex min-h-dvh w-full max-w-[480px] flex-col px-3 pb-3 pt-3">
         {/* Background */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -860,18 +927,6 @@ function Sidequest() {
 
               {active.hint && <p className="sq-info sq-note mt-3 font-semibold">{active.hint}</p>}
 
-              {activeQuest === MEASURE_QUEST_INDEX && (
-                <button
-                  type="button"
-                  onClick={jumpToInputQuest}
-                  disabled={isSubmitting}
-                  className="sq-btn sq-btn-secondary sq-btn-compact mt-3 w-full"
-                >
-                  <PixelIcon name="mail" className="text-[#54334f]" pixelSize={3} />
-                  <span>Enter Number</span>
-                </button>
-              )}
-
               {/* Reward message */}
               {rewardEvent &&
                 activeQuest !== INPUT_QUEST_INDEX &&
@@ -921,9 +976,28 @@ function Sidequest() {
 
               {/* Success state */}
               {activeQuest === SUCCESS_QUEST_INDEX && (
-                <div className="sq-success mt-4 flex items-center gap-2.5">
-                  <PixelIcon name="trophy" className="text-[#173d29]" pixelSize={3} />
-                  <p className="sq-caption text-[#173d29]">Sent. Thank you, Alyssa.</p>
+                <div className="sq-success sq-success-quest mt-4">
+                  <div className="flex items-center gap-3">
+                    <div className="sq-success-medal">
+                      <PixelIcon name="trophy" className="text-[#173d29]" pixelSize={4} />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="sq-caption text-[#2a7a3a]">Quest Complete</p>
+                      <p className="sq-success-title">Thank you, Alyssa.</p>
+                      <p className="sq-body mt-1 text-[#38664a]">Your number has been sent.</p>
+                    </div>
+                    <img
+                      src={sidequestHeart}
+                      alt=""
+                      aria-hidden
+                      draggable={false}
+                      className="sq-success-heart"
+                    />
+                  </div>
+                  <div className="sq-success-badges mt-3">
+                    <span className="sq-caption">Mail Sent</span>
+                    <span className="sq-caption">Quest Clear</span>
+                  </div>
                 </div>
               )}
             </div>

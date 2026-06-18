@@ -1078,6 +1078,74 @@
   box-shadow: 2px 2px 0 rgba(30, 80, 40, 0.25);
 }
 
+.sq-success-quest {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.72), transparent 42%),
+    linear-gradient(180deg, #e8ffe8 0%, #c9f2eb 100%);
+  padding: 14px;
+}
+
+.sq-success-quest::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.18;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(90deg, #2a7a3a 0 3px, transparent 3px 9px),
+    repeating-linear-gradient(180deg, #ffffff 0 4px, transparent 4px 12px);
+}
+
+.sq-success-quest > * {
+  position: relative;
+  z-index: 1;
+}
+
+.sq-success-medal {
+  display: flex;
+  width: 54px;
+  height: 54px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #173d29;
+  border-radius: var(--sq-radius);
+  background: var(--sq-gold);
+  box-shadow: 3px 3px 0 rgba(23, 61, 41, 0.24);
+}
+
+.sq-success-title {
+  color: #173d29;
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 1.12;
+}
+
+.sq-success-heart {
+  width: 46px;
+  height: auto;
+  flex-shrink: 0;
+  filter: drop-shadow(2px 3px 0 rgba(133, 0, 48, 0.18));
+  image-rendering: pixelated;
+}
+
+.sq-success-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.sq-success-badges span {
+  border: 2px solid #173d29;
+  border-radius: 6px;
+  background: #fff9c9;
+  color: #173d29;
+  padding: 6px 8px;
+  box-shadow: 2px 2px 0 rgba(23, 61, 41, 0.18);
+}
+
 .sq-error {
   border: 3px solid #d44;
   background: #ffe0d4;
@@ -1201,21 +1269,6 @@
     4px 5px 0 rgba(84, 51, 79, 0.34),
     inset -2px -3px 0 rgba(84, 51, 79, 0.1),
     inset 2px 2px 0 rgba(255, 255, 255, 0.46);
-}
-
-.sq-btn-compact {
-  min-height: 46px;
-  padding: 0 12px;
-  font-size: 12px;
-}
-
-.sq-btn-secondary {
-  background: var(--sq-mint);
-}
-
-.sq-btn-secondary:hover,
-.sq-btn-secondary:focus-visible {
-  background: #ddfbf5;
 }
 
 .sq-btn:disabled {
@@ -1465,6 +1518,35 @@
 }
 
 /* Floating sparkle — soft drifting twinkle */
+@keyframes sidequest-heart-balloon {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 80px, 0) scale(0.62) rotate(calc(var(--heart-sway) * -0.5));
+  }
+  10% {
+    opacity: 1;
+    transform: translate3d(calc(var(--heart-drift) * 0.25), 8px, 0) scale(0.98) rotate(var(--heart-sway));
+  }
+  28% {
+    transform: translate3d(calc(var(--heart-drift) * -0.5), -24vh, 0) scale(1.04) rotate(calc(var(--heart-sway) * -0.85));
+  }
+  48% {
+    opacity: 1;
+    transform: translate3d(var(--heart-drift), -48vh, 0) scale(0.96) rotate(var(--heart-sway));
+  }
+  70% {
+    transform: translate3d(calc(var(--heart-drift) * -0.65), -76vh, 0) scale(1.08) rotate(calc(var(--heart-sway) * -1));
+  }
+  88% {
+    opacity: 0.9;
+    transform: translate3d(calc(var(--heart-drift) * 0.45), -104vh, 0) scale(0.94) rotate(var(--heart-sway));
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(calc(var(--heart-drift) * -0.25), -124vh, 0) scale(0.72) rotate(calc(var(--heart-sway) * -0.75));
+  }
+}
+
 @keyframes sidequest-sparkle-float {
   0%, 100% {
     opacity: 0.5;
@@ -1549,6 +1631,23 @@
   user-select: none;
 }
 
+.sidequest-heart-overlay {
+  z-index: 60;
+  overflow: hidden;
+}
+
+.sidequest-heart-balloon {
+  bottom: -96px;
+  opacity: 0;
+  animation: sidequest-heart-balloon 6000ms cubic-bezier(0.25, 0.72, 0.32, 1) both;
+  animation-delay: var(--heart-delay);
+  filter: drop-shadow(3px 5px 0 rgba(133, 0, 48, 0.16));
+  image-rendering: pixelated;
+  transform-origin: 50% 65%;
+  user-select: none;
+  will-change: transform, opacity;
+}
+
 .sidequest-sparkle {
   animation: sidequest-sparkle-float 3200ms cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
   border-radius: 1px;
@@ -1566,6 +1665,7 @@
   .sidequest-pop,
   .sidequest-reward-star,
   .sidequest-firework-star,
+  .sidequest-heart-balloon,
   .sidequest-sparkle,
   .sidequest-dot-active {
     animation: none;
