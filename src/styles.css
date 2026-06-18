@@ -931,143 +931,370 @@
   }
 }
 
+/* ───── Kairosoft Style UI Components ───── */
+
+.sq-page {
+  /* Optional page specific styling */
+}
+
+.sq-panel {
+  background: #fffaf0;
+  border: 4px solid #54334f;
+  border-radius: 8px;
+  box-shadow: 4px 4px 0 rgba(84, 51, 79, 0.25), inset -2px -2px 0 rgba(0,0,0,0.08);
+}
+
+.sq-dialog {
+  background: #fffaf0;
+  border: 4px solid #54334f;
+  border-radius: 8px;
+  box-shadow: 4px 4px 0 rgba(84, 51, 79, 0.25);
+  padding: 12px;
+}
+
+.sq-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: monospace;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 3px solid #54334f;
+  border-radius: 6px;
+  background: #fff;
+  color: #54334f;
+  box-shadow: 3px 3px 0 rgba(84, 51, 79, 0.3);
+  transition: transform 0.1s, box-shadow 0.1s, background-color 0.1s;
+  cursor: pointer;
+  outline: none;
+}
+.sq-btn:hover,
+.sq-btn:focus-visible {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 rgba(84, 51, 79, 0.3);
+}
+.sq-btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 rgba(84, 51, 79, 0.3);
+}
+
+.sq-btn-primary {
+  background: #ff9fc8;
+}
+.sq-btn-primary:hover,
+.sq-btn-primary:focus-visible {
+  background: #ffb7d5;
+}
+.sq-btn-primary:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.sq-hp-fill {
+  background-color: #ff9fc8;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.25) 0,
+    rgba(255, 255, 255, 0.25) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+  background-size: 23px 23px;
+  animation: sq-hp-stripe 1.5s linear infinite;
+}
+
+@keyframes sq-hp-stripe {
+  0% { background-position: 0 0; }
+  100% { background-position: 23px 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sq-hp-fill {
+    animation: none;
+  }
+}
+
+/* ───── Sidequest: 몽글몽글 Casual Pixel Art Animations ───── */
+
+/* Mascot idle — soft squishy breathing bounce */
 @keyframes sidequest-mascot-idle {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scaleY(1) scaleX(1);
+  }
+  25% {
+    transform: translate3d(0, -5px, 0) scaleY(1.04) scaleX(0.97);
   }
   50% {
-    transform: translate3d(0, -3px, 0);
+    transform: translate3d(0, -8px, 0) scaleY(1.06) scaleX(0.95);
+  }
+  75% {
+    transform: translate3d(0, -4px, 0) scaleY(1.02) scaleX(0.98);
   }
 }
 
+/* Mascot hop — jelly squash-and-stretch bounce */
 @keyframes sidequest-mascot-hop {
   0% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
+    transform: translate3d(0, 0, 0) rotate(0deg) scaleY(1) scaleX(1);
   }
-  38% {
-    transform: translate3d(0, -12px, 0) rotate(-2deg);
+  15% {
+    transform: translate3d(0, 2px, 0) rotate(0deg) scaleY(0.85) scaleX(1.12);
   }
-  62% {
-    transform: translate3d(0, -5px, 0) rotate(2deg);
+  35% {
+    transform: translate3d(0, -18px, 0) rotate(-3deg) scaleY(1.14) scaleX(0.9);
+  }
+  55% {
+    transform: translate3d(2px, -10px, 0) rotate(3deg) scaleY(1.06) scaleX(0.96);
+  }
+  72% {
+    transform: translate3d(0, 2px, 0) rotate(-1deg) scaleY(0.92) scaleX(1.06);
+  }
+  85% {
+    transform: translate3d(0, -3px, 0) rotate(0deg) scaleY(1.03) scaleX(0.98);
   }
   100% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
+    transform: translate3d(0, 0, 0) rotate(0deg) scaleY(1) scaleX(1);
   }
 }
 
+/* Mascot cheer — celebratory wiggle-bounce */
 @keyframes sidequest-mascot-cheer {
   0% {
     transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
   }
+  12% {
+    transform: translate3d(0, 3px, 0) rotate(0deg) scaleY(0.88) scaleX(1.1);
+  }
   24% {
-    transform: translate3d(-4px, -14px, 0) rotate(-4deg) scale(1.03);
+    transform: translate3d(-5px, -18px, 0) rotate(-6deg) scaleY(1.12) scaleX(0.92);
   }
-  52% {
-    transform: translate3d(4px, -8px, 0) rotate(4deg) scale(1.02);
+  38% {
+    transform: translate3d(5px, -8px, 0) rotate(6deg) scaleY(0.94) scaleX(1.04);
   }
-  76% {
-    transform: translate3d(0, -16px, 0) rotate(0deg) scale(1.04);
+  50% {
+    transform: translate3d(-3px, -22px, 0) rotate(-4deg) scaleY(1.1) scaleX(0.93);
+  }
+  64% {
+    transform: translate3d(4px, -6px, 0) rotate(5deg) scaleY(0.96) scaleX(1.03);
+  }
+  78% {
+    transform: translate3d(0, -14px, 0) rotate(-2deg) scaleY(1.06) scaleX(0.96);
+  }
+  90% {
+    transform: translate3d(0, 2px, 0) rotate(0deg) scaleY(0.95) scaleX(1.04);
   }
   100% {
     transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
   }
 }
 
+/* Mascot excited — squishy glow pulse */
 @keyframes sidequest-mascot-excited {
-  0%,
-  100% {
-    filter: brightness(1) saturate(1);
+  0%, 100% {
+    filter: brightness(1) saturate(1) drop-shadow(0 0 0 transparent);
+    transform: scale(1);
   }
-  50% {
-    filter: brightness(1.08) saturate(1.12);
+  30% {
+    filter: brightness(1.1) saturate(1.18) drop-shadow(0 0 8px rgba(255, 159, 200, 0.5));
+    transform: scale(1.04);
+  }
+  60% {
+    filter: brightness(1.06) saturate(1.1) drop-shadow(0 0 4px rgba(100, 211, 223, 0.4));
+    transform: scale(0.98);
   }
 }
 
+/* Speech pop — bouncy bubble pop-in with wobble */
 @keyframes sidequest-pop {
   0% {
     opacity: 0;
-    transform: translate3d(-50%, 8px, 0) scale(0.88);
+    transform: translate3d(-50%, 12px, 0) scale(0.3) rotate(-5deg);
   }
-  18%,
-  68% {
+  20% {
     opacity: 1;
-    transform: translate3d(-50%, 0, 0) scale(1);
+    transform: translate3d(-50%, -6px, 0) scale(1.15) rotate(2deg);
+  }
+  35% {
+    transform: translate3d(-50%, 2px, 0) scale(0.92) rotate(-1deg);
+  }
+  48% {
+    transform: translate3d(-50%, -2px, 0) scale(1.05) rotate(0.5deg);
+  }
+  60%, 72% {
+    opacity: 1;
+    transform: translate3d(-50%, 0, 0) scale(1) rotate(0deg);
+  }
+  88% {
+    opacity: 0.6;
+    transform: translate3d(-50%, -8px, 0) scale(1.08) rotate(0deg);
   }
   100% {
     opacity: 0;
-    transform: translate3d(-50%, -12px, 0) scale(0.96);
+    transform: translate3d(-50%, -18px, 0) scale(0.6) rotate(0deg);
   }
 }
 
+/* Treat burst — floaty wobbly candy pop */
 @keyframes sidequest-treat {
   0% {
     opacity: 0;
-    transform: translate3d(0, 18px, 0) scale(0.8);
+    transform: translate3d(0, 20px, 0) scale(0.2) rotate(0deg);
   }
-  22%,
-  68% {
+  18% {
     opacity: 1;
-    transform: translate3d(0, -4px, 0) scale(1);
+    transform: translate3d(0, -8px, 0) scale(1.18) rotate(12deg);
+  }
+  32% {
+    transform: translate3d(2px, -2px, 0) scale(0.9) rotate(-6deg);
+  }
+  44% {
+    transform: translate3d(-1px, -6px, 0) scale(1.06) rotate(4deg);
+  }
+  58%, 68% {
+    opacity: 1;
+    transform: translate3d(0, -4px, 0) scale(1) rotate(0deg);
+  }
+  84% {
+    opacity: 0.5;
+    transform: translate3d(0, -16px, 0) scale(1.1) rotate(-8deg);
   }
   100% {
     opacity: 0;
-    transform: translate3d(0, -24px, 0) scale(0.86);
+    transform: translate3d(0, -28px, 0) scale(0.5) rotate(-15deg);
   }
 }
 
+/* Firework pop — squishy bubble burst with jelly stretch */
 @keyframes sidequest-firework-pop {
   0% {
     opacity: 0;
     transform: translate3d(0, 0, 0) scale(0);
+    border-radius: 50%;
   }
-  12% {
+  8% {
     opacity: 1;
-    transform: translate3d(0, 0, 0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1.4);
   }
-  54% {
+  16% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(0.8);
+  }
+  24% {
+    transform: translate3d(
+      calc(var(--firework-x) * 0.3),
+      calc(var(--firework-y) * 0.3),
+      0
+    ) scale(1.2);
+  }
+  48% {
     opacity: 1;
     transform: translate3d(var(--firework-x), var(--firework-y), 0) scale(1);
   }
+  65% {
+    opacity: 0.8;
+    transform: translate3d(
+      calc(var(--firework-x) * 1.15),
+      calc(var(--firework-y) * 1.15),
+      0
+    ) scale(1.3);
+  }
+  80% {
+    opacity: 0.4;
+    transform: translate3d(
+      calc(var(--firework-x) * 1.2),
+      calc(var(--firework-y) * 1.2),
+      0
+    ) scale(0.7);
+  }
   100% {
     opacity: 0;
-    transform: translate3d(var(--firework-x), var(--firework-y), 0) scale(0);
+    transform: translate3d(
+      calc(var(--firework-x) * 1.3),
+      calc(var(--firework-y) * 1.3),
+      0
+    ) scale(0);
+  }
+}
+
+/* Floating sparkle — soft drifting twinkle */
+@keyframes sidequest-sparkle-float {
+  0%, 100% {
+    opacity: 0.5;
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  25% {
+    opacity: 1;
+    transform: translate3d(3px, -6px, 0) scale(1.3) rotate(45deg);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translate3d(-2px, -3px, 0) scale(0.8) rotate(90deg);
+  }
+  75% {
+    opacity: 1;
+    transform: translate3d(1px, -8px, 0) scale(1.15) rotate(135deg);
+  }
+}
+
+/* Dot progress pulse — soft pixel heartbeat */
+@keyframes sidequest-dot-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 transparent;
+  }
+  50% {
+    transform: scale(1.12);
+    box-shadow: 0 0 6px 2px rgba(255, 159, 200, 0.35);
   }
 }
 
 .sidequest-mascot-idle {
-  animation: sidequest-mascot-idle 1700ms steps(2, end) infinite;
+  animation: sidequest-mascot-idle 2200ms cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
 }
 
 .sidequest-mascot-hop {
-  animation: sidequest-mascot-hop 460ms steps(3, end) both;
+  animation: sidequest-mascot-hop 680ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 .sidequest-mascot-cheer {
-  animation: sidequest-mascot-cheer 760ms steps(4, end) both;
+  animation: sidequest-mascot-cheer 1100ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 .sidequest-mascot-excited {
-  animation: sidequest-mascot-excited 520ms steps(2, end) both;
+  animation: sidequest-mascot-excited 800ms cubic-bezier(0.45, 0.05, 0.55, 0.95) both;
 }
 
 .sidequest-pop {
-  animation: sidequest-pop 1050ms cubic-bezier(0.18, 0.82, 0.24, 1) both;
+  animation: sidequest-pop 1200ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 .sidequest-treat {
-  animation: sidequest-treat 900ms steps(4, end) both;
+  animation: sidequest-treat 1100ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
   animation-delay: var(--treat-delay);
 }
 
 .sidequest-firework-dot {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
   box-shadow:
-    8px 0 0 currentColor,
-    0 8px 0 currentColor;
-  animation: sidequest-firework-pop 1300ms steps(5, end) infinite;
+    6px 2px 0 currentColor,
+    2px 6px 0 currentColor,
+    -4px 4px 0 currentColor,
+    0 0 8px 1px currentColor;
+  animation: sidequest-firework-pop 1800ms cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
   animation-delay: var(--firework-delay);
+}
+
+.sidequest-sparkle {
+  animation: sidequest-sparkle-float 3200ms cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  border-radius: 1px;
+}
+
+.sidequest-dot-active {
+  animation: sidequest-dot-pulse 1400ms cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1077,7 +1304,9 @@
   .sidequest-mascot-excited,
   .sidequest-pop,
   .sidequest-treat,
-  .sidequest-firework-dot {
+  .sidequest-firework-dot,
+  .sidequest-sparkle,
+  .sidequest-dot-active {
     animation: none;
   }
 }

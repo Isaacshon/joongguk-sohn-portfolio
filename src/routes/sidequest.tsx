@@ -22,6 +22,8 @@ export const Route = createFileRoute("/sidequest")({
   component: Sidequest,
 });
 
+/* ─── Pixel Icon sprites ─── */
+
 type PixelIconName = "back" | "check" | "mail" | "pen" | "ruler" | "scissors" | "search" | "trophy";
 
 const pixelIconSprites: Record<PixelIconName, string[]> = {
@@ -89,6 +91,8 @@ function PixelSpinner() {
   );
 }
 
+/* ─── Quest data ─── */
+
 type Quest = {
   title: string;
   detail: string;
@@ -143,21 +147,15 @@ const quests: Quest[] = [
   },
 ];
 
-const MEASURE_QUEST_INDEX = 4;
 const INPUT_QUEST_INDEX = 5;
 const SUCCESS_QUEST_INDEX = 6;
 
 type SubmitState = "idle" | "sending" | "sent" | "error";
-type RewardEvent = {
-  message: string;
-  stamp: number;
-};
-type MascotEvent = {
-  message: string;
-  stamp: number;
-};
+type RewardEvent = { message: string; stamp: number };
+type MascotEvent = { message: string; stamp: number };
 
-const questSceneLabels = ["Tools", "Cut", "Loop", "Mark", "Measure", "Send", "Done"];
+/* ─── Mascot & scene data ─── */
+
 const spriteColors: Record<string, string> = {
   A: "#64d3df",
   B: "#bf355e",
@@ -374,6 +372,8 @@ const fireworkDots = [
   { x: "50%", y: "15%", dx: "18px", dy: "22px", color: "#ff9fc8", delay: "760ms" },
 ];
 
+/* ─── Pixel rendering components ─── */
+
 function PixelArt({
   sprite,
   colors,
@@ -461,45 +461,52 @@ function PixelFireworks() {
   );
 }
 
-function PixelSparkle({ className }: { className: string }) {
-  return <span aria-hidden className={`absolute block h-3 w-3 bg-[#ffd86f] ${className}`} />;
+function PixelSparkle({ className, delay = 0 }: { className: string; delay?: number }) {
+  return (
+    <span
+      aria-hidden
+      className={`absolute block h-3 w-3 bg-[#ffd86f] sidequest-sparkle ${className}`}
+      style={{ animationDelay: `${delay}ms` }}
+    />
+  );
 }
+
+/* ─── Mascot ─── */
 
 function PixelMascot({ mood = "idle" }: { mood?: MascotMood }) {
   const spriteRows = mascotSprites[mood];
   const width = Math.max(...spriteRows.map((row) => row.length));
-  const sprite = (
-    <div
-      aria-hidden
-      className="grid drop-shadow-[5px_7px_0_rgba(191,53,94,.18)]"
-      style={{ gridTemplateColumns: `repeat(${width}, ${mascotPixelSize}px)` }}
-    >
-      {spriteRows.flatMap((row, rowIndex) =>
-        Array.from({ length: width }, (_, columnIndex) => {
-          const pixel = row[columnIndex] ?? ".";
-
-          return (
-            <span
-              key={`${rowIndex}-${columnIndex}`}
-              style={{
-                width: mascotPixelSize,
-                height: mascotPixelSize,
-                backgroundColor: spriteColors[pixel] ?? "transparent",
-                opacity: pixel === "." ? 0 : 1,
-              }}
-            />
-          );
-        }),
-      )}
-    </div>
-  );
 
   return (
     <div className={mood === "happy" ? "sidequest-mascot-excited" : "sidequest-mascot-idle"}>
-      {sprite}
+      <div
+        aria-hidden
+        className="grid drop-shadow-[4px_5px_0_rgba(191,53,94,.18)]"
+        style={{ gridTemplateColumns: `repeat(${width}, ${mascotPixelSize}px)` }}
+      >
+        {spriteRows.flatMap((row, rowIndex) =>
+          Array.from({ length: width }, (_, columnIndex) => {
+            const pixel = row[columnIndex] ?? ".";
+
+            return (
+              <span
+                key={`${rowIndex}-${columnIndex}`}
+                style={{
+                  width: mascotPixelSize,
+                  height: mascotPixelSize,
+                  backgroundColor: spriteColors[pixel] ?? "transparent",
+                  opacity: pixel === "." ? 0 : 1,
+                }}
+              />
+            );
+          }),
+        )}
+      </div>
     </div>
   );
 }
+
+/* ─── Quest prop sprite ─── */
 
 function QuestProp({ activeQuest }: { activeQuest: number }) {
   let propName: PropSpriteName = "tools";
@@ -508,7 +515,7 @@ function QuestProp({ activeQuest }: { activeQuest: number }) {
     propName = "trophy";
   } else if (activeQuest === INPUT_QUEST_INDEX) {
     propName = "send";
-  } else if (activeQuest >= MEASURE_QUEST_INDEX) {
+  } else if (activeQuest >= 4) {
     propName = "measure";
   } else if (activeQuest >= 3) {
     propName = "mark";
@@ -519,13 +526,15 @@ function QuestProp({ activeQuest }: { activeQuest: number }) {
   }
 
   return (
-    <div className="absolute right-3 top-4">
-      <PixelArt sprite={propSprites[propName]} colors={propColors} pixelSize={4} />
+    <div className="absolute right-3 top-3">
+      <PixelArt sprite={propSprites[propName]} colors={propColors} pixelSize={3} />
     </div>
   );
 }
 
-function CuteQuestScene({
+/* ─── Kairosoft-style Scene Panel ─── */
+
+function GameScene({
   activeQuest,
   rewardStamp,
   playEvent,
@@ -534,35 +543,49 @@ function CuteQuestScene({
   rewardStamp: number;
   playEvent: MascotEvent | null;
 }) {
-  const sceneLabel = questSceneLabels[activeQuest] ?? "Quest";
   const mascotStamp = Math.max(rewardStamp, playEvent?.stamp ?? 0);
   const isCelebrating = rewardStamp > 0 || activeQuest === SUCCESS_QUEST_INDEX;
 
   return (
     <div
-      aria-label="Cute pixel quest scene"
-      className="relative mt-4 h-44 overflow-hidden border-4 border-[#bf355e] bg-white shadow-[6px_6px_0_#64d3df]"
+      aria-label="Pixel quest scene"
+      className="sq-panel relative h-40 overflow-hidden"
     >
-      <div className="absolute inset-x-0 bottom-0 h-11 bg-[#c9f2eb]" />
-      <div className="absolute bottom-0 left-0 h-4 w-full bg-[#2f829f]" />
+      {/* Sky gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#e8f8ff] via-[#fff5f8] to-[#c9f2eb]" />
 
-      <PixelSparkle className="left-6 top-6 bg-[#ffc0ca] shadow-[18px_14px_0_#fff9c9]" />
-      <PixelSparkle className="right-20 top-7 bg-[#64d3df] shadow-[16px_18px_0_#ffc0ca]" />
-      <PixelSparkle className="bottom-14 left-8 bg-[#fff9c9]" />
+      {/* Ground tiles — Kairosoft grass strip */}
+      <div className="absolute inset-x-0 bottom-0 h-10 bg-[#7ec87e]" />
+      <div className="absolute inset-x-0 bottom-0 h-3 bg-[#5ba35b]" />
+      <div
+        className="absolute inset-x-0 bottom-[10px] h-[4px] opacity-30"
+        style={{
+          backgroundImage: "repeating-linear-gradient(90deg, #4a8f4a 0 4px, transparent 4px 8px)",
+        }}
+      />
+
+      {/* Sparkles */}
+      <PixelSparkle className="left-5 top-4 h-2 w-2 bg-[#ffc0ca]" delay={0} />
+      <PixelSparkle className="right-16 top-5 h-2 w-2 bg-[#64d3df]" delay={500} />
+      <PixelSparkle className="left-1/4 top-2 h-[6px] w-[6px] bg-[#ffe08a]" delay={1000} />
+      <PixelSparkle className="right-1/4 top-8 h-[5px] w-[5px] bg-[#ff9fc8]" delay={1500} />
+
       {activeQuest === SUCCESS_QUEST_INDEX && <PixelFireworks />}
 
+      {/* Mascot speech bubble */}
       {playEvent && (
         <div
           key={playEvent.stamp}
           role="status"
           aria-live="polite"
-          className="sidequest-pop pointer-events-none absolute left-1/2 top-2 z-20 -translate-x-1/2 border-2 border-[#54334f] bg-[#fff9c9] px-3 py-1 font-mono text-[12px] font-black uppercase tracking-[0.08em] text-[#bf355e] shadow-[3px_3px_0_rgba(84,51,79,.32)]"
+          className="sidequest-pop pointer-events-none absolute left-1/2 top-1 z-20 -translate-x-1/2 rounded-lg border-[3px] border-[#54334f] bg-[#fff9c9] px-3 py-1 font-mono text-[11px] font-black uppercase tracking-wider text-[#bf355e] shadow-[2px_3px_0_rgba(84,51,79,.3)]"
         >
           {playEvent.message}
         </div>
       )}
 
-      <div className="absolute left-1/2 top-9 z-10 -translate-x-1/2">
+      {/* Mascot */}
+      <div className="absolute left-1/2 top-5 z-10 -translate-x-1/2">
         <div className="relative">
           <PixelTreatBurst stamp={rewardStamp} />
           <span
@@ -574,51 +597,120 @@ function CuteQuestScene({
         </div>
       </div>
 
+      {/* Quest prop */}
       <QuestProp activeQuest={activeQuest} />
+    </div>
+  );
+}
 
-      <div className="absolute bottom-4 left-4 border-[3px] border-[#bf355e] bg-white px-2 py-1 font-mono text-[11px] font-black uppercase tracking-[0.1em] text-[#bf355e] shadow-[3px_3px_0_#64d3df]">
-        {sceneLabel}
+/* ─── Kairosoft-style HP Bar ─── */
+
+function QuestProgressBar({
+  activeQuest,
+  total,
+}: {
+  activeQuest: number;
+  total: number;
+}) {
+  const progressPercent = useMemo(
+    () => `${((activeQuest + 1) / total) * 100}%`,
+    [activeQuest, total],
+  );
+
+  return (
+    <div className="sq-panel p-3">
+      {/* Top row: stage label & counter */}
+      <div className="flex items-center justify-between gap-2">
+        <span className="rounded border-2 border-[#54334f] bg-[#ffe08a] px-2 py-0.5 font-mono text-[10px] font-black uppercase tracking-widest text-[#54334f]">
+          Stage {String(activeQuest + 1).padStart(2, "0")}
+        </span>
+        <span className="font-mono text-[16px] font-black leading-none text-[#bf355e]">
+          {activeQuest + 1}/{total}
+        </span>
+      </div>
+
+      {/* HP-style bar */}
+      <div className="mt-2 h-5 overflow-hidden rounded-full border-[3px] border-[#54334f] bg-[#2a1a2e]">
+        <div
+          className="sq-hp-fill h-full rounded-full transition-[width] duration-500 ease-out"
+          style={{ width: progressPercent }}
+        />
+      </div>
+
+      {/* Dot indicators */}
+      <div
+        className="mt-2 grid gap-1"
+        aria-label="Quest progress"
+        style={{ gridTemplateColumns: `repeat(${total}, minmax(0, 1fr))` }}
+      >
+        {quests.map((quest, index) => {
+          const isCleared = index < activeQuest;
+          const isActive = index === activeQuest;
+
+          return (
+            <span
+              key={quest.title}
+              aria-label={`Stage ${index + 1}`}
+              className={`h-[10px] rounded-sm border-2 border-[#54334f] transition-all duration-300 ${
+                isActive
+                  ? "bg-[#ff9fc8] sidequest-dot-active"
+                  : isCleared
+                    ? "bg-[#64d3df]"
+                    : "bg-[#3d2640]"
+              }`}
+            />
+          );
+        })}
       </div>
     </div>
   );
 }
 
+/* ─── Kairosoft-style Intro Screen ─── */
+
 function QuestIntro({ onStart }: { onStart: () => void }) {
   return (
-    <section className="relative z-10 flex min-h-[calc(100dvh-5rem)] flex-col justify-center py-5">
-      <div className="relative overflow-hidden border-4 border-[#54334f] bg-white p-4 shadow-[7px_7px_0_#64d3df]">
-        <div className="absolute inset-x-0 bottom-0 h-14 bg-[#c9f2eb]" />
-        <PixelSparkle className="left-7 top-8 bg-[#ffc0ca] shadow-[28px_28px_0_#fff9c9]" />
-        <PixelSparkle className="right-10 top-10 bg-[#64d3df] shadow-[-30px_34px_0_#ffc0ca]" />
-
-        <div className="relative mx-auto flex h-44 items-center justify-center">
-          <PixelMascot />
+    <section className="relative z-10 flex flex-1 flex-col justify-center py-4">
+      <div className="sq-panel relative overflow-hidden p-0">
+        {/* Scene area */}
+        <div className="relative flex h-48 items-center justify-center overflow-hidden bg-gradient-to-b from-[#e8f8ff] via-[#fff5f8] to-[#c9f2eb]">
+          <div className="absolute inset-x-0 bottom-0 h-12 bg-[#7ec87e]" />
+          <div className="absolute inset-x-0 bottom-0 h-3 bg-[#5ba35b]" />
+          <PixelSparkle className="left-6 top-6 bg-[#ffc0ca]" delay={0} />
+          <PixelSparkle className="right-8 top-8 bg-[#64d3df]" delay={600} />
+          <PixelSparkle className="left-1/3 bottom-16 h-2 w-2 bg-[#ffe08a]" delay={1200} />
+          <div className="relative z-10">
+            <PixelMascot />
+          </div>
         </div>
 
-        <div className="relative mt-3 border-4 border-[#54334f] bg-[#fffaf0] p-4 shadow-[4px_4px_0_rgba(84,51,79,.35)]">
-          <p className="font-mono text-[12px] font-black uppercase tracking-[0.12em] text-[#bf355e]">
+        {/* Dialog box */}
+        <div className="sq-dialog mx-3 -mt-4 mb-4 relative z-10">
+          <p className="rounded border-2 border-[#bf355e] bg-[#bf355e] px-2 py-0.5 font-mono text-[10px] font-black uppercase tracking-widest text-white inline-block">
             Side Quest
           </p>
-          <h1 className="mt-2 text-[32px] font-black leading-[1.05] text-[#54334f]">
+          <h1 className="mt-2 text-[26px] font-black leading-[1.1] text-[#54334f]">
             A tiny task appeared.
           </h1>
-          <p className="mt-3 text-[17px] font-semibold leading-[1.55] text-[#4f3d4c]">
+          <p className="mt-2 text-[14px] font-semibold leading-[1.5] text-[#5f4a59]">
             Clear seven quick steps and send one millimeter number.
           </p>
 
           <button
             type="button"
             onClick={onStart}
-            className="mt-5 flex h-14 w-full cursor-pointer items-center justify-center gap-2 border-2 border-[#54334f] bg-[#ff9fc8] px-4 font-mono text-[18px] font-black uppercase tracking-[0.08em] text-[#54334f] shadow-[5px_5px_0_rgba(84,51,79,.42)] transition hover:translate-x-[1px] hover:translate-y-[1px] hover:bg-[#ffb7d5] hover:shadow-[3px_3px_0_rgba(84,51,79,.42)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2f829f]"
+            className="sq-btn sq-btn-primary mt-4 w-full"
           >
             <PixelIcon name="check" className="text-[#54334f]" pixelSize={3} />
-            Start
+            Start Quest
           </button>
         </div>
       </div>
     </section>
   );
 }
+
+/* ─── Main Sidequest Component ─── */
 
 function Sidequest() {
   const [hasStarted, setHasStarted] = useState(false);
@@ -630,11 +722,6 @@ function Sidequest() {
   const [playEvent, setPlayEvent] = useState<MascotEvent | null>(null);
 
   const active = quests[activeQuest];
-  const progressLabel = `${activeQuest + 1}/${quests.length}`;
-  const progressPercent = useMemo(
-    () => `${((activeQuest + 1) / quests.length) * 100}%`,
-    [activeQuest],
-  );
   const isSubmitting = submitState === "sending";
 
   const showClearText = (message: string) => {
@@ -703,24 +790,37 @@ function Sidequest() {
   };
 
   return (
-    <main className="min-h-dvh overflow-hidden bg-[#fffaf7] font-sans text-[#54334f]">
-      <div className="relative mx-auto flex min-h-dvh w-full max-w-[560px] flex-col px-4 pb-4 pt-4 sm:max-w-[640px] md:max-w-[860px] md:px-6">
+    <main className="sq-page min-h-dvh overflow-hidden font-sans text-[#54334f]">
+      <div className="relative mx-auto flex min-h-dvh w-full max-w-[480px] flex-col px-3 pb-3 pt-3">
+        {/* Background */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,#fffaf7_0%,#ffeaf1_48%,#d9f7f1_100%)]" />
-          <div className="absolute inset-0 opacity-40 [background-image:linear-gradient(to_right,rgba(191,53,94,.12)_2px,transparent_2px),linear-gradient(to_bottom,rgba(47,130,159,.1)_2px,transparent_2px)] [background-size:18px_18px]" />
-          <div className="absolute inset-x-0 bottom-0 h-32 bg-[#c9f2eb]" />
-          <div className="absolute left-7 top-28 h-3 w-3 bg-[#ffc0ca] shadow-[72px_86px_0_#fff9c9,238px_28px_0_#64d3df,292px_176px_0_#ffc0ca]" />
+          <div className="absolute inset-0 bg-[#3a6b4e]" />
+          {/* Pixel grass texture */}
+          <div
+            className="absolute inset-0 opacity-20"
+            style={{
+              backgroundImage:
+                "repeating-linear-gradient(90deg, rgba(255,255,255,0.08) 0 4px, transparent 4px 8px), repeating-linear-gradient(180deg, rgba(0,0,0,0.06) 0 4px, transparent 4px 8px)",
+            }}
+          />
+          {/* Floating sparkles */}
+          <span className="absolute left-[10%] top-[15%] h-2 w-2 rounded-sm bg-[#ffe08a]/40 sidequest-sparkle" style={{ animationDelay: "200ms" }} />
+          <span className="absolute left-[75%] top-[10%] h-2 w-2 rounded-sm bg-[#64d3df]/35 sidequest-sparkle" style={{ animationDelay: "900ms" }} />
+          <span className="absolute left-[50%] top-[40%] h-[6px] w-[6px] rounded-sm bg-[#ff9fc8]/30 sidequest-sparkle" style={{ animationDelay: "1600ms" }} />
+          <span className="absolute left-[25%] top-[65%] h-[5px] w-[5px] rounded-sm bg-[#fff9c9]/35 sidequest-sparkle" style={{ animationDelay: "2200ms" }} />
+          <span className="absolute left-[82%] top-[55%] h-[7px] w-[7px] rounded-sm bg-[#c9f2eb]/40 sidequest-sparkle" style={{ animationDelay: "600ms" }} />
         </div>
 
-        <header className="relative z-10 flex min-h-12 items-center justify-between gap-3">
+        {/* Top bar — Kairosoft game header */}
+        <header className="relative z-10 flex min-h-10 items-center justify-between gap-2">
           <Link
             to="/"
-            className="inline-flex h-11 items-center gap-2 border-2 border-[#54334f] bg-[#fffaf0] px-3 text-[13px] font-black uppercase tracking-[0.08em] text-[#54334f] shadow-[4px_4px_0_rgba(84,51,79,.42)] transition hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_rgba(84,51,79,.42)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff78b4]"
+            className="sq-btn inline-flex h-9 items-center gap-1.5 px-2.5 text-[11px]"
           >
             <PixelIcon name="back" className="text-[#54334f]" pixelSize={2} />
-            Isaac
+            Back
           </Link>
-          <div className="flex h-11 items-center border-2 border-[#54334f] bg-[#ff9fc8] px-3 text-[12px] font-black uppercase tracking-[0.16em] text-[#54334f] shadow-[4px_4px_0_rgba(84,51,79,.42)]">
+          <div className="rounded-lg border-[3px] border-[#54334f] bg-[#bf355e] px-3 py-1 font-mono text-[11px] font-black uppercase tracking-widest text-white shadow-[2px_3px_0_rgba(0,0,0,.25)]">
             Sidequest
           </div>
         </header>
@@ -728,162 +828,128 @@ function Sidequest() {
         {!hasStarted ? <QuestIntro onStart={() => setHasStarted(true)} /> : null}
 
         {hasStarted ? (
-          <section className="relative z-10 mt-4 flex flex-1 flex-col">
-            <div className="border-4 border-[#54334f] bg-[#fffaf0] p-3 shadow-[5px_5px_0_rgba(84,51,79,.35)]">
-              <div className="flex items-center justify-between gap-3">
-                <p className="font-mono text-[12px] font-black uppercase tracking-[0.12em] text-[#2f829f]">
-                  Stage {String(activeQuest + 1).padStart(2, "0")}
-                </p>
-                <p className="font-mono text-[18px] font-black leading-none text-[#bf355e]">
-                  {progressLabel}
-                </p>
-              </div>
-              <div className="mt-3 h-4 border-2 border-[#54334f] bg-white p-1">
-                <div
-                  className="h-full bg-[#ff9fc8] transition-[width] duration-300 ease-out"
-                  style={{ width: progressPercent }}
-                />
-              </div>
-              <div
-                className="mt-3 grid gap-1"
-                aria-label="Quest progress"
-                style={{ gridTemplateColumns: `repeat(${quests.length}, minmax(0, 1fr))` }}
-              >
-                {quests.map((quest, index) => {
-                  const isCleared = index < activeQuest;
-                  const isActive = index === activeQuest;
+          <section className="relative z-10 mt-3 flex flex-1 flex-col gap-3">
+            {/* Progress panel */}
+            <QuestProgressBar activeQuest={activeQuest} total={quests.length} />
 
-                  return (
-                    <span
-                      key={quest.title}
-                      aria-label={`Stage ${index + 1}`}
-                      className={`h-3 border border-[#54334f] ${
-                        isActive ? "bg-[#ff9fc8]" : isCleared ? "bg-[#64d3df]" : "bg-white"
-                      }`}
-                    />
-                  );
-                })}
-              </div>
-            </div>
-
-            <CuteQuestScene
+            {/* Scene panel */}
+            <GameScene
               activeQuest={activeQuest}
               rewardStamp={rewardEvent?.stamp ?? 0}
               playEvent={playEvent}
             />
 
-            <div className="mt-4">
-              <div className="relative overflow-hidden border-4 border-[#54334f] bg-[#fffaf0] p-4 text-[#54334f] shadow-[8px_8px_0_rgba(84,51,79,.42)] sm:p-6">
-                <div className="absolute inset-0 opacity-[0.14] [background-image:linear-gradient(to_right,rgba(84,51,79,.16)_2px,transparent_2px),linear-gradient(to_bottom,rgba(84,51,79,.12)_2px,transparent_2px)] [background-size:18px_18px]" />
-                <div className="absolute inset-x-0 top-0 h-3 bg-[#ff9fc8]" />
-
-                <article className="relative">
-                  <div className="flex items-center">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center border-2 border-[#54334f] bg-[#ffe08a] text-[#54334f] shadow-[4px_4px_0_rgba(84,51,79,.42)]">
-                      <PixelIcon name={active.icon} className="text-[#54334f]" pixelSize={4} />
-                    </div>
-                  </div>
-
-                  <h2 className="mt-4 text-[28px] font-black leading-[1.15] text-[#54334f] sm:text-[38px]">
+            {/* Quest dialog panel */}
+            <div className="sq-dialog flex-1">
+              {/* Icon + title row */}
+              <div className="flex items-start gap-3">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border-[3px] border-[#54334f] bg-[#ffe08a] shadow-[2px_2px_0_rgba(84,51,79,.3)]">
+                  <PixelIcon name={active.icon} className="text-[#54334f]" pixelSize={3} />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <h2 className="text-[20px] font-black leading-[1.15] text-[#54334f]">
                     {active.title}
                   </h2>
-                  <p className="mt-2 text-[17px] font-semibold leading-[1.6] text-[#5f4a59]">
+                  <p className="mt-1 text-[13px] font-semibold leading-[1.5] text-[#5f4a59]">
                     {active.detail}
                   </p>
-                  {active.hint && (
-                    <p className="mt-1 text-[12px] font-semibold leading-[1.45] text-[#9a8498]">
-                      {active.hint}
+                </div>
+              </div>
+
+              {active.hint && (
+                <p className="mt-2 rounded border-2 border-[#d4c8d2] bg-[#f5f0f4] px-2 py-1.5 text-[11px] font-semibold leading-[1.4] text-[#9a8498]">
+                  💡 {active.hint}
+                </p>
+              )}
+
+              {/* Reward message */}
+              {rewardEvent &&
+                activeQuest !== INPUT_QUEST_INDEX &&
+                activeQuest !== SUCCESS_QUEST_INDEX && (
+                  <p
+                    key={rewardEvent.stamp}
+                    role="status"
+                    aria-live="polite"
+                    className="mt-3 rounded-lg border-[3px] border-[#54334f] bg-white px-3 py-2 font-mono text-[12px] font-black uppercase tracking-wider text-[#bf355e] shadow-[2px_2px_0_rgba(84,51,79,.2)]"
+                  >
+                    ✨ {rewardEvent.message}
+                  </p>
+                )}
+
+              {/* Input field */}
+              {activeQuest === INPUT_QUEST_INDEX && (
+                <div className="mt-3">
+                  <label
+                    htmlFor="fingerCircumference"
+                    className="block font-mono text-[11px] font-black uppercase tracking-wider text-[#54334f]"
+                  >
+                    Finger circumference
+                  </label>
+                  <div className="mt-1.5 flex items-center overflow-hidden rounded-lg border-[3px] border-[#54334f] bg-[#fff9dc] shadow-[2px_2px_0_rgba(84,51,79,.25)] focus-within:border-[#ff78b4] focus-within:ring-2 focus-within:ring-[#ff78b4]/30">
+                    <input
+                      id="fingerCircumference"
+                      name="fingerCircumference"
+                      type="number"
+                      min="1"
+                      max="200"
+                      step="0.1"
+                      inputMode="decimal"
+                      value={fingerCircumference}
+                      onChange={(event) => {
+                        setFingerCircumference(event.target.value);
+                        if (inputError) setInputError("");
+                      }}
+                      className="h-11 min-w-0 flex-1 bg-transparent px-3 text-[22px] font-black text-[#54334f] outline-none"
+                      aria-describedby={inputError ? "fingerCircumference-error" : undefined}
+                    />
+                    <span className="pr-3 text-[14px] font-black text-[#6f5a1c]">mm</span>
+                  </div>
+                  {inputError && (
+                    <p
+                      id="fingerCircumference-error"
+                      className="mt-2 rounded-lg border-[3px] border-[#d44] bg-[#ffe0d4] px-3 py-2 text-[12px] font-black text-[#982514] shadow-[2px_2px_0_rgba(84,51,79,.25)]"
+                      role="alert"
+                    >
+                      {inputError}
                     </p>
                   )}
+                </div>
+              )}
 
-                  {rewardEvent &&
-                    activeQuest !== INPUT_QUEST_INDEX &&
-                    activeQuest !== SUCCESS_QUEST_INDEX && (
-                      <p
-                        key={rewardEvent.stamp}
-                        role="status"
-                        aria-live="polite"
-                        className="mt-4 border-2 border-[#54334f] bg-white px-3 py-2 font-mono text-[13px] font-black uppercase tracking-[0.08em] text-[#bf355e] shadow-[3px_3px_0_rgba(84,51,79,.24)]"
-                      >
-                        {rewardEvent.message}
-                      </p>
-                    )}
-
-                  {activeQuest === INPUT_QUEST_INDEX && (
-                    <div className="mt-5">
-                      <label
-                        htmlFor="fingerCircumference"
-                        className="block font-mono text-[13px] font-black uppercase tracking-[0.08em] text-[#54334f]"
-                      >
-                        What is your finger circumference?
-                      </label>
-                      <div className="mt-2 flex min-h-14 items-center border-2 border-[#54334f] bg-[#fff9dc] px-3 shadow-[4px_4px_0_rgba(84,51,79,.35)] focus-within:border-[#ff78b4] focus-within:ring-2 focus-within:ring-[#ff78b4]/28">
-                        <input
-                          id="fingerCircumference"
-                          name="fingerCircumference"
-                          type="number"
-                          min="1"
-                          max="200"
-                          step="0.1"
-                          inputMode="decimal"
-                          value={fingerCircumference}
-                          onChange={(event) => {
-                            setFingerCircumference(event.target.value);
-                            if (inputError) setInputError("");
-                          }}
-                          className="h-12 min-w-0 flex-1 bg-transparent text-[24px] font-black text-[#54334f] outline-none"
-                          aria-describedby={inputError ? "fingerCircumference-error" : undefined}
-                        />
-                        <span className="pl-2 text-[15px] font-black text-[#6f5a1c]">mm</span>
-                      </div>
-                      {inputError && (
-                        <p
-                          id="fingerCircumference-error"
-                          className="mt-3 border-2 border-[#54334f] bg-[#ffe0d4] px-3 py-2 text-[13px] font-black text-[#982514] shadow-[3px_3px_0_rgba(84,51,79,.34)]"
-                          role="alert"
-                        >
-                          {inputError}
-                        </p>
-                      )}
-                    </div>
-                  )}
-
-                  {activeQuest === SUCCESS_QUEST_INDEX && (
-                    <div className="mt-6 flex items-center gap-3 border-2 border-[#54334f] bg-[#d8ffd8] px-3 py-3 shadow-[4px_4px_0_rgba(84,51,79,.35)]">
-                      <PixelIcon name="trophy" className="text-[#173d29]" pixelSize={4} />
-                      <p className="text-[14px] font-black uppercase leading-snug text-[#173d29]">
-                        Sent. Thank you, Alyssa.
-                      </p>
-                    </div>
-                  )}
-                </article>
-              </div>
+              {/* Success state */}
+              {activeQuest === SUCCESS_QUEST_INDEX && (
+                <div className="mt-4 flex items-center gap-2.5 rounded-lg border-[3px] border-[#2a7a3a] bg-[#d8ffd8] px-3 py-2.5 shadow-[2px_2px_0_rgba(30,80,40,.25)]">
+                  <PixelIcon name="trophy" className="text-[#173d29]" pixelSize={3} />
+                  <p className="text-[13px] font-black uppercase leading-snug text-[#173d29]">
+                    Sent. Thank you, Alyssa.
+                  </p>
+                </div>
+              )}
             </div>
           </section>
         ) : null}
 
+        {/* Sticky bottom action button */}
         {hasStarted && activeQuest !== SUCCESS_QUEST_INDEX ? (
-          <div className="relative z-10 sticky bottom-0 -mx-4 mt-4 border-t-2 border-[#54334f]/18 bg-[#fffaf7]/92 px-4 pb-[calc(1rem+env(safe-area-inset-bottom))] pt-2 backdrop-blur-md md:-mx-6 md:px-6">
-            <div className="mx-auto max-w-[560px] md:max-w-[860px]">
-              <button
-                type="button"
-                onClick={completeQuest}
-                disabled={isSubmitting}
-                className="flex h-14 w-full min-w-0 cursor-pointer items-center justify-center gap-2 border-2 border-[#54334f] bg-[#ff9fc8] px-4 font-mono text-[15px] font-black uppercase tracking-[0.08em] text-[#54334f] shadow-[5px_5px_0_rgba(84,51,79,.42)] transition hover:translate-x-[1px] hover:translate-y-[1px] hover:bg-[#ffb7d5] hover:shadow-[3px_3px_0_rgba(84,51,79,.42)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#fff4c9] disabled:cursor-wait disabled:opacity-70"
-              >
-                {isSubmitting ? (
-                  <PixelSpinner />
-                ) : (
-                  <PixelIcon name="check" className="text-[#54334f]" pixelSize={3} />
-                )}
-                <span>
-                  {isSubmitting ? "Sending" : activeQuest === INPUT_QUEST_INDEX ? "Send" : "Done"}
-                </span>
-              </button>
-            </div>
+          <div className="relative z-10 sticky bottom-0 -mx-3 mt-3 bg-[#3a6b4e]/90 px-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-2 backdrop-blur-sm">
+            <button
+              type="button"
+              onClick={completeQuest}
+              disabled={isSubmitting}
+              className="sq-btn sq-btn-primary w-full h-12"
+            >
+              {isSubmitting ? (
+                <PixelSpinner />
+              ) : (
+                <PixelIcon name="check" className="text-[#54334f]" pixelSize={3} />
+              )}
+              <span>
+                {isSubmitting ? "Sending" : activeQuest === INPUT_QUEST_INDEX ? "Send" : "Done"}
+              </span>
+            </button>
             {submitState === "error" && !inputError && (
               <p
-                className="mx-auto mt-2 max-w-[560px] text-[13px] font-bold text-[#ff9b8d]"
+                className="mt-2 text-center text-[12px] font-bold text-[#ffb0a0]"
                 role="alert"
               >
                 Email delivery failed. Try again.
