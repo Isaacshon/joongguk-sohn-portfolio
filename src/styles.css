@@ -1735,9 +1735,9 @@
   padding-right: 0.08em;
   white-space: nowrap;
   animation:
-    sidequest-love-type 1200ms steps(8, end) 360ms forwards,
-    sidequest-love-caret 560ms step-end 360ms 6,
-    sidequest-love-caret-hide 1ms linear 3800ms forwards;
+    sidequest-love-type 3200ms steps(8, end) 520ms forwards,
+    sidequest-love-caret 620ms step-end 520ms 9,
+    sidequest-love-caret-hide 1ms linear 6200ms forwards;
 }
 
 .sidequest-sparkle {
