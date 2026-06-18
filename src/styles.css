@@ -1581,7 +1581,7 @@
     max-width: 0;
   }
   to {
-    max-width: 9.5em;
+    max-width: 12.5em;
   }
 }
 
@@ -1716,7 +1716,7 @@
   width: min(88vw, 420px);
   color: #fff8fb;
   font-family: "Pretendard", var(--font-sans);
-  font-size: clamp(36px, 9vw, 58px);
+  font-size: clamp(31px, 8.2vw, 52px);
   font-weight: 900;
   letter-spacing: 0;
   line-height: 1.08;
@@ -1735,8 +1735,8 @@
   padding-right: 0.08em;
   white-space: nowrap;
   animation:
-    sidequest-love-type 3200ms steps(8, end) 520ms forwards,
-    sidequest-love-caret 620ms step-end 520ms 9,
+    sidequest-love-type 4200ms steps(19, end) 520ms forwards,
+    sidequest-love-caret 620ms step-end 520ms 10,
     sidequest-love-caret-hide 1ms linear 6200ms forwards;
 }
 
@@ -1781,7 +1781,7 @@
   }
 
   .sidequest-love-type {
-    max-width: 9.5em;
+    max-width: 12.5em;
     border-right-color: transparent;
   }
 }

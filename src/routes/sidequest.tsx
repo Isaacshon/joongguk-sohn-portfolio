@@ -482,7 +482,7 @@ function PixelHeartBalloons({ stamp }: { stamp: number | null }) {
         ))}
       </div>
       <p role="status" aria-live="polite" className="sidequest-love-message">
-        <span className="sidequest-love-type">사랑해 가윤아❤</span>
+        <span className="sidequest-love-type">I Love You, Alyssa❤</span>
       </p>
     </div>
   );
