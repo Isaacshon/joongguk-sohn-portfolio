@@ -158,7 +158,6 @@ type SubmitState = "idle" | "sending" | "sent" | "error";
 type RewardEvent = { message: string; stamp: number };
 type MascotEvent = { message: string; stamp: number };
 const MASCOT_EFFECT_MS = 1400;
-const HEART_BALLOON_MS = 6000;
 
 /* ─── Mascot & scene data ─── */
 
@@ -337,19 +336,25 @@ const fireworkStars = [
   { x: "50%", y: "15%", dx: "36px", dy: "-16px", size: "30px", delay: "760ms", rotate: "14deg" },
 ];
 const heartBalloons = [
-  { left: "5%", size: "42px", delay: "0ms", drift: "18px", sway: "-9deg" },
-  { left: "15%", size: "30px", delay: "380ms", drift: "-14px", sway: "7deg" },
-  { left: "25%", size: "58px", delay: "120ms", drift: "22px", sway: "-8deg" },
-  { left: "36%", size: "36px", delay: "720ms", drift: "-20px", sway: "10deg" },
-  { left: "48%", size: "70px", delay: "250ms", drift: "16px", sway: "-6deg" },
-  { left: "61%", size: "34px", delay: "980ms", drift: "-18px", sway: "8deg" },
-  { left: "72%", size: "52px", delay: "520ms", drift: "24px", sway: "-10deg" },
-  { left: "84%", size: "28px", delay: "860ms", drift: "-16px", sway: "6deg" },
-  { left: "91%", size: "62px", delay: "160ms", drift: "12px", sway: "-7deg" },
-  { left: "10%", size: "64px", delay: "1240ms", drift: "-18px", sway: "8deg" },
-  { left: "31%", size: "26px", delay: "1480ms", drift: "15px", sway: "-6deg" },
-  { left: "55%", size: "46px", delay: "1360ms", drift: "-22px", sway: "9deg" },
-  { left: "78%", size: "40px", delay: "1700ms", drift: "20px", sway: "-8deg" },
+  { left: "3%", size: "36px", delay: "80ms", duration: "5200ms", drift: "18px", sway: "-9deg" },
+  { left: "10%", size: "72px", delay: "0ms", duration: "5900ms", drift: "-26px", sway: "7deg" },
+  { left: "18%", size: "44px", delay: "620ms", duration: "5100ms", drift: "24px", sway: "-8deg" },
+  { left: "26%", size: "92px", delay: "240ms", duration: "5700ms", drift: "-18px", sway: "6deg" },
+  { left: "36%", size: "30px", delay: "900ms", duration: "4800ms", drift: "16px", sway: "-10deg" },
+  { left: "43%", size: "58px", delay: "420ms", duration: "5400ms", drift: "-28px", sway: "9deg" },
+  { left: "53%", size: "82px", delay: "110ms", duration: "5800ms", drift: "24px", sway: "-7deg" },
+  { left: "62%", size: "38px", delay: "760ms", duration: "5000ms", drift: "-20px", sway: "8deg" },
+  { left: "69%", size: "64px", delay: "330ms", duration: "5600ms", drift: "30px", sway: "-11deg" },
+  { left: "79%", size: "46px", delay: "1010ms", duration: "4900ms", drift: "-14px", sway: "7deg" },
+  { left: "87%", size: "76px", delay: "520ms", duration: "5300ms", drift: "18px", sway: "-6deg" },
+  { left: "94%", size: "34px", delay: "1180ms", duration: "4700ms", drift: "-16px", sway: "10deg" },
+  { left: "6%", size: "54px", delay: "1360ms", duration: "4500ms", drift: "28px", sway: "-7deg" },
+  { left: "21%", size: "28px", delay: "1540ms", duration: "4300ms", drift: "-18px", sway: "9deg" },
+  { left: "33%", size: "68px", delay: "1260ms", duration: "4650ms", drift: "20px", sway: "-8deg" },
+  { left: "49%", size: "40px", delay: "1680ms", duration: "4150ms", drift: "-24px", sway: "6deg" },
+  { left: "58%", size: "102px", delay: "980ms", duration: "5000ms", drift: "16px", sway: "-5deg" },
+  { left: "73%", size: "32px", delay: "1460ms", duration: "4200ms", drift: "-18px", sway: "10deg" },
+  { left: "82%", size: "56px", delay: "1640ms", duration: "4000ms", drift: "22px", sway: "-8deg" },
 ];
 
 /* ─── Pixel rendering components ─── */
@@ -453,29 +458,32 @@ function PixelHeartBalloons({ stamp }: { stamp: number | null }) {
   if (!stamp) return null;
 
   return (
-    <div
-      key={stamp}
-      aria-hidden
-      className="sidequest-heart-overlay pointer-events-none fixed inset-0"
-    >
-      {heartBalloons.map((heart, index) => (
-        <img
-          key={`${stamp}-${index}`}
-          src={sidequestHeart}
-          alt=""
-          draggable={false}
-          className="sidequest-heart-balloon absolute"
-          style={
-            {
-              left: heart.left,
-              width: heart.size,
-              "--heart-delay": heart.delay,
-              "--heart-drift": heart.drift,
-              "--heart-sway": heart.sway,
-            } as CSSProperties
-          }
-        />
-      ))}
+    <div key={stamp} className="sidequest-heart-overlay fixed inset-0">
+      <div aria-hidden className="sidequest-heart-shade absolute inset-0" />
+      <div aria-hidden className="absolute inset-0 overflow-hidden">
+        {heartBalloons.map((heart, index) => (
+          <img
+            key={`${stamp}-${index}`}
+            src={sidequestHeart}
+            alt=""
+            draggable={false}
+            className="sidequest-heart-balloon absolute"
+            style={
+              {
+                left: heart.left,
+                width: heart.size,
+                "--heart-delay": heart.delay,
+                "--heart-duration": heart.duration,
+                "--heart-drift": heart.drift,
+                "--heart-sway": heart.sway,
+              } as CSSProperties
+            }
+          />
+        ))}
+      </div>
+      <p role="status" aria-live="polite" className="sidequest-love-message">
+        <span className="sidequest-love-type">사랑해 가윤아❤</span>
+      </p>
     </div>
   );
 }
@@ -706,7 +714,6 @@ function Sidequest() {
   const [playEvent, setPlayEvent] = useState<MascotEvent | null>(null);
   const [heartEventStamp, setHeartEventStamp] = useState<number | null>(null);
   const mascotEffectTimerRef = useRef<ReturnType<typeof window.setTimeout> | null>(null);
-  const heartEffectTimerRef = useRef<ReturnType<typeof window.setTimeout> | null>(null);
 
   const active = quests[activeQuest];
   const isSubmitting = submitState === "sending";
@@ -715,9 +722,6 @@ function Sidequest() {
     return () => {
       if (mascotEffectTimerRef.current) {
         window.clearTimeout(mascotEffectTimerRef.current);
-      }
-      if (heartEffectTimerRef.current) {
-        window.clearTimeout(heartEffectTimerRef.current);
       }
     };
   }, []);
@@ -731,22 +735,11 @@ function Sidequest() {
   };
 
   const clearHeartEffect = () => {
-    if (heartEffectTimerRef.current) {
-      window.clearTimeout(heartEffectTimerRef.current);
-      heartEffectTimerRef.current = null;
-    }
     setHeartEventStamp(null);
   };
 
   const showHeartEffect = (stamp: number) => {
-    if (heartEffectTimerRef.current) {
-      window.clearTimeout(heartEffectTimerRef.current);
-    }
     setHeartEventStamp(stamp);
-    heartEffectTimerRef.current = window.setTimeout(() => {
-      setHeartEventStamp((current) => (current === stamp ? null : current));
-      heartEffectTimerRef.current = null;
-    }, HEART_BALLOON_MS);
   };
 
   const showClearText = (message: string) => {

@@ -1521,29 +1521,83 @@
 @keyframes sidequest-heart-balloon {
   0% {
     opacity: 0;
-    transform: translate3d(0, 80px, 0) scale(0.62) rotate(calc(var(--heart-sway) * -0.5));
+    transform: translate3d(0, 18vh, 0) scale(0.72) rotate(calc(var(--heart-sway) * -0.5));
   }
-  10% {
-    opacity: 1;
-    transform: translate3d(calc(var(--heart-drift) * 0.25), 8px, 0) scale(0.98) rotate(var(--heart-sway));
+  12% {
+    opacity: 0.95;
+    transform: translate3d(calc(var(--heart-drift) * 0.25), -4vh, 0) scale(1) rotate(var(--heart-sway));
   }
-  28% {
-    transform: translate3d(calc(var(--heart-drift) * -0.5), -24vh, 0) scale(1.04) rotate(calc(var(--heart-sway) * -0.85));
-  }
-  48% {
-    opacity: 1;
-    transform: translate3d(var(--heart-drift), -48vh, 0) scale(0.96) rotate(var(--heart-sway));
-  }
-  70% {
-    transform: translate3d(calc(var(--heart-drift) * -0.65), -76vh, 0) scale(1.08) rotate(calc(var(--heart-sway) * -1));
-  }
-  88% {
+  32% {
     opacity: 0.9;
-    transform: translate3d(calc(var(--heart-drift) * 0.45), -104vh, 0) scale(0.94) rotate(var(--heart-sway));
+    transform: translate3d(calc(var(--heart-drift) * -0.5), -35vh, 0) scale(1.04) rotate(calc(var(--heart-sway) * -0.85));
+  }
+  56% {
+    opacity: 0.86;
+    transform: translate3d(var(--heart-drift), -72vh, 0) scale(0.98) rotate(var(--heart-sway));
+  }
+  78% {
+    opacity: 0.62;
+    transform: translate3d(calc(var(--heart-drift) * -0.65), -106vh, 0) scale(1.05) rotate(calc(var(--heart-sway) * -1));
+  }
+  92% {
+    opacity: 0.22;
+    transform: translate3d(calc(var(--heart-drift) * 0.45), -128vh, 0) scale(0.9) rotate(var(--heart-sway));
   }
   100% {
     opacity: 0;
-    transform: translate3d(calc(var(--heart-drift) * -0.25), -124vh, 0) scale(0.72) rotate(calc(var(--heart-sway) * -0.75));
+    transform: translate3d(calc(var(--heart-drift) * -0.25), -144vh, 0) scale(0.78) rotate(calc(var(--heart-sway) * -0.75));
+  }
+}
+
+@keyframes sidequest-heart-shade {
+  0% {
+    opacity: 0;
+  }
+  12%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes sidequest-love-message {
+  0% {
+    opacity: 0;
+    transform: translate3d(-50%, -50%, 0);
+  }
+  8%,
+  78% {
+    opacity: 1;
+    transform: translate3d(-50%, -50%, 0) scale(1.04);
+  }
+  16%,
+  100% {
+    opacity: 1;
+    transform: translate3d(-50%, -50%, 0);
+  }
+}
+
+@keyframes sidequest-love-type {
+  from {
+    max-width: 0;
+  }
+  to {
+    max-width: 9.5em;
+  }
+}
+
+@keyframes sidequest-love-caret {
+  0%,
+  100% {
+    border-color: rgba(255, 248, 251, 0);
+  }
+  50% {
+    border-color: rgba(255, 248, 251, 0.95);
+  }
+}
+
+@keyframes sidequest-love-caret-hide {
+  to {
+    border-color: rgba(255, 248, 251, 0);
   }
 }
 
@@ -1634,18 +1688,58 @@
 .sidequest-heart-overlay {
   z-index: 60;
   overflow: hidden;
+  isolation: isolate;
+}
+
+.sidequest-heart-shade {
+  background:
+    radial-gradient(circle at 50% 45%, rgba(255, 105, 145, 0.13), transparent 38%),
+    rgba(0, 0, 0, 0.64);
+  animation: sidequest-heart-shade 6000ms ease both;
 }
 
 .sidequest-heart-balloon {
-  bottom: -96px;
+  bottom: -18vh;
   opacity: 0;
-  animation: sidequest-heart-balloon 6000ms cubic-bezier(0.25, 0.72, 0.32, 1) both;
+  animation: sidequest-heart-balloon var(--heart-duration) cubic-bezier(0.28, 0.62, 0.22, 1) both;
   animation-delay: var(--heart-delay);
-  filter: drop-shadow(3px 5px 0 rgba(133, 0, 48, 0.16));
+  filter: drop-shadow(0 8px 10px rgba(70, 0, 34, 0.18));
   image-rendering: pixelated;
   transform-origin: 50% 65%;
   user-select: none;
   will-change: transform, opacity;
+}
+
+.sidequest-love-message {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  z-index: 2;
+  width: min(88vw, 420px);
+  color: #fff8fb;
+  font-family: "Pretendard", var(--font-sans);
+  font-size: clamp(36px, 9vw, 58px);
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 1.08;
+  text-align: center;
+  text-shadow:
+    0 3px 0 rgba(160, 0, 58, 0.82),
+    0 8px 18px rgba(0, 0, 0, 0.4);
+  animation: sidequest-love-message 6000ms cubic-bezier(0.2, 0.82, 0.2, 1) both;
+}
+
+.sidequest-love-type {
+  display: inline-block;
+  max-width: 0;
+  overflow: hidden;
+  border-right: 0.12em solid rgba(255, 248, 251, 0.95);
+  padding-right: 0.08em;
+  white-space: nowrap;
+  animation:
+    sidequest-love-type 1200ms steps(8, end) 360ms forwards,
+    sidequest-love-caret 560ms step-end 360ms 6,
+    sidequest-love-caret-hide 1ms linear 3800ms forwards;
 }
 
 .sidequest-sparkle {
@@ -1666,8 +1760,30 @@
   .sidequest-reward-star,
   .sidequest-firework-star,
   .sidequest-heart-balloon,
+  .sidequest-heart-shade,
+  .sidequest-love-message,
   .sidequest-sparkle,
   .sidequest-dot-active {
     animation: none;
+  }
+
+  .sidequest-heart-shade {
+    opacity: 1;
+  }
+
+  .sidequest-heart-balloon {
+    opacity: 0.75;
+    transform: translate3d(0, -58vh, 0);
+  }
+
+  .sidequest-love-message {
+    opacity: 1;
+    transform: translate3d(-50%, -50%, 0);
+    filter: none;
+  }
+
+  .sidequest-love-type {
+    max-width: 9.5em;
+    border-right-color: transparent;
   }
 }
