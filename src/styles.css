@@ -1203,6 +1203,21 @@
     inset 2px 2px 0 rgba(255, 255, 255, 0.46);
 }
 
+.sq-btn-compact {
+  min-height: 46px;
+  padding: 0 12px;
+  font-size: 12px;
+}
+
+.sq-btn-secondary {
+  background: var(--sq-mint);
+}
+
+.sq-btn-secondary:hover,
+.sq-btn-secondary:focus-visible {
+  background: #ddfbf5;
+}
+
 .sq-btn:disabled {
   cursor: not-allowed;
 }

@@ -112,8 +112,8 @@ const quests: Quest[] = [
     icon: "search",
   },
   {
-    title: "Cut a 0.5 mm strip",
-    detail: "Make it long and thin.",
+    title: "Cut a 0.5-1 cm strip",
+    detail: "Make it long enough to wrap.",
     clearText: "Strip ready.",
     icon: "scissors",
   },
@@ -132,6 +132,7 @@ const quests: Quest[] = [
   {
     title: "Measure the marked strip",
     detail: "Use the ruler to read the millimeters.",
+    hint: "If you already know the number, you can skip ahead and enter it.",
     clearText: "Measured.",
     icon: "ruler",
   },
@@ -150,6 +151,7 @@ const quests: Quest[] = [
 ];
 
 const INPUT_QUEST_INDEX = 5;
+const MEASURE_QUEST_INDEX = 4;
 const SUCCESS_QUEST_INDEX = 6;
 
 type SubmitState = "idle" | "sending" | "sent" | "error";
@@ -696,6 +698,15 @@ function Sidequest() {
     setActiveQuest(nextQuest);
   };
 
+  const jumpToInputQuest = () => {
+    if (isSubmitting) return;
+    setInputError("");
+    setRewardEvent(null);
+    clearMascotEffect();
+    setSubmitState("idle");
+    setActiveQuest(INPUT_QUEST_INDEX);
+  };
+
   const goBack = () => {
     if (!hasStarted || isSubmitting) return;
 
@@ -848,6 +859,18 @@ function Sidequest() {
               </div>
 
               {active.hint && <p className="sq-info sq-note mt-3 font-semibold">{active.hint}</p>}
+
+              {activeQuest === MEASURE_QUEST_INDEX && (
+                <button
+                  type="button"
+                  onClick={jumpToInputQuest}
+                  disabled={isSubmitting}
+                  className="sq-btn sq-btn-secondary sq-btn-compact mt-3 w-full"
+                >
+                  <PixelIcon name="mail" className="text-[#54334f]" pixelSize={3} />
+                  <span>Enter Number</span>
+                </button>
+              )}
 
               {/* Reward message */}
               {rewardEvent &&
