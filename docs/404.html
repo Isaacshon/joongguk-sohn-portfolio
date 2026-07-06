@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Isaac Sohn Portfolio</title>
+    <style>
+      html {
+        min-height: 100%;
+        background: #f7f4ed;
+        color: #143f39;
+        font-family:
+          ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        display: grid;
+        place-items: center;
+      }
+
+      a {
+        color: inherit;
+        text-underline-offset: 0.25em;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p>
+        Moving to
+        <a href="https://joongguk-sohn-portfolio.vercel.app/">Isaac Sohn Portfolio</a>.
+      </p>
+    </main>
+    <script>
+      const basePath = "/joongguk-sohn-portfolio";
+      const target = new URL("https://joongguk-sohn-portfolio.vercel.app/");
+      const currentPath = window.location.pathname;
+      const strippedPath = currentPath.startsWith(basePath)
+        ? currentPath.slice(basePath.length)
+        : currentPath;
+
+      target.pathname = strippedPath || "/";
+      target.search = window.location.search;
+      target.hash = window.location.hash;
+      window.location.replace(target.toString());
+    </script>
+  </body>
+</html>
