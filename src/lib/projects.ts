@@ -12,6 +12,18 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "social-management",
+    title: "Social Management",
+    category: "Instagram Direction, Content Planning, Social Operations",
+    cover: "linear-gradient(135deg, #151515 0%, #6f8f87 38%, #8d62ad 72%, #f0d672 100%)",
+    description:
+      "Social Management documents Instagram direction and operation work for Hanbyul and PassionFruits, including content planning, feed rhythm, campaign messaging, and visual presentation.",
+    role: "Instagram Direction, Content Planning, Social Operations",
+    tools: "Instagram, Meta Business Suite, Content Calendar, Visual Direction",
+    accent: "#f0d672",
+    dark: "#151515",
+  },
+  {
     slug: "eknoc",
     title: "Eknoc",
     category: "Web Design, App Interface, Brand System",

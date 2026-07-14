@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WorkRouteImport } from './routes/work'
+import { Route as SocialManagementRouteImport } from './routes/social-management'
 import { Route as SidequestRouteImport } from './routes/sidequest'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as InteractiveRouteImport } from './routes/interactive'
@@ -21,6 +22,11 @@ import { Route as ProjectSlugRouteImport } from './routes/project.$slug'
 const WorkRoute = WorkRouteImport.update({
   id: '/work',
   path: '/work',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SocialManagementRoute = SocialManagementRouteImport.update({
+  id: '/social-management',
+  path: '/social-management',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SidequestRoute = SidequestRouteImport.update({
@@ -66,6 +72,7 @@ export interface FileRoutesByFullPath {
   '/interactive': typeof InteractiveRoute
   '/services': typeof ServicesRoute
   '/sidequest': typeof SidequestRoute
+  '/social-management': typeof SocialManagementRoute
   '/work': typeof WorkRoute
   '/project/$slug': typeof ProjectSlugRoute
 }
@@ -76,6 +83,7 @@ export interface FileRoutesByTo {
   '/interactive': typeof InteractiveRoute
   '/services': typeof ServicesRoute
   '/sidequest': typeof SidequestRoute
+  '/social-management': typeof SocialManagementRoute
   '/work': typeof WorkRoute
   '/project/$slug': typeof ProjectSlugRoute
 }
@@ -87,6 +95,7 @@ export interface FileRoutesById {
   '/interactive': typeof InteractiveRoute
   '/services': typeof ServicesRoute
   '/sidequest': typeof SidequestRoute
+  '/social-management': typeof SocialManagementRoute
   '/work': typeof WorkRoute
   '/project/$slug': typeof ProjectSlugRoute
 }
@@ -99,6 +108,7 @@ export interface FileRouteTypes {
     | '/interactive'
     | '/services'
     | '/sidequest'
+    | '/social-management'
     | '/work'
     | '/project/$slug'
   fileRoutesByTo: FileRoutesByTo
@@ -109,6 +119,7 @@ export interface FileRouteTypes {
     | '/interactive'
     | '/services'
     | '/sidequest'
+    | '/social-management'
     | '/work'
     | '/project/$slug'
   id:
@@ -119,6 +130,7 @@ export interface FileRouteTypes {
     | '/interactive'
     | '/services'
     | '/sidequest'
+    | '/social-management'
     | '/work'
     | '/project/$slug'
   fileRoutesById: FileRoutesById
@@ -130,6 +142,7 @@ export interface RootRouteChildren {
   InteractiveRoute: typeof InteractiveRoute
   ServicesRoute: typeof ServicesRoute
   SidequestRoute: typeof SidequestRoute
+  SocialManagementRoute: typeof SocialManagementRoute
   WorkRoute: typeof WorkRoute
   ProjectSlugRoute: typeof ProjectSlugRoute
 }
@@ -141,6 +154,13 @@ declare module '@tanstack/react-router' {
       path: '/work'
       fullPath: '/work'
       preLoaderRoute: typeof WorkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/social-management': {
+      id: '/social-management'
+      path: '/social-management'
+      fullPath: '/social-management'
+      preLoaderRoute: typeof SocialManagementRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sidequest': {
@@ -202,6 +222,7 @@ const rootRouteChildren: RootRouteChildren = {
   InteractiveRoute: InteractiveRoute,
   ServicesRoute: ServicesRoute,
   SidequestRoute: SidequestRoute,
+  SocialManagementRoute: SocialManagementRoute,
   WorkRoute: WorkRoute,
   ProjectSlugRoute: ProjectSlugRoute,
 }
