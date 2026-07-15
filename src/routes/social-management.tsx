@@ -23,8 +23,9 @@ const accounts = [
   {
     name: "Hanbyul",
     type: "Instagram / Website Management",
-    instagram: "",
-    website: "",
+    instagram:
+      "https://www.instagram.com/hanbyul.official?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+    website: "https://www.hanbyul.ca/",
   },
   {
     name: "PassionFruits",
