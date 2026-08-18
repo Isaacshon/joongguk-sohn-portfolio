@@ -9,16 +9,25 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WriterRouteImport } from './routes/writer'
 import { Route as WorkRouteImport } from './routes/work'
 import { Route as SocialManagementRouteImport } from './routes/social-management'
 import { Route as SidequestRouteImport } from './routes/sidequest'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as PosterStudiesRouteImport } from './routes/poster-studies'
+import { Route as ModelRouteImport } from './routes/model'
 import { Route as InteractiveRouteImport } from './routes/interactive'
+import { Route as HanbyulBrandRouteImport } from './routes/hanbyul-brand'
 import { Route as FliersRouteImport } from './routes/fliers'
 import { Route as BookRouteImport } from './routes/book'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProjectSlugRouteImport } from './routes/project.$slug'
 
+const WriterRoute = WriterRouteImport.update({
+  id: '/writer',
+  path: '/writer',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WorkRoute = WorkRouteImport.update({
   id: '/work',
   path: '/work',
@@ -39,9 +48,24 @@ const ServicesRoute = ServicesRouteImport.update({
   path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PosterStudiesRoute = PosterStudiesRouteImport.update({
+  id: '/poster-studies',
+  path: '/poster-studies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ModelRoute = ModelRouteImport.update({
+  id: '/model',
+  path: '/model',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const InteractiveRoute = InteractiveRouteImport.update({
   id: '/interactive',
   path: '/interactive',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HanbyulBrandRoute = HanbyulBrandRouteImport.update({
+  id: '/hanbyul-brand',
+  path: '/hanbyul-brand',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FliersRoute = FliersRouteImport.update({
@@ -69,22 +93,30 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/book': typeof BookRoute
   '/fliers': typeof FliersRoute
+  '/hanbyul-brand': typeof HanbyulBrandRoute
   '/interactive': typeof InteractiveRoute
+  '/model': typeof ModelRoute
+  '/poster-studies': typeof PosterStudiesRoute
   '/services': typeof ServicesRoute
   '/sidequest': typeof SidequestRoute
   '/social-management': typeof SocialManagementRoute
   '/work': typeof WorkRoute
+  '/writer': typeof WriterRoute
   '/project/$slug': typeof ProjectSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/book': typeof BookRoute
   '/fliers': typeof FliersRoute
+  '/hanbyul-brand': typeof HanbyulBrandRoute
   '/interactive': typeof InteractiveRoute
+  '/model': typeof ModelRoute
+  '/poster-studies': typeof PosterStudiesRoute
   '/services': typeof ServicesRoute
   '/sidequest': typeof SidequestRoute
   '/social-management': typeof SocialManagementRoute
   '/work': typeof WorkRoute
+  '/writer': typeof WriterRoute
   '/project/$slug': typeof ProjectSlugRoute
 }
 export interface FileRoutesById {
@@ -92,11 +124,15 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/book': typeof BookRoute
   '/fliers': typeof FliersRoute
+  '/hanbyul-brand': typeof HanbyulBrandRoute
   '/interactive': typeof InteractiveRoute
+  '/model': typeof ModelRoute
+  '/poster-studies': typeof PosterStudiesRoute
   '/services': typeof ServicesRoute
   '/sidequest': typeof SidequestRoute
   '/social-management': typeof SocialManagementRoute
   '/work': typeof WorkRoute
+  '/writer': typeof WriterRoute
   '/project/$slug': typeof ProjectSlugRoute
 }
 export interface FileRouteTypes {
@@ -105,33 +141,45 @@ export interface FileRouteTypes {
     | '/'
     | '/book'
     | '/fliers'
+    | '/hanbyul-brand'
     | '/interactive'
+    | '/model'
+    | '/poster-studies'
     | '/services'
     | '/sidequest'
     | '/social-management'
     | '/work'
+    | '/writer'
     | '/project/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/book'
     | '/fliers'
+    | '/hanbyul-brand'
     | '/interactive'
+    | '/model'
+    | '/poster-studies'
     | '/services'
     | '/sidequest'
     | '/social-management'
     | '/work'
+    | '/writer'
     | '/project/$slug'
   id:
     | '__root__'
     | '/'
     | '/book'
     | '/fliers'
+    | '/hanbyul-brand'
     | '/interactive'
+    | '/model'
+    | '/poster-studies'
     | '/services'
     | '/sidequest'
     | '/social-management'
     | '/work'
+    | '/writer'
     | '/project/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -139,16 +187,27 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BookRoute: typeof BookRoute
   FliersRoute: typeof FliersRoute
+  HanbyulBrandRoute: typeof HanbyulBrandRoute
   InteractiveRoute: typeof InteractiveRoute
+  ModelRoute: typeof ModelRoute
+  PosterStudiesRoute: typeof PosterStudiesRoute
   ServicesRoute: typeof ServicesRoute
   SidequestRoute: typeof SidequestRoute
   SocialManagementRoute: typeof SocialManagementRoute
   WorkRoute: typeof WorkRoute
+  WriterRoute: typeof WriterRoute
   ProjectSlugRoute: typeof ProjectSlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/writer': {
+      id: '/writer'
+      path: '/writer'
+      fullPath: '/writer'
+      preLoaderRoute: typeof WriterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/work': {
       id: '/work'
       path: '/work'
@@ -177,11 +236,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/poster-studies': {
+      id: '/poster-studies'
+      path: '/poster-studies'
+      fullPath: '/poster-studies'
+      preLoaderRoute: typeof PosterStudiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/model': {
+      id: '/model'
+      path: '/model'
+      fullPath: '/model'
+      preLoaderRoute: typeof ModelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/interactive': {
       id: '/interactive'
       path: '/interactive'
       fullPath: '/interactive'
       preLoaderRoute: typeof InteractiveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hanbyul-brand': {
+      id: '/hanbyul-brand'
+      path: '/hanbyul-brand'
+      fullPath: '/hanbyul-brand'
+      preLoaderRoute: typeof HanbyulBrandRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/fliers': {
@@ -219,11 +299,15 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BookRoute: BookRoute,
   FliersRoute: FliersRoute,
+  HanbyulBrandRoute: HanbyulBrandRoute,
   InteractiveRoute: InteractiveRoute,
+  ModelRoute: ModelRoute,
+  PosterStudiesRoute: PosterStudiesRoute,
   ServicesRoute: ServicesRoute,
   SidequestRoute: SidequestRoute,
   SocialManagementRoute: SocialManagementRoute,
   WorkRoute: WorkRoute,
+  WriterRoute: WriterRoute,
   ProjectSlugRoute: ProjectSlugRoute,
 }
 export const routeTree = rootRouteImport

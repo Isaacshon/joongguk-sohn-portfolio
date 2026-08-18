@@ -26,12 +26,14 @@ const accounts = [
     instagram:
       "https://www.instagram.com/hanbyul.official?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
     website: "https://www.hanbyul.ca/",
+    caseStudy: "/hanbyul-brand",
   },
   {
     name: "PassionFruits",
     type: "Instagram / Website Management",
     instagram: "https://www.instagram.com/passionfruits_ministry/",
     website: "https://passionfruits.ca/",
+    caseStudy: undefined,
   },
 ];
 
@@ -93,6 +95,15 @@ function SocialManagement() {
                     <span className="rounded-md border border-black/10 px-4 py-2 text-[14px] font-medium text-muted-foreground">
                       Website
                     </span>
+                  )}
+
+                  {account.caseStudy && (
+                    <a
+                      href={account.caseStudy}
+                      className="rounded-md bg-foreground px-4 py-2 text-[14px] font-medium text-background transition hover:opacity-75"
+                    >
+                      View case study
+                    </a>
                   )}
                 </div>
               </div>

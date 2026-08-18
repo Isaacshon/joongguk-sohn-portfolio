@@ -26,6 +26,8 @@ import medal21 from "@/assets/medals/medal-21.png";
 
 const navLinks: { to: LinkProps["to"]; label: string }[] = [
   { to: "/work", label: "Work" },
+  { to: "/model", label: "Model" },
+  { to: "/writer", label: "Writer" },
   { to: "/", label: "About Me" },
   { to: "/services", label: "Services" },
 ];
@@ -111,7 +113,10 @@ export function MatLayout({ children, surface = "mat", contentClassName = "" }: 
   const reset = () => setOffset({ x: 0, y: 0 });
 
   const topNav = (
-    <nav className="pointer-events-none absolute inset-x-0 top-0 z-40 flex h-11 items-center justify-between bg-background px-4 text-[18px] font-normal text-foreground">
+    <nav
+      className="pointer-events-auto absolute inset-x-0 top-0 z-40 flex h-11 items-center justify-start gap-5 overflow-x-auto whitespace-nowrap bg-background px-4 text-[16px] font-normal text-foreground [scrollbar-width:none] sm:gap-8 sm:text-[18px] [&::-webkit-scrollbar]:hidden"
+      aria-label="Primary navigation"
+    >
       {navLinks.map((link) => (
         <Link
           key={link.label}
@@ -130,8 +135,12 @@ export function MatLayout({ children, surface = "mat", contentClassName = "" }: 
   return (
     <div className="min-h-screen w-full bg-background text-foreground">
       <div className="grid min-h-screen w-full grid-cols-1 md:grid-cols-[360px_minmax(0,1fr)] xl:grid-cols-[398px_minmax(0,1fr)]">
-        <aside className="flex flex-col gap-8 px-8 py-10 lg:px-10">
-          <Link to="/" className="group relative block h-36 w-36" aria-label="Go home">
+        <aside className="grid grid-cols-[88px_minmax(0,1fr)] items-center gap-5 px-4 py-5 md:flex md:flex-col md:items-stretch md:gap-8 md:px-8 md:py-10 lg:px-10">
+          <Link
+            to="/"
+            className="group relative block h-[88px] w-[88px] md:h-36 md:w-36"
+            aria-label="Go home"
+          >
             <img
               src={face1}
               alt="Isaac avatar"
@@ -150,11 +159,25 @@ export function MatLayout({ children, surface = "mat", contentClassName = "" }: 
           </Link>
 
           <p className="max-w-[260px] text-[15px] leading-relaxed text-sidebar-fg">
-            Hey there! I'm Isaac. I create web and app designs, visual artwork, and expressive
-            digital experiences with a creative point of view.
+            Hey there! I'm Isaac. I shape brand systems, digital experiences, visual artwork, and
+            stories—and occasionally step in front of the camera.
           </p>
 
-          <div className="mt-auto space-y-4 text-[14px]">
+          <div className="col-span-2 flex items-center gap-5 border-t border-black/10 pt-3 text-[12px] md:hidden">
+            <Link to="/book" className="font-semibold text-primary story-link">
+              Book a project &rarr;
+            </Link>
+            <a
+              href="https://www.instagram.com/lsaac_toast?igsh=MjN5NjM1MmZkenNp"
+              target="_blank"
+              rel="noreferrer"
+              className="text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Instagram
+            </a>
+          </div>
+
+          <div className="mt-auto hidden space-y-4 text-[14px] md:block">
             <Link
               to="/book"
               className="block w-fit font-semibold tracking-[0.18em] text-primary story-link"
@@ -174,6 +197,12 @@ export function MatLayout({ children, surface = "mat", contentClassName = "" }: 
               </Link>
               <Link to="/social-management" className="block w-fit story-link">
                 Social Management &rarr;
+              </Link>
+              <Link to="/hanbyul-brand" className="block w-fit story-link">
+                Hanbyul Brand &rarr;
+              </Link>
+              <Link to="/poster-studies" className="block w-fit story-link">
+                Twenty Visual Worlds &rarr;
               </Link>
             </div>
 

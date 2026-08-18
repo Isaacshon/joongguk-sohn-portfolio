@@ -1,8 +1,12 @@
+import hanbyulBrandCover from "@/assets/hanbyul-brand/before-after-board.webp";
+
 export type Project = {
   slug: string;
   title: string;
   category: string;
   cover: string;
+  coverImage?: string;
+  href?: string;
   description: string;
   role: string;
   tools: string;
@@ -12,10 +16,39 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "hanbyul-brand",
+    title: "Hanbyul Brand System",
+    category: "Brand Copy, Modeling, Visual Direction, E-commerce",
+    cover: "#241710",
+    coverImage: hanbyulBrandCover,
+    href: "/hanbyul-brand",
+    description:
+      "A trust-first brand position and repeatable product-page system for Hanbyul, connecting approachable copy, daily-life modeling, product truth, fit studies, and editorial direction.",
+    role: "Brand Copywriter, Model, Visual Direction, Product-page System",
+    tools: "Brand Strategy, Content Direction, AI-assisted Image Production, QA",
+    accent: "#c4a58c",
+    dark: "#241710",
+  },
+  {
+    slug: "poster-studies",
+    title: "Twenty Visual Worlds",
+    category: "Art Direction, Brand Identity, Graphic Systems",
+    cover:
+      "radial-gradient(circle at 24% 30%, #ff4f23 0 9%, transparent 9.5%), linear-gradient(115deg, #1738d0 0 44%, #f0eadb 44% 56%, #0c0c0c 56% 76%, #b8d9f2 76% 100%)",
+    href: "/poster-studies",
+    description:
+      "Twenty self-initiated visual systems move from research-led poster studies into ten fictional brand worlds spanning mobility, hospitality, food, beauty, fashion, culture, media, architecture, finance, and materials.",
+    role: "Creative Direction, Brand Identity, Graphic Design",
+    tools: "Identity Systems, Editorial Grid, Vector Art, CSS Motion",
+    accent: "#ff4f23",
+    dark: "#0c0c0c",
+  },
+  {
     slug: "social-management",
     title: "Social Management",
     category: "Instagram Direction, Content Planning, Social Operations",
     cover: "linear-gradient(135deg, #151515 0%, #6f8f87 38%, #8d62ad 72%, #f0d672 100%)",
+    href: "/social-management",
     description:
       "Social Management documents Instagram direction and operation work for Hanbyul and PassionFruits, including content planning, feed rhythm, campaign messaging, and visual presentation.",
     role: "Instagram Direction, Content Planning, Social Operations",
