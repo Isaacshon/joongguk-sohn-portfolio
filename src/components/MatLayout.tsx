@@ -32,6 +32,8 @@ const navLinks: { to: LinkProps["to"]; label: string }[] = [
   { to: "/services", label: "Services" },
 ];
 
+const bookstoreUrl = "https://store.isaactoast.ca";
+
 const certificationMedals: { label: string; image: string }[] = [
   { label: "Google - Google Ads Search Certification", image: medal01 },
   { label: "Google - Google Ads Display Certification", image: medal02 },
@@ -129,6 +131,14 @@ export function MatLayout({ children, surface = "mat", contentClassName = "" }: 
           {link.label}
         </Link>
       ))}
+      <a
+        href={bookstoreUrl}
+        data-no-pan
+        className="pointer-events-auto transition-all duration-200 hover:opacity-70"
+        aria-label="Visit Isaac Toast Bookstore"
+      >
+        Bookstore <span aria-hidden>↗</span>
+      </a>
     </nav>
   );
 
@@ -163,10 +173,13 @@ export function MatLayout({ children, surface = "mat", contentClassName = "" }: 
             stories—and occasionally step in front of the camera.
           </p>
 
-          <div className="col-span-2 flex items-center gap-5 border-t border-black/10 pt-3 text-[12px] md:hidden">
+          <div className="col-span-2 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-black/10 pt-3 text-[12px] md:hidden">
             <Link to="/book" className="font-semibold text-primary story-link">
               Book a project &rarr;
             </Link>
+            <a href={bookstoreUrl} className="font-semibold text-primary story-link">
+              Bookstore <span aria-hidden>↗</span>
+            </a>
             <a
               href="https://www.instagram.com/lsaac_toast?igsh=MjN5NjM1MmZkenNp"
               target="_blank"
@@ -218,8 +231,8 @@ export function MatLayout({ children, surface = "mat", contentClassName = "" }: 
               <a href="#" className="block transition-colors hover:text-foreground">
                 Newsletter
               </a>
-              <a href="#" className="block transition-colors hover:text-foreground">
-                Web Store
+              <a href={bookstoreUrl} className="block transition-colors hover:text-foreground">
+                Bookstore <span aria-hidden>↗</span>
               </a>
             </div>
 
