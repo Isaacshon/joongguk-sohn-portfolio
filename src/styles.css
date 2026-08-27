@@ -176,6 +176,62 @@
   transform-origin: center;
 }
 
+.toy-pull-tether {
+  z-index: 0;
+  height: 3px;
+  transform-origin: left center;
+  border-radius: 999px;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(245, 239, 226, 0.92) 0 8px,
+    rgba(245, 239, 226, 0.15) 8px 13px
+  );
+  box-shadow: 0 0 12px rgba(245, 239, 226, 0.25);
+  transition: opacity 120ms ease;
+}
+
+.toy-gesture-hint {
+  display: none;
+  left: 50%;
+  top: calc(100% + 14px);
+  z-index: 3;
+  width: max-content;
+  border: 1px solid rgba(245, 239, 226, 0.42);
+  border-radius: 999px;
+  background: rgba(15, 61, 56, 0.74);
+  padding: 4px 8px 3px;
+  color: rgba(245, 239, 226, 0.9);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  backdrop-filter: blur(8px);
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .toy-gesture-hint:not(.is-hidden) {
+    display: block;
+    animation: toy-gesture-hint 4200ms ease both;
+  }
+}
+
+@keyframes toy-gesture-hint {
+  0%,
+  10% {
+    opacity: 0;
+  }
+  22%,
+  72% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .windup-car-img.is-wound {
     animation: none;
@@ -183,6 +239,11 @@
   .windup-plane-img.is-wound,
   .windup-plane-img.is-flying {
     animation: none;
+  }
+
+  .toy-gesture-hint:not(.is-hidden) {
+    animation: none;
+    opacity: 0;
   }
 }
 

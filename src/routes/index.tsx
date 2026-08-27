@@ -153,7 +153,7 @@ function Index() {
         alt="Wind-up toy car"
         top={52}
         left={87}
-        width={126}
+        width="clamp(96px, 26vw, 126px)"
         heading={126}
         z={22}
         delay={420}
@@ -164,7 +164,7 @@ function Index() {
         alt="Wind-up toy airplane"
         top={28}
         left={50}
-        width={138}
+        width="clamp(104px, 28vw, 138px)"
         heading={-30}
         z={23}
         delay={520}

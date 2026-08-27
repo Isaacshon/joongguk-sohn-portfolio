@@ -62,7 +62,16 @@ export function DraggablePolaroid({
   const [mounted, setMounted] = useState(false);
   const [tearing, setTearing] = useState(false);
   const [tearKey, setTearKey] = useState(0);
-  const start = useRef({ x: 0, y: 0, top: 0, left: 0, parentW: 1, parentH: 1, t: 0 });
+  const start = useRef({
+    pointerId: -1,
+    x: 0,
+    y: 0,
+    top: 0,
+    left: 0,
+    parentW: 1,
+    parentH: 1,
+    t: 0,
+  });
   const vel = useRef({ vx: 0, vy: 0 });
 
   useEffect(() => {
@@ -90,7 +99,14 @@ export function DraggablePolaroid({
   }, [tearRun]);
 
   const onPointerDown = (e: ReactPointerEvent<HTMLDivElement>) => {
-    if (tearing) return;
+    if (
+      tearing ||
+      !e.isPrimary ||
+      start.current.pointerId !== -1 ||
+      (e.pointerType === "mouse" && e.button !== 0)
+    ) {
+      return;
+    }
 
     const el = ref.current;
     if (!el) return;
@@ -98,6 +114,7 @@ export function DraggablePolaroid({
     if (!parent) return;
     const rect = parent.getBoundingClientRect();
     start.current = {
+      pointerId: e.pointerId,
       x: e.clientX,
       y: e.clientY,
       top: pos.top,
@@ -113,7 +130,7 @@ export function DraggablePolaroid({
   };
 
   const onPointerMove = (e: ReactPointerEvent<HTMLDivElement>) => {
-    if (!dragging) return;
+    if (!dragging || e.pointerId !== start.current.pointerId) return;
     const dxPct = ((e.clientX - start.current.x) / start.current.parentW) * 100;
     const dyPct = ((e.clientY - start.current.y) / start.current.parentH) * 100;
     const now = performance.now();
@@ -129,8 +146,13 @@ export function DraggablePolaroid({
   };
 
   const onPointerUp = (e: ReactPointerEvent<HTMLDivElement>) => {
+    if (e.pointerId !== start.current.pointerId) return;
+
     setDragging(false);
-    ref.current?.releasePointerCapture(e.pointerId);
+    start.current.pointerId = -1;
+    if (ref.current?.hasPointerCapture(e.pointerId)) {
+      ref.current.releasePointerCapture(e.pointerId);
+    }
     // tiny fling
     const { vx, vy } = vel.current;
     if (Math.abs(vx) > 0.2 || Math.abs(vy) > 0.2) {
@@ -138,6 +160,17 @@ export function DraggablePolaroid({
         top: Math.max(-5, Math.min(95, p.top + vy * 3)),
         left: Math.max(-5, Math.min(95, p.left + vx * 3)),
       }));
+    }
+  };
+
+  const onPointerCancel = (e: ReactPointerEvent<HTMLDivElement>) => {
+    if (e.pointerId !== start.current.pointerId) return;
+
+    setDragging(false);
+    setPos({ top: start.current.top, left: start.current.left });
+    start.current.pointerId = -1;
+    if (ref.current?.hasPointerCapture(e.pointerId)) {
+      ref.current.releasePointerCapture(e.pointerId);
     }
   };
 
@@ -172,10 +205,13 @@ export function DraggablePolaroid({
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
-      onPointerCancel={onPointerUp}
+      onPointerCancel={onPointerCancel}
+      onLostPointerCapture={onPointerCancel}
       onPointerEnter={() => setHover(true)}
       onPointerLeave={() => setHover(false)}
-      className={`polaroid absolute select-none touch-none ${tearing ? "is-tearing" : ""}`}
+      className={`polaroid absolute select-none [touch-action:pan-y_pinch-zoom] ${
+        tearing ? "is-tearing" : ""
+      }`}
       style={style}
     >
       <PolaroidCard src={src} alt={alt} className="polaroid-card-base" />

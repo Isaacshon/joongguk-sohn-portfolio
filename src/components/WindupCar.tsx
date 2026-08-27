@@ -2,16 +2,28 @@ import {
   useEffect,
   useRef,
   useState,
+  type KeyboardEvent as ReactKeyboardEvent,
+  type MouseEvent as ReactMouseEvent,
   type PointerEvent as ReactPointerEvent,
-  type WheelEvent as ReactWheelEvent,
 } from "react";
+import { ToyPullFeedback } from "@/components/ToyPullFeedback";
+import { usePrefersReducedMotion } from "@/hooks/use-reduced-motion";
+import {
+  calculateElasticPull,
+  cancelHaptic,
+  clamp,
+  getLaunchPower,
+  getMaxPullDistance,
+  getTensionStep,
+  triggerHaptic,
+} from "@/lib/toy-motion";
 
 type Props = {
   src: string;
   alt: string;
   top: number;
   left: number;
-  width: number;
+  width: number | string;
   heading?: number;
   z?: number;
   delay?: number;
@@ -19,33 +31,44 @@ type Props = {
 
 type Point = { top: number; left: number };
 type Velocity = { vx: number; vy: number };
+type Dimensions = {
+  parentW: number;
+  parentH: number;
+  carW: number;
+  carH: number;
+};
 
-const MAX_WIND = 1;
-const MIN_SPEED = 140;
-const MAX_SPEED = 760;
-const FRICTION = 980;
+const MIN_TENSION = 0.06;
+const MIN_SPEED = 150;
+const MAX_SPEED = 720;
+const FRICTION = 610;
 const STOP_SPEED = 16;
-
-const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
+const IMPACT_HAPTIC_COOLDOWN = 180;
 
 export function WindupCar({ src, alt, top, left, width, heading = 0, z = 12, delay = 0 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const frame = useRef<number | null>(null);
   const lastFrame = useRef(0);
+  const motionDimensions = useRef<Dimensions | null>(null);
   const posRef = useRef<Point>({ top, left });
   const windRef = useRef(0);
   const headingRef = useRef(heading);
   const velocity = useRef<Velocity>({ vx: 0, vy: 0 });
   const draggingRef = useRef(false);
+  const suppressClick = useRef(false);
+  const hapticsActive = useRef(false);
+  const lastHapticStep = useRef(0);
+  const lastImpactHaptic = useRef(0);
   const drag = useRef({
+    pointerId: -1,
     startX: 0,
     startY: 0,
-    lastX: 0,
-    lastY: 0,
     top,
     left,
+    startHeading: heading,
     parentW: 1,
     parentH: 1,
+    maxPull: 96,
   });
 
   const [pos, setPos] = useState<Point>({ top, left });
@@ -55,6 +78,9 @@ export function WindupCar({ src, alt, top, left, width, heading = 0, z = 12, del
   const [moving, setMoving] = useState(false);
   const [hover, setHover] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [interacted, setInteracted] = useState(false);
+  const [pull, setPull] = useState({ distance: 0, heading });
+  const reducedMotion = usePrefersReducedMotion();
 
   const setPosition = (next: Point) => {
     posRef.current = next;
@@ -62,7 +88,7 @@ export function WindupCar({ src, alt, top, left, width, heading = 0, z = 12, del
   };
 
   const setWindAmount = (next: number) => {
-    const clamped = clamp(next, 0, MAX_WIND);
+    const clamped = clamp(next, 0, 1);
     windRef.current = clamped;
     setWind(clamped);
   };
@@ -72,7 +98,7 @@ export function WindupCar({ src, alt, top, left, width, heading = 0, z = 12, del
     setAngle(next);
   };
 
-  const measure = () => {
+  const measure = (): Dimensions | null => {
     const el = ref.current;
     const parent = el?.parentElement;
     if (!el || !parent) return null;
@@ -89,8 +115,8 @@ export function WindupCar({ src, alt, top, left, width, heading = 0, z = 12, del
   const clampPosition = (next: Point, dims = measure()) => {
     if (!dims) return next;
 
-    const xPad = ((dims.carW * 0.36) / dims.parentW) * 100;
-    const yPad = ((dims.carH * 0.36) / dims.parentH) * 100;
+    const xPad = ((dims.carW * 0.42) / dims.parentW) * 100;
+    const yPad = ((dims.carH * 0.42) / dims.parentH) * 100;
 
     return {
       top: clamp(next.top, yPad, 100 - yPad),
@@ -103,12 +129,13 @@ export function WindupCar({ src, alt, top, left, width, heading = 0, z = 12, del
       cancelAnimationFrame(frame.current);
       frame.current = null;
     }
+    motionDimensions.current = null;
     velocity.current = { vx: 0, vy: 0 };
     setMoving(false);
   };
 
   const animate = (time: number) => {
-    const dims = measure();
+    const dims = motionDimensions.current;
     if (!dims) {
       stopMotion();
       return;
@@ -125,24 +152,36 @@ export function WindupCar({ src, alt, top, left, width, heading = 0, z = 12, del
       return;
     }
 
-    const minX = dims.carW * 0.36;
-    const maxX = dims.parentW - dims.carW * 0.36;
-    const minY = dims.carH * 0.36;
-    const maxY = dims.parentH - dims.carH * 0.36;
+    const minX = dims.carW * 0.42;
+    const maxX = dims.parentW - dims.carW * 0.42;
+    const minY = dims.carH * 0.42;
+    const maxY = dims.parentH - dims.carH * 0.42;
 
     let x = (posRef.current.left / 100) * dims.parentW + vx * dt;
     let y = (posRef.current.top / 100) * dims.parentH + vy * dt;
+    let bounced = false;
 
     if (x < minX || x > maxX) {
       x = clamp(x, minX, maxX);
-      vx *= -0.36;
-      vy *= 0.8;
+      vx *= -0.32;
+      vy *= 0.82;
+      bounced = true;
     }
 
     if (y < minY || y > maxY) {
       y = clamp(y, minY, maxY);
-      vy *= -0.36;
-      vx *= 0.8;
+      vy *= -0.32;
+      vx *= 0.82;
+      bounced = true;
+    }
+
+    if (
+      bounced &&
+      hapticsActive.current &&
+      time - lastImpactHaptic.current > IMPACT_HAPTIC_COOLDOWN
+    ) {
+      triggerHaptic(9);
+      lastImpactHaptic.current = time;
     }
 
     speed = Math.hypot(vx, vy);
@@ -169,143 +208,270 @@ export function WindupCar({ src, alt, top, left, width, heading = 0, z = 12, del
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => setMounted(true), delay);
+    const timer = window.setTimeout(() => setMounted(true), delay);
     return () => {
-      clearTimeout(timer);
+      window.clearTimeout(timer);
       if (frame.current !== null) cancelAnimationFrame(frame.current);
+      cancelHaptic();
     };
   }, [delay]);
 
-  const onPointerDown = (e: ReactPointerEvent<HTMLDivElement>) => {
+  const onPointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (
+      !event.isPrimary ||
+      draggingRef.current ||
+      (event.pointerType === "mouse" && event.button !== 0)
+    ) {
+      return;
+    }
+
     const dims = measure();
     if (!dims) return;
 
-    e.preventDefault();
-    e.stopPropagation();
+    event.preventDefault();
+    event.stopPropagation();
     stopMotion();
 
     drag.current = {
-      startX: e.clientX,
-      startY: e.clientY,
-      lastX: e.clientX,
-      lastY: e.clientY,
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
       top: posRef.current.top,
       left: posRef.current.left,
+      startHeading: headingRef.current,
       parentW: dims.parentW,
       parentH: dims.parentH,
+      maxPull: getMaxPullDistance(dims.parentW, dims.parentH),
     };
 
     draggingRef.current = true;
+    suppressClick.current = true;
+    hapticsActive.current = event.pointerType !== "mouse" && !reducedMotion;
+    lastHapticStep.current = 0;
     setDragging(true);
+    setInteracted(true);
+    setPull({ distance: 0, heading: headingRef.current });
     setWindAmount(0);
-    ref.current?.setPointerCapture(e.pointerId);
+    ref.current?.setPointerCapture(event.pointerId);
   };
 
-  const onPointerMove = (e: ReactPointerEvent<HTMLDivElement>) => {
-    if (!draggingRef.current) return;
+  const onPointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (!draggingRef.current || event.pointerId !== drag.current.pointerId) return;
 
-    e.preventDefault();
-    e.stopPropagation();
+    event.preventDefault();
+    event.stopPropagation();
 
-    const dxPct = ((e.clientX - drag.current.startX) / drag.current.parentW) * 100;
-    const dyPct = ((e.clientY - drag.current.startY) / drag.current.parentH) * 100;
+    const gesture = calculateElasticPull(
+      event.clientX - drag.current.startX,
+      event.clientY - drag.current.startY,
+      drag.current.maxPull,
+    );
 
     setPosition(
       clampPosition({
-        top: drag.current.top + dyPct,
-        left: drag.current.left + dxPct,
+        top: drag.current.top + (gesture.offsetY / drag.current.parentH) * 100,
+        left: drag.current.left + (gesture.offsetX / drag.current.parentW) * 100,
       }),
     );
+    const nextHeading = gesture.tension > 0 ? gesture.launchHeading : drag.current.startHeading;
+    if (gesture.tension > 0) setHeading(nextHeading);
+    setPull({ distance: gesture.distance, heading: nextHeading });
+    setWindAmount(gesture.tension);
 
-    const moveX = e.clientX - drag.current.lastX;
-    const moveY = e.clientY - drag.current.lastY;
-    if (Math.hypot(moveX, moveY) > 1.5) {
-      setHeading((Math.atan2(moveY, moveX) * 180) / Math.PI);
+    const tensionStep = getTensionStep(gesture.tension);
+    if (tensionStep > lastHapticStep.current && tensionStep > 0 && hapticsActive.current) {
+      triggerHaptic(4 + tensionStep * 2);
+      lastHapticStep.current = tensionStep;
     }
-
-    drag.current.lastX = e.clientX;
-    drag.current.lastY = e.clientY;
   };
 
   const launch = () => {
     const amount = windRef.current;
-    setWindAmount(0);
+    if (amount < MIN_TENSION) return false;
 
-    if (amount < 0.035) return;
+    const dims = measure();
+    if (!dims) return false;
 
-    const speed = MIN_SPEED + (MAX_SPEED - MIN_SPEED) * amount;
-    const rad = (headingRef.current * Math.PI) / 180;
+    const speed = MIN_SPEED + (MAX_SPEED - MIN_SPEED) * getLaunchPower(amount);
+    const radians = (headingRef.current * Math.PI) / 180;
     velocity.current = {
-      vx: Math.cos(rad) * speed,
-      vy: Math.sin(rad) * speed,
+      vx: Math.cos(radians) * speed,
+      vy: Math.sin(radians) * speed,
     };
+    motionDimensions.current = dims;
     lastFrame.current = performance.now();
+    setWindAmount(0);
     setMoving(true);
     frame.current = requestAnimationFrame(animate);
+    return true;
   };
 
-  const onPointerUp = (e: ReactPointerEvent<HTMLDivElement>) => {
-    if (!draggingRef.current) return;
+  const nudgeReducedMotion = (amount: number) => {
+    const dims = measure();
+    if (!dims) return;
 
-    e.preventDefault();
-    e.stopPropagation();
+    const distance = 18 + getLaunchPower(amount) * 28;
+    const radians = (headingRef.current * Math.PI) / 180;
+    setWindAmount(0);
+    setPosition(
+      clampPosition(
+        {
+          top: posRef.current.top + (Math.sin(radians) * distance * 100) / dims.parentH,
+          left: posRef.current.left + (Math.cos(radians) * distance * 100) / dims.parentW,
+        },
+        dims,
+      ),
+    );
+  };
+
+  const releasePointer = (pointerId: number) => {
+    if (ref.current?.hasPointerCapture(pointerId)) {
+      ref.current.releasePointerCapture(pointerId);
+    }
+  };
+
+  const clearClickSuppression = () => {
+    window.setTimeout(() => {
+      suppressClick.current = false;
+    }, 0);
+  };
+
+  const onPointerUp = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (!draggingRef.current || event.pointerId !== drag.current.pointerId) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    const amount = windRef.current;
     draggingRef.current = false;
     setDragging(false);
-    ref.current?.releasePointerCapture(e.pointerId);
+    setPull({ distance: 0, heading: headingRef.current });
+    releasePointer(event.pointerId);
+    clearClickSuppression();
+
+    if (amount < MIN_TENSION) {
+      setWindAmount(0);
+      setHeading(drag.current.startHeading);
+      setPosition(clampPosition({ top: drag.current.top, left: drag.current.left }));
+      return;
+    }
+
+    if (reducedMotion) {
+      nudgeReducedMotion(amount);
+      return;
+    }
+
+    if (hapticsActive.current) {
+      triggerHaptic(amount > 0.72 ? [12, 28, 16] : 12);
+    }
     launch();
   };
 
-  const onWheel = (e: ReactWheelEvent<HTMLDivElement>) => {
+  const resetDrag = (pointerId = drag.current.pointerId) => {
     if (!draggingRef.current) return;
+    draggingRef.current = false;
+    setDragging(false);
+    setWindAmount(0);
+    setHeading(drag.current.startHeading);
+    setPull({ distance: 0, heading: drag.current.startHeading });
+    setPosition(clampPosition({ top: drag.current.top, left: drag.current.left }));
+    releasePointer(pointerId);
+    clearClickSuppression();
+    cancelHaptic();
+  };
 
-    e.preventDefault();
-    e.stopPropagation();
+  const cancelDrag = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (!draggingRef.current || event.pointerId !== drag.current.pointerId) return;
+    resetDrag(event.pointerId);
+  };
 
-    const delta = e.deltaMode === 1 ? Math.abs(e.deltaY) * 24 : Math.abs(e.deltaY);
-    const add = Math.min(0.18, delta / 680);
-    setWindAmount(windRef.current + add);
+  const activate = () => {
+    stopMotion();
+    setWindAmount(0.52);
+    if (reducedMotion) {
+      nudgeReducedMotion(0.52);
+    } else {
+      launch();
+    }
+  };
+
+  const onClick = (event: ReactMouseEvent<HTMLDivElement>) => {
+    if (suppressClick.current) {
+      event.preventDefault();
+      return;
+    }
+    activate();
+  };
+
+  const onKeyDown = (event: ReactKeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      if (draggingRef.current) resetDrag();
+      else stopMotion();
+      return;
+    }
+
+    if (event.key !== "Enter" && event.key !== " ") return;
+    if (event.repeat) return;
+    event.preventDefault();
+    activate();
   };
 
   const carRotation = angle + 90;
+  const widthValue = typeof width === "number" ? `${width}px` : width;
   const scale = dragging ? 1.08 : moving ? 1.03 : hover ? 1.04 : 1;
-  const lift = dragging ? 12 : hover ? 5 : 0;
+  const lift = dragging ? 12 + wind * 8 : hover ? 5 : 0;
   const windTurns = wind * 2.75;
 
   return (
     <div
       ref={ref}
       data-no-pan
+      role="button"
+      tabIndex={0}
+      aria-label={`${alt}. Pull back and release to launch.`}
+      aria-keyshortcuts="Enter Space Escape"
+      onClick={onClick}
+      onKeyDown={onKeyDown}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
-      onPointerCancel={onPointerUp}
-      onWheel={onWheel}
+      onPointerCancel={cancelDrag}
+      onLostPointerCapture={cancelDrag}
       onPointerEnter={() => setHover(true)}
       onPointerLeave={() => setHover(false)}
-      className="windup-car absolute select-none touch-none"
-      aria-label={alt}
+      className="windup-car absolute select-none touch-none rounded-full outline-none focus-visible:ring-2 focus-visible:ring-[#f5efe2] focus-visible:ring-offset-4 focus-visible:ring-offset-[#164f48]"
       style={{
         top: `${pos.top}%`,
         left: `${pos.left}%`,
-        width: `${width}px`,
+        width: widthValue,
         opacity: mounted ? 1 : 0,
         transform: `translate(-50%, calc(-50% - ${lift}px)) rotate(${carRotation}deg) scale(${mounted ? scale : 0.7})`,
         transformOrigin: "center",
         cursor: dragging ? "grabbing" : "grab",
         zIndex: dragging || moving ? 26 : z,
-        transition:
-          dragging || moving
+        transition: reducedMotion
+          ? "none"
+          : dragging || moving
             ? "opacity 300ms, filter 160ms"
-            : "transform 500ms cubic-bezier(.2,.8,.2,1), opacity 650ms, filter 250ms",
+            : "top 420ms cubic-bezier(.2,.9,.2,1), left 420ms cubic-bezier(.2,.9,.2,1), transform 500ms cubic-bezier(.2,.8,.2,1), opacity 650ms, filter 250ms",
         filter:
           dragging || moving
             ? "drop-shadow(0 24px 18px rgba(0,0,0,.42))"
             : "drop-shadow(0 16px 12px rgba(0,0,0,.34))",
+        willChange: dragging || moving ? "top, left, transform" : undefined,
       }}
     >
+      <ToyPullFeedback
+        distance={pull.distance}
+        heading={pull.heading}
+        parentRotation={carRotation}
+        tension={wind}
+        visible={dragging && wind > 0.01}
+        showHint={!interacted && mounted}
+      />
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/2 h-12 w-12 -translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 transition-opacity duration-150"
+        className="pointer-events-none absolute left-1/2 top-1/2 z-[1] h-12 w-12 -translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 transition-opacity duration-150"
         style={{
           opacity: dragging && wind > 0.02 ? 0.85 : 0,
           background: `conic-gradient(from ${windTurns}turn, rgba(245,239,226,.92), rgba(245,239,226,.12) ${30 + wind * 55}%, transparent 0)`,
@@ -316,7 +482,7 @@ export function WindupCar({ src, alt, top, left, width, heading = 0, z = 12, del
         src={src}
         alt=""
         draggable={false}
-        className={`windup-car-img pointer-events-none block h-auto w-full object-contain ${dragging && wind > 0.02 ? "is-wound" : ""}`}
+        className={`windup-car-img pointer-events-none relative z-[2] block h-auto w-full object-contain ${dragging && wind > 0.02 ? "is-wound" : ""}`}
       />
     </div>
   );

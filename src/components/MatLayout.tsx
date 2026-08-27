@@ -75,7 +75,16 @@ export function MatLayout({
   const [medalTooltip, setMedalTooltip] = useState<{ label: string; x: number; y: number } | null>(
     null,
   );
-  const drag = useRef({ x: 0, y: 0, ox: 0, oy: 0, moved: false });
+  const drag = useRef({
+    pointerId: -1,
+    pointerType: "mouse",
+    x: 0,
+    y: 0,
+    ox: 0,
+    oy: 0,
+    moved: false,
+    intent: "idle" as "idle" | "pending" | "pan" | "scroll",
+  });
 
   const showMedalTooltip = (label: string, e: RPE<HTMLImageElement>) => {
     setMedalTooltip({
@@ -86,34 +95,78 @@ export function MatLayout({
   };
 
   const onDown = (e: RPE<HTMLDivElement>) => {
+    if (
+      !e.isPrimary ||
+      drag.current.pointerId !== -1 ||
+      (e.pointerType === "mouse" && e.button !== 0)
+    ) {
+      return;
+    }
+
     const target = e.target as HTMLElement;
     if (target.closest("a, button, input, textarea, select, label, .polaroid, [data-no-pan]"))
       return;
 
-    drag.current = { x: e.clientX, y: e.clientY, ox: offset.x, oy: offset.y, moved: false };
-    setDragging(true);
+    drag.current = {
+      pointerId: e.pointerId,
+      pointerType: e.pointerType,
+      x: e.clientX,
+      y: e.clientY,
+      ox: offset.x,
+      oy: offset.y,
+      moved: false,
+      intent: e.pointerType === "touch" ? "pending" : "pan",
+    };
+    setDragging(e.pointerType !== "touch");
     wrapRef.current?.setPointerCapture(e.pointerId);
   };
 
   const onMove = (e: RPE<HTMLDivElement>) => {
-    if (!dragging) return;
+    if (e.pointerId !== drag.current.pointerId || drag.current.intent === "scroll") return;
 
     const dx = e.clientX - drag.current.x;
     const dy = e.clientY - drag.current.y;
+
+    if (drag.current.intent === "pending") {
+      if (Math.hypot(dx, dy) < 9) return;
+
+      if (Math.abs(dy) > Math.abs(dx) * 1.15) {
+        drag.current.intent = "scroll";
+        setDragging(false);
+        if (wrapRef.current?.hasPointerCapture(e.pointerId)) {
+          wrapRef.current.releasePointerCapture(e.pointerId);
+        }
+        drag.current.pointerId = -1;
+        drag.current.intent = "idle";
+        return;
+      }
+
+      drag.current.intent = "pan";
+      setDragging(true);
+    }
+
+    if (drag.current.intent !== "pan") return;
     if (Math.abs(dx) + Math.abs(dy) > 3) drag.current.moved = true;
 
     const max = 220;
     setOffset({
       x: Math.max(-max, Math.min(max, drag.current.ox + dx)),
-      y: Math.max(-max, Math.min(max, drag.current.oy + dy)),
+      y:
+        drag.current.pointerType === "touch"
+          ? drag.current.oy
+          : Math.max(-max, Math.min(max, drag.current.oy + dy)),
     });
   };
 
   const onUp = (e: RPE<HTMLDivElement>) => {
+    if (e.pointerId !== drag.current.pointerId) return;
+
     setDragging(false);
     if (wrapRef.current?.hasPointerCapture(e.pointerId)) {
       wrapRef.current.releasePointerCapture(e.pointerId);
     }
+    drag.current.pointerId = -1;
+    drag.current.intent = "idle";
   };
 
   const reset = () => setOffset({ x: 0, y: 0 });
@@ -232,12 +285,6 @@ export function MatLayout({
               <Link to="/social-management" className="block w-fit story-link">
                 Social Management &rarr;
               </Link>
-              <Link to="/hanbyul-brand" className="block w-fit story-link">
-                Hanbyul Brand &rarr;
-              </Link>
-              <Link to="/poster-studies" className="block w-fit story-link">
-                20 Design Projects &rarr;
-              </Link>
             </div>
 
             <div className="space-y-1 pt-2 text-muted-foreground">
@@ -292,7 +339,8 @@ export function MatLayout({
             onPointerMove={onMove}
             onPointerUp={onUp}
             onPointerCancel={onUp}
-            className="relative min-h-screen overflow-hidden touch-none"
+            onLostPointerCapture={onUp}
+            className="relative min-h-screen overflow-hidden [touch-action:pan-y_pinch-zoom]"
             style={{ cursor: dragging ? "grabbing" : "grab" }}
           >
             <div
