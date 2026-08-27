@@ -236,7 +236,7 @@ export function MatLayout({
                 Hanbyul Brand &rarr;
               </Link>
               <Link to="/poster-studies" className="block w-fit story-link">
-                Twenty Visual Worlds &rarr;
+                20 Design Projects &rarr;
               </Link>
             </div>
 

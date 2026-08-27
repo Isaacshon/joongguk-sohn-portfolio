@@ -21,7 +21,9 @@ import { Route as HanbyulBrandRouteImport } from './routes/hanbyul-brand'
 import { Route as FliersRouteImport } from './routes/fliers'
 import { Route as BookRouteImport } from './routes/book'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PosterStudiesIndexRouteImport } from './routes/poster-studies.index'
 import { Route as ProjectSlugRouteImport } from './routes/project.$slug'
+import { Route as PosterStudiesSlugRouteImport } from './routes/poster-studies.$slug'
 
 const WriterRoute = WriterRouteImport.update({
   id: '/writer',
@@ -83,10 +85,20 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PosterStudiesIndexRoute = PosterStudiesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PosterStudiesRoute,
+} as any)
 const ProjectSlugRoute = ProjectSlugRouteImport.update({
   id: '/project/$slug',
   path: '/project/$slug',
   getParentRoute: () => rootRouteImport,
+} as any)
+const PosterStudiesSlugRoute = PosterStudiesSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => PosterStudiesRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -96,13 +108,15 @@ export interface FileRoutesByFullPath {
   '/hanbyul-brand': typeof HanbyulBrandRoute
   '/interactive': typeof InteractiveRoute
   '/model': typeof ModelRoute
-  '/poster-studies': typeof PosterStudiesRoute
+  '/poster-studies': typeof PosterStudiesRouteWithChildren
   '/services': typeof ServicesRoute
   '/sidequest': typeof SidequestRoute
   '/social-management': typeof SocialManagementRoute
   '/work': typeof WorkRoute
   '/writer': typeof WriterRoute
+  '/poster-studies/$slug': typeof PosterStudiesSlugRoute
   '/project/$slug': typeof ProjectSlugRoute
+  '/poster-studies/': typeof PosterStudiesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -111,13 +125,14 @@ export interface FileRoutesByTo {
   '/hanbyul-brand': typeof HanbyulBrandRoute
   '/interactive': typeof InteractiveRoute
   '/model': typeof ModelRoute
-  '/poster-studies': typeof PosterStudiesRoute
   '/services': typeof ServicesRoute
   '/sidequest': typeof SidequestRoute
   '/social-management': typeof SocialManagementRoute
   '/work': typeof WorkRoute
   '/writer': typeof WriterRoute
+  '/poster-studies/$slug': typeof PosterStudiesSlugRoute
   '/project/$slug': typeof ProjectSlugRoute
+  '/poster-studies': typeof PosterStudiesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -127,13 +142,15 @@ export interface FileRoutesById {
   '/hanbyul-brand': typeof HanbyulBrandRoute
   '/interactive': typeof InteractiveRoute
   '/model': typeof ModelRoute
-  '/poster-studies': typeof PosterStudiesRoute
+  '/poster-studies': typeof PosterStudiesRouteWithChildren
   '/services': typeof ServicesRoute
   '/sidequest': typeof SidequestRoute
   '/social-management': typeof SocialManagementRoute
   '/work': typeof WorkRoute
   '/writer': typeof WriterRoute
+  '/poster-studies/$slug': typeof PosterStudiesSlugRoute
   '/project/$slug': typeof ProjectSlugRoute
+  '/poster-studies/': typeof PosterStudiesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -150,7 +167,9 @@ export interface FileRouteTypes {
     | '/social-management'
     | '/work'
     | '/writer'
+    | '/poster-studies/$slug'
     | '/project/$slug'
+    | '/poster-studies/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -159,13 +178,14 @@ export interface FileRouteTypes {
     | '/hanbyul-brand'
     | '/interactive'
     | '/model'
-    | '/poster-studies'
     | '/services'
     | '/sidequest'
     | '/social-management'
     | '/work'
     | '/writer'
+    | '/poster-studies/$slug'
     | '/project/$slug'
+    | '/poster-studies'
   id:
     | '__root__'
     | '/'
@@ -180,7 +200,9 @@ export interface FileRouteTypes {
     | '/social-management'
     | '/work'
     | '/writer'
+    | '/poster-studies/$slug'
     | '/project/$slug'
+    | '/poster-studies/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -190,7 +212,7 @@ export interface RootRouteChildren {
   HanbyulBrandRoute: typeof HanbyulBrandRoute
   InteractiveRoute: typeof InteractiveRoute
   ModelRoute: typeof ModelRoute
-  PosterStudiesRoute: typeof PosterStudiesRoute
+  PosterStudiesRoute: typeof PosterStudiesRouteWithChildren
   ServicesRoute: typeof ServicesRoute
   SidequestRoute: typeof SidequestRoute
   SocialManagementRoute: typeof SocialManagementRoute
@@ -285,6 +307,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/poster-studies/': {
+      id: '/poster-studies/'
+      path: '/'
+      fullPath: '/poster-studies/'
+      preLoaderRoute: typeof PosterStudiesIndexRouteImport
+      parentRoute: typeof PosterStudiesRoute
+    }
     '/project/$slug': {
       id: '/project/$slug'
       path: '/project/$slug'
@@ -292,8 +321,29 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/poster-studies/$slug': {
+      id: '/poster-studies/$slug'
+      path: '/$slug'
+      fullPath: '/poster-studies/$slug'
+      preLoaderRoute: typeof PosterStudiesSlugRouteImport
+      parentRoute: typeof PosterStudiesRoute
+    }
   }
 }
+
+interface PosterStudiesRouteChildren {
+  PosterStudiesSlugRoute: typeof PosterStudiesSlugRoute
+  PosterStudiesIndexRoute: typeof PosterStudiesIndexRoute
+}
+
+const PosterStudiesRouteChildren: PosterStudiesRouteChildren = {
+  PosterStudiesSlugRoute: PosterStudiesSlugRoute,
+  PosterStudiesIndexRoute: PosterStudiesIndexRoute,
+}
+
+const PosterStudiesRouteWithChildren = PosterStudiesRoute._addFileChildren(
+  PosterStudiesRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -302,7 +352,7 @@ const rootRouteChildren: RootRouteChildren = {
   HanbyulBrandRoute: HanbyulBrandRoute,
   InteractiveRoute: InteractiveRoute,
   ModelRoute: ModelRoute,
-  PosterStudiesRoute: PosterStudiesRoute,
+  PosterStudiesRoute: PosterStudiesRouteWithChildren,
   ServicesRoute: ServicesRoute,
   SidequestRoute: SidequestRoute,
   SocialManagementRoute: SocialManagementRoute,

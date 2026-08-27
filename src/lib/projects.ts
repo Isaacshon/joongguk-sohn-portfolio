@@ -30,20 +30,6 @@ export const projects: Project[] = [
     dark: "#241710",
   },
   {
-    slug: "poster-studies",
-    title: "Twenty Visual Worlds",
-    category: "Art Direction, Brand Identity, Graphic Systems",
-    cover:
-      "radial-gradient(circle at 24% 30%, #ff4f23 0 9%, transparent 9.5%), linear-gradient(115deg, #1738d0 0 44%, #f0eadb 44% 56%, #0c0c0c 56% 76%, #b8d9f2 76% 100%)",
-    href: "/poster-studies",
-    description:
-      "Twenty self-initiated visual systems move from research-led poster studies into ten fictional brand worlds spanning mobility, hospitality, food, beauty, fashion, culture, media, architecture, finance, and materials.",
-    role: "Creative Direction, Brand Identity, Graphic Design",
-    tools: "Identity Systems, Editorial Grid, Vector Art, CSS Motion",
-    accent: "#ff4f23",
-    dark: "#0c0c0c",
-  },
-  {
     slug: "social-management",
     title: "Social Management",
     category: "Instagram Direction, Content Planning, Social Operations",

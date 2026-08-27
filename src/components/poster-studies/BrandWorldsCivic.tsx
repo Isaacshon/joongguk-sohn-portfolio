@@ -299,7 +299,10 @@ function TwoShoresHero() {
           <div className="min-w-0 overflow-hidden rounded-t-[clamp(12px,2vw,28px)] bg-[#f8f0da] p-[8%] text-[#0b2c38]">
             <div className="mx-auto h-[2%] w-[22%] rounded-full bg-[#0b2c38]/25" />
             <p className="mt-[14%] font-mono text-[clamp(6px,.64vw,9px)] uppercase">
-              Send / 보내기
+              Send /{" "}
+              <span lang="ko" className="font-ko-sans normal-case tracking-normal">
+                보내기
+              </span>
             </p>
             <p className="mt-[8%] text-[clamp(17px,2.7vw,39px)] font-black leading-none">
               CAD → KRW
@@ -329,7 +332,9 @@ function TwoShoresHero() {
       <div className="absolute bottom-[5%] right-[7%] w-[39%] -rotate-1 overflow-hidden bg-[#f8f0da] p-[3%] shadow-[0_17px_38px_rgba(11,44,56,.25)] sm:w-[32%] sm:p-[2.3%]">
         <div className="flex justify-between border-b border-[#0b2c38]/25 pb-[5%] font-mono text-[clamp(6px,.64vw,9px)] uppercase">
           <span>Transfer record</span>
-          <span>양방향 기록</span>
+          <span lang="ko" className="font-ko-sans normal-case tracking-normal">
+            양방향 기록
+          </span>
         </div>
         <div className="mt-[7%] grid grid-cols-[1fr_auto] gap-[6%]">
           <div className="space-y-[5%] font-mono text-[clamp(6px,.72vw,10px)]">
@@ -1139,7 +1144,7 @@ function TwoShoresAppBoard() {
         <div className="mx-auto h-[1.5%] w-[25%] rounded-full bg-black/20" />
         <p
           lang="ko"
-          className="mt-[12%] font-mono text-[clamp(6px,1.3cqw,9px)] uppercase text-black/55"
+          className="font-ko-sans mt-[12%] text-[clamp(6px,1.3cqw,9px)] text-black/55 tracking-normal"
         >
           한국 계좌 / 사용 가능
         </p>
@@ -1151,8 +1156,10 @@ function TwoShoresAppBoard() {
             ["환율", "bg-[#ded8c8]"],
             ["기록", "bg-[#ded8c8]"],
           ].map(([label, tone]) => (
-            <div key={label} lang="ko" className={`${tone} p-[10%]`}>
-              <span className="font-mono text-[clamp(6px,1.25cqw,9px)] font-bold">{label}</span>
+            <div key={label} lang="ko" className={`font-ko-sans ${tone} p-[10%]`}>
+              <span className="text-[clamp(6px,1.25cqw,9px)] font-bold tracking-normal">
+                {label}
+              </span>
             </div>
           ))}
         </div>
@@ -1192,7 +1199,12 @@ function TwoShoresMemberBoard() {
 
       <div className="absolute bottom-[5%] right-[5%] h-[68%] w-[46%] rotate-2 overflow-hidden bg-white p-[6%] shadow-[0_18px_38px_rgba(11,44,56,.25)]">
         <div className="flex justify-between border-b border-black/30 pb-[6%] font-mono text-[clamp(5px,1.2cqw,8px)] uppercase">
-          <span>Transfer / 송금</span>
+          <span>
+            Transfer /{" "}
+            <span lang="ko" className="font-ko-sans normal-case tracking-normal">
+              송금
+            </span>
+          </span>
           <span>TS-260417</span>
         </div>
         <div className="mt-[9%] space-y-[7%] font-mono text-[clamp(6px,1.25cqw,9px)] uppercase">
@@ -1214,7 +1226,10 @@ function TwoShoresMemberBoard() {
           </div>
         </div>
         <div className="my-[10%] border-y border-dashed border-black/35 py-[8%]">
-          <p lang="ko" className="text-[clamp(11px,3.6cqw,24px)] font-black leading-[0.9]">
+          <p
+            lang="ko"
+            className="font-ko-sans text-[clamp(11px,3.6cqw,24px)] font-black leading-[1] tracking-[-0.025em]"
+          >
             양쪽에서
             <br />
             같이 확인했습니다.
@@ -1272,12 +1287,12 @@ function TwoShoresCampaignBoard() {
             </div>
           </div>
           <div className="relative bg-[#a8dfd3] p-[8%]">
-            <p lang="ko" className="font-mono text-[clamp(5px,1.05cqw,8px)] uppercase">
+            <p lang="ko" className="font-ko-sans text-[clamp(5px,1.05cqw,8px)] tracking-normal">
               서울 / 동행 방향
             </p>
             <p
               lang="ko"
-              className="mt-[18%] text-[clamp(17px,4cqw,39px)] font-black leading-[0.8] tracking-[-0.05em]"
+              className="font-ko-sans mt-[18%] text-[clamp(17px,4cqw,39px)] font-black leading-[1] tracking-[-0.025em]"
             >
               건너가기 전에
               <br />

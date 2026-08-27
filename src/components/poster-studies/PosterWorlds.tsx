@@ -126,7 +126,9 @@ function MemoryTypePoster() {
       <div className="absolute left-[6.5cqw] top-[6.3cqw] flex items-center gap-[2.3cqw] font-mono text-[max(6px,1.75cqw)] uppercase tracking-[0.16em]">
         <span>Archive no. 26—02</span>
         <span className="h-[1.2cqw] w-[1.2cqw] rounded-full bg-[#b73527]" />
-        <span>문학 / 기록 / 활자</span>
+        <span lang="ko" className="font-ko-sans tracking-[0.02em]">
+          문학 / 기록 / 활자
+        </span>
       </div>
 
       <div className="absolute left-[8cqw] top-[20cqw] grid w-[68cqw] grid-cols-2 border-l border-t border-[#1a1b18]">
@@ -138,6 +140,7 @@ function MemoryTypePoster() {
         ].map(([character, number], index) => (
           <div
             key={character}
+            lang="ko"
             className={`relative flex aspect-square items-center justify-center overflow-hidden border-b border-r border-[#1a1b18] ${
               index === 1 || index === 2 ? "bg-[#b73527] text-[#eee5d2]" : "text-[#191a17]"
             }`}
@@ -145,22 +148,26 @@ function MemoryTypePoster() {
             <span className="absolute left-[2cqw] top-[1.6cqw] font-mono text-[max(6px,1.5cqw)] tracking-[0.12em]">
               {number}
             </span>
-            <span className="translate-y-[0.5cqw] text-[21cqw] font-black leading-none tracking-[-0.16em]">
+            <span className="font-ko-sans translate-y-[0.2cqw] text-[19cqw] font-black leading-none tracking-[-0.025em]">
               {character}
             </span>
-            <span className="absolute bottom-[2.8cqw] right-0 h-[2.3cqw] w-[17cqw] bg-current opacity-80" />
-            <span className="absolute right-[3cqw] top-0 h-[12cqw] w-[2.3cqw] bg-current opacity-80" />
           </div>
         ))}
       </div>
 
-      <p className="absolute right-[6.5cqw] top-[18cqw] font-serif text-[4.6cqw] font-semibold tracking-[0.08em] [writing-mode:vertical-rl]">
+      <p
+        lang="ko"
+        className="font-ko-sans absolute right-[6.5cqw] top-[18cqw] text-[4.3cqw] font-bold tracking-[0.02em] [writing-mode:vertical-rl]"
+      >
         기억의 활자
       </p>
 
       <div className="absolute bottom-[5.8cqw] left-[6.5cqw] grid w-[61cqw] grid-cols-[1fr_auto] gap-[4cqw]">
         <div>
-          <p className="font-serif text-[3.4cqw] font-semibold leading-[1.25]">
+          <p
+            lang="ko"
+            className="font-ko-sans text-[3.4cqw] font-semibold leading-[1.28] tracking-[-0.02em]"
+          >
             사라지는 목소리를
             <br />한 글자씩 보존한다.
           </p>
@@ -194,7 +201,7 @@ export function MemoryTypeWorld() {
         </div>
         <p
           lang="ko"
-          className="mt-[8%] text-[clamp(32px,7vw,92px)] font-black leading-[0.73] tracking-[-0.18em]"
+          className="font-ko-sans mt-[8%] text-[clamp(32px,7vw,92px)] font-black leading-[1.05] tracking-[-0.03em]"
         >
           동네
           <br />
@@ -211,7 +218,7 @@ export function MemoryTypeWorld() {
         </p>
         <p
           lang="ko"
-          className="mt-[5%] font-serif text-[clamp(16px,2.4vw,34px)] font-semibold leading-none"
+          className="font-ko-sans mt-[5%] text-[clamp(16px,2.4vw,34px)] font-semibold leading-[1.08] tracking-[-0.02em]"
         >
           손의 속도가 남긴 획
         </p>
@@ -219,7 +226,8 @@ export function MemoryTypeWorld() {
           {["ㄱ", "ㅣ", "ㅇ", "ㅓ"].map((letter) => (
             <span
               key={letter}
-              className="flex aspect-square items-center justify-center border-b border-r border-black/30 text-[clamp(12px,2vw,26px)] font-black"
+              lang="ko"
+              className="font-ko-sans flex aspect-square items-center justify-center border-b border-r border-black/30 text-[clamp(12px,2vw,26px)] font-black tracking-normal"
             >
               {letter}
             </span>
@@ -654,7 +662,7 @@ function PublicMemoryPoster() {
 
       <p
         lang="ko"
-        className="absolute left-[4cqw] top-[37cqw] text-[19cqw] font-black leading-[0.72] tracking-[-0.13em]"
+        className="font-ko-sans absolute left-[4cqw] top-[37cqw] text-[17.5cqw] font-black leading-[0.91] tracking-[-0.035em]"
       >
         도시의
         <br />
@@ -668,21 +676,27 @@ function PublicMemoryPoster() {
         <span className="flex h-[12cqw] w-[12cqw] items-center justify-center rounded-full bg-[#2748a8] font-mono text-[3cqw] font-bold text-white">
           P7
         </span>
-        <div className="grid grid-cols-3 gap-[2cqw] font-mono text-[max(6px,1.5cqw)] uppercase leading-[1.45]">
-          <p>
+        <div className="grid grid-cols-3 gap-[2cqw] text-[max(6px,1.5cqw)] uppercase leading-[1.45]">
+          <p className="font-mono">
             Market
             <br />
-            시장
+            <span lang="ko" className="font-ko-sans normal-case tracking-normal">
+              시장
+            </span>
           </p>
-          <p>
+          <p className="font-mono">
             Library
             <br />
-            도서관
+            <span lang="ko" className="font-ko-sans normal-case tracking-normal">
+              도서관
+            </span>
           </p>
-          <p>
+          <p className="font-mono">
             Square
             <br />
-            광장
+            <span lang="ko" className="font-ko-sans normal-case tracking-normal">
+              광장
+            </span>
           </p>
         </div>
       </div>
@@ -708,14 +722,19 @@ export function PublicMemoryWorld() {
 
       <div className="absolute left-[4%] top-[11%] w-[39%] -rotate-2 bg-[#161616] px-[4%] py-[3%] text-[#f1d83d] shadow-[0_22px_45px_rgba(76,28,20,0.38)] sm:left-[8%] sm:w-[42%] sm:px-[3%] sm:py-[2%]">
         <div className="flex items-center justify-between font-mono text-[clamp(6px,0.78vw,10px)] font-bold uppercase tracking-[0.15em]">
-          <span>P7 / 공공기억</span>
+          <span>
+            P7 /{" "}
+            <span lang="ko" className="font-ko-sans tracking-normal">
+              공공기억
+            </span>
+          </span>
           <span className="text-[#e9472f]">320 m</span>
         </div>
         <div className="mt-[6%] flex items-center gap-[6%]">
           <span className="text-[clamp(32px,6vw,82px)] font-black leading-none">←</span>
           <p
             lang="ko"
-            className="text-[clamp(17px,3vw,40px)] font-black leading-[0.9] tracking-[-0.06em]"
+            className="font-ko-sans text-[clamp(17px,3vw,40px)] font-black leading-[1] tracking-[-0.025em]"
           >
             오래된
             <br />
