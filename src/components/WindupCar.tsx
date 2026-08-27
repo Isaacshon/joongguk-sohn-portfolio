@@ -5,6 +5,7 @@ import {
   type KeyboardEvent as ReactKeyboardEvent,
   type MouseEvent as ReactMouseEvent,
   type PointerEvent as ReactPointerEvent,
+  type WheelEvent as ReactWheelEvent,
 } from "react";
 import { ToyPullFeedback } from "@/components/ToyPullFeedback";
 import { usePrefersReducedMotion } from "@/hooks/use-reduced-motion";
@@ -31,6 +32,7 @@ type Props = {
 
 type Point = { top: number; left: number };
 type Velocity = { vx: number; vy: number };
+type InteractionMode = "desktop" | "pull";
 type Dimensions = {
   parentW: number;
   parentH: number;
@@ -38,10 +40,14 @@ type Dimensions = {
   carH: number;
 };
 
-const MIN_TENSION = 0.06;
-const MIN_SPEED = 150;
-const MAX_SPEED = 720;
-const FRICTION = 610;
+const PULL_MIN_TENSION = 0.06;
+const DESKTOP_MIN_TENSION = 0.035;
+const PULL_MIN_SPEED = 150;
+const PULL_MAX_SPEED = 720;
+const PULL_FRICTION = 610;
+const DESKTOP_MIN_SPEED = 140;
+const DESKTOP_MAX_SPEED = 760;
+const DESKTOP_FRICTION = 980;
 const STOP_SPEED = 16;
 const IMPACT_HAPTIC_COOLDOWN = 180;
 
@@ -50,6 +56,7 @@ export function WindupCar({ src, alt, top, left, width, heading = 0, z = 12, del
   const frame = useRef<number | null>(null);
   const lastFrame = useRef(0);
   const motionDimensions = useRef<Dimensions | null>(null);
+  const motionMode = useRef<InteractionMode>("pull");
   const posRef = useRef<Point>({ top, left });
   const windRef = useRef(0);
   const headingRef = useRef(heading);
@@ -61,8 +68,11 @@ export function WindupCar({ src, alt, top, left, width, heading = 0, z = 12, del
   const lastImpactHaptic = useRef(0);
   const drag = useRef({
     pointerId: -1,
+    mode: "pull" as InteractionMode,
     startX: 0,
     startY: 0,
+    lastX: 0,
+    lastY: 0,
     top,
     left,
     startHeading: heading,
@@ -112,11 +122,12 @@ export function WindupCar({ src, alt, top, left, width, heading = 0, z = 12, del
     };
   };
 
-  const clampPosition = (next: Point, dims = measure()) => {
+  const clampPosition = (next: Point, dims = measure(), mode: InteractionMode = "pull") => {
     if (!dims) return next;
 
-    const xPad = ((dims.carW * 0.42) / dims.parentW) * 100;
-    const yPad = ((dims.carH * 0.42) / dims.parentH) * 100;
+    const boundary = mode === "desktop" ? 0.36 : 0.42;
+    const xPad = ((dims.carW * boundary) / dims.parentW) * 100;
+    const yPad = ((dims.carH * boundary) / dims.parentH) * 100;
 
     return {
       top: clamp(next.top, yPad, 100 - yPad),
@@ -146,16 +157,21 @@ export function WindupCar({ src, alt, top, left, width, heading = 0, z = 12, del
 
     let { vx, vy } = velocity.current;
     let speed = Math.hypot(vx, vy);
+    const desktopMotion = motionMode.current === "desktop";
+    const boundary = desktopMotion ? 0.36 : 0.42;
+    const bounce = desktopMotion ? 0.36 : 0.32;
+    const tangentFriction = desktopMotion ? 0.8 : 0.82;
+    const motionFriction = desktopMotion ? DESKTOP_FRICTION : PULL_FRICTION;
 
     if (speed < STOP_SPEED) {
       stopMotion();
       return;
     }
 
-    const minX = dims.carW * 0.42;
-    const maxX = dims.parentW - dims.carW * 0.42;
-    const minY = dims.carH * 0.42;
-    const maxY = dims.parentH - dims.carH * 0.42;
+    const minX = dims.carW * boundary;
+    const maxX = dims.parentW - dims.carW * boundary;
+    const minY = dims.carH * boundary;
+    const maxY = dims.parentH - dims.carH * boundary;
 
     let x = (posRef.current.left / 100) * dims.parentW + vx * dt;
     let y = (posRef.current.top / 100) * dims.parentH + vy * dt;
@@ -163,15 +179,15 @@ export function WindupCar({ src, alt, top, left, width, heading = 0, z = 12, del
 
     if (x < minX || x > maxX) {
       x = clamp(x, minX, maxX);
-      vx *= -0.32;
-      vy *= 0.82;
+      vx *= -bounce;
+      vy *= tangentFriction;
       bounced = true;
     }
 
     if (y < minY || y > maxY) {
       y = clamp(y, minY, maxY);
-      vy *= -0.32;
-      vx *= 0.82;
+      vy *= -bounce;
+      vx *= tangentFriction;
       bounced = true;
     }
 
@@ -185,7 +201,7 @@ export function WindupCar({ src, alt, top, left, width, heading = 0, z = 12, del
     }
 
     speed = Math.hypot(vx, vy);
-    const nextSpeed = Math.max(0, speed - FRICTION * dt);
+    const nextSpeed = Math.max(0, speed - motionFriction * dt);
 
     if (speed > 0) {
       const ratio = nextSpeed / speed;
@@ -227,6 +243,7 @@ export function WindupCar({ src, alt, top, left, width, heading = 0, z = 12, del
 
     const dims = measure();
     if (!dims) return;
+    const mode: InteractionMode = event.pointerType === "mouse" ? "desktop" : "pull";
 
     event.preventDefault();
     event.stopPropagation();
@@ -234,8 +251,11 @@ export function WindupCar({ src, alt, top, left, width, heading = 0, z = 12, del
 
     drag.current = {
       pointerId: event.pointerId,
+      mode,
       startX: event.clientX,
       startY: event.clientY,
+      lastX: event.clientX,
+      lastY: event.clientY,
       top: posRef.current.top,
       left: posRef.current.left,
       startHeading: headingRef.current,
@@ -246,7 +266,7 @@ export function WindupCar({ src, alt, top, left, width, heading = 0, z = 12, del
 
     draggingRef.current = true;
     suppressClick.current = true;
-    hapticsActive.current = event.pointerType !== "mouse" && !reducedMotion;
+    hapticsActive.current = mode === "pull" && !reducedMotion;
     lastHapticStep.current = 0;
     setDragging(true);
     setInteracted(true);
@@ -260,6 +280,31 @@ export function WindupCar({ src, alt, top, left, width, heading = 0, z = 12, del
 
     event.preventDefault();
     event.stopPropagation();
+
+    if (drag.current.mode === "desktop") {
+      const dxPct = ((event.clientX - drag.current.startX) / drag.current.parentW) * 100;
+      const dyPct = ((event.clientY - drag.current.startY) / drag.current.parentH) * 100;
+
+      setPosition(
+        clampPosition(
+          {
+            top: drag.current.top + dyPct,
+            left: drag.current.left + dxPct,
+          },
+          measure(),
+          "desktop",
+        ),
+      );
+
+      const moveX = event.clientX - drag.current.lastX;
+      const moveY = event.clientY - drag.current.lastY;
+      if (Math.hypot(moveX, moveY) > 1.5) {
+        setHeading((Math.atan2(moveY, moveX) * 180) / Math.PI);
+      }
+      drag.current.lastX = event.clientX;
+      drag.current.lastY = event.clientY;
+      return;
+    }
 
     const gesture = calculateElasticPull(
       event.clientX - drag.current.startX,
@@ -285,20 +330,25 @@ export function WindupCar({ src, alt, top, left, width, heading = 0, z = 12, del
     }
   };
 
-  const launch = () => {
+  const launch = (mode: InteractionMode = "pull") => {
     const amount = windRef.current;
-    if (amount < MIN_TENSION) return false;
+    const threshold = mode === "desktop" ? DESKTOP_MIN_TENSION : PULL_MIN_TENSION;
+    if (amount < threshold) return false;
 
     const dims = measure();
     if (!dims) return false;
 
-    const speed = MIN_SPEED + (MAX_SPEED - MIN_SPEED) * getLaunchPower(amount);
+    const minSpeed = mode === "desktop" ? DESKTOP_MIN_SPEED : PULL_MIN_SPEED;
+    const maxSpeed = mode === "desktop" ? DESKTOP_MAX_SPEED : PULL_MAX_SPEED;
+    const power = mode === "desktop" ? amount : getLaunchPower(amount);
+    const speed = minSpeed + (maxSpeed - minSpeed) * power;
     const radians = (headingRef.current * Math.PI) / 180;
     velocity.current = {
       vx: Math.cos(radians) * speed,
       vy: Math.sin(radians) * speed,
     };
     motionDimensions.current = dims;
+    motionMode.current = mode;
     lastFrame.current = performance.now();
     setWindAmount(0);
     setMoving(true);
@@ -306,11 +356,12 @@ export function WindupCar({ src, alt, top, left, width, heading = 0, z = 12, del
     return true;
   };
 
-  const nudgeReducedMotion = (amount: number) => {
+  const nudgeReducedMotion = (amount: number, mode: InteractionMode = "pull") => {
     const dims = measure();
     if (!dims) return;
 
-    const distance = 18 + getLaunchPower(amount) * 28;
+    const power = mode === "desktop" ? amount : getLaunchPower(amount);
+    const distance = 18 + power * 28;
     const radians = (headingRef.current * Math.PI) / 180;
     setWindAmount(0);
     setPosition(
@@ -320,6 +371,7 @@ export function WindupCar({ src, alt, top, left, width, heading = 0, z = 12, del
           left: posRef.current.left + (Math.cos(radians) * distance * 100) / dims.parentW,
         },
         dims,
+        mode,
       ),
     );
   };
@@ -348,7 +400,18 @@ export function WindupCar({ src, alt, top, left, width, heading = 0, z = 12, del
     releasePointer(event.pointerId);
     clearClickSuppression();
 
-    if (amount < MIN_TENSION) {
+    if (drag.current.mode === "desktop") {
+      if (amount < DESKTOP_MIN_TENSION) {
+        setWindAmount(0);
+        return;
+      }
+
+      if (reducedMotion) nudgeReducedMotion(amount, "desktop");
+      else launch("desktop");
+      return;
+    }
+
+    if (amount < PULL_MIN_TENSION) {
       setWindAmount(0);
       setHeading(drag.current.startHeading);
       setPosition(clampPosition({ top: drag.current.top, left: drag.current.left }));
@@ -381,7 +444,24 @@ export function WindupCar({ src, alt, top, left, width, heading = 0, z = 12, del
 
   const cancelDrag = (event: ReactPointerEvent<HTMLDivElement>) => {
     if (!draggingRef.current || event.pointerId !== drag.current.pointerId) return;
+    if (drag.current.mode === "desktop") {
+      draggingRef.current = false;
+      setDragging(false);
+      setWindAmount(0);
+      setPull({ distance: 0, heading: headingRef.current });
+      releasePointer(event.pointerId);
+      clearClickSuppression();
+      return;
+    }
     resetDrag(event.pointerId);
+  };
+
+  const onWheel = (event: ReactWheelEvent<HTMLDivElement>) => {
+    if (!draggingRef.current || drag.current.mode !== "desktop") return;
+
+    event.stopPropagation();
+    const delta = event.deltaMode === 1 ? Math.abs(event.deltaY) * 24 : Math.abs(event.deltaY);
+    setWindAmount(windRef.current + Math.min(0.18, delta / 680));
   };
 
   const activate = () => {
@@ -419,7 +499,7 @@ export function WindupCar({ src, alt, top, left, width, heading = 0, z = 12, del
   const carRotation = angle + 90;
   const widthValue = typeof width === "number" ? `${width}px` : width;
   const scale = dragging ? 1.08 : moving ? 1.03 : hover ? 1.04 : 1;
-  const lift = dragging ? 12 + wind * 8 : hover ? 5 : 0;
+  const lift = dragging ? 12 + (drag.current.mode === "pull" ? wind * 8 : 0) : hover ? 5 : 0;
   const windTurns = wind * 2.75;
 
   return (
@@ -428,7 +508,7 @@ export function WindupCar({ src, alt, top, left, width, heading = 0, z = 12, del
       data-no-pan
       role="button"
       tabIndex={0}
-      aria-label={`${alt}. Pull back and release to launch.`}
+      aria-label={`${alt}. Drag to move. On touch, pull back and release to launch.`}
       aria-keyshortcuts="Enter Space Escape"
       onClick={onClick}
       onKeyDown={onKeyDown}
@@ -437,6 +517,7 @@ export function WindupCar({ src, alt, top, left, width, heading = 0, z = 12, del
       onPointerUp={onPointerUp}
       onPointerCancel={cancelDrag}
       onLostPointerCapture={cancelDrag}
+      onWheel={onWheel}
       onPointerEnter={() => setHover(true)}
       onPointerLeave={() => setHover(false)}
       className="windup-car absolute select-none touch-none rounded-full outline-none focus-visible:ring-2 focus-visible:ring-[#f5efe2] focus-visible:ring-offset-4 focus-visible:ring-offset-[#164f48]"
@@ -466,7 +547,7 @@ export function WindupCar({ src, alt, top, left, width, heading = 0, z = 12, del
         heading={pull.heading}
         parentRotation={carRotation}
         tension={wind}
-        visible={dragging && wind > 0.01}
+        visible={dragging && drag.current.mode === "pull" && wind > 0.01}
         showHint={!interacted && mounted}
       />
       <div
