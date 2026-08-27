@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Clapperboard, Grid3X3, Images, Instagram, Play, UserRound } from "lucide-react";
+import type { SyntheticEvent } from "react";
 
 import { MatLayout } from "@/components/MatLayout";
 import grid01 from "@/assets/instagram-feed/01-dcr6etzgvrn.jpg";
@@ -8,12 +9,12 @@ import grid03 from "@/assets/instagram-feed/03-dclvucgm9ga.jpg";
 import grid04 from "@/assets/instagram-feed/04-dcipur-uium.jpg";
 import grid05 from "@/assets/instagram-feed/05-dcchs5ymsjv.jpg";
 import grid06 from "@/assets/instagram-feed/06-db8jqxrdua7.jpg";
-import grid07 from "@/assets/instagram-feed/07-dbtyttblld.jpg";
-
-type InstagramMediaType = "IMAGE" | "VIDEO" | "CAROUSEL_ALBUM";
-
-const INSTAGRAM_USERNAME = "lsaac_toast";
-const INSTAGRAM_PROFILE_URL = `https://www.instagram.com/${INSTAGRAM_USERNAME}/`;
+import { getInstagramFeed } from "@/lib/api/instagram.functions";
+import {
+  getInstagramProfileUrl,
+  type InstagramMediaType,
+  type InstagramPost,
+} from "@/lib/instagram";
 
 export const Route = createFileRoute("/model")({
   head: () => ({
@@ -31,82 +32,26 @@ export const Route = createFileRoute("/model")({
       },
     ],
   }),
+  loader: () => getInstagramFeed(),
+  staleTime: 5 * 60 * 1_000,
   component: Model,
 });
 
-type SavedPost = {
-  id: string;
-  permalink: string;
-  mediaType: InstagramMediaType;
+type DisplayPost = InstagramPost & {
   mediaUrl: string;
-  caption: string;
-  alt: string;
+  fallbackUrl: string;
 };
 
-const savedPosts: SavedPost[] = [
-  {
-    id: "DcR6eTZGVRN",
-    permalink: "https://www.instagram.com/lsaac_toast/p/DcR6eTZGVRN/",
-    mediaType: "CAROUSEL_ALBUM",
-    mediaUrl: grid01,
-    caption: "졸리면 진해지는 쌍꺼풀. Clouds of the Northern Hemisphere — Toronto field notes.",
-    alt: "Isaac Sohn lying in green grass in a close-up portrait",
-  },
-  {
-    id: "DcMvsduv9HF",
-    permalink: "https://www.instagram.com/lsaac_toast/reel/DcMvsduv9HF/",
-    mediaType: "VIDEO",
-    mediaUrl: grid02,
-    caption:
-      "Finally choosing to create instead of just watching — modeling, acting, and everyday life in Toronto.",
-    alt: "A dark cinematic reel cover introducing Isaac Sohn's creative journey",
-  },
-  {
-    id: "DcLVUcGm9Ga",
-    permalink: "https://www.instagram.com/lsaac_toast/p/DcLVUcGm9Ga/",
-    mediaType: "CAROUSEL_ALBUM",
-    mediaUrl: grid03,
-    caption: "조금은 시원해진 것 같기도.",
-    alt: "Isaac Sohn in a low-light close-up selfie",
-  },
-  {
-    id: "DcIPUR-uIUm",
-    permalink: "https://www.instagram.com/lsaac_toast/reel/DcIPUR-uIUm/",
-    mediaType: "VIDEO",
-    mediaUrl: grid04,
-    caption: "Hi, I’m Isaac — a Korean model, actor and writer based in Toronto.",
-    alt: "Isaac Sohn wearing a gray polo in an introductory reel",
-  },
-  {
-    id: "DcCHs5ymSJV",
-    permalink: "https://www.instagram.com/lsaac_toast/p/DcCHs5ymSJV/",
-    mediaType: "CAROUSEL_ALBUM",
-    mediaUrl: grid05,
-    caption: "🐈 ⭐ 🌝",
-    alt: "A close side-profile portrait of Isaac Sohn",
-  },
-  {
-    id: "Db8jQxrDuA7",
-    permalink: "https://www.instagram.com/lsaac_toast/p/Db8jQxrDuA7/",
-    mediaType: "CAROUSEL_ALBUM",
-    mediaUrl: grid06,
-    caption: "Skipping leg days.",
-    alt: "Isaac Sohn photographed outdoors in daylight",
-  },
-  {
-    id: "DbTYTtblld",
-    permalink: "https://www.instagram.com/hanbyul.official/p/DbTYTtblld-/",
-    mediaType: "CAROUSEL_ALBUM",
-    mediaUrl: grid07,
-    caption: "HANBYUL FW2026 — dropping August 20, 6PM EST.",
-    alt: "Isaac Sohn modeling for Hanbyul while reclining on a park bench",
-  },
-];
+const fallbackMedia = [grid01, grid02, grid03, grid04, grid05, grid06];
 
-const savedProfileStats = {
-  followers: 1_583,
-  following: 264,
-};
+function recoverLocalImage(event: SyntheticEvent<HTMLImageElement>, fallbackUrl: string) {
+  const image = event.currentTarget;
+
+  if (image.dataset.fallbackApplied !== "true") {
+    image.dataset.fallbackApplied = "true";
+    image.src = fallbackUrl;
+  }
+}
 
 function MediaMark({ type }: { type: InstagramMediaType }) {
   if (type === "VIDEO") {
@@ -121,7 +66,7 @@ function MediaMark({ type }: { type: InstagramMediaType }) {
 }
 
 type GridTileProps = {
-  post: SavedPost;
+  post: DisplayPost;
   index: number;
 };
 
@@ -144,6 +89,7 @@ function GridTile({ post, index }: GridTileProps) {
           fetchPriority={index < 3 ? "high" : "auto"}
           decoding="async"
           referrerPolicy="no-referrer"
+          onError={(event) => recoverLocalImage(event, post.fallbackUrl)}
           className="h-full w-full object-cover saturate-[0.9] transition duration-500 group-hover:scale-[1.015] group-hover:saturate-100 motion-reduce:transition-none"
         />
 
@@ -165,9 +111,21 @@ function GridTile({ post, index }: GridTileProps) {
 }
 
 function Model() {
-  const posts = savedPosts;
-  const profileImage = grid01;
-  const postCount = posts.length;
+  const feed = Route.useLoaderData();
+  const { profile } = feed;
+  const profileUrl = getInstagramProfileUrl(profile.username);
+  const profileImage = profile.profilePictureUrl ?? grid01;
+  const bioLines = profile.biography.split("\n").filter(Boolean);
+  const posts: DisplayPost[] = feed.posts.slice(0, 6).map((post, index) => {
+    const fallbackUrl = fallbackMedia[index % fallbackMedia.length];
+
+    return {
+      ...post,
+      mediaUrl: post.mediaUrl ?? fallbackUrl,
+      fallbackUrl,
+    };
+  });
+  const isLive = feed.status === "live";
 
   return (
     <MatLayout surface="plain" contentClassName="max-w-none pt-11">
@@ -184,7 +142,9 @@ function Model() {
                 <div className="h-full w-full rounded-full bg-[#fafaf8] p-[3px] sm:p-1">
                   <img
                     src={profileImage}
-                    alt="Isaac Sohn"
+                    alt={profile.name}
+                    referrerPolicy="no-referrer"
+                    onError={(event) => recoverLocalImage(event, grid01)}
                     className="h-full w-full rounded-full object-cover"
                   />
                 </div>
@@ -194,7 +154,7 @@ function Model() {
             <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
                 <h1 className="flex min-w-0 items-center gap-1.5 text-xl font-normal tracking-[-0.02em] sm:text-2xl">
-                  <span className="truncate">{INSTAGRAM_USERNAME}</span>
+                  <span className="truncate">{profile.username}</span>
                   <span
                     aria-label="Professional account"
                     title="Professional account"
@@ -205,17 +165,17 @@ function Model() {
                 </h1>
 
                 <a
-                  href={INSTAGRAM_PROFILE_URL}
+                  href={profileUrl}
                   target="_blank"
                   rel="noreferrer"
-                  aria-label={`Follow @${INSTAGRAM_USERNAME} on Instagram`}
+                  aria-label={`Follow @${profile.username} on Instagram`}
                   className="inline-flex min-h-9 items-center justify-center rounded-lg bg-[#0095f6] px-5 text-sm font-semibold text-white outline-none transition-colors hover:bg-[#1877f2] focus-visible:ring-2 focus-visible:ring-[#101820] focus-visible:ring-offset-2 focus-visible:ring-offset-[#fafaf8]"
                 >
                   Follow
                 </a>
 
                 <a
-                  href={INSTAGRAM_PROFILE_URL}
+                  href={profileUrl}
                   target="_blank"
                   rel="noreferrer"
                   className="hidden min-h-9 items-center justify-center rounded-lg bg-[#e8e8e5] px-4 text-sm font-semibold outline-none transition-colors hover:bg-[#ddddda] focus-visible:ring-2 focus-visible:ring-[#101820] focus-visible:ring-offset-2 sm:inline-flex"
@@ -228,63 +188,85 @@ function Model() {
                 <div className="flex gap-1.5">
                   <dt className="order-2">posts</dt>
                   <dd className="order-1 font-semibold tabular-nums">
-                    {postCount.toLocaleString("en-US")}
+                    {profile.mediaCount.toLocaleString("en-US")}
                   </dd>
                 </div>
                 <div className="flex gap-1.5">
                   <dt className="order-2">followers</dt>
                   <dd className="order-1 font-semibold tabular-nums">
-                    {savedProfileStats.followers.toLocaleString("en-US")}
+                    {profile.followersCount.toLocaleString("en-US")}
                   </dd>
                 </div>
                 <div className="flex gap-1.5">
                   <dt className="order-2">following</dt>
                   <dd className="order-1 font-semibold tabular-nums">
-                    {savedProfileStats.following.toLocaleString("en-US")}
+                    {profile.followsCount.toLocaleString("en-US")}
                   </dd>
                 </div>
               </dl>
 
               <div className="mt-5 hidden text-sm leading-relaxed sm:block">
-                <p className="font-semibold">Isaac Sohn</p>
-                <p className="text-[#737373]">Model · Actor · Writer</p>
-                <p>Korean creative based in Toronto.</p>
-                <p>Brand Copywriter &amp; Model @hanbyul.official</p>
+                <p className="font-semibold">{profile.name}</p>
+                {bioLines.map((line, index) => (
+                  <p
+                    key={`${line}-${index}`}
+                    className={index === 0 ? "text-[#737373]" : undefined}
+                  >
+                    {line}
+                  </p>
+                ))}
               </div>
             </div>
 
             <div className="col-span-2 mt-5 sm:col-span-1 sm:col-start-2 sm:mt-4">
               <div className="text-sm leading-relaxed sm:hidden">
-                <p className="font-semibold">Isaac Sohn</p>
-                <p className="text-[#737373]">Model · Actor · Writer</p>
-                <p>Korean creative based in Toronto.</p>
-                <p>Brand Copywriter &amp; Model @hanbyul.official</p>
+                <p className="font-semibold">{profile.name}</p>
+                {bioLines.map((line, index) => (
+                  <p
+                    key={`${line}-${index}`}
+                    className={index === 0 ? "text-[#737373]" : undefined}
+                  >
+                    {line}
+                  </p>
+                ))}
               </div>
 
               <dl className="mt-5 grid grid-cols-3 border-y border-[#dbdbd8] py-3 text-center text-xs sm:hidden">
                 <div className="flex flex-col">
                   <dt className="order-2 text-[#737373]">posts</dt>
                   <dd className="order-1 text-sm font-semibold tabular-nums">
-                    {postCount.toLocaleString("en-US")}
+                    {profile.mediaCount.toLocaleString("en-US")}
                   </dd>
                 </div>
                 <div className="flex flex-col">
                   <dt className="order-2 text-[#737373]">followers</dt>
                   <dd className="order-1 text-sm font-semibold tabular-nums">
-                    {savedProfileStats.followers.toLocaleString("en-US")}
+                    {profile.followersCount.toLocaleString("en-US")}
                   </dd>
                 </div>
                 <div className="flex flex-col">
                   <dt className="order-2 text-[#737373]">following</dt>
                   <dd className="order-1 text-sm font-semibold tabular-nums">
-                    {savedProfileStats.following.toLocaleString("en-US")}
+                    {profile.followsCount.toLocaleString("en-US")}
                   </dd>
                 </div>
               </dl>
 
-              <p className="mt-3 flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.13em] text-[#737373] sm:mt-0 sm:text-[10px]">
-                <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#2f7d52]" />
-                Direct-linked Instagram grid
+              <p
+                className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[9px] uppercase tracking-[0.13em] text-[#737373] sm:mt-0 sm:text-[10px]"
+                title={feed.syncedAt ? `Last synced ${feed.syncedAt}` : "Saved profile snapshot"}
+              >
+                <span
+                  aria-hidden="true"
+                  className={`h-1.5 w-1.5 rounded-full ${isLive ? "bg-[#2f7d52]" : "bg-[#b77728]"}`}
+                />
+                <span className="font-semibold text-[#384048]">{isLive ? "Live" : "Cached"}</span>
+                <span aria-hidden="true" className="text-[#b3b3ae]">
+                  /
+                </span>
+                <span className="normal-case tracking-[0.05em]">
+                  {isLive ? "refreshes every 5 min" : "saved profile"}
+                </span>
               </p>
             </div>
           </div>
@@ -304,7 +286,7 @@ function Model() {
               Posts
             </a>
             <a
-              href={`${INSTAGRAM_PROFILE_URL}reels/`}
+              href={`${profileUrl}reels/`}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-1.5 font-mono text-[9px] font-semibold uppercase tracking-[0.14em] text-[#737373] outline-none transition-colors hover:text-[#101820] focus-visible:ring-2 focus-visible:ring-[#101820] sm:text-[10px]"
@@ -313,7 +295,7 @@ function Model() {
               Reels
             </a>
             <a
-              href={`${INSTAGRAM_PROFILE_URL}tagged/`}
+              href={`${profileUrl}tagged/`}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-1.5 font-mono text-[9px] font-semibold uppercase tracking-[0.14em] text-[#737373] outline-none transition-colors hover:text-[#101820] focus-visible:ring-2 focus-visible:ring-[#101820] sm:text-[10px]"
@@ -326,7 +308,7 @@ function Model() {
 
         <section
           id="instagram-grid"
-          aria-label={`Latest Instagram posts by @${INSTAGRAM_USERNAME}`}
+          aria-label={`Latest Instagram posts by @${profile.username}`}
           className="mx-auto w-full max-w-[1040px] scroll-mt-14"
         >
           <ul className="grid grid-cols-3 gap-[3px] bg-[#fafaf8] sm:gap-1">
@@ -339,13 +321,13 @@ function Model() {
         <footer className="mx-auto flex w-full max-w-[1040px] flex-col gap-3 border-t border-[#dbdbd8] px-4 py-9 font-mono text-[9px] uppercase tracking-[0.12em] text-[#737373] sm:flex-row sm:items-center sm:justify-between sm:px-8 sm:text-[10px] lg:px-0">
           <p>Isaac Sohn / Model · Actor · Writer</p>
           <a
-            href={INSTAGRAM_PROFILE_URL}
+            href={profileUrl}
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-1.5 outline-none hover:text-[#101820] focus-visible:ring-2 focus-visible:ring-[#101820]"
           >
             <Instagram aria-hidden="true" className="h-3.5 w-3.5" />
-            Instagram / @lsaac_toast ↗
+            Instagram / @{profile.username} ↗
           </a>
         </footer>
       </main>

@@ -17,8 +17,15 @@ import process from "node:process";
 //     VITE_ prefix. Never put secrets here — they ship to the browser.
 
 export function getServerConfig() {
+  const configuredInstagramApiVersion = process.env.INSTAGRAM_API_VERSION;
+  const instagramApiVersion = /^v\d+\.\d+$/.test(configuredInstagramApiVersion ?? "")
+    ? configuredInstagramApiVersion
+    : "v26.0";
+
   return {
     nodeEnv: process.env.NODE_ENV,
+    instagramAccessToken: process.env.INSTAGRAM_ACCESS_TOKEN,
+    instagramApiVersion,
     resendApiKey: process.env.RESEND_API_KEY,
     sidequestToEmail:
       process.env.SIDEQUEST_TO_EMAIL ?? process.env.CONTACT_TO_EMAIL ?? "thswndrnr80@gmail.com",

@@ -27,12 +27,10 @@ import medal21 from "@/assets/medals/medal-21.png";
 const navLinks: { to: LinkProps["to"]; label: string }[] = [
   { to: "/work", label: "Work" },
   { to: "/model", label: "Model" },
-  { to: "/writer", label: "Writer" },
+  { to: "/writer", label: "Books / Writer" },
   { to: "/", label: "About Me" },
   { to: "/services", label: "Services" },
 ];
-
-const bookstoreUrl = "https://store.isaactoast.ca";
 
 const certificationMedals: { label: string; image: string }[] = [
   { label: "Google - Google Ads Search Certification", image: medal01 },
@@ -62,9 +60,15 @@ type MatLayoutProps = {
   children: ReactNode;
   surface?: "mat" | "plain";
   contentClassName?: string;
+  compactMobile?: boolean;
 };
 
-export function MatLayout({ children, surface = "mat", contentClassName = "" }: MatLayoutProps) {
+export function MatLayout({
+  children,
+  surface = "mat",
+  contentClassName = "",
+  compactMobile = false,
+}: MatLayoutProps) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [dragging, setDragging] = useState(false);
@@ -131,24 +135,24 @@ export function MatLayout({ children, surface = "mat", contentClassName = "" }: 
           {link.label}
         </Link>
       ))}
-      <a
-        href={bookstoreUrl}
-        data-no-pan
-        className="pointer-events-auto transition-all duration-200 hover:opacity-70"
-        aria-label="Visit Isaac Toast Bookstore"
-      >
-        Bookstore <span aria-hidden>↗</span>
-      </a>
     </nav>
   );
 
   return (
     <div className="min-h-screen w-full bg-background text-foreground">
-      <div className="grid min-h-screen w-full grid-cols-1 md:grid-cols-[360px_minmax(0,1fr)] xl:grid-cols-[398px_minmax(0,1fr)]">
-        <aside className="grid grid-cols-[88px_minmax(0,1fr)] items-center gap-5 px-4 py-5 md:flex md:flex-col md:items-stretch md:gap-8 md:px-8 md:py-10 lg:px-10">
+      <div className="grid min-h-screen w-full grid-cols-1 lg:grid-cols-[360px_minmax(0,1fr)] xl:grid-cols-[398px_minmax(0,1fr)]">
+        <aside
+          className={`grid items-center px-4 lg:flex lg:flex-col lg:items-stretch lg:gap-8 lg:px-10 lg:py-10 ${
+            compactMobile
+              ? "grid-cols-[56px_minmax(0,1fr)] gap-3 py-3"
+              : "grid-cols-[88px_minmax(0,1fr)] gap-5 py-5"
+          }`}
+        >
           <Link
             to="/"
-            className="group relative block h-[88px] w-[88px] md:h-36 md:w-36"
+            className={`group relative block lg:h-36 lg:w-36 ${
+              compactMobile ? "h-14 w-14" : "h-[88px] w-[88px]"
+            }`}
             aria-label="Go home"
           >
             <img
@@ -168,18 +172,35 @@ export function MatLayout({ children, surface = "mat", contentClassName = "" }: 
             />
           </Link>
 
-          <p className="max-w-[260px] text-[15px] leading-relaxed text-sidebar-fg">
+          {compactMobile && (
+            <p className="text-[13px] font-medium leading-relaxed text-sidebar-fg lg:hidden">
+              Isaac Sohn
+              <span className="block font-normal text-muted-foreground">
+                Writer · Model · Actor
+              </span>
+            </p>
+          )}
+
+          <p
+            className={`max-w-[260px] text-[15px] leading-relaxed text-sidebar-fg ${
+              compactMobile ? "hidden lg:block" : ""
+            }`}
+          >
             Hey there! I'm Isaac. I shape brand systems, digital experiences, visual artwork, and
             stories—and occasionally step in front of the camera.
           </p>
 
-          <div className="col-span-2 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-black/10 pt-3 text-[12px] md:hidden">
+          <div
+            className={`col-span-2 flex-wrap items-center gap-x-5 gap-y-2 border-t border-black/10 pt-3 text-[12px] lg:hidden ${
+              compactMobile ? "hidden" : "flex"
+            }`}
+          >
             <Link to="/book" className="font-semibold text-primary story-link">
               Book a project &rarr;
             </Link>
-            <a href={bookstoreUrl} className="font-semibold text-primary story-link">
-              Bookstore <span aria-hidden>↗</span>
-            </a>
+            <Link to="/writer" className="font-semibold text-primary story-link">
+              Books &amp; writing &rarr;
+            </Link>
             <a
               href="https://www.instagram.com/lsaac_toast?igsh=MjN5NjM1MmZkenNp"
               target="_blank"
@@ -190,7 +211,7 @@ export function MatLayout({ children, surface = "mat", contentClassName = "" }: 
             </a>
           </div>
 
-          <div className="mt-auto hidden space-y-4 text-[14px] md:block">
+          <div className="mt-auto hidden space-y-4 text-[14px] lg:block">
             <Link
               to="/book"
               className="block w-fit font-semibold tracking-[0.18em] text-primary story-link"
@@ -231,9 +252,9 @@ export function MatLayout({ children, surface = "mat", contentClassName = "" }: 
               <a href="#" className="block transition-colors hover:text-foreground">
                 Newsletter
               </a>
-              <a href={bookstoreUrl} className="block transition-colors hover:text-foreground">
-                Bookstore <span aria-hidden>↗</span>
-              </a>
+              <Link to="/writer" className="block transition-colors hover:text-foreground">
+                Books &amp; writing &rarr;
+              </Link>
             </div>
 
             <div className="space-y-2 pt-6">
