@@ -25,6 +25,7 @@ const instagramMediaResponseSchema = z.object({
   media_url: z.string().url().nullish(),
   thumbnail_url: z.string().url().nullish(),
   caption: z.string().nullish(),
+  is_shared_to_feed: z.boolean().optional(),
 });
 
 const instagramErrorSchema = z.object({
@@ -53,7 +54,11 @@ const MEDIA_FIELDS = [
   "media_url",
   "permalink",
   "thumbnail_url",
+  "is_shared_to_feed",
 ].join(",");
+
+const DISPLAYED_MEDIA_LIMIT = 6;
+const UPSTREAM_MEDIA_LIMIT = 100;
 
 async function fetchInstagramJson(url: URL, accessToken: string) {
   const response = await fetch(url, {
@@ -97,7 +102,7 @@ export async function fetchInstagramFeed(): Promise<InstagramFeed> {
 
     const mediaUrl = new URL(`${apiRoot}/me/media`);
     mediaUrl.searchParams.set("fields", MEDIA_FIELDS);
-    mediaUrl.searchParams.set("limit", "6");
+    mediaUrl.searchParams.set("limit", String(UPSTREAM_MEDIA_LIMIT));
 
     const [profileBody, mediaBody] = await Promise.all([
       fetchInstagramJson(profileUrl, accessToken),
@@ -115,30 +120,38 @@ export async function fetchInstagramFeed(): Promise<InstagramFeed> {
       return createInstagramFallback("upstream_error");
     }
 
-    const posts = mediaEnvelope.data.data.flatMap((item): InstagramPost[] => {
-      const parsed = instagramMediaResponseSchema.safeParse(item);
+    const posts = mediaEnvelope.data.data
+      .flatMap((item): InstagramPost[] => {
+        const parsed = instagramMediaResponseSchema.safeParse(item);
 
-      if (!parsed.success) {
-        return [];
-      }
+        if (!parsed.success) {
+          return [];
+        }
 
-      const caption = parsed.data.caption?.trim() || `Latest post by @${profile.data.username}`;
-      const preferredMediaUrl =
-        parsed.data.media_type === "VIDEO"
-          ? (parsed.data.thumbnail_url ?? parsed.data.media_url)
-          : (parsed.data.media_url ?? parsed.data.thumbnail_url);
+        // Trial Reels and other Reels kept off the profile feed report false here.
+        // Excluding them keeps this grid aligned with the public profile grid.
+        if (parsed.data.is_shared_to_feed === false) {
+          return [];
+        }
 
-      return [
-        {
-          id: parsed.data.id,
-          permalink: parsed.data.permalink,
-          mediaType: parsed.data.media_type,
-          mediaUrl: preferredMediaUrl ?? null,
-          caption,
-          alt: caption,
-        },
-      ];
-    });
+        const caption = parsed.data.caption?.trim() || `Latest post by @${profile.data.username}`;
+        const preferredMediaUrl =
+          parsed.data.media_type === "VIDEO"
+            ? (parsed.data.thumbnail_url ?? parsed.data.media_url)
+            : (parsed.data.media_url ?? parsed.data.thumbnail_url);
+
+        return [
+          {
+            id: parsed.data.id,
+            permalink: parsed.data.permalink,
+            mediaType: parsed.data.media_type,
+            mediaUrl: preferredMediaUrl ?? null,
+            caption,
+            alt: caption,
+          },
+        ];
+      })
+      .slice(0, DISPLAYED_MEDIA_LIMIT);
 
     if (posts.length === 0 && profile.data.media_count > 0) {
       console.error("Instagram API returned no usable media items");
