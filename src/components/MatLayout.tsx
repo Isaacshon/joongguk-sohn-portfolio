@@ -98,6 +98,7 @@ export function MatLayout({
     if (
       !e.isPrimary ||
       drag.current.pointerId !== -1 ||
+      e.pointerType === "touch" ||
       (e.pointerType === "mouse" && e.button !== 0)
     ) {
       return;

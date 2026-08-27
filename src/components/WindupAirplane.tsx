@@ -464,7 +464,7 @@ export function WindupAirplane({
         transform: `translate(-50%, calc(-50% - ${lift}px)) rotate(${planeRotation}deg) scale(${mounted ? scale : 0.72})`,
         transformOrigin: "center",
         cursor: dragging ? "grabbing" : "grab",
-        zIndex: dragging || flying ? 28 : z,
+        zIndex: dragging || flying ? Math.max(z, 71) : z,
         transition: reducedMotion
           ? "none"
           : dragging || flying

@@ -448,7 +448,7 @@ export function WindupCar({ src, alt, top, left, width, heading = 0, z = 12, del
         transform: `translate(-50%, calc(-50% - ${lift}px)) rotate(${carRotation}deg) scale(${mounted ? scale : 0.7})`,
         transformOrigin: "center",
         cursor: dragging ? "grabbing" : "grab",
-        zIndex: dragging || moving ? 26 : z,
+        zIndex: dragging || moving ? Math.max(z, 70) : z,
         transition: reducedMotion
           ? "none"
           : dragging || moving

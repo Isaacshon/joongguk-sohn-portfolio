@@ -155,7 +155,7 @@ function Index() {
         left={87}
         width="clamp(96px, 26vw, 126px)"
         heading={126}
-        z={22}
+        z={60}
         delay={420}
       />
 
@@ -166,7 +166,7 @@ function Index() {
         left={50}
         width="clamp(104px, 28vw, 138px)"
         heading={-30}
-        z={23}
+        z={61}
         delay={520}
       />
 
