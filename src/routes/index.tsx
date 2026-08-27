@@ -11,6 +11,7 @@ import crossShadow from "@/assets/crossshadow.png";
 import homeClouds from "@/assets/home-board/home-clouds.webp";
 import homeMoon from "@/assets/home-board/home-moon.webp";
 import homePortrait from "@/assets/home-board/home-portrait.webp";
+import selfiePortrait from "@/assets/home-board/home-selfie.webp";
 import pushpins from "@/assets/pushpins.png";
 
 export const Route = createFileRoute("/")({
@@ -56,6 +57,14 @@ const polaroids = [
     left: 9,
     width: "clamp(144px, 15vw, 206px)",
     rotate: -7,
+  },
+  {
+    src: selfiePortrait,
+    alt: "Isaac Sohn taking a mirror selfie",
+    top: 63,
+    left: 72,
+    width: "clamp(132px, 14vw, 184px)",
+    rotate: 5,
   },
 ];
 
