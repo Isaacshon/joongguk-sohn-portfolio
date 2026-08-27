@@ -65,9 +65,9 @@ const fallbackBooks: WriterLibraryBook[] = [
     title: "꽃을 보고 있어야만",
     author: "Isaac Toast",
     synopsis:
-      "꽃을 바라보는 동안에만 들리는 피아노곡과, 그 순간을 평생 품고 살아가는 사람들의 이야기.",
+      "A piano melody that can be heard only while looking at a flower—and the lives shaped by the memory of hearing it.",
     language: "ko",
-    editionLabel: "한국어판",
+    editionLabel: "Korean Ver.",
     format: "epub",
     mimeType: "application/epub+zip",
     fileSize: 102_077,
@@ -83,7 +83,7 @@ const fallbackBooks: WriterLibraryBook[] = [
     synopsis:
       "A piano melody that exists only while someone is looking at a flower—and the lives shaped by the memory of hearing it.",
     language: "en",
-    editionLabel: "English edition",
+    editionLabel: "English Ver.",
     format: "epub",
     mimeType: "application/epub+zip",
     fileSize: 82_507,
@@ -103,10 +103,10 @@ function fixedStoreUrl(value: string): URL {
 }
 
 function editionLabel(book: UpstreamBook): string {
-  if (book.language.toLowerCase() === "ko") return "한국어판";
-  if (book.language.toLowerCase() === "en") return book.editionLabelEn || "English edition";
-  if (book.language.toLowerCase() === "es") return book.editionLabelEs || "Edición en español";
-  return `${book.language.toUpperCase()} edition`;
+  if (book.language.toLowerCase() === "ko") return "Korean Ver.";
+  if (book.language.toLowerCase() === "en") return "English Ver.";
+  if (book.language.toLowerCase() === "es") return "Spanish Ver.";
+  return `${book.language.toUpperCase()} Ver.`;
 }
 
 function normalizeBook(book: UpstreamBook): WriterLibraryBook {
@@ -124,7 +124,7 @@ function normalizeBook(book: UpstreamBook): WriterLibraryBook {
     id: book.id,
     title: book.title,
     author: book.author,
-    synopsis: book.description,
+    synopsis: book.descriptionEn?.trim() || book.description,
     language: book.language.toLowerCase(),
     editionLabel: editionLabel(book),
     format: book.format.toLowerCase(),

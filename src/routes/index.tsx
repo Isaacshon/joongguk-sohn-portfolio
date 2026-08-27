@@ -8,11 +8,10 @@ import airplane from "@/assets/airplane.png";
 import carboard from "@/assets/carboard.png";
 import cross from "@/assets/cross.png";
 import crossShadow from "@/assets/crossshadow.png";
+import homeClouds from "@/assets/home-board/home-clouds.webp";
+import homeMoon from "@/assets/home-board/home-moon.webp";
+import homePortrait from "@/assets/home-board/home-portrait.webp";
 import pushpins from "@/assets/pushpins.png";
-import photo1 from "@/assets/photo1.jpg";
-import photo2 from "@/assets/photo2.jpg";
-import photo3 from "@/assets/photo3.jpg";
-import photo4 from "@/assets/photo4.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -34,10 +33,30 @@ export const Route = createFileRoute("/")({
 });
 
 const polaroids = [
-  { src: photo1, alt: "Portrait", top: 8, left: 11, width: 205, rotate: -6 },
-  { src: photo2, alt: "Car at storefront", top: 8, left: 73, width: 205, rotate: 7 },
-  { src: photo3, alt: "Garage meet", top: 66, left: 11, width: 195, rotate: -9 },
-  { src: photo4, alt: "Desk setup", top: 64, left: 72, width: 205, rotate: 5 },
+  {
+    src: homePortrait,
+    alt: "Isaac Sohn standing on a sunlit street",
+    top: 7,
+    left: 8,
+    width: "clamp(148px, 16vw, 218px)",
+    rotate: -6,
+  },
+  {
+    src: homeMoon,
+    alt: "A pale crescent moon in a clear blue daytime sky",
+    top: 8,
+    left: 72,
+    width: "clamp(132px, 14vw, 184px)",
+    rotate: 5,
+  },
+  {
+    src: homeClouds,
+    alt: "Golden evening clouds against a blue-gray sky",
+    top: 66,
+    left: 9,
+    width: "clamp(144px, 15vw, 206px)",
+    rotate: -7,
+  },
 ];
 
 function CrossRelic({ onTrigger }: { onTrigger: () => void }) {

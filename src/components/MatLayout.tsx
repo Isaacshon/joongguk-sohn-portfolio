@@ -25,10 +25,10 @@ import medal20 from "@/assets/medals/medal-20.png";
 import medal21 from "@/assets/medals/medal-21.png";
 
 const navLinks: { to: LinkProps["to"]; label: string }[] = [
+  { to: "/", label: "About Me" },
   { to: "/work", label: "Work" },
   { to: "/model", label: "Model" },
-  { to: "/writer", label: "Books / Writer" },
-  { to: "/", label: "About Me" },
+  { to: "/writer", label: "Book" },
   { to: "/services", label: "Services" },
 ];
 

@@ -14,15 +14,15 @@ export const Route = createFileRoute("/writer")({
   loader: () => getWriterLibrary(),
   head: () => ({
     meta: [
-      { title: "Writer & Books — Isaac Sohn" },
+      { title: "Books & Writing — Isaac Sohn" },
       {
         name: "description",
-        content: "손이삭의 책을 읽고, 작품의 줄거리와 판본 정보를 살펴보는 온라인 서가입니다.",
+        content: "Browse Isaac Sohn’s books, read their synopses, and explore available editions.",
       },
-      { property: "og:title", content: "Writer & Books — Isaac Sohn" },
+      { property: "og:title", content: "Books & Writing — Isaac Sohn" },
       {
         property: "og:description",
-        content: "Isaac Toast 서점과 연결된 손이삭의 책과 문학 기록.",
+        content: "Books and literary work by Isaac Sohn, connected to the Isaac Toast bookstore.",
       },
     ],
   }),
@@ -33,19 +33,19 @@ type LibraryBook = Awaited<ReturnType<typeof getWriterLibrary>>["books"][number]
 
 const languageNames: Record<string, string> = {
   en: "English",
-  es: "Español",
-  ko: "한국어",
+  es: "Spanish",
+  ko: "Korean",
 };
 
 function formatBytes(value: number | null): string {
-  if (value === null) return "디지털 판본";
+  if (value === null) return "Digital edition";
   if (value < 1_000_000) return `${Math.round(value / 1_000)} KB`;
   return `${(value / 1_000_000).toFixed(1)} MB`;
 }
 
 function accessLabel(book: LibraryBook): string {
-  if (book.free) return "무료 열람";
-  if (!book.price) return "서점에서 확인";
+  if (book.free) return "Free access";
+  if (!book.price) return "View in bookstore";
   return `${book.price.currency} ${book.price.amount.toFixed(2)}`;
 }
 
@@ -60,7 +60,7 @@ function BookDialog({ book, children }: { book: LibraryBook; children: React.Rea
           <div className="border-b border-[#2b271f]/25 bg-[#ddd4c3] p-5 sm:p-7 md:border-b-0 md:border-r md:p-10">
             <img
               src={book.coverUrl}
-              alt={`${book.title} 표지`}
+              alt={`${book.title} cover`}
               width={520}
               height={780}
               className="mx-auto aspect-[2/3] w-full max-w-[210px] object-cover shadow-[12px_15px_0_rgba(43,39,31,0.14)] sm:max-w-[240px] md:max-w-[260px]"
@@ -82,10 +82,10 @@ function BookDialog({ book, children }: { book: LibraryBook; children: React.Rea
 
             <dl className="mt-8 grid grid-cols-2 border-y border-[#2b271f]/25 text-xs sm:grid-cols-4">
               {[
-                ["언어", language],
-                ["형식", book.format.toUpperCase()],
-                ["용량", formatBytes(book.fileSize)],
-                ["이용", accessLabel(book)],
+                ["Language", language],
+                ["Format", book.format.toUpperCase()],
+                ["File size", formatBytes(book.fileSize)],
+                ["Access", accessLabel(book)],
               ].map(([term, detail]) => (
                 <div
                   key={term}
@@ -104,7 +104,7 @@ function BookDialog({ book, children }: { book: LibraryBook; children: React.Rea
                 href={book.readUrl}
                 className="inline-flex min-h-12 w-full items-center justify-between bg-[#8e382a] px-5 text-sm font-semibold text-[#fbf7ee] transition duration-200 hover:bg-[#6f2a20] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#8e382a] active:translate-y-px"
               >
-                {book.free ? "무료로 읽기" : "읽기"}
+                {book.free ? "Read for free" : "Read now"}
                 <span aria-hidden>↗</span>
               </a>
             </div>
@@ -126,7 +126,7 @@ function BookRow({ book, index }: { book: LibraryBook; index: number }) {
             <button
               type="button"
               className="group col-span-2 grid min-w-0 grid-cols-[92px_minmax(0,1fr)] gap-x-4 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#8e382a] sm:grid-cols-[124px_minmax(0,1fr)] sm:gap-x-7 lg:col-span-1 lg:grid-cols-[132px_minmax(0,1fr)] lg:gap-x-10"
-              aria-label={`${book.title} 상세 정보 열기`}
+              aria-label={`Open details for ${book.title}`}
             >
               <span className="relative block">
                 <span className="absolute -left-2 -top-2 font-serif text-xs italic text-[#8e382a]">
@@ -171,7 +171,7 @@ function BookRow({ book, index }: { book: LibraryBook; index: number }) {
                 type="button"
                 className="inline-flex min-h-10 flex-1 items-center justify-between border border-[#2b271f]/40 px-3.5 text-xs font-semibold transition duration-200 hover:bg-[#e3dacb] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#8e382a] active:translate-y-px"
               >
-                상세 정보
+                Book details
                 <span aria-hidden>＋</span>
               </button>
             </DialogTrigger>
@@ -179,7 +179,7 @@ function BookRow({ book, index }: { book: LibraryBook; index: number }) {
               href={book.readUrl}
               className="inline-flex min-h-10 flex-1 items-center justify-between bg-[#2b271f] px-3.5 text-xs font-semibold text-[#f7f1e6] transition duration-200 hover:bg-[#8e382a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#8e382a] active:translate-y-px"
             >
-              {book.free ? "무료로 읽기" : "읽기"}
+              {book.free ? "Read for free" : "Read now"}
               <span aria-hidden>↗</span>
             </a>
           </div>
@@ -213,7 +213,7 @@ function Writer() {
                   aria-hidden
                   className={`h-1.5 w-1.5 ${library.source === "store" ? "bg-[#557056]" : "bg-[#a56b43]"}`}
                 />
-                {library.source === "store" ? "서점 서지 정보 연동 중" : "기본 서지 정보 표시 중"}
+                {library.source === "store" ? "Bookstore catalog synced" : "Local catalog shown"}
               </span>
             </div>
 
@@ -223,12 +223,12 @@ function Writer() {
                   BOOKS & WRITING
                 </p>
                 <h1 className="break-keep font-serif text-[clamp(3.8rem,9vw,8.4rem)] font-medium leading-[0.78] tracking-[-0.06em]">
-                  읽는 서가
+                  The Reading Shelf
                 </h1>
               </div>
               <p className="max-w-[31rem] break-keep border-l-2 border-[#8e382a] pl-5 text-[15px] leading-[1.85] text-[#26221c]/72 sm:text-[17px]">
-                출간한 이야기를 고르고, 줄거리를 살펴보고, 바로 읽을 수 있습니다. 이 목록은 Isaac
-                Toast 서점의 공개 서지 정보와 연결됩니다.
+                Explore published stories, read their synopses, and start reading right away. This
+                shelf stays in sync with the Isaac Toast bookstore.
               </p>
             </div>
           </header>
@@ -236,10 +236,10 @@ function Writer() {
           <section aria-labelledby="books-heading">
             <div className="flex items-end justify-between border-b-2 border-[#2b271f] pb-3">
               <h2 id="books-heading" className="text-sm font-bold tracking-[-0.01em]">
-                출간작
+                Published Works
               </h2>
               <span className="font-serif text-sm italic text-[#26221c]/45">
-                {library.books.length} editions
+                {library.books.length} {library.books.length === 1 ? "edition" : "editions"}
               </span>
             </div>
             <ol>
@@ -258,32 +258,35 @@ function Writer() {
                 <p className="text-[9px] font-semibold tracking-[0.2em] text-[#8e382a]">
                   ARCHIVE / PRESS
                 </p>
-                <p className="mt-2 text-[11px] leading-relaxed text-[#26221c]/52">2026 문학 기록</p>
+                <p className="mt-2 text-[11px] leading-relaxed text-[#26221c]/52">
+                  2026 Literary Archive
+                </p>
               </div>
 
               <div className="md:border-x md:border-[#2b271f]/25 md:px-9">
                 <p className="text-[10px] font-semibold tracking-[0.14em] text-[#8e382a]">
-                  제16회 애국지사 문예작품 공모전 · 최우수상
+                  16th Korean Patriots Literary Contest · Grand Prize
                 </p>
                 <h2
                   id="archive-heading"
                   className="mt-3 break-keep font-serif text-[clamp(2rem,4.5vw,3.8rem)] leading-none tracking-[-0.035em]"
                 >
-                  적히지 않은 이름들
+                  Names Left Unwritten
                 </h2>
                 <p className="mt-4 max-w-[48rem] break-keep text-[13px] leading-[1.75] text-[#26221c]/66 sm:text-sm">
-                  1919년 발안장터 만세시위와 제암리·고주리 학살 기록에서 출발해, 기록에
-                  ‘김씨(金氏·강태성 부인)’로 남은 독립유공자의 자리를 바라본 작품입니다.
+                  Inspired by records of the 1919 Balan Market independence demonstrations and the
+                  Jeam-ri and Goju-ri massacres, this work considers an independence activist
+                  recorded only as “Mrs. Kim, wife of Kang Tae-seong.”
                 </p>
               </div>
 
               <a
-                href="https://www.koreatimes.net/ArticleViewer/Article/177183"
+                href="https://www.koreatimes.net/ArticleViewer/Article/178843"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex min-h-11 items-center justify-between border-b border-[#2b271f] text-xs font-semibold transition-colors hover:border-[#8e382a] hover:text-[#8e382a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#8e382a]"
               >
-                수상 기록 보기
+                View award coverage
                 <span aria-hidden>↗</span>
               </a>
             </div>

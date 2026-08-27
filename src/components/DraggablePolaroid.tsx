@@ -11,7 +11,7 @@ type Props = {
   alt: string;
   top: number;
   left: number;
-  width: number;
+  width: number | string;
   rotate: number;
   z?: number;
   delay?: number;
@@ -144,12 +144,13 @@ export function DraggablePolaroid({
   const tilt = dragging ? rotate * 0.4 : hover ? rotate * 0.6 : rotate;
   const scale = dragging ? 1.06 : hover ? 1.04 : 1;
   const lift = dragging ? 14 : hover ? 6 : 0;
+  const widthValue = typeof width === "number" ? `${width}px` : width;
 
   const style: CSSProperties & { "--polaroid-card-width": string } = {
     top: `${pos.top}%`,
     left: `${pos.left}%`,
-    width: `${width}px`,
-    "--polaroid-card-width": `${width}px`,
+    width: widthValue,
+    "--polaroid-card-width": widthValue,
     transform: `translateY(${-lift}px) rotate(${tilt}deg) scale(${mounted ? scale : 0.6})`,
     opacity: mounted ? 1 : 0,
     transformOrigin: "center",
