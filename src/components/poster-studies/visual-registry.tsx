@@ -1,6 +1,7 @@
 import { lazy, Suspense, type ComponentType } from "react";
 
 import { DesignProjectCover } from "@/components/poster-studies/DesignProjectCover";
+import { ProjectPicture } from "@/components/poster-studies/ProjectPicture";
 import type { DesignProject } from "@/lib/design-projects";
 
 type VisualModule = Promise<{ default: ComponentType }>;
@@ -53,10 +54,59 @@ const visualRegistry = Object.fromEntries(
 ) as Record<string, ComponentType>;
 
 export function ProjectVisual({ project }: { project: DesignProject }) {
+  return (
+    <div className="grid items-start gap-4 md:gap-6 lg:grid-cols-[1.34fr_.66fr]">
+      <ProjectPicture
+        projectSlug={project.slug}
+        slot="spatial"
+        sizes="(min-width: 1536px) 980px, (min-width: 1024px) 65vw, (min-width: 640px) calc(100vw - 4rem), calc(100vw - 2.5rem)"
+        imageClassName="hover:scale-[1.012]"
+        fallback={<LegacyProjectVisual project={project} />}
+      />
+      <div className="grid gap-4 md:gap-6">
+        <ProjectPicture
+          projectSlug={project.slug}
+          slot="tactile"
+          sizes="(min-width: 1536px) 480px, (min-width: 1024px) 32vw, (min-width: 640px) calc(100vw - 4rem), calc(100vw - 2.5rem)"
+          imageClassName="hover:scale-[1.02]"
+          fallback={
+            <DesignProjectCover
+              project={project}
+              variant="screen"
+              showTitle={false}
+              className="!absolute !inset-0 !h-full !min-h-0 !aspect-auto"
+            />
+          }
+        />
+        <div className="grid min-h-[13rem] grid-rows-[auto_1fr_auto] border border-black/20 bg-[#f1efe9] p-5 sm:p-6">
+          <div className="flex items-center justify-between border-b border-black/20 pb-3 font-mono text-[8px] font-semibold uppercase tracking-[.16em] text-black/45">
+            <span>Material register</span>
+            <span>{project.index} / 20</span>
+          </div>
+          <p className="self-center py-8 font-serif text-[clamp(1.7rem,3vw,3.3rem)] italic leading-[.9] tracking-[-.035em]">
+            {project.materials.slice(0, 2).join(" / ")}
+          </p>
+          <div className="grid grid-cols-4 gap-1" aria-label={`${project.title} colour palette`}>
+            {project.palette.map((swatch) => (
+              <span
+                key={swatch.name}
+                className="h-3"
+                style={{ backgroundColor: swatch.value }}
+                title={`${swatch.name}: ${swatch.value}`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function LegacyProjectVisual({ project }: { project: DesignProject }) {
   const Visual = visualRegistry[project.slug];
 
   if (!Visual) {
-    return <DesignProjectCover project={project} variant="hero" />;
+    return <VisualFallback project={project} />;
   }
 
   return (
@@ -68,8 +118,12 @@ export function ProjectVisual({ project }: { project: DesignProject }) {
 
 function VisualFallback({ project }: { project: DesignProject }) {
   return (
-    <div className="relative overflow-hidden bg-black/[0.04]">
-      <DesignProjectCover project={project} variant="hero" />
+    <div className="absolute inset-0 overflow-hidden bg-black/[0.04]">
+      <DesignProjectCover
+        project={project}
+        variant="hero"
+        className="!absolute !inset-0 !h-full !min-h-0 !aspect-auto"
+      />
       <div className="absolute inset-x-0 bottom-0 h-1 origin-left animate-pulse bg-current opacity-30" />
     </div>
   );

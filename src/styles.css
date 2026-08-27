@@ -3005,9 +3005,12 @@
   position: absolute;
   left: 4cqw;
   bottom: 4cqw;
-  font-family: "Pretendard Variable", "Pretendard", sans-serif;
+  font-family:
+    "Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   font-size: 2.2cqw;
   font-weight: 800;
+  font-synthesis: none;
+  word-break: keep-all;
 }
 .cover-exchange__arrow {
   position: absolute;

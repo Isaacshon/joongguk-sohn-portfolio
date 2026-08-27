@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { MatLayout } from "@/components/MatLayout";
 import { DesignProjectCover } from "@/components/poster-studies/DesignProjectCover";
+import { ProjectPicture } from "@/components/poster-studies/ProjectPicture";
 import { designProjectChapters, designProjects } from "@/lib/design-projects";
 
 export const Route = createFileRoute("/poster-studies/")({
@@ -100,7 +101,19 @@ function DesignProjectIndex() {
                       className="group block outline-none"
                     >
                       <div className="relative overflow-hidden bg-black/5 ring-[#a63829] transition duration-500 group-hover:-translate-y-1 group-focus-visible:ring-2 group-focus-visible:ring-offset-4 group-focus-visible:ring-offset-[#f0eee8]">
-                        <DesignProjectCover project={project} variant="card" />
+                        <ProjectPicture
+                          projectSlug={project.slug}
+                          slot="spatial"
+                          sizes="(min-width: 1280px) 66vw, (min-width: 768px) 50vw, calc(100vw - 2.5rem)"
+                          imageClassName="group-hover:scale-[1.035]"
+                          fallback={
+                            <DesignProjectCover
+                              project={project}
+                              variant="card"
+                              className="!absolute !inset-0 !h-full !min-h-0 !aspect-auto"
+                            />
+                          }
+                        />
                         <div className="pointer-events-none absolute inset-0 border border-black/10 transition-colors group-hover:border-black/35" />
                       </div>
                       <div className="mt-4 grid grid-cols-[auto_1fr_auto] items-start gap-3 border-t border-black/25 pt-3">

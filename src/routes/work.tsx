@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { MatLayout } from "@/components/MatLayout";
 import { DesignProjectCover } from "@/components/poster-studies/DesignProjectCover";
+import { ProjectPicture } from "@/components/poster-studies/ProjectPicture";
 import { designProjects, type DesignProject } from "@/lib/design-projects";
 import { projects, type Project } from "@/lib/projects";
 
@@ -96,7 +97,19 @@ function DesignWorkCard({ project }: { project: DesignProject }) {
       className="group block outline-none"
     >
       <div className="relative overflow-hidden bg-black/5 ring-primary transition duration-500 group-hover:-translate-y-1 group-focus-visible:ring-2 group-focus-visible:ring-offset-4 group-focus-visible:ring-offset-[#f4f1e9]">
-        <DesignProjectCover project={project} variant="card" />
+        <ProjectPicture
+          projectSlug={project.slug}
+          slot="spatial"
+          sizes="(min-width: 1280px) 66vw, (min-width: 768px) 50vw, calc(100vw - 2.5rem)"
+          imageClassName="group-hover:scale-[1.035]"
+          fallback={
+            <DesignProjectCover
+              project={project}
+              variant="card"
+              className="!absolute !inset-0 !h-full !min-h-0 !aspect-auto"
+            />
+          }
+        />
         <div className="pointer-events-none absolute inset-0 border border-black/10 transition-colors group-hover:border-black/35" />
       </div>
       <ProjectCaption

@@ -360,12 +360,12 @@ function Motif({ project }: { project: DesignProject }) {
           <div className="cover-exchange__lane cover-exchange__lane--left">
             <small>CAD</small>
             <b>1,240.00</b>
-            <span>보내기</span>
+            <span lang="ko">보내기</span>
           </div>
           <div className="cover-exchange__lane cover-exchange__lane--right">
             <small>KRW</small>
             <b>1,247,316</b>
-            <span>받기</span>
+            <span lang="ko">받기</span>
           </div>
           <span className="cover-exchange__arrow">→</span>
           <p>

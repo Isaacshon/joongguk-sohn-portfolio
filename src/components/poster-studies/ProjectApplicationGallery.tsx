@@ -1,4 +1,6 @@
 import { DesignProjectCover } from "@/components/poster-studies/DesignProjectCover";
+import { ProjectPicture } from "@/components/poster-studies/ProjectPicture";
+import type { DesignProjectMediaSlot } from "@/lib/design-project-media";
 import type { DesignProject } from "@/lib/design-projects";
 
 export function ProjectApplicationGallery({ project }: { project: DesignProject }) {
@@ -39,16 +41,26 @@ function ApplicationBoard({
   label: string;
   kind: "campaign" | "object" | "screen" | "system";
 }) {
+  const mediaSlot: Record<typeof kind, DesignProjectMediaSlot> = {
+    campaign: "hero",
+    object: "tactile",
+    screen: "spatial",
+    system: "context",
+  };
+
   return (
     <figure
-      className="group relative min-h-[22rem] overflow-hidden bg-[#d8d4ca] sm:min-h-[30rem]"
+      className="group relative overflow-hidden bg-[#d8d4ca]"
       style={{ backgroundColor: project.palette[0].value }}
     >
-      <div className="absolute inset-0 opacity-35 [background-image:radial-gradient(circle_at_20%_20%,rgba(255,255,255,.85)_0_.5px,transparent_.8px),radial-gradient(circle_at_70%_60%,rgba(0,0,0,.2)_0_.45px,transparent_.8px)] [background-size:7px_9px,5px_8px]" />
-      {kind === "campaign" ? <CampaignMockup project={project} /> : null}
-      {kind === "object" ? <ObjectMockup project={project} /> : null}
-      {kind === "screen" ? <ScreenMockup project={project} /> : null}
-      {kind === "system" ? <SystemMockup project={project} /> : null}
+      <ProjectPicture
+        projectSlug={project.slug}
+        slot={mediaSlot[kind]}
+        sizes="(min-width: 1280px) 54vw, (min-width: 1024px) 58vw, (min-width: 640px) calc(100vw - 4rem), calc(100vw - 2.5rem)"
+        imageClassName="group-hover:scale-[1.025]"
+        fallback={<ApplicationFallback project={project} kind={kind} />}
+      />
+      <div className="pointer-events-none absolute inset-0 z-10 opacity-[.1] mix-blend-soft-light [background-image:radial-gradient(circle_at_20%_20%,rgba(255,255,255,.85)_0_.5px,transparent_.8px),radial-gradient(circle_at_70%_60%,rgba(0,0,0,.2)_0_.45px,transparent_.8px)] [background-size:7px_9px,5px_8px]" />
       <figcaption className="absolute inset-x-0 bottom-0 z-20 flex items-end justify-between gap-4 bg-gradient-to-t from-black/65 via-black/20 to-transparent px-5 pb-4 pt-16 text-white sm:px-6 sm:pb-5">
         <span className="text-[12px] font-semibold uppercase tracking-[0.16em]">{label}</span>
         <span className="font-mono text-[9px] uppercase tracking-[0.16em] opacity-65">
@@ -56,6 +68,24 @@ function ApplicationBoard({
         </span>
       </figcaption>
     </figure>
+  );
+}
+
+function ApplicationFallback({
+  project,
+  kind,
+}: {
+  project: DesignProject;
+  kind: "campaign" | "object" | "screen" | "system";
+}) {
+  return (
+    <div className="absolute inset-0 min-h-[22rem] sm:min-h-[30rem]">
+      <div className="absolute inset-0 opacity-35 [background-image:radial-gradient(circle_at_20%_20%,rgba(255,255,255,.85)_0_.5px,transparent_.8px),radial-gradient(circle_at_70%_60%,rgba(0,0,0,.2)_0_.45px,transparent_.8px)] [background-size:7px_9px,5px_8px]" />
+      {kind === "campaign" ? <CampaignMockup project={project} /> : null}
+      {kind === "object" ? <ObjectMockup project={project} /> : null}
+      {kind === "screen" ? <ScreenMockup project={project} /> : null}
+      {kind === "system" ? <SystemMockup project={project} /> : null}
+    </div>
   );
 }
 

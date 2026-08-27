@@ -4,6 +4,7 @@ import type { CSSProperties } from "react";
 import { MatLayout } from "@/components/MatLayout";
 import { DesignProjectCover } from "@/components/poster-studies/DesignProjectCover";
 import { ProjectApplicationGallery } from "@/components/poster-studies/ProjectApplicationGallery";
+import { ProjectPicture } from "@/components/poster-studies/ProjectPicture";
 import { ProjectVisual } from "@/components/poster-studies/visual-registry";
 import {
   getAdjacentDesignProjects,
@@ -128,8 +129,20 @@ function ProjectCaseStudy({ project }: { project: DesignProject }) {
               </div>
             </div>
 
-            <div className="relative overflow-hidden shadow-[0_45px_110px_rgba(35,29,20,.18)]">
-              <DesignProjectCover project={project} variant="hero" />
+            <div className="relative mx-auto max-w-[65rem] overflow-hidden shadow-[0_45px_110px_rgba(35,29,20,.18)]">
+              <ProjectPicture
+                projectSlug={project.slug}
+                slot="hero"
+                sizes="(min-width: 1280px) 1040px, (min-width: 640px) calc(100vw - 4rem), calc(100vw - 2.5rem)"
+                priority
+                fallback={
+                  <DesignProjectCover
+                    project={project}
+                    variant="hero"
+                    className="!absolute !inset-0 !h-full !min-h-0 !aspect-auto"
+                  />
+                }
+              />
             </div>
           </div>
         </header>
@@ -302,7 +315,20 @@ function ProjectCaseStudy({ project }: { project: DesignProject }) {
                       <div
                         className={`transition-transform ${frame === 0 ? "-translate-x-[5%] opacity-55" : frame === 2 ? "translate-x-[5%] opacity-85" : ""}`}
                       >
-                        <DesignProjectCover project={project} variant="screen" showTitle={false} />
+                        <ProjectPicture
+                          projectSlug={project.slug}
+                          slot="context"
+                          sizes="(min-width: 1024px) 23vw, 31vw"
+                          decorative
+                          fallback={
+                            <DesignProjectCover
+                              project={project}
+                              variant="screen"
+                              showTitle={false}
+                              className="!absolute !inset-0 !h-full !min-h-0 !aspect-auto"
+                            />
+                          }
+                        />
                       </div>
                       <span className="absolute bottom-2 right-2 bg-[#f1efe9]/90 px-2 py-1 font-mono text-[7px] uppercase tracking-[.14em]">
                         F / 0{frame + 1}
