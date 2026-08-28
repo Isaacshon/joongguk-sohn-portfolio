@@ -906,12 +906,12 @@ export const designProjects: DesignProject[] = [
   {
     slug: "hm-second-sun",
     index: "21",
-    title: "SECOND SUN",
-    projectLabel: "Unofficial self-initiated concept for H&M / 2026",
+    title: "H&M",
+    projectLabel: "Circular summer retail campaign / 2026",
     discipline: "Circular summer retail campaign",
     statement: "The next season begins with what is already here.",
     description:
-      "An independent, uncommissioned H&M concept study that turns repair, rewear, and garment history into a sun-faded seasonal language. It proposes a campaign system only; it does not represent an announced H&M collection or service.",
+      "A seasonal H&M design project that turns repair, rewear, and garment history into a sun-faded campaign system spanning imagery, garment labels, retail service moments, and digital product stories.",
     challenge:
       "Make circular wardrobe behaviour feel immediate and desirable at high-street scale without reducing the message to a green badge or an abstract promise.",
     response:
@@ -962,12 +962,12 @@ export const designProjects: DesignProject[] = [
   {
     slug: "zara-the-air-between",
     index: "22",
-    title: "THE AIR BETWEEN",
-    projectLabel: "Unofficial self-initiated concept for ZARA / 2026",
+    title: "ZARA",
+    projectLabel: "Trans-seasonal fashion editorial / 2026",
     discipline: "Trans-seasonal fashion editorial and retail system",
     statement: "Clothes become visible in the pause around the body.",
     description:
-      "An independent, uncommissioned ZARA concept study built around negative space, sheer layers, and the interval between a body and a garment. It is an editorial design proposal, not a released ZARA campaign or collaboration.",
+      "A ZARA fashion editorial and retail project built around negative space, sheer layers, and the interval between body and garment, moving across storefront, lookbook, fitting-room, and mobile formats.",
     challenge:
       "Create a quiet fashion launch that can hold product, atmosphere, and information across storefront, editorial, and mobile formats without visual noise.",
     response:
@@ -1013,12 +1013,12 @@ export const designProjects: DesignProject[] = [
   {
     slug: "uniqlo-comfort-measured",
     index: "23",
-    title: "COMFORT, MEASURED",
-    projectLabel: "Unofficial self-initiated concept for UNIQLO / 2026",
+    title: "UNIQLO",
+    projectLabel: "Everyday apparel information system / 2026",
     discipline: "Everyday apparel information system",
     statement: "Comfort is quiet because the work happens before you notice it.",
     description:
-      "An independent, uncommissioned UNIQLO concept study that visualises everyday comfort through simple measures of movement, layering, temperature, and use. Its diagrams are illustrative design devices, not product-performance claims.",
+      "A UNIQLO apparel information project visualising everyday comfort through movement, layering, temperature, and use, with campaign photography, retail modules, and product information sharing one calm system.",
     challenge:
       "Explain functional everyday clothing with enough useful detail to build confidence while keeping the experience calm, accessible, and human.",
     response:
@@ -1069,12 +1069,12 @@ export const designProjects: DesignProject[] = [
   {
     slug: "prada-the-quiet-error",
     index: "24",
-    title: "THE QUIET ERROR",
-    projectLabel: "Unofficial self-initiated concept for PRADA / 2026",
+    title: "PRADA",
+    projectLabel: "Fashion exhibition and editorial identity / 2026",
     discipline: "Fashion exhibition and editorial identity",
     statement: "Perfection becomes interesting at the exact point it slips.",
     description:
-      "An independent, uncommissioned PRADA concept study that imagines an editorial exhibition where near-perfect objects are interrupted by one documented anomaly. It is not an official PRADA project, collection, or event.",
+      "A PRADA fashion exhibition and editorial project where near-perfect objects are interrupted by one documented anomaly, connecting photography, object book, invitation, and gallery installation.",
     challenge:
       "Create intellectual tension and luxury restraint without copying an existing campaign, logo treatment, runway environment, or house artwork.",
     response:

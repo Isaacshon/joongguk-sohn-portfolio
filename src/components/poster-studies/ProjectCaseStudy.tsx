@@ -4,7 +4,6 @@ import type { CSSProperties } from "react";
 import { MatLayout } from "@/components/MatLayout";
 import {
   BrandEditorialGallery,
-  BrandIdentityLayer,
   BrandProjectStatusBand,
 } from "@/components/poster-studies/BrandEditorialGallery";
 import { DesignProjectCover } from "@/components/poster-studies/DesignProjectCover";
@@ -72,8 +71,6 @@ export function ProjectCaseStudy({ project }: { project: DesignProject }) {
                 {project.index} / {designProjectCount} · {project.chapter}
               </span>
             </div>
-
-            <BrandIdentityLayer project={project} placement="hero" />
 
             <div className="project-hero-grid">
               <div className="project-hero-title-block">
@@ -311,8 +308,6 @@ export function ProjectCaseStudy({ project }: { project: DesignProject }) {
           </div>
         </section>
 
-        <BrandProjectStatusBand project={project} />
-
         <nav aria-label="Adjacent design projects" className="project-adjacent-grid">
           {previous ? (
             <AdjacentProject project={previous} direction="previous" hostDirection={direction} />
@@ -321,6 +316,8 @@ export function ProjectCaseStudy({ project }: { project: DesignProject }) {
             <AdjacentProject project={next} direction="next" hostDirection={direction} />
           ) : null}
         </nav>
+
+        <BrandProjectStatusBand project={project} />
       </article>
     </MatLayout>
   );

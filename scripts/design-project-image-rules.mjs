@@ -19,10 +19,10 @@ export const DESIGN_PROJECTS = Object.freeze([
   { index: "18", slug: "seamframe", title: "SEAMFRAME" },
   { index: "19", slug: "two-shores", title: "TWO SHORES" },
   { index: "20", slug: "coldkiln", title: "COLDKILN" },
-  { index: "21", slug: "hm-second-sun", title: "SECOND SUN" },
-  { index: "22", slug: "zara-the-air-between", title: "THE AIR BETWEEN" },
-  { index: "23", slug: "uniqlo-comfort-measured", title: "COMFORT, MEASURED" },
-  { index: "24", slug: "prada-the-quiet-error", title: "THE QUIET ERROR" },
+  { index: "21", slug: "hm-second-sun", title: "H&M" },
+  { index: "22", slug: "zara-the-air-between", title: "ZARA" },
+  { index: "23", slug: "uniqlo-comfort-measured", title: "UNIQLO" },
+  { index: "24", slug: "prada-the-quiet-error", title: "PRADA" },
 ]);
 
 export const DESIGN_PROJECT_SLOTS = Object.freeze({

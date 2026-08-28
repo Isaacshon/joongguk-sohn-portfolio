@@ -54,7 +54,7 @@ export function BrandEditorialGallery({ project }: { project: DesignProject }) {
   return (
     <div
       className="brand-editorial-gallery"
-      aria-label={`${project.brandStudy.brand} unofficial concept editorial sequence`}
+      aria-label={`${project.brandStudy.brand} project editorial sequence`}
     >
       <div className="brand-editorial-gallery__intro">
         <BrandIdentityLayer project={project} placement="editorial" />
@@ -120,11 +120,11 @@ export function BrandIdentityLayer({
       className="brand-identity-layer"
       data-brand={project.slug}
       data-placement={placement}
-      aria-label={`${project.brandStudy.brand} concept masthead`}
+      aria-label={`${project.brandStudy.brand} project masthead`}
     >
       <span className="brand-identity-layer__wordmark">{project.brandStudy.brand}</span>
       <span className="brand-identity-layer__meta project-meta">
-        Concept masthead / {project.index} / 2026
+        Project masthead / {project.index} / 2026
       </span>
     </div>
   );
@@ -136,18 +136,15 @@ export function BrandProjectStatusBand({ project }: { project: DesignProject }) 
   const { brand } = project.brandStudy;
 
   return (
-    <aside className="brand-status-band" aria-label="Project relationship and image-use status">
+    <aside className="brand-status-band" aria-label="가상 프로젝트 안내">
       <div className="project-shell brand-status-band__inner">
-        <div className="brand-status-band__heading">
-          <p className="brand-status-band__label project-meta">Project status / 2026</p>
-          <p className="brand-status-band__status">Independent conceptual study</p>
-        </div>
+        <p className="brand-status-band__status" lang="ko">
+          가상 프로젝트
+        </p>
         <p className="brand-status-band__disclaimer">
-          {project.title} is an independent, self-initiated conceptual project created by Isaac Sohn
-          for portfolio purposes. It was not commissioned, endorsed, sponsored, or approved by{" "}
-          {brand} or its affiliated companies. {brand} and related trademarks remain the property of
-          their respective owners. AI-assisted imagery is used solely for non-commercial design
-          exploration.
+          포트폴리오를 위해 제작한 비공식 디자인 프로젝트로, {brand} 또는 관련 회사의
+          의뢰·승인·후원을 받은 작업이 아닙니다. 상표권은 각 권리자에게 있으며, 이미지는 비상업적
+          디자인 연구를 위해 AI의 도움을 받아 제작했습니다.
         </p>
       </div>
     </aside>

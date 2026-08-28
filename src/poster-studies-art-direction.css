@@ -752,35 +752,32 @@
 
 .brand-status-band__inner {
   display: grid;
-  gap: clamp(2rem, 4vw, 4rem);
-  padding-block: clamp(2.5rem, 5vw, 5rem);
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: baseline;
+  gap: clamp(1.25rem, 2.5vw, 3rem);
+  padding-block: clamp(1rem, 1.8vw, 1.5rem);
 }
 
-.brand-status-band__label,
 .brand-status-band__status,
 .brand-status-band__disclaimer {
   margin: 0;
 }
 
-.brand-status-band__label {
-  opacity: 0.5;
-}
-
 .brand-status-band__status {
-  max-width: 18ch;
-  margin-top: 0.65rem;
-  font-family: var(--case-font-accent);
-  font-size: clamp(1.55rem, 2.8cqw, 2.8rem);
-  letter-spacing: -0.025em;
-  line-height: 1;
+  font-family: var(--case-font-meta);
+  font-size: clamp(0.62rem, 0.74cqw, 0.72rem);
+  font-weight: 650;
+  letter-spacing: 0.12em;
+  line-height: 1.35;
+  white-space: nowrap;
 }
 
 .brand-status-band__disclaimer {
-  max-width: 76ch;
+  max-width: 100ch;
   font-family: var(--case-font-body);
-  font-size: clamp(0.75rem, 1cqw, 0.88rem);
-  line-height: 1.65;
-  opacity: 0.72;
+  font-size: clamp(0.58rem, 0.66cqw, 0.68rem);
+  line-height: 1.55;
+  opacity: 0.55;
 }
 
 .project-adjacent-grid {
@@ -3443,7 +3440,7 @@
 
 [data-layout="quiet-fourteen"] .brand-status-band__inner {
   max-width: 72rem;
-  grid-template-columns: minmax(14rem, 0.32fr) minmax(0, 0.68fr);
+  grid-template-columns: auto minmax(0, 1fr);
 }
 
 [data-layout="comfort-matrix"] .brand-status-band {
@@ -3451,7 +3448,7 @@
 }
 
 [data-layout="comfort-matrix"] .brand-status-band__inner {
-  grid-template-columns: minmax(15rem, 0.34fr) minmax(0, 0.66fr);
+  grid-template-columns: auto minmax(0, 1fr);
 }
 
 [data-layout="error-sixteen"] .brand-status-band {
