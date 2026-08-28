@@ -2,7 +2,7 @@ import { lazy, Suspense, type ComponentType } from "react";
 
 import { DesignProjectCover } from "@/components/poster-studies/DesignProjectCover";
 import { ProjectPicture } from "@/components/poster-studies/ProjectPicture";
-import type { DesignProject } from "@/lib/design-projects";
+import { designProjectCount, type DesignProject } from "@/lib/design-projects";
 
 type VisualModule = Promise<{ default: ComponentType }>;
 
@@ -55,7 +55,7 @@ const visualRegistry = Object.fromEntries(
 
 export function ProjectVisual({ project }: { project: DesignProject }) {
   return (
-    <div className="grid items-start gap-4 md:gap-6 lg:grid-cols-[1.34fr_.66fr]">
+    <div className="project-visual-grid">
       <ProjectPicture
         projectSlug={project.slug}
         slot="spatial"
@@ -63,7 +63,7 @@ export function ProjectVisual({ project }: { project: DesignProject }) {
         imageClassName="hover:scale-[1.012]"
         fallback={<LegacyProjectVisual project={project} />}
       />
-      <div className="grid gap-4 md:gap-6">
+      <div className="project-visual-secondary">
         <ProjectPicture
           projectSlug={project.slug}
           slot="tactile"
@@ -78,12 +78,14 @@ export function ProjectVisual({ project }: { project: DesignProject }) {
             />
           }
         />
-        <div className="grid min-h-[13rem] grid-rows-[auto_1fr_auto] border border-black/20 bg-[#f1efe9] p-5 sm:p-6">
-          <div className="flex items-center justify-between border-b border-black/20 pb-3 font-mono text-[8px] font-semibold uppercase tracking-[.16em] text-black/45">
+        <div className="project-material-register">
+          <div className="project-material-register__meta project-meta">
             <span>Material register</span>
-            <span>{project.index} / 20</span>
+            <span>
+              {project.index} / {designProjectCount}
+            </span>
           </div>
-          <p className="self-center py-8 font-serif text-[clamp(1.7rem,3vw,3.3rem)] italic leading-[.9] tracking-[-.035em]">
+          <p className="project-material-register__title">
             {project.materials.slice(0, 2).join(" / ")}
           </p>
           <div className="grid grid-cols-4 gap-1" aria-label={`${project.title} colour palette`}>

@@ -13,6 +13,7 @@ import {
   DESIGN_PROJECTS,
   DESIGN_PROJECT_SLOTS,
   EXPECTED_ASSET_COUNT,
+  getDesignProjectRequiredSlots,
   getDesignProjectSlotRule,
   PROJECT_BY_SLUG,
   PROJECT_ORDER,
@@ -30,6 +31,12 @@ const IGNORED_INPUT_BASENAMES = new Set(["afterimage-campaign-pilot.png"]);
 const OUTPUT_MEDIA_TYPES = Object.freeze({ webp: "image/webp", avif: "image/avif" });
 const ASPECT_TOLERANCE = 0.035;
 const MANIFEST_SCHEMA_VERSION = 1;
+const SLOT_BY_INPUT_TOKEN = new Map(
+  Object.keys(DESIGN_PROJECT_SLOTS).flatMap((slot) => [
+    [slot.toLowerCase(), slot],
+    [slot.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`), slot],
+  ]),
+);
 
 const HELP = `
 Higgsfield design-project asset processor
@@ -47,6 +54,12 @@ Slots and default aspect ratios (project overrides are applied automatically):
   tactile   3:2
   spatial  16:9
   context   9:16
+  editorial-a  4:5  (brand studies only; output slot: editorialA)
+  editorial-b  3:2  (brand studies only; output slot: editorialB)
+  editorial-c  4:5  (selected brand studies; output slot: editorialC)
+  editorial-d 16:9  (selected brand studies; output slot: editorialD)
+  editorial-e  4:5  (selected brand studies; output slot: editorialE)
+  editorial-f  3:2  (selected brand studies; output slot: editorialF)
 
 Options:
   --input <path>                Input root (default: tmp/higgsfield)
@@ -137,10 +150,10 @@ function parseArgs(argv) {
       options.projects = new Set(projects);
       index += 1;
     } else if (option === "--slots") {
-      const slots = parseList(readOptionValue(argv, index, option));
-      const unknown = slots.filter((slot) => !(slot in DESIGN_PROJECT_SLOTS));
+      const requestedSlots = parseList(readOptionValue(argv, index, option));
+      const unknown = requestedSlots.filter((slot) => !SLOT_BY_INPUT_TOKEN.has(slot));
       if (unknown.length > 0) throw new Error(`Unknown slot(s): ${unknown.join(", ")}`);
-      options.slots = new Set(slots);
+      options.slots = new Set(requestedSlots.map((slot) => SLOT_BY_INPUT_TOKEN.get(slot)));
       index += 1;
     } else if (option === "--formats") {
       const formats = [...new Set(parseList(readOptionValue(argv, index, option)))];
@@ -219,14 +232,20 @@ function parseSourceIdentity(inputRoot, filePath) {
       [project.slug, `${project.index}-${project.slug}`].includes(segments[0].toLowerCase());
     if (!directoryMatches) continue;
 
-    for (const slot of Object.keys(DESIGN_PROJECT_SLOTS)) {
-      const acceptedBasenames = new Set([
-        slot,
-        `${project.slug}-${slot}`,
-        `${project.slug}--${slot}`,
-        `${project.slug}-${project.index}-${slot}`,
-        `${project.index}-${project.slug}-${slot}`,
+    for (const slot of getDesignProjectRequiredSlots(project.slug)) {
+      const sourceTokens = new Set([
+        slot.toLowerCase(),
+        slot.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`),
       ]);
+      const acceptedBasenames = new Set(
+        [...sourceTokens].flatMap((token) => [
+          token,
+          `${project.slug}-${token}`,
+          `${project.slug}--${token}`,
+          `${project.slug}-${project.index}-${token}`,
+          `${project.index}-${project.slug}-${token}`,
+        ]),
+      );
       if (acceptedBasenames.has(basename)) return { slug: project.slug, slot };
     }
   }
@@ -621,7 +640,7 @@ function coverageFor(assets) {
   );
   const missing = [];
   for (const project of DESIGN_PROJECTS) {
-    for (const slot of Object.keys(DESIGN_PROJECT_SLOTS)) {
+    for (const slot of getDesignProjectRequiredSlots(project.slug)) {
       const key = `${project.slug}/${slot}`;
       if (!readyKeys.has(key)) missing.push(key);
     }

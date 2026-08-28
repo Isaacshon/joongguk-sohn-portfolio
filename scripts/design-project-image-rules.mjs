@@ -19,6 +19,10 @@ export const DESIGN_PROJECTS = Object.freeze([
   { index: "18", slug: "seamframe", title: "SEAMFRAME" },
   { index: "19", slug: "two-shores", title: "TWO SHORES" },
   { index: "20", slug: "coldkiln", title: "COLDKILN" },
+  { index: "21", slug: "hm-second-sun", title: "SECOND SUN" },
+  { index: "22", slug: "zara-the-air-between", title: "THE AIR BETWEEN" },
+  { index: "23", slug: "uniqlo-comfort-measured", title: "COMFORT, MEASURED" },
+  { index: "24", slug: "prada-the-quiet-error", title: "THE QUIET ERROR" },
 ]);
 
 export const DESIGN_PROJECT_SLOTS = Object.freeze({
@@ -62,7 +66,88 @@ export const DESIGN_PROJECT_SLOTS = Object.freeze({
     webpQuality: 86,
     avifQuality: 60,
   }),
+  editorialA: Object.freeze({
+    order: 5,
+    label: "Editorial portrait",
+    aspectWidth: 4,
+    aspectHeight: 5,
+    minLongEdge: 3200,
+    maxLongEdge: 3200,
+    webpQuality: 88,
+    avifQuality: 62,
+  }),
+  editorialB: Object.freeze({
+    order: 6,
+    label: "Editorial landscape",
+    aspectWidth: 3,
+    aspectHeight: 2,
+    minLongEdge: 3200,
+    maxLongEdge: 3200,
+    webpQuality: 88,
+    avifQuality: 62,
+  }),
+  editorialC: Object.freeze({
+    order: 7,
+    label: "Editorial portrait detail",
+    aspectWidth: 4,
+    aspectHeight: 5,
+    minLongEdge: 3200,
+    maxLongEdge: 3200,
+    webpQuality: 88,
+    avifQuality: 62,
+  }),
+  editorialD: Object.freeze({
+    order: 8,
+    label: "Editorial environment",
+    aspectWidth: 16,
+    aspectHeight: 9,
+    minLongEdge: 3200,
+    maxLongEdge: 3200,
+    webpQuality: 86,
+    avifQuality: 60,
+  }),
+  editorialE: Object.freeze({
+    order: 9,
+    label: "Editorial object",
+    aspectWidth: 4,
+    aspectHeight: 5,
+    minLongEdge: 3200,
+    maxLongEdge: 3200,
+    webpQuality: 88,
+    avifQuality: 62,
+  }),
+  editorialF: Object.freeze({
+    order: 10,
+    label: "Editorial motion sequence",
+    aspectWidth: 3,
+    aspectHeight: 2,
+    minLongEdge: 3200,
+    maxLongEdge: 3200,
+    webpQuality: 88,
+    avifQuality: 62,
+  }),
 });
+
+export const BRAND_EDITORIAL_SLOT_COUNT = Object.freeze({
+  "hm-second-sun": 4,
+  "zara-the-air-between": 5,
+  "uniqlo-comfort-measured": 4,
+  "prada-the-quiet-error": 6,
+});
+
+export const BRAND_EDITORIAL_PROJECT_SLUGS = Object.freeze(Object.keys(BRAND_EDITORIAL_SLOT_COUNT));
+
+const CORE_SLOTS = Object.freeze(
+  Object.keys(DESIGN_PROJECT_SLOTS).filter((slot) => !slot.startsWith("editorial")),
+);
+const EDITORIAL_SLOTS = Object.freeze(
+  Object.keys(DESIGN_PROJECT_SLOTS).filter((slot) => slot.startsWith("editorial")),
+);
+
+export function getDesignProjectRequiredSlots(projectSlug) {
+  const editorialCount = BRAND_EDITORIAL_SLOT_COUNT[projectSlug] ?? 0;
+  return [...CORE_SLOTS, ...EDITORIAL_SLOTS.slice(0, editorialCount)];
+}
 
 const WIDE_HERO_OVERRIDE = Object.freeze({ aspectWidth: 16, aspectHeight: 9 });
 const SQUARE_TACTILE_OVERRIDE = Object.freeze({ aspectWidth: 1, aspectHeight: 1 });
@@ -93,7 +178,9 @@ export const SLOT_ORDER = new Map(
   Object.entries(DESIGN_PROJECT_SLOTS).map(([slot, rule]) => [slot, rule.order]),
 );
 
-export const EXPECTED_ASSET_COUNT =
-  DESIGN_PROJECTS.length * Object.keys(DESIGN_PROJECT_SLOTS).length;
+export const EXPECTED_ASSET_COUNT = DESIGN_PROJECTS.reduce(
+  (count, project) => count + getDesignProjectRequiredSlots(project.slug).length,
+  0,
+);
 
 export const RESPONSIVE_LONG_EDGES = Object.freeze([960, 1600, 3200]);

@@ -28,7 +28,11 @@ export type DesignProjectMotif =
   | "footnote"
   | "assembly"
   | "exchange"
-  | "mineral";
+  | "mineral"
+  | "hm-edit"
+  | "zara-atelier"
+  | "uniqlo-life"
+  | "prada-observation";
 
 export type DesignProject = {
   slug: string;
@@ -49,9 +53,18 @@ export type DesignProject = {
   applications: string[];
   lineage: string;
   references: DesignProjectReference[];
-  chapter: "Matter & Memory" | "Culture & Space" | "Signal & Future" | "Brands as Systems";
+  chapter:
+    | "Matter & Memory"
+    | "Culture & Space"
+    | "Signal & Future"
+    | "Brands as Systems"
+    | "Fashion & Retail";
   motif: DesignProjectMotif;
   theme: "light" | "dark";
+  brandStudy?: {
+    brand: string;
+    relationship: "unofficial-self-initiated";
+  };
 };
 
 export const designProjects: DesignProject[] = [
@@ -113,7 +126,7 @@ export const designProjects: DesignProject[] = [
       "Real Unicode Hangul, a stable Korean font stack, and a documented stroke library let archival evidence drive every poster, label, and folder.",
     rule: "Each glyph combines one collected stroke, one modular block, and one documented absence.",
     typography:
-      "Pretendard Variable for Hangul, restrained humanist sans for English notes, no artificial glyph distortion.",
+      "Noto Serif KR gives the archive its literary Hangul voice; Pretendard and monospaced catalogue notes keep every source legible without distorting a glyph.",
     motion:
       "Jamo assemble into syllable blocks in reading order; each source tag appears before the completed character.",
     materials: ["Archive board", "Vermilion stamp ink", "Carbon copy", "Hand-labelled folder"],
@@ -318,7 +331,7 @@ export const designProjects: DesignProject[] = [
       "Distance, direction, route, and story number remain in the same position across signs, maps, tickets, and notices.",
     rule: "Every object carries route P7, one directional gesture, and equal Korean–English hierarchy.",
     typography:
-      "Pretendard Variable for Korean and Latin with matched weights, generous apertures, and outdoor-scale spacing.",
+      "Archivo Black sets the civic headline while Pretendard carries matched Korean–English information with generous apertures and outdoor-scale spacing.",
     motion:
       "The route line advances only in the indicated direction; story cards enter from the corresponding edge.",
     materials: ["Enamel sign", "Folded street map", "Weatherproof vinyl", "Recycled ticket stock"],
@@ -890,7 +903,233 @@ export const designProjects: DesignProject[] = [
     motif: "mineral",
     theme: "light",
   },
+  {
+    slug: "hm-second-sun",
+    index: "21",
+    title: "SECOND SUN",
+    projectLabel: "Unofficial self-initiated concept for H&M / 2026",
+    discipline: "Circular summer retail campaign",
+    statement: "The next season begins with what is already here.",
+    description:
+      "An independent, uncommissioned H&M concept study that turns repair, rewear, and garment history into a sun-faded seasonal language. It proposes a campaign system only; it does not represent an announced H&M collection or service.",
+    challenge:
+      "Make circular wardrobe behaviour feel immediate and desirable at high-street scale without reducing the message to a green badge or an abstract promise.",
+    response:
+      "A second-sun device follows every garment through its first wear, repair, exchange, and return, while provenance labels make the next action visible at a glance.",
+    rule: "Every touchpoint pairs one garment state with one clear next-life action; an environmental claim is never used as decoration.",
+    typography:
+      "A wide editorial grotesk carries the campaign voice; condensed utility labels record garment state, date, and next-life action.",
+    motion:
+      "A warm disc crosses the frame twice: the first pass reveals the garment, and the second reveals its repair or return route.",
+    materials: [
+      "Recycled poster stock",
+      "Woven repair patch",
+      "Heat-transfer care label",
+      "Reusable garment wrap",
+    ],
+    palette: [
+      { name: "Solar yellow", value: "#f4dd27" },
+      { name: "Oxblood", value: "#751d2d" },
+      { name: "Washed paper", value: "#f2e9d8" },
+      { name: "Graphite", value: "#20201d" },
+    ],
+    applications: [
+      "Seasonal campaign",
+      "Garment take-back kiosk",
+      "Repair and rewear labels",
+      "Digital product stories",
+    ],
+    lineage:
+      "Built from H&M Group's published circular-design and product-lifecycle material, then translated into an original campaign and service language.",
+    references: [
+      {
+        label: "H&M Group — Circularity",
+        href: "https://hmgroup.com/sustainability/circularity-and-climate/circularity/",
+      },
+      {
+        label: "H&M Group — Circulator guide",
+        href: "https://hmgroup.com/news/hm-group-launches-circular-design-tool-circulator/",
+      },
+    ],
+    chapter: "Fashion & Retail",
+    motif: "hm-edit",
+    theme: "light",
+    brandStudy: {
+      brand: "H&M",
+      relationship: "unofficial-self-initiated",
+    },
+  },
+  {
+    slug: "zara-the-air-between",
+    index: "22",
+    title: "THE AIR BETWEEN",
+    projectLabel: "Unofficial self-initiated concept for ZARA / 2026",
+    discipline: "Trans-seasonal fashion editorial and retail system",
+    statement: "Clothes become visible in the pause around the body.",
+    description:
+      "An independent, uncommissioned ZARA concept study built around negative space, sheer layers, and the interval between a body and a garment. It is an editorial design proposal, not a released ZARA campaign or collaboration.",
+    challenge:
+      "Create a quiet fashion launch that can hold product, atmosphere, and information across storefront, editorial, and mobile formats without visual noise.",
+    response:
+      "Suspended crops, pale directional light, and deliberately measured gutters let silhouette and fabric movement carry the story before captions enter.",
+    rule: "At least one third of every composition remains open, and typography never crosses the primary silhouette.",
+    typography:
+      "A high-contrast editorial serif sets the atmospheric line; a restrained neo-grotesk handles garments, dates, and navigation.",
+    motion:
+      "Two image planes drift apart by a few millimetres, exposing a quiet field of light before returning to alignment.",
+    materials: ["Cold gloss paper", "Translucent vellum", "Brushed aluminium", "Sheer scrim"],
+    palette: [
+      { name: "Gallery white", value: "#f4f2ed" },
+      { name: "Ink black", value: "#111111" },
+      { name: "Mist blue", value: "#bdc8cc" },
+      { name: "Skin clay", value: "#b58d79" },
+    ],
+    applications: [
+      "Flagship window",
+      "Editorial lookbook",
+      "Mobile collection launch",
+      "Fitting-room screens",
+    ],
+    lineage:
+      "Responds to Inditex's published emphasis on customer experience, store environments, and fashion presentation through an original spatial editorial system.",
+    references: [
+      {
+        label: "Inditex Annual Report 2025 — Our drivers",
+        href: "https://annualreport.inditex.com/anrpxxvui/en/our-drivers",
+      },
+      {
+        label: "Inditex Annual Report 2025 — CEO statement",
+        href: "https://annualreport.inditex.com/anrpxxvui/en/ceo-statement",
+      },
+    ],
+    chapter: "Fashion & Retail",
+    motif: "zara-atelier",
+    theme: "light",
+    brandStudy: {
+      brand: "ZARA",
+      relationship: "unofficial-self-initiated",
+    },
+  },
+  {
+    slug: "uniqlo-comfort-measured",
+    index: "23",
+    title: "COMFORT, MEASURED",
+    projectLabel: "Unofficial self-initiated concept for UNIQLO / 2026",
+    discipline: "Everyday apparel information system",
+    statement: "Comfort is quiet because the work happens before you notice it.",
+    description:
+      "An independent, uncommissioned UNIQLO concept study that visualises everyday comfort through simple measures of movement, layering, temperature, and use. Its diagrams are illustrative design devices, not product-performance claims.",
+    challenge:
+      "Explain functional everyday clothing with enough useful detail to build confidence while keeping the experience calm, accessible, and human.",
+    response:
+      "A modular comfort index connects each garment to a real daily condition, using plain-language notes and measured diagrams instead of technical spectacle.",
+    rule: "Every feature is paired with a use condition and a plain-language benefit; no unsupported number appears as proof.",
+    typography:
+      "A precise Japanese-influenced grotesk leads the system, supported by monospaced measurements and generous multilingual spacing.",
+    motion:
+      "Comfort values respond to the body in four calm states—rest, walk, commute, and layer—without abrupt transitions.",
+    materials: [
+      "Soft-touch product card",
+      "Translucent measurement film",
+      "Recycled fabric swatch",
+      "Modular shelf rail",
+    ],
+    palette: [
+      { name: "Life white", value: "#f7f6f1" },
+      { name: "Utility red", value: "#e62b1e" },
+      { name: "Air blue", value: "#9ac7dc" },
+      { name: "Measure grey", value: "#34393d" },
+    ],
+    applications: [
+      "Product information system",
+      "Comfort finder",
+      "In-store measurement wall",
+      "LifeWear field guide",
+    ],
+    lineage:
+      "Grounded in UNIQLO's published LifeWear philosophy of useful, evolving everyday clothing, expressed here as an original information and retail concept.",
+    references: [
+      {
+        label: "UNIQLO — About LifeWear",
+        href: "https://www.uniqlo.com/us/en/contents/lifewear/",
+      },
+      {
+        label: "Fast Retailing — UNIQLO business model",
+        href: "https://www.fastretailing.com/eng/group/strategy/uniqlobusiness.html",
+      },
+    ],
+    chapter: "Fashion & Retail",
+    motif: "uniqlo-life",
+    theme: "light",
+    brandStudy: {
+      brand: "UNIQLO",
+      relationship: "unofficial-self-initiated",
+    },
+  },
+  {
+    slug: "prada-the-quiet-error",
+    index: "24",
+    title: "THE QUIET ERROR",
+    projectLabel: "Unofficial self-initiated concept for PRADA / 2026",
+    discipline: "Fashion exhibition and editorial identity",
+    statement: "Perfection becomes interesting at the exact point it slips.",
+    description:
+      "An independent, uncommissioned PRADA concept study that imagines an editorial exhibition where near-perfect objects are interrupted by one documented anomaly. It is not an official PRADA project, collection, or event.",
+    challenge:
+      "Create intellectual tension and luxury restraint without copying an existing campaign, logo treatment, runway environment, or house artwork.",
+    response:
+      "Precision grids, forensic captions, and severe material studies establish order; one displaced seam, crop, or registration line creates the break.",
+    rule: "Every composition contains exactly one named deviation, while all identity typography remains structurally intact.",
+    typography:
+      "A rational grotesk records the evidence; a sharp classical roman introduces the proposition without recreating a house wordmark.",
+    motion:
+      "The frame holds perfectly still until one element moves one grid unit out of place and its deviation code appears.",
+    materials: [
+      "Black technical textile",
+      "Smoked acrylic",
+      "Brushed stainless steel",
+      "Blind-embossed paper",
+    ],
+    palette: [
+      { name: "Observation black", value: "#11100f" },
+      { name: "Archive ivory", value: "#eee9dd" },
+      { name: "Lacquer green", value: "#7e8871" },
+      { name: "Error violet", value: "#6c55ff" },
+    ],
+    applications: [
+      "Exhibition invitation",
+      "Editorial object book",
+      "Gallery installation",
+      "Digital motion teaser",
+    ],
+    lineage:
+      "Draws research context from Prada Group's public writing on experimentation, architecture, and its design archive, then builds an original system around documented deviation.",
+    references: [
+      {
+        label: "Prada Group — Prada brand identity",
+        href: "https://www.pradagroup.com/en/brands/prada.html",
+      },
+      {
+        label: "Prada Group — Design archive",
+        href: "https://www.pradagroup.com/en/perspectives/stories/sezione-know-how/design-archive.html",
+      },
+    ],
+    chapter: "Fashion & Retail",
+    motif: "prada-observation",
+    theme: "dark",
+    brandStudy: {
+      brand: "PRADA",
+      relationship: "unofficial-self-initiated",
+    },
+  },
 ];
+
+export const designProjectCount = designProjects.length;
+
+export const designProjectApplicationCount = designProjects.reduce(
+  (total, project) => total + project.applications.length,
+  0,
+);
 
 export const designProjectChapters = Array.from(
   designProjects.reduce((chapters, project) => {

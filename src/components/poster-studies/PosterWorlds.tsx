@@ -176,7 +176,7 @@ function MemoryTypePoster() {
           </p>
         </div>
         <div className="flex h-[11cqw] w-[11cqw] rotate-6 items-center justify-center rounded-full border-[0.45cqw] border-[#b73527] text-[#b73527]">
-          <span className="font-serif text-[5.4cqw] font-bold">記</span>
+          <span className="font-serif text-[5.4cqw] font-bold">기</span>
         </div>
       </div>
     </div>

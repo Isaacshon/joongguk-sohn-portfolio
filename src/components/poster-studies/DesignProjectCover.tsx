@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from "react";
 
-import type { DesignProject } from "@/lib/design-projects";
+import { designProjectCount, type DesignProject } from "@/lib/design-projects";
 
 type DesignProjectCoverProps = {
   project: DesignProject;
@@ -35,7 +35,9 @@ export function DesignProjectCover({
     >
       <div className="design-project-cover__grain" aria-hidden="true" />
       <div className="design-project-cover__meta" aria-hidden="true">
-        <span>{project.index} / 20</span>
+        <span>
+          {project.index} / {designProjectCount}
+        </span>
         <span>{project.chapter}</span>
       </div>
       <div className="design-project-cover__art" aria-hidden="true">
@@ -89,7 +91,7 @@ function Motif({ project }: { project: DesignProject }) {
             <span>동네의 목소리를</span>
             <span>한 글자씩 보존하다</span>
           </p>
-          <span className="cover-hangul__seal">記</span>
+          <span className="cover-hangul__seal">기</span>
         </MotifFrame>
       );
     case "specimen":
@@ -390,6 +392,79 @@ function Motif({ project }: { project: DesignProject }) {
           </p>
           <small>PRESS / CURE / INSTALL / RETURN</small>
           <span className="cover-mineral__cycle">↻</span>
+        </MotifFrame>
+      );
+    case "hm-edit":
+      return (
+        <MotifFrame className="cover-hm-edit">
+          <span className="cover-hm-edit__sun cover-hm-edit__sun--one" />
+          <span className="cover-hm-edit__sun cover-hm-edit__sun--two" />
+          <div className="cover-hm-edit__score">
+            {["01", "02", "03", "04", "05", "06"].map((beat) => (
+              <span key={beat}>{beat}</span>
+            ))}
+          </div>
+          <p>
+            SECOND
+            <br />
+            SUN
+          </p>
+          <small>REPAIR / REWEAR / RETURN / 2026</small>
+        </MotifFrame>
+      );
+    case "zara-atelier":
+      return (
+        <MotifFrame className="cover-zara-atelier">
+          <div className="cover-zara-atelier__doors">
+            <span />
+            <span />
+          </div>
+          <span className="cover-zara-atelier__figure" />
+          <p>
+            THE AIR
+            <br />
+            <i>BETWEEN</i>
+          </p>
+          <div className="cover-zara-atelier__observations">
+            <span>01 / PRESSURE</span>
+            <span>02 / DISTANCE</span>
+            <span>03 / SILHOUETTE</span>
+          </div>
+        </MotifFrame>
+      );
+    case "uniqlo-life":
+      return (
+        <MotifFrame className="cover-uniqlo-life">
+          <div className="cover-uniqlo-life__matrix" />
+          <svg viewBox="0 0 160 260" className="cover-uniqlo-life__figure">
+            <circle cx="80" cy="30" r="17" />
+            <path d="M80 48V147M43 86L80 63L117 86M80 147L52 231M80 147L108 231" />
+            <path d="M21 48H139M21 147H139M52 239H108" className="cover-uniqlo-life__datum" />
+          </svg>
+          <p>
+            COMFORT
+            <br />
+            MEASURED
+          </p>
+          <div className="cover-uniqlo-life__readout">
+            <span>23.4 C</span>
+            <span>061 CM</span>
+            <span>04.8 PA</span>
+          </div>
+        </MotifFrame>
+      );
+    case "prada-observation":
+      return (
+        <MotifFrame className="cover-prada-observation">
+          <div className="cover-prada-observation__register">
+            {["00", "01", "02", "03"].map((mark) => (
+              <span key={mark}>{mark}</span>
+            ))}
+          </div>
+          <p data-copy="QUIET">QUIET</p>
+          <b data-copy="ERROR">ERROR</b>
+          <span className="cover-prada-observation__fault" />
+          <small>OBSERVATION 04 / TOLERANCE 1.6 MM</small>
         </MotifFrame>
       );
   }

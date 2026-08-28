@@ -4,30 +4,12 @@ import type { DesignProjectMediaSlot } from "@/lib/design-project-media";
 import type { DesignProject } from "@/lib/design-projects";
 
 export function ProjectApplicationGallery({ project }: { project: DesignProject }) {
-  const layout = Number(project.index) % 4;
-
   return (
-    <div className="space-y-4 md:space-y-6">
-      <div
-        className={`grid gap-4 md:gap-6 ${
-          layout === 0 || layout === 3
-            ? "lg:grid-cols-[1.28fr_0.72fr]"
-            : "lg:grid-cols-[0.78fr_1.22fr]"
-        }`}
-      >
-        <ApplicationBoard project={project} label={project.applications[0]} kind="campaign" />
-        <ApplicationBoard project={project} label={project.applications[1]} kind="object" />
-      </div>
-      <div
-        className={`grid gap-4 md:gap-6 ${
-          layout === 1 || layout === 2
-            ? "lg:grid-cols-[1.18fr_0.82fr]"
-            : "lg:grid-cols-[0.72fr_1.28fr]"
-        }`}
-      >
-        <ApplicationBoard project={project} label={project.applications[2]} kind="screen" />
-        <ApplicationBoard project={project} label={project.applications[3]} kind="system" />
-      </div>
+    <div className="project-application-gallery">
+      <ApplicationBoard project={project} label={project.applications[0]} kind="campaign" />
+      <ApplicationBoard project={project} label={project.applications[1]} kind="object" />
+      <ApplicationBoard project={project} label={project.applications[2]} kind="screen" />
+      <ApplicationBoard project={project} label={project.applications[3]} kind="system" />
     </div>
   );
 }
@@ -50,7 +32,8 @@ function ApplicationBoard({
 
   return (
     <figure
-      className="group relative overflow-hidden bg-[#d8d4ca]"
+      className="project-application-board group relative overflow-hidden bg-[#d8d4ca]"
+      data-kind={kind}
       style={{ backgroundColor: project.palette[0].value }}
     >
       <ProjectPicture
@@ -61,11 +44,9 @@ function ApplicationBoard({
         fallback={<ApplicationFallback project={project} kind={kind} />}
       />
       <div className="pointer-events-none absolute inset-0 z-10 opacity-[.1] mix-blend-soft-light [background-image:radial-gradient(circle_at_20%_20%,rgba(255,255,255,.85)_0_.5px,transparent_.8px),radial-gradient(circle_at_70%_60%,rgba(0,0,0,.2)_0_.45px,transparent_.8px)] [background-size:7px_9px,5px_8px]" />
-      <figcaption className="absolute inset-x-0 bottom-0 z-20 flex items-end justify-between gap-4 bg-gradient-to-t from-black/65 via-black/20 to-transparent px-5 pb-4 pt-16 text-white sm:px-6 sm:pb-5">
-        <span className="text-[12px] font-semibold uppercase tracking-[0.16em]">{label}</span>
-        <span className="font-mono text-[9px] uppercase tracking-[0.16em] opacity-65">
-          {project.index} / application
-        </span>
+      <figcaption className="project-application-caption">
+        <span>{label}</span>
+        <span className="project-meta">{project.index} / application</span>
       </figcaption>
     </figure>
   );
@@ -107,7 +88,7 @@ function ObjectMockup({ project }: { project: DesignProject }) {
     <div className="absolute inset-0 flex items-center justify-center [perspective:1200px]">
       <div className="relative h-[68%] w-[64%] -rotate-3 bg-[#f6f0e4] p-[5%] shadow-[0_35px_80px_rgba(0,0,0,.3)] transition-transform duration-700 ease-out [transform:rotateX(10deg)_rotateY(-8deg)_rotateZ(-3deg)] group-hover:[transform:rotateX(4deg)_rotateY(-3deg)_rotateZ(-1deg)_translateY(-6px)]">
         <DesignProjectCover project={project} variant="screen" />
-        <div className="mt-[5%] flex items-center justify-between font-mono text-[clamp(6px,.8vw,10px)] uppercase tracking-[0.15em] text-black/65">
+        <div className="project-meta mt-[5%] flex items-center justify-between text-[clamp(7px,.8vw,10px)] uppercase tracking-[0.15em] text-black/65">
           <span>
             {project.index} / {project.title}
           </span>
@@ -118,7 +99,7 @@ function ObjectMockup({ project }: { project: DesignProject }) {
         className="absolute bottom-[8%] right-[5%] h-[32%] w-[31%] rotate-6 border border-black/15 p-[5%] shadow-[0_18px_45px_rgba(0,0,0,.22)]"
         style={{ backgroundColor: project.palette[2].value, color: project.palette[1].value }}
       >
-        <p className="font-mono text-[clamp(7px,1vw,12px)] uppercase tracking-[0.13em]">
+        <p className="project-meta text-[clamp(8px,1vw,12px)] uppercase tracking-[0.13em]">
           Material note
         </p>
         <p className="mt-[18%] text-[clamp(13px,2vw,25px)] font-bold leading-[.9]">
@@ -136,7 +117,7 @@ function ScreenMockup({ project }: { project: DesignProject }) {
         <DesignProjectCover project={project} variant="screen" />
         <div className="absolute bottom-[4%] right-[4%] grid min-w-[34%] grid-cols-[1fr_auto] items-center gap-4 bg-black/85 px-[4%] py-[3%] text-white backdrop-blur-sm">
           <div>
-            <p className="font-mono text-[clamp(6px,.8vw,10px)] uppercase tracking-[.14em] text-white/55">
+            <p className="project-meta text-[clamp(7px,.8vw,10px)] uppercase tracking-[.14em] text-white/55">
               Current state
             </p>
             <p className="mt-1 text-[clamp(10px,1.4vw,18px)] font-semibold">{project.motion}</p>
@@ -155,12 +136,12 @@ function SystemMockup({ project }: { project: DesignProject }) {
   return (
     <div className="absolute inset-[8%] grid grid-cols-[1fr_.74fr] gap-[4%]">
       <div className="grid grid-rows-[auto_1fr] bg-[#f4f0e7] p-[7%] text-[#171713] shadow-[0_28px_70px_rgba(0,0,0,.24)]">
-        <div className="flex justify-between border-b border-black/30 pb-[4%] font-mono text-[clamp(6px,.8vw,10px)] uppercase tracking-[.14em]">
+        <div className="project-meta flex justify-between border-b border-black/30 pb-[4%] text-[clamp(7px,.8vw,10px)] uppercase tracking-[.14em]">
           <span>System rule</span>
           <span>{project.index}</span>
         </div>
         <div className="flex flex-col justify-between pt-[8%]">
-          <p className="max-w-[20ch] font-serif text-[clamp(22px,4vw,56px)] italic leading-[.9] tracking-[-.04em]">
+          <p className="project-application-display max-w-[20ch] text-[clamp(22px,4vw,56px)] leading-[.9] tracking-[-.04em]">
             {project.statement}
           </p>
           <p className="max-w-[44ch] text-[clamp(8px,1vw,12px)] leading-relaxed text-black/60">
@@ -172,7 +153,7 @@ function SystemMockup({ project }: { project: DesignProject }) {
         {project.palette.map((swatch, index) => (
           <div
             key={swatch.name}
-            className="flex items-end justify-between p-[8%] font-mono text-[clamp(6px,.8vw,10px)] font-semibold uppercase tracking-[.12em]"
+            className="project-meta flex items-end justify-between p-[8%] text-[clamp(7px,.8vw,10px)] font-semibold uppercase tracking-[.12em]"
             style={{
               backgroundColor: swatch.value,
               color:

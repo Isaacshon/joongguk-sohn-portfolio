@@ -1,6 +1,20 @@
-export const designProjectMediaSlots = ["hero", "tactile", "spatial", "context"] as const;
+export const designProjectCoreMediaSlots = ["hero", "tactile", "spatial", "context"] as const;
+export const designProjectEditorialMediaSlots = [
+  "editorialA",
+  "editorialB",
+  "editorialC",
+  "editorialD",
+  "editorialE",
+  "editorialF",
+] as const;
+export const designProjectMediaSlots = [
+  ...designProjectCoreMediaSlots,
+  ...designProjectEditorialMediaSlots,
+] as const;
 
 export type DesignProjectMediaSlot = (typeof designProjectMediaSlots)[number];
+export type DesignProjectCoreMediaSlot = (typeof designProjectCoreMediaSlots)[number];
+export type DesignProjectEditorialMediaSlot = (typeof designProjectEditorialMediaSlots)[number];
 
 export type DesignProjectMediaAsset = {
   slot: DesignProjectMediaSlot;
@@ -13,7 +27,8 @@ export type DesignProjectMediaAsset = {
   focalPoint: string;
 };
 
-export type DesignProjectMediaSet = Record<DesignProjectMediaSlot, DesignProjectMediaAsset>;
+export type DesignProjectMediaSet = Record<DesignProjectCoreMediaSlot, DesignProjectMediaAsset> &
+  Partial<Record<DesignProjectEditorialMediaSlot, DesignProjectMediaAsset>>;
 
 type MediaDescription = {
   alt: string;
@@ -22,13 +37,20 @@ type MediaDescription = {
   height?: number;
 };
 
-type ProjectMediaDescription = Record<DesignProjectMediaSlot, MediaDescription>;
+type ProjectMediaDescription = Record<DesignProjectCoreMediaSlot, MediaDescription> &
+  Partial<Record<DesignProjectEditorialMediaSlot, MediaDescription>>;
 
 const slotDimensions: Record<DesignProjectMediaSlot, { width: number; height: number }> = {
   hero: { width: 2560, height: 3200 },
   tactile: { width: 3200, height: 2133 },
   spatial: { width: 3200, height: 1800 },
   context: { width: 1800, height: 3200 },
+  editorialA: { width: 2560, height: 3200 },
+  editorialB: { width: 3200, height: 2133 },
+  editorialC: { width: 2560, height: 3200 },
+  editorialD: { width: 3200, height: 1800 },
+  editorialE: { width: 2560, height: 3200 },
+  editorialF: { width: 3200, height: 2133 },
 };
 
 /**
@@ -416,6 +438,154 @@ const projectMediaDescriptions = {
       focalPoint: "50% 40%",
     },
   },
+  "hm-second-sun": {
+    hero: {
+      alt: "Fashion portrait in sun-washed red and amber layers beneath a second circular light.",
+      focalPoint: "50% 36%",
+    },
+    tactile: {
+      alt: "Close material study of rib knit, translucent technical cloth, topstitching, and a solar-yellow label.",
+      focalPoint: "50% 50%",
+    },
+    spatial: {
+      alt: "Temporary fashion environment formed from translucent amber screens and two low light discs.",
+      focalPoint: "50% 44%",
+    },
+    context: {
+      alt: "Layered everyday looks moving through a blue-hour city while warm light traces their silhouettes.",
+      focalPoint: "50% 37%",
+    },
+    editorialA: {
+      alt: "Close fashion portrait framed by a translucent orange layer and a sharp ring of warm light.",
+      focalPoint: "50% 34%",
+    },
+    editorialB: {
+      alt: "Three coordinated looks crossing a graphic field of long shadows and paired sun discs.",
+      focalPoint: "51% 43%",
+    },
+    editorialC: {
+      alt: "Repaired summer garment documented with dated patches, care marks, and a visible second-life label.",
+      focalPoint: "50% 45%",
+    },
+    editorialD: {
+      alt: "Warm retail take-back station where folded garments move from return to repair and rewear routes.",
+      focalPoint: "50% 44%",
+    },
+  },
+  "zara-the-air-between": {
+    hero: {
+      alt: "Sculptural neutral tailoring held inside an airy limestone room with fabric suspended overhead.",
+      focalPoint: "50% 36%",
+    },
+    tactile: {
+      alt: "Close study of pleated organza, dry wool, polished metal, and a restrained paper garment tag.",
+      focalPoint: "50% 50%",
+    },
+    spatial: {
+      alt: "Gallery-like fashion environment shaped by drifting fabric planes, stone, and precise daylight.",
+      focalPoint: "50% 44%",
+    },
+    context: {
+      alt: "Model in fluid tailoring crossing a wind-cut colonnade with cloth moving through the open space.",
+      focalPoint: "50% 35%",
+    },
+    editorialA: {
+      alt: "Monochrome fashion portrait composed around the negative space between body and suspended cloth.",
+      focalPoint: "50% 33%",
+    },
+    editorialB: {
+      alt: "Coordinated garments and transparent textiles lifted by calibrated airflow in a pale studio.",
+      focalPoint: "50% 45%",
+    },
+    editorialC: {
+      alt: "Flagship window composition holding one sculptural look between large fields of empty space.",
+      focalPoint: "50% 42%",
+    },
+    editorialD: {
+      alt: "Quiet mobile and fitting-room fashion screens using measured gutters and suspended image crops.",
+      focalPoint: "50% 46%",
+    },
+    editorialE: {
+      alt: "Editorial lookbook still life of sheer cloth, neutral tailoring, and precise garment captions.",
+      focalPoint: "50% 45%",
+    },
+  },
+  "uniqlo-comfort-measured": {
+    hero: {
+      alt: "Everyday layered clothing photographed inside a precise red and white comfort-measurement grid.",
+      focalPoint: "50% 36%",
+    },
+    tactile: {
+      alt: "Close construction study of soft jersey, insulated quilting, clean seams, and measured fabric notation.",
+      focalPoint: "50% 50%",
+    },
+    spatial: {
+      alt: "Modular domestic set organised as a calm laboratory for movement, temperature, and daily comfort.",
+      focalPoint: "50% 44%",
+    },
+    context: {
+      alt: "People in adaptable everyday layers moving between transit, work, and home across one day.",
+      focalPoint: "50% 37%",
+    },
+    editorialA: {
+      alt: "Macro garment portrait pairing soft fabric texture with restrained thermal and movement annotations.",
+      focalPoint: "50% 40%",
+    },
+    editorialB: {
+      alt: "Multi-generational group portrait arranged on a measured grid in coordinated functional layers.",
+      focalPoint: "50% 40%",
+    },
+    editorialC: {
+      alt: "In-store measurement wall translating garment movement, layering, temperature, and use into calm diagrams.",
+      focalPoint: "50% 43%",
+    },
+    editorialD: {
+      alt: "Open field guide and product cards pairing everyday clothing details with plain-language use conditions.",
+      focalPoint: "50% 47%",
+    },
+  },
+  "prada-the-quiet-error": {
+    hero: {
+      alt: "Precise black fashion portrait interrupted by one quiet acid-green optical displacement.",
+      focalPoint: "50% 34%",
+    },
+    tactile: {
+      alt: "Black leather, brushed metal, translucent film, and distorted type arranged as a controlled material error.",
+      focalPoint: "50% 50%",
+    },
+    spatial: {
+      alt: "Severe gallery environment whose mirrored planes introduce a single deliberate spatial misalignment.",
+      focalPoint: "50% 43%",
+    },
+    context: {
+      alt: "Night fashion image projected across polished urban stone with one nearly invisible registration fault.",
+      focalPoint: "50% 35%",
+    },
+    editorialA: {
+      alt: "Close portrait in which the face and its reflection fall subtly out of alignment.",
+      focalPoint: "50% 32%",
+    },
+    editorialB: {
+      alt: "Luxury still life interrupted by a narrow acid-green plane and an exact shifted shadow.",
+      focalPoint: "50% 47%",
+    },
+    editorialC: {
+      alt: "Black editorial object book opened to a forensic caption and one precisely displaced image crop.",
+      focalPoint: "50% 45%",
+    },
+    editorialD: {
+      alt: "Exhibition invitation and smoked acrylic card arranged on a strict archival evidence grid.",
+      focalPoint: "50% 48%",
+    },
+    editorialE: {
+      alt: "Close fashion detail isolating one shifted seam against an otherwise exact black construction.",
+      focalPoint: "50% 41%",
+    },
+    editorialF: {
+      alt: "Digital motion sequence recording a single grid-unit deviation across severe monochrome frames.",
+      focalPoint: "50% 45%",
+    },
+  },
 } satisfies Record<string, ProjectMediaDescription>;
 
 function buildMediaAsset(
@@ -461,9 +631,9 @@ export const designProjectMedia = Object.fromEntries(
   Object.entries(projectMediaDescriptions).map(([slug, descriptions]) => [
     slug,
     Object.fromEntries(
-      designProjectMediaSlots.map((slot) => [
+      Object.entries(descriptions).map(([slot, description]) => [
         slot,
-        buildMediaAsset(slug, slot, descriptions[slot]),
+        buildMediaAsset(slug, slot as DesignProjectMediaSlot, description),
       ]),
     ) as DesignProjectMediaSet,
   ]),

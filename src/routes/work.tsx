@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { MatLayout } from "@/components/MatLayout";
 import { DesignProjectCover } from "@/components/poster-studies/DesignProjectCover";
 import { ProjectPicture } from "@/components/poster-studies/ProjectPicture";
-import { designProjects, type DesignProject } from "@/lib/design-projects";
+import { designProjectCount, designProjects, type DesignProject } from "@/lib/design-projects";
 import { projects, type Project } from "@/lib/projects";
 
 export const Route = createFileRoute("/work")({
@@ -51,7 +51,7 @@ function Work() {
             </div>
             <div className="max-w-[530px] border-t border-black/25 pt-5 lg:mb-2">
               <p className="font-serif text-[clamp(1.6rem,3vw,2.8rem)] italic leading-[1.02] tracking-[-.025em]">
-                Twenty design systems, each opening into its own complete case study.
+                {designProjectCount} design systems, each opening into its own complete case study.
               </p>
               <div className="mt-7 flex gap-8 font-mono text-[9px] uppercase tracking-[.15em] text-black/50">
                 <span>
