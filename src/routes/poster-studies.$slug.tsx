@@ -1,17 +1,38 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { MatLayout } from "@/components/MatLayout";
+import { BrandPavilion } from "@/components/poster-studies/BrandPavilion";
 import { ProjectCaseStudy } from "@/components/poster-studies/ProjectCaseStudy";
 import { getDesignProjectFontHref } from "@/lib/design-project-art-direction";
+import { getDesignProjectMediaAsset } from "@/lib/design-project-media";
+import { getBrandPavilion } from "@/lib/brand-pavilions";
 import { designProjectCount, getDesignProject } from "@/lib/design-projects";
+
+const siteOrigin = "https://isaactoast.ca";
 
 export const Route = createFileRoute("/poster-studies/$slug")({
   head: ({ params }) => {
     const project = getDesignProject(params.slug);
+    const pavilion = project?.brandStudy ? getBrandPavilion(project.slug) : undefined;
+    const isBrandPavilion = Boolean(project?.brandStudy && pavilion);
     const title = project
-      ? `${project.title} — Design Case Study by Isaac Sohn`
+      ? isBrandPavilion
+        ? `${project.title} — Independent Unofficial Brand Concept by Isaac Sohn`
+        : `${project.title} — Design Case Study by Isaac Sohn`
       : "Design Project — Isaac Sohn";
-    const description = project?.description ?? "Independent design project by Isaac Sohn.";
+    const description =
+      project && pavilion && project.brandStudy
+        ? `${pavilion.hero.summary} Independent unofficial concept by Isaac Sohn; not commissioned, sponsored, or endorsed by ${project.brandStudy.brand}.`
+        : (project?.description ?? "Independent design project by Isaac Sohn.");
+    const canonicalUrl = project ? `${siteOrigin}/poster-studies/${project.slug}` : undefined;
+    const socialImage =
+      project && isBrandPavilion
+        ? `${siteOrigin}/generated/design-projects/${project.slug}/spatial-1600.webp`
+        : undefined;
+    const socialImageAlt =
+      project && isBrandPavilion
+        ? getDesignProjectMediaAsset(project.slug, "spatial")?.alt
+        : undefined;
 
     return {
       meta: [
@@ -20,8 +41,25 @@ export const Route = createFileRoute("/poster-studies/$slug")({
         { property: "og:title", content: title },
         { property: "og:description", content: description },
         { property: "og:type", content: "article" },
+        ...(isBrandPavilion && canonicalUrl && socialImage
+          ? [
+              { property: "og:url", content: canonicalUrl },
+              { property: "og:image", content: socialImage },
+              {
+                property: "og:image:alt",
+                content:
+                  socialImageAlt ??
+                  `${project?.title ?? "Brand"} independent unofficial concept pavilion`,
+              },
+            ]
+          : []),
       ],
-      links: project ? [{ rel: "stylesheet", href: getDesignProjectFontHref(project) }] : undefined,
+      links: project
+        ? [
+            { rel: "stylesheet", href: getDesignProjectFontHref(project) },
+            ...(isBrandPavilion && canonicalUrl ? [{ rel: "canonical", href: canonicalUrl }] : []),
+          ]
+        : undefined,
     };
   },
   component: DesignProjectDetail,
@@ -50,6 +88,10 @@ function DesignProjectDetail() {
         </div>
       </MatLayout>
     );
+  }
+
+  if (project.brandStudy && getBrandPavilion(project.slug)) {
+    return <BrandPavilion project={project} />;
   }
 
   return <ProjectCaseStudy project={project} />;

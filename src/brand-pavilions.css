@@ -1,0 +1,1345 @@
+.brand-pavilion {
+  container-type: inline-size;
+  overflow-x: clip;
+  background: var(--pavilion-paper);
+  color: var(--pavilion-ink);
+  font-family: var(--pavilion-body);
+  scroll-behavior: smooth;
+}
+
+.pavilion-shell {
+  width: min(calc(100% - clamp(2rem, 7vw, 8rem)), 102rem);
+  margin-inline: auto;
+}
+
+.pavilion-meta {
+  font-family: var(--pavilion-meta);
+  font-size: clamp(0.58rem, 0.74cqw, 0.72rem);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.brand-pavilion a:focus-visible {
+  outline: 2px solid var(--pavilion-accent);
+  outline-offset: 4px;
+}
+
+.brand-pavilion__hero {
+  position: relative;
+  display: flex;
+  min-height: clamp(42rem, 92dvh, 68rem);
+  align-items: flex-end;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--pavilion-dark);
+  color: var(--pavilion-light);
+}
+
+.brand-pavilion__hero-picture {
+  position: absolute !important;
+  inset: 0;
+  z-index: -3;
+  height: 100%;
+}
+
+.brand-pavilion__hero-image {
+  transform: scale(1.015);
+  transition: transform 1.4s cubic-bezier(0.2, 0.7, 0.2, 1) !important;
+}
+
+.brand-pavilion__hero:hover .brand-pavilion__hero-image {
+  transform: scale(1.035);
+}
+
+.brand-pavilion__hero-wash {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(180deg, rgba(10, 10, 10, 0.48) 0%, rgba(10, 10, 10, 0.04) 34%),
+    linear-gradient(0deg, rgba(10, 10, 10, 0.91) 0%, rgba(10, 10, 10, 0.08) 64%);
+}
+
+.brand-pavilion__hero-rail {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  display: flex;
+  width: min(calc(100% - clamp(2rem, 7vw, 8rem)), 102rem);
+  align-items: center;
+  justify-content: space-between;
+  padding-block: clamp(1.2rem, 2.4vw, 2rem);
+  border-bottom: 1px solid color-mix(in srgb, currentColor 52%, transparent);
+}
+
+.brand-pavilion__back-link {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 220ms ease;
+}
+
+.brand-pavilion__back-link:hover {
+  opacity: 0.58;
+}
+
+.brand-pavilion__hero-content {
+  display: grid;
+  align-items: end;
+  gap: clamp(1.5rem, 4vw, 4.5rem);
+  padding-block: clamp(7rem, 13vh, 10rem) clamp(2rem, 5vh, 4.5rem);
+}
+
+.brand-pavilion__hero-kicker,
+.brand-pavilion__hero-statement,
+.brand-pavilion__hero-summary {
+  margin: 0;
+}
+
+.brand-pavilion__hero-kicker {
+  grid-column: 1 / -1;
+  color: var(--pavilion-accent);
+}
+
+.brand-pavilion__wordmark {
+  margin: 0;
+  font-family: var(--pavilion-display);
+  font-size: clamp(5.5rem, 18cqw, 17rem);
+  font-weight: 500;
+  letter-spacing: -0.085em;
+  line-height: 0.68;
+  text-wrap: balance;
+}
+
+.brand-pavilion__hero-thesis {
+  display: grid;
+  max-width: 39rem;
+  gap: 1.2rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid currentColor;
+}
+
+.brand-pavilion__hero-statement {
+  max-width: 18ch;
+  font-family: var(--pavilion-accent-font);
+  font-size: clamp(2rem, 4.8cqw, 4.7rem);
+  letter-spacing: -0.045em;
+  line-height: 0.94;
+  text-wrap: balance;
+}
+
+.brand-pavilion__hero-summary {
+  max-width: 44ch;
+  font-size: clamp(0.9rem, 1.2cqw, 1.1rem);
+  line-height: 1.58;
+  opacity: 0.82;
+  text-wrap: pretty;
+}
+
+.brand-pavilion__enter {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.6rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid currentColor;
+  color: inherit;
+  text-decoration: none;
+  transition: gap 240ms ease;
+}
+
+.brand-pavilion__enter:hover {
+  gap: 1.15rem;
+}
+
+.brand-pavilion__chapter-nav {
+  position: sticky;
+  z-index: 25;
+  top: env(safe-area-inset-top, 0px);
+  border-bottom: 1px solid color-mix(in srgb, var(--pavilion-ink) 28%, transparent);
+  background: color-mix(in srgb, var(--pavilion-paper) 93%, transparent);
+  backdrop-filter: blur(16px) saturate(120%);
+}
+
+.brand-pavilion__chapter-nav-inner {
+  display: flex;
+  min-height: 3.55rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.brand-pavilion__chapter-brand,
+.brand-pavilion__chapter-links a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.brand-pavilion__chapter-brand {
+  white-space: nowrap;
+}
+
+.brand-pavilion__chapter-links {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.25rem, 2.6vw, 3rem);
+}
+
+.brand-pavilion__chapter-links a span {
+  margin-right: 0.3rem;
+  color: var(--pavilion-accent);
+}
+
+.brand-pavilion__chapter-links a:hover,
+.brand-pavilion__chapter-brand:hover {
+  color: var(--pavilion-accent);
+}
+
+.brand-pavilion__section {
+  scroll-margin-top: calc(4.05rem + env(safe-area-inset-top, 0px));
+  padding-block: clamp(5rem, 10vw, 10rem);
+}
+
+.brand-pavilion__section-header {
+  display: grid;
+  grid-template-columns: minmax(3rem, 0.16fr) minmax(8rem, 0.34fr) minmax(0, 0.5fr);
+  gap: 1rem;
+  padding-block: 0.9rem;
+  border-top: 1px solid currentColor;
+  opacity: 0.72;
+}
+
+.brand-pavilion__section-header span:last-child {
+  text-align: right;
+}
+
+.brand-pavilion__scope-note {
+  color: color-mix(in srgb, currentColor 88%, transparent);
+}
+
+.brand-pavilion__scope-label {
+  color: var(--pavilion-accent);
+}
+
+.brand-pavilion__official-source {
+  white-space: nowrap;
+}
+
+.brand-pavilion__philosophy-grid {
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.42fr) minmax(0, 0.58fr);
+  align-items: start;
+  gap: clamp(3rem, 7vw, 8rem);
+  margin-top: clamp(3rem, 7vw, 7rem);
+}
+
+.brand-pavilion__philosophy-copy {
+  position: sticky;
+  top: 8.5rem;
+}
+
+.brand-pavilion__section-kicker {
+  margin: 0 0 1.6rem;
+  color: var(--pavilion-accent);
+}
+
+.brand-pavilion__philosophy-copy h2,
+.brand-pavilion__needs h2,
+.brand-pavilion__principles-intro h2,
+.brand-pavilion__design-heading h2,
+.brand-pavilion__world-intro h2,
+.brand-pavilion__research h2 {
+  margin: 0;
+  font-family: var(--pavilion-accent-font);
+  font-size: clamp(3rem, 7.2cqw, 7.2rem);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 0.9;
+  text-wrap: balance;
+}
+
+.brand-pavilion__philosophy-copy > p:last-child {
+  max-width: 49ch;
+  margin: clamp(2rem, 4vw, 3.6rem) 0 0;
+  font-size: clamp(1rem, 1.35cqw, 1.22rem);
+  line-height: 1.72;
+  text-wrap: pretty;
+}
+
+.brand-pavilion__figure {
+  min-width: 0;
+  margin: 0;
+}
+
+.brand-pavilion__figure > div {
+  background: color-mix(in srgb, var(--pavilion-panel) 72%, transparent);
+}
+
+.brand-pavilion__figure-image {
+  filter: saturate(0.94) contrast(1.015);
+}
+
+.brand-pavilion__figure figcaption {
+  display: grid;
+  grid-template-columns: minmax(4.2rem, 0.18fr) minmax(0, 0.82fr);
+  gap: 1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid currentColor;
+}
+
+.brand-pavilion__figure figcaption > span:last-child {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.brand-pavilion__figure-index,
+.brand-pavilion__figure-eyebrow {
+  opacity: 0.56;
+}
+
+.brand-pavilion__figure figcaption strong {
+  max-width: 34ch;
+  font-family: var(--pavilion-accent-font);
+  font-size: clamp(1.15rem, 1.8cqw, 1.65rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.brand-pavilion__figure figcaption small {
+  max-width: 58ch;
+  font-size: clamp(0.72rem, 0.9cqw, 0.86rem);
+  line-height: 1.56;
+  opacity: 0.68;
+  text-wrap: pretty;
+}
+
+.brand-pavilion__values {
+  padding-top: clamp(2rem, 4vw, 4rem);
+}
+
+.brand-pavilion__value-ledger {
+  margin-top: clamp(3rem, 7vw, 7rem);
+  border-bottom: 1px solid color-mix(in srgb, var(--pavilion-ink) 50%, transparent);
+}
+
+.brand-pavilion__value {
+  display: grid;
+  grid-template-columns: minmax(3.5rem, 0.12fr) minmax(12rem, 0.38fr) minmax(0, 0.5fr);
+  align-items: baseline;
+  gap: 1rem;
+  padding-block: clamp(1.8rem, 3.6vw, 3.4rem);
+  border-top: 1px solid color-mix(in srgb, var(--pavilion-ink) 50%, transparent);
+  transition:
+    padding-inline 260ms ease,
+    background 260ms ease,
+    color 260ms ease;
+}
+
+.brand-pavilion__value:hover {
+  padding-inline: clamp(0.75rem, 2vw, 2rem);
+  background: var(--pavilion-ink);
+  color: var(--pavilion-paper);
+}
+
+.brand-pavilion__value-number {
+  color: var(--pavilion-accent);
+}
+
+.brand-pavilion__value h3,
+.brand-pavilion__value p {
+  margin: 0;
+}
+
+.brand-pavilion__value h3 {
+  font-family: var(--pavilion-display);
+  font-size: clamp(2rem, 4.2cqw, 4.2rem);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 0.9;
+}
+
+.brand-pavilion__value p {
+  max-width: 50ch;
+  font-size: clamp(0.9rem, 1.15cqw, 1.06rem);
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.brand-pavilion__needs {
+  background: var(--pavilion-dark);
+  color: var(--pavilion-light);
+}
+
+.brand-pavilion__needs-grid {
+  display: grid;
+  grid-template-columns: minmax(19rem, 0.43fr) minmax(0, 0.57fr);
+  align-items: start;
+  gap: clamp(3rem, 7vw, 8rem);
+  margin-top: clamp(3rem, 7vw, 7rem);
+}
+
+.brand-pavilion__needs-copy {
+  position: sticky;
+  top: 8.5rem;
+}
+
+.brand-pavilion__needs-intro {
+  max-width: 50ch;
+  margin: clamp(2rem, 4vw, 3.5rem) 0 0;
+  font-size: clamp(0.95rem, 1.3cqw, 1.16rem);
+  line-height: 1.7;
+  opacity: 0.74;
+  text-wrap: pretty;
+}
+
+.brand-pavilion__need-list {
+  margin: clamp(2.5rem, 5vw, 5rem) 0 0;
+  padding: 0;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 28%, transparent);
+  list-style: none;
+}
+
+.brand-pavilion__need-list li {
+  display: grid;
+  grid-template-columns: 2.8rem minmax(0, 1fr);
+  gap: 0.8rem;
+  padding-block: 1.35rem;
+  border-top: 1px solid color-mix(in srgb, currentColor 28%, transparent);
+}
+
+.brand-pavilion__need-list li > span {
+  color: var(--pavilion-accent);
+}
+
+.brand-pavilion__need-list h3,
+.brand-pavilion__need-list p {
+  margin: 0;
+}
+
+.brand-pavilion__need-list h3 {
+  font-size: clamp(1rem, 1.25cqw, 1.18rem);
+  letter-spacing: -0.02em;
+}
+
+.brand-pavilion__need-list p {
+  max-width: 48ch;
+  margin-top: 0.45rem;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  opacity: 0.62;
+}
+
+.brand-pavilion__needs-images {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  align-items: start;
+  gap: 1rem;
+}
+
+.brand-pavilion__needs-images .brand-pavilion__figure:first-child {
+  grid-column: 1 / span 7;
+}
+
+.brand-pavilion__needs-images .brand-pavilion__figure:last-child {
+  grid-column: 5 / -1;
+  margin-top: -4vw;
+}
+
+.brand-pavilion__principles-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 0.62fr) minmax(18rem, 0.38fr);
+  align-items: end;
+  gap: clamp(2rem, 5vw, 6rem);
+  margin-top: clamp(3rem, 7vw, 7rem);
+}
+
+.brand-pavilion__principles-intro p,
+.brand-pavilion__design-heading p,
+.brand-pavilion__world-intro p {
+  max-width: 50ch;
+  margin: 0;
+  font-size: clamp(0.95rem, 1.25cqw, 1.13rem);
+  line-height: 1.68;
+  text-wrap: pretty;
+}
+
+.brand-pavilion__principles-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 0.6fr) minmax(18rem, 0.4fr);
+  align-items: start;
+  gap: clamp(2rem, 5vw, 5rem);
+  margin-top: clamp(4rem, 8vw, 8rem);
+}
+
+.brand-pavilion__principle-list {
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid currentColor;
+  list-style: none;
+}
+
+.brand-pavilion__principle-list li {
+  display: grid;
+  grid-template-columns: clamp(2.8rem, 5cqw, 5rem) minmax(0, 1fr);
+  align-items: start;
+  gap: 1rem;
+  padding-block: clamp(1.2rem, 2.4vw, 2.2rem);
+  border-top: 1px solid currentColor;
+}
+
+.brand-pavilion__principle-key {
+  font-family: var(--pavilion-display);
+  font-size: clamp(2rem, 4cqw, 4rem);
+  line-height: 0.8;
+  color: var(--pavilion-accent);
+}
+
+.brand-pavilion__principle-list h3,
+.brand-pavilion__principle-list p {
+  margin: 0;
+}
+
+.brand-pavilion__principle-list h3 {
+  font-family: var(--pavilion-accent-font);
+  font-size: clamp(1.2rem, 1.7cqw, 1.55rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+
+.brand-pavilion__principle-list p {
+  margin-top: 0.5rem;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  opacity: 0.64;
+}
+
+.brand-pavilion__design {
+  background: color-mix(in srgb, var(--pavilion-panel) 46%, var(--pavilion-paper));
+}
+
+.brand-pavilion__design-heading,
+.brand-pavilion__world-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 0.65fr) minmax(18rem, 0.35fr);
+  align-items: end;
+  gap: clamp(2rem, 5vw, 6rem);
+  margin-block: clamp(3rem, 7vw, 7rem);
+}
+
+.brand-pavilion__figure[data-featured="true"] > div {
+  aspect-ratio: 16 / 8.4 !important;
+}
+
+.brand-pavilion__design-system {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(15rem, 0.85fr) minmax(15rem, 0.8fr);
+  margin-top: clamp(4rem, 8vw, 8rem);
+  border-bottom: 1px solid currentColor;
+}
+
+.brand-pavilion__design-system > div {
+  min-width: 0;
+  padding: clamp(1.25rem, 2.5vw, 2.5rem);
+  border-top: 1px solid currentColor;
+  border-left: 1px solid currentColor;
+}
+
+.brand-pavilion__design-system > div:last-child {
+  border-right: 1px solid currentColor;
+}
+
+.brand-pavilion__design-system p {
+  margin: 0 0 clamp(2rem, 4vw, 4rem);
+  opacity: 0.58;
+}
+
+.brand-pavilion__type-specimen {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-pavilion__type-specimen strong {
+  font-family: var(--pavilion-display);
+  font-size: clamp(3.4rem, 7cqw, 7rem);
+  font-weight: 500;
+  letter-spacing: -0.07em;
+  line-height: 0.78;
+}
+
+.brand-pavilion__type-specimen > span {
+  max-width: 18ch;
+  margin-top: auto;
+  padding-top: clamp(3rem, 7vw, 7rem);
+  font-family: var(--pavilion-accent-font);
+  font-size: clamp(1.4rem, 2.6cqw, 2.5rem);
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.brand-pavilion__palette > div {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.brand-pavilion__palette > div > span {
+  display: flex;
+  min-height: 4.8rem;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.8rem;
+  border: 1px solid color-mix(in srgb, currentColor 32%, transparent);
+  color: #fff;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.72);
+}
+
+.brand-pavilion__palette b {
+  width: fit-content;
+  padding: 0.15rem 0.28rem;
+  background: rgba(0, 0, 0, 0.58);
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+
+.brand-pavilion__palette small {
+  width: fit-content;
+  padding: 0.12rem 0.28rem;
+  background: rgba(0, 0, 0, 0.58);
+  font-family: var(--pavilion-meta);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.brand-pavilion__materials ol {
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid currentColor;
+  list-style: none;
+}
+
+.brand-pavilion__materials li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.95rem;
+  border-top: 1px solid currentColor;
+  font-size: 0.82rem;
+}
+
+.brand-pavilion__materials li > span:first-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.brand-pavilion__materials small {
+  opacity: 0.5;
+}
+
+.brand-pavilion__keyword-rail {
+  display: flex;
+  overflow: hidden;
+  margin-top: clamp(4rem, 8vw, 8rem);
+  border-block: 1px solid currentColor;
+}
+
+.brand-pavilion__keyword-rail > span {
+  display: flex;
+  min-width: max-content;
+  flex: 1;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.25rem;
+  border-left: 1px solid currentColor;
+  font-family: var(--pavilion-display);
+  font-size: clamp(1.25rem, 2.5cqw, 2.35rem);
+  letter-spacing: -0.045em;
+}
+
+.brand-pavilion__keyword-rail > span:last-child {
+  border-right: 1px solid currentColor;
+}
+
+.brand-pavilion__keyword-rail small {
+  opacity: 0.5;
+}
+
+.brand-pavilion__world {
+  background: var(--pavilion-dark);
+  color: var(--pavilion-light);
+}
+
+.brand-pavilion__world-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(3rem, 7vw, 8rem) clamp(1rem, 2.4vw, 2.5rem);
+}
+
+.brand-pavilion__world-grid .brand-pavilion__figure[data-layout="wide"] {
+  grid-column: 1 / -1;
+}
+
+.brand-pavilion__world-grid .brand-pavilion__figure[data-layout="landscape"] {
+  grid-column: span 7;
+}
+
+.brand-pavilion__world-grid .brand-pavilion__figure[data-layout="portrait"] {
+  grid-column: span 5;
+}
+
+.brand-pavilion__world-grid .brand-pavilion__figure:nth-child(3n) {
+  grid-column-end: -1;
+}
+
+.brand-pavilion__world-grid .brand-pavilion__figure:nth-child(even):not([data-layout="wide"]) {
+  margin-top: clamp(2rem, 8vw, 8rem);
+}
+
+.brand-pavilion__research {
+  padding-block: clamp(4rem, 8vw, 8rem);
+  background: var(--pavilion-paper);
+  color: var(--pavilion-ink);
+}
+
+.brand-pavilion__research-grid {
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.42fr) minmax(0, 0.58fr);
+  gap: clamp(3rem, 7vw, 8rem);
+  padding-top: 1rem;
+  border-top: 1px solid currentColor;
+}
+
+.brand-pavilion__research h2 {
+  max-width: 9ch;
+  margin-top: 2rem;
+  font-size: clamp(2.8rem, 5.6cqw, 5.5rem);
+}
+
+.brand-pavilion__research-grid > div:last-child > p {
+  max-width: 56ch;
+  margin: 0 0 clamp(2rem, 4vw, 4rem);
+  font-size: clamp(0.9rem, 1.15cqw, 1.05rem);
+  line-height: 1.65;
+}
+
+.brand-pavilion__research ol {
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid currentColor;
+  list-style: none;
+}
+
+.brand-pavilion__research li a {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr) auto;
+  gap: 1rem;
+  padding-block: 1rem;
+  border-top: 1px solid currentColor;
+  color: inherit;
+  font-size: 0.84rem;
+  text-decoration: none;
+  transition: padding-inline 200ms ease;
+}
+
+.brand-pavilion__research li a span:nth-child(2) {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+
+.brand-pavilion__research li a span:last-child {
+  justify-self: end;
+  transition: transform 180ms ease;
+}
+
+.brand-pavilion__research li a:hover,
+.brand-pavilion__research li a:focus-visible {
+  padding-inline: 0.75rem;
+}
+
+.brand-pavilion__research li a:hover span:last-child,
+.brand-pavilion__research li a:focus-visible span:last-child {
+  transform: translate(0.15rem, -0.15rem);
+}
+
+.brand-pavilion__adjacent {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--pavilion-ink);
+}
+
+.brand-pavilion__adjacent a {
+  position: relative;
+  display: grid;
+  min-height: clamp(18rem, 32vw, 31rem);
+  align-content: space-between;
+  padding: clamp(1.5rem, 4vw, 4rem);
+  overflow: hidden;
+  background: var(--pavilion-paper);
+  color: var(--pavilion-ink);
+  text-decoration: none;
+  transition:
+    background 280ms ease,
+    color 280ms ease;
+}
+
+.brand-pavilion__adjacent a + a {
+  border-left: 1px solid var(--pavilion-ink);
+}
+
+.brand-pavilion__adjacent a:hover {
+  background: var(--pavilion-ink);
+  color: var(--pavilion-paper);
+}
+
+.brand-pavilion__adjacent strong {
+  align-self: end;
+  font-family: var(--pavilion-display);
+  font-size: clamp(3.2rem, 7cqw, 7rem);
+  font-weight: 500;
+  letter-spacing: -0.07em;
+  line-height: 0.78;
+}
+
+.brand-pavilion__adjacent a > span:last-child {
+  position: absolute;
+  right: clamp(1.5rem, 4vw, 4rem);
+  top: clamp(1.5rem, 4vw, 4rem);
+  font-size: 1.3rem;
+}
+
+.brand-pavilion__disclosure {
+  border-top: 1px solid color-mix(in srgb, var(--pavilion-light) 18%, transparent);
+  background: var(--pavilion-dark);
+  color: var(--pavilion-light);
+}
+
+.brand-pavilion__disclosure .pavilion-shell {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: baseline;
+  gap: clamp(1.2rem, 3vw, 3rem);
+  padding-block: 1.1rem;
+}
+
+.brand-pavilion__disclosure strong {
+  font-size: 0.64rem;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+
+.brand-pavilion__disclosure small {
+  max-width: 105ch;
+  font-size: 0.6rem;
+  line-height: 1.55;
+  opacity: 0.54;
+}
+
+/* H&M — democratic energy and visible next-life actions */
+.brand-pavilion[data-brand="hm"] .brand-pavilion__hero::after {
+  position: absolute;
+  inset: auto 0 0 auto;
+  width: clamp(0.65rem, 1.2vw, 1.2rem);
+  height: 74%;
+  background: var(--pavilion-accent);
+  content: "";
+}
+
+.brand-pavilion[data-brand="hm"] .brand-pavilion__wordmark,
+.brand-pavilion[data-brand="hm"] .brand-pavilion__value h3,
+.brand-pavilion[data-brand="hm"] .brand-pavilion__adjacent strong {
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.brand-pavilion[data-brand="hm"] .brand-pavilion__hero-kicker,
+.brand-pavilion[data-brand="hm"] .brand-pavilion__principle-key {
+  color: #f4dd27;
+}
+
+.brand-pavilion[data-brand="hm"] .brand-pavilion__needs {
+  background: #751d2d;
+}
+
+.brand-pavilion[data-brand="hm"] .brand-pavilion__world {
+  border-top: 0.7rem solid #f4dd27;
+}
+
+/* ZARA — restraint, proportion, and editorial air */
+.brand-pavilion[data-brand="zara"] .brand-pavilion__hero-wash {
+  background:
+    linear-gradient(180deg, rgba(10, 10, 10, 0.5), transparent 40%),
+    linear-gradient(90deg, rgba(10, 10, 10, 0.74), transparent 68%),
+    linear-gradient(0deg, rgba(10, 10, 10, 0.72), transparent 55%);
+}
+
+.brand-pavilion[data-brand="zara"] .brand-pavilion__wordmark {
+  font-size: clamp(6rem, 21cqw, 19rem);
+  font-weight: 500;
+  letter-spacing: -0.105em;
+}
+
+.brand-pavilion[data-brand="zara"] .brand-pavilion__section {
+  padding-block: clamp(6rem, 12vw, 13rem);
+}
+
+.brand-pavilion[data-brand="zara"] .brand-pavilion__value:hover {
+  background: #6d2535;
+}
+
+.brand-pavilion[data-brand="zara"] .brand-pavilion__needs,
+.brand-pavilion[data-brand="zara"] .brand-pavilion__world {
+  background: #1a1a18;
+}
+
+/* UNIQLO — a precise LifeWear laboratory */
+.brand-pavilion[data-brand="uniqlo"] {
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in srgb, var(--pavilion-ink) 6%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--pavilion-ink) 6%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 6.25cqw 6.25cqw;
+}
+
+.brand-pavilion[data-brand="uniqlo"] .brand-pavilion__wordmark {
+  width: fit-content;
+  padding: 0.12em 0.16em 0.2em;
+  background: var(--pavilion-accent);
+  font-size: clamp(4.2rem, 14cqw, 12rem);
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  line-height: 0.78;
+}
+
+.brand-pavilion[data-brand="uniqlo"] .brand-pavilion__hero-kicker {
+  color: #fff;
+}
+
+.brand-pavilion[data-brand="uniqlo"] .brand-pavilion__value h3,
+.brand-pavilion[data-brand="uniqlo"] .brand-pavilion__type-specimen strong,
+.brand-pavilion[data-brand="uniqlo"] .brand-pavilion__adjacent strong {
+  font-weight: 800;
+  letter-spacing: -0.055em;
+}
+
+.brand-pavilion[data-brand="uniqlo"] .brand-pavilion__needs,
+.brand-pavilion[data-brand="uniqlo"] .brand-pavilion__world {
+  background: #111;
+}
+
+.brand-pavilion[data-brand="uniqlo"] .brand-pavilion__section-header span:first-child,
+.brand-pavilion[data-brand="uniqlo"] .brand-pavilion__principle-key {
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  place-items: center;
+  background: var(--pavilion-accent);
+  color: #fff;
+}
+
+/* PRADA — cultural precision with one controlled disturbance */
+.brand-pavilion[data-brand="prada"] .brand-pavilion__wordmark {
+  position: relative;
+  font-size: clamp(6rem, 21cqw, 19rem);
+  text-shadow: 0.018em 0 #c7ff2c;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__wordmark::after {
+  position: absolute;
+  left: 0.018em;
+  top: 0.018em;
+  z-index: -1;
+  color: transparent;
+  content: "PRADA";
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--pavilion-light) 42%, transparent);
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__needs,
+.brand-pavilion[data-brand="prada"] .brand-pavilion__world,
+.brand-pavilion[data-brand="prada"] .brand-pavilion__disclosure {
+  background: #10100f;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__value:hover {
+  background: #7e8871;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__chapter-links a span,
+.brand-pavilion[data-brand="prada"] .brand-pavilion__section-kicker,
+.brand-pavilion[data-brand="prada"] .brand-pavilion__value-number,
+.brand-pavilion[data-brand="prada"] .brand-pavilion__scope-label {
+  color: #465600;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__needs .brand-pavilion__scope-label,
+.brand-pavilion[data-brand="prada"] .brand-pavilion__world .brand-pavilion__scope-label,
+.brand-pavilion[data-brand="prada"] .brand-pavilion__hero-kicker {
+  color: #c7ff2c;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__figure[data-featured="true"] {
+  position: relative;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__figure[data-featured="true"]::before {
+  position: absolute;
+  inset: -0.35rem auto auto 7%;
+  z-index: 2;
+  width: 31%;
+  height: 1px;
+  background: #c7ff2c;
+  content: "";
+}
+
+@container (min-width: 56rem) {
+  .brand-pavilion__hero-content {
+    grid-template-columns: minmax(0, 0.65fr) minmax(20rem, 0.35fr);
+  }
+
+  .brand-pavilion__wordmark {
+    grid-column: 1;
+  }
+
+  .brand-pavilion__hero-thesis {
+    grid-column: 2;
+  }
+}
+
+@container (max-width: 67.99rem) {
+  .brand-pavilion__chapter-brand {
+    display: none;
+  }
+
+  .brand-pavilion__chapter-nav-inner {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .brand-pavilion__chapter-nav-inner::-webkit-scrollbar {
+    display: none;
+  }
+
+  .brand-pavilion__chapter-links {
+    width: max-content;
+    padding-right: 1rem;
+  }
+
+  .brand-pavilion__design-system {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .brand-pavilion__materials {
+    grid-column: 1 / -1;
+  }
+
+  .brand-pavilion__design-system > div:nth-child(3) {
+    border-right: 1px solid currentColor;
+  }
+}
+
+@container (max-width: 55.99rem) {
+  .brand-pavilion__hero-content {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-pavilion__hero-thesis {
+    max-width: 35rem;
+  }
+
+  .brand-pavilion__philosophy-grid,
+  .brand-pavilion__needs-grid,
+  .brand-pavilion__principles-intro,
+  .brand-pavilion__principles-stage,
+  .brand-pavilion__design-heading,
+  .brand-pavilion__world-intro,
+  .brand-pavilion__research-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-pavilion__philosophy-copy,
+  .brand-pavilion__needs-copy {
+    position: static;
+  }
+}
+
+@container (max-width: 48rem) {
+  .pavilion-shell {
+    width: min(calc(100% - 2rem), 42rem);
+  }
+
+  .brand-pavilion__hero {
+    min-height: max(38rem, calc(100svh - 2.75rem));
+  }
+
+  .brand-pavilion__hero-wash {
+    background:
+      linear-gradient(180deg, rgba(10, 10, 10, 0.22) 0%, transparent 35%),
+      linear-gradient(0deg, rgba(10, 10, 10, 0.78) 0%, rgba(10, 10, 10, 0.06) 70%);
+  }
+
+  .brand-pavilion__hero-rail {
+    width: calc(100% - 2rem);
+    padding-block: 1rem;
+  }
+
+  .brand-pavilion__hero-rail > span:last-child {
+    text-align: right;
+  }
+
+  .brand-pavilion__hero-content {
+    min-width: 0;
+    gap: 0.9rem;
+    padding-block: 5.75rem 1.5rem;
+  }
+
+  .brand-pavilion__hero-kicker {
+    max-width: 32ch;
+    font-size: 0.56rem;
+  }
+
+  .brand-pavilion__wordmark,
+  .brand-pavilion[data-brand="zara"] .brand-pavilion__wordmark,
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__wordmark {
+    max-inline-size: 100%;
+    padding-block: 0.04em;
+    font-size: clamp(3.75rem, 18.5cqw, 7.2rem);
+    line-height: 0.82;
+    white-space: nowrap;
+  }
+
+  .brand-pavilion[data-brand="uniqlo"] .brand-pavilion__wordmark {
+    box-sizing: border-box;
+    max-inline-size: 100%;
+    font-size: clamp(3.5rem, 16cqw, 6.4rem);
+  }
+
+  .brand-pavilion__hero-thesis {
+    gap: 0.9rem;
+    padding-top: 1rem;
+  }
+
+  .brand-pavilion__hero-statement {
+    max-width: 15ch;
+    font-size: clamp(2rem, 9cqw, 3.4rem);
+  }
+
+  .brand-pavilion__hero-summary {
+    max-width: 33ch;
+    font-size: 0.82rem;
+  }
+
+  .brand-pavilion__chapter-nav-inner {
+    width: 100%;
+    padding-inline: 1rem;
+  }
+
+  .brand-pavilion__chapter-links {
+    gap: 1.25rem;
+  }
+
+  .brand-pavilion__chapter-links a {
+    font-size: 0.54rem;
+    white-space: nowrap;
+  }
+
+  .brand-pavilion__section,
+  .brand-pavilion[data-brand="zara"] .brand-pavilion__section {
+    padding-block: clamp(3.5rem, 14vw, 4.75rem);
+  }
+
+  .brand-pavilion__section-header {
+    grid-template-columns: 2.8rem minmax(0, 1fr);
+    font-size: 0.54rem;
+  }
+
+  .brand-pavilion__section-header span:last-child {
+    display: none;
+  }
+
+  .brand-pavilion__philosophy-grid,
+  .brand-pavilion__needs-grid,
+  .brand-pavilion__principles-intro,
+  .brand-pavilion__principles-stage,
+  .brand-pavilion__design-heading,
+  .brand-pavilion__world-intro,
+  .brand-pavilion__research-grid {
+    gap: 2.25rem;
+    margin-top: 2.5rem;
+  }
+
+  .brand-pavilion__philosophy-grid > .brand-pavilion__figure {
+    order: -1;
+  }
+
+  .brand-pavilion__philosophy-copy h2,
+  .brand-pavilion__needs h2,
+  .brand-pavilion__principles-intro h2,
+  .brand-pavilion__design-heading h2,
+  .brand-pavilion__world-intro h2,
+  .brand-pavilion__research h2 {
+    font-size: clamp(2.7rem, 12cqw, 4.5rem);
+    line-height: 0.92;
+  }
+
+  .brand-pavilion__philosophy-copy > p:last-child,
+  .brand-pavilion__needs-intro,
+  .brand-pavilion__principles-intro p,
+  .brand-pavilion__design-heading p,
+  .brand-pavilion__world-intro p {
+    font-size: 0.9rem;
+    line-height: 1.62;
+  }
+
+  .brand-pavilion__figure figcaption {
+    grid-template-columns: 3.4rem minmax(0, 1fr);
+  }
+
+  .brand-pavilion__figure figcaption strong {
+    font-size: 1.1rem;
+  }
+
+  .brand-pavilion__value {
+    grid-template-columns: 2.8rem minmax(0, 1fr);
+    padding-block: 1.75rem;
+  }
+
+  .brand-pavilion__value p {
+    grid-column: 2;
+    margin-top: 0.7rem;
+    font-size: 0.82rem;
+  }
+
+  .brand-pavilion__value h3 {
+    font-size: clamp(2.2rem, 10cqw, 3.5rem);
+  }
+
+  .brand-pavilion__needs-images {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+
+  .brand-pavilion__needs-images .brand-pavilion__figure:first-child,
+  .brand-pavilion__needs-images .brand-pavilion__figure:last-child {
+    grid-column: 1;
+    margin: 0;
+  }
+
+  .brand-pavilion__principle-list li {
+    grid-template-columns: 2.8rem minmax(0, 1fr);
+  }
+
+  .brand-pavilion__figure[data-featured="true"] > div {
+    aspect-ratio: 4 / 3 !important;
+  }
+
+  .brand-pavilion__design-system {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-pavilion__materials {
+    grid-column: auto;
+  }
+
+  .brand-pavilion__design-system > div,
+  .brand-pavilion__design-system > div:last-child,
+  .brand-pavilion__design-system > div:nth-child(3) {
+    border-inline: 1px solid currentColor;
+  }
+
+  .brand-pavilion__keyword-rail {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .brand-pavilion__keyword-rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  .brand-pavilion__keyword-rail > span {
+    min-width: 10rem;
+  }
+
+  .brand-pavilion__world-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .brand-pavilion__world-grid .brand-pavilion__figure[data-layout],
+  .brand-pavilion__world-grid .brand-pavilion__figure:nth-child(3n) {
+    grid-column: 1;
+    margin: 0;
+  }
+
+  .brand-pavilion__research h2 {
+    max-width: 11ch;
+  }
+
+  .brand-pavilion__research-grid {
+    margin-top: 0;
+  }
+
+  .brand-pavilion__research li a {
+    grid-template-columns: 2rem minmax(0, 1fr) 1rem;
+    gap: 0.7rem;
+  }
+
+  .brand-pavilion__adjacent {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-pavilion__adjacent a {
+    min-height: 14rem;
+  }
+
+  .brand-pavilion__adjacent a + a {
+    border-top: 1px solid var(--pavilion-ink);
+    border-left: 0;
+  }
+
+  .brand-pavilion__adjacent strong {
+    font-size: clamp(3rem, 14cqw, 5rem);
+  }
+
+  .brand-pavilion__disclosure .pavilion-shell {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+
+  .brand-pavilion__disclosure small {
+    max-width: 58ch;
+    font-size: clamp(0.68rem, 2.6cqw, 0.76rem);
+    line-height: 1.6;
+    opacity: 0.72;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-pavilion {
+    scroll-behavior: auto;
+  }
+
+  .brand-pavilion__hero-image,
+  .brand-pavilion__enter,
+  .brand-pavilion__value,
+  .brand-pavilion__adjacent a {
+    transition: none !important;
+  }
+}
