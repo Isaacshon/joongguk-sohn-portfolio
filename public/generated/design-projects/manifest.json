@@ -1,18 +1,25 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-27T22:22:39.725Z",
+  "generatedAt": "2026-08-28T21:19:10.251Z",
   "pipeline": {
     "input": "tmp/higgsfield",
     "output": "public/generated/design-projects",
-    "formats": ["webp", "avif"],
-    "responsiveLongEdges": [960, 1600, 3200],
+    "formats": [
+      "webp",
+      "avif"
+    ],
+    "responsiveLongEdges": [
+      960,
+      1600,
+      3200
+    ],
     "sRGB": true,
     "metadataStripped": true,
     "sourceFilesPreserved": true
   },
   "coverage": {
-    "expected": 80,
-    "ready": 80,
+    "expected": 115,
+    "ready": 115,
     "missingCount": 0,
     "missing": []
   },
@@ -689,7 +696,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2496x1664; high tier requested at 3200x2133)"],
+      "warnings": [
+        "low-resolution source allowed (2496x1664; high tier requested at 3200x2133)"
+      ],
       "status": "ready"
     },
     {
@@ -801,7 +810,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2720x1536; high tier requested at 3200x1800)"],
+      "warnings": [
+        "low-resolution source allowed (2720x1536; high tier requested at 3200x1800)"
+      ],
       "status": "ready"
     },
     {
@@ -913,7 +924,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (1152x2048; high tier requested at 1800x3200)"],
+      "warnings": [
+        "low-resolution source allowed (1152x2048; high tier requested at 1800x3200)"
+      ],
       "status": "ready"
     },
     {
@@ -1140,7 +1153,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2496x1664; high tier requested at 3200x2133)"],
+      "warnings": [
+        "low-resolution source allowed (2496x1664; high tier requested at 3200x2133)"
+      ],
       "status": "ready"
     },
     {
@@ -1252,7 +1267,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2720x1536; high tier requested at 3200x1800)"],
+      "warnings": [
+        "low-resolution source allowed (2720x1536; high tier requested at 3200x1800)"
+      ],
       "status": "ready"
     },
     {
@@ -1364,7 +1381,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (1152x2048; high tier requested at 1800x3200)"],
+      "warnings": [
+        "low-resolution source allowed (1152x2048; high tier requested at 1800x3200)"
+      ],
       "status": "ready"
     },
     {
@@ -1591,7 +1610,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2496x1664; high tier requested at 3200x2133)"],
+      "warnings": [
+        "low-resolution source allowed (2496x1664; high tier requested at 3200x2133)"
+      ],
       "status": "ready"
     },
     {
@@ -1703,7 +1724,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2048x1152; high tier requested at 3200x1800)"],
+      "warnings": [
+        "low-resolution source allowed (2048x1152; high tier requested at 3200x1800)"
+      ],
       "status": "ready"
     },
     {
@@ -1815,7 +1838,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (1152x2048; high tier requested at 1800x3200)"],
+      "warnings": [
+        "low-resolution source allowed (1152x2048; high tier requested at 1800x3200)"
+      ],
       "status": "ready"
     },
     {
@@ -2039,7 +2064,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2048x2048; high tier requested at 3200x3200)"],
+      "warnings": [
+        "low-resolution source allowed (2048x2048; high tier requested at 3200x3200)"
+      ],
       "status": "ready"
     },
     {
@@ -2151,7 +2178,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2720x1536; high tier requested at 3200x1800)"],
+      "warnings": [
+        "low-resolution source allowed (2720x1536; high tier requested at 3200x1800)"
+      ],
       "status": "ready"
     },
     {
@@ -2263,7 +2292,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (1536x2720; high tier requested at 1800x3200)"],
+      "warnings": [
+        "low-resolution source allowed (1536x2720; high tier requested at 1800x3200)"
+      ],
       "status": "ready"
     },
     {
@@ -2487,7 +2518,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2496x1664; high tier requested at 3200x2133)"],
+      "warnings": [
+        "low-resolution source allowed (2496x1664; high tier requested at 3200x2133)"
+      ],
       "status": "ready"
     },
     {
@@ -2599,7 +2632,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2048x1152; high tier requested at 3200x1800)"],
+      "warnings": [
+        "low-resolution source allowed (2048x1152; high tier requested at 3200x1800)"
+      ],
       "status": "ready"
     },
     {
@@ -2711,7 +2746,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (1152x2048; high tier requested at 1800x3200)"],
+      "warnings": [
+        "low-resolution source allowed (1152x2048; high tier requested at 1800x3200)"
+      ],
       "status": "ready"
     },
     {
@@ -2938,7 +2975,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2496x1664; high tier requested at 3200x2133)"],
+      "warnings": [
+        "low-resolution source allowed (2496x1664; high tier requested at 3200x2133)"
+      ],
       "status": "ready"
     },
     {
@@ -3050,7 +3089,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2720x1536; high tier requested at 3200x1800)"],
+      "warnings": [
+        "low-resolution source allowed (2720x1536; high tier requested at 3200x1800)"
+      ],
       "status": "ready"
     },
     {
@@ -3162,7 +3203,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (1152x2048; high tier requested at 1800x3200)"],
+      "warnings": [
+        "low-resolution source allowed (1152x2048; high tier requested at 1800x3200)"
+      ],
       "status": "ready"
     },
     {
@@ -3389,7 +3432,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2048x2048; high tier requested at 3200x3200)"],
+      "warnings": [
+        "low-resolution source allowed (2048x2048; high tier requested at 3200x3200)"
+      ],
       "status": "ready"
     },
     {
@@ -3501,7 +3546,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2720x1536; high tier requested at 3200x1800)"],
+      "warnings": [
+        "low-resolution source allowed (2720x1536; high tier requested at 3200x1800)"
+      ],
       "status": "ready"
     },
     {
@@ -3613,7 +3660,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (1536x2720; high tier requested at 1800x3200)"],
+      "warnings": [
+        "low-resolution source allowed (1536x2720; high tier requested at 1800x3200)"
+      ],
       "status": "ready"
     },
     {
@@ -3837,7 +3886,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2496x1664; high tier requested at 3200x2133)"],
+      "warnings": [
+        "low-resolution source allowed (2496x1664; high tier requested at 3200x2133)"
+      ],
       "status": "ready"
     },
     {
@@ -3949,7 +4000,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2048x1152; high tier requested at 3200x1800)"],
+      "warnings": [
+        "low-resolution source allowed (2048x1152; high tier requested at 3200x1800)"
+      ],
       "status": "ready"
     },
     {
@@ -4061,7 +4114,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (1152x2048; high tier requested at 1800x3200)"],
+      "warnings": [
+        "low-resolution source allowed (1152x2048; high tier requested at 1800x3200)"
+      ],
       "status": "ready"
     },
     {
@@ -4285,7 +4340,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2496x1664; high tier requested at 3200x2133)"],
+      "warnings": [
+        "low-resolution source allowed (2496x1664; high tier requested at 3200x2133)"
+      ],
       "status": "ready"
     },
     {
@@ -4397,7 +4454,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2048x1152; high tier requested at 3200x1800)"],
+      "warnings": [
+        "low-resolution source allowed (2048x1152; high tier requested at 3200x1800)"
+      ],
       "status": "ready"
     },
     {
@@ -4736,7 +4795,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2496x1664; high tier requested at 3200x2133)"],
+      "warnings": [
+        "low-resolution source allowed (2496x1664; high tier requested at 3200x2133)"
+      ],
       "status": "ready"
     },
     {
@@ -4848,7 +4909,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2720x1536; high tier requested at 3200x1800)"],
+      "warnings": [
+        "low-resolution source allowed (2720x1536; high tier requested at 3200x1800)"
+      ],
       "status": "ready"
     },
     {
@@ -4960,7 +5023,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (1152x2048; high tier requested at 1800x3200)"],
+      "warnings": [
+        "low-resolution source allowed (1152x2048; high tier requested at 1800x3200)"
+      ],
       "status": "ready"
     },
     {
@@ -5184,7 +5249,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2496x1664; high tier requested at 3200x2133)"],
+      "warnings": [
+        "low-resolution source allowed (2496x1664; high tier requested at 3200x2133)"
+      ],
       "status": "ready"
     },
     {
@@ -5296,7 +5363,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2720x1536; high tier requested at 3200x1800)"],
+      "warnings": [
+        "low-resolution source allowed (2720x1536; high tier requested at 3200x1800)"
+      ],
       "status": "ready"
     },
     {
@@ -5408,7 +5477,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (1152x2048; high tier requested at 1800x3200)"],
+      "warnings": [
+        "low-resolution source allowed (1152x2048; high tier requested at 1800x3200)"
+      ],
       "status": "ready"
     },
     {
@@ -5635,7 +5706,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2048x2048; high tier requested at 3200x3200)"],
+      "warnings": [
+        "low-resolution source allowed (2048x2048; high tier requested at 3200x3200)"
+      ],
       "status": "ready"
     },
     {
@@ -5747,7 +5820,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2720x1536; high tier requested at 3200x1800)"],
+      "warnings": [
+        "low-resolution source allowed (2720x1536; high tier requested at 3200x1800)"
+      ],
       "status": "ready"
     },
     {
@@ -5859,7 +5934,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (1152x2048; high tier requested at 1800x3200)"],
+      "warnings": [
+        "low-resolution source allowed (1152x2048; high tier requested at 1800x3200)"
+      ],
       "status": "ready"
     },
     {
@@ -6083,7 +6160,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2048x2048; high tier requested at 3200x3200)"],
+      "warnings": [
+        "low-resolution source allowed (2048x2048; high tier requested at 3200x3200)"
+      ],
       "status": "ready"
     },
     {
@@ -6195,7 +6274,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2720x1536; high tier requested at 3200x1800)"],
+      "warnings": [
+        "low-resolution source allowed (2720x1536; high tier requested at 3200x1800)"
+      ],
       "status": "ready"
     },
     {
@@ -6307,7 +6388,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (1152x2048; high tier requested at 1800x3200)"],
+      "warnings": [
+        "low-resolution source allowed (1152x2048; high tier requested at 1800x3200)"
+      ],
       "status": "ready"
     },
     {
@@ -6534,7 +6617,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2048x2048; high tier requested at 3200x3200)"],
+      "warnings": [
+        "low-resolution source allowed (2048x2048; high tier requested at 3200x3200)"
+      ],
       "status": "ready"
     },
     {
@@ -6646,7 +6731,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2720x1536; high tier requested at 3200x1800)"],
+      "warnings": [
+        "low-resolution source allowed (2720x1536; high tier requested at 3200x1800)"
+      ],
       "status": "ready"
     },
     {
@@ -6758,7 +6845,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (1152x2048; high tier requested at 1800x3200)"],
+      "warnings": [
+        "low-resolution source allowed (1152x2048; high tier requested at 1800x3200)"
+      ],
       "status": "ready"
     },
     {
@@ -6982,7 +7071,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2496x1664; high tier requested at 3200x2133)"],
+      "warnings": [
+        "low-resolution source allowed (2496x1664; high tier requested at 3200x2133)"
+      ],
       "status": "ready"
     },
     {
@@ -7094,7 +7185,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2720x1536; high tier requested at 3200x1800)"],
+      "warnings": [
+        "low-resolution source allowed (2720x1536; high tier requested at 3200x1800)"
+      ],
       "status": "ready"
     },
     {
@@ -7206,7 +7299,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (1152x2048; high tier requested at 1800x3200)"],
+      "warnings": [
+        "low-resolution source allowed (1152x2048; high tier requested at 1800x3200)"
+      ],
       "status": "ready"
     },
     {
@@ -7430,7 +7525,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2496x1664; high tier requested at 3200x2133)"],
+      "warnings": [
+        "low-resolution source allowed (2496x1664; high tier requested at 3200x2133)"
+      ],
       "status": "ready"
     },
     {
@@ -7542,7 +7639,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2048x1152; high tier requested at 3200x1800)"],
+      "warnings": [
+        "low-resolution source allowed (2048x1152; high tier requested at 3200x1800)"
+      ],
       "status": "ready"
     },
     {
@@ -7654,7 +7753,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (1152x2048; high tier requested at 1800x3200)"],
+      "warnings": [
+        "low-resolution source allowed (1152x2048; high tier requested at 1800x3200)"
+      ],
       "status": "ready"
     },
     {
@@ -7766,7 +7867,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2720x1536; high tier requested at 3200x1800)"],
+      "warnings": [
+        "low-resolution source allowed (2720x1536; high tier requested at 3200x1800)"
+      ],
       "status": "ready"
     },
     {
@@ -7878,7 +7981,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2496x1664; high tier requested at 3200x2133)"],
+      "warnings": [
+        "low-resolution source allowed (2496x1664; high tier requested at 3200x2133)"
+      ],
       "status": "ready"
     },
     {
@@ -7990,7 +8095,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2720x1536; high tier requested at 3200x1800)"],
+      "warnings": [
+        "low-resolution source allowed (2720x1536; high tier requested at 3200x1800)"
+      ],
       "status": "ready"
     },
     {
@@ -8102,7 +8209,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (1536x2720; high tier requested at 1800x3200)"],
+      "warnings": [
+        "low-resolution source allowed (1536x2720; high tier requested at 1800x3200)"
+      ],
       "status": "ready"
     },
     {
@@ -8329,7 +8438,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2496x1664; high tier requested at 3200x2133)"],
+      "warnings": [
+        "low-resolution source allowed (2496x1664; high tier requested at 3200x2133)"
+      ],
       "status": "ready"
     },
     {
@@ -8441,7 +8552,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2720x1536; high tier requested at 3200x1800)"],
+      "warnings": [
+        "low-resolution source allowed (2720x1536; high tier requested at 3200x1800)"
+      ],
       "status": "ready"
     },
     {
@@ -8553,7 +8666,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (1152x2048; high tier requested at 1800x3200)"],
+      "warnings": [
+        "low-resolution source allowed (1152x2048; high tier requested at 1800x3200)"
+      ],
       "status": "ready"
     },
     {
@@ -8780,7 +8895,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2496x1664; high tier requested at 3200x2133)"],
+      "warnings": [
+        "low-resolution source allowed (2496x1664; high tier requested at 3200x2133)"
+      ],
       "status": "ready"
     },
     {
@@ -8892,7 +9009,9 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (2720x1536; high tier requested at 3200x1800)"],
+      "warnings": [
+        "low-resolution source allowed (2720x1536; high tier requested at 3200x1800)"
+      ],
       "status": "ready"
     },
     {
@@ -9004,7 +9123,4019 @@
           }
         }
       },
-      "warnings": ["low-resolution source allowed (1536x2720; high tier requested at 1800x3200)"],
+      "warnings": [
+        "low-resolution source allowed (1536x2720; high tier requested at 1800x3200)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "hm-second-sun/hero",
+      "project": {
+        "index": "21",
+        "slug": "hm-second-sun",
+        "title": "SECOND SUN"
+      },
+      "slot": "hero",
+      "expectedAspect": "4:5",
+      "source": {
+        "path": "tmp/higgsfield/21-hm-second-sun/hm-second-sun-21-hero.png",
+        "format": "png",
+        "width": 1086,
+        "height": 1448,
+        "bytes": 2463317,
+        "sha256": "663834be9dc1ae14bdc3825261eb3d3f39d56d255b011140b3e7e871e6e09c8e",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/hm-second-sun/hero-960.webp",
+            "url": "/generated/design-projects/hm-second-sun/hero-960.webp",
+            "width": 768,
+            "height": 960,
+            "bytes": 139604,
+            "sha256": "fd1c8eb43ae644a7bccfb75e371dbbdb7baf229be4097ae492430a088d3a8ac2",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/hm-second-sun/hero-1600.webp",
+            "url": "/generated/design-projects/hm-second-sun/hero-1600.webp",
+            "width": 1280,
+            "height": 1600,
+            "bytes": 266422,
+            "sha256": "f40a5906a58e31c8abb9bb9105a5d63ed6d110a4e60791b1f4aea6cc8e63ab02",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/hm-second-sun/hero-3200.webp",
+            "url": "/generated/design-projects/hm-second-sun/hero-3200.webp",
+            "width": 2560,
+            "height": 3200,
+            "bytes": 581284,
+            "sha256": "089813cc7ec75a8c29987e526abd2c692a5cf9f6fc4b18f09a7e39fc0e2bad63",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/hm-second-sun/hero-960.avif",
+            "url": "/generated/design-projects/hm-second-sun/hero-960.avif",
+            "width": 768,
+            "height": 960,
+            "bytes": 79429,
+            "sha256": "2ed32fc1180449e6d4fd95255a79e727e4dee06931c8e970b648d3d20a577715",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/hm-second-sun/hero-1600.avif",
+            "url": "/generated/design-projects/hm-second-sun/hero-1600.avif",
+            "width": 1280,
+            "height": 1600,
+            "bytes": 156345,
+            "sha256": "cf47f0813e32ffdde70c818d2c8dc104e0f1167e7869700bfa2118efe2b45400",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/hm-second-sun/hero-3200.avif",
+            "url": "/generated/design-projects/hm-second-sun/hero-3200.avif",
+            "width": 2560,
+            "height": 3200,
+            "bytes": 326468,
+            "sha256": "5f138d1ecfa9c14e965f4ab886cca33d538bacd0d16ecd58c074aa4337424ac6",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "aspect mismatch allowed (6.3%)",
+        "low-resolution source allowed (1086x1448; high tier requested at 2560x3200)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "hm-second-sun/tactile",
+      "project": {
+        "index": "21",
+        "slug": "hm-second-sun",
+        "title": "SECOND SUN"
+      },
+      "slot": "tactile",
+      "expectedAspect": "3:2",
+      "source": {
+        "path": "tmp/higgsfield/21-hm-second-sun/hm-second-sun-21-tactile.png",
+        "format": "png",
+        "width": 1536,
+        "height": 2048,
+        "bytes": 4958146,
+        "sha256": "00ba3934c46c604558ebad00ccfa0516527d974057cd4ecfb844f91551c73cd0",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/hm-second-sun/tactile-960.webp",
+            "url": "/generated/design-projects/hm-second-sun/tactile-960.webp",
+            "width": 960,
+            "height": 640,
+            "bytes": 116502,
+            "sha256": "073f9c0068f99eb8bcf7397ffb9181bd7c3c491d26c78609080c0210734df6fd",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/hm-second-sun/tactile-1600.webp",
+            "url": "/generated/design-projects/hm-second-sun/tactile-1600.webp",
+            "width": 1600,
+            "height": 1067,
+            "bytes": 265128,
+            "sha256": "5cd842810310f50690ef81d1932aad0a0b1e186161b42aae56c7ab63d576cd6c",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/hm-second-sun/tactile-3200.webp",
+            "url": "/generated/design-projects/hm-second-sun/tactile-3200.webp",
+            "width": 3200,
+            "height": 2133,
+            "bytes": 649360,
+            "sha256": "12cd24e7ea0b891dcfd8e5d79cbd59bdb506c10f363c91c5269f176062f20608",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/hm-second-sun/tactile-960.avif",
+            "url": "/generated/design-projects/hm-second-sun/tactile-960.avif",
+            "width": 960,
+            "height": 640,
+            "bytes": 64109,
+            "sha256": "733817b6450e4ae38998952376c87c84c3c7fc1b3128952ca3e02c6a63ffbac1",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/hm-second-sun/tactile-1600.avif",
+            "url": "/generated/design-projects/hm-second-sun/tactile-1600.avif",
+            "width": 1600,
+            "height": 1067,
+            "bytes": 152427,
+            "sha256": "d7b5ef69b84f50963c89b070b13aed22c518a223073fd100e9c2607f2e02d154",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/hm-second-sun/tactile-3200.avif",
+            "url": "/generated/design-projects/hm-second-sun/tactile-3200.avif",
+            "width": 3200,
+            "height": 2133,
+            "bytes": 336498,
+            "sha256": "8fb73cc2af7d9d37baa5b7adb20a5f27d09f26463c3fc5f48664015745945378",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "aspect mismatch allowed (50%)",
+        "low-resolution source allowed (1536x2048; high tier requested at 3200x2133)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "hm-second-sun/spatial",
+      "project": {
+        "index": "21",
+        "slug": "hm-second-sun",
+        "title": "SECOND SUN"
+      },
+      "slot": "spatial",
+      "expectedAspect": "16:9",
+      "source": {
+        "path": "tmp/higgsfield/21-hm-second-sun/hm-second-sun-21-spatial.png",
+        "format": "png",
+        "width": 1672,
+        "height": 941,
+        "bytes": 2505396,
+        "sha256": "d2e43071805b5abe51df2054f5fd14f4c33754b75acb0de77761759a25314b5b",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/hm-second-sun/spatial-960.webp",
+            "url": "/generated/design-projects/hm-second-sun/spatial-960.webp",
+            "width": 960,
+            "height": 540,
+            "bytes": 91532,
+            "sha256": "78047701c543b22fceeeb94b0dcc62c34165a6244cea0d69e943279739b09a96",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/hm-second-sun/spatial-1600.webp",
+            "url": "/generated/design-projects/hm-second-sun/spatial-1600.webp",
+            "width": 1600,
+            "height": 900,
+            "bytes": 201666,
+            "sha256": "59b1dd157c81b20791f677f6bb4e3470df49e03f13851b403b50a3355cc57699",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/hm-second-sun/spatial-3200.webp",
+            "url": "/generated/design-projects/hm-second-sun/spatial-3200.webp",
+            "width": 3200,
+            "height": 1800,
+            "bytes": 439172,
+            "sha256": "e8b128e7e9aee19a59b662006467d51ac7a3fa11128fd3d490a28853cc97edf3",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/hm-second-sun/spatial-960.avif",
+            "url": "/generated/design-projects/hm-second-sun/spatial-960.avif",
+            "width": 960,
+            "height": 540,
+            "bytes": 54979,
+            "sha256": "89c4d59e0e2d676b032b6653c3bb771c060143cda37298ab091c466ad6f350d5",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/hm-second-sun/spatial-1600.avif",
+            "url": "/generated/design-projects/hm-second-sun/spatial-1600.avif",
+            "width": 1600,
+            "height": 900,
+            "bytes": 125313,
+            "sha256": "adc85293ba51734190777911b46ed7e16679fa6502fea2d4fc7d965b2d4aabca",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/hm-second-sun/spatial-3200.avif",
+            "url": "/generated/design-projects/hm-second-sun/spatial-3200.avif",
+            "width": 3200,
+            "height": 1800,
+            "bytes": 286751,
+            "sha256": "41ced21c5f78fd921ceb56e83bdb988289b065ed6ce187bd99110a7d7f5235bb",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "low-resolution source allowed (1672x941; high tier requested at 3200x1800)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "hm-second-sun/context",
+      "project": {
+        "index": "21",
+        "slug": "hm-second-sun",
+        "title": "SECOND SUN"
+      },
+      "slot": "context",
+      "expectedAspect": "9:16",
+      "source": {
+        "path": "tmp/higgsfield/21-hm-second-sun/hm-second-sun-21-context.png",
+        "format": "png",
+        "width": 941,
+        "height": 1672,
+        "bytes": 2140775,
+        "sha256": "3346f47c497caee199adf4bbd750c3270889b7962a02a96d5f616418215f4849",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/hm-second-sun/context-960.webp",
+            "url": "/generated/design-projects/hm-second-sun/context-960.webp",
+            "width": 540,
+            "height": 960,
+            "bytes": 81322,
+            "sha256": "8020365169491b87f37b05dacb35f49d6892a4b6831b20611078e2198354a805",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/hm-second-sun/context-1600.webp",
+            "url": "/generated/design-projects/hm-second-sun/context-1600.webp",
+            "width": 900,
+            "height": 1600,
+            "bytes": 164314,
+            "sha256": "ec495718bffc3762002ffd4c4b07132786d5aedb47b6f5103bdd7a17c8ee02cd",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/hm-second-sun/context-3200.webp",
+            "url": "/generated/design-projects/hm-second-sun/context-3200.webp",
+            "width": 1800,
+            "height": 3200,
+            "bytes": 337636,
+            "sha256": "240418d5d4cf4bad7b4096f67b194e8f16e5ec2694986b3fab96567634098a45",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/hm-second-sun/context-960.avif",
+            "url": "/generated/design-projects/hm-second-sun/context-960.avif",
+            "width": 540,
+            "height": 960,
+            "bytes": 47369,
+            "sha256": "4e463d8492fd223c6719675b87386f278d0196d58e7173fdf0a3ed1e1540482f",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/hm-second-sun/context-1600.avif",
+            "url": "/generated/design-projects/hm-second-sun/context-1600.avif",
+            "width": 900,
+            "height": 1600,
+            "bytes": 99595,
+            "sha256": "776b5be284344421e55a3880e5fc1735c1e4c312e30cb21efe45d3a5f5ca1af8",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/hm-second-sun/context-3200.avif",
+            "url": "/generated/design-projects/hm-second-sun/context-3200.avif",
+            "width": 1800,
+            "height": 3200,
+            "bytes": 214943,
+            "sha256": "fa9e2cf97ad7836944e315bb808233bd2268adc9d4308d8eeb7844cab5315289",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "low-resolution source allowed (941x1672; high tier requested at 1800x3200)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "hm-second-sun/editorialA",
+      "project": {
+        "index": "21",
+        "slug": "hm-second-sun",
+        "title": "SECOND SUN"
+      },
+      "slot": "editorialA",
+      "expectedAspect": "4:5",
+      "source": {
+        "path": "tmp/higgsfield/21-hm-second-sun/hm-second-sun-21-editorial-a.png",
+        "format": "png",
+        "width": 1086,
+        "height": 1448,
+        "bytes": 2181081,
+        "sha256": "1f76f6b4568f3285f577ff9c0c81a92d549cb03cd5c762b0fd5a89dc4a2700b2",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/hm-second-sun/editorialA-960.webp",
+            "url": "/generated/design-projects/hm-second-sun/editorialA-960.webp",
+            "width": 768,
+            "height": 960,
+            "bytes": 88830,
+            "sha256": "cfdef8820b59b455e1060a5be6088aa1bd2a9492078410d59f36ead144d4eaf9",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/hm-second-sun/editorialA-1600.webp",
+            "url": "/generated/design-projects/hm-second-sun/editorialA-1600.webp",
+            "width": 1280,
+            "height": 1600,
+            "bytes": 173716,
+            "sha256": "38a9b1c0e919194b9ac650cc283f3c1f0c2d4e6039a9ea7040a0c0c861d9a516",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/hm-second-sun/editorialA-3200.webp",
+            "url": "/generated/design-projects/hm-second-sun/editorialA-3200.webp",
+            "width": 2560,
+            "height": 3200,
+            "bytes": 435748,
+            "sha256": "706f9209b19490cac6fe507a783e3a691c692571c18fe29eb3bb5f58df6d9fd4",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/hm-second-sun/editorialA-960.avif",
+            "url": "/generated/design-projects/hm-second-sun/editorialA-960.avif",
+            "width": 768,
+            "height": 960,
+            "bytes": 52001,
+            "sha256": "4a537e08b986a6a1e96bdfa570835b49f57ae9cc18302db9e6e2a42646d36637",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/hm-second-sun/editorialA-1600.avif",
+            "url": "/generated/design-projects/hm-second-sun/editorialA-1600.avif",
+            "width": 1280,
+            "height": 1600,
+            "bytes": 105561,
+            "sha256": "c08ccd499f29231a4698d217a0160f2cb2a4aec5b0cb9c1cca116b10f08c0bbe",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/hm-second-sun/editorialA-3200.avif",
+            "url": "/generated/design-projects/hm-second-sun/editorialA-3200.avif",
+            "width": 2560,
+            "height": 3200,
+            "bytes": 255770,
+            "sha256": "e64bf67711ca1db4d89836f8236028834cbd783873e6ea94de24e5678972add5",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "aspect mismatch allowed (6.3%)",
+        "low-resolution source allowed (1086x1448; high tier requested at 2560x3200)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "hm-second-sun/editorialB",
+      "project": {
+        "index": "21",
+        "slug": "hm-second-sun",
+        "title": "SECOND SUN"
+      },
+      "slot": "editorialB",
+      "expectedAspect": "3:2",
+      "source": {
+        "path": "tmp/higgsfield/21-hm-second-sun/hm-second-sun-21-editorial-b.png",
+        "format": "png",
+        "width": 2048,
+        "height": 1152,
+        "bytes": 3734846,
+        "sha256": "0103ab3cc69557313def8730670f9cfab29803aec2a87537e16c3ee0d1905b6b",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/hm-second-sun/editorialB-960.webp",
+            "url": "/generated/design-projects/hm-second-sun/editorialB-960.webp",
+            "width": 960,
+            "height": 640,
+            "bytes": 125988,
+            "sha256": "3d0ec9d3e0a65059fb65d324940526df57dea609a10450c062a43504e3733e2a",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/hm-second-sun/editorialB-1600.webp",
+            "url": "/generated/design-projects/hm-second-sun/editorialB-1600.webp",
+            "width": 1600,
+            "height": 1067,
+            "bytes": 293880,
+            "sha256": "fcd52fcdb44e9cdc0520b8c75dca99a3bd82430f3fa8127e0b69c9143d8f0231",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/hm-second-sun/editorialB-3200.webp",
+            "url": "/generated/design-projects/hm-second-sun/editorialB-3200.webp",
+            "width": 3200,
+            "height": 2133,
+            "bytes": 663286,
+            "sha256": "d0f37f747d2385f2894663613d62d2d2b9693723d67c26c81cf93f3331fd3979",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/hm-second-sun/editorialB-960.avif",
+            "url": "/generated/design-projects/hm-second-sun/editorialB-960.avif",
+            "width": 960,
+            "height": 640,
+            "bytes": 72692,
+            "sha256": "39dcf25a53cf2f856923f12210f85ae6b1912edf74888eaa3bc8db300999046f",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/hm-second-sun/editorialB-1600.avif",
+            "url": "/generated/design-projects/hm-second-sun/editorialB-1600.avif",
+            "width": 1600,
+            "height": 1067,
+            "bytes": 171443,
+            "sha256": "a2768eb10733292906523241109499156d2ad194424fd70f16bdaedbce19b3d8",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/hm-second-sun/editorialB-3200.avif",
+            "url": "/generated/design-projects/hm-second-sun/editorialB-3200.avif",
+            "width": 3200,
+            "height": 2133,
+            "bytes": 388121,
+            "sha256": "46d94a3a5f6ef114becded8c5f45e04841e90441285858294157e6ed45354485",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "aspect mismatch allowed (18.5%)",
+        "low-resolution source allowed (2048x1152; high tier requested at 3200x2133)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "hm-second-sun/editorialC",
+      "project": {
+        "index": "21",
+        "slug": "hm-second-sun",
+        "title": "SECOND SUN"
+      },
+      "slot": "editorialC",
+      "expectedAspect": "4:5",
+      "source": {
+        "path": "tmp/higgsfield/21-hm-second-sun/hm-second-sun-21-editorial-c.png",
+        "format": "png",
+        "width": 941,
+        "height": 1672,
+        "bytes": 2145773,
+        "sha256": "ce1e2ab0229a47e02ae01a5a1171932026bda4d493b8a7915a61ae4b9ed254ce",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/hm-second-sun/editorialC-960.webp",
+            "url": "/generated/design-projects/hm-second-sun/editorialC-960.webp",
+            "width": 768,
+            "height": 960,
+            "bytes": 91230,
+            "sha256": "f630f8c5d84c38a51a526494d5eef9d0aaafcdfb393581171d3647168875c6c4",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/hm-second-sun/editorialC-1600.webp",
+            "url": "/generated/design-projects/hm-second-sun/editorialC-1600.webp",
+            "width": 1280,
+            "height": 1600,
+            "bytes": 163854,
+            "sha256": "8675f476252a090a1952629723c53bc9787aad88b9881dd6010595f468e41611",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/hm-second-sun/editorialC-3200.webp",
+            "url": "/generated/design-projects/hm-second-sun/editorialC-3200.webp",
+            "width": 2560,
+            "height": 3200,
+            "bytes": 389622,
+            "sha256": "6526ca4b5c7d0db1e10d991cec41d9a424682d23b480ff566a3f0b98ca55fca6",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/hm-second-sun/editorialC-960.avif",
+            "url": "/generated/design-projects/hm-second-sun/editorialC-960.avif",
+            "width": 768,
+            "height": 960,
+            "bytes": 51335,
+            "sha256": "af8d897e8cc3364b7dad6b4198eeea94086e5eefdaf8c58daed05f6e260602c9",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/hm-second-sun/editorialC-1600.avif",
+            "url": "/generated/design-projects/hm-second-sun/editorialC-1600.avif",
+            "width": 1280,
+            "height": 1600,
+            "bytes": 95169,
+            "sha256": "a3c25d606ec30ec9e59d552973c759aae143bc23bba8a07d6b10ec76a3a82761",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/hm-second-sun/editorialC-3200.avif",
+            "url": "/generated/design-projects/hm-second-sun/editorialC-3200.avif",
+            "width": 2560,
+            "height": 3200,
+            "bytes": 226490,
+            "sha256": "62398977327f8ca3d3891c1ed62edf2c8532f1ded3f5d1f5425d81ac5e291eaa",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "aspect mismatch allowed (29.7%)",
+        "low-resolution source allowed (941x1672; high tier requested at 2560x3200)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "hm-second-sun/editorialD",
+      "project": {
+        "index": "21",
+        "slug": "hm-second-sun",
+        "title": "SECOND SUN"
+      },
+      "slot": "editorialD",
+      "expectedAspect": "16:9",
+      "source": {
+        "path": "tmp/higgsfield/21-hm-second-sun/hm-second-sun-21-editorial-d.png",
+        "format": "png",
+        "width": 1672,
+        "height": 941,
+        "bytes": 2215977,
+        "sha256": "8239ddd5e259705e9ac293cfd27a33f3bea9702f0b4e3d9a2dc144af91a62d1c",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/hm-second-sun/editorialD-960.webp",
+            "url": "/generated/design-projects/hm-second-sun/editorialD-960.webp",
+            "width": 960,
+            "height": 540,
+            "bytes": 66006,
+            "sha256": "932abc30416992c5a03b12fe57b97e042305c534e57f6343740184ac80878135",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/hm-second-sun/editorialD-1600.webp",
+            "url": "/generated/design-projects/hm-second-sun/editorialD-1600.webp",
+            "width": 1600,
+            "height": 900,
+            "bytes": 134418,
+            "sha256": "151177fdcc8ede68153e1e8157b91bbefaaac2c897cd119d5998fc8af4b14558",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/hm-second-sun/editorialD-3200.webp",
+            "url": "/generated/design-projects/hm-second-sun/editorialD-3200.webp",
+            "width": 3200,
+            "height": 1800,
+            "bytes": 302264,
+            "sha256": "1e4d22713b4016c73cfcdd12bac157f444e4e71d9ff342b1055dac49eb5a54ed",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/hm-second-sun/editorialD-960.avif",
+            "url": "/generated/design-projects/hm-second-sun/editorialD-960.avif",
+            "width": 960,
+            "height": 540,
+            "bytes": 41146,
+            "sha256": "bd82f0f3704081a2766691c505ce2fb15b8b299cda8b503a9288f6df984e805b",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/hm-second-sun/editorialD-1600.avif",
+            "url": "/generated/design-projects/hm-second-sun/editorialD-1600.avif",
+            "width": 1600,
+            "height": 900,
+            "bytes": 86542,
+            "sha256": "82c973407366a51ac49b0190660c1474915a54cfcbc9b32f04e16a40e3831d2f",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/hm-second-sun/editorialD-3200.avif",
+            "url": "/generated/design-projects/hm-second-sun/editorialD-3200.avif",
+            "width": 3200,
+            "height": 1800,
+            "bytes": 206211,
+            "sha256": "27ee27e5bfd853a58a89ab3d27106875aa8a368dcf6daf025ea25c433b5579e7",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "low-resolution source allowed (1672x941; high tier requested at 3200x1800)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "zara-the-air-between/hero",
+      "project": {
+        "index": "22",
+        "slug": "zara-the-air-between",
+        "title": "THE AIR BETWEEN"
+      },
+      "slot": "hero",
+      "expectedAspect": "4:5",
+      "source": {
+        "path": "tmp/higgsfield/22-zara-the-air-between/zara-the-air-between-22-hero.png",
+        "format": "png",
+        "width": 1536,
+        "height": 2048,
+        "bytes": 5652993,
+        "sha256": "f3fbdc70652628311cd5d785b3653d707ae2c07e2a7de5a1d1a58a27e21f33d0",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/zara-the-air-between/hero-960.webp",
+            "url": "/generated/design-projects/zara-the-air-between/hero-960.webp",
+            "width": 768,
+            "height": 960,
+            "bytes": 139122,
+            "sha256": "aee1425a5bf3adccec989b69b8cad273c14ec6a18aa5c747e9e0e62d84a14085",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/zara-the-air-between/hero-1600.webp",
+            "url": "/generated/design-projects/zara-the-air-between/hero-1600.webp",
+            "width": 1280,
+            "height": 1600,
+            "bytes": 441454,
+            "sha256": "587ec51b6734a2a1bcb625a178043ac001ae27bd9ba8a4618545bbf8d39dc9ee",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/zara-the-air-between/hero-3200.webp",
+            "url": "/generated/design-projects/zara-the-air-between/hero-3200.webp",
+            "width": 2560,
+            "height": 3200,
+            "bytes": 1151964,
+            "sha256": "8d41c1a7c08dc7552d33da6f54c2f35494a17294348119b433e3e7c92b70d8e5",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/zara-the-air-between/hero-960.avif",
+            "url": "/generated/design-projects/zara-the-air-between/hero-960.avif",
+            "width": 768,
+            "height": 960,
+            "bytes": 65067,
+            "sha256": "83ca6193e97e3d580a26b07dab224bfdfaeb58795657349ebdfd778c046bbf1e",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/zara-the-air-between/hero-1600.avif",
+            "url": "/generated/design-projects/zara-the-air-between/hero-1600.avif",
+            "width": 1280,
+            "height": 1600,
+            "bytes": 228218,
+            "sha256": "6ddf63bcde8b8eeb4a191d612eab4e8bb542ff12e64b459479358fce8fe863c4",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/zara-the-air-between/hero-3200.avif",
+            "url": "/generated/design-projects/zara-the-air-between/hero-3200.avif",
+            "width": 2560,
+            "height": 3200,
+            "bytes": 565164,
+            "sha256": "b1b2193d05b43e024b65c507ba62cd9514a7839fb963d376e03bb5d1debfa436",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "aspect mismatch allowed (6.3%)",
+        "low-resolution source allowed (1536x2048; high tier requested at 2560x3200)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "zara-the-air-between/tactile",
+      "project": {
+        "index": "22",
+        "slug": "zara-the-air-between",
+        "title": "THE AIR BETWEEN"
+      },
+      "slot": "tactile",
+      "expectedAspect": "3:2",
+      "source": {
+        "path": "tmp/higgsfield/22-zara-the-air-between/zara-the-air-between-22-tactile.png",
+        "format": "png",
+        "width": 2016,
+        "height": 1344,
+        "bytes": 4207869,
+        "sha256": "20c7c9fb3ae7c9b44a49846d01a78c381e45d73a512e95a19daca06c2e6c04bd",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/zara-the-air-between/tactile-960.webp",
+            "url": "/generated/design-projects/zara-the-air-between/tactile-960.webp",
+            "width": 960,
+            "height": 640,
+            "bytes": 91946,
+            "sha256": "68da47fea7716f3c9712665c76556e4e981dcd6ecc1d662f853f0ec757cdd203",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/zara-the-air-between/tactile-1600.webp",
+            "url": "/generated/design-projects/zara-the-air-between/tactile-1600.webp",
+            "width": 1600,
+            "height": 1067,
+            "bytes": 264014,
+            "sha256": "1ea850cc040f0befe2ee6fc163e644ff4599f55603c5418bb920c5a1a7cb68d1",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/zara-the-air-between/tactile-3200.webp",
+            "url": "/generated/design-projects/zara-the-air-between/tactile-3200.webp",
+            "width": 3200,
+            "height": 2133,
+            "bytes": 673096,
+            "sha256": "f6fa8c17f96f3689c382036a8609231a2c9a1571b10ab157bccc1edc5419dcf4",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/zara-the-air-between/tactile-960.avif",
+            "url": "/generated/design-projects/zara-the-air-between/tactile-960.avif",
+            "width": 960,
+            "height": 640,
+            "bytes": 49141,
+            "sha256": "566a175016db49ef9b9ee8869563b249c83229382be3f7ddd6ef81645fff9c1b",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/zara-the-air-between/tactile-1600.avif",
+            "url": "/generated/design-projects/zara-the-air-between/tactile-1600.avif",
+            "width": 1600,
+            "height": 1067,
+            "bytes": 135816,
+            "sha256": "987a30adba4260d0fe6848378d8d658068552e5658c33030d28752ec8842d8a1",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/zara-the-air-between/tactile-3200.avif",
+            "url": "/generated/design-projects/zara-the-air-between/tactile-3200.avif",
+            "width": 3200,
+            "height": 2133,
+            "bytes": 329210,
+            "sha256": "c631a359be55b06dc0df14852138f4abe42366440ddeda0d2b35ff4b237591b4",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "low-resolution source allowed (2016x1344; high tier requested at 3200x2133)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "zara-the-air-between/spatial",
+      "project": {
+        "index": "22",
+        "slug": "zara-the-air-between",
+        "title": "THE AIR BETWEEN"
+      },
+      "slot": "spatial",
+      "expectedAspect": "16:9",
+      "source": {
+        "path": "tmp/higgsfield/22-zara-the-air-between/zara-the-air-between-22-spatial.png",
+        "format": "png",
+        "width": 2048,
+        "height": 1152,
+        "bytes": 3453046,
+        "sha256": "4a1e1b7bf35d60ed91ac02679ed0f396585b3d244a13fc6f055eb32046ae4982",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/zara-the-air-between/spatial-960.webp",
+            "url": "/generated/design-projects/zara-the-air-between/spatial-960.webp",
+            "width": 960,
+            "height": 540,
+            "bytes": 56324,
+            "sha256": "747218e5ba169808b0fd58815a2d45a0b5f6dbe523fad314281e18d55810d7bd",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/zara-the-air-between/spatial-1600.webp",
+            "url": "/generated/design-projects/zara-the-air-between/spatial-1600.webp",
+            "width": 1600,
+            "height": 900,
+            "bytes": 154220,
+            "sha256": "3fb1d83b9450394d5c7955b8e8213d8b91e5245fae52fc251197bca9384540d7",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/zara-the-air-between/spatial-3200.webp",
+            "url": "/generated/design-projects/zara-the-air-between/spatial-3200.webp",
+            "width": 3200,
+            "height": 1800,
+            "bytes": 410018,
+            "sha256": "c61d25cf1cd6003e190206d4c0477b56d7d1b49c3940f7dbb820ecf5a6070615",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/zara-the-air-between/spatial-960.avif",
+            "url": "/generated/design-projects/zara-the-air-between/spatial-960.avif",
+            "width": 960,
+            "height": 540,
+            "bytes": 36116,
+            "sha256": "faf9e677308d21d7f9877d4f6d34331859ce0dd7a05c9184cbc3bab573cacd4c",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/zara-the-air-between/spatial-1600.avif",
+            "url": "/generated/design-projects/zara-the-air-between/spatial-1600.avif",
+            "width": 1600,
+            "height": 900,
+            "bytes": 103384,
+            "sha256": "e86a57e2923c3deb10ceef4065c1e0c96311cb51a8d61753b718edc567697aa6",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/zara-the-air-between/spatial-3200.avif",
+            "url": "/generated/design-projects/zara-the-air-between/spatial-3200.avif",
+            "width": 3200,
+            "height": 1800,
+            "bytes": 259756,
+            "sha256": "f02f3ccaa33817e11992d47154679f368a7dd0c6648cacdf46597989a74c319c",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "low-resolution source allowed (2048x1152; high tier requested at 3200x1800)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "zara-the-air-between/context",
+      "project": {
+        "index": "22",
+        "slug": "zara-the-air-between",
+        "title": "THE AIR BETWEEN"
+      },
+      "slot": "context",
+      "expectedAspect": "9:16",
+      "source": {
+        "path": "tmp/higgsfield/22-zara-the-air-between/zara-the-air-between-22-context.png",
+        "format": "png",
+        "width": 1152,
+        "height": 2048,
+        "bytes": 2915526,
+        "sha256": "2fbabd73906812417674ffea5f6e483f6dc49d486930ac2bd385594c59539010",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/zara-the-air-between/context-960.webp",
+            "url": "/generated/design-projects/zara-the-air-between/context-960.webp",
+            "width": 540,
+            "height": 960,
+            "bytes": 36342,
+            "sha256": "41f3c6596dc6f1c85447fe74f44eeefb72e1d32d2631e8adc785b52eeb081d4d",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/zara-the-air-between/context-1600.webp",
+            "url": "/generated/design-projects/zara-the-air-between/context-1600.webp",
+            "width": 900,
+            "height": 1600,
+            "bytes": 94792,
+            "sha256": "2f750faaaf24a1c480098f5641cad17b882507ed0379c66ea283b96b3e2606d2",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/zara-the-air-between/context-3200.webp",
+            "url": "/generated/design-projects/zara-the-air-between/context-3200.webp",
+            "width": 1800,
+            "height": 3200,
+            "bytes": 264642,
+            "sha256": "47d8953c006c3bfd230c96aa1db7ea670d6673fff990b70814c1338c703bcff8",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/zara-the-air-between/context-960.avif",
+            "url": "/generated/design-projects/zara-the-air-between/context-960.avif",
+            "width": 540,
+            "height": 960,
+            "bytes": 25847,
+            "sha256": "3d262cf30cc60bb43f2a614879696b7575f74364d594d6385a24adc6b1e735e5",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/zara-the-air-between/context-1600.avif",
+            "url": "/generated/design-projects/zara-the-air-between/context-1600.avif",
+            "width": 900,
+            "height": 1600,
+            "bytes": 64633,
+            "sha256": "0edc9c6df46821c8ada9fcdcba3753662032ed6b9c6a53e4b04e3ce572353c76",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/zara-the-air-between/context-3200.avif",
+            "url": "/generated/design-projects/zara-the-air-between/context-3200.avif",
+            "width": 1800,
+            "height": 3200,
+            "bytes": 189745,
+            "sha256": "79c2de18401d2785929a6ef335782efe328dcba52b25123bb6a6a4f3b4ed8729",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "low-resolution source allowed (1152x2048; high tier requested at 1800x3200)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "zara-the-air-between/editorialA",
+      "project": {
+        "index": "22",
+        "slug": "zara-the-air-between",
+        "title": "THE AIR BETWEEN"
+      },
+      "slot": "editorialA",
+      "expectedAspect": "4:5",
+      "source": {
+        "path": "tmp/higgsfield/22-zara-the-air-between/zara-the-air-between-22-editorial-a.png",
+        "format": "png",
+        "width": 1086,
+        "height": 1448,
+        "bytes": 2216701,
+        "sha256": "d054254c76842c8b31478968309d35cda2708faf95201a232558c9c5177f6199",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/zara-the-air-between/editorialA-960.webp",
+            "url": "/generated/design-projects/zara-the-air-between/editorialA-960.webp",
+            "width": 768,
+            "height": 960,
+            "bytes": 79500,
+            "sha256": "79f728fc994b78c99356e0e1b83002d9715c4b935d65f4e3ac256935e59dbdc1",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/zara-the-air-between/editorialA-1600.webp",
+            "url": "/generated/design-projects/zara-the-air-between/editorialA-1600.webp",
+            "width": 1280,
+            "height": 1600,
+            "bytes": 171080,
+            "sha256": "90fc0891c7c71f35ef48cfd931fbd603e6d11a47e1d6133c149453439e373da9",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/zara-the-air-between/editorialA-3200.webp",
+            "url": "/generated/design-projects/zara-the-air-between/editorialA-3200.webp",
+            "width": 2560,
+            "height": 3200,
+            "bytes": 434310,
+            "sha256": "98e62290d27ee7b130f45beffa48de8058b9ed5ff220a087aae6c5a24be284bf",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/zara-the-air-between/editorialA-960.avif",
+            "url": "/generated/design-projects/zara-the-air-between/editorialA-960.avif",
+            "width": 768,
+            "height": 960,
+            "bytes": 44766,
+            "sha256": "41d76c2ea5d72fe429e04d659135eab5ec31c42b25b8a6d9ed5aa4a4dc6ecb89",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/zara-the-air-between/editorialA-1600.avif",
+            "url": "/generated/design-projects/zara-the-air-between/editorialA-1600.avif",
+            "width": 1280,
+            "height": 1600,
+            "bytes": 96780,
+            "sha256": "d405f2e2c93e78c9bb5468de2ea43bcc83129cea10c9c25c445a74b73ce18a25",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/zara-the-air-between/editorialA-3200.avif",
+            "url": "/generated/design-projects/zara-the-air-between/editorialA-3200.avif",
+            "width": 2560,
+            "height": 3200,
+            "bytes": 249514,
+            "sha256": "547d54252eb3cb66c17e1175caccb5686aa0539c406aca553c51dd48cb03069d",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "aspect mismatch allowed (6.3%)",
+        "low-resolution source allowed (1086x1448; high tier requested at 2560x3200)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "zara-the-air-between/editorialB",
+      "project": {
+        "index": "22",
+        "slug": "zara-the-air-between",
+        "title": "THE AIR BETWEEN"
+      },
+      "slot": "editorialB",
+      "expectedAspect": "3:2",
+      "source": {
+        "path": "tmp/higgsfield/22-zara-the-air-between/zara-the-air-between-22-editorial-b.png",
+        "format": "png",
+        "width": 1152,
+        "height": 2048,
+        "bytes": 3614435,
+        "sha256": "9ac7934c872d39fb556c62afe300571231c9a3941e7cbb6a4fe485ad2bb69e15",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/zara-the-air-between/editorialB-960.webp",
+            "url": "/generated/design-projects/zara-the-air-between/editorialB-960.webp",
+            "width": 960,
+            "height": 640,
+            "bytes": 99098,
+            "sha256": "0f8ab53270f9c95c0cd158f4e4d7371223b35a77c2e0f9a670e14b91e25e999a",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/zara-the-air-between/editorialB-1600.webp",
+            "url": "/generated/design-projects/zara-the-air-between/editorialB-1600.webp",
+            "width": 1600,
+            "height": 1067,
+            "bytes": 202128,
+            "sha256": "4cd381cdf2b81a6dbd166975370ef0f16dd892290984c5bf102c60c7643ddb6d",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/zara-the-air-between/editorialB-3200.webp",
+            "url": "/generated/design-projects/zara-the-air-between/editorialB-3200.webp",
+            "width": 3200,
+            "height": 2133,
+            "bytes": 462766,
+            "sha256": "bd7eeedc30d30f5fc9967f5f4cb5e4d77d05615b604ae0b90310d9e8fc37e167",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/zara-the-air-between/editorialB-960.avif",
+            "url": "/generated/design-projects/zara-the-air-between/editorialB-960.avif",
+            "width": 960,
+            "height": 640,
+            "bytes": 58205,
+            "sha256": "baad9e5f490f3616ff0853e56063fe164a08183058f8ea7ff038cb9ed8254c12",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/zara-the-air-between/editorialB-1600.avif",
+            "url": "/generated/design-projects/zara-the-air-between/editorialB-1600.avif",
+            "width": 1600,
+            "height": 1067,
+            "bytes": 111999,
+            "sha256": "f8c74a563ecd18b7f3cb1d96c8b6d835fe9ad01253ffddaf9ba574d899f05af0",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/zara-the-air-between/editorialB-3200.avif",
+            "url": "/generated/design-projects/zara-the-air-between/editorialB-3200.avif",
+            "width": 3200,
+            "height": 2133,
+            "bytes": 253086,
+            "sha256": "4d54053b52db39c46fcc628e4250d959a40834f74df9398ea2b60c194a82459c",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "aspect mismatch allowed (62.5%)",
+        "low-resolution source allowed (1152x2048; high tier requested at 3200x2133)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "zara-the-air-between/editorialC",
+      "project": {
+        "index": "22",
+        "slug": "zara-the-air-between",
+        "title": "THE AIR BETWEEN"
+      },
+      "slot": "editorialC",
+      "expectedAspect": "4:5",
+      "source": {
+        "path": "tmp/higgsfield/22-zara-the-air-between/zara-the-air-between-22-editorial-c.png",
+        "format": "png",
+        "width": 1536,
+        "height": 2048,
+        "bytes": 4254264,
+        "sha256": "41854773f29fe45e04d8993eac76af12e38eb2b544c680b47f7d167a1adbb663",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/zara-the-air-between/editorialC-960.webp",
+            "url": "/generated/design-projects/zara-the-air-between/editorialC-960.webp",
+            "width": 768,
+            "height": 960,
+            "bytes": 70236,
+            "sha256": "9942660d076ce8a5fbd6c64a3368476a0926f43627ecf07e102ea6860ab97d97",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/zara-the-air-between/editorialC-1600.webp",
+            "url": "/generated/design-projects/zara-the-air-between/editorialC-1600.webp",
+            "width": 1280,
+            "height": 1600,
+            "bytes": 207694,
+            "sha256": "d2b43885b99cdbfad2f48b1b073e11a41ebdc7741c2e6ff96f76b83d6ef17b94",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/zara-the-air-between/editorialC-3200.webp",
+            "url": "/generated/design-projects/zara-the-air-between/editorialC-3200.webp",
+            "width": 2560,
+            "height": 3200,
+            "bytes": 532552,
+            "sha256": "38aa38fd714be28a7c4da7a2fad7ad5845f922fb179274bf57fff896b623360f",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/zara-the-air-between/editorialC-960.avif",
+            "url": "/generated/design-projects/zara-the-air-between/editorialC-960.avif",
+            "width": 768,
+            "height": 960,
+            "bytes": 41292,
+            "sha256": "a6dbb4c47017feb78cabf45130c10bc49a3f4377438f95f1465944f7f08de563",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/zara-the-air-between/editorialC-1600.avif",
+            "url": "/generated/design-projects/zara-the-air-between/editorialC-1600.avif",
+            "width": 1280,
+            "height": 1600,
+            "bytes": 108051,
+            "sha256": "c0324718d0f6c1455163e0dc25dd7dfcb845f3ee933be2e8f53586e5f1e73323",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/zara-the-air-between/editorialC-3200.avif",
+            "url": "/generated/design-projects/zara-the-air-between/editorialC-3200.avif",
+            "width": 2560,
+            "height": 3200,
+            "bytes": 288890,
+            "sha256": "cf954d1ad6a7b8de8e42d5d36b795b5e4c3bf3a7bf9519e0c3e9bf04fc8ccc8c",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "aspect mismatch allowed (6.3%)",
+        "low-resolution source allowed (1536x2048; high tier requested at 2560x3200)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "zara-the-air-between/editorialD",
+      "project": {
+        "index": "22",
+        "slug": "zara-the-air-between",
+        "title": "THE AIR BETWEEN"
+      },
+      "slot": "editorialD",
+      "expectedAspect": "16:9",
+      "source": {
+        "path": "tmp/higgsfield/22-zara-the-air-between/zara-the-air-between-22-editorial-d.png",
+        "format": "png",
+        "width": 1536,
+        "height": 2048,
+        "bytes": 4545277,
+        "sha256": "a2f0352559867522a5c1c0b23152a8ae5e6b6e440a6b96b3ef380272f3df0a73",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/zara-the-air-between/editorialD-960.webp",
+            "url": "/generated/design-projects/zara-the-air-between/editorialD-960.webp",
+            "width": 960,
+            "height": 540,
+            "bytes": 41016,
+            "sha256": "ac9d58074d4a1dcd1e64abf0533a3733f37b20dd142ab9f3ed194dc614f56050",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/zara-the-air-between/editorialD-1600.webp",
+            "url": "/generated/design-projects/zara-the-air-between/editorialD-1600.webp",
+            "width": 1600,
+            "height": 900,
+            "bytes": 118742,
+            "sha256": "bc6375a0a8030db315a66d7f2865eed173a5a91860aa193027afc82e3cb88fdf",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/zara-the-air-between/editorialD-3200.webp",
+            "url": "/generated/design-projects/zara-the-air-between/editorialD-3200.webp",
+            "width": 3200,
+            "height": 1800,
+            "bytes": 322226,
+            "sha256": "4087f774ecca9b212f0689c5dbd6e4ca041b88e6337fea2c901488d24176677e",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/zara-the-air-between/editorialD-960.avif",
+            "url": "/generated/design-projects/zara-the-air-between/editorialD-960.avif",
+            "width": 960,
+            "height": 540,
+            "bytes": 24531,
+            "sha256": "a91736b15062858573f1187fff206f0ca7455816813cdbc365502466ed4cdad8",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/zara-the-air-between/editorialD-1600.avif",
+            "url": "/generated/design-projects/zara-the-air-between/editorialD-1600.avif",
+            "width": 1600,
+            "height": 900,
+            "bytes": 69351,
+            "sha256": "dede7e1e49babcf6563406c787a34e08c906b1cf046156094dd04df382e30231",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/zara-the-air-between/editorialD-3200.avif",
+            "url": "/generated/design-projects/zara-the-air-between/editorialD-3200.avif",
+            "width": 3200,
+            "height": 1800,
+            "bytes": 195604,
+            "sha256": "b25ac8f22c173125d40e7f0f484dcbe684f11f999f449619c718a8b4f8534caf",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "aspect mismatch allowed (57.8%)",
+        "low-resolution source allowed (1536x2048; high tier requested at 3200x1800)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "zara-the-air-between/editorialE",
+      "project": {
+        "index": "22",
+        "slug": "zara-the-air-between",
+        "title": "THE AIR BETWEEN"
+      },
+      "slot": "editorialE",
+      "expectedAspect": "4:5",
+      "source": {
+        "path": "tmp/higgsfield/22-zara-the-air-between/zara-the-air-between-22-editorial-e.png",
+        "format": "png",
+        "width": 1536,
+        "height": 1024,
+        "bytes": 2747255,
+        "sha256": "8055616b6e87923d092530008ec0091df21ccd7c21d19f4dc7ba2a477034fc2a",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/zara-the-air-between/editorialE-960.webp",
+            "url": "/generated/design-projects/zara-the-air-between/editorialE-960.webp",
+            "width": 768,
+            "height": 960,
+            "bytes": 124606,
+            "sha256": "4e3e2bba658d859eadf1157ff6be57e9835d7f2f46900acf9598ebb1d190ac8c",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/zara-the-air-between/editorialE-1600.webp",
+            "url": "/generated/design-projects/zara-the-air-between/editorialE-1600.webp",
+            "width": 1280,
+            "height": 1600,
+            "bytes": 217536,
+            "sha256": "113fa785540b4838fc614629d6ac1488d1b94d049c40a52ebb6a2e21f79a2305",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/zara-the-air-between/editorialE-3200.webp",
+            "url": "/generated/design-projects/zara-the-air-between/editorialE-3200.webp",
+            "width": 2560,
+            "height": 3200,
+            "bytes": 503974,
+            "sha256": "6838a52dbbf706b1867c322f6903b606ece158172ce3f899856113d63254e418",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/zara-the-air-between/editorialE-960.avif",
+            "url": "/generated/design-projects/zara-the-air-between/editorialE-960.avif",
+            "width": 768,
+            "height": 960,
+            "bytes": 70465,
+            "sha256": "c2e6913c98fea8fff704fdf7d0488d9018266671f67444c1ed859077f20e43e5",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/zara-the-air-between/editorialE-1600.avif",
+            "url": "/generated/design-projects/zara-the-air-between/editorialE-1600.avif",
+            "width": 1280,
+            "height": 1600,
+            "bytes": 132297,
+            "sha256": "bdc9982938ede84d7df94d24375b03e522cf13bf4bf828cdba22b5911382d7a7",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/zara-the-air-between/editorialE-3200.avif",
+            "url": "/generated/design-projects/zara-the-air-between/editorialE-3200.avif",
+            "width": 2560,
+            "height": 3200,
+            "bytes": 266670,
+            "sha256": "a8b0202bba8e3352a37081a740e4a123a48da34fed6530b6e6089844404da27b",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "aspect mismatch allowed (87.5%)",
+        "low-resolution source allowed (1536x1024; high tier requested at 2560x3200)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "uniqlo-comfort-measured/hero",
+      "project": {
+        "index": "23",
+        "slug": "uniqlo-comfort-measured",
+        "title": "COMFORT, MEASURED"
+      },
+      "slot": "hero",
+      "expectedAspect": "4:5",
+      "source": {
+        "path": "tmp/higgsfield/23-uniqlo-comfort-measured/uniqlo-comfort-measured-23-hero.png",
+        "format": "png",
+        "width": 1086,
+        "height": 1448,
+        "bytes": 2537352,
+        "sha256": "52ae9ffd1e06e2403647831426bd644d92df09672ade787c9a60ff2e5710eec2",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/hero-960.webp",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/hero-960.webp",
+            "width": 768,
+            "height": 960,
+            "bytes": 150908,
+            "sha256": "fa91b70892916c8c9f13f58dc46cc3de6468b954491e3bb526669c9ed5792d01",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/hero-1600.webp",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/hero-1600.webp",
+            "width": 1280,
+            "height": 1600,
+            "bytes": 272854,
+            "sha256": "003ae635e718fe1951585290f9c068348bfae964692fc1b2c8cba8e91ebbb72b",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/hero-3200.webp",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/hero-3200.webp",
+            "width": 2560,
+            "height": 3200,
+            "bytes": 617154,
+            "sha256": "833334498af4fe7b1177a1accd60c356c32a5e235b6a5074f1ffde2d3a32f7e7",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/hero-960.avif",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/hero-960.avif",
+            "width": 768,
+            "height": 960,
+            "bytes": 79880,
+            "sha256": "d5c62790f8c901e36ccdfc451143a69457d8b14e4957c5b29c9204415c5a2ab3",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/hero-1600.avif",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/hero-1600.avif",
+            "width": 1280,
+            "height": 1600,
+            "bytes": 158169,
+            "sha256": "27f7ff2b86e0e471e3b355ea827a635fa29644fffa5895506d26e624abd688a8",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/hero-3200.avif",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/hero-3200.avif",
+            "width": 2560,
+            "height": 3200,
+            "bytes": 330855,
+            "sha256": "7eca025783d75c0161c17b7668afe4bd7e770085953c0a76c80c73008941163d",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "aspect mismatch allowed (6.3%)",
+        "low-resolution source allowed (1086x1448; high tier requested at 2560x3200)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "uniqlo-comfort-measured/tactile",
+      "project": {
+        "index": "23",
+        "slug": "uniqlo-comfort-measured",
+        "title": "COMFORT, MEASURED"
+      },
+      "slot": "tactile",
+      "expectedAspect": "3:2",
+      "source": {
+        "path": "tmp/higgsfield/23-uniqlo-comfort-measured/uniqlo-comfort-measured-23-tactile.png",
+        "format": "png",
+        "width": 1536,
+        "height": 1024,
+        "bytes": 2335690,
+        "sha256": "075afb619ba2ef71c17a74da371757c404f70d1b8ea39ee0358df72bd7fc732c",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/tactile-960.webp",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/tactile-960.webp",
+            "width": 960,
+            "height": 640,
+            "bytes": 56310,
+            "sha256": "70dc20823423e498f9df55cdf4fc8d0a5d6341aaaa35d773631eeae31e084da7",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/tactile-1600.webp",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/tactile-1600.webp",
+            "width": 1600,
+            "height": 1067,
+            "bytes": 130400,
+            "sha256": "544610228f1c019389b476ff376ef23484525a8a5d70bc100a537d7dbfa52f6d",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/tactile-3200.webp",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/tactile-3200.webp",
+            "width": 3200,
+            "height": 2133,
+            "bytes": 356786,
+            "sha256": "0d754f9f2d930cfa1a71dbcfa373c5ba3452a7bd8b2c202d19a0dea9438adb29",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/tactile-960.avif",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/tactile-960.avif",
+            "width": 960,
+            "height": 640,
+            "bytes": 29607,
+            "sha256": "a83ae1a727dd401f66df0b843cc2f119901749f5aa079199ed0649136620dc68",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/tactile-1600.avif",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/tactile-1600.avif",
+            "width": 1600,
+            "height": 1067,
+            "bytes": 73243,
+            "sha256": "00b71b8c6423bc832e99d75a4214b72aaec99b977c8ac7766ab12d8efd48c5b3",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/tactile-3200.avif",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/tactile-3200.avif",
+            "width": 3200,
+            "height": 2133,
+            "bytes": 203467,
+            "sha256": "d7c50989df2d94a94505cf682afadf38ea51197e0ef11ec351df1271655f9bb6",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "low-resolution source allowed (1536x1024; high tier requested at 3200x2133)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "uniqlo-comfort-measured/spatial",
+      "project": {
+        "index": "23",
+        "slug": "uniqlo-comfort-measured",
+        "title": "COMFORT, MEASURED"
+      },
+      "slot": "spatial",
+      "expectedAspect": "16:9",
+      "source": {
+        "path": "tmp/higgsfield/23-uniqlo-comfort-measured/uniqlo-comfort-measured-23-spatial.png",
+        "format": "png",
+        "width": 2048,
+        "height": 1152,
+        "bytes": 3877961,
+        "sha256": "dd1b91f9ad2c6992f0564305c1d9ae0f1dd3381b2fec25589a264c4eddf9faa9",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/spatial-960.webp",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/spatial-960.webp",
+            "width": 960,
+            "height": 540,
+            "bytes": 91664,
+            "sha256": "10cc250d22c3660cf8c1b59b30697e8dfa8f28df1d5f9e37cf2cf891e7bac1c1",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/spatial-1600.webp",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/spatial-1600.webp",
+            "width": 1600,
+            "height": 900,
+            "bytes": 252218,
+            "sha256": "d7fbc3fc088f39a11e8b871ca9bc603ffa6f699e2393800bb071c7e1afe9047b",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/spatial-3200.webp",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/spatial-3200.webp",
+            "width": 3200,
+            "height": 1800,
+            "bytes": 617738,
+            "sha256": "966b0b621e69b5e3e6618bfc72eb346220dfc674ce9664b6df97a79770bb5783",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/spatial-960.avif",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/spatial-960.avif",
+            "width": 960,
+            "height": 540,
+            "bytes": 51715,
+            "sha256": "081867899bec7f6a2fb679ac2282380326db4b1ef5e5acd42c297a646cffd400",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/spatial-1600.avif",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/spatial-1600.avif",
+            "width": 1600,
+            "height": 900,
+            "bytes": 152798,
+            "sha256": "52c35fd8488a0d4d90c14eda2d34abb0abdb939089456093ed839929a5a29f86",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/spatial-3200.avif",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/spatial-3200.avif",
+            "width": 3200,
+            "height": 1800,
+            "bytes": 396799,
+            "sha256": "58dcfd9e925094b110d23b61a6c67bd5a0b40452d5d1c903919c2e9edb334847",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "low-resolution source allowed (2048x1152; high tier requested at 3200x1800)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "uniqlo-comfort-measured/context",
+      "project": {
+        "index": "23",
+        "slug": "uniqlo-comfort-measured",
+        "title": "COMFORT, MEASURED"
+      },
+      "slot": "context",
+      "expectedAspect": "9:16",
+      "source": {
+        "path": "tmp/higgsfield/23-uniqlo-comfort-measured/uniqlo-comfort-measured-23-context.png",
+        "format": "png",
+        "width": 1152,
+        "height": 2048,
+        "bytes": 3656543,
+        "sha256": "ec7eeeeb298bedf75e11522a1fe75589bd357f0d542f8e887ad687f79fbf29da",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/context-960.webp",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/context-960.webp",
+            "width": 540,
+            "height": 960,
+            "bytes": 86122,
+            "sha256": "1c7d436f71396691219f9050a9b53c9d47c9f6a769e90bff614a39c7a4651d7c",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/context-1600.webp",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/context-1600.webp",
+            "width": 900,
+            "height": 1600,
+            "bytes": 210838,
+            "sha256": "ad911148c0fa86b5f174fcf1d7317f3b946c94b0187dc8a8dc1f163278d53a29",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/context-3200.webp",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/context-3200.webp",
+            "width": 1800,
+            "height": 3200,
+            "bytes": 509202,
+            "sha256": "728bbe6e2cc8e8c77b86135d4bbafab6f62d06e337f1b57aeeeb34823baf893e",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/context-960.avif",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/context-960.avif",
+            "width": 540,
+            "height": 960,
+            "bytes": 50710,
+            "sha256": "36a52a1b5fd209835973c4382a91285c49e0c444645f6d3681947af01da48d91",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/context-1600.avif",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/context-1600.avif",
+            "width": 900,
+            "height": 1600,
+            "bytes": 139844,
+            "sha256": "dd4ff2d131fb372aa8eaa541fbace54c6abf0b6e193f55e33564c749cf37fccd",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/context-3200.avif",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/context-3200.avif",
+            "width": 1800,
+            "height": 3200,
+            "bytes": 315722,
+            "sha256": "49199166cf580ca437b25de6fbad358c95c26350f700bdfadceea9e6f8b5a38c",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "low-resolution source allowed (1152x2048; high tier requested at 1800x3200)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "uniqlo-comfort-measured/editorialA",
+      "project": {
+        "index": "23",
+        "slug": "uniqlo-comfort-measured",
+        "title": "COMFORT, MEASURED"
+      },
+      "slot": "editorialA",
+      "expectedAspect": "4:5",
+      "source": {
+        "path": "tmp/higgsfield/23-uniqlo-comfort-measured/uniqlo-comfort-measured-23-editorial-a.png",
+        "format": "png",
+        "width": 1536,
+        "height": 2048,
+        "bytes": 5361726,
+        "sha256": "93577d39ef9763b476c1ea3920f096530c938269abf6b62c36c7b554a9f5a2c7",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/editorialA-960.webp",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/editorialA-960.webp",
+            "width": 768,
+            "height": 960,
+            "bytes": 180232,
+            "sha256": "b9053005c614e7cfdcfc98ef476eafb86c6d5483402cf6bd565221c29c92fe77",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/editorialA-1600.webp",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/editorialA-1600.webp",
+            "width": 1280,
+            "height": 1600,
+            "bytes": 429872,
+            "sha256": "8024934b754292e82d7bfb33cb9321b55b3256ed7052a00aa4fa1e069d8dc54a",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/editorialA-3200.webp",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/editorialA-3200.webp",
+            "width": 2560,
+            "height": 3200,
+            "bytes": 1045654,
+            "sha256": "f081cee888f719af0ad5264ccc025037b878674a4bcc021dc4561014b44f2b06",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/editorialA-960.avif",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/editorialA-960.avif",
+            "width": 768,
+            "height": 960,
+            "bytes": 92303,
+            "sha256": "e692d4d89209ec12cffb14bebb16638e2ef5dff21f8830a5cb734906c820dfaa",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/editorialA-1600.avif",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/editorialA-1600.avif",
+            "width": 1280,
+            "height": 1600,
+            "bytes": 233332,
+            "sha256": "dc8477a0cff259c40c4ff1300e6f10b85d3dc1326e0b6151cb60f6c3a8d42af5",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/editorialA-3200.avif",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/editorialA-3200.avif",
+            "width": 2560,
+            "height": 3200,
+            "bytes": 574560,
+            "sha256": "f8451ebf51741d7235b24df5b5dc6e1cb2a222169aafd70a19644991a163ac95",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "aspect mismatch allowed (6.3%)",
+        "low-resolution source allowed (1536x2048; high tier requested at 2560x3200)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "uniqlo-comfort-measured/editorialB",
+      "project": {
+        "index": "23",
+        "slug": "uniqlo-comfort-measured",
+        "title": "COMFORT, MEASURED"
+      },
+      "slot": "editorialB",
+      "expectedAspect": "3:2",
+      "source": {
+        "path": "tmp/higgsfield/23-uniqlo-comfort-measured/uniqlo-comfort-measured-23-editorial-b.png",
+        "format": "png",
+        "width": 1086,
+        "height": 1448,
+        "bytes": 2559214,
+        "sha256": "9b12e86cee9bb0b13997df38df4cc74e6fc4cfd8cdff1e2c267468aa5c86eea7",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/editorialB-960.webp",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/editorialB-960.webp",
+            "width": 960,
+            "height": 640,
+            "bytes": 99542,
+            "sha256": "097e2176b88efeb6017dea720a75b3ee4c0255dbcee5311bfb29715b159873f3",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/editorialB-1600.webp",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/editorialB-1600.webp",
+            "width": 1600,
+            "height": 1067,
+            "bytes": 185710,
+            "sha256": "81e9c5e14b01a8da38580441a588c8cb1f7719f6e5be5bd7ef7cc60eb4495cfc",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/editorialB-3200.webp",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/editorialB-3200.webp",
+            "width": 3200,
+            "height": 2133,
+            "bytes": 425730,
+            "sha256": "c26df30ed4f12fc1d833b6384c9c1a8910c72fefcdf520bc5d04fb3968b3f900",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/editorialB-960.avif",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/editorialB-960.avif",
+            "width": 960,
+            "height": 640,
+            "bytes": 56845,
+            "sha256": "27bc1f2ad1de43e07ce9f317b484f22ac6e6c68c33734d771d1ba821757a4b8c",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/editorialB-1600.avif",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/editorialB-1600.avif",
+            "width": 1600,
+            "height": 1067,
+            "bytes": 106465,
+            "sha256": "c0d7f7758c0466cc7864d22571159ba17e16d5c5630b36e1783d99fe93fbd9c1",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/editorialB-3200.avif",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/editorialB-3200.avif",
+            "width": 3200,
+            "height": 2133,
+            "bytes": 231674,
+            "sha256": "e984e3cca1fc321673bbe3ea333ead24eb9991ce7eb8349607f1cec7be3ec5c0",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "aspect mismatch allowed (50%)",
+        "low-resolution source allowed (1086x1448; high tier requested at 3200x2133)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "uniqlo-comfort-measured/editorialC",
+      "project": {
+        "index": "23",
+        "slug": "uniqlo-comfort-measured",
+        "title": "COMFORT, MEASURED"
+      },
+      "slot": "editorialC",
+      "expectedAspect": "4:5",
+      "source": {
+        "path": "tmp/higgsfield/23-uniqlo-comfort-measured/uniqlo-comfort-measured-23-editorial-c.png",
+        "format": "png",
+        "width": 941,
+        "height": 1672,
+        "bytes": 2217417,
+        "sha256": "7c1d9525ea45117eda494c9f319e36e708c3b9965d0a5cc0bf326706496b56f8",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/editorialC-960.webp",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/editorialC-960.webp",
+            "width": 768,
+            "height": 960,
+            "bytes": 90106,
+            "sha256": "c114203d4bec7e3a9077f563c34e5c659875ed1ba83992a3b16aca259c8de8c5",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/editorialC-1600.webp",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/editorialC-1600.webp",
+            "width": 1280,
+            "height": 1600,
+            "bytes": 165236,
+            "sha256": "981f2c1a1ccf686d19b845279565538b3252a6d3b9a8cdcb6dec805aa04106f0",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/editorialC-3200.webp",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/editorialC-3200.webp",
+            "width": 2560,
+            "height": 3200,
+            "bytes": 392274,
+            "sha256": "1a86be9d5fc9cbe32c5005504b55903a20e75ccafe0ac5f756573f72fcb0c0ed",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/editorialC-960.avif",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/editorialC-960.avif",
+            "width": 768,
+            "height": 960,
+            "bytes": 50785,
+            "sha256": "2d286bb668338b2815211bd257f7afdd14b8bcc0db9ed1de235ca737a67f6918",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/editorialC-1600.avif",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/editorialC-1600.avif",
+            "width": 1280,
+            "height": 1600,
+            "bytes": 95511,
+            "sha256": "861a033ab2e64f55260d62536ce512d669e4697ed5b77af5bdf9ad4f63bd0cc3",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/editorialC-3200.avif",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/editorialC-3200.avif",
+            "width": 2560,
+            "height": 3200,
+            "bytes": 214071,
+            "sha256": "e1d3bfb0b0e54ed2aefb9c14ae803e4b3aad73d4d7b3306aeb54c5d98577286b",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "aspect mismatch allowed (29.7%)",
+        "low-resolution source allowed (941x1672; high tier requested at 2560x3200)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "uniqlo-comfort-measured/editorialD",
+      "project": {
+        "index": "23",
+        "slug": "uniqlo-comfort-measured",
+        "title": "COMFORT, MEASURED"
+      },
+      "slot": "editorialD",
+      "expectedAspect": "16:9",
+      "source": {
+        "path": "tmp/higgsfield/23-uniqlo-comfort-measured/uniqlo-comfort-measured-23-editorial-d.png",
+        "format": "png",
+        "width": 1536,
+        "height": 1024,
+        "bytes": 2368105,
+        "sha256": "7a99df604daea355e0f50d74ea4a541bf9b25cdf86579f27bc069a1c80c6c9d0",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/editorialD-960.webp",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/editorialD-960.webp",
+            "width": 960,
+            "height": 540,
+            "bytes": 48330,
+            "sha256": "c995295d3159f520698cf1c6cfc453c6ab3a72e29aa5ddfd3432269244d48b97",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/editorialD-1600.webp",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/editorialD-1600.webp",
+            "width": 1600,
+            "height": 900,
+            "bytes": 102026,
+            "sha256": "b19f6a1e95cac5c00fb911d3ec7592da7e5274383d65737f3baa1dea2a3a9c79",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/editorialD-3200.webp",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/editorialD-3200.webp",
+            "width": 3200,
+            "height": 1800,
+            "bytes": 255028,
+            "sha256": "4f018506605ec793cd41f039cef4b7e06ec4554c5ed2a475724b7dc820d98293",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/editorialD-960.avif",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/editorialD-960.avif",
+            "width": 960,
+            "height": 540,
+            "bytes": 30841,
+            "sha256": "b184a995e0456778f02da5a6a5c98ecb8b45c0dc52804447631d415247e94676",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/editorialD-1600.avif",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/editorialD-1600.avif",
+            "width": 1600,
+            "height": 900,
+            "bytes": 63910,
+            "sha256": "2434b96a8c18aba26c18dfe5c901f308c3df87138b6d26fe4e56423da469399f",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/uniqlo-comfort-measured/editorialD-3200.avif",
+            "url": "/generated/design-projects/uniqlo-comfort-measured/editorialD-3200.avif",
+            "width": 3200,
+            "height": 1800,
+            "bytes": 163333,
+            "sha256": "9cfc095951e9b5a016da35d508c7919eb44886104d2b95d72b4935cd6d02a738",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "aspect mismatch allowed (15.6%)",
+        "low-resolution source allowed (1536x1024; high tier requested at 3200x1800)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "prada-the-quiet-error/hero",
+      "project": {
+        "index": "24",
+        "slug": "prada-the-quiet-error",
+        "title": "THE QUIET ERROR"
+      },
+      "slot": "hero",
+      "expectedAspect": "4:5",
+      "source": {
+        "path": "tmp/higgsfield/24-prada-the-quiet-error/prada-the-quiet-error-24-hero.png",
+        "format": "png",
+        "width": 1536,
+        "height": 2048,
+        "bytes": 3924067,
+        "sha256": "401882b346e70ade81d44746a09e5bc56397aeb28c122585cc26c61bf46d8de2",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/prada-the-quiet-error/hero-960.webp",
+            "url": "/generated/design-projects/prada-the-quiet-error/hero-960.webp",
+            "width": 768,
+            "height": 960,
+            "bytes": 65742,
+            "sha256": "06626598fbd03ec3494e69f40f55aa890fe83833f363e1b7fbec2685f0d0098c",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/prada-the-quiet-error/hero-1600.webp",
+            "url": "/generated/design-projects/prada-the-quiet-error/hero-1600.webp",
+            "width": 1280,
+            "height": 1600,
+            "bytes": 154918,
+            "sha256": "f990c9fc914d86346e31e6409e5a38f4dc311cd3f0b7ccb7279394d2373f41c2",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/prada-the-quiet-error/hero-3200.webp",
+            "url": "/generated/design-projects/prada-the-quiet-error/hero-3200.webp",
+            "width": 2560,
+            "height": 3200,
+            "bytes": 408272,
+            "sha256": "73ae443f359562e150f44baeddd73c2bc650383e07b2737f3e1d9f1a1250eb3b",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/prada-the-quiet-error/hero-960.avif",
+            "url": "/generated/design-projects/prada-the-quiet-error/hero-960.avif",
+            "width": 768,
+            "height": 960,
+            "bytes": 39658,
+            "sha256": "734952c011e42bccda3c91fbe2f64f74e2a237600439151ac2c2e28aa8d2f838",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/prada-the-quiet-error/hero-1600.avif",
+            "url": "/generated/design-projects/prada-the-quiet-error/hero-1600.avif",
+            "width": 1280,
+            "height": 1600,
+            "bytes": 90747,
+            "sha256": "fc3f461944e8675b065cedf5099c33346503b06f08342ad83f2300f66dc68550",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/prada-the-quiet-error/hero-3200.avif",
+            "url": "/generated/design-projects/prada-the-quiet-error/hero-3200.avif",
+            "width": 2560,
+            "height": 3200,
+            "bytes": 241970,
+            "sha256": "3142b2a300a69aa35caf60848f22633bb98d3f86e0516e23b554ebb44cd76279",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "aspect mismatch allowed (6.3%)",
+        "low-resolution source allowed (1536x2048; high tier requested at 2560x3200)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "prada-the-quiet-error/tactile",
+      "project": {
+        "index": "24",
+        "slug": "prada-the-quiet-error",
+        "title": "THE QUIET ERROR"
+      },
+      "slot": "tactile",
+      "expectedAspect": "3:2",
+      "source": {
+        "path": "tmp/higgsfield/24-prada-the-quiet-error/prada-the-quiet-error-24-tactile.png",
+        "format": "png",
+        "width": 1536,
+        "height": 1024,
+        "bytes": 2626846,
+        "sha256": "2bb2535c558cf0363bea9f55332f5e8ebfe7b1ae679b55bdcb4df5043913a0ab",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/prada-the-quiet-error/tactile-960.webp",
+            "url": "/generated/design-projects/prada-the-quiet-error/tactile-960.webp",
+            "width": 960,
+            "height": 640,
+            "bytes": 83162,
+            "sha256": "9aea864758419ca3c479a60a73ebbf7dc6d08eb18e50d29653800c98c1457b51",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/prada-the-quiet-error/tactile-1600.webp",
+            "url": "/generated/design-projects/prada-the-quiet-error/tactile-1600.webp",
+            "width": 1600,
+            "height": 1067,
+            "bytes": 198254,
+            "sha256": "8bafc4d97e1c23abb72f3abf03a1a2fee4a87a11922b79872b5e0f5a0d1b2b59",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/prada-the-quiet-error/tactile-3200.webp",
+            "url": "/generated/design-projects/prada-the-quiet-error/tactile-3200.webp",
+            "width": 3200,
+            "height": 2133,
+            "bytes": 480544,
+            "sha256": "520be2d370cf3f49228c06a4f99407d31b2533980aa925e850f07d48cfdebac0",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/prada-the-quiet-error/tactile-960.avif",
+            "url": "/generated/design-projects/prada-the-quiet-error/tactile-960.avif",
+            "width": 960,
+            "height": 640,
+            "bytes": 40656,
+            "sha256": "641925d47474c8b5a08d943136a92ef7dcd3a338e2c31f14764c433f1e2dc420",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/prada-the-quiet-error/tactile-1600.avif",
+            "url": "/generated/design-projects/prada-the-quiet-error/tactile-1600.avif",
+            "width": 1600,
+            "height": 1067,
+            "bytes": 104600,
+            "sha256": "60718edaebbcc4c2927d3aefdc49e12efbd7145c6790188d190af6f318b9c44b",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/prada-the-quiet-error/tactile-3200.avif",
+            "url": "/generated/design-projects/prada-the-quiet-error/tactile-3200.avif",
+            "width": 3200,
+            "height": 2133,
+            "bytes": 238441,
+            "sha256": "2f7a990ca07c4e2fb608e4fb36e2e4043540dc1fcf50f1641047cd82e5ed2c22",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "low-resolution source allowed (1536x1024; high tier requested at 3200x2133)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "prada-the-quiet-error/spatial",
+      "project": {
+        "index": "24",
+        "slug": "prada-the-quiet-error",
+        "title": "THE QUIET ERROR"
+      },
+      "slot": "spatial",
+      "expectedAspect": "16:9",
+      "source": {
+        "path": "tmp/higgsfield/24-prada-the-quiet-error/prada-the-quiet-error-24-spatial.png",
+        "format": "png",
+        "width": 2048,
+        "height": 1152,
+        "bytes": 3724647,
+        "sha256": "54964a0c2211511e8d43252d5cb12cdcb2d6e32dd504300a7dd9d3c8b4d02b7f",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/prada-the-quiet-error/spatial-960.webp",
+            "url": "/generated/design-projects/prada-the-quiet-error/spatial-960.webp",
+            "width": 960,
+            "height": 540,
+            "bytes": 78150,
+            "sha256": "9cd1d79feb23d2226d5af7e0377f2019c8ac9d518244555b9acbca7411e0dda7",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/prada-the-quiet-error/spatial-1600.webp",
+            "url": "/generated/design-projects/prada-the-quiet-error/spatial-1600.webp",
+            "width": 1600,
+            "height": 900,
+            "bytes": 215510,
+            "sha256": "b2d5409998b8694cef081c018a27edff9d4f62e59c06e76e7ac0e85ff31070f9",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/prada-the-quiet-error/spatial-3200.webp",
+            "url": "/generated/design-projects/prada-the-quiet-error/spatial-3200.webp",
+            "width": 3200,
+            "height": 1800,
+            "bytes": 546570,
+            "sha256": "afe4cac2e9dc02fb37ea0d39590c2b1660251ccdbd960183ff2895dc40337ecd",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/prada-the-quiet-error/spatial-960.avif",
+            "url": "/generated/design-projects/prada-the-quiet-error/spatial-960.avif",
+            "width": 960,
+            "height": 540,
+            "bytes": 46523,
+            "sha256": "6c71e98b62e48d812dbcae3d54378d6518d26d9aa02d4b75335df26ac6f6ac97",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/prada-the-quiet-error/spatial-1600.avif",
+            "url": "/generated/design-projects/prada-the-quiet-error/spatial-1600.avif",
+            "width": 1600,
+            "height": 900,
+            "bytes": 151061,
+            "sha256": "7a4137d188c5f64633d9c471df87e4bdc749c9fa6ddb38511b977c3ec0460415",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/prada-the-quiet-error/spatial-3200.avif",
+            "url": "/generated/design-projects/prada-the-quiet-error/spatial-3200.avif",
+            "width": 3200,
+            "height": 1800,
+            "bytes": 337241,
+            "sha256": "75c47703171ecc4734530e95b6c0e6f98dae46e4432f3ecd9adf70d6f42a33b4",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "low-resolution source allowed (2048x1152; high tier requested at 3200x1800)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "prada-the-quiet-error/context",
+      "project": {
+        "index": "24",
+        "slug": "prada-the-quiet-error",
+        "title": "THE QUIET ERROR"
+      },
+      "slot": "context",
+      "expectedAspect": "9:16",
+      "source": {
+        "path": "tmp/higgsfield/24-prada-the-quiet-error/prada-the-quiet-error-24-context.png",
+        "format": "png",
+        "width": 1152,
+        "height": 2048,
+        "bytes": 3622170,
+        "sha256": "3750208ea711d99687d2330bc3a8d31872d2e73b708feabf5cf02072b0830918",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/prada-the-quiet-error/context-960.webp",
+            "url": "/generated/design-projects/prada-the-quiet-error/context-960.webp",
+            "width": 540,
+            "height": 960,
+            "bytes": 94336,
+            "sha256": "01fbfc244cb9959ff1f71065d52c0d7a12ce977a96f73d7a59d28cc4f30b01a8",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/prada-the-quiet-error/context-1600.webp",
+            "url": "/generated/design-projects/prada-the-quiet-error/context-1600.webp",
+            "width": 900,
+            "height": 1600,
+            "bytes": 216062,
+            "sha256": "3634c4476c43a97ff4c7ee42b276eb8bd8441c2fd03e7e9aede4ccafc9faad3b",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/prada-the-quiet-error/context-3200.webp",
+            "url": "/generated/design-projects/prada-the-quiet-error/context-3200.webp",
+            "width": 1800,
+            "height": 3200,
+            "bytes": 526750,
+            "sha256": "b9a5fefe27f382c4d148277e13af40fbb7d5a938adda17eaf5faf25e0d81662c",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/prada-the-quiet-error/context-960.avif",
+            "url": "/generated/design-projects/prada-the-quiet-error/context-960.avif",
+            "width": 540,
+            "height": 960,
+            "bytes": 55238,
+            "sha256": "74af374d0d13ed193507ff86ce2888e4a6822fb85ccddc493abee3ef9b16e435",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/prada-the-quiet-error/context-1600.avif",
+            "url": "/generated/design-projects/prada-the-quiet-error/context-1600.avif",
+            "width": 900,
+            "height": 1600,
+            "bytes": 136451,
+            "sha256": "da166e412ecd498d771ad72ed45d383749f071543f640cce4c9f4c4050c2e451",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/prada-the-quiet-error/context-3200.avif",
+            "url": "/generated/design-projects/prada-the-quiet-error/context-3200.avif",
+            "width": 1800,
+            "height": 3200,
+            "bytes": 320078,
+            "sha256": "553aaa46a49ba717780a9a7ce1c309f38a4bc045f889604f681cd2e4c6458c41",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "low-resolution source allowed (1152x2048; high tier requested at 1800x3200)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "prada-the-quiet-error/editorialA",
+      "project": {
+        "index": "24",
+        "slug": "prada-the-quiet-error",
+        "title": "THE QUIET ERROR"
+      },
+      "slot": "editorialA",
+      "expectedAspect": "4:5",
+      "source": {
+        "path": "tmp/higgsfield/24-prada-the-quiet-error/prada-the-quiet-error-24-editorial-a.png",
+        "format": "png",
+        "width": 2016,
+        "height": 1344,
+        "bytes": 3943386,
+        "sha256": "3c8079441925cab55cf64885da09cf18822d680f184865cfb404571256fe1596",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialA-960.webp",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialA-960.webp",
+            "width": 768,
+            "height": 960,
+            "bytes": 73116,
+            "sha256": "bdc82d22370a9c34dc7ad4bed638f706e15b0b0738ecad1e95ded28b94e96527",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialA-1600.webp",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialA-1600.webp",
+            "width": 1280,
+            "height": 1600,
+            "bytes": 189796,
+            "sha256": "5802730407272d9019ef3be181f1fc5d3dacfcdd0d6d3867f133c46028975dc3",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialA-3200.webp",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialA-3200.webp",
+            "width": 2560,
+            "height": 3200,
+            "bytes": 493212,
+            "sha256": "6189c1d3ba2ead3ef822124881ca1d969726f31bd31722d7f8df7e23d7e77a5a",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialA-960.avif",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialA-960.avif",
+            "width": 768,
+            "height": 960,
+            "bytes": 38897,
+            "sha256": "178e257fcdcd6b025f8988f9969b1ab938636bb4c1ebdfba6abcdddf440a9dcd",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialA-1600.avif",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialA-1600.avif",
+            "width": 1280,
+            "height": 1600,
+            "bytes": 100504,
+            "sha256": "5443c91a34ff10ef6e4a6b6a0d238c299aacbdad973992ee46b81768498dfa75",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialA-3200.avif",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialA-3200.avif",
+            "width": 2560,
+            "height": 3200,
+            "bytes": 265231,
+            "sha256": "bf5a109ead3b263a89e60b0d21c4d4956ffe079956271fca2780bd7c18016810",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "aspect mismatch allowed (87.5%)",
+        "low-resolution source allowed (2016x1344; high tier requested at 2560x3200)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "prada-the-quiet-error/editorialB",
+      "project": {
+        "index": "24",
+        "slug": "prada-the-quiet-error",
+        "title": "THE QUIET ERROR"
+      },
+      "slot": "editorialB",
+      "expectedAspect": "3:2",
+      "source": {
+        "path": "tmp/higgsfield/24-prada-the-quiet-error/prada-the-quiet-error-24-editorial-b.png",
+        "format": "png",
+        "width": 1536,
+        "height": 1024,
+        "bytes": 2567096,
+        "sha256": "c23e7f07de508a79464c06fd6b8d754c1de6a5c4e91789146e8d566a05f95e66",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialB-960.webp",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialB-960.webp",
+            "width": 960,
+            "height": 640,
+            "bytes": 54654,
+            "sha256": "b407c642829dda725af35b8976d4b93f53bcdacb9e34f9ac56f65c3e6315059c",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialB-1600.webp",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialB-1600.webp",
+            "width": 1600,
+            "height": 1067,
+            "bytes": 153584,
+            "sha256": "e9e7a8a39f9f0b7f09a18600d98594a26fbc72e190e43669b627a9b5e11db579",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialB-3200.webp",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialB-3200.webp",
+            "width": 3200,
+            "height": 2133,
+            "bytes": 419968,
+            "sha256": "257be70b323cc1f52d661e5fa03adc2335d1f01ed951a84c706c4b466c11539a",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialB-960.avif",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialB-960.avif",
+            "width": 960,
+            "height": 640,
+            "bytes": 27254,
+            "sha256": "bc35bb1aa382b6e080e704d27d53dd792bf25251d449f320228e1a980b0d13a7",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialB-1600.avif",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialB-1600.avif",
+            "width": 1600,
+            "height": 1067,
+            "bytes": 79727,
+            "sha256": "ff650266c707bc3b37f7353fc8d56d4832e15287b96a8c2dbdb20351ed59a155",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialB-3200.avif",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialB-3200.avif",
+            "width": 3200,
+            "height": 2133,
+            "bytes": 227374,
+            "sha256": "bf6a7f609f03fa83a5a59c148ea3166f8db7380b1b0688cfbf48985b6f4253a0",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "low-resolution source allowed (1536x1024; high tier requested at 3200x2133)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "prada-the-quiet-error/editorialC",
+      "project": {
+        "index": "24",
+        "slug": "prada-the-quiet-error",
+        "title": "THE QUIET ERROR"
+      },
+      "slot": "editorialC",
+      "expectedAspect": "4:5",
+      "source": {
+        "path": "tmp/higgsfield/24-prada-the-quiet-error/prada-the-quiet-error-24-editorial-c.png",
+        "format": "png",
+        "width": 1086,
+        "height": 1448,
+        "bytes": 1971227,
+        "sha256": "7c08bcc98e2467e69b3cfeb8cc9571c79628b354d4cd3ec20154b8a3e1c2d605",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialC-960.webp",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialC-960.webp",
+            "width": 768,
+            "height": 960,
+            "bytes": 63608,
+            "sha256": "0ca8b0b94cff7d6200050ae00beb6e6e936ca0e573ac9a614f8fd27def142548",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialC-1600.webp",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialC-1600.webp",
+            "width": 1280,
+            "height": 1600,
+            "bytes": 125552,
+            "sha256": "b9ca901b85e924a64893d4b15927a6031084a06b6b665b92f759589ad65e426e",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialC-3200.webp",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialC-3200.webp",
+            "width": 2560,
+            "height": 3200,
+            "bytes": 330638,
+            "sha256": "151543c91daf6213f91a43b4365851581cbf1604408d33c0528fb986e371d967",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialC-960.avif",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialC-960.avif",
+            "width": 768,
+            "height": 960,
+            "bytes": 41233,
+            "sha256": "ca45f347af1d47e92f424f1bd714989cb698a44197cc45e183036a03fc08ad24",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialC-1600.avif",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialC-1600.avif",
+            "width": 1280,
+            "height": 1600,
+            "bytes": 85329,
+            "sha256": "f84d968d9874ada9811624ce1d30b86fc374f1cdba3e308c1a0b9a4297ca5e53",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialC-3200.avif",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialC-3200.avif",
+            "width": 2560,
+            "height": 3200,
+            "bytes": 194073,
+            "sha256": "d2e66a1231333a1d8435a384171258d84f8cf9826768a1197a72e0365c279c2c",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "aspect mismatch allowed (6.3%)",
+        "low-resolution source allowed (1086x1448; high tier requested at 2560x3200)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "prada-the-quiet-error/editorialD",
+      "project": {
+        "index": "24",
+        "slug": "prada-the-quiet-error",
+        "title": "THE QUIET ERROR"
+      },
+      "slot": "editorialD",
+      "expectedAspect": "16:9",
+      "source": {
+        "path": "tmp/higgsfield/24-prada-the-quiet-error/prada-the-quiet-error-24-editorial-d.png",
+        "format": "png",
+        "width": 2048,
+        "height": 1152,
+        "bytes": 3693900,
+        "sha256": "686fafb51717f5e9f6762e727b05d3221340f57df1970c3c5c3f97462d67d0c7",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialD-960.webp",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialD-960.webp",
+            "width": 960,
+            "height": 540,
+            "bytes": 74322,
+            "sha256": "6b5504a3bf587077afde50ab9b978ed89aab697709c04caf4e8884c0a99fca46",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialD-1600.webp",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialD-1600.webp",
+            "width": 1600,
+            "height": 900,
+            "bytes": 223078,
+            "sha256": "3b1b15e38d40de79519ca88e9462a13f5f15f5157921e19a272f45d4f87b1ab7",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialD-3200.webp",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialD-3200.webp",
+            "width": 3200,
+            "height": 1800,
+            "bytes": 545956,
+            "sha256": "aeb35b65e3ea05c545e99134a25232078929ccab79f0baacf7d013b791f333f7",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialD-960.avif",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialD-960.avif",
+            "width": 960,
+            "height": 540,
+            "bytes": 42768,
+            "sha256": "3f48e9fd0a9575d7a53808a18cc4e8c4ce392a0ed9b862245d6e7c668a8c1522",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialD-1600.avif",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialD-1600.avif",
+            "width": 1600,
+            "height": 900,
+            "bytes": 148250,
+            "sha256": "a14dfcc6daaef5e0018acebb9885b778e9234f5ca88817c6b9a3dff2e423ed9c",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialD-3200.avif",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialD-3200.avif",
+            "width": 3200,
+            "height": 1800,
+            "bytes": 323794,
+            "sha256": "50780f6c3f7b64c1ee2d3462659ac5139a8bf321b8404583e3f5d47b30f6d46d",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "low-resolution source allowed (2048x1152; high tier requested at 3200x1800)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "prada-the-quiet-error/editorialE",
+      "project": {
+        "index": "24",
+        "slug": "prada-the-quiet-error",
+        "title": "THE QUIET ERROR"
+      },
+      "slot": "editorialE",
+      "expectedAspect": "4:5",
+      "source": {
+        "path": "tmp/higgsfield/24-prada-the-quiet-error/prada-the-quiet-error-24-editorial-e.png",
+        "format": "png",
+        "width": 1536,
+        "height": 2048,
+        "bytes": 4764282,
+        "sha256": "345098240e0bb844457c1b7fa70f253c1835cae30ee55c13801259a9c1a19dc5",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialE-960.webp",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialE-960.webp",
+            "width": 768,
+            "height": 960,
+            "bytes": 91872,
+            "sha256": "c929d5bedf071993a08fc5b965b83c06ce1e195f9f82cd379b723c26175d8521",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialE-1600.webp",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialE-1600.webp",
+            "width": 1280,
+            "height": 1600,
+            "bytes": 277066,
+            "sha256": "5f88d94a71c9f077b8066884c61fbfc9cc53e45934f6533c7f2d5648e8ba8693",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialE-3200.webp",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialE-3200.webp",
+            "width": 2560,
+            "height": 3200,
+            "bytes": 696302,
+            "sha256": "b0d1af5193cde636c24b66347f36b465858e62008ed561794cf66c16d30f5edc",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialE-960.avif",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialE-960.avif",
+            "width": 768,
+            "height": 960,
+            "bytes": 42784,
+            "sha256": "a6cce53e458cda06fbc23d601f5c663ebdbccf4b28442b9e1b18458f4302bc71",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialE-1600.avif",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialE-1600.avif",
+            "width": 1280,
+            "height": 1600,
+            "bytes": 163578,
+            "sha256": "e808addc665b59ae1f11a2ddb5225274b2d473b0f5527e086558f1754ea31974",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialE-3200.avif",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialE-3200.avif",
+            "width": 2560,
+            "height": 3200,
+            "bytes": 361025,
+            "sha256": "0f1ef9c828c580da2e13266f9e8af1f86fb31b44bbbe3f5b5b0d0949751a2978",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "aspect mismatch allowed (6.3%)",
+        "low-resolution source allowed (1536x2048; high tier requested at 2560x3200)"
+      ],
+      "status": "ready"
+    },
+    {
+      "key": "prada-the-quiet-error/editorialF",
+      "project": {
+        "index": "24",
+        "slug": "prada-the-quiet-error",
+        "title": "THE QUIET ERROR"
+      },
+      "slot": "editorialF",
+      "expectedAspect": "3:2",
+      "source": {
+        "path": "tmp/higgsfield/24-prada-the-quiet-error/prada-the-quiet-error-24-editorial-f.png",
+        "format": "png",
+        "width": 2016,
+        "height": 1344,
+        "bytes": 3485098,
+        "sha256": "2b8b75edec33ed6b27e3db12e7edf0649f444285dc7568ef756b7398d82f5409",
+        "colourSpace": "srgb",
+        "hadEmbeddedMetadata": false
+      },
+      "outputs": {
+        "webp": {
+          "960": {
+            "format": "webp",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialF-960.webp",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialF-960.webp",
+            "width": 960,
+            "height": 640,
+            "bytes": 75986,
+            "sha256": "27a747aae6c47ca05486394d4af3418b3577b30840442f7c8d7af772e2981481",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "webp",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialF-1600.webp",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialF-1600.webp",
+            "width": 1600,
+            "height": 1067,
+            "bytes": 192648,
+            "sha256": "55f11941a7cb8d52d844b598253136c7f222df1af2efe8cbcdd13341b7aaac5e",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "webp",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialF-3200.webp",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialF-3200.webp",
+            "width": 3200,
+            "height": 2133,
+            "bytes": 465636,
+            "sha256": "ee9920d629ccbae17749643dec3f415971cad3e18f49b689f35464062d16ffe2",
+            "mediaType": "image/webp",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        },
+        "avif": {
+          "960": {
+            "format": "avif",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialF-960.avif",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialF-960.avif",
+            "width": 960,
+            "height": 640,
+            "bytes": 40915,
+            "sha256": "af3dd5468d5dfb2dead89f6874598df791f595c4ff40cff5c32716a649516803",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "1600": {
+            "format": "avif",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialF-1600.avif",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialF-1600.avif",
+            "width": 1600,
+            "height": 1067,
+            "bytes": 119385,
+            "sha256": "1cd3e85cec8563ab874828c6268b8f3f47cb2f310747751640d36ab416eff33e",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          },
+          "3200": {
+            "format": "avif",
+            "path": "public/generated/design-projects/prada-the-quiet-error/editorialF-3200.avif",
+            "url": "/generated/design-projects/prada-the-quiet-error/editorialF-3200.avif",
+            "width": 3200,
+            "height": 2133,
+            "bytes": 264646,
+            "sha256": "999a8cc4cbc6cf9de83724129eb6cf036da11a0513564dcb4fea5d2c30689bd7",
+            "mediaType": "image/avif",
+            "colourSpace": "srgb",
+            "metadataStripped": true,
+            "errors": [],
+            "action": "replaced"
+          }
+        }
+      },
+      "warnings": [
+        "low-resolution source allowed (2016x1344; high tier requested at 3200x2133)"
+      ],
       "status": "ready"
     }
   ]
