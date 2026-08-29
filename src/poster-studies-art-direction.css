@@ -11,6 +11,546 @@
   text-rendering: optimizeLegibility;
 }
 
+/* Worldview continuity layer -------------------------------------------------
+   One claim is declared, tested, applied, and returned to without replacing
+   the individual art direction already assigned to each project. */
+
+.project-worldview-contract {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  margin-top: clamp(3.5rem, 8cqw, 8rem);
+  border-block: 1px solid color-mix(in srgb, var(--case-ink) 34%, transparent);
+}
+
+.project-worldview-contract__claim {
+  min-width: 0;
+  padding: clamp(1.75rem, 3.5cqw, 3.5rem) clamp(1.5rem, 4cqw, 4rem) clamp(2rem, 4cqw, 4rem) 0;
+}
+
+.project-worldview-contract__claim > .project-meta {
+  margin: 0 0 clamp(2rem, 5cqw, 5rem);
+  color: var(--case-accent);
+}
+
+.project-worldview-contract__claim h2 {
+  max-width: 16ch;
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-family: var(--case-font-accent);
+  font-size: clamp(2.4rem, 5.2cqw, 5.5rem);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  line-height: 0.92;
+  text-wrap: balance;
+}
+
+.project-worldview-contract__claim > p:last-child {
+  max-width: 52ch;
+  margin: clamp(1.75rem, 3cqw, 3rem) 0 0;
+  opacity: 0.68;
+}
+
+.project-worldview-laws {
+  display: grid;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border-left: 1px solid color-mix(in srgb, var(--case-ink) 24%, transparent);
+  list-style: none;
+}
+
+.project-worldview-laws li {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(6.5rem, 0.27fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(1rem, 2cqw, 2rem);
+  padding: clamp(1.5rem, 2.8cqw, 2.7rem);
+  border-bottom: 1px solid color-mix(in srgb, var(--case-ink) 20%, transparent);
+}
+
+.project-worldview-laws li:last-child {
+  border-bottom: 0;
+}
+
+.project-worldview-laws li > span {
+  padding-top: 0.3rem;
+  opacity: 0.5;
+}
+
+.project-worldview-laws li > p {
+  max-width: 58ch;
+  margin: 0;
+  font-size: clamp(1rem, 1.35cqw, 1.2rem);
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+.project-continuity-trace {
+  display: grid;
+  min-width: 0;
+  grid-column: 1 / -1;
+  grid-template-columns: minmax(9rem, 0.28fr) minmax(0, 0.72fr) minmax(0, 1fr);
+  gap: clamp(1rem, 2.5cqw, 2.5rem);
+  margin-top: clamp(2rem, 4cqw, 4rem);
+  padding-block: clamp(1rem, 1.7cqw, 1.5rem);
+  border-block: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+  color: inherit;
+}
+
+.project-continuity-trace > span {
+  padding-top: 0.2rem;
+  color: var(--case-accent);
+}
+
+.project-continuity-trace > strong {
+  min-width: 0;
+  font-family: var(--case-font-accent);
+  font-size: clamp(1.3rem, 2.15cqw, 2.2rem);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+.project-continuity-trace > p {
+  max-width: 62ch;
+  margin: 0;
+  opacity: 0.68;
+  text-wrap: pretty;
+}
+
+.project-continuity-trace[data-inverse] > span {
+  color: color-mix(in srgb, var(--case-accent) 78%, white);
+}
+
+.project-visual-story {
+  display: grid;
+  gap: clamp(1.25rem, 3cqw, 3rem);
+}
+
+.project-visual-world {
+  position: relative;
+  min-width: 0;
+  padding: clamp(0.55rem, 1cqw, 0.85rem);
+  border: 1px solid color-mix(in srgb, var(--case-ink) 24%, transparent);
+  background: color-mix(in srgb, var(--case-paper) 78%, var(--case-panel));
+  box-shadow: 0 2.5rem 6rem color-mix(in srgb, var(--case-ink) 12%, transparent);
+}
+
+.project-visual-world__label {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1.5rem;
+  padding: 0.55rem 0.2rem 1rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--case-ink) 20%, transparent);
+}
+
+.project-visual-world__label span:last-child {
+  justify-self: end;
+  max-width: 72ch;
+  opacity: 0.58;
+  text-align: right;
+}
+
+.project-visual-world > :last-child {
+  margin-top: clamp(0.55rem, 1cqw, 0.85rem);
+}
+
+.project-application-caption {
+  align-items: flex-end;
+  gap: clamp(1.5rem, 3cqw, 3rem);
+}
+
+.project-application-caption__copy {
+  display: grid;
+  max-width: min(42rem, 72%);
+  gap: 0.38rem;
+}
+
+.project-application-caption__copy > .project-meta {
+  color: color-mix(in srgb, white 68%, var(--case-accent));
+}
+
+.project-application-caption__copy > strong {
+  font-family: var(--case-font-display);
+  font-size: clamp(1.2rem, 2.4cqw, 2.5rem);
+  font-style: var(--case-title-style);
+  font-weight: var(--case-title-weight);
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+  text-transform: none;
+}
+
+.project-application-caption__copy > small {
+  max-width: 58ch;
+  font-family: var(--case-font-body);
+  font-size: clamp(0.72rem, 0.95cqw, 0.9rem);
+  font-weight: 450;
+  letter-spacing: 0;
+  line-height: 1.45;
+  opacity: 0.78;
+  text-transform: none;
+}
+
+.project-application-caption__law {
+  max-width: 30ch;
+  text-align: right;
+  text-transform: none;
+}
+
+.project-motion-scene {
+  position: relative;
+  margin: clamp(2rem, 4cqw, 4rem) 0 0;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--case-ink) 18%, transparent);
+  background: var(--case-panel);
+}
+
+.project-motion-scene::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  border: clamp(0.6rem, 1.2cqw, 1.15rem) solid
+    color-mix(in srgb, var(--case-paper) 18%, transparent);
+  content: "";
+}
+
+.project-motion-scene figcaption {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 4rem clamp(1rem, 2cqw, 1.7rem) clamp(1rem, 2cqw, 1.5rem);
+  background: linear-gradient(to top, rgb(0 0 0 / 0.78), transparent);
+  color: white;
+}
+
+.project-motion-score {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  border-inline: 1px solid color-mix(in srgb, var(--case-ink) 18%, transparent);
+  list-style: none;
+}
+
+.project-motion-score li {
+  min-width: 0;
+  padding: clamp(1.2rem, 2cqw, 2rem);
+  border-right: 1px solid color-mix(in srgb, var(--case-ink) 18%, transparent);
+}
+
+.project-motion-score li:last-child {
+  border-right: 0;
+}
+
+.project-motion-score span {
+  color: var(--case-accent);
+}
+
+.project-motion-score p {
+  margin: clamp(1rem, 2cqw, 2rem) 0 0;
+  font-size: clamp(0.88rem, 1.1cqw, 1rem);
+  font-weight: 580;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+.project-worldview-closing {
+  position: relative;
+  display: grid;
+  min-height: min(52rem, 78svh);
+  overflow: hidden;
+  place-items: stretch;
+  background: var(--case-dark);
+  color: var(--case-light);
+}
+
+.project-worldview-closing__picture,
+.project-worldview-closing__wash {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.project-worldview-closing__image {
+  filter: saturate(0.78) contrast(1.06);
+}
+
+.project-worldview-closing__wash {
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgb(0 0 0 / 0.92) 0 34%, rgb(0 0 0 / 0.56) 62%, rgb(0 0 0 / 0.26)),
+    linear-gradient(to top, rgb(0 0 0 / 0.72), transparent 65%);
+}
+
+.project-worldview-closing__inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  align-content: space-between;
+  padding-block: clamp(2rem, 5cqw, 5rem);
+}
+
+.project-worldview-closing__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgb(255 255 255 / 0.34);
+}
+
+.project-worldview-closing h2 {
+  max-width: 14ch;
+  margin: clamp(4rem, 10cqw, 10rem) 0 0;
+  font-family: var(--case-font-display);
+  font-size: clamp(3.4rem, 9cqw, 9rem);
+  font-style: var(--case-title-style);
+  font-weight: var(--case-title-weight);
+  letter-spacing: var(--case-title-tracking);
+  line-height: 0.84;
+  text-wrap: balance;
+}
+
+.project-worldview-closing__inner > p {
+  max-width: 56ch;
+  margin: clamp(2rem, 4cqw, 4rem) 0;
+  font-size: clamp(1rem, 1.5cqw, 1.35rem);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.project-worldview-closing ol {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  border-block: 1px solid rgb(255 255 255 / 0.34);
+  list-style: none;
+}
+
+.project-worldview-closing li {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.8rem;
+  padding: clamp(1rem, 1.8cqw, 1.6rem);
+  border-right: 1px solid rgb(255 255 255 / 0.26);
+  font-size: clamp(0.78rem, 0.95cqw, 0.9rem);
+  line-height: 1.4;
+}
+
+.project-worldview-closing li:last-child {
+  border-right: 0;
+}
+
+/* The continuity components inherit each project's existing visual grammar. */
+.project-case[data-layout="overprint-bands"]
+  :is(.project-worldview-contract, .project-visual-world) {
+  box-shadow:
+    -0.45rem 0.45rem 0 color-mix(in srgb, var(--project-primary) 68%, transparent),
+    0.45rem -0.45rem 0 color-mix(in srgb, var(--case-accent) 74%, transparent);
+}
+
+.project-case[data-layout="archive-cards"]
+  :is(.project-worldview-contract, .project-continuity-trace) {
+  border-left: 0.45rem solid var(--case-accent);
+  padding-left: clamp(1rem, 2cqw, 2rem);
+}
+
+.project-case[data-layout="specimen-dossier"]
+  :is(.project-worldview-contract, .project-visual-world) {
+  background-image: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--case-ink) 16%, transparent) 0 0.5px,
+    transparent 0.8px
+  );
+  background-size: 8px 8px;
+}
+
+.project-case[data-layout="correspondence-scroll"] .project-worldview-contract {
+  width: min(100%, 68rem);
+  margin-inline: auto;
+  border-inline: 1px solid color-mix(in srgb, var(--case-ink) 22%, transparent);
+  padding-inline: clamp(1rem, 3cqw, 3rem);
+}
+
+.project-case[data-layout="material-atlas"]
+  :is(.project-worldview-contract, .project-visual-world) {
+  background: var(--case-dark);
+  color: var(--case-light);
+}
+
+.project-case[data-layout="deco-axis"]
+  :is(.project-worldview-contract__claim, .project-worldview-closing h2) {
+  text-align: center;
+  margin-inline: auto;
+}
+
+.project-case[data-layout="route-sign"] :is(.project-worldview-contract, .project-continuity-trace),
+.project-case[data-layout="westbound-line"]
+  :is(.project-worldview-contract, .project-continuity-trace) {
+  border-top-width: 0.38rem;
+  border-top-color: var(--case-accent);
+}
+
+.project-case[data-layout="soft-datum"] :is(.project-worldview-laws li, .project-visual-world),
+.project-case[data-layout="tide-datum"] :is(.project-worldview-laws li, .project-visual-world),
+.project-case[data-layout="circadian-dial"] :is(.project-worldview-laws li, .project-visual-world) {
+  border-radius: clamp(1rem, 2cqw, 2rem);
+}
+
+.project-case[data-layout="signal-console"]
+  :is(.project-worldview-contract, .project-visual-world) {
+  background-color: var(--case-dark);
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--case-accent) 12%, transparent) 1px, transparent 1px),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--case-accent) 12%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 1.4rem 1.4rem;
+  color: var(--case-light);
+}
+
+.project-case[data-layout="score-grid"]
+  :is(.project-worldview-contract, .project-continuity-trace) {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0 1.28rem,
+    color-mix(in srgb, var(--case-ink) 12%, transparent) 1.28rem calc(1.28rem + 1px)
+  );
+}
+
+.project-case[data-layout="batch-stack"] .project-visual-world {
+  transform: rotate(-0.35deg);
+  box-shadow:
+    0.65rem 0.65rem 0 var(--case-panel),
+    1.3rem 1.3rem 0 color-mix(in srgb, var(--case-ink) 18%, transparent);
+}
+
+.project-case[data-layout="pattern-table"]
+  :is(.project-worldview-contract, .project-continuity-trace) {
+  border-style: dashed;
+}
+
+.project-case[data-layout="live-nine"] .project-worldview-laws {
+  gap: 0.25rem;
+  padding: 0.25rem;
+  background: var(--case-accent);
+}
+
+.project-case[data-layout="live-nine"] .project-worldview-laws li {
+  border: 0;
+  background: var(--case-paper);
+  color: var(--case-ink);
+}
+
+.project-case[data-layout="evidence-ledger"] .project-worldview-laws li,
+.project-case[data-layout="paired-ledger"] .project-worldview-laws li,
+.project-case[data-layout="material-spec"] .project-worldview-laws li {
+  background: color-mix(in srgb, var(--case-panel) 58%, transparent);
+}
+
+.project-case[data-layout="assembly-grid"] :is(.project-worldview-contract, .project-visual-world) {
+  outline: 1px solid color-mix(in srgb, var(--case-ink) 24%, transparent);
+  outline-offset: -0.55rem;
+}
+
+@container (max-width: 49.99rem) {
+  .project-worldview-contract,
+  .project-worldview-laws li,
+  .project-continuity-trace,
+  .project-motion-score {
+    grid-template-columns: 1fr;
+  }
+
+  .project-worldview-contract__claim {
+    padding-right: 0;
+  }
+
+  .project-worldview-contract__claim > .project-meta {
+    margin-bottom: 2rem;
+  }
+
+  .project-worldview-laws {
+    border-top: 1px solid color-mix(in srgb, var(--case-ink) 24%, transparent);
+    border-left: 0;
+  }
+
+  .project-worldview-laws li {
+    gap: 0.75rem;
+  }
+
+  .project-continuity-trace {
+    gap: 0.9rem;
+  }
+
+  .project-visual-world__label,
+  .project-application-caption {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .project-visual-world__label span:last-child {
+    justify-self: start;
+    text-align: left;
+  }
+
+  .project-application-caption__copy,
+  .project-application-caption__law {
+    max-width: 100%;
+    text-align: left;
+  }
+
+  .project-application-caption__copy > small,
+  .project-application-caption__law {
+    display: none;
+  }
+
+  .project-motion-score li {
+    border-right: 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--case-ink) 18%, transparent);
+  }
+
+  .project-motion-score li:last-child {
+    border-bottom: 0;
+  }
+
+  .project-worldview-closing {
+    min-height: 48rem;
+  }
+
+  .project-worldview-closing__wash {
+    background: linear-gradient(to top, rgb(0 0 0 / 0.94) 0 48%, rgb(0 0 0 / 0.4));
+  }
+
+  .project-worldview-closing h2 {
+    margin-top: 6rem;
+  }
+
+  .project-worldview-closing ol {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .project-worldview-closing li:nth-child(2) {
+    border-right: 0;
+  }
+
+  .project-worldview-closing li:nth-child(n + 3) {
+    border-top: 1px solid rgb(255 255 255 / 0.26);
+  }
+}
+
 .project-case::before {
   position: absolute;
   inset: 0;
@@ -4348,6 +4888,13 @@
 
   .project-section-heading {
     grid-template-columns: 1fr !important;
+  }
+
+  .project-section-heading > .project-section-number,
+  .project-section-heading > h2,
+  .project-section-heading > .project-continuity-trace {
+    grid-column: 1 / -1 !important;
+    width: 100%;
   }
 
   .project-section-heading h2 {

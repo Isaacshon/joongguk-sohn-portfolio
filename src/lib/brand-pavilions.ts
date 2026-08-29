@@ -12,7 +12,6 @@ export type BrandPavilionProfile = {
   code: "hm" | "zara" | "uniqlo" | "prada";
   hero: {
     kicker: string;
-    statement: string;
     summary: string;
   };
   philosophy: {
@@ -74,7 +73,6 @@ export const brandPavilions = {
     code: "hm",
     hero: {
       kicker: "Access / expression / next life",
-      statement: "Style belongs to everyone.",
       summary:
         "A public-facing fashion system where creative choice, everyday value, and a longer relationship with clothes live in the same experience.",
     },
@@ -245,7 +243,6 @@ export const brandPavilions = {
     code: "zara",
     hero: {
       kicker: "Listen / edit / style / connect",
-      statement: "Silhouette first. Everything else follows.",
       summary:
         "A responsive brand world where silhouette, texture, and construction lead a continuous journey from inspiration to fitting room.",
     },
@@ -434,7 +431,6 @@ export const brandPavilions = {
     code: "uniqlo",
     hero: {
       kicker: "Life / need / material / iteration",
-      statement: "Simple made better, every day.",
       summary:
         "A LifeWear system where daily needs, useful materials, and continuous improvement become visible through ordinary moments.",
     },
@@ -604,7 +600,6 @@ export const brandPavilions = {
     code: "prada",
     hero: {
       kicker: "Concept / structure / image",
-      statement: "What is familiar is never fixed.",
       summary:
         "A self-initiated exhibition study built from Prada’s public language of reconsideration: quiet images, exact structure, and deliberate shifts of context.",
     },

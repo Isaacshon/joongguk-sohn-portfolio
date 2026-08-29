@@ -113,6 +113,8 @@ export function ProjectCaseStudy({ project }: { project: DesignProject }) {
                 {project.index}
               </span>
             </div>
+
+            <ProjectWorldviewContract project={project} />
           </div>
         </header>
 
@@ -123,6 +125,11 @@ export function ProjectCaseStudy({ project }: { project: DesignProject }) {
               <h2 id="premise" className="project-premise-title">
                 {direction.headings.premise}
               </h2>
+              <ProjectContinuityTrace
+                claim={project.statement}
+                evidence={project.rule}
+                stage="Premise / the law is declared"
+              />
             </div>
             <div className="project-premise-content">
               <article className="project-premise-block" data-block="challenge">
@@ -151,6 +158,9 @@ export function ProjectCaseStudy({ project }: { project: DesignProject }) {
               label="Signature system"
               title={direction.headings.system}
               id="visual-system"
+              claim={project.statement}
+              evidence={project.rule}
+              stage="System / the law becomes form"
             />
             <div className="project-visual-register">
               <div className="project-visual-register__label project-meta">
@@ -172,6 +182,9 @@ export function ProjectCaseStudy({ project }: { project: DesignProject }) {
               label="Applications"
               title={direction.headings.applications}
               id="applications"
+              claim={project.statement}
+              evidence={project.response}
+              stage="Application / scale changes, identity does not"
             />
             <div className="project-applications-grid">
               {project.brandStudy ? (
@@ -194,6 +207,9 @@ export function ProjectCaseStudy({ project }: { project: DesignProject }) {
               title={direction.headings.material}
               id="type-material"
               inverse
+              claim={project.statement}
+              evidence={project.typography}
+              stage="Material / the voice obeys the same law"
             />
             <div className="project-material-grid">
               <div className="project-type-panel">
@@ -252,36 +268,47 @@ export function ProjectCaseStudy({ project }: { project: DesignProject }) {
               label="Motion + lineage"
               title={direction.headings.motion}
               id="motion-lineage"
+              claim={project.statement}
+              evidence={project.motion}
+              stage="Time / movement returns to the claim"
             />
             <div className="project-motion-grid">
               <div className="project-motion-study">
                 <p className="project-motion-label project-meta">Motion principle</p>
                 <p className="project-motion-copy">{project.motion}</p>
-                <div className="project-motion-frames" aria-label="Three-frame motion study">
-                  {["Start", "Shift", "Hold"].map((label, frame) => (
-                    <div key={label} className="project-motion-frame" data-frame={frame + 1}>
-                      <div className="project-motion-image">
-                        <ProjectPicture
-                          projectSlug={project.slug}
-                          slot="context"
-                          sizes="(min-width: 1024px) 24vw, 31vw"
-                          decorative
-                          fallback={
-                            <DesignProjectCover
-                              project={project}
-                              variant="screen"
-                              showTitle={false}
-                              className="!absolute !inset-0 !h-full !min-h-0 !aspect-auto"
-                            />
-                          }
-                        />
-                      </div>
-                      <span className="project-frame-label project-meta">
-                        {label} / 0{frame + 1}
-                      </span>
-                    </div>
-                  ))}
-                </div>
+                <figure className="project-motion-scene">
+                  <ProjectPicture
+                    projectSlug={project.slug}
+                    slot="context"
+                    sizes="(min-width: 1024px) 62vw, calc(100vw - 2.5rem)"
+                    style={{ aspectRatio: "16 / 10" }}
+                    fallback={
+                      <DesignProjectCover
+                        project={project}
+                        variant="screen"
+                        showTitle={false}
+                        className="!absolute !inset-0 !h-full !min-h-0 !aspect-auto"
+                      />
+                    }
+                  />
+                  <figcaption className="project-meta">
+                    In-world evidence / the image changes; the law remains
+                  </figcaption>
+                </figure>
+                <ol className="project-motion-score" aria-label="Three-part motion logic">
+                  <li>
+                    <span className="project-meta">01 / Claim</span>
+                    <p>{project.statement}</p>
+                  </li>
+                  <li>
+                    <span className="project-meta">02 / Transform</span>
+                    <p>{project.motion}</p>
+                  </li>
+                  <li>
+                    <span className="project-meta">03 / Return</span>
+                    <p>{project.rule}</p>
+                  </li>
+                </ol>
               </div>
               <aside className="project-lineage">
                 <p className="project-motion-label project-meta">Design lineage</p>
@@ -308,6 +335,8 @@ export function ProjectCaseStudy({ project }: { project: DesignProject }) {
           </div>
         </section>
 
+        <ProjectWorldviewClosing project={project} />
+
         <nav aria-label="Adjacent design projects" className="project-adjacent-grid">
           {previous ? (
             <AdjacentProject project={previous} direction="previous" hostDirection={direction} />
@@ -328,12 +357,18 @@ function ProjectSectionHeading({
   label,
   title,
   id,
+  claim,
+  evidence,
+  stage,
   inverse = false,
 }: {
   number: string;
   label: string;
   title: string;
   id: string;
+  claim: string;
+  evidence: string;
+  stage: string;
   inverse?: boolean;
 }) {
   return (
@@ -342,7 +377,100 @@ function ProjectSectionHeading({
         {number} / {label}
       </p>
       <h2 id={id}>{title}</h2>
+      <ProjectContinuityTrace claim={claim} evidence={evidence} stage={stage} inverse={inverse} />
     </div>
+  );
+}
+
+function ProjectWorldviewContract({ project }: { project: DesignProject }) {
+  const laws = [
+    { number: "01", label: "Form", value: project.rule },
+    { number: "02", label: "Voice", value: project.typography },
+    { number: "03", label: "Time", value: project.motion },
+  ];
+  const headingId = `${project.slug}-worldview`;
+
+  return (
+    <section className="project-worldview-contract" aria-labelledby={headingId}>
+      <div className="project-worldview-contract__claim">
+        <p className="project-meta">Worldview / non-negotiable</p>
+        <h2 id={headingId}>{project.statement}</h2>
+        <p>{project.description}</p>
+      </div>
+      <ol className="project-worldview-laws">
+        {laws.map((law) => (
+          <li key={law.label} data-law={law.label.toLowerCase()}>
+            <span className="project-meta">
+              {law.number} / {law.label}
+            </span>
+            <p>{law.value}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+  );
+}
+
+function ProjectContinuityTrace({
+  claim,
+  evidence,
+  stage,
+  inverse = false,
+}: {
+  claim: string;
+  evidence: string;
+  stage: string;
+  inverse?: boolean;
+}) {
+  return (
+    <aside className="project-continuity-trace" data-inverse={inverse || undefined}>
+      <span className="project-meta">{stage}</span>
+      <strong>{claim}</strong>
+      <p>{evidence}</p>
+    </aside>
+  );
+}
+
+function ProjectWorldviewClosing({ project }: { project: DesignProject }) {
+  const headingId = `${project.slug}-worldview-return`;
+
+  return (
+    <section className="project-worldview-closing" aria-labelledby={headingId}>
+      <ProjectPicture
+        projectSlug={project.slug}
+        slot="context"
+        sizes="100vw"
+        className="project-worldview-closing__picture"
+        imageClassName="project-worldview-closing__image"
+        style={{ aspectRatio: "auto" }}
+        decorative
+        fallback={
+          <DesignProjectCover
+            project={project}
+            variant="hero"
+            showTitle={false}
+            className="!absolute !inset-0 !h-full !min-h-0 !aspect-auto"
+          />
+        }
+      />
+      <div className="project-worldview-closing__wash" aria-hidden="true" />
+      <div className="project-shell project-worldview-closing__inner">
+        <div className="project-worldview-closing__meta project-meta">
+          <span>06 / Worldview returns</span>
+          <span>{project.index} / one claim, every scale</span>
+        </div>
+        <h2 id={headingId}>{project.statement}</h2>
+        <p>{project.rule}</p>
+        <ol aria-label={`${project.title} worldview applications`}>
+          {project.applications.map((application, index) => (
+            <li key={application}>
+              <span className="project-meta">0{index + 1}</span>
+              <span>{application}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
   );
 }
 

@@ -1,6 +1,9 @@
 import { DesignProjectCover } from "@/components/poster-studies/DesignProjectCover";
 import { ProjectPicture } from "@/components/poster-studies/ProjectPicture";
-import type { DesignProjectMediaSlot } from "@/lib/design-project-media";
+import {
+  getDesignProjectMediaAsset,
+  type DesignProjectMediaSlot,
+} from "@/lib/design-project-media";
 import type { DesignProject } from "@/lib/design-projects";
 
 export function ProjectApplicationGallery({ project }: { project: DesignProject }) {
@@ -29,6 +32,13 @@ function ApplicationBoard({
     screen: "spatial",
     system: "context",
   };
+  const proof: Record<typeof kind, string> = {
+    campaign: "Claim image",
+    object: "Material evidence",
+    screen: "Spatial evidence",
+    system: "In-world evidence",
+  };
+  const asset = getDesignProjectMediaAsset(project.slug, mediaSlot[kind]);
 
   return (
     <figure
@@ -45,8 +55,14 @@ function ApplicationBoard({
       />
       <div className="pointer-events-none absolute inset-0 z-10 opacity-[.1] mix-blend-soft-light [background-image:radial-gradient(circle_at_20%_20%,rgba(255,255,255,.85)_0_.5px,transparent_.8px),radial-gradient(circle_at_70%_60%,rgba(0,0,0,.2)_0_.45px,transparent_.8px)] [background-size:7px_9px,5px_8px]" />
       <figcaption className="project-application-caption">
-        <span>{label}</span>
-        <span className="project-meta">{project.index} / application</span>
+        <span className="project-application-caption__copy">
+          <span className="project-meta">{proof[kind]}</span>
+          <strong>{label}</strong>
+          <small>{asset?.alt ?? project.rule}</small>
+        </span>
+        <span className="project-application-caption__law project-meta">
+          One law / {project.rule}
+        </span>
       </figcaption>
     </figure>
   );

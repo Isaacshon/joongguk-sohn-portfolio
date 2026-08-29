@@ -1789,3 +1789,327 @@
     grid-column: 1;
   }
 }
+
+/* Brand worldview continuity ------------------------------------------------
+   The same independent project thesis now acts as the invariant between
+   official evidence, design response, applications, and the final coda. */
+
+.brand-pavilion__section-heading-group {
+  min-width: 0;
+  border-block: 1px solid color-mix(in srgb, currentColor 24%, transparent);
+}
+
+.brand-pavilion__section-heading-group .brand-pavilion__section-header {
+  border: 0;
+}
+
+.brand-pavilion__section-creed {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(10rem, 0.25fr) minmax(0, 1fr) auto;
+  align-items: start;
+  gap: clamp(1rem, 2.4cqw, 2.5rem);
+  padding: clamp(1rem, 1.8cqw, 1.6rem) 0;
+  border-top: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+}
+
+.brand-pavilion__section-creed > span:first-child {
+  opacity: 0.56;
+}
+
+.brand-pavilion__section-creed > strong {
+  min-width: 0;
+  max-width: 38ch;
+  font-family: var(--pavilion-accent-font);
+  font-size: clamp(1.35rem, 2.25cqw, 2.35rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+.brand-pavilion__section-creed > span:last-child {
+  max-width: 30ch;
+  opacity: 0.62;
+  text-align: right;
+}
+
+.brand-pavilion__worldview-closing {
+  position: relative;
+  overflow: hidden;
+  background: var(--pavilion-ink);
+  color: var(--pavilion-paper);
+}
+
+.brand-pavilion__worldview-closing-inner {
+  display: grid;
+  min-height: min(56rem, 86svh);
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  grid-template-rows: auto 1fr auto;
+  gap: clamp(2rem, 4cqw, 5rem);
+  padding-block: clamp(3rem, 7cqw, 7rem);
+}
+
+.brand-pavilion__worldview-closing-mark {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-bottom: clamp(1.5rem, 3cqw, 3rem);
+  border-bottom: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+}
+
+.brand-pavilion__worldview-closing-mark .brand-mark {
+  width: min(58vw, 38rem);
+  height: auto;
+}
+
+.brand-pavilion__worldview-closing-mark .prada-plaque {
+  width: clamp(5rem, 9cqw, 9rem);
+}
+
+.brand-pavilion__worldview-closing-copy {
+  align-self: end;
+}
+
+.brand-pavilion__worldview-closing-copy > .pavilion-meta {
+  margin: 0 0 clamp(2rem, 4cqw, 4rem);
+  opacity: 0.58;
+}
+
+.brand-pavilion__worldview-closing h2 {
+  max-width: 13ch;
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-family: var(--pavilion-display);
+  font-size: clamp(4rem, 9.5cqw, 10rem);
+  font-weight: 500;
+  letter-spacing: -0.07em;
+  line-height: 0.82;
+  text-wrap: balance;
+}
+
+.brand-pavilion__worldview-closing-copy > p:last-child {
+  max-width: 56ch;
+  margin: clamp(2rem, 4cqw, 4rem) 0 0;
+  font-size: clamp(1rem, 1.35cqw, 1.2rem);
+  line-height: 1.65;
+  opacity: 0.72;
+}
+
+.brand-pavilion__worldview-closing ol {
+  align-self: end;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+  list-style: none;
+}
+
+.brand-pavilion__worldview-closing li {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  gap: 1rem;
+  padding: clamp(1rem, 1.8cqw, 1.6rem) 0;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 24%, transparent);
+}
+
+.brand-pavilion__worldview-closing li span {
+  opacity: 0.54;
+}
+
+.brand-pavilion__worldview-closing li strong {
+  font-family: var(--pavilion-body);
+  font-size: clamp(0.92rem, 1.15cqw, 1.08rem);
+  font-weight: 560;
+  line-height: 1.35;
+  text-wrap: balance;
+}
+
+/* H&M: public, immediate, kinetic red. */
+.brand-pavilion[data-brand="hm"] .brand-pavilion__section-creed {
+  padding-inline: clamp(1rem, 2cqw, 2rem);
+  background: #e50010;
+  color: #fff;
+}
+
+.brand-pavilion[data-brand="hm"] .brand-pavilion__section-creed > strong {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.055em;
+}
+
+.brand-pavilion[data-brand="hm"] .brand-pavilion__worldview-closing {
+  background: #e50010;
+  color: #fff;
+}
+
+.brand-pavilion[data-brand="hm"] .brand-pavilion__worldview-closing::after {
+  position: absolute;
+  right: -0.12em;
+  bottom: -0.24em;
+  pointer-events: none;
+  content: "&";
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: min(72vw, 54rem);
+  font-weight: 900;
+  line-height: 0.7;
+  opacity: 0.08;
+}
+
+/* ZARA: image-led editorial restraint and deliberate white space. */
+.brand-pavilion[data-brand="zara"] .brand-pavilion__section-creed {
+  grid-template-columns: minmax(8rem, 0.2fr) minmax(0, 0.8fr) minmax(14rem, 0.4fr);
+  padding-block: clamp(1.8rem, 3cqw, 3rem);
+}
+
+.brand-pavilion[data-brand="zara"] .brand-pavilion__section-creed > strong {
+  font-family: var(--pavilion-display);
+  font-size: clamp(1.8rem, 3.25cqw, 3.5rem);
+  font-weight: 400;
+  letter-spacing: -0.06em;
+}
+
+.brand-pavilion[data-brand="zara"] .brand-pavilion__worldview-closing {
+  background: #f5f4f0;
+  color: #050505;
+}
+
+.brand-pavilion[data-brand="zara"] .brand-pavilion__worldview-closing-inner {
+  min-height: min(64rem, 92svh);
+}
+
+.brand-pavilion[data-brand="zara"] .brand-pavilion__worldview-closing-copy {
+  grid-column: 1 / -1;
+  width: min(100%, 76rem);
+}
+
+.brand-pavilion[data-brand="zara"] .brand-pavilion__worldview-closing h2 {
+  max-width: 16ch;
+  font-size: clamp(4.6rem, 11.5cqw, 12rem);
+  font-weight: 400;
+  line-height: 0.77;
+}
+
+.brand-pavilion[data-brand="zara"] .brand-pavilion__worldview-closing ol {
+  grid-column: 2;
+}
+
+/* UNIQLO: a clear modular system built around useful daily states. */
+.brand-pavilion[data-brand="uniqlo"] .brand-pavilion__section-creed {
+  grid-template-columns: 8rem minmax(0, 1fr) auto;
+  padding: clamp(1rem, 2cqw, 1.75rem);
+  border: 0;
+  background-image:
+    linear-gradient(#d9d9d9 1px, transparent 1px),
+    linear-gradient(90deg, #d9d9d9 1px, transparent 1px);
+  background-size: 2rem 2rem;
+}
+
+.brand-pavilion[data-brand="uniqlo"] .brand-pavilion__section-creed > span:first-child {
+  display: grid;
+  min-height: 5rem;
+  padding: 0.8rem;
+  place-items: end start;
+  background: #f00;
+  color: #fff;
+  opacity: 1;
+}
+
+.brand-pavilion[data-brand="uniqlo"] .brand-pavilion__section-creed > strong {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+}
+
+.brand-pavilion[data-brand="uniqlo"] .brand-pavilion__worldview-closing {
+  background-color: #f7f7f5;
+  background-image:
+    linear-gradient(#dadada 1px, transparent 1px),
+    linear-gradient(90deg, #dadada 1px, transparent 1px);
+  background-size: clamp(2rem, 4cqw, 4rem) clamp(2rem, 4cqw, 4rem);
+  color: #111;
+}
+
+.brand-pavilion[data-brand="uniqlo"] .brand-pavilion__worldview-closing-mark .brand-mark {
+  width: clamp(7rem, 16cqw, 14rem);
+}
+
+.brand-pavilion[data-brand="uniqlo"] .brand-pavilion__worldview-closing h2 {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.075em;
+}
+
+/* PRADA: exact black field, classical voice, one measured displacement. */
+.brand-pavilion[data-brand="prada"] .brand-pavilion__section-creed {
+  border-top-color: #7e8871;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__section-creed > strong {
+  font-family: var(--pavilion-display);
+  font-size: clamp(1.65rem, 2.8cqw, 3rem);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__worldview-closing {
+  background: #101010;
+  color: #f2f1ed;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__worldview-closing::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 62%;
+  width: 1px;
+  background: #7e8871;
+  content: "";
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__worldview-closing h2 {
+  max-width: 12ch;
+  font-family: var(--pavilion-display);
+  font-weight: 400;
+}
+
+@container (max-width: 52rem) {
+  .brand-pavilion__section-creed,
+  .brand-pavilion[data-brand="zara"] .brand-pavilion__section-creed,
+  .brand-pavilion[data-brand="uniqlo"] .brand-pavilion__section-creed {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-pavilion__section-creed > span:last-child {
+    max-width: none;
+    text-align: left;
+  }
+
+  .brand-pavilion[data-brand="uniqlo"] .brand-pavilion__section-creed > span:first-child {
+    width: 6.5rem;
+  }
+
+  .brand-pavilion__worldview-closing-inner {
+    min-height: 56rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+  }
+
+  .brand-pavilion__worldview-closing-copy,
+  .brand-pavilion__worldview-closing ol,
+  .brand-pavilion[data-brand="zara"] .brand-pavilion__worldview-closing-copy,
+  .brand-pavilion[data-brand="zara"] .brand-pavilion__worldview-closing ol {
+    grid-column: 1;
+  }
+
+  .brand-pavilion__worldview-closing h2,
+  .brand-pavilion[data-brand="zara"] .brand-pavilion__worldview-closing h2 {
+    overflow-wrap: normal;
+    font-size: clamp(3.5rem, 16cqw, 6rem);
+  }
+
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__worldview-closing::before {
+    left: 1.25rem;
+  }
+}

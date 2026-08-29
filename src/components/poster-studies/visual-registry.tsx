@@ -55,48 +55,64 @@ const visualRegistry = Object.fromEntries(
 
 export function ProjectVisual({ project }: { project: DesignProject }) {
   return (
-    <div className="project-visual-grid">
-      <ProjectPicture
-        projectSlug={project.slug}
-        slot="spatial"
-        sizes="(min-width: 1536px) 980px, (min-width: 1024px) 65vw, (min-width: 640px) calc(100vw - 4rem), calc(100vw - 2.5rem)"
-        imageClassName="hover:scale-[1.012]"
-        fallback={<LegacyProjectVisual project={project} />}
-      />
-      <div className="project-visual-secondary">
+    <div className="project-visual-story">
+      <div className="project-visual-world">
+        <div className="project-visual-world__label project-meta">
+          <span>Canonical system / always visible</span>
+          <span>{project.rule}</span>
+        </div>
+        <LegacyProjectVisual project={project} />
+      </div>
+      <div className="project-visual-grid">
         <ProjectPicture
           projectSlug={project.slug}
-          slot="tactile"
-          sizes="(min-width: 1536px) 480px, (min-width: 1024px) 32vw, (min-width: 640px) calc(100vw - 4rem), calc(100vw - 2.5rem)"
-          imageClassName="hover:scale-[1.02]"
+          slot="spatial"
+          sizes="(min-width: 1536px) 980px, (min-width: 1024px) 65vw, (min-width: 640px) calc(100vw - 4rem), calc(100vw - 2.5rem)"
+          imageClassName="hover:scale-[1.012]"
           fallback={
             <DesignProjectCover
               project={project}
-              variant="screen"
+              variant="hero"
               showTitle={false}
               className="!absolute !inset-0 !h-full !min-h-0 !aspect-auto"
             />
           }
         />
-        <div className="project-material-register">
-          <div className="project-material-register__meta project-meta">
-            <span>Material register</span>
-            <span>
-              {project.index} / {designProjectCount}
-            </span>
-          </div>
-          <p className="project-material-register__title">
-            {project.materials.slice(0, 2).join(" / ")}
-          </p>
-          <div className="grid grid-cols-4 gap-1" aria-label={`${project.title} colour palette`}>
-            {project.palette.map((swatch) => (
-              <span
-                key={swatch.name}
-                className="h-3"
-                style={{ backgroundColor: swatch.value }}
-                title={`${swatch.name}: ${swatch.value}`}
+        <div className="project-visual-secondary">
+          <ProjectPicture
+            projectSlug={project.slug}
+            slot="tactile"
+            sizes="(min-width: 1536px) 480px, (min-width: 1024px) 32vw, (min-width: 640px) calc(100vw - 4rem), calc(100vw - 2.5rem)"
+            imageClassName="hover:scale-[1.02]"
+            fallback={
+              <DesignProjectCover
+                project={project}
+                variant="screen"
+                showTitle={false}
+                className="!absolute !inset-0 !h-full !min-h-0 !aspect-auto"
               />
-            ))}
+            }
+          />
+          <div className="project-material-register">
+            <div className="project-material-register__meta project-meta">
+              <span>Material register</span>
+              <span>
+                {project.index} / {designProjectCount}
+              </span>
+            </div>
+            <p className="project-material-register__title">
+              {project.materials.slice(0, 2).join(" / ")}
+            </p>
+            <div className="grid grid-cols-4 gap-1" aria-label={`${project.title} colour palette`}>
+              {project.palette.map((swatch) => (
+                <span
+                  key={swatch.name}
+                  className="h-3"
+                  style={{ backgroundColor: swatch.value }}
+                  title={`${swatch.name}: ${swatch.value}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>

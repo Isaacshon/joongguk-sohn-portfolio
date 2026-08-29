@@ -44,34 +44,9 @@ const brandRetailMenus: Record<BrandCode, string[]> = {
   prada: ["Women", "Men", "Bags", "Pradasphere"],
 };
 
-const brandSignatureContent: Record<
-  BrandCode,
-  { eyebrow: string; title: string; body: string; codes: string[] }
-> = {
-  hm: {
-    eyebrow: "H&M / Fashion for the many",
-    title: "Fashion and design should be accessible to everyone.",
-    body: "An open, direct fashion system: many styles and identities, useful quality, clear value, and constant improvement without unnecessary complexity.",
-    codes: ["Open to many", "Fashion + quality", "Keep it simple"],
-  },
-  zara: {
-    eyebrow: "ZARA / Attention into fashion",
-    title: "Listen closely. Edit clearly. Move continuously.",
-    body: "Customer signals, creative teams, stores, and digital services operate as one responsive loop. The visual language stays quiet so every new silhouette can arrive with clarity.",
-    codes: ["Attention", "Creative edit", "Connected experience"],
-  },
-  uniqlo: {
-    eyebrow: "UNIQLO / LifeWear",
-    title: "Simple made better.",
-    body: "Everyday clothing shaped by Japanese values of simplicity, quality, longevity, thoughtful detail, and continuous improvement around real life.",
-    codes: ["Simple", "Useful quality", "Always evolving"],
-  },
-  prada: {
-    eyebrow: "PRADA / Milano dal 1913",
-    title: "Reconsider the familiar.",
-    body: "Concept, structure, and image are treated as one intellectual field. Familiar codes are examined, displaced, and returned through cultural perspective and material experiment.",
-    codes: ["Observe", "Displace", "Reinterpret"],
-  },
+type BrandWorldview = {
+  thesis: string;
+  codes: readonly string[];
 };
 
 export function BrandPavilion({ project }: { project: DesignProject }) {
@@ -84,6 +59,10 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
   const currentIndex = brandProjects.findIndex((candidate) => candidate.slug === project.slug);
   const previous = brandProjects[(currentIndex - 1 + brandProjects.length) % brandProjects.length];
   const next = brandProjects[(currentIndex + 1) % brandProjects.length];
+  const worldview: BrandWorldview = {
+    thesis: project.statement,
+    codes: pavilion.design.keywords.slice(0, 3),
+  };
   const style: PavilionStyle = {
     "--pavilion-paper": direction.surfaces.paper,
     "--pavilion-ink": direction.surfaces.ink,
@@ -147,7 +126,7 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
               <PradaPlaque className="brand-pavilion__hero-plaque" decorative />
             ) : null}
             <div className="brand-pavilion__hero-thesis">
-              <p className="brand-pavilion__hero-statement">{pavilion.hero.statement}</p>
+              <p className="brand-pavilion__hero-statement">{worldview.thesis}</p>
               <p className="brand-pavilion__hero-summary">{pavilion.hero.summary}</p>
               <a href="#philosophy" className="brand-pavilion__enter pavilion-meta">
                 Enter the brand world <span aria-hidden="true">↘</span>
@@ -172,7 +151,12 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
           </div>
         </nav>
 
-        <BrandSignature code={pavilion.code} brand={project.brandStudy.brand} />
+        <BrandSignature
+          code={pavilion.code}
+          brand={project.brandStudy.brand}
+          worldview={worldview}
+          summary={pavilion.hero.summary}
+        />
 
         <section className="brand-pavilion__section brand-pavilion__philosophy" id="philosophy">
           <div className="pavilion-shell">
@@ -181,6 +165,7 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
               number="01"
               label="Philosophy"
               detail="Why the brand exists"
+              worldview={worldview}
             />
             <PavilionScopeNote
               label="Official brand evidence"
@@ -207,6 +192,7 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
               number="02"
               label="Values"
               detail="What stays constant"
+              worldview={worldview}
             />
             <PavilionScopeNote
               label="Official brand evidence"
@@ -232,6 +218,7 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
               number="03"
               label="Audience needs"
               detail="What the experience must solve"
+              worldview={worldview}
               inverse
             />
             <PavilionScopeNote
@@ -272,6 +259,7 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
               number="04"
               label={pavilion.principles.label}
               detail="How ideas become decisions"
+              worldview={worldview}
             />
             <PavilionScopeNote
               label="Official brand evidence"
@@ -306,6 +294,7 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
               number="05"
               label="Design code"
               detail="Type, colour, material, space"
+              worldview={worldview}
             />
             <PavilionScopeNote
               label="Independent virtual concept response"
@@ -322,7 +311,7 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
               <div className="brand-pavilion__type-specimen">
                 <p className="pavilion-meta">Official identifier / voice</p>
                 <BrandMark code={pavilion.code} decorative />
-                <span>{pavilion.hero.statement}</span>
+                <span>{worldview.thesis}</span>
               </div>
               <div
                 className="brand-pavilion__palette"
@@ -369,6 +358,7 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
               number="06"
               label="Brand world"
               detail="The system in use"
+              worldview={worldview}
               inverse
             />
             <PavilionScopeNote
@@ -392,6 +382,14 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
             </div>
           </div>
         </section>
+
+        <BrandWorldviewClosing
+          code={pavilion.code}
+          brand={project.brandStudy.brand}
+          worldview={worldview}
+          summary={pavilion.hero.summary}
+          proofs={pavilion.world.scenes.map((scene) => scene.title)}
+        />
 
         <section className="brand-pavilion__research" aria-labelledby="research-basis">
           <div className="pavilion-shell brand-pavilion__research-grid">
@@ -441,8 +439,17 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
   );
 }
 
-function BrandSignature({ code, brand }: { code: BrandCode; brand: string }) {
-  const content = brandSignatureContent[code];
+function BrandSignature({
+  code,
+  brand,
+  worldview,
+  summary,
+}: {
+  code: BrandCode;
+  brand: string;
+  worldview: BrandWorldview;
+  summary: string;
+}) {
   const headingId = `${code}-signature-heading`;
 
   return (
@@ -453,12 +460,12 @@ function BrandSignature({ code, brand }: { code: BrandCode; brand: string }) {
           {code === "prada" ? <PradaPlaque decorative /> : null}
         </div>
         <div className="brand-pavilion__identity-copy">
-          <p className="pavilion-meta">{content.eyebrow}</p>
-          <h2 id={headingId}>{content.title}</h2>
-          <p>{content.body}</p>
+          <p className="pavilion-meta">{brand} / one worldview, every touchpoint</p>
+          <h2 id={headingId}>{worldview.thesis}</h2>
+          <p>{summary}</p>
         </div>
         <ol className="brand-pavilion__identity-codes" aria-label={`${brand} signature codes`}>
-          {content.codes.map((item, index) => (
+          {worldview.codes.map((item, index) => (
             <li key={item}>
               <span className="pavilion-meta">0{index + 1}</span>
               <strong>{item}</strong>
@@ -475,26 +482,75 @@ function PavilionSectionHeader({
   number,
   label,
   detail,
+  worldview,
   inverse = false,
 }: {
   code: BrandCode;
   number: string;
   label: string;
   detail: string;
+  worldview: BrandWorldview;
   inverse?: boolean;
 }) {
   return (
-    <header
-      className="brand-pavilion__section-header pavilion-meta"
-      data-inverse={inverse || undefined}
-    >
-      <span>{number}</span>
-      <span>{label}</span>
-      <span>{detail}</span>
-      <span className="brand-pavilion__section-brand" aria-hidden="true">
-        <BrandMark code={code} decorative />
-      </span>
-    </header>
+    <div className="brand-pavilion__section-heading-group" data-inverse={inverse || undefined}>
+      <header
+        className="brand-pavilion__section-header pavilion-meta"
+        data-inverse={inverse || undefined}
+      >
+        <span>{number}</span>
+        <span>{label}</span>
+        <span>{detail}</span>
+        <span className="brand-pavilion__section-brand" aria-hidden="true">
+          <BrandMark code={code} decorative />
+        </span>
+      </header>
+      <aside className="brand-pavilion__section-creed">
+        <span className="pavilion-meta">Worldview / invariant</span>
+        <strong>{worldview.thesis}</strong>
+        <span className="pavilion-meta">{worldview.codes.join(" · ")}</span>
+      </aside>
+    </div>
+  );
+}
+
+function BrandWorldviewClosing({
+  code,
+  brand,
+  worldview,
+  summary,
+  proofs,
+}: {
+  code: BrandCode;
+  brand: string;
+  worldview: BrandWorldview;
+  summary: string;
+  proofs: string[];
+}) {
+  const headingId = `${code}-worldview-return`;
+
+  return (
+    <section className="brand-pavilion__worldview-closing" aria-labelledby={headingId}>
+      <div className="pavilion-shell brand-pavilion__worldview-closing-inner">
+        <div className="brand-pavilion__worldview-closing-mark" aria-hidden="true">
+          <BrandMark code={code} decorative />
+          {code === "prada" ? <PradaPlaque decorative /> : null}
+        </div>
+        <div className="brand-pavilion__worldview-closing-copy">
+          <p className="pavilion-meta">Return / {brand} worldview</p>
+          <h2 id={headingId}>{worldview.thesis}</h2>
+          <p>{summary}</p>
+        </div>
+        <ol aria-label={`${brand} worldview proof sequence`}>
+          {proofs.map((proof, index) => (
+            <li key={proof}>
+              <span className="pavilion-meta">0{index + 1}</span>
+              <strong>{proof}</strong>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
   );
 }
 
