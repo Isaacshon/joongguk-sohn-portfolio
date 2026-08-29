@@ -1223,3 +1223,569 @@
     transition: none !important;
   }
 }
+
+/* Brand continuity contracts
+   These rules are the final layout authority for the four pavilions. They explicitly reset
+   the shared case-study grids so a wide ledger row can never leak into a narrow brand card. */
+
+.brand-pavilion[data-layout] :where(h1, h2, h3, p, li, figure, figcaption) {
+  min-width: 0;
+}
+
+.brand-pavilion[data-layout]
+  :where(
+    .brand-pavilion__identity-copy h2,
+    .brand-pavilion__philosophy-copy h2,
+    .brand-pavilion__needs h2,
+    .brand-pavilion__principles-intro h2,
+    .brand-pavilion__design-heading h2,
+    .brand-pavilion__world-intro h2,
+    .brand-pavilion__research h2,
+    .brand-pavilion__value h3
+  ) {
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+  text-wrap: balance;
+}
+
+.brand-pavilion[data-layout] .brand-pavilion__section-header {
+  grid-template-columns: minmax(2.5rem, 0.1fr) minmax(8rem, 0.25fr) minmax(12rem, 1fr) auto;
+  align-items: center;
+}
+
+.brand-pavilion[data-layout] .brand-pavilion__section-header > span:nth-child(3) {
+  text-align: right;
+}
+
+.brand-pavilion[data-layout] .brand-pavilion__section-brand {
+  display: inline-flex;
+  width: 5rem;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: clamp(0.5rem, 1.5vw, 1.5rem);
+}
+
+.brand-pavilion[data-layout] .brand-pavilion__section-brand .brand-mark {
+  width: 100%;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__section-brand {
+  width: 2.15rem;
+  color: #e50010;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__section-brand {
+  width: 5.2rem;
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__section-brand {
+  width: 5rem;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__section-brand {
+  width: 5.4rem;
+}
+
+.brand-pavilion[data-layout] .brand-pavilion__value {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+}
+
+.brand-pavilion[data-layout] .brand-pavilion__value > * {
+  min-width: 0;
+}
+
+.brand-pavilion[data-layout] .brand-pavilion__value h3 {
+  margin: clamp(2.25rem, 4vw, 4rem) 0 0;
+}
+
+.brand-pavilion[data-layout] .brand-pavilion__value p {
+  max-width: 36ch;
+  margin: auto 0 0;
+  padding-top: clamp(2rem, 4vw, 4rem);
+}
+
+.brand-pavilion[data-layout] .brand-pavilion__chapter-nav {
+  box-shadow: 0 0.35rem 1.5rem rgba(0, 0, 0, 0.045);
+}
+
+/* H&M — one direct public-fashion language: red, white, open, fast to understand. */
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__chapter-nav {
+  border-bottom: 0.22rem solid #e50010;
+  background: rgba(255, 250, 247, 0.97);
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__chapter-links a span,
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__section-kicker,
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__scope-label,
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__value-number {
+  color: #e50010;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__identity-copy h2 {
+  max-width: 15ch;
+  font-size: clamp(2.8rem, 5.4cqw, 6.2rem);
+  line-height: 0.89;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__philosophy-copy h2,
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__needs h2,
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__principles-intro h2,
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__design-heading h2,
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__world-intro h2,
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__research h2 {
+  max-width: 15ch;
+  font-family: "Archivo Black", "Arial Black", sans-serif;
+  font-size: clamp(2.65rem, 5.6cqw, 6rem);
+  font-weight: 400;
+  line-height: 0.9;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__value-ledger {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: clamp(3rem, 6vw, 6rem);
+  border: 0;
+  border-bottom: 1px solid #111;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__value {
+  display: grid;
+  grid-column: auto;
+  grid-template-columns: minmax(3.5rem, 0.12fr) minmax(16rem, 0.48fr) minmax(16rem, 0.4fr);
+  min-height: 0;
+  align-items: end;
+  gap: clamp(1rem, 2vw, 2rem);
+  padding: clamp(1.5rem, 2.7vw, 2.8rem) clamp(0.25rem, 1vw, 1rem);
+  border-top: 1px solid #111;
+  border-right: 0;
+  background: transparent;
+  color: #111;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__value:hover {
+  padding-inline: clamp(1.1rem, 2.6vw, 2.8rem);
+  background: #e50010;
+  color: #fff;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__value h3 {
+  max-width: 15ch;
+  margin: 0;
+  font-size: clamp(2.3rem, 4.35cqw, 4.9rem);
+  line-height: 0.88;
+  text-transform: none;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__value p {
+  max-width: 42ch;
+  margin: 0;
+  padding: 0;
+  justify-self: end;
+  font-size: clamp(0.9rem, 1.1cqw, 1.05rem);
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__values {
+  background: #fffaf7;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__needs {
+  border-block: 0;
+  background: #e50010;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__needs .brand-pavilion__section-brand {
+  color: #fff;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__figure figcaption {
+  border-top-width: 0.22rem;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__figure-eyebrow {
+  color: #e50010;
+  font-weight: 700;
+  opacity: 1;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__design-system {
+  border-color: #e50010;
+}
+
+/* ZARA — monochrome editorial precision. Image, silhouette, then only necessary words. */
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__chapter-nav {
+  border-bottom: 1px solid #050505;
+  background: rgba(255, 255, 255, 0.97);
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__chapter-links a span,
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__section-kicker,
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__scope-label,
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__value-number {
+  color: #050505;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__identity-copy h2,
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__philosophy-copy h2,
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__needs h2,
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__principles-intro h2,
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__design-heading h2,
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__world-intro h2,
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__research h2 {
+  max-width: 14ch;
+  font-family: "Bodoni Moda", Didot, "Times New Roman", serif;
+  font-size: clamp(2.8rem, 5.25cqw, 5.8rem);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 0.92;
+  text-transform: none;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__identity-copy h2 {
+  max-width: 12ch;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__philosophy-copy {
+  position: sticky;
+  top: 8.5rem;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__value-ledger {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid #050505;
+  border-bottom: 1px solid #050505;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__value {
+  min-height: clamp(22rem, 27cqw, 28rem);
+  padding: clamp(1.4rem, 2.4vw, 2.5rem);
+  border-top: 0;
+  border-right: 1px solid #050505;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__value h3 {
+  max-width: 12ch;
+  font-family: "Bodoni Moda", Didot, "Times New Roman", serif;
+  font-size: clamp(2.15rem, 2.75cqw, 3.2rem);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 0.95;
+  text-transform: none;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__value p {
+  max-width: 30ch;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__needs,
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__world {
+  border-block: 1px solid #050505;
+  background: #f3f3f1;
+  color: #050505;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__figure figcaption {
+  grid-template-columns: minmax(3.3rem, 0.12fr) minmax(0, 0.88fr);
+  padding-top: 0.65rem;
+  border-top-color: rgba(5, 5, 5, 0.45);
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__figure figcaption strong {
+  font-family: "Manrope", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(0.95rem, 1.25cqw, 1.2rem);
+  font-weight: 500;
+}
+
+/* UNIQLO — LifeWear as a legible modular tool for daily life. */
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__chapter-nav {
+  border-bottom: 0.28rem solid #f00;
+  background: rgba(255, 255, 255, 0.97);
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__identity-copy h2,
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__philosophy-copy h2,
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__needs h2,
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__principles-intro h2,
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__design-heading h2,
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__world-intro h2,
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__research h2 {
+  max-width: 15ch;
+  font-size: clamp(2.65rem, 5cqw, 5.5rem);
+  line-height: 0.91;
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__identity-copy h2 {
+  max-width: 11ch;
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__value-ledger {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__value {
+  min-height: clamp(20rem, 25cqw, 25rem);
+  padding: clamp(1.25rem, 2vw, 2.1rem);
+  border-top: 0;
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__value h3 {
+  max-width: 11ch;
+  font-size: clamp(1.8rem, 2.35cqw, 2.65rem);
+  line-height: 0.94;
+  text-transform: none;
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__value p {
+  max-width: 30ch;
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__figure figcaption {
+  grid-template-columns: 4.25rem minmax(0, 1fr);
+  gap: 0;
+  padding: 0;
+  border: 1px solid #111;
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__figure-index {
+  display: grid;
+  min-height: 100%;
+  place-items: center;
+  border-right: 1px solid #111;
+  background: #f00;
+  color: #fff;
+  opacity: 1;
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__figure figcaption > span:last-child {
+  padding: 0.8rem 1rem;
+}
+
+/* PRADA — exact identifiers, restrained dossier typography, one considered displacement. */
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__chapter-nav {
+  border-bottom: 1px solid #101010;
+  background: rgba(242, 241, 237, 0.97);
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-copy h2,
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__philosophy-copy h2,
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__needs h2,
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__principles-intro h2,
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__design-heading h2,
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__world-intro h2,
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__research h2 {
+  max-width: 14ch;
+  font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(2.5rem, 3.75cqw, 4.2rem);
+  font-weight: 500;
+  line-height: 0.96;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__value-ledger {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  border-top: 1px solid #101010;
+  border-bottom: 1px solid #101010;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__value:nth-child(1) {
+  grid-column: span 5;
+  background: #101010;
+  color: #fff;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__value:nth-child(2) {
+  grid-column: span 3;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__value:nth-child(3) {
+  grid-column: span 4;
+  box-shadow: inset 0 0.32rem 0 #596658;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__value {
+  min-height: clamp(19rem, 23cqw, 23rem);
+  padding: clamp(1.3rem, 2.2vw, 2.2rem);
+  border-top: 0;
+  border-right: 1px solid #101010;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__value:last-child {
+  border-right: 0;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__value h3 {
+  max-width: 15ch;
+  font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(1.65rem, 2.15cqw, 2.35rem);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 0.96;
+  text-transform: none;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__value:hover {
+  background: #101010;
+  color: #fff;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__figure figcaption {
+  border-top-color: rgba(16, 16, 16, 0.48);
+}
+
+@container (max-width: 67.99rem) {
+  .brand-pavilion[data-layout] .brand-pavilion__section-header {
+    grid-template-columns: 3rem minmax(8rem, 0.35fr) minmax(0, 1fr) auto;
+  }
+
+  .brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__value-ledger,
+  .brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__value-ledger,
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__value-ledger {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__value:nth-child(1),
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__value:nth-child(2),
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__value:nth-child(3) {
+    grid-column: auto;
+  }
+
+  .brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__value:last-child,
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__value:last-child {
+    grid-column: 1 / -1;
+    border-top: 1px solid currentColor;
+  }
+
+  .brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__value:nth-child(n + 3) {
+    border-top: 1px solid currentColor;
+  }
+
+  .brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__value:nth-child(even) {
+    border-right: 0;
+  }
+
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__hero-content {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__wordmark {
+    grid-column: 1 / 6;
+  }
+
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__hero-plaque {
+    grid-column: 6 / 7;
+  }
+
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__hero-thesis {
+    grid-column: 6 / -1;
+  }
+}
+
+@container (max-width: 48rem) {
+  .brand-pavilion[data-layout] .brand-pavilion__section-header {
+    grid-template-columns: 2.5rem minmax(0, 1fr) auto;
+  }
+
+  .brand-pavilion[data-layout] .brand-pavilion__section-header > span:nth-child(3) {
+    display: none;
+  }
+
+  .brand-pavilion[data-layout] .brand-pavilion__section-brand {
+    margin-left: 0.5rem;
+  }
+
+  .brand-pavilion[data-layout]
+    .brand-pavilion__section-header
+    .brand-pavilion__section-brand
+    .brand-mark {
+    display: inline-block;
+  }
+
+  .brand-pavilion[data-layout]
+    .brand-pavilion__section-header
+    .brand-pavilion__section-brand
+    :is(.brand-mark__mask, .brand-mark__image) {
+    display: block;
+  }
+
+  .brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__value,
+  .brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__value,
+  .brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__value,
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__value {
+    display: flex;
+    grid-column: 1;
+    min-height: 15rem;
+    padding: 1.25rem;
+    border-right: 0;
+    border-bottom: 1px solid currentColor;
+  }
+
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__value:nth-child(1),
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__value:nth-child(2),
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__value:nth-child(3) {
+    grid-column: 1;
+  }
+
+  .brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__value h3,
+  .brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__value h3,
+  .brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__value h3,
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__value h3 {
+    margin-top: 2rem;
+    font-size: clamp(1.65rem, 8cqw, 2.5rem);
+  }
+
+  .brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__value p,
+  .brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__value p,
+  .brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__value p,
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__value p {
+    margin-top: auto;
+    padding-top: 2rem;
+  }
+
+  .brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__value-ledger,
+  .brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__value-ledger,
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__value-ledger {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__needs-images {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .brand-pavilion[data-layout="kinetic-civic"]
+    .brand-pavilion__needs-images
+    .brand-pavilion__figure:first-child,
+  .brand-pavilion[data-layout="kinetic-civic"]
+    .brand-pavilion__needs-images
+    .brand-pavilion__figure:last-child {
+    grid-column: 1;
+    margin-top: 0;
+  }
+
+  .brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__philosophy-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__philosophy-copy,
+  .brand-pavilion[data-layout="quiet-fourteen"]
+    .brand-pavilion__philosophy-grid
+    > .brand-pavilion__figure {
+    position: static;
+    grid-column: 1;
+    padding-right: 0;
+  }
+
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__hero-content {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__wordmark,
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__hero-thesis {
+    grid-column: 1;
+  }
+}

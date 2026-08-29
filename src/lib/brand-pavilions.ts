@@ -96,17 +96,17 @@ export const brandPavilions = {
     values: [
       {
         number: "01",
-        title: "Customer-focused",
+        title: "Customer at the centre",
         body: "Customer needs and feedback guide the product offer and shopping experience.",
       },
       {
         number: "02",
-        title: "Creative and entrepreneurial",
+        title: "Creative. Curious. Adaptive.",
         body: "Curiosity, creativity, and an entrepreneurial approach help the business adapt to changing customer needs.",
       },
       {
         number: "03",
-        title: "Cost-conscious and simple",
+        title: "Value through simplicity",
         body: "Careful use of resources and straightforward decisions support value for money and broad accessibility.",
       },
     ],
@@ -147,8 +147,8 @@ export const brandPavilions = {
         {
           slot: "context",
           eyebrow: "Access",
-          title: "Fashion meets the rhythm of an ordinary day.",
-          copy: "The campaign belongs in movement, transit, streets, and repeat wear—not only inside a studio.",
+          title: "Discovery should feel immediate and open.",
+          copy: "A bright public retail scene turns variety, colour, and choice into an invitation rather than a barrier.",
           layout: "portrait",
         },
       ],
@@ -187,8 +187,8 @@ export const brandPavilions = {
       image: {
         slot: "tactile",
         eyebrow: "Construction",
-        title: "A garment is more than its front view.",
-        copy: "Material, fastening, seam, and repair evidence turn quality into something the eye can verify.",
+        title: "Quality becomes visible at close range.",
+        copy: "Knit, fastening, layering, and the hand in use make garment-level decisions easy to see.",
       },
       source: {
         label: "H&M Group Annual and Sustainability Report 2025",
@@ -198,19 +198,19 @@ export const brandPavilions = {
     design: {
       title: "A public fashion language—fast to read, warm enough to join.",
       intro:
-        "Large editorial type carries energy. Utility labels carry price, care, state, and next action. Red signals the brand; solar yellow marks the moments where a garment can continue.",
+        "H&M red carries invitation and action. White space keeps choice legible, while direct labels connect style, value, care, and the next useful action without adding complexity.",
       keywords: ["Open", "Kinetic", "Direct", "Human", "Circular"],
       image: {
         slot: "spatial",
-        eyebrow: "Retail behaviour",
-        title: "The store becomes a place to discover, care, and return.",
-        copy: "Campaign theatre and practical service share the same visual grammar instead of competing for attention.",
+        eyebrow: "Campaign behaviour",
+        title: "One clear message moves with many people.",
+        copy: "Casting, colour, and pace carry the open invitation while the information system stays direct and repeatable.",
       },
     },
     world: {
-      title: "From campaign image to next-life service",
+      title: "One open system, from first choice to next life",
       intro:
-        "The final scenes show how the brand idea survives after the first impression—on the garment, in the store, and at the moment of return.",
+        "The final scenes keep access and participation at the centre: first through shared style and then through a clear route to rewear, exchange, and return.",
       scenes: [
         {
           slot: "editorialC",
@@ -221,9 +221,9 @@ export const brandPavilions = {
         },
         {
           slot: "editorialD",
-          eyebrow: "Next life",
-          title: "Return is designed as a beginning.",
-          copy: "A legible service path separates repair, rewear, exchange, and material recovery.",
+          eyebrow: "Shared wardrobe",
+          title: "Many combinations stay in motion.",
+          copy: "The campaign closes on people rather than a process, keeping circular service connected to everyday self-expression.",
           layout: "wide",
         },
       ],
@@ -245,9 +245,9 @@ export const brandPavilions = {
     code: "zara",
     hero: {
       kicker: "Listen / edit / style / connect",
-      statement: "Fashion moves at the speed of attention.",
+      statement: "Silhouette first. Everything else follows.",
       summary:
-        "A responsive brand world built around creative relevance, confident editing, and a continuous journey from inspiration to fitting room.",
+        "A responsive brand world where silhouette, texture, and construction lead a continuous journey from inspiration to fitting room.",
     },
     philosophy: {
       label: "Brand idea",
@@ -272,11 +272,16 @@ export const brandPavilions = {
       },
       {
         number: "02",
+        title: "Fashion",
+        body: "The fashion proposition remains the foundation of every collection and customer connection.",
+      },
+      {
+        number: "03",
         title: "Innovation",
         body: "Product, store, and digital innovation are developed to strengthen the fashion experience.",
       },
       {
-        number: "03",
+        number: "04",
         title: "Customer experience",
         body: "The customer experience across stores and online platforms is identified as a core priority.",
       },
@@ -329,30 +334,30 @@ export const brandPavilions = {
       },
     },
     principles: {
-      label: "Official product and experience approach",
-      title: "Product, channels, and technology improve together.",
+      label: "Official fashion direction",
+      title: "Identity is shaped by silhouette and revealed through texture.",
       intro:
-        "Inditex links a well-received fashion proposition with continued investment in stores, e-commerce, and technology intended to improve the shopping experience online and offline.",
+        "ZARA Studio describes contemporary individuality through precise silhouettes, expressive texture, and refined construction. The garment establishes attitude before the surrounding information enters.",
       items: [
         {
-          key: "P",
-          title: "Lead with product",
-          body: "The fashion proposition remains the basis of customer connection.",
-        },
-        {
-          key: "E",
-          title: "Design the experience",
-          body: "Stores and e-commerce are developed around a distinctive customer journey.",
+          key: "S",
+          title: "Shape the silhouette",
+          body: "Proportion and line establish the first reading of each look.",
         },
         {
           key: "T",
-          title: "Use enabling technology",
-          body: "Technology supports staff and improves shopping both online and offline.",
+          title: "Let texture reveal attitude",
+          body: "Surface and movement add character without competing with the form.",
+        },
+        {
+          key: "C",
+          title: "Refine construction",
+          body: "Tailoring, fastening, and material transitions hold the edit together.",
         },
         {
           key: "I",
-          title: "Invest in improvement",
-          body: "Store upgrades, digital platforms, and operations are refined continuously.",
+          title: "Leave room for individuality",
+          body: "A controlled frame lets posture and personal combination complete the image.",
         },
       ],
       image: {
@@ -362,20 +367,20 @@ export const brandPavilions = {
         copy: "Dry wool, translucent fabric, paper, and metal produce contrast through physical behaviour.",
       },
       source: {
-        label: "Inditex Annual Report 2025: CEO statement",
-        href: "https://annualreport.inditex.com/anrpxxvui/en/ceo-statement",
+        label: "ZARA Studio Collection 01: Spring/Summer 2025",
+        href: "https://www.zara.com/integration/pressapi/multimedia/be/40/d8c51b4048aa8a99d6415f647ac8_original.pdf",
       },
     },
     design: {
-      title: "A quiet frame for a fast-moving proposition.",
+      title: "Silhouette first; information stays at the edge.",
       intro:
-        "High-contrast typography establishes editorial authority. Pale stone, glass, black ink, and measured gutters keep the environment calm while photography changes quickly inside it.",
+        "The exact ZARA wordmark establishes identity; condensed neutral typography handles navigation and garment information. Black, white, pale stone, and measured gutters keep the frame quiet while each silhouette changes.",
       keywords: ["Current", "Edited", "Spatial", "Fluid", "Connected"],
       image: {
         slot: "spatial",
-        eyebrow: "Experience",
-        title: "The flagship behaves like a live editorial.",
-        copy: "Architecture gives each image and garment enough room to register, then guides the next decision without friction.",
+        eyebrow: "Spatial edit",
+        title: "Architecture gives the silhouette room to change.",
+        copy: "A long colonnade, directional light, and controlled distance extend the same negative-space rule beyond the studio.",
       },
     },
     world: {
@@ -385,23 +390,23 @@ export const brandPavilions = {
       scenes: [
         {
           slot: "editorialC",
-          eyebrow: "Window",
-          title: "A measured pause on the street.",
-          copy: "One look occupies the space with the confidence of an image rather than the density of a stock display.",
+          eyebrow: "Portrait",
+          title: "A measured pause holds the look.",
+          copy: "The seated figure slows the sequence long enough for proportion, posture, and texture to register.",
           layout: "portrait",
         },
         {
           slot: "editorialD",
-          eyebrow: "Interface",
+          eyebrow: "Close crop",
           title: "Product enters after atmosphere.",
-          copy: "Fitting-room and mobile surfaces inherit the same crops, gutters, and pace as the campaign.",
+          copy: "A tighter frame moves from attitude to garment detail without changing the collection's visual temperature.",
           layout: "wide",
         },
         {
           slot: "editorialE",
-          eyebrow: "Publication",
-          title: "Layers held in sequence.",
-          copy: "The lookbook slows the collection down long enough to study construction and combination.",
+          eyebrow: "Material table",
+          title: "Construction closes the sequence.",
+          copy: "Fabric, colour, and handwork return the editorial image to the decisions that produced it.",
           layout: "portrait",
         },
       ],
@@ -419,15 +424,19 @@ export const brandPavilions = {
         label: "Inditex Annual Report 2025 — Statement from the Chairperson",
         href: "https://annualreport.inditex.com/anrpxxvui/en/president-statement",
       },
+      {
+        label: "ZARA Studio Collection 01 — Spring/Summer 2025",
+        href: "https://www.zara.com/integration/pressapi/multimedia/be/40/d8c51b4048aa8a99d6415f647ac8_original.pdf",
+      },
     ],
   },
   "uniqlo-comfort-measured": {
     code: "uniqlo",
     hero: {
       kicker: "Life / need / material / iteration",
-      statement: "Clothing should make the day work better.",
+      statement: "Simple made better, every day.",
       summary:
-        "A LifeWear laboratory where customer insight, material intelligence, and continuous refinement become visible through ordinary moments.",
+        "A LifeWear system where daily needs, useful materials, and continuous improvement become visible through ordinary moments.",
     },
     philosophy: {
       label: "Brand idea",
@@ -436,8 +445,8 @@ export const brandPavilions = {
       image: {
         slot: "editorialB",
         eyebrow: "Made for daily life",
-        title: "Different bodies, shared clarity.",
-        copy: "A multi-generational wardrobe is organised by usefulness without flattening individual character.",
+        title: "One useful layer, worn as oneself.",
+        copy: "The image stays close to the person so simplicity supports individual character rather than replacing it.",
       },
       source: {
         label: "UNIQLO: About LifeWear",
@@ -515,22 +524,22 @@ export const brandPavilions = {
         "UNIQLO's research and development process combines customer requests with the search for emerging needs, new materials, and global fashion trends before cross-functional teams define each season's concepts and products.",
       items: [
         {
-          key: "F",
+          key: "01",
           title: "Begin with feedback",
           body: "Customer opinions are collected, analysed, and shared with product teams.",
         },
         {
-          key: "N",
+          key: "02",
           title: "Find emerging needs",
           body: "R&D responds to requests while identifying new lifestyle requirements.",
         },
         {
-          key: "M",
+          key: "03",
           title: "Research materials",
           body: "Teams study new textiles alongside global fashion trends.",
         },
         {
-          key: "C",
+          key: "04",
           title: "Work across functions",
           body: "R&D, merchandising, marketing, and materials teams define seasonal concepts together.",
         },
@@ -547,15 +556,15 @@ export const brandPavilions = {
       },
     },
     design: {
-      title: "Information should feel as comfortable as the clothing.",
+      title: "Useful information should feel effortless.",
       intro:
-        "A strict red, white, blue, and grey system makes function easy to scan. Modular typography and measured spacing separate conditions, features, and benefits without turning daily life into a technical dashboard.",
+        "A strict red, white, black, and functional-grey system makes each benefit easy to scan. Modular typography separates conditions, features, and everyday outcomes without turning LifeWear into a technical dashboard.",
       keywords: ["Clear", "Modular", "Universal", "Precise", "Calm"],
       image: {
         slot: "spatial",
-        eyebrow: "LifeWear laboratory",
-        title: "The store explains through use.",
-        copy: "Movement, temperature, and layering are demonstrated at human scale rather than reduced to unsupported numbers.",
+        eyebrow: "Life in use",
+        title: "The system follows the person, not the other way around.",
+        copy: "Movement and layering remain human and ordinary while product information stays clear enough to support the next choice.",
       },
     },
     world: {
@@ -565,9 +574,9 @@ export const brandPavilions = {
       scenes: [
         {
           slot: "editorialC",
-          eyebrow: "In-store guidance",
+          eyebrow: "Commute",
           title: "Movement becomes useful information.",
-          copy: "The retail wall connects an everyday action to a relevant garment choice.",
+          copy: "An everyday route connects comfort, movement, and a relevant garment choice without staged technical spectacle.",
           layout: "portrait",
         },
         {

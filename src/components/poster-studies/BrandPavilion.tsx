@@ -19,8 +19,9 @@ const pavilionChapters = [
   { href: "#philosophy", number: "01", label: "Philosophy" },
   { href: "#values", number: "02", label: "Values" },
   { href: "#needs", number: "03", label: "Needs" },
-  { href: "#design", number: "04", label: "Design" },
-  { href: "#world", number: "05", label: "World" },
+  { href: "#principles", number: "04", label: "Method" },
+  { href: "#design", number: "05", label: "Design" },
+  { href: "#world", number: "06", label: "World" },
 ] as const;
 
 const pavilionFigureCodes: Record<BrandPavilionImage["slot"], string> = {
@@ -49,27 +50,27 @@ const brandSignatureContent: Record<
 > = {
   hm: {
     eyebrow: "H&M / Fashion for the many",
-    title: "Style, self-expression, and a longer life for clothes.",
-    body: "An open fashion system built around choice, relevance, value, and participation across ages, identities, occasions, and cultures.",
-    codes: ["Access", "Self-expression", "Rewear"],
+    title: "Fashion and design should be accessible to everyone.",
+    body: "An open, direct fashion system: many styles and identities, useful quality, clear value, and constant improvement without unnecessary complexity.",
+    codes: ["Open to many", "Fashion + quality", "Keep it simple"],
   },
   zara: {
-    eyebrow: "ZARA / Brand priorities",
-    title: "Creativity. Fashion. Innovation. Customer experience.",
-    body: "Silhouette enters first. Texture and construction follow. Information stays compressed so the image can hold the pace.",
-    codes: ["Silhouette", "Texture", "Attitude"],
+    eyebrow: "ZARA / Attention into fashion",
+    title: "Listen closely. Edit clearly. Move continuously.",
+    body: "Customer signals, creative teams, stores, and digital services operate as one responsive loop. The visual language stays quiet so every new silhouette can arrive with clarity.",
+    codes: ["Attention", "Creative edit", "Connected experience"],
   },
   uniqlo: {
     eyebrow: "UNIQLO / LifeWear",
     title: "Simple made better.",
-    body: "Everyday clothing shaped by Japanese values of simplicity, quality, longevity, ingenious detail, and constant evolution.",
-    codes: ["Simple", "Quality", "Longevity"],
+    body: "Everyday clothing shaped by Japanese values of simplicity, quality, longevity, thoughtful detail, and continuous improvement around real life.",
+    codes: ["Simple", "Useful quality", "Always evolving"],
   },
   prada: {
     eyebrow: "PRADA / Milano dal 1913",
-    title: "Concept, structure, image.",
-    body: "Familiar codes are examined, displaced, and reconsidered through material intelligence, cultural perspective, and exact construction.",
-    codes: ["Reconsider", "Experiment", "Reinterpret"],
+    title: "Reconsider the familiar.",
+    body: "Concept, structure, and image are treated as one intellectual field. Familiar codes are examined, displaced, and returned through cultural perspective and material experiment.",
+    codes: ["Observe", "Displace", "Reinterpret"],
   },
 };
 
@@ -175,7 +176,12 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
 
         <section className="brand-pavilion__section brand-pavilion__philosophy" id="philosophy">
           <div className="pavilion-shell">
-            <PavilionSectionHeader number="01" label="Philosophy" detail="Why the brand exists" />
+            <PavilionSectionHeader
+              code={pavilion.code}
+              number="01"
+              label="Philosophy"
+              detail="Why the brand exists"
+            />
             <PavilionScopeNote
               label="Official brand evidence"
               note="Paraphrased from the brand’s published materials"
@@ -196,7 +202,12 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
 
         <section className="brand-pavilion__section brand-pavilion__values" id="values">
           <div className="pavilion-shell">
-            <PavilionSectionHeader number="02" label="Values" detail="What stays constant" />
+            <PavilionSectionHeader
+              code={pavilion.code}
+              number="02"
+              label="Values"
+              detail="What stays constant"
+            />
             <PavilionScopeNote
               label="Official brand evidence"
               note="Published priorities stated in official materials"
@@ -217,6 +228,7 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
         <section className="brand-pavilion__section brand-pavilion__needs" id="needs">
           <div className="pavilion-shell">
             <PavilionSectionHeader
+              code={pavilion.code}
               number="03"
               label="Audience needs"
               detail="What the experience must solve"
@@ -253,10 +265,11 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
           </div>
         </section>
 
-        <section className="brand-pavilion__section brand-pavilion__principles">
+        <section className="brand-pavilion__section brand-pavilion__principles" id="principles">
           <div className="pavilion-shell">
             <PavilionSectionHeader
-              number="03.5"
+              code={pavilion.code}
+              number="04"
               label={pavilion.principles.label}
               detail="How ideas become decisions"
             />
@@ -289,7 +302,8 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
         <section className="brand-pavilion__section brand-pavilion__design" id="design">
           <div className="pavilion-shell">
             <PavilionSectionHeader
-              number="04"
+              code={pavilion.code}
+              number="05"
               label="Design code"
               detail="Type, colour, material, space"
             />
@@ -351,7 +365,8 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
         <section className="brand-pavilion__section brand-pavilion__world" id="world">
           <div className="pavilion-shell">
             <PavilionSectionHeader
-              number="05"
+              code={pavilion.code}
+              number="06"
               label="Brand world"
               detail="The system in use"
               inverse
@@ -456,11 +471,13 @@ function BrandSignature({ code, brand }: { code: BrandCode; brand: string }) {
 }
 
 function PavilionSectionHeader({
+  code,
   number,
   label,
   detail,
   inverse = false,
 }: {
+  code: BrandCode;
   number: string;
   label: string;
   detail: string;
@@ -474,6 +491,9 @@ function PavilionSectionHeader({
       <span>{number}</span>
       <span>{label}</span>
       <span>{detail}</span>
+      <span className="brand-pavilion__section-brand" aria-hidden="true">
+        <BrandMark code={code} decorative />
+      </span>
     </header>
   );
 }
