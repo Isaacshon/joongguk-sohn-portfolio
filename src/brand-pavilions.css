@@ -954,58 +954,427 @@
   color: #fff;
 }
 
-/* PRADA — cultural precision with one controlled disturbance */
+/* PRADA — image-led restraint, exact structure, and one shift of context */
+.brand-pavilion[data-brand="prada"] .pavilion-meta {
+  font-weight: 500;
+  letter-spacing: 0.055em;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__hero {
+  min-height: min(58rem, calc(100svh - 2.75rem));
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__hero-wash {
+  background:
+    linear-gradient(180deg, rgba(12, 12, 12, 0.42), transparent 34%),
+    linear-gradient(0deg, rgba(12, 12, 12, 0.82), rgba(12, 12, 12, 0.02) 64%);
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__hero-content {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 0.625rem;
+  padding-block: clamp(7rem, 12vh, 9rem) clamp(2rem, 4vh, 3.5rem);
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__hero-kicker {
+  grid-column: 1 / 5;
+  color: #fff;
+  opacity: 0.76;
+}
+
 .brand-pavilion[data-brand="prada"] .brand-pavilion__wordmark {
-  position: relative;
-  font-size: clamp(6rem, 21cqw, 19rem);
-  text-shadow: 0.018em 0 #c7ff2c;
+  position: static;
+  grid-column: 1 / 8;
+  max-inline-size: none;
+  padding: 0;
+  font-size: clamp(5rem, 13cqw, 12rem);
+  font-weight: 400;
+  letter-spacing: 0.035em;
+  line-height: 0.78;
+  text-shadow: none;
+  white-space: nowrap;
 }
 
 .brand-pavilion[data-brand="prada"] .brand-pavilion__wordmark::after {
-  position: absolute;
-  left: 0.018em;
-  top: 0.018em;
-  z-index: -1;
-  color: transparent;
-  content: "PRADA";
-  -webkit-text-stroke: 1px color-mix(in srgb, var(--pavilion-light) 42%, transparent);
+  display: none;
 }
 
-.brand-pavilion[data-brand="prada"] .brand-pavilion__needs,
-.brand-pavilion[data-brand="prada"] .brand-pavilion__world,
-.brand-pavilion[data-brand="prada"] .brand-pavilion__disclosure {
-  background: #10100f;
+.brand-pavilion[data-brand="prada"] .brand-pavilion__hero-thesis {
+  grid-column: 9 / -1;
+  max-width: none;
+  gap: 1rem;
+  border-top-color: rgba(255, 255, 255, 0.64);
 }
 
-.brand-pavilion[data-brand="prada"] .brand-pavilion__value:hover {
-  background: #7e8871;
+.brand-pavilion[data-brand="prada"] .brand-pavilion__hero-statement {
+  max-width: 15ch;
+  font-family: var(--pavilion-body);
+  font-size: clamp(1.9rem, 2.9cqw, 3rem);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__hero-summary {
+  max-width: 43ch;
+  font-size: clamp(0.88rem, 1cqw, 1rem);
+  line-height: 1.48;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__chapter-nav {
+  background: color-mix(in srgb, #f2f1ed 94%, transparent);
 }
 
 .brand-pavilion[data-brand="prada"] .brand-pavilion__chapter-links a span,
 .brand-pavilion[data-brand="prada"] .brand-pavilion__section-kicker,
 .brand-pavilion[data-brand="prada"] .brand-pavilion__value-number,
 .brand-pavilion[data-brand="prada"] .brand-pavilion__scope-label {
-  color: #465600;
+  color: #566052;
 }
 
-.brand-pavilion[data-brand="prada"] .brand-pavilion__needs .brand-pavilion__scope-label,
-.brand-pavilion[data-brand="prada"] .brand-pavilion__world .brand-pavilion__scope-label,
-.brand-pavilion[data-brand="prada"] .brand-pavilion__hero-kicker {
-  color: #c7ff2c;
+.brand-pavilion[data-brand="prada"] .brand-pavilion__section {
+  padding-block: clamp(5rem, 7vw, 7.5rem);
 }
 
-.brand-pavilion[data-brand="prada"] .brand-pavilion__figure[data-featured="true"] {
-  position: relative;
+.brand-pavilion[data-brand="prada"] .brand-pavilion__section-header {
+  opacity: 0.58;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__scope-note {
+  padding-block: 0.7rem;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__philosophy-copy h2,
+.brand-pavilion[data-brand="prada"] .brand-pavilion__needs h2,
+.brand-pavilion[data-brand="prada"] .brand-pavilion__principles-intro h2,
+.brand-pavilion[data-brand="prada"] .brand-pavilion__design-heading h2,
+.brand-pavilion[data-brand="prada"] .brand-pavilion__world-intro h2,
+.brand-pavilion[data-brand="prada"] .brand-pavilion__research h2 {
+  font-family: var(--pavilion-body);
+  font-size: clamp(2.5rem, 3.7cqw, 4rem);
+  font-weight: 500;
+  letter-spacing: -0.052em;
+  line-height: 0.98;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__philosophy-grid {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 0.625rem;
+  margin-top: clamp(2.75rem, 4.5vw, 4.5rem);
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__philosophy-copy {
+  position: static;
+  grid-column: 9 / -1;
+  grid-row: 1;
+  align-self: center;
+  padding-left: clamp(1rem, 2.5vw, 2.5rem);
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__philosophy-copy h2 {
+  max-width: 11ch;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__philosophy-copy > p:last-child {
+  margin-top: 1.75rem;
+  font-size: clamp(0.95rem, 1.05cqw, 1.05rem);
+  line-height: 1.48;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__philosophy-grid > .brand-pavilion__figure {
+  grid-column: 1 / 8;
+  grid-row: 1;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__figure figcaption {
+  grid-template-columns: 2.8rem minmax(0, 1fr);
+  gap: 0.75rem;
+  padding-top: 0.68rem;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__figure figcaption > span:last-child {
+  gap: 0.3rem;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__figure figcaption strong {
+  max-width: 38ch;
+  font-family: var(--pavilion-body);
+  font-size: clamp(1rem, 1.25cqw, 1.24rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__figure figcaption small {
+  font-size: clamp(0.7rem, 0.78cqw, 0.78rem);
+  line-height: 1.45;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__value-ledger {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: clamp(2.75rem, 4vw, 4rem);
+  border-top: 1px solid color-mix(in srgb, var(--pavilion-ink) 42%, transparent);
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__value {
+  display: flex;
+  min-height: clamp(17rem, 24vw, 23rem);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: clamp(1.2rem, 2.2vw, 2rem);
+  border-top: 0;
+  border-right: 1px solid color-mix(in srgb, var(--pavilion-ink) 42%, transparent);
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__value:first-child {
+  border-left: 1px solid color-mix(in srgb, var(--pavilion-ink) 42%, transparent);
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__value:hover {
+  padding-inline: clamp(1.2rem, 2.2vw, 2rem);
+  background: color-mix(in srgb, #7e8871 12%, var(--pavilion-paper));
+  color: var(--pavilion-ink);
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__value h3 {
+  max-width: 12ch;
+  margin-top: auto;
+  font-family: var(--pavilion-body);
+  font-size: clamp(1.65rem, 2.4cqw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__value p {
+  max-width: 36ch;
+  font-size: 0.86rem;
+  line-height: 1.48;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__needs {
+  background: var(--pavilion-paper);
+  color: var(--pavilion-ink);
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__needs-grid {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(3rem, 5vw, 5rem) 0.625rem;
+  margin-top: clamp(2.5rem, 4vw, 4rem);
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__needs-images {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 0.625rem;
+}
+
+.brand-pavilion[data-brand="prada"]
+  .brand-pavilion__needs-images
+  .brand-pavilion__figure:first-child {
+  grid-column: 1 / span 8;
+}
+
+.brand-pavilion[data-brand="prada"]
+  .brand-pavilion__needs-images
+  .brand-pavilion__figure:last-child {
+  grid-column: 9 / -1;
+  margin-top: clamp(3rem, 7vw, 7rem);
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__needs-copy {
+  position: static;
+  grid-column: 3 / 11;
+  grid-row: 2;
+  width: 100%;
+  max-width: 50rem;
+  justify-self: center;
+  text-align: center;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__needs h2 {
+  max-width: 18ch;
+  margin-inline: auto;
+  font-size: clamp(2.45rem, 3.3cqw, 3.45rem);
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__needs-intro {
+  max-width: 47ch;
+  margin: 1.35rem auto 0;
+  font-size: clamp(0.94rem, 1cqw, 1rem);
+  line-height: 1.48;
+  opacity: 0.76;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__need-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: clamp(2.5rem, 4vw, 3.5rem);
+  text-align: left;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__need-list li {
+  grid-template-columns: 2.3rem minmax(0, 1fr);
+  padding: 1.15rem 1.25rem 1.15rem 0;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__need-list li:nth-child(even) {
+  padding-right: 0;
+  padding-left: 1.25rem;
+  border-left: 1px solid color-mix(in srgb, currentColor 28%, transparent);
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__need-list li > span {
+  color: #566052;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__need-list h3 {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__need-list p {
+  line-height: 1.45;
+  opacity: 0.64;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__principles-intro,
+.brand-pavilion[data-brand="prada"] .brand-pavilion__design-heading,
+.brand-pavilion[data-brand="prada"] .brand-pavilion__world-intro {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: end;
+  gap: 0.625rem;
+  margin-block: clamp(2.75rem, 4.5vw, 4.5rem);
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__principles-intro h2,
+.brand-pavilion[data-brand="prada"] .brand-pavilion__design-heading h2,
+.brand-pavilion[data-brand="prada"] .brand-pavilion__world-intro h2 {
+  grid-column: 1 / 7;
+  max-width: 12ch;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__principles-intro p,
+.brand-pavilion[data-brand="prada"] .brand-pavilion__design-heading p,
+.brand-pavilion[data-brand="prada"] .brand-pavilion__world-intro p {
+  grid-column: 8 / -1;
+  font-size: clamp(0.94rem, 1cqw, 1rem);
+  line-height: 1.48;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__principles-stage {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 0.625rem;
+  margin-top: clamp(3rem, 5vw, 5rem);
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__principles-stage > .brand-pavilion__figure {
+  grid-column: 1 / 8;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__principle-list {
+  grid-column: 9 / -1;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__principle-list li {
+  grid-template-columns: 2.3rem minmax(0, 1fr);
+  padding-block: 1.2rem;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__principle-key {
+  font-family: var(--pavilion-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: #566052;
+  line-height: 1.4;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__principle-list h3 {
+  font-family: var(--pavilion-body);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__design {
+  background: #e3e2dd;
 }
 
 .brand-pavilion[data-brand="prada"] .brand-pavilion__figure[data-featured="true"]::before {
-  position: absolute;
-  inset: -0.35rem auto auto 7%;
-  z-index: 2;
-  width: 31%;
-  height: 1px;
-  background: #c7ff2c;
-  content: "";
+  display: none;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__design-system {
+  margin-top: clamp(3rem, 5vw, 5rem);
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__type-specimen strong {
+  font-size: clamp(3rem, 5.5cqw, 5.5rem);
+  letter-spacing: 0.015em;
+  line-height: 0.84;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__type-specimen > span {
+  font-family: var(--pavilion-body);
+  font-size: clamp(1.2rem, 1.7cqw, 1.7rem);
+  font-weight: 500;
+  line-height: 1.05;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__keyword-rail > span {
+  font-family: var(--pavilion-body);
+  font-size: clamp(1.05rem, 1.45cqw, 1.4rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__world,
+.brand-pavilion[data-brand="prada"] .brand-pavilion__disclosure {
+  background: #1b1b1b;
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__world-grid {
+  gap: clamp(3rem, 5vw, 5rem) 0.625rem;
+}
+
+.brand-pavilion[data-brand="prada"]
+  .brand-pavilion__world-grid
+  .brand-pavilion__figure[data-layout="wide"] {
+  grid-column: 1 / -1;
+}
+
+.brand-pavilion[data-brand="prada"]
+  .brand-pavilion__world-grid
+  .brand-pavilion__figure[data-layout="portrait"] {
+  grid-column: span 6;
+}
+
+.brand-pavilion[data-brand="prada"]
+  .brand-pavilion__world-grid
+  .brand-pavilion__figure:nth-child(even):not([data-layout="wide"]) {
+  margin-top: 0;
+}
+
+.brand-pavilion[data-brand="prada"]
+  .brand-pavilion__world-grid
+  .brand-pavilion__figure:nth-child(4) {
+  grid-column: 4 / span 5;
+  margin-top: clamp(1rem, 3vw, 3rem);
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__research h2 {
+  max-width: 12ch;
+  font-size: clamp(2.2rem, 3.2cqw, 3.4rem);
+}
+
+.brand-pavilion[data-brand="prada"] .brand-pavilion__adjacent strong {
+  font-family: var(--pavilion-body);
+  font-size: clamp(2.7rem, 5cqw, 5rem);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 0.9;
 }
 
 @container (min-width: 56rem) {
@@ -1328,6 +1697,202 @@
     font-size: clamp(0.68rem, 2.6cqw, 0.76rem);
     line-height: 1.6;
     opacity: 0.72;
+  }
+}
+
+@container (max-width: 55.99rem) {
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__hero-content {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+  }
+
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__hero-kicker,
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__wordmark,
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__hero-thesis {
+    grid-column: 1;
+  }
+
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__hero-thesis {
+    max-width: 30rem;
+  }
+
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__philosophy-grid,
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__needs-grid,
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__principles-intro,
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__principles-stage,
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__design-heading,
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__world-intro {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__philosophy-grid > .brand-pavilion__figure,
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__philosophy-copy,
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__needs-images,
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__needs-copy,
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__principles-intro h2,
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__principles-intro p,
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__principles-stage > .brand-pavilion__figure,
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__principle-list,
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__design-heading h2,
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__design-heading p,
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__world-intro h2,
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__world-intro p {
+    grid-column: 1;
+  }
+
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__philosophy-grid > .brand-pavilion__figure,
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__needs-images {
+    grid-row: 1;
+  }
+
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__philosophy-copy,
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__needs-copy {
+    grid-row: 2;
+    max-width: 42rem;
+    justify-self: center;
+  }
+
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__philosophy-copy {
+    padding: 0;
+  }
+
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__principles-intro,
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__design-heading,
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__world-intro {
+    gap: 1.5rem;
+  }
+
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__principles-stage {
+    gap: 3rem;
+  }
+}
+
+@container (max-width: 48rem) {
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__hero {
+    min-height: max(39rem, calc(100svh - 2.75rem));
+  }
+
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__hero-content {
+    gap: 0.8rem;
+    padding-block: 5.6rem 1.5rem;
+  }
+
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__wordmark {
+    padding: 0;
+    font-size: clamp(3.7rem, 16cqw, 6rem);
+    letter-spacing: 0.025em;
+    line-height: 0.8;
+  }
+
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__hero-thesis {
+    gap: 0.72rem;
+    padding-top: 0.85rem;
+  }
+
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__hero-statement {
+    max-width: 15ch;
+    font-size: clamp(1.75rem, 7.5cqw, 2.5rem);
+  }
+
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__hero-summary {
+    max-width: 35ch;
+    font-size: 0.8rem;
+  }
+
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__section {
+    padding-block: 3.75rem;
+  }
+
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__philosophy-copy h2,
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__needs h2,
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__principles-intro h2,
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__design-heading h2,
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__world-intro h2,
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__research h2 {
+    font-size: clamp(2.15rem, 9.5cqw, 3.15rem);
+    line-height: 1;
+  }
+
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__value-ledger {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__value {
+    min-height: 12rem;
+    border-right: 1px solid color-mix(in srgb, var(--pavilion-ink) 42%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--pavilion-ink) 42%, transparent);
+  }
+
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__value h3 {
+    font-size: clamp(1.65rem, 7.5cqw, 2.25rem);
+  }
+
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__needs-images {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .brand-pavilion[data-brand="prada"]
+    .brand-pavilion__needs-images
+    .brand-pavilion__figure:first-child,
+  .brand-pavilion[data-brand="prada"]
+    .brand-pavilion__needs-images
+    .brand-pavilion__figure:last-child {
+    grid-column: 1;
+    margin: 0;
+  }
+
+  .brand-pavilion[data-brand="prada"]
+    .brand-pavilion__needs-images
+    .brand-pavilion__figure:last-child {
+    width: 72%;
+    justify-self: end;
+  }
+
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__needs-copy {
+    text-align: left;
+  }
+
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__needs h2,
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__needs-intro {
+    margin-inline: 0;
+  }
+
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__need-list {
+    grid-template-columns: 1fr;
+    margin-top: 2rem;
+  }
+
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__need-list li:nth-child(even) {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__principles-stage {
+    gap: 2.75rem;
+  }
+
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__design-system {
+    margin-top: 3rem;
+  }
+
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__world-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .brand-pavilion[data-brand="prada"]
+    .brand-pavilion__world-grid
+    .brand-pavilion__figure[data-layout],
+  .brand-pavilion[data-brand="prada"]
+    .brand-pavilion__world-grid
+    .brand-pavilion__figure:nth-child(4) {
+    grid-column: 1;
+    margin: 0;
+  }
+
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__adjacent strong {
+    font-size: clamp(2.6rem, 12cqw, 4.25rem);
   }
 }
 

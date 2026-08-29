@@ -594,20 +594,20 @@ export const brandPavilions = {
   "prada-the-quiet-error": {
     code: "prada",
     hero: {
-      kicker: "Observation / contradiction / culture",
-      statement: "A brand is an instrument for looking again.",
+      kicker: "Concept / structure / image",
+      statement: "What is familiar is never fixed.",
       summary:
-        "An intellectual fashion pavilion where familiar codes are studied, displaced, and rebuilt through material, image, craft, and cultural tension.",
+        "A self-initiated exhibition study built from Prada’s public language of reconsideration: quiet images, exact structure, and deliberate shifts of context.",
     },
     philosophy: {
       label: "Brand idea",
-      title: "Concept, structure, and image move beyond product and trend.",
-      body: "Prada describes an intellectual universe in which clothes and accessories bring ideas and ideals into physical form. The brand studies society and disciplines such as art, film, and photography to reinterpret familiar aesthetic codes from unusual perspectives.",
+      title: "Ideas take physical form.",
+      body: "Prada describes an intellectual universe where concept, structure, and image extend beyond product and trend. Clothes and accessories give ideas and ideals a physical form, while society, art, film, and photography offer new ways to read familiar aesthetic codes.",
       image: {
         slot: "editorialA",
-        eyebrow: "Reconsideration",
-        title: "The familiar image slips just enough to become new.",
-        copy: "A physically plausible reflection error interrupts a controlled portrait without dissolving its authority.",
+        eyebrow: "Viewpoint",
+        title: "One coat. Two readings.",
+        copy: "A mirrored partition turns an ordinary fitting-room pause into a study of presence, absence, and point of view.",
       },
       source: {
         label: "Prada Group: Prada brand identity",
@@ -617,17 +617,17 @@ export const brandPavilions = {
     values: [
       {
         number: "01",
-        title: "Conceptual",
-        body: "Fashion carries ideas and ideals beyond the limits of the product itself.",
+        title: "Ideas before category",
+        body: "Fashion carries ideas and ideals beyond the limits of an individual product.",
       },
       {
         number: "02",
-        title: "Experimental",
-        body: "Technology, know-how, and material processes are used to challenge established conventions.",
+        title: "Experiment as method",
+        body: "Technology, know-how, and material processes are used to question established conventions.",
       },
       {
         number: "03",
-        title: "Culturally observant",
+        title: "Culture as material",
         body: "Society, art, film, and photography inform new readings of reality and style.",
       },
     ],
@@ -636,9 +636,9 @@ export const brandPavilions = {
       href: "https://www.pradagroup.com/en/brands/prada.html",
     },
     needs: {
-      title: "Prada offers self-expression through ideas, product, and perspective.",
+      title: "Tools of confident self-expression.",
       intro:
-        "Prada presents its clothes and accessories as tools of confident self-expression. Its brand identity connects that expression to conceptual thinking, unconventional cultural analysis, and the reinterpretation of familiar codes.",
+        "Prada presents clothes and accessories as ways to make personal ideas visible. Expression is not treated as decoration, but as a relationship between product, cultural perspective, and the reinterpretation of familiar codes.",
       items: [
         {
           title: "Confident self-expression",
@@ -659,17 +659,17 @@ export const brandPavilions = {
       ],
       images: [
         {
-          slot: "context",
-          eyebrow: "Society",
-          title: "Fashion leaves the studio and meets the world.",
-          copy: "A controlled image is tested against wet stone, public space, movement, and time.",
-          layout: "portrait",
+          slot: "editorialF",
+          eyebrow: "Collective expression",
+          title: "Individuality becomes visible in relation.",
+          copy: "Three distinct silhouettes share one unpolished room; movement, posture, and distance do the editorial work.",
+          layout: "landscape",
         },
         {
-          slot: "editorialF",
-          eyebrow: "Transformation",
-          title: "The code changes while the identity holds.",
-          copy: "Motion records one deliberate deviation instead of decorating the frame with effects.",
+          slot: "editorialB",
+          eyebrow: "Object language",
+          title: "Function and ambiguity occupy the same table.",
+          copy: "A circular leather object, blank papers, steel, and one green edge create tension without a decorative effect.",
           layout: "landscape",
         },
       ],
@@ -680,7 +680,7 @@ export const brandPavilions = {
     },
     principles: {
       label: "Official design approach",
-      title: "Observe society, challenge codes, and reinterpret the familiar.",
+      title: "Reconsider the familiar.",
       intro:
         "Prada says its design approach begins with unconventional analysis, challenges preconceived aesthetic patterns, and returns shared codes in altered forms supported by technology and know-how.",
       items: [
@@ -707,9 +707,9 @@ export const brandPavilions = {
       ],
       image: {
         slot: "tactile",
-        eyebrow: "Material intelligence",
-        title: "Polish gains meaning beside resistance.",
-        copy: "Leather, technical cloth, metal, and translucent film are composed as evidence of opposing states.",
+        eyebrow: "Construction",
+        title: "The decision is held in the hand.",
+        copy: "Fastening a coat beside leather and coloured glass brings use, material, and precision into one quiet frame.",
       },
       source: {
         label: "Prada Group: Prada brand identity",
@@ -717,48 +717,48 @@ export const brandPavilions = {
       },
     },
     design: {
-      title: "Order first. Then one exact disturbance.",
+      title: "One code. A change of context.",
       intro:
-        "Classical proportion meets forensic notation. Black, archive ivory, lacquer green, and a narrow optical violet build a severe field where a single misalignment can carry the entire idea.",
-      keywords: ["Exact", "Contradictory", "Intellectual", "Tactile", "Unresolved"],
+        "The independent response uses a neutral grotesk, black and paper white, stainless surfaces, and a single muted green plane. Reframing happens through crop, scale, and juxtaposition rather than glitch effects.",
+      keywords: ["Exact", "Quiet", "Reframed", "Tactile", "Unresolved"],
       image: {
         slot: "spatial",
-        eyebrow: "Cultural space",
-        title: "The environment behaves like an argument.",
-        copy: "Reflection, distance, and one displaced plane turn the gallery into a device for looking twice.",
+        eyebrow: "Exhibition system",
+        title: "The room remains adjustable.",
+        copy: "Steel plinths, mirrored panels, paper, and translucent green glass make the installation feel provisional and precise.",
       },
     },
     world: {
-      title: "The idea moves from body to object to culture",
+      title: "Image, object, space.",
       intro:
-        "Each scene carries one controlled anomaly. Together they show how the brand code can inhabit image, publication, invitation, garment, and exhibition without becoming a repeated logo treatment.",
+        "A sequence of installation, garment, street, and publication shows how one point of view can move between scales without turning into a repeated logo treatment.",
       scenes: [
         {
-          slot: "editorialB",
-          eyebrow: "Object",
-          title: "A shifted shadow changes the still life.",
-          copy: "The intervention is small enough that material quality and composition remain the source of authority.",
-          layout: "landscape",
-        },
-        {
-          slot: "editorialC",
-          eyebrow: "Publication",
-          title: "The book documents rather than explains away.",
-          copy: "Each deviation receives an image, a position, and enough silence to remain unresolved.",
-          layout: "portrait",
-        },
-        {
           slot: "editorialD",
-          eyebrow: "Invitation",
-          title: "Protocol becomes theatre.",
-          copy: "Blind embossing, smoked acrylic, and strict placement turn arrival into the first gallery act.",
+          eyebrow: "Installation",
+          title: "Space is edited in public.",
+          copy: "Movable mesh and green-glass planes reveal the labour and decisions behind a finished cultural environment.",
           layout: "wide",
         },
         {
           slot: "editorialE",
           eyebrow: "Garment",
-          title: "One seam refuses the expected line.",
-          copy: "Construction evidence keeps the disruption physical, exact, and close to the body.",
+          title: "Construction carries the argument.",
+          copy: "A frontal coat study makes proportion, fastening, and the tension between severity and softness visible.",
+          layout: "portrait",
+        },
+        {
+          slot: "context",
+          eyebrow: "Ordinary time",
+          title: "Clothes return to the city.",
+          copy: "Two people descend wet stone steps in distinct states of dress, turning contrast into a lived scene rather than a studio effect.",
+          layout: "portrait",
+        },
+        {
+          slot: "editorialC",
+          eyebrow: "Publication",
+          title: "Silence is part of the edit.",
+          copy: "A blank folio, metal divider, brass tab, and green marker leave space for a viewer to complete the reading.",
           layout: "portrait",
         },
       ],
@@ -773,8 +773,12 @@ export const brandPavilions = {
         href: "https://www.pradagroup.com/en/group/group-profile.html",
       },
       {
-        label: "Prada Group — Impact on culture",
-        href: "https://www.pradagroup.com/en/sustainability/cultural-csr.html",
+        label: "Prada — Days of Summer 2026",
+        href: "https://www.prada.com/ww/en/pradasphere/campaigns/2026/days-of-summer.html",
+      },
+      {
+        label: "Prada Group — Fall/Winter 2026 Simple Stories",
+        href: "https://www.pradagroup.com/en/news-media/news-section/26-07-21-prada-fw-26-campaign.html",
       },
     ],
   },

@@ -1072,18 +1072,18 @@ export const designProjects: DesignProject[] = [
     title: "PRADA",
     projectLabel: "Fashion exhibition and editorial identity / 2026",
     discipline: "Fashion exhibition and editorial identity",
-    statement: "Perfection becomes interesting at the exact point it slips.",
+    statement: "The familiar becomes new when its context shifts.",
     description:
-      "A PRADA fashion exhibition and editorial project where near-perfect objects are interrupted by one documented anomaly, connecting photography, object book, invitation, and gallery installation.",
+      "A PRADA fashion exhibition and editorial study connecting quiet photography, garment construction, object publication, and an adaptable gallery environment.",
     challenge:
       "Create intellectual tension and luxury restraint without copying an existing campaign, logo treatment, runway environment, or house artwork.",
     response:
-      "Precision grids, forensic captions, and severe material studies establish order; one displaced seam, crop, or registration line creates the break.",
-    rule: "Every composition contains exactly one named deviation, while all identity typography remains structurally intact.",
+      "Neutral typography and image-led pacing establish order; shifts of crop, viewpoint, scale, and juxtaposition reframe familiar fashion codes without visual effects.",
+    rule: "Each composition reframes one familiar code through crop, juxtaposition, or scale while identity typography remains intact.",
     typography:
-      "A rational grotesk records the evidence; a sharp classical roman introduces the proposition without recreating a house wordmark.",
+      "A neutral grotesk carries evidence and navigation; a classical roman is reserved for the project title and never used as body copy.",
     motion:
-      "The frame holds perfectly still until one element moves one grid unit out of place and its deviation code appears.",
+      "The image holds; a frame, crop, or viewpoint changes once, then leaves the scene still again.",
     materials: [
       "Black technical textile",
       "Smoked acrylic",
@@ -1091,10 +1091,10 @@ export const designProjects: DesignProject[] = [
       "Blind-embossed paper",
     ],
     palette: [
-      { name: "Observation black", value: "#11100f" },
-      { name: "Archive ivory", value: "#eee9dd" },
-      { name: "Lacquer green", value: "#7e8871" },
-      { name: "Error violet", value: "#6c55ff" },
+      { name: "Observation black", value: "#1b1b1b" },
+      { name: "Gallery white", value: "#f2f1ed" },
+      { name: "Stainless", value: "#b7b7b1" },
+      { name: "Frame green", value: "#7e8871" },
     ],
     applications: [
       "Exhibition invitation",

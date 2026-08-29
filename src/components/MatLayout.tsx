@@ -61,6 +61,7 @@ type MatLayoutProps = {
   surface?: "mat" | "plain";
   contentClassName?: string;
   compactMobile?: boolean;
+  immersive?: boolean;
 };
 
 export function MatLayout({
@@ -68,6 +69,7 @@ export function MatLayout({
   surface = "mat",
   contentClassName = "",
   compactMobile = false,
+  immersive = false,
 }: MatLayoutProps) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
@@ -194,13 +196,23 @@ export function MatLayout({
 
   return (
     <div className="min-h-screen w-full bg-background text-foreground">
-      <div className="grid min-h-screen w-full grid-cols-1 lg:grid-cols-[360px_minmax(0,1fr)] xl:grid-cols-[398px_minmax(0,1fr)]">
+      <div
+        className={`grid min-h-screen w-full ${
+          immersive
+            ? "grid-cols-1"
+            : "grid-cols-1 lg:grid-cols-[360px_minmax(0,1fr)] xl:grid-cols-[398px_minmax(0,1fr)]"
+        }`}
+      >
         <aside
-          className={`grid items-center px-4 lg:flex lg:flex-col lg:items-stretch lg:gap-8 lg:px-10 lg:py-10 ${
-            compactMobile
-              ? "grid-cols-[56px_minmax(0,1fr)] gap-3 py-3"
-              : "grid-cols-[88px_minmax(0,1fr)] gap-5 py-5"
-          }`}
+          className={
+            immersive
+              ? "hidden"
+              : `grid items-center px-4 lg:flex lg:flex-col lg:items-stretch lg:gap-8 lg:px-10 lg:py-10 ${
+                  compactMobile
+                    ? "grid-cols-[56px_minmax(0,1fr)] gap-3 py-3"
+                    : "grid-cols-[88px_minmax(0,1fr)] gap-5 py-5"
+                }`
+          }
         >
           <Link
             to="/"
@@ -329,7 +341,11 @@ export function MatLayout({
         </aside>
 
         {surface === "plain" ? (
-          <div className="relative min-h-screen overflow-y-auto border-l border-black/70 bg-background">
+          <div
+            className={`relative min-h-screen overflow-y-auto bg-background ${
+              immersive ? "" : "border-l border-black/70"
+            }`}
+          >
             {topNav}
             <main className={`px-3 pb-12 pt-16 md:px-3 ${contentClassName}`}>{children}</main>
           </div>

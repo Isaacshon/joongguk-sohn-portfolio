@@ -59,7 +59,7 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
   };
 
   return (
-    <MatLayout surface="plain" contentClassName="!px-0 !pb-0 !pt-11">
+    <MatLayout surface="plain" contentClassName="!px-0 !pb-0 !pt-11" immersive>
       <article
         className="brand-pavilion"
         data-brand={pavilion.code}
@@ -70,7 +70,7 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
           <ProjectPicture
             projectSlug={project.slug}
             slot="hero"
-            sizes="(min-width: 1280px) calc(100vw - 398px), (min-width: 1024px) calc(100vw - 360px), 100vw"
+            sizes="100vw"
             className="brand-pavilion__hero-picture"
             imageClassName="brand-pavilion__hero-image"
             style={{ aspectRatio: "auto" }}

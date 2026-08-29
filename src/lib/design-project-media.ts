@@ -546,43 +546,43 @@ const projectMediaDescriptions = {
   },
   "prada-the-quiet-error": {
     hero: {
-      alt: "Precise black fashion portrait interrupted by one quiet acid-green optical displacement.",
+      alt: "Three fashion models walk through a spare white casting room in burgundy, brown, blue, ivory, and black tailoring.",
       focalPoint: "50% 34%",
     },
     tactile: {
-      alt: "Black leather, brushed metal, translucent film, and distorted type arranged as a controlled material error.",
+      alt: "Close view of hands fastening a black coat above a stainless-steel table holding a leather wallet and green glass strip.",
       focalPoint: "50% 50%",
     },
     spatial: {
-      alt: "Severe gallery environment whose mirrored planes introduce a single deliberate spatial misalignment.",
+      alt: "Adaptable gallery installation with stainless-steel plinths, mirrored panels, paper sheets, and translucent green glass.",
       focalPoint: "50% 43%",
     },
     context: {
-      alt: "Night fashion image projected across polished urban stone with one nearly invisible registration fault.",
+      alt: "Woman in dark brown and man in pale blue descend wet stone steps outside an industrial building.",
       focalPoint: "50% 35%",
     },
     editorialA: {
-      alt: "Close portrait in which the face and its reflection fall subtly out of alignment.",
+      alt: "Woman in a charcoal coat and burgundy knit looks toward her partial reflection in a metal partition.",
       focalPoint: "50% 32%",
     },
     editorialB: {
-      alt: "Luxury still life interrupted by a narrow acid-green plane and an exact shifted shadow.",
+      alt: "Black folios, blank paper, a circular leather object, and a narrow green strip arranged on brushed steel.",
       focalPoint: "50% 47%",
     },
     editorialC: {
-      alt: "Black editorial object book opened to a forensic caption and one precisely displaced image crop.",
+      alt: "Blank black-bound folio opened around a vertical metal divider on a brushed-steel table.",
       focalPoint: "50% 45%",
     },
     editorialD: {
-      alt: "Exhibition invitation and smoked acrylic card arranged on a strict archival evidence grid.",
+      alt: "Two people assemble movable mesh and green-glass planes inside a sparse gallery.",
       focalPoint: "50% 48%",
     },
     editorialE: {
-      alt: "Close fashion detail isolating one shifted seam against an otherwise exact black construction.",
+      alt: "Frontal cropped view of a long black coat with burgundy knit visible at collar and cuffs.",
       focalPoint: "50% 41%",
     },
     editorialF: {
-      alt: "Digital motion sequence recording a single grid-unit deviation across severe monochrome frames.",
+      alt: "Three models in burgundy, black leather, blue shirting, and white trousers cross a dim casting room.",
       focalPoint: "50% 45%",
     },
   },

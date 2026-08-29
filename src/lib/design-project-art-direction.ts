@@ -785,18 +785,18 @@ const artDirectionByMotif = {
     gallery: "cascade",
     fonts: {
       display: '"Libre Caslon Display", "Times New Roman", serif',
-      accent: '"Libre Caslon Display", "Times New Roman", serif',
-      body: '"IBM Plex Sans", sans-serif',
-      meta: '"Azeret Mono", ui-monospace, monospace',
+      accent: '"IBM Plex Sans", "Helvetica Neue", Arial, sans-serif',
+      body: '"IBM Plex Sans", "Helvetica Neue", Arial, sans-serif',
+      meta: '"IBM Plex Sans", "Helvetica Neue", Arial, sans-serif',
     },
     title: { weight: 400, style: "normal", leading: ".76", tracking: "-.058em", measure: "13ch" },
     surfaces: {
-      paper: "#e7e7e0",
-      ink: "#10100f",
-      panel: "#d0d0c9",
-      dark: "#10100f",
-      light: "#f4f4ed",
-      accent: "#c7ff2c",
+      paper: "#f2f1ed",
+      ink: "#1b1b1b",
+      panel: "#d8d7d2",
+      dark: "#1b1b1b",
+      light: "#ffffff",
+      accent: "#7e8871",
     },
     labels: {
       challenge: "Observation / 00",
@@ -861,7 +861,7 @@ const fontHrefByMotif = {
   "uniqlo-life":
     "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700;900&display=swap",
   "prada-observation":
-    "https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Libre+Caslon+Display&display=swap",
+    "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Libre+Caslon+Display&display=swap",
 } satisfies Record<DesignProjectMotif, string>;
 
 export function getDesignProjectFontHref(project: DesignProject): string {
