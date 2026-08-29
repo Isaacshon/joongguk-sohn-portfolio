@@ -928,10 +928,10 @@ export const designProjects: DesignProject[] = [
       "Reusable garment wrap",
     ],
     palette: [
-      { name: "Solar yellow", value: "#f4dd27" },
-      { name: "Oxblood", value: "#751d2d" },
-      { name: "Washed paper", value: "#f2e9d8" },
-      { name: "Graphite", value: "#20201d" },
+      { name: "H&M red", value: "#e50010" },
+      { name: "Retail white", value: "#ffffff" },
+      { name: "Campaign black", value: "#111111" },
+      { name: "Studio neutral", value: "#ded8d2" },
     ],
     applications: [
       "Seasonal campaign",
@@ -979,10 +979,10 @@ export const designProjects: DesignProject[] = [
       "Two image planes drift apart by a few millimetres, exposing a quiet field of light before returning to alignment.",
     materials: ["Cold gloss paper", "Translucent vellum", "Brushed aluminium", "Sheer scrim"],
     palette: [
-      { name: "Gallery white", value: "#f4f2ed" },
-      { name: "Ink black", value: "#111111" },
-      { name: "Mist blue", value: "#bdc8cc" },
-      { name: "Skin clay", value: "#b58d79" },
+      { name: "ZARA black", value: "#050505" },
+      { name: "Collection white", value: "#ffffff" },
+      { name: "Editorial stone", value: "#f3f3f1" },
+      { name: "Display steel", value: "#b8b8b5" },
     ],
     applications: [
       "Flagship window",
@@ -1035,10 +1035,10 @@ export const designProjects: DesignProject[] = [
       "Modular shelf rail",
     ],
     palette: [
-      { name: "Life white", value: "#f7f6f1" },
-      { name: "Utility red", value: "#e62b1e" },
-      { name: "Air blue", value: "#9ac7dc" },
-      { name: "Measure grey", value: "#34393d" },
+      { name: "UNIQLO red", value: "#ff0000" },
+      { name: "LifeWear white", value: "#ffffff" },
+      { name: "Utility black", value: "#111111" },
+      { name: "Function grey", value: "#e6e6e3" },
     ],
     applications: [
       "Product information system",

@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { MatLayout } from "@/components/MatLayout";
+import { BrandProjectMark } from "@/components/poster-studies/BrandMark";
 import { DesignProjectCover } from "@/components/poster-studies/DesignProjectCover";
 import { ProjectPicture } from "@/components/poster-studies/ProjectPicture";
 import { designProjectCount, designProjects, type DesignProject } from "@/lib/design-projects";
@@ -110,6 +111,7 @@ function DesignWorkCard({ project }: { project: DesignProject }) {
             />
           }
         />
+        <BrandProjectMark projectSlug={project.slug} />
         <div className="pointer-events-none absolute inset-0 border border-black/10 transition-colors group-hover:border-black/35" />
       </div>
       <ProjectCaption

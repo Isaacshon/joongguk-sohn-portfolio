@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import type { CSSProperties } from "react";
 
 import { MatLayout } from "@/components/MatLayout";
+import { BrandMark, PradaPlaque, type BrandCode } from "@/components/poster-studies/BrandMark";
 import { DesignProjectCover } from "@/components/poster-studies/DesignProjectCover";
 import { ProjectPicture } from "@/components/poster-studies/ProjectPicture";
 import { getDesignProjectArtDirection } from "@/lib/design-project-art-direction";
@@ -35,6 +36,43 @@ const pavilionFigureCodes: Record<BrandPavilionImage["slot"], string> = {
   editorialF: "F",
 };
 
+const brandRetailMenus: Record<BrandCode, string[]> = {
+  hm: ["Women", "Men", "Kids", "Home", "Studio"],
+  zara: ["Woman", "Man", "Kids", "Beauty"],
+  uniqlo: ["Women", "Men", "Kids", "Baby"],
+  prada: ["Women", "Men", "Bags", "Pradasphere"],
+};
+
+const brandSignatureContent: Record<
+  BrandCode,
+  { eyebrow: string; title: string; body: string; codes: string[] }
+> = {
+  hm: {
+    eyebrow: "H&M / Fashion for the many",
+    title: "Style, self-expression, and a longer life for clothes.",
+    body: "An open fashion system built around choice, relevance, value, and participation across ages, identities, occasions, and cultures.",
+    codes: ["Access", "Self-expression", "Rewear"],
+  },
+  zara: {
+    eyebrow: "ZARA / Brand priorities",
+    title: "Creativity. Fashion. Innovation. Customer experience.",
+    body: "Silhouette enters first. Texture and construction follow. Information stays compressed so the image can hold the pace.",
+    codes: ["Silhouette", "Texture", "Attitude"],
+  },
+  uniqlo: {
+    eyebrow: "UNIQLO / LifeWear",
+    title: "Simple made better.",
+    body: "Everyday clothing shaped by Japanese values of simplicity, quality, longevity, ingenious detail, and constant evolution.",
+    codes: ["Simple", "Quality", "Longevity"],
+  },
+  prada: {
+    eyebrow: "PRADA / Milano dal 1913",
+    title: "Concept, structure, image.",
+    body: "Familiar codes are examined, displaced, and reconsidered through material intelligence, cultural perspective, and exact construction.",
+    codes: ["Reconsider", "Experiment", "Reinterpret"],
+  },
+};
+
 export function BrandPavilion({ project }: { project: DesignProject }) {
   const pavilion = getBrandPavilion(project.slug);
 
@@ -64,6 +102,8 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
         className="brand-pavilion"
         data-brand={pavilion.code}
         data-project={project.slug}
+        data-layout={direction.layout}
+        data-gallery={direction.gallery}
         style={style}
       >
         <header className="brand-pavilion__hero" id="top">
@@ -89,17 +129,27 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
             <Link to="/poster-studies" className="brand-pavilion__back-link">
               <span aria-hidden="true">←</span> All design projects
             </Link>
-            <span>Independent concept pavilion · {project.index} / 24 · 2026</span>
+            <div className="brand-pavilion__retail-menu" aria-hidden="true">
+              {brandRetailMenus[pavilion.code].map((item) => (
+                <span key={item}>{item}</span>
+              ))}
+            </div>
+            <span>Independent concept · {project.index} / 24 · 2026</span>
           </div>
 
           <div className="brand-pavilion__hero-content pavilion-shell">
             <p className="brand-pavilion__hero-kicker pavilion-meta">{pavilion.hero.kicker}</p>
-            <h1 className="brand-pavilion__wordmark">{project.brandStudy.brand}</h1>
+            <h1 className="brand-pavilion__wordmark" aria-label={project.brandStudy.brand}>
+              <BrandMark code={pavilion.code} decorative />
+            </h1>
+            {pavilion.code === "prada" ? (
+              <PradaPlaque className="brand-pavilion__hero-plaque" decorative />
+            ) : null}
             <div className="brand-pavilion__hero-thesis">
               <p className="brand-pavilion__hero-statement">{pavilion.hero.statement}</p>
               <p className="brand-pavilion__hero-summary">{pavilion.hero.summary}</p>
               <a href="#philosophy" className="brand-pavilion__enter pavilion-meta">
-                Enter the brand world <span aria-hidden="true">↓</span>
+                Enter the brand world <span aria-hidden="true">↘</span>
               </a>
             </div>
           </div>
@@ -108,7 +158,8 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
         <nav className="brand-pavilion__chapter-nav" aria-label="Brand pavilion chapters">
           <div className="pavilion-shell brand-pavilion__chapter-nav-inner">
             <a href="#top" className="brand-pavilion__chapter-brand pavilion-meta">
-              {project.brandStudy.brand} / Brand pavilion
+              <BrandMark code={pavilion.code} decorative />
+              <span>Brand pavilion</span>
             </a>
             <div className="brand-pavilion__chapter-links">
               {pavilionChapters.map((chapter) => (
@@ -119,6 +170,8 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
             </div>
           </div>
         </nav>
+
+        <BrandSignature code={pavilion.code} brand={project.brandStudy.brand} />
 
         <section className="brand-pavilion__section brand-pavilion__philosophy" id="philosophy">
           <div className="pavilion-shell">
@@ -253,8 +306,8 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
 
             <div className="brand-pavilion__design-system">
               <div className="brand-pavilion__type-specimen">
-                <p className="pavilion-meta">Typography / voice</p>
-                <strong>{project.brandStudy.brand}</strong>
+                <p className="pavilion-meta">Official identifier / voice</p>
+                <BrandMark code={pavilion.code} decorative />
                 <span>{pavilion.hero.statement}</span>
               </div>
               <div
@@ -361,14 +414,44 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
           <div className="pavilion-shell">
             <strong lang="ko">가상 프로젝트</strong>
             <small lang="ko">
-              포트폴리오를 위해 제작한 비공식 브랜드 연구 프로젝트입니다. {project.brandStudy.brand}
-              또는 관련 회사의 의뢰·승인·후원을 받은 작업이 아니며, 상표권은 각 권리자에게 있습니다.
-              이미지는 비상업적 디자인 연구를 위해 AI의 도움을 받아 제작했습니다.
+              포트폴리오를 위해 제작한 비상업적·비공식 브랜드 연구 프로젝트입니다.{" "}
+              {project.brandStudy.brand} 및 관련 회사의 의뢰·승인·후원을 받은 작업이 아니며, 로고와
+              상표의 권리는 각 권리자에게 있습니다. 이미지는 비상업적 디자인 연구를 위해 AI의 도움을
+              받아 제작했습니다.
             </small>
           </div>
         </footer>
       </article>
     </MatLayout>
+  );
+}
+
+function BrandSignature({ code, brand }: { code: BrandCode; brand: string }) {
+  const content = brandSignatureContent[code];
+  const headingId = `${code}-signature-heading`;
+
+  return (
+    <section className="brand-pavilion__identity" aria-labelledby={headingId}>
+      <div className="pavilion-shell brand-pavilion__identity-inner">
+        <div className="brand-pavilion__identity-mark" aria-hidden="true">
+          <BrandMark code={code} decorative />
+          {code === "prada" ? <PradaPlaque decorative /> : null}
+        </div>
+        <div className="brand-pavilion__identity-copy">
+          <p className="pavilion-meta">{content.eyebrow}</p>
+          <h2 id={headingId}>{content.title}</h2>
+          <p>{content.body}</p>
+        </div>
+        <ol className="brand-pavilion__identity-codes" aria-label={`${brand} signature codes`}>
+          {content.codes.map((item, index) => (
+            <li key={item}>
+              <span className="pavilion-meta">0{index + 1}</span>
+              <strong>{item}</strong>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
   );
 }
 
@@ -508,7 +591,7 @@ function BrandPavilionLink({
         {direction} pavilion / {project.index}
       </span>
       <strong>{project.title}</strong>
-      <span aria-hidden="true">↗</span>
+      <span aria-hidden="true">→</span>
     </Link>
   );
 }

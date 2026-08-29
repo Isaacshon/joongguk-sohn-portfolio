@@ -1,0 +1,1225 @@
+/* Exact brand identifiers and four distinct editorial grammars.
+   Photography remains original concept imagery; marks identify the researched brands. */
+
+.brand-mark {
+  display: inline-block;
+  flex: none;
+  max-width: 100%;
+  color: inherit;
+  line-height: 0;
+}
+
+.brand-mark__mask,
+.brand-mark__image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.brand-mark__mask {
+  background: currentColor;
+  -webkit-mask: var(--brand-mark-src) center / contain no-repeat;
+  mask: var(--brand-mark-src) center / contain no-repeat;
+}
+
+.brand-mark--hm .brand-mark__mask {
+  aspect-ratio: 61 / 40;
+}
+
+.brand-mark--zara .brand-mark__mask {
+  aspect-ratio: 1000 / 420.626;
+}
+
+.brand-mark--prada .brand-mark__mask {
+  aspect-ratio: 223 / 38;
+}
+
+.brand-mark--uniqlo {
+  aspect-ratio: 1000.19 / 444.34;
+}
+
+.brand-mark--uniqlo .brand-mark__image {
+  height: 100%;
+  object-fit: contain;
+}
+
+.brand-project-mark {
+  position: absolute;
+  z-index: 2;
+  bottom: clamp(0.7rem, 1.25vw, 1.15rem);
+  left: clamp(0.7rem, 1.25vw, 1.15rem);
+  display: flex;
+  width: clamp(5.2rem, 8vw, 7.5rem);
+  min-height: 2.75rem;
+  box-sizing: border-box;
+  align-items: center;
+  padding: 0.65rem 0.8rem;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 0.2rem 1.5rem rgba(0, 0, 0, 0.13);
+  color: #090909;
+  pointer-events: none;
+  backdrop-filter: blur(10px);
+}
+
+.brand-project-mark > .brand-mark {
+  width: 100%;
+}
+
+.brand-project-mark[data-brand="hm"] {
+  width: clamp(4.25rem, 6.2vw, 5.75rem);
+  color: #e50010;
+}
+
+.brand-project-mark[data-brand="zara"] {
+  width: clamp(6.8rem, 10vw, 9.5rem);
+}
+
+.brand-project-mark[data-brand="uniqlo"] {
+  width: clamp(6.2rem, 9vw, 8.5rem);
+}
+
+.brand-project-mark[data-brand="prada"] {
+  width: clamp(7rem, 10.5vw, 10rem);
+  background: rgba(12, 12, 12, 0.88);
+  color: #fff;
+}
+
+.prada-plaque {
+  position: relative;
+  display: inline-grid;
+  aspect-ratio: 300 / 264;
+  place-items: center;
+  color: inherit;
+}
+
+.prada-plaque__outline {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+  vector-effect: non-scaling-stroke;
+}
+
+.prada-plaque__wordmark {
+  position: absolute;
+  top: 13.5%;
+  width: 58%;
+}
+
+.prada-plaque__milano,
+.prada-plaque__since {
+  position: absolute;
+  font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: 7.2%;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.prada-plaque__milano {
+  top: 34%;
+}
+
+.prada-plaque__since {
+  top: 45%;
+  font-size: 5.6%;
+  letter-spacing: 0.16em;
+}
+
+.brand-pavilion__retail-menu {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2vw, 2.2rem);
+}
+
+.brand-pavilion__wordmark {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  font-size: initial;
+  letter-spacing: normal;
+  line-height: 1;
+  text-shadow: none;
+}
+
+.brand-pavilion__wordmark::after {
+  display: none !important;
+}
+
+.brand-pavilion__wordmark > .brand-mark {
+  width: 100%;
+}
+
+.brand-pavilion__chapter-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.brand-pavilion__chapter-brand .brand-mark--hm {
+  width: 1.8rem;
+}
+
+.brand-pavilion__chapter-brand .brand-mark--zara {
+  width: 4.3rem;
+}
+
+.brand-pavilion__chapter-brand .brand-mark--uniqlo {
+  width: 4.5rem;
+}
+
+.brand-pavilion__chapter-brand .brand-mark--prada {
+  width: 5rem;
+}
+
+.brand-pavilion__identity {
+  position: relative;
+  overflow: clip;
+}
+
+.brand-pavilion__identity-inner {
+  display: grid;
+  grid-template-columns: minmax(15rem, 0.42fr) minmax(18rem, 0.58fr);
+  gap: clamp(2.5rem, 7vw, 8rem);
+  padding-block: clamp(5rem, 9vw, 9rem);
+}
+
+.brand-pavilion__identity-mark {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+}
+
+.brand-pavilion__identity-copy {
+  align-self: end;
+}
+
+.brand-pavilion__identity-copy > * {
+  margin: 0;
+}
+
+.brand-pavilion__identity-copy h2 {
+  max-width: 18ch;
+  margin-top: 0.9rem;
+  font-family: var(--pavilion-body);
+  font-size: clamp(2.75rem, 5.4cqw, 6rem);
+  font-weight: 600;
+  letter-spacing: -0.06em;
+  line-height: 0.93;
+  text-wrap: balance;
+}
+
+.brand-pavilion__identity-copy > p:last-child {
+  max-width: 48ch;
+  margin-top: 1.5rem;
+  font-size: clamp(0.9rem, 1.15cqw, 1.1rem);
+  line-height: 1.58;
+  text-wrap: pretty;
+}
+
+.brand-pavilion__identity-codes {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.brand-pavilion__identity-codes li {
+  display: grid;
+  min-height: clamp(6rem, 9vw, 9rem);
+  align-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+}
+
+.brand-pavilion__identity-codes li:last-child {
+  border-right: 0;
+}
+
+.brand-pavilion__identity-codes strong {
+  font-size: clamp(1rem, 1.7cqw, 1.6rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+
+.brand-pavilion__type-specimen .brand-mark {
+  margin-block: clamp(2rem, 4vw, 4rem) 1.4rem;
+}
+
+/* H&M — inclusive casting, direct retail voice, energetic red. */
+.brand-pavilion[data-layout="kinetic-civic"] {
+  --pavilion-paper: #fffaf7 !important;
+  --pavilion-ink: #111 !important;
+  --pavilion-panel: #efeae5 !important;
+  --pavilion-dark: #111 !important;
+  --pavilion-light: #fff !important;
+  --pavilion-accent: #e50010 !important;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__hero {
+  min-height: min(64rem, calc(100svh - 2.75rem));
+  background: #111;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__hero::after {
+  display: none;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__hero-wash {
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.58), transparent 30%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.66), transparent 62%),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.76), transparent 56%);
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__hero-content {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(0.7rem, 1.4vw, 1.5rem);
+  padding-bottom: clamp(2rem, 5vw, 5rem);
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__hero-kicker {
+  grid-column: 1 / 6;
+  color: #fff;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__wordmark {
+  grid-column: 1 / 5;
+  width: clamp(10rem, 20cqw, 19rem);
+  box-sizing: border-box;
+  padding: clamp(0.7rem, 1.15cqw, 1.15rem);
+  background: #fff;
+  color: #e50010;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__hero-thesis {
+  grid-column: 8 / -1;
+  max-width: none;
+  gap: 1.1rem;
+  padding: clamp(1.3rem, 2.4vw, 2.4rem);
+  border: 0;
+  background: #e50010;
+  color: #fff;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__hero-statement,
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__philosophy-copy h2,
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__needs h2,
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__principles-intro h2,
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__design-heading h2,
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__world-intro h2,
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__research h2 {
+  font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.06em;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__hero-statement {
+  max-width: 14ch;
+  font-size: clamp(2.2rem, 4.2cqw, 4.8rem);
+  line-height: 0.94;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__hero-summary {
+  max-width: 42ch;
+  opacity: 0.94;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__identity {
+  background: #e50010;
+  color: #fff;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__identity-inner {
+  grid-template-columns: minmax(13rem, 0.4fr) minmax(20rem, 0.6fr);
+  align-items: center;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__identity-mark .brand-mark {
+  width: min(100%, 27rem);
+  color: #fff;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__identity-copy h2 {
+  max-width: 13ch;
+  font-family: "Archivo Black", "Arial Black", sans-serif;
+  font-size: clamp(3rem, 6.5cqw, 7.3rem);
+  font-weight: 400;
+  line-height: 0.86;
+  text-transform: uppercase;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__identity-codes {
+  border-bottom: 1px solid currentColor;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__identity-codes strong {
+  font-family: "Archivo Black", "Arial Black", sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__value-ledger {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  border-bottom: 1px solid currentColor;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__value {
+  grid-column: span 4;
+  min-height: clamp(18rem, 28cqw, 28rem);
+  padding: clamp(1.2rem, 2.4vw, 2.5rem);
+  border-right: 1px solid currentColor;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__value:last-child {
+  border-right: 0;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__value:hover {
+  background: #e50010;
+  color: #fff;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__value h3 {
+  font-family: "Archivo Black", "Arial Black", sans-serif;
+  font-size: clamp(2rem, 3.5cqw, 3.8rem);
+  font-weight: 400;
+  letter-spacing: -0.06em;
+  line-height: 0.9;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__needs {
+  background: #e50010;
+  color: #fff;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__needs-grid {
+  grid-template-columns: minmax(18rem, 0.44fr) minmax(0, 0.56fr);
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__needs-images {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  align-items: end;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"]
+  .brand-pavilion__needs-images
+  .brand-pavilion__figure:first-child {
+  grid-column: 1 / span 5;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"]
+  .brand-pavilion__needs-images
+  .brand-pavilion__figure:last-child {
+  z-index: 1;
+  grid-column: 4 / -1;
+  margin-top: -18%;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__principle-key {
+  display: inline-grid;
+  width: 3rem;
+  height: 3rem;
+  place-items: center;
+  background: #e50010;
+  color: #fff;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__type-specimen .brand-mark {
+  width: min(12rem, 70%);
+  color: #e50010;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__world {
+  border-top: 0;
+  background: #fffaf7;
+  color: #111;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__world-grid {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(0.5rem, 1.1vw, 1.1rem);
+}
+
+.brand-pavilion[data-layout="kinetic-civic"]
+  .brand-pavilion__world-grid
+  .brand-pavilion__figure:nth-child(1) {
+  grid-column: 1 / span 7;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"]
+  .brand-pavilion__world-grid
+  .brand-pavilion__figure:nth-child(2) {
+  grid-column: 8 / -1;
+  margin-top: 22%;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"]
+  .brand-pavilion__world-grid
+  .brand-pavilion__figure:nth-child(3) {
+  grid-column: 1 / span 4;
+}
+
+.brand-pavilion[data-layout="kinetic-civic"]
+  .brand-pavilion__world-grid
+  .brand-pavilion__figure:nth-child(4) {
+  grid-column: 5 / -1;
+  margin-top: 0;
+}
+
+/* ZARA — wordmark, monochrome space, cinematic one-image pacing. */
+.brand-pavilion[data-layout="quiet-fourteen"] {
+  --pavilion-paper: #fff !important;
+  --pavilion-ink: #050505 !important;
+  --pavilion-panel: #f3f3f1 !important;
+  --pavilion-dark: #050505 !important;
+  --pavilion-light: #fff !important;
+  --pavilion-accent: #050505 !important;
+  background: #fff;
+  color: #050505;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__hero {
+  min-height: min(68rem, calc(100svh - 2.75rem));
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__hero-wash {
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent 28%),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.52), transparent 46%);
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__hero-content {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(0.6rem, 1.2vw, 1.2rem);
+  align-content: end;
+  padding-bottom: clamp(2.5rem, 5vw, 5rem);
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__hero-kicker {
+  grid-column: 1 / 4;
+  color: #fff;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__wordmark {
+  grid-column: 1 / -1;
+  width: min(57cqw, 48rem);
+  justify-self: center;
+  color: #fff;
+  filter: drop-shadow(0 0.08rem 0.55rem rgba(0, 0, 0, 0.28));
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__hero-thesis {
+  grid-column: 1 / span 4;
+  max-width: none;
+  border-top-color: #fff;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__hero-statement {
+  max-width: 23ch;
+  font-family: "Manrope", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(1.2rem, 1.8cqw, 1.75rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__hero-summary {
+  max-width: 42ch;
+  font-size: clamp(0.76rem, 0.9cqw, 0.9rem);
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__identity {
+  background: #fff;
+  color: #050505;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__identity-inner {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 0.8rem;
+  padding-block: clamp(7rem, 15vw, 15rem);
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__identity-mark {
+  grid-column: 1 / -1;
+  justify-content: center;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__identity-mark .brand-mark {
+  width: min(76cqw, 70rem);
+  color: #050505;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__identity-copy {
+  grid-column: 8 / -1;
+  margin-top: clamp(5rem, 11vw, 11rem);
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__identity-copy h2 {
+  max-width: 21ch;
+  font-family: "Manrope", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(2rem, 3.4cqw, 3.6rem);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 0.98;
+  text-transform: uppercase;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__identity-codes {
+  grid-column: 1 / -1;
+  margin-top: clamp(4rem, 8vw, 8rem);
+  border-bottom: 1px solid currentColor;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__identity-codes li {
+  min-height: 5.8rem;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__identity-codes strong {
+  font-family: "Manrope", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(0.85rem, 1.1cqw, 1.1rem);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__section {
+  padding-block: clamp(8rem, 14vw, 15rem);
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__philosophy-copy h2,
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__needs h2,
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__principles-intro h2,
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__design-heading h2,
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__world-intro h2,
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__research h2,
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__value h3 {
+  font-family: "Manrope", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.055em;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__philosophy-grid {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__philosophy-copy {
+  grid-column: 1 / span 4;
+  padding-right: 2rem;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"]
+  .brand-pavilion__philosophy-grid
+  > .brand-pavilion__figure {
+  grid-column: 6 / -1;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__value-ledger {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-bottom: 1px solid currentColor;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__value {
+  min-height: 22rem;
+  padding: 1.2rem 1.4rem 3rem;
+  border-right: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__value:last-child {
+  border-right: 0;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__value:hover {
+  background: #050505;
+  color: #fff;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__needs,
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__world {
+  background: #f3f3f1;
+  color: #050505;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__needs-grid {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__needs-copy {
+  grid-column: 8 / -1;
+  grid-row: 1;
+  padding-left: 1rem;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__needs-images {
+  grid-column: 1 / span 6;
+  grid-row: 1;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__type-specimen .brand-mark {
+  width: min(19rem, 90%);
+  color: #050505;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__world-grid {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(0.7rem, 1.3vw, 1.3rem);
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"]
+  .brand-pavilion__world-grid
+  .brand-pavilion__figure:nth-child(1) {
+  grid-column: 1 / -1;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"]
+  .brand-pavilion__world-grid
+  .brand-pavilion__figure:nth-child(2) {
+  grid-column: 1 / span 5;
+  margin-top: clamp(6rem, 12vw, 12rem);
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"]
+  .brand-pavilion__world-grid
+  .brand-pavilion__figure:nth-child(3) {
+  grid-column: 7 / -1;
+}
+
+.brand-pavilion[data-layout="quiet-fourteen"]
+  .brand-pavilion__world-grid
+  .brand-pavilion__figure:nth-child(4) {
+  grid-column: 3 / span 8;
+  margin-top: clamp(7rem, 13vw, 13rem);
+}
+
+/* UNIQLO — rational LifeWear modules, functional red, daily conditions. */
+.brand-pavilion[data-layout="comfort-matrix"] {
+  --pavilion-paper: #fff !important;
+  --pavilion-ink: #111 !important;
+  --pavilion-panel: #f1f1ee !important;
+  --pavilion-dark: #111 !important;
+  --pavilion-light: #fff !important;
+  --pavilion-accent: #f00 !important;
+  background-color: #fff;
+  background-image:
+    linear-gradient(to right, rgba(17, 17, 17, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(17, 17, 17, 0.055) 1px, transparent 1px);
+  background-size: 6.25cqw 6.25cqw;
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__hero {
+  min-height: min(62rem, calc(100svh - 2.75rem));
+  background: #fff;
+  color: #111;
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__hero-image {
+  object-position: 70% center;
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__hero-wash {
+  background:
+    linear-gradient(90deg, #fff 0 43%, rgba(255, 255, 255, 0.96) 43%, transparent 58%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.14), transparent 26%);
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__hero-rail {
+  background: rgba(255, 255, 255, 0.88);
+  border-bottom-color: rgba(17, 17, 17, 0.35);
+  box-shadow: 0 0 0 100vmax rgba(255, 255, 255, 0.88);
+  clip-path: inset(0 -100vmax);
+  color: #111;
+  backdrop-filter: blur(8px);
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__hero-content {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__hero-kicker {
+  grid-column: 1 / span 4;
+  color: #111;
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__wordmark {
+  grid-column: 1 / span 4;
+  width: min(20cqw, 15rem);
+  padding: 0;
+  background: transparent;
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__hero-thesis {
+  grid-column: 1 / span 4;
+  max-width: none;
+  border-top-color: #111;
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__hero-statement,
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__philosophy-copy h2,
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__needs h2,
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__principles-intro h2,
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__design-heading h2,
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__world-intro h2,
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__research h2 {
+  font-family: "Noto Sans JP", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.055em;
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__hero-statement {
+  max-width: 16ch;
+  font-size: clamp(2rem, 3.3cqw, 3.4rem);
+  line-height: 0.98;
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__identity {
+  border-top: 0.75rem solid #f00;
+  border-bottom: 1px solid #111;
+  background: rgba(255, 255, 255, 0.94);
+  color: #111;
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__identity-inner {
+  grid-template-columns: minmax(11rem, 0.33fr) minmax(20rem, 0.67fr);
+  gap: clamp(2rem, 6vw, 6rem);
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__identity-mark .brand-mark {
+  width: min(100%, 22rem);
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__identity-copy h2 {
+  max-width: 14ch;
+  font-family: "Noto Sans JP", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(3.5rem, 7cqw, 8rem);
+  font-weight: 900;
+  line-height: 0.85;
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__identity-codes {
+  gap: 1px;
+  background: #111;
+  border: 1px solid #111;
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__identity-codes li {
+  min-height: clamp(8rem, 12cqw, 12rem);
+  border: 0;
+  background: #fff;
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__identity-codes li:first-child {
+  background: #f00;
+  color: #fff;
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__identity-codes strong {
+  font-family: "Noto Sans JP", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(1.4rem, 2.4cqw, 2.6rem);
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  text-transform: uppercase;
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__value-ledger {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: #111;
+  border: 1px solid #111;
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__value {
+  min-height: 22rem;
+  padding: 1.3rem;
+  background: #fff;
+  color: #111;
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__value:hover {
+  background: #f00;
+  color: #fff;
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__value h3 {
+  font-family: "Noto Sans JP", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(1.8rem, 2.8cqw, 3rem);
+  font-weight: 900;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__needs,
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__world {
+  border-block: 1px solid #111;
+  background: rgba(255, 255, 255, 0.96);
+  color: #111;
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__needs {
+  box-shadow: inset 0.75rem 0 0 #f00;
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__need-list li {
+  grid-template-columns: 3rem minmax(0, 1fr);
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__need-list li > span,
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__section-header span:first-child,
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__principle-key {
+  display: inline-grid;
+  width: 2.7rem;
+  height: 2.7rem;
+  place-items: center;
+  background: #f00;
+  color: #fff;
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__type-specimen .brand-mark {
+  width: min(18rem, 88%);
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__world-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: #111;
+  border: 1px solid #111;
+}
+
+.brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__world-grid .brand-pavilion__figure {
+  grid-column: auto;
+  margin: 0;
+  background: #fff;
+}
+
+/* PRADA — exact wordmark, triangle plaque, cultural dossier restraint. */
+.brand-pavilion[data-layout="error-sixteen"] {
+  --pavilion-paper: #f2f1ed !important;
+  --pavilion-ink: #101010 !important;
+  --pavilion-panel: #d7d7d2 !important;
+  --pavilion-dark: #101010 !important;
+  --pavilion-light: #fff !important;
+  --pavilion-accent: #596658 !important;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__wordmark {
+  grid-column: 1 / 8;
+  width: min(40cqw, 38rem);
+  color: #fff;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__hero-plaque {
+  grid-column: 8 / span 1;
+  width: min(8cqw, 7.5rem);
+  align-self: end;
+  justify-self: center;
+  color: #fff;
+  opacity: 0.9;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__hero-thesis {
+  grid-column: 9 / -1;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity {
+  background: #101010;
+  color: #fff;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-inner {
+  grid-template-columns: minmax(20rem, 0.52fr) minmax(18rem, 0.48fr);
+  align-items: center;
+  padding-block: clamp(7rem, 12vw, 12rem);
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-mark {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(7rem, 0.34fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-mark > .brand-mark {
+  width: min(100%, 28rem);
+  color: #fff;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-mark .prada-plaque {
+  width: min(100%, 12rem);
+  color: #fff;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-copy h2 {
+  max-width: 10ch;
+  font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(3rem, 5.4cqw, 5.8rem);
+  font-weight: 500;
+  line-height: 0.91;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-codes {
+  border-bottom: 1px solid currentColor;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-codes strong {
+  font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(0.9rem, 1.15cqw, 1.15rem);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__type-specimen .brand-mark {
+  width: min(22rem, 90%);
+  color: #101010;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__design-system {
+  border-color: #101010;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__keyword-rail > span {
+  font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 500;
+}
+
+@container (max-width: 67.99rem) {
+  .brand-pavilion__retail-menu {
+    display: none;
+  }
+
+  .brand-pavilion__identity-inner,
+  .brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__identity-inner,
+  .brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__identity-inner,
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__identity-inner {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  .brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__identity-copy {
+    grid-column: 6 / -1;
+  }
+
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-mark {
+    max-width: 42rem;
+  }
+
+  .brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__hero-thesis {
+    grid-column: 7 / -1;
+  }
+
+  .brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__hero-wash {
+    background:
+      linear-gradient(90deg, #fff 0 50%, rgba(255, 255, 255, 0.94) 50%, transparent 68%),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.1), transparent 26%);
+  }
+
+  .brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__hero-kicker,
+  .brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__wordmark,
+  .brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__hero-thesis {
+    grid-column: 1 / span 5;
+  }
+}
+
+@container (max-width: 48rem) {
+  .brand-pavilion__wordmark,
+  .brand-pavilion[data-brand="zara"] .brand-pavilion__wordmark,
+  .brand-pavilion[data-brand="uniqlo"] .brand-pavilion__wordmark,
+  .brand-pavilion[data-brand="prada"] .brand-pavilion__wordmark {
+    max-inline-size: 100%;
+    padding: 0;
+    background: transparent;
+    font-size: initial;
+    line-height: 1;
+  }
+
+  .brand-pavilion__hero-rail {
+    gap: 1rem;
+  }
+
+  .brand-pavilion__hero-rail > span:last-child {
+    max-width: 16ch;
+  }
+
+  .brand-pavilion__identity-inner,
+  .brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__identity-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding-block: 4.5rem;
+  }
+
+  .brand-pavilion__identity-copy,
+  .brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__identity-copy,
+  .brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__identity-mark,
+  .brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__identity-codes {
+    grid-column: 1;
+    margin-top: 0;
+  }
+
+  .brand-pavilion__identity-copy h2,
+  .brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__identity-copy h2,
+  .brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__identity-copy h2,
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-copy h2 {
+    font-size: clamp(2.7rem, 13cqw, 4.8rem);
+  }
+
+  .brand-pavilion__identity-codes {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-pavilion__identity-codes li,
+  .brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__identity-codes li {
+    min-height: 5.5rem;
+    border-right: 0;
+    border-bottom: 1px solid currentColor;
+  }
+
+  .brand-pavilion__identity-codes li:last-child {
+    border-bottom: 0;
+  }
+
+  .brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__hero-content,
+  .brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__hero-content,
+  .brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__hero-content,
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__hero-content {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__hero-kicker,
+  .brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__wordmark,
+  .brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__hero-thesis,
+  .brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__hero-kicker,
+  .brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__wordmark,
+  .brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__hero-thesis,
+  .brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__hero-kicker,
+  .brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__wordmark,
+  .brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__hero-thesis,
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__wordmark,
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__hero-thesis {
+    grid-column: 1;
+  }
+
+  .brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__wordmark {
+    width: clamp(8rem, 36cqw, 12rem);
+    padding: 0.65rem;
+    background: #fff;
+  }
+
+  .brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__hero-thesis {
+    padding: 1.15rem;
+  }
+
+  .brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__wordmark {
+    width: min(82cqw, 28rem);
+  }
+
+  .brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__hero-thesis {
+    max-width: 24rem;
+  }
+
+  .brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__hero {
+    color: #111;
+  }
+
+  .brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__hero-wash {
+    background:
+      linear-gradient(0deg, #fff 0 52%, rgba(255, 255, 255, 0.9) 66%, transparent 84%),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.16), transparent 25%);
+  }
+
+  .brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__wordmark {
+    width: min(56cqw, 15rem);
+  }
+
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__wordmark {
+    width: min(78cqw, 27rem);
+  }
+
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__hero-plaque {
+    display: none;
+  }
+
+  .brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__value-ledger,
+  .brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__value-ledger,
+  .brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__value-ledger,
+  .brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__world-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__value,
+  .brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__value,
+  .brand-pavilion[data-layout="comfort-matrix"] .brand-pavilion__value {
+    grid-column: 1;
+    min-height: 16rem;
+    border-right: 0;
+    border-bottom: 1px solid currentColor;
+  }
+
+  .brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__value h3 {
+    overflow-wrap: normal;
+    font-size: clamp(1.25rem, 5.6cqw, 1.65rem);
+    hyphens: none;
+  }
+
+  .brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__needs-grid,
+  .brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__needs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__needs-copy,
+  .brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__needs-images {
+    grid-column: 1;
+    grid-row: auto;
+    padding-left: 0;
+  }
+
+  .brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__world-grid,
+  .brand-pavilion[data-layout="quiet-fourteen"] .brand-pavilion__world-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-pavilion[data-layout="kinetic-civic"] .brand-pavilion__world-grid .brand-pavilion__figure,
+  .brand-pavilion[data-layout="quiet-fourteen"]
+    .brand-pavilion__world-grid
+    .brand-pavilion__figure {
+    grid-column: 1 !important;
+    margin-top: 0 !important;
+  }
+
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-mark {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-mark .prada-plaque {
+    width: 9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-pavilion__hero-image {
+    transition: none !important;
+  }
+}

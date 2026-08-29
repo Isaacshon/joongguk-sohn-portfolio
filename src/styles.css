@@ -3,6 +3,7 @@
 @import "tw-animate-css";
 @import "./poster-studies-art-direction.css";
 @import "./brand-pavilions.css";
+@import "./brand-pavilion-identities.css";
 
 @custom-variant dark (&:is(.dark *));
 

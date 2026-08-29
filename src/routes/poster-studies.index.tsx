@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { MatLayout } from "@/components/MatLayout";
+import { BrandProjectMark } from "@/components/poster-studies/BrandMark";
 import { DesignProjectCover } from "@/components/poster-studies/DesignProjectCover";
 import { ProjectPicture } from "@/components/poster-studies/ProjectPicture";
 import {
@@ -129,6 +130,7 @@ function DesignProjectIndex() {
                             />
                           }
                         />
+                        <BrandProjectMark projectSlug={project.slug} />
                         <div className="pointer-events-none absolute inset-0 border border-black/10 transition-colors group-hover:border-black/35" />
                       </div>
                       <div className="mt-4 grid grid-cols-[auto_1fr_auto] items-start gap-3 border-t border-black/25 pt-3">
