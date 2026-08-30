@@ -4,6 +4,7 @@ import { MatLayout } from "@/components/MatLayout";
 import { BrandProjectMark } from "@/components/poster-studies/BrandMark";
 import { DesignProjectCover } from "@/components/poster-studies/DesignProjectCover";
 import { ProjectPicture } from "@/components/poster-studies/ProjectPicture";
+import type { DesignProjectCoreMediaSlot } from "@/lib/design-project-media";
 import { designProjectCount, designProjects, type DesignProject } from "@/lib/design-projects";
 import { projects, type Project } from "@/lib/projects";
 
@@ -26,10 +27,6 @@ export const Route = createFileRoute("/work")({
   component: Work,
 });
 
-type WorkItem =
-  | { kind: "design"; project: DesignProject }
-  | { kind: "portfolio"; project: Project };
-
 const featuredBrandSlugs = [
   "hm-second-sun",
   "zara-the-air-between",
@@ -37,22 +34,295 @@ const featuredBrandSlugs = [
   "prada-the-quiet-error",
 ] as const;
 
-const featuredBrandSlugSet = new Set<string>(featuredBrandSlugs);
-
 const featuredBrandProjects = featuredBrandSlugs.flatMap((slug) => {
   const project = designProjects.find((item) => item.slug === slug);
   return project ? [project] : [];
 });
 
-const archiveWorkItems: WorkItem[] = [
-  { kind: "portfolio", project: projects[0] },
-  ...designProjects
-    .filter((project) => !featuredBrandSlugSet.has(project.slug))
-    .map((project): WorkItem => ({ kind: "design", project })),
-  ...projects.slice(1).map((project): WorkItem => ({ kind: "portfolio", project })),
-];
+const designFamilySpecs = [
+  {
+    id: "press-archive",
+    number: "01",
+    title: "Press & Archive",
+    eyebrow: "Ink, memory, evidence",
+    description:
+      "Four systems where physical traces lead the design: registration drift, collected lettering, field specimens, and undelivered correspondence.",
+    surface: "#e9e2d5",
+    ink: "#171713",
+    accent: "#b73527",
+    inverse: false,
+    slugs: ["afterimage", "memory-type", "field-notes-37", "last-letter"],
+  },
+  {
+    id: "sensory-editorial",
+    number: "02",
+    title: "Sensory Editorial",
+    eyebrow: "Surface, night, body, rhythm",
+    description:
+      "Editorial worlds directed by touch and tempo, moving from material pressure to fashion, responsive matter, and measured sound.",
+    surface: "#17171b",
+    ink: "#f5efe5",
+    accent: "#cfe7f6",
+    inverse: true,
+    slugs: ["tactile-forecast", "night-index", "soft-machine", "chroma-tempo"],
+  },
+  {
+    id: "public-signal",
+    number: "03",
+    title: "Public Signal",
+    eyebrow: "Routes, broadcasts, movement",
+    description:
+      "Identity systems tested at public scale: a neighbourhood route, a stable broadcast layer, an electric journey, and a live campus.",
+    surface: "#f1d83d",
+    ink: "#161616",
+    accent: "#2748a8",
+    inverse: false,
+    slugs: ["public-memory", "signal-noise", "79w", "tessera-live"],
+  },
+  {
+    id: "product-ritual",
+    number: "04",
+    title: "Product Ritual",
+    eyebrow: "Stay, source, routine, repair",
+    description:
+      "Products become behaviours through a tide datum, visible food batches, a twenty-four-hour dial, and garment interventions.",
+    surface: "#efe6d8",
+    ink: "#251f1a",
+    accent: "#ef5638",
+    inverse: false,
+    slugs: ["tidehold", "offsort", "horalis", "selv-00"],
+  },
+  {
+    id: "evidence-infrastructure",
+    number: "05",
+    title: "Evidence & Infrastructure",
+    eyebrow: "Proof, assembly, exchange, return",
+    description:
+      "Systems that make their workings visible, from documentary sourcing and reversible buildings to paired ledgers and material cycles.",
+    surface: "#17251f",
+    ink: "#f1eadc",
+    accent: "#e66e43",
+    inverse: true,
+    slugs: ["backmatter", "seamframe", "two-shores", "coldkiln"],
+  },
+] as const;
 
-const totalProjectCount = featuredBrandProjects.length + archiveWorkItems.length;
+type IndependentDesignSlug = (typeof designFamilySpecs)[number]["slugs"][number];
+type TeaserTitlePlacement = "top-left" | "top-right" | "bottom-left" | "bottom-right";
+type TeaserLayering = "duet" | "inset" | "veil";
+type TeaserSurface = "primary" | "secondary" | "accent" | "support";
+
+type DesignTeaserConfig = {
+  slot: DesignProjectCoreMediaSlot;
+  aspectRatio: string;
+  titlePlacement: TeaserTitlePlacement;
+  layering: TeaserLayering;
+  coverVariant: "card" | "poster" | "screen";
+  coverSide: "left" | "right";
+  titleSurface: TeaserSurface;
+};
+
+const designTeaserRegistry = {
+  afterimage: {
+    slot: "tactile",
+    aspectRatio: "7 / 5",
+    titlePlacement: "bottom-left",
+    layering: "veil",
+    coverVariant: "screen",
+    coverSide: "right",
+    titleSurface: "accent",
+  },
+  "memory-type": {
+    slot: "hero",
+    aspectRatio: "5 / 6",
+    titlePlacement: "top-right",
+    layering: "duet",
+    coverVariant: "poster",
+    coverSide: "left",
+    titleSurface: "primary",
+  },
+  "field-notes-37": {
+    slot: "context",
+    aspectRatio: "4 / 5",
+    titlePlacement: "bottom-left",
+    layering: "inset",
+    coverVariant: "poster",
+    coverSide: "right",
+    titleSurface: "support",
+  },
+  "last-letter": {
+    slot: "tactile",
+    aspectRatio: "3 / 2",
+    titlePlacement: "top-left",
+    layering: "duet",
+    coverVariant: "poster",
+    coverSide: "right",
+    titleSurface: "primary",
+  },
+  "tactile-forecast": {
+    slot: "tactile",
+    aspectRatio: "1 / 1",
+    titlePlacement: "bottom-right",
+    layering: "inset",
+    coverVariant: "screen",
+    coverSide: "left",
+    titleSurface: "secondary",
+  },
+  "night-index": {
+    slot: "hero",
+    aspectRatio: "4 / 5",
+    titlePlacement: "top-left",
+    layering: "veil",
+    coverVariant: "poster",
+    coverSide: "right",
+    titleSurface: "secondary",
+  },
+  "soft-machine": {
+    slot: "tactile",
+    aspectRatio: "1 / 1",
+    titlePlacement: "bottom-left",
+    layering: "duet",
+    coverVariant: "screen",
+    coverSide: "left",
+    titleSurface: "accent",
+  },
+  "chroma-tempo": {
+    slot: "context",
+    aspectRatio: "5 / 7",
+    titlePlacement: "top-right",
+    layering: "inset",
+    coverVariant: "poster",
+    coverSide: "right",
+    titleSurface: "accent",
+  },
+  "public-memory": {
+    slot: "spatial",
+    aspectRatio: "3 / 2",
+    titlePlacement: "bottom-left",
+    layering: "duet",
+    coverVariant: "screen",
+    coverSide: "right",
+    titleSurface: "primary",
+  },
+  "signal-noise": {
+    slot: "context",
+    aspectRatio: "4 / 5",
+    titlePlacement: "top-right",
+    layering: "veil",
+    coverVariant: "screen",
+    coverSide: "left",
+    titleSurface: "secondary",
+  },
+  "79w": {
+    slot: "hero",
+    aspectRatio: "16 / 9",
+    titlePlacement: "top-left",
+    layering: "inset",
+    coverVariant: "screen",
+    coverSide: "right",
+    titleSurface: "accent",
+  },
+  "tessera-live": {
+    slot: "spatial",
+    aspectRatio: "7 / 5",
+    titlePlacement: "bottom-right",
+    layering: "duet",
+    coverVariant: "card",
+    coverSide: "left",
+    titleSurface: "primary",
+  },
+  tidehold: {
+    slot: "hero",
+    aspectRatio: "16 / 9",
+    titlePlacement: "bottom-left",
+    layering: "veil",
+    coverVariant: "screen",
+    coverSide: "right",
+    titleSurface: "secondary",
+  },
+  offsort: {
+    slot: "tactile",
+    aspectRatio: "1 / 1",
+    titlePlacement: "top-right",
+    layering: "inset",
+    coverVariant: "card",
+    coverSide: "left",
+    titleSurface: "support",
+  },
+  horalis: {
+    slot: "tactile",
+    aspectRatio: "1 / 1",
+    titlePlacement: "bottom-right",
+    layering: "duet",
+    coverVariant: "screen",
+    coverSide: "right",
+    titleSurface: "primary",
+  },
+  "selv-00": {
+    slot: "hero",
+    aspectRatio: "4 / 5",
+    titlePlacement: "top-left",
+    layering: "veil",
+    coverVariant: "poster",
+    coverSide: "left",
+    titleSurface: "accent",
+  },
+  backmatter: {
+    slot: "context",
+    aspectRatio: "5 / 7",
+    titlePlacement: "bottom-right",
+    layering: "duet",
+    coverVariant: "poster",
+    coverSide: "left",
+    titleSurface: "secondary",
+  },
+  seamframe: {
+    slot: "tactile",
+    aspectRatio: "3 / 2",
+    titlePlacement: "top-left",
+    layering: "inset",
+    coverVariant: "screen",
+    coverSide: "right",
+    titleSurface: "support",
+  },
+  "two-shores": {
+    slot: "hero",
+    aspectRatio: "4 / 5",
+    titlePlacement: "bottom-left",
+    layering: "veil",
+    coverVariant: "poster",
+    coverSide: "right",
+    titleSurface: "primary",
+  },
+  coldkiln: {
+    slot: "tactile",
+    aspectRatio: "7 / 5",
+    titlePlacement: "top-right",
+    layering: "duet",
+    coverVariant: "screen",
+    coverSide: "left",
+    titleSurface: "accent",
+  },
+} satisfies Record<IndependentDesignSlug, DesignTeaserConfig>;
+
+function getRequiredDesignProject(slug: IndependentDesignSlug) {
+  const project = designProjects.find((item) => item.slug === slug);
+  if (!project) throw new Error(`Missing design project: ${slug}`);
+  return project;
+}
+
+const designFamilies = designFamilySpecs.map((family) => ({
+  ...family,
+  projects: family.slugs.map(getRequiredDesignProject),
+}));
+
+const independentDesignProjectCount = designFamilies.reduce(
+  (total, family) => total + family.projects.length,
+  0,
+);
+const portfolioArchiveItems = projects;
+const totalProjectCount =
+  featuredBrandProjects.length + independentDesignProjectCount + portfolioArchiveItems.length;
 
 function Work() {
   return (
@@ -135,39 +405,120 @@ function Work() {
             </div>
           </section>
 
-          <section
-            aria-labelledby="project-archive"
-            className="mx-auto max-w-[1520px] px-5 py-14 sm:px-8 md:py-20 xl:px-12"
-          >
-            <header className="mb-10 grid gap-5 border-b border-black/25 pb-7 md:grid-cols-[1fr_auto] md:items-end md:gap-10">
-              <div>
-                <p className="font-mono text-[9px] font-semibold uppercase tracking-[.2em] text-primary">
-                  Complete archive / {String(archiveWorkItems.length).padStart(2, "0")}
+          <section aria-labelledby="independent-design-worlds">
+            <header className="border-b border-black/20 bg-[#f4f1e9] px-5 py-14 sm:px-8 md:py-20 xl:px-12">
+              <div className="mx-auto grid max-w-[1520px] gap-6 md:grid-cols-[1fr_auto] md:items-end md:gap-12">
+                <div>
+                  <p className="font-mono text-[9px] font-semibold uppercase tracking-[.2em] text-primary">
+                    Independent design worlds / {independentDesignProjectCount}
+                  </p>
+                  <h2
+                    id="independent-design-worlds"
+                    className="mt-3 max-w-[12ch] text-balance font-serif text-[clamp(3.2rem,6vw,7rem)] font-medium italic leading-[.8] tracking-[-.05em]"
+                  >
+                    Five families. Twenty distinct systems.
+                  </h2>
+                </div>
+                <p className="max-w-[48ch] text-pretty text-[14px] leading-[1.7] text-black/65 md:text-right">
+                  Each family begins with a different physical or behavioural law. The image crop,
+                  proportion, title position, and cover logic change with the project—not with a
+                  reusable card template.
                 </p>
-                <h2
-                  id="project-archive"
-                  className="mt-2 font-serif text-[clamp(3.2rem,6vw,6.6rem)] font-medium italic leading-[.82] tracking-[-.05em]"
-                >
-                  Every project, clearly indexed.
-                </h2>
               </div>
-              <p className="max-w-[42ch] text-pretty text-[13px] leading-[1.65] text-black/62 md:text-right">
-                Open any project for its full case study, visual system, applications, process, and
-                final worldview.
-              </p>
             </header>
 
-            <ol className="grid gap-x-8 gap-y-14 md:grid-cols-2 min-[1760px]:grid-cols-3">
-              {archiveWorkItems.map((item) => (
-                <li key={`${item.kind}-${item.project.slug}`}>
-                  {item.kind === "design" ? (
-                    <DesignWorkCard project={item.project} />
-                  ) : (
-                    <PortfolioWorkCard project={item.project} />
-                  )}
-                </li>
-              ))}
-            </ol>
+            {designFamilies.map((family) => {
+              const headingId = `family-${family.id}`;
+
+              return (
+                <section
+                  key={family.id}
+                  aria-labelledby={headingId}
+                  data-theme={family.inverse ? "dark" : "light"}
+                  className="border-b border-black/20 px-5 py-14 sm:px-8 md:py-20 xl:px-12"
+                  style={{ backgroundColor: family.surface, color: family.ink }}
+                >
+                  <div className="mx-auto max-w-[1520px]">
+                    <header
+                      className={`mb-10 grid gap-5 border-b pb-7 md:mb-14 md:grid-cols-[minmax(0,1fr)_minmax(18rem,.62fr)] md:items-end md:gap-12 ${
+                        family.inverse ? "border-white/25" : "border-black/25"
+                      }`}
+                    >
+                      <div>
+                        <p
+                          className="font-mono text-[9px] font-semibold uppercase tracking-[.2em]"
+                          style={{ color: family.accent }}
+                        >
+                          Family {family.number} / 04 projects
+                        </p>
+                        <h3
+                          id={headingId}
+                          className="mt-3 max-w-full text-balance break-keep text-[clamp(2.05rem,9vw,2.5rem)] font-black uppercase leading-[.84] tracking-[-.055em] sm:text-[clamp(2.65rem,5.5vw,6.5rem)] sm:leading-[.82] sm:tracking-[-.065em]"
+                        >
+                          {family.title}
+                        </h3>
+                      </div>
+                      <div className="md:justify-self-end">
+                        <p className="text-balance break-keep font-serif text-[clamp(1.35rem,2.1vw,2.15rem)] italic leading-[1.02] tracking-[-.025em]">
+                          {family.eyebrow}
+                        </p>
+                        <p
+                          className={`mt-4 max-w-[52ch] text-pretty text-[13px] leading-[1.65] ${
+                            family.inverse ? "text-white/66" : "text-black/62"
+                          }`}
+                        >
+                          {family.description}
+                        </p>
+                      </div>
+                    </header>
+
+                    <ol className="grid grid-cols-1 gap-x-6 gap-y-12 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-16">
+                      {family.projects.map((project, index) => (
+                        <li
+                          key={project.slug}
+                          className={index === 0 || index === 3 ? "lg:col-span-7" : "lg:col-span-5"}
+                        >
+                          <DesignWorkCard project={project} inverse={family.inverse} />
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                </section>
+              );
+            })}
+          </section>
+
+          <section
+            aria-labelledby="practice-archive"
+            className="bg-[#f4f1e9] px-5 py-14 sm:px-8 md:py-20 xl:px-12"
+          >
+            <div className="mx-auto max-w-[1520px]">
+              <header className="mb-10 grid gap-5 border-b border-black/25 pb-7 md:grid-cols-[1fr_auto] md:items-end md:gap-10">
+                <div>
+                  <p className="font-mono text-[9px] font-semibold uppercase tracking-[.2em] text-primary">
+                    Practice archive / {String(portfolioArchiveItems.length).padStart(2, "0")}
+                  </p>
+                  <h2
+                    id="practice-archive"
+                    className="mt-2 max-w-[12ch] text-balance font-serif text-[clamp(3.2rem,6vw,6.6rem)] font-medium italic leading-[.82] tracking-[-.05em]"
+                  >
+                    Client, digital, and social practice.
+                  </h2>
+                </div>
+                <p className="max-w-[42ch] text-pretty text-[13px] leading-[1.65] text-black/62 md:text-right">
+                  Six additional portfolio case studies, kept separate from the independent design
+                  worlds above.
+                </p>
+              </header>
+
+              <ol className="grid grid-cols-1 gap-x-8 gap-y-14 md:grid-cols-2 min-[1760px]:grid-cols-3">
+                {portfolioArchiveItems.map((project) => (
+                  <li key={project.slug}>
+                    <PortfolioWorkCard project={project} />
+                  </li>
+                ))}
+              </ol>
+            </div>
           </section>
         </main>
       </div>
@@ -228,41 +579,227 @@ function FeaturedBrandCard({ project }: { project: DesignProject }) {
   );
 }
 
-function DesignWorkCard({ project }: { project: DesignProject }) {
+function DesignWorkCard({ project, inverse }: { project: DesignProject; inverse: boolean }) {
+  const config = designTeaserRegistry[project.slug as IndependentDesignSlug];
+
+  if (!config) return null;
+
   return (
     <Link
       to="/poster-studies/$slug"
       params={{ slug: project.slug }}
       aria-label={`View ${project.title} case study`}
-      className="group block outline-none"
+      className="group block outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4"
+      data-teaser-slot={config.slot}
+      data-teaser-layering={config.layering}
+      data-teaser-title={config.titlePlacement}
     >
-      <div className="relative overflow-hidden bg-black/5 ring-primary transition duration-500 group-hover:-translate-y-1 group-focus-visible:ring-2 group-focus-visible:ring-offset-4 group-focus-visible:ring-offset-[#f4f1e9]">
-        <ProjectPicture
-          projectSlug={project.slug}
-          slot="spatial"
-          sizes="(min-width: 1760px) 33vw, (min-width: 768px) 50vw, calc(100vw - 2.5rem)"
-          imageClassName="group-hover:scale-[1.035] group-hover:saturate-[1.06]"
-          fallback={
-            <DesignProjectCover
-              project={project}
-              variant="card"
-              className="!absolute !inset-0 !h-full !min-h-0 !aspect-auto"
-            />
-          }
+      <div className="relative overflow-hidden bg-black/10 transition duration-500 group-hover:-translate-y-1">
+        <DesignTeaserArtwork project={project} config={config} />
+        <TeaserTitlePanel project={project} config={config} />
+        <div
+          className={`pointer-events-none absolute inset-0 border transition-colors ${
+            inverse
+              ? "border-white/25 group-hover:border-white/70"
+              : "border-black/20 group-hover:border-black/65"
+          }`}
         />
-        <span className="pointer-events-none absolute right-3 top-3 bg-[#f4f1e9]/92 px-2.5 py-1.5 font-mono text-[8px] font-semibold uppercase tracking-[.14em] text-black/70 backdrop-blur-sm">
-          {project.chapter}
-        </span>
-        <div className="pointer-events-none absolute inset-0 border border-black/15 transition-colors group-hover:border-black/45" />
       </div>
-      <ProjectCaption
-        index={project.index}
-        title={project.title}
-        titleLang={project.titleLang}
-        category={project.discipline}
-      />
+
+      <div
+        className={`grid gap-4 border-b py-5 sm:grid-cols-[minmax(0,1fr)_minmax(8rem,.38fr)] sm:items-end sm:gap-8 ${
+          inverse ? "border-white/25" : "border-black/25"
+        }`}
+      >
+        <p className="max-w-[34ch] text-balance break-keep font-serif text-[20px] italic leading-[1.08] tracking-[-.02em] sm:text-[clamp(24px,2.15vw,34px)]">
+          {project.statement}
+        </p>
+        <div className="sm:text-right">
+          <p
+            className={`text-[12px] leading-[1.55] ${inverse ? "text-white/64" : "text-black/62"}`}
+          >
+            {project.discipline}
+          </p>
+          <p
+            className="mt-3 font-mono text-[8px] font-semibold uppercase tracking-[.14em]"
+            style={{ color: project.palette[2]?.value }}
+          >
+            Open full case study ↗
+          </p>
+        </div>
+      </div>
     </Link>
   );
+}
+
+function DesignTeaserArtwork({
+  project,
+  config,
+}: {
+  project: DesignProject;
+  config: DesignTeaserConfig;
+}) {
+  const fallback = (
+    <DesignProjectCover
+      project={project}
+      variant={config.coverVariant}
+      className="!h-full !min-h-0 !aspect-auto"
+    />
+  );
+  const cover = (
+    <div aria-hidden="true" className="relative h-full min-h-0 overflow-hidden">
+      <DesignProjectCover
+        project={project}
+        variant={config.coverVariant}
+        showTitle={false}
+        className="!h-full !min-h-0 !aspect-auto"
+      />
+    </div>
+  );
+  const picture = (
+    <ProjectPicture
+      projectSlug={project.slug}
+      slot={config.slot}
+      sizes="(min-width: 1280px) 50vw, (min-width: 1024px) 58vw, calc(100vw - 2.5rem)"
+      className="h-full min-h-0"
+      imageClassName="duration-[900ms] group-hover:scale-[1.04] group-hover:saturate-[1.05]"
+      style={{ aspectRatio: "auto" }}
+      fallback={fallback}
+    />
+  );
+
+  if (config.layering === "duet") {
+    const coverFirst = config.coverSide === "left";
+
+    return (
+      <div
+        className={`grid overflow-hidden ${
+          coverFirst ? "grid-cols-[.38fr_.62fr]" : "grid-cols-[.62fr_.38fr]"
+        }`}
+        style={{ aspectRatio: config.aspectRatio }}
+      >
+        {coverFirst ? cover : picture}
+        {coverFirst ? picture : cover}
+      </div>
+    );
+  }
+
+  if (config.layering === "inset") {
+    return (
+      <div className="relative overflow-hidden" style={{ aspectRatio: config.aspectRatio }}>
+        <div className="absolute inset-0">{cover}</div>
+        <ProjectPicture
+          projectSlug={project.slug}
+          slot={config.slot}
+          sizes="(min-width: 1280px) 44vw, (min-width: 1024px) 50vw, calc(88vw - 2.5rem)"
+          className="!absolute inset-[7%] !h-[86%] !w-[86%] shadow-[0_20px_60px_rgba(0,0,0,.28)]"
+          imageClassName="duration-[900ms] group-hover:scale-[1.035]"
+          style={{ aspectRatio: "auto" }}
+          fallback={fallback}
+        />
+      </div>
+    );
+  }
+
+  return (
+    <div className="relative overflow-hidden" style={{ aspectRatio: config.aspectRatio }}>
+      <ProjectPicture
+        projectSlug={project.slug}
+        slot={config.slot}
+        sizes="(min-width: 1280px) 50vw, (min-width: 1024px) 58vw, calc(100vw - 2.5rem)"
+        className="h-full"
+        imageClassName="duration-[900ms] group-hover:scale-[1.04]"
+        style={{ aspectRatio: "auto" }}
+        fallback={fallback}
+      />
+      <div
+        aria-hidden="true"
+        className={`pointer-events-none absolute inset-0 opacity-[.16] ${
+          project.theme === "dark" ? "mix-blend-screen" : "mix-blend-multiply"
+        }`}
+      >
+        <DesignProjectCover
+          project={project}
+          variant={config.coverVariant}
+          showTitle={false}
+          className="!h-full !min-h-0 !aspect-auto"
+        />
+      </div>
+    </div>
+  );
+}
+
+const teaserTitlePlacementClasses: Record<TeaserTitlePlacement, string> = {
+  "top-left": "left-3 top-3 sm:left-5 sm:top-5",
+  "top-right": "right-3 top-3 text-right sm:right-5 sm:top-5",
+  "bottom-left": "bottom-3 left-3 sm:bottom-5 sm:left-5",
+  "bottom-right": "bottom-3 right-3 text-right sm:bottom-5 sm:right-5",
+};
+
+function TeaserTitlePanel({
+  project,
+  config,
+}: {
+  project: DesignProject;
+  config: DesignTeaserConfig;
+}) {
+  const surface = getTeaserSurface(project, config.titleSurface);
+  const ink = getReadableTeaserInk(surface);
+
+  return (
+    <div
+      className={`absolute z-20 w-[min(78%,28rem)] px-3 py-3 sm:w-[min(68%,34rem)] sm:px-5 sm:py-4 ${teaserTitlePlacementClasses[config.titlePlacement]}`}
+      style={{
+        backgroundColor: surface,
+        color: ink,
+        boxShadow: `inset 0 0 0 1px ${ink}33`,
+      }}
+    >
+      <p className="font-mono text-[8px] font-semibold uppercase tracking-[.15em] opacity-70">
+        {project.index} / {config.slot}
+      </p>
+      <h4
+        lang={project.titleLang}
+        className={`mt-2 text-balance break-keep text-[20px] font-black leading-[.92] tracking-[-.04em] sm:text-[clamp(24px,2.25vw,44px)] ${
+          project.titleLang === "ko" ? "font-ko-sans" : ""
+        }`}
+      >
+        {project.title}
+      </h4>
+    </div>
+  );
+}
+
+function getTeaserSurface(project: DesignProject, surface: TeaserSurface) {
+  const paletteIndex: Record<TeaserSurface, number> = {
+    primary: 0,
+    secondary: 1,
+    accent: 2,
+    support: 3,
+  };
+
+  return project.palette[paletteIndex[surface]]?.value ?? "#f4f1e9";
+}
+
+function getReadableTeaserInk(hex: string) {
+  const value = hex.trim().replace(/^#/, "");
+  const normalized =
+    value.length === 3
+      ? value
+          .split("")
+          .map((character) => `${character}${character}`)
+          .join("")
+      : value;
+
+  if (!/^[\da-f]{6}$/i.test(normalized)) return "#171713";
+
+  const channels = [0, 2, 4].map((offset) => {
+    const channel = Number.parseInt(normalized.slice(offset, offset + 2), 16) / 255;
+    return channel <= 0.04045 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4;
+  });
+  const luminance = channels[0] * 0.2126 + channels[1] * 0.7152 + channels[2] * 0.0722;
+
+  return luminance > 0.18 ? "#171713" : "#fffaf0";
 }
 
 function PortfolioWorkCard({ project }: { project: Project }) {
@@ -320,7 +857,7 @@ function ProjectCaption({
       <div className="min-w-0">
         <h3
           lang={titleLang}
-          className={`text-balance text-[clamp(1.08rem,1.35vw,1.35rem)] font-semibold leading-[1.05] tracking-[-.02em] ${titleLang === "ko" ? "font-ko-sans" : ""}`}
+          className={`text-balance break-keep text-[20px] font-semibold leading-[1.05] tracking-[-.025em] sm:text-[clamp(24px,1.7vw,30px)] ${titleLang === "ko" ? "font-ko-sans" : ""}`}
         >
           {title}
         </h3>

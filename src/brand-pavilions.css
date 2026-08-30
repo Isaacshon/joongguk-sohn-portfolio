@@ -1908,3 +1908,769 @@
     transition: none !important;
   }
 }
+
+/* Brand-specific chapter choreography ------------------------------------- */
+
+.brand-pavilion__chapter-links {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: none;
+}
+
+.brand-pavilion__chapter-links::-webkit-scrollbar {
+  display: none;
+}
+
+.brand-pavilion__section-detail {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(0.75rem, 1.5cqw, 1.5rem);
+}
+
+.brand-pavilion__section-detail > span:first-child {
+  max-width: 32ch;
+  text-wrap: balance;
+}
+
+.brand-pavilion__section-detail .brand-pavilion__official-source {
+  flex: 0 0 auto;
+}
+
+.brand-pavilion__chapters {
+  min-width: 0;
+}
+
+.brand-pavilion__structural-module {
+  position: relative;
+  scroll-margin-top: calc(4.05rem + env(safe-area-inset-top, 0px));
+  overflow: hidden;
+  padding-block: clamp(4rem, 8cqw, 8rem);
+}
+
+.brand-pavilion__structural-module :where(h2, h3, p) {
+  min-width: 0;
+  margin: 0;
+}
+
+.brand-pavilion__structural-module :where(h2, h3) {
+  overflow-wrap: normal;
+  word-break: keep-all;
+  text-wrap: balance;
+}
+
+.brand-pavilion__structural-module h2 {
+  max-width: 17ch;
+  font-family: var(--pavilion-accent-font);
+  font-size: clamp(2.35rem, 5.4cqw, 6rem);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 0.92;
+}
+
+.brand-pavilion__structural-module p {
+  text-wrap: pretty;
+}
+
+/* H&M / second-life tag + circular retail rack */
+
+.brand-pavilion__structural-module[data-brand-module="hm"] {
+  background: #fffaf7;
+  color: #111;
+}
+
+.hm-second-life-tag {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(20rem, 1.18fr);
+  align-items: stretch;
+}
+
+.hm-second-life-tag__image {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.hm-second-life-tag__image [data-project-media] {
+  height: 100%;
+}
+
+.hm-second-life-tag__label {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(2rem, 4cqw, 4rem);
+  padding: clamp(1.5rem, 4cqw, 4.5rem);
+  background: #e50010;
+  color: #fff;
+}
+
+.hm-second-life-tag__mark {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.hm-second-life-tag__mark .brand-mark {
+  width: clamp(3rem, 6cqw, 5.5rem);
+}
+
+.hm-second-life-tag__mark > span {
+  max-width: 24ch;
+  text-align: right;
+}
+
+.hm-second-life-tag__label h2,
+.hm-circular-rack h2 {
+  max-width: 13ch;
+  font-family: "Archivo Black", "Arial Black", sans-serif;
+  font-size: clamp(2.6rem, 5.7cqw, 6.4rem);
+  font-weight: 400;
+  letter-spacing: -0.065em;
+  line-height: 0.88;
+}
+
+.hm-second-life-tag__label ol {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid currentColor;
+  list-style: none;
+}
+
+.hm-second-life-tag__label li {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 1rem;
+  padding-block: 0.8rem;
+  border-bottom: 1px solid currentColor;
+}
+
+.hm-second-life-tag__label li::after {
+  width: 0.75rem;
+  height: 0.75rem;
+  border: 1px solid currentColor;
+  content: "";
+}
+
+.hm-second-life-tag__label li[data-current="true"]::after {
+  background: currentColor;
+}
+
+.hm-second-life-tag__label li strong {
+  font-size: clamp(1.05rem, 1.5cqw, 1.45rem);
+}
+
+.hm-second-life-tag__label > p {
+  max-width: 48ch;
+  font-size: clamp(0.84rem, 1.05cqw, 1rem);
+  line-height: 1.6;
+}
+
+.brand-pavilion__structural-module[data-module="circular-retail-rack"] {
+  padding-block: 0;
+  background: #e50010;
+  color: #fff;
+}
+
+.brand-pavilion__structural-module[data-module="circular-retail-rack"] .pavilion-shell {
+  width: 100%;
+}
+
+.hm-circular-rack {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+.hm-circular-rack > header {
+  grid-column: 1 / 8;
+  padding: clamp(2rem, 5cqw, 6rem);
+}
+
+.hm-circular-rack > header > span {
+  display: block;
+  margin-bottom: clamp(2rem, 4cqw, 4rem);
+}
+
+.hm-circular-rack__stages {
+  display: grid;
+  grid-column: 8 / -1;
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  border-left: 1px solid currentColor;
+}
+
+.hm-circular-rack__stages article {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 3rem minmax(8rem, 0.6fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 1rem;
+  padding: clamp(1.25rem, 2.3cqw, 2.5rem);
+  border-bottom: 1px solid currentColor;
+}
+
+.hm-circular-rack__stages article:last-child {
+  border-bottom: 0;
+}
+
+.hm-circular-rack__stages strong {
+  font-size: clamp(1.1rem, 1.65cqw, 1.6rem);
+  line-height: 1;
+  text-wrap: balance;
+}
+
+.hm-circular-rack__stages p {
+  max-width: 36ch;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  opacity: 0.78;
+}
+
+.hm-circular-rack > [data-project-media] {
+  grid-column: 1 / -1;
+  border-top: 1px solid currentColor;
+}
+
+/* ZARA / negative-space lookbook + air-gap window */
+
+.brand-pavilion__structural-module[data-brand-module="zara"] {
+  background: #fff;
+  color: #050505;
+}
+
+.zara-negative-space {
+  display: grid;
+  min-height: min(58rem, 82svh);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: center;
+}
+
+.zara-negative-space__image {
+  grid-column: 1 / 8;
+  align-self: stretch;
+  overflow: hidden;
+}
+
+.zara-negative-space__image [data-project-media] {
+  height: 100%;
+}
+
+.zara-negative-space__copy {
+  display: flex;
+  grid-column: 9 / -1;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: clamp(1.5rem, 3.2cqw, 3.5rem);
+  padding-block: 4rem;
+}
+
+.zara-negative-space__copy .brand-mark {
+  width: min(100%, 15rem);
+}
+
+.zara-negative-space__copy h2 {
+  max-width: 8ch;
+  font-family: var(--pavilion-display);
+  font-size: clamp(3.4rem, 7.2cqw, 8.2rem);
+  font-weight: 400;
+  line-height: 0.8;
+}
+
+.zara-negative-space__copy > p:not(.pavilion-meta) {
+  max-width: 38ch;
+  font-size: clamp(0.9rem, 1.1cqw, 1.05rem);
+  line-height: 1.65;
+}
+
+.zara-negative-space__copy dl {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  margin: auto 0 0;
+  border-top: 1px solid currentColor;
+}
+
+.zara-negative-space__copy dl > div {
+  padding-block: 1rem;
+}
+
+.zara-negative-space__copy dl > div + div {
+  padding-left: 1rem;
+  border-left: 1px solid currentColor;
+}
+
+.zara-negative-space__copy dd {
+  margin: 0.4rem 0 0;
+  font-size: clamp(1.3rem, 2cqw, 2rem);
+}
+
+.brand-pavilion__structural-module[data-module="air-gap-window"] {
+  padding-block: clamp(6rem, 12cqw, 13rem);
+}
+
+.zara-air-gap__header {
+  display: grid;
+  grid-template-columns: 0.36fr minmax(0, 0.64fr);
+  gap: clamp(2rem, 6cqw, 7rem);
+  align-items: end;
+  margin-bottom: clamp(4rem, 8cqw, 9rem);
+}
+
+.zara-air-gap__header h2 {
+  justify-self: end;
+}
+
+.zara-air-gap {
+  display: grid;
+  grid-template-columns: minmax(0, 0.46fr) minmax(0, 0.46fr);
+  justify-content: space-between;
+  gap: 8%;
+}
+
+.zara-air-gap figure {
+  min-width: 0;
+  margin: 0;
+}
+
+.zara-air-gap figure[data-plane="2"] {
+  margin-top: clamp(5rem, 11cqw, 12rem);
+}
+
+.zara-air-gap figcaption {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid currentColor;
+}
+
+.zara-air-gap figcaption strong {
+  max-width: 24ch;
+  justify-self: end;
+  font-size: clamp(1rem, 1.3cqw, 1.25rem);
+  text-align: right;
+  text-wrap: balance;
+}
+
+/* UNIQLO / comfort-state matrix + feedback loop */
+
+.brand-pavilion__structural-module[data-brand-module="uniqlo"] {
+  background-color: #f7f7f5;
+  background-image:
+    linear-gradient(#d9d9d9 1px, transparent 1px),
+    linear-gradient(90deg, #d9d9d9 1px, transparent 1px);
+  background-size: clamp(2rem, 4cqw, 4rem) clamp(2rem, 4cqw, 4rem);
+  color: #111;
+}
+
+.uniqlo-comfort-matrix > header {
+  display: grid;
+  grid-template-columns: minmax(6rem, 0.2fr) minmax(0, 0.8fr);
+  align-items: start;
+  gap: clamp(2rem, 5cqw, 6rem);
+  margin-bottom: clamp(3rem, 6cqw, 6rem);
+}
+
+.uniqlo-comfort-matrix > header .brand-mark {
+  width: clamp(6rem, 12cqw, 11rem);
+}
+
+.uniqlo-comfort-matrix h2,
+.uniqlo-feedback-loop h2 {
+  max-width: 16ch;
+  font-family: "Noto Sans JP", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(2.5rem, 5.2cqw, 5.8rem);
+  font-weight: 700;
+  letter-spacing: -0.065em;
+  line-height: 0.92;
+}
+
+.uniqlo-comfort-matrix__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid #111;
+  border-left: 1px solid #111;
+  background: #fff;
+}
+
+.uniqlo-comfort-matrix__grid article {
+  display: flex;
+  min-width: 0;
+  min-height: clamp(18rem, 24cqw, 25rem);
+  flex-direction: column;
+  gap: 1rem;
+  padding: clamp(1rem, 2cqw, 2rem);
+  border-right: 1px solid #111;
+  border-bottom: 1px solid #111;
+}
+
+.uniqlo-comfort-matrix__grid article > span {
+  padding-bottom: 0.8rem;
+  border-bottom: 0.3rem solid #f00;
+}
+
+.uniqlo-comfort-matrix__grid article strong {
+  max-width: 14ch;
+  margin-top: auto;
+  font-size: clamp(1.45rem, 2.25cqw, 2.35rem);
+  line-height: 0.95;
+  text-wrap: balance;
+}
+
+.uniqlo-comfort-matrix__grid article p {
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.uniqlo-comfort-matrix__grid article small {
+  padding-top: 0.8rem;
+  border-top: 1px solid #111;
+}
+
+.uniqlo-feedback-loop {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(22rem, 1.2fr);
+  border: 1px solid #111;
+  background: #fff;
+}
+
+.uniqlo-feedback-loop__image {
+  min-width: 0;
+  overflow: hidden;
+  border-right: 1px solid #111;
+}
+
+.uniqlo-feedback-loop__image [data-project-media] {
+  height: 100%;
+}
+
+.uniqlo-feedback-loop__steps {
+  padding: clamp(1.5rem, 4cqw, 4.5rem);
+}
+
+.uniqlo-feedback-loop__steps > h2 {
+  margin: clamp(1.25rem, 2.5cqw, 2.5rem) 0 clamp(2rem, 4cqw, 4rem);
+}
+
+.uniqlo-feedback-loop__steps ol {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid #111;
+  list-style: none;
+}
+
+.uniqlo-feedback-loop__steps li {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  gap: 1rem;
+  padding-block: 1rem;
+  border-bottom: 1px solid #111;
+}
+
+.uniqlo-feedback-loop__steps strong {
+  font-size: clamp(1rem, 1.3cqw, 1.25rem);
+}
+
+.uniqlo-feedback-loop__steps p {
+  max-width: 48ch;
+  margin-top: 0.45rem;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+/* PRADA / code-shift table + movable-wall plan */
+
+.brand-pavilion__structural-module[data-brand-module="prada"] {
+  background: #101010;
+  color: #f2f1ed;
+}
+
+.prada-code-shift > header {
+  display: grid;
+  grid-template-columns: minmax(8rem, 0.22fr) minmax(0, 0.78fr);
+  align-items: start;
+  gap: clamp(2rem, 7cqw, 8rem);
+  padding-bottom: clamp(3rem, 6cqw, 6rem);
+  border-bottom: 1px solid #7e8871;
+}
+
+.prada-code-shift > header .prada-plaque {
+  width: clamp(7rem, 14cqw, 13rem);
+  color: #f2f1ed;
+}
+
+.prada-code-shift h2,
+.prada-movable-wall h2 {
+  max-width: 15ch;
+  font-family: var(--pavilion-display);
+  font-size: clamp(2.9rem, 6.4cqw, 7rem);
+  font-weight: 400;
+  line-height: 0.86;
+}
+
+.prada-code-shift__table {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-left: 1px solid #7e8871;
+}
+
+.prada-code-shift__table article {
+  display: flex;
+  min-height: clamp(18rem, 26cqw, 27rem);
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: clamp(1.25rem, 2.6cqw, 2.75rem);
+  border-right: 1px solid #7e8871;
+  border-bottom: 1px solid #7e8871;
+}
+
+.prada-code-shift__table h3 {
+  max-width: 10ch;
+  font-family: var(--pavilion-display);
+  font-size: clamp(2.2rem, 4cqw, 4.5rem);
+  font-weight: 400;
+  line-height: 0.9;
+}
+
+.prada-code-shift__table p {
+  max-width: 24ch;
+  font-size: clamp(0.85rem, 1.05cqw, 1rem);
+  opacity: 0.72;
+}
+
+.prada-code-shift__rule {
+  max-width: 54ch;
+  margin: clamp(2rem, 4cqw, 4rem) 0 0 auto !important;
+  font-size: clamp(1.2rem, 2cqw, 2rem);
+  line-height: 1.28;
+}
+
+.brand-pavilion__structural-module[data-module="movable-wall-plan"] {
+  background: #f2f1ed;
+  color: #1b1b1b;
+}
+
+.prada-movable-wall__image {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.prada-movable-wall__planes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.prada-movable-wall__planes span {
+  position: absolute;
+  top: 8%;
+  bottom: 8%;
+  width: 1px;
+  background: rgba(242, 241, 237, 0.82);
+}
+
+.prada-movable-wall__planes span:nth-child(1) {
+  left: 18%;
+}
+
+.prada-movable-wall__planes span:nth-child(2) {
+  left: 44%;
+  background: #7e8871;
+}
+
+.prada-movable-wall__planes span:nth-child(3) {
+  left: 67%;
+}
+
+.prada-movable-wall__planes span:nth-child(4) {
+  left: 84%;
+}
+
+.prada-movable-wall__legend {
+  display: grid;
+  grid-template-columns: minmax(0, 0.7fr) minmax(18rem, 0.3fr);
+  gap: clamp(2rem, 6cqw, 7rem);
+  padding-top: clamp(2rem, 4cqw, 4rem);
+}
+
+.prada-movable-wall__legend h2 {
+  margin-top: 1rem;
+}
+
+.prada-movable-wall__legend ol {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid currentColor;
+  list-style: none;
+}
+
+.prada-movable-wall__legend li {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  gap: 1rem;
+  padding-block: 0.9rem;
+  border-bottom: 1px solid currentColor;
+}
+
+.prada-movable-wall__legend li strong {
+  font-size: clamp(0.95rem, 1.15cqw, 1.1rem);
+  text-wrap: balance;
+}
+
+@container (max-width: 72rem) {
+  .hm-second-life-tag,
+  .uniqlo-feedback-loop {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hm-circular-rack > header,
+  .hm-circular-rack__stages {
+    grid-column: 1 / -1;
+  }
+
+  .hm-circular-rack__stages {
+    border-top: 1px solid currentColor;
+    border-left: 0;
+  }
+
+  .uniqlo-comfort-matrix__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@container (max-width: 52rem) {
+  .brand-pavilion__section-detail {
+    display: none;
+  }
+
+  .brand-pavilion__structural-module {
+    padding-block: 4rem;
+  }
+
+  .hm-second-life-tag,
+  .uniqlo-feedback-loop,
+  .zara-negative-space,
+  .prada-code-shift > header,
+  .prada-movable-wall__legend,
+  .uniqlo-comfort-matrix > header,
+  .zara-air-gap__header {
+    grid-template-columns: 1fr;
+  }
+
+  .hm-second-life-tag__image,
+  .uniqlo-feedback-loop__image {
+    min-height: 25rem;
+  }
+
+  .hm-circular-rack__stages article {
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+  }
+
+  .hm-circular-rack__stages article p {
+    grid-column: 2;
+  }
+
+  .zara-negative-space {
+    min-height: 0;
+  }
+
+  .zara-negative-space__image,
+  .zara-negative-space__copy {
+    grid-column: 1 / -1;
+  }
+
+  .zara-negative-space__image {
+    min-height: 34rem;
+  }
+
+  .zara-negative-space__copy {
+    padding-block: 3rem 0;
+  }
+
+  .zara-air-gap {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+
+  .zara-air-gap figure[data-plane="2"] {
+    width: 78%;
+    margin-top: 0;
+    margin-left: auto;
+  }
+
+  .uniqlo-comfort-matrix__grid,
+  .prada-code-shift__table {
+    grid-template-columns: 1fr;
+  }
+
+  .uniqlo-comfort-matrix__grid article,
+  .prada-code-shift__table article {
+    min-height: 14rem;
+  }
+
+  .uniqlo-feedback-loop__image {
+    border-right: 0;
+    border-bottom: 1px solid #111;
+  }
+}
+
+@container (max-width: 30rem) {
+  .brand-pavilion__structural-module h2,
+  .hm-second-life-tag__label h2,
+  .hm-circular-rack h2,
+  .uniqlo-comfort-matrix h2,
+  .uniqlo-feedback-loop h2,
+  .prada-code-shift h2,
+  .prada-movable-wall h2 {
+    max-width: 100%;
+    font-size: clamp(2.15rem, 10cqw, 3rem);
+    line-height: 0.96;
+  }
+
+  .zara-negative-space__copy h2 {
+    max-width: 100%;
+    font-size: clamp(3rem, 15cqw, 4.5rem);
+  }
+
+  .hm-second-life-tag__label,
+  .uniqlo-feedback-loop__steps {
+    padding: 1.25rem;
+  }
+
+  .hm-second-life-tag__mark {
+    flex-direction: column;
+  }
+
+  .hm-second-life-tag__mark > span {
+    text-align: left;
+  }
+
+  .hm-circular-rack > header {
+    padding: 2rem 1rem;
+  }
+
+  .uniqlo-comfort-matrix__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .prada-code-shift__table h3 {
+    font-size: clamp(2rem, 11cqw, 3.2rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-pavilion__structural-module *,
+  .brand-pavilion__structural-module *::before,
+  .brand-pavilion__structural-module *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}

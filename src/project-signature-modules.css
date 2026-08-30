@@ -1,0 +1,1095 @@
+.project-signature-boundary {
+  --signature-line: color-mix(in srgb, var(--signature-ink) 28%, transparent);
+  --signature-muted: color-mix(in srgb, var(--signature-ink) 68%, transparent);
+  container-name: project-signature;
+  container-type: inline-size;
+  inline-size: 100%;
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  color: var(--signature-ink);
+  background: var(--signature-paper);
+  overflow: clip;
+}
+
+.project-signature-boundary,
+.project-signature-boundary * {
+  box-sizing: border-box;
+  min-inline-size: 0;
+}
+
+.project-signature {
+  inline-size: 100%;
+  max-inline-size: 100%;
+  margin: 0;
+  padding: clamp(1rem, 4.2cqi, 4.5rem);
+  font-family: var(--project-body-font, "Pretendard Variable", "Malgun Gothic", sans-serif);
+  font-size: clamp(0.82rem, 1.15cqi, 1rem);
+  line-height: 1.48;
+  overflow: clip;
+}
+
+.project-signature :where(h3, p, blockquote, figure, figcaption, ol, ul, li, dl, dt, dd) {
+  margin: 0;
+}
+
+.project-signature :where(h3, strong, blockquote) {
+  overflow-wrap: normal;
+  word-break: keep-all;
+  hyphens: none;
+}
+
+.project-signature :where(p, figcaption, dd, li) {
+  overflow-wrap: break-word;
+  word-break: normal;
+  text-wrap: pretty;
+}
+
+.signature-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.55rem 1rem;
+  align-items: start;
+  padding-block-end: clamp(1rem, 2.4cqi, 2rem);
+  border-block-end: 1px solid var(--signature-line);
+}
+
+.signature-heading > p,
+.signature-heading > span,
+.signature-figure figcaption,
+.project-signature figure > figcaption {
+  color: var(--signature-muted);
+  font-size: clamp(0.64rem, 0.8cqi, 0.76rem);
+  font-weight: 650;
+  line-height: 1.25;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.signature-heading > span {
+  grid-column: 2;
+  grid-row: 1;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.signature-heading h3 {
+  grid-column: 1 / -1;
+  max-inline-size: 15ch;
+  color: var(--signature-ink);
+  font-family: var(--project-display-font, inherit);
+  font-size: clamp(2rem, 6.8cqi, 6.8rem);
+  font-weight: 500;
+  line-height: 0.93;
+  text-wrap: balance;
+}
+
+.signature-picture {
+  inline-size: 100%;
+  max-inline-size: 100%;
+  background: color-mix(in srgb, var(--signature-ink) 8%, var(--signature-paper));
+}
+
+.signature-picture img {
+  filter: saturate(0.96) contrast(1.015);
+}
+
+.project-signature figure {
+  min-inline-size: 0;
+}
+
+.project-signature figure > figcaption {
+  padding-block-start: 0.55rem;
+}
+
+/* 01 — two-plate registration */
+.signature-plate__spread {
+  display: grid;
+  gap: clamp(0.8rem, 2cqi, 1.5rem);
+  padding-block: clamp(1.1rem, 3cqi, 3rem);
+}
+
+.signature-plate__proof {
+  align-self: end;
+}
+
+.signature-plate__register {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) minmax(2rem, 10cqi) auto minmax(0, 1fr);
+  gap: 0.65rem;
+  align-items: center;
+  padding-block-start: 0.85rem;
+  border-block-start: 1px solid var(--signature-line);
+  color: var(--signature-muted);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+.signature-plate__register strong {
+  color: var(--signature-ink);
+  font-size: clamp(1rem, 2.2cqi, 1.6rem);
+  font-variant-numeric: tabular-nums;
+}
+
+.signature-plate__register > span[aria-hidden] {
+  block-size: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--signature-a) 0 48%,
+    transparent 48% 52%,
+    var(--signature-b) 52%
+  );
+}
+
+/* 02 — source glyph archive */
+.signature--glyph {
+  display: grid;
+  gap: clamp(1.1rem, 3cqi, 2.5rem);
+}
+
+.signature-glyph__source figcaption {
+  max-inline-size: 46ch;
+  color: var(--signature-muted);
+  font-size: clamp(0.78rem, 1.1cqi, 0.95rem);
+  letter-spacing: 0;
+  line-height: 1.55;
+  text-transform: none;
+}
+
+.signature-glyph__specimens {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-block-start: 1px solid var(--signature-line);
+  border-inline-start: 1px solid var(--signature-line);
+}
+
+.signature-glyph__specimens article {
+  display: grid;
+  min-block-size: clamp(7rem, 22cqi, 14rem);
+  padding: clamp(0.7rem, 2cqi, 1.4rem);
+  border-inline-end: 1px solid var(--signature-line);
+  border-block-end: 1px solid var(--signature-line);
+}
+
+.signature-glyph__specimens span {
+  color: var(--signature-muted);
+  font-size: 0.68rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.signature-glyph__specimens strong {
+  align-self: end;
+  font-family: var(--project-display-font, serif);
+  font-size: clamp(3rem, 11cqi, 9rem);
+  font-weight: 600;
+  line-height: 0.8;
+}
+
+/* 03 — specimen coordinate */
+.signature--coordinate {
+  display: grid;
+  gap: clamp(1rem, 2.8cqi, 2.5rem);
+}
+
+.signature-coordinate__field {
+  position: relative;
+}
+
+.signature-coordinate__field figcaption {
+  display: flex;
+  justify-content: space-between;
+  font-variant-numeric: tabular-nums;
+}
+
+.signature-coordinate__ledger {
+  display: grid;
+  border-block-start: 1px solid var(--signature-line);
+}
+
+.signature-coordinate__ledger > div {
+  display: grid;
+  grid-template-columns: minmax(4.5rem, 0.3fr) minmax(0, 1fr);
+  gap: 1rem;
+  padding-block: 0.85rem;
+  border-block-end: 1px solid var(--signature-line);
+}
+
+.signature-coordinate__ledger dt {
+  color: var(--signature-muted);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.signature-coordinate__ledger dd {
+  max-inline-size: 56ch;
+}
+
+/* 04 — correspondence fold */
+.signature--fold {
+  background: var(--signature-paper);
+}
+
+.signature-fold__sheet {
+  display: grid;
+  gap: 0;
+  margin-block: clamp(1.2rem, 3.5cqi, 3.5rem);
+  border: 1px solid var(--signature-line);
+}
+
+.signature-fold__sheet blockquote {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-block-size: 15rem;
+  padding: clamp(1.1rem, 3cqi, 2.5rem);
+  border-block-start: 1px dashed var(--signature-line);
+}
+
+.signature-fold__sheet blockquote p {
+  font-family: var(--project-display-font, serif);
+  font-size: clamp(1.8rem, 4.2cqi, 3.8rem);
+  line-height: 1.03;
+  text-wrap: balance;
+}
+
+.signature-fold__sheet footer {
+  max-inline-size: 42ch;
+  color: var(--signature-muted);
+  font-size: 0.78rem;
+}
+
+.signature-fold__route,
+.signature-assembly__steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: 0;
+  list-style: none;
+  border-block: 1px solid var(--signature-line);
+}
+
+.signature-fold__route li,
+.signature-assembly__steps li {
+  display: grid;
+  gap: 0.8rem;
+  padding: 0.85rem;
+  border-inline-end: 1px solid var(--signature-line);
+  font-weight: 650;
+}
+
+.signature-fold__route li:last-child,
+.signature-assembly__steps li:last-child {
+  border-inline-end: 0;
+}
+
+.signature-fold__route span,
+.signature-assembly__steps span {
+  color: var(--signature-muted);
+  font-size: 0.68rem;
+}
+
+/* 05 — material pressure */
+.signature--pressure {
+  display: grid;
+  gap: clamp(1rem, 2.8cqi, 2rem);
+}
+
+.signature-pressure__meter {
+  display: grid;
+  grid-template-columns: auto minmax(1rem, 1fr) auto;
+  gap: 0.65rem 1rem;
+  align-items: center;
+  padding-block: 0.8rem;
+  border-block: 1px solid var(--signature-line);
+  color: var(--signature-muted);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.signature-pressure__meter i {
+  block-size: 0.85rem;
+  border-inline: 1px solid var(--signature-ink);
+  background: var(--signature-a);
+}
+
+.signature-pressure__meter strong {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  color: var(--signature-ink);
+  font-family: var(--project-display-font, inherit);
+  font-size: clamp(2.5rem, 8cqi, 7rem);
+  line-height: 0.85;
+  font-variant-numeric: tabular-nums;
+}
+
+.signature-pressure__meter span:last-child {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.signature-pressure__rule {
+  max-inline-size: 34ch;
+  font-family: var(--project-display-font, serif);
+  font-size: clamp(1.35rem, 2.6cqi, 2.4rem);
+  line-height: 1.08;
+}
+
+/* 06 — night aperture */
+.signature-arch__sequence {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.35rem, 1.2cqi, 1rem);
+  align-items: end;
+  padding-block: clamp(1.2rem, 3.5cqi, 3.5rem);
+}
+
+.signature-arch__sequence figure:nth-child(2) {
+  padding-block-end: clamp(1.5rem, 5cqi, 5rem);
+}
+
+.signature-arch__sequence .signature-picture {
+  border-radius: 50% 50% 0 0 / 24% 24% 0 0;
+}
+
+.signature-arch__note {
+  margin-inline-start: auto;
+  max-inline-size: 24ch;
+  font-family: var(--project-display-font, serif);
+  font-size: clamp(1.6rem, 3.8cqi, 3.5rem);
+  line-height: 1;
+  text-align: end;
+  text-wrap: balance;
+}
+
+/* 07 — civic route map */
+.signature--route-map {
+  display: grid;
+  gap: clamp(1rem, 2.8cqi, 2.4rem);
+}
+
+.signature-route-map__stops {
+  display: grid;
+  padding: 0;
+  list-style: none;
+  border-block-start: 2px solid var(--signature-ink);
+}
+
+.signature-route-map__stops li {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  gap: 0.7rem;
+  align-items: baseline;
+  padding-block: 0.8rem;
+  border-block-end: 1px solid var(--signature-line);
+}
+
+.signature-route-map__stops span {
+  color: var(--signature-a);
+  font-size: 0.72rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.signature-route-map__stops strong {
+  font-size: clamp(1rem, 1.8cqi, 1.45rem);
+}
+
+/* 08 — deforming datum */
+.signature--datum {
+  display: grid;
+  gap: clamp(1rem, 3cqi, 2.8rem);
+}
+
+.signature-datum__stage {
+  display: grid;
+  grid-template-columns: 1fr 0.84fr;
+  gap: clamp(0.65rem, 2cqi, 1.6rem);
+  align-items: end;
+}
+
+.signature-datum__stage figure:nth-child(2) {
+  padding-block-end: clamp(1rem, 6cqi, 5rem);
+}
+
+.signature-datum__stage figure:nth-child(2) .signature-picture {
+  border-radius: 42% 58% 46% 54% / 55% 35% 65% 45%;
+}
+
+.signature-datum__baseline {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+  padding-block-start: 0.75rem;
+  border-block-start: 3px solid var(--signature-a);
+}
+
+.signature-datum__baseline span {
+  color: var(--signature-muted);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+}
+
+.signature-datum__baseline strong {
+  font-size: clamp(1rem, 2cqi, 1.6rem);
+  font-weight: 500;
+}
+
+/* 09 — three-channel mixer */
+.signature--mixer {
+  display: grid;
+  gap: clamp(1rem, 2.5cqi, 2rem);
+}
+
+.signature-mixer__channels {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.45rem, 1cqi, 0.8rem);
+  padding: 0;
+  list-style: none;
+}
+
+.signature-mixer__channels li {
+  display: grid;
+  grid-template-rows: auto minmax(4rem, 12cqi) auto;
+  gap: 0.55rem;
+  padding: 0.75rem;
+  border: 1px solid var(--signature-line);
+}
+
+.signature-mixer__channels span {
+  color: var(--signature-muted);
+  font-size: 0.66rem;
+}
+
+.signature-mixer__channels i {
+  inline-size: 0.7rem;
+  block-size: 72%;
+  align-self: center;
+  justify-self: center;
+  background: var(--channel-color);
+}
+
+.signature-mixer__channels strong {
+  font-size: clamp(0.72rem, 1.1cqi, 0.88rem);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* 10 — chromatic beat score */
+.signature-bpm__media {
+  display: grid;
+  gap: clamp(0.7rem, 2cqi, 1.5rem);
+  align-items: end;
+  padding-block: clamp(1.1rem, 3cqi, 2.8rem);
+}
+
+.signature-bpm__beats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding: 0;
+  list-style: none;
+}
+
+.signature-bpm__beats li {
+  display: flex;
+  min-block-size: clamp(5rem, 12cqi, 9rem);
+  padding: 0.65rem;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #11110f;
+  border-inline-end: 1px solid rgb(17 17 15 / 30%);
+}
+
+.signature-bpm__beats span {
+  font-size: 0.62rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.signature-bpm__beats strong {
+  font-size: clamp(0.58rem, 1cqi, 0.78rem);
+  text-transform: uppercase;
+}
+
+/* 11 — westbound journey line */
+.signature--journey {
+  display: grid;
+  gap: clamp(1rem, 2.6cqi, 2.2rem);
+}
+
+.signature-journey__stages {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: 0;
+  list-style: none;
+  border-block-start: 3px solid var(--signature-ink);
+}
+
+.signature-journey__stages li {
+  position: relative;
+  display: grid;
+  gap: 0.6rem;
+  padding-block-start: 1rem;
+  font-weight: 650;
+}
+
+.signature-journey__stages li::before {
+  position: absolute;
+  inset-block-start: -0.48rem;
+  inset-inline-start: 0;
+  inline-size: 0.72rem;
+  block-size: 0.72rem;
+  background: var(--signature-a);
+  border: 2px solid var(--signature-paper);
+  border-radius: 50%;
+  content: "";
+}
+
+.signature-journey__stages span {
+  color: var(--signature-muted);
+  font-size: clamp(0.68rem, 1cqi, 0.82rem);
+}
+
+.signature-journey__rule {
+  justify-self: end;
+  max-inline-size: 36ch;
+  color: var(--signature-muted);
+  text-align: end;
+}
+
+/* 12 — paired tidal datum */
+.signature-tide__pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.65rem, 2cqi, 1.5rem);
+  padding-block: clamp(1.1rem, 3cqi, 2.5rem);
+}
+
+.signature-tide__pair figure:nth-child(2) {
+  padding-block-start: clamp(2rem, 8cqi, 7rem);
+}
+
+.signature-tide__readings {
+  border-block: 1px solid var(--signature-line);
+}
+
+.signature-tide__readings > div {
+  display: grid;
+  grid-template-columns: 4rem minmax(0, 1fr);
+  gap: 1rem;
+  padding-block: 0.8rem;
+  border-block-end: 1px solid var(--signature-line);
+}
+
+.signature-tide__readings > div:last-child {
+  border-block-end: 0;
+}
+
+.signature-tide__readings dt {
+  color: var(--signature-muted);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+}
+
+/* 13 — batch passport */
+.signature-batch__passport {
+  display: grid;
+  gap: clamp(1rem, 3cqi, 2.5rem);
+  margin-block: clamp(1.1rem, 3cqi, 3rem);
+  padding: clamp(0.8rem, 2cqi, 1.5rem);
+  border: 2px solid var(--signature-ink);
+}
+
+.signature-batch__passport dl {
+  align-self: stretch;
+  border-block-start: 1px solid var(--signature-line);
+}
+
+.signature-batch__passport dl > div {
+  display: grid;
+  grid-template-columns: 4rem minmax(0, 1fr);
+  gap: 0.75rem;
+  padding-block: 0.8rem;
+  border-block-end: 1px solid var(--signature-line);
+}
+
+.signature-batch__passport dt {
+  color: var(--signature-muted);
+  font-size: 0.64rem;
+  text-transform: uppercase;
+}
+
+.signature-batch__stamp {
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  margin-inline-start: auto;
+  padding: 0.45rem 0.7rem;
+  color: var(--signature-a);
+  border: 2px solid currentColor;
+  font-size: clamp(0.7rem, 1.2cqi, 0.9rem);
+  font-weight: 800;
+  text-align: center;
+  transform: rotate(-1.5deg);
+}
+
+/* 14 — local circadian dial */
+.signature--dial {
+  display: grid;
+  gap: clamp(1rem, 3cqi, 2.5rem);
+}
+
+.signature-dial__face {
+  position: relative;
+  inline-size: min(100%, 44rem);
+  margin-inline: auto;
+  aspect-ratio: 1;
+  padding: clamp(1.8rem, 5cqi, 4.5rem);
+  border: 1px solid var(--signature-line);
+  border-radius: 50%;
+}
+
+.signature-dial__face .signature-picture {
+  border-radius: 50%;
+}
+
+.signature-dial__face > span {
+  position: absolute;
+  color: var(--signature-muted);
+  font-size: clamp(0.66rem, 1cqi, 0.82rem);
+  font-variant-numeric: tabular-nums;
+}
+
+.signature-dial__face > span:nth-of-type(1) {
+  inset-block-start: 0.6rem;
+  inset-inline-start: 50%;
+}
+.signature-dial__face > span:nth-of-type(2) {
+  inset-block-start: 50%;
+  inset-inline-end: 0.6rem;
+}
+.signature-dial__face > span:nth-of-type(3) {
+  inset-block-end: 0.6rem;
+  inset-inline-start: 50%;
+}
+.signature-dial__face > span:nth-of-type(4) {
+  inset-block-start: 50%;
+  inset-inline-start: 0.6rem;
+}
+
+.signature-dial__reading {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: clamp(1rem, 3cqi, 2.5rem);
+  align-items: end;
+  padding-block-start: 0.8rem;
+  border-block-start: 1px solid var(--signature-line);
+}
+
+.signature-dial__reading strong {
+  font-family: var(--project-display-font, inherit);
+  font-size: clamp(2.8rem, 8cqi, 7rem);
+  font-weight: 500;
+  line-height: 0.82;
+  font-variant-numeric: tabular-nums;
+}
+
+.signature-dial__reading p {
+  max-inline-size: 44ch;
+  color: var(--signature-muted);
+}
+
+/* 15 — repair ledger */
+.signature-repair__evidence {
+  display: grid;
+  gap: clamp(0.7rem, 2cqi, 1.5rem);
+  align-items: end;
+  padding-block: clamp(1.1rem, 3cqi, 2.5rem);
+}
+
+.signature-repair__ledger {
+  padding: 0;
+  list-style: none;
+  border-block-start: 2px solid var(--signature-ink);
+}
+
+.signature-repair__ledger li {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  align-items: baseline;
+  padding-block: 0.8rem;
+  border-block-end: 1px solid var(--signature-line);
+}
+
+.signature-repair__ledger span,
+.signature-repair__ledger em {
+  color: var(--signature-muted);
+  font-size: 0.66rem;
+  font-style: normal;
+  text-transform: uppercase;
+}
+
+/* 16 — live nine-tile grid */
+.signature-tiles__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-block-start: clamp(1rem, 2.5cqi, 2rem);
+  border-block-start: 1px solid var(--signature-line);
+  border-inline-start: 1px solid var(--signature-line);
+}
+
+.signature-tiles__grid > article,
+.signature-tiles__grid > .signature-picture {
+  aspect-ratio: 1;
+  border-inline-end: 1px solid var(--signature-line);
+  border-block-end: 1px solid var(--signature-line);
+}
+
+.signature-tiles__grid > article {
+  display: flex;
+  padding: clamp(0.55rem, 1.5cqi, 1.1rem);
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--signature-paper);
+}
+
+.signature-tiles__grid article:nth-of-type(2) {
+  background: var(--signature-a);
+  color: #11110f;
+}
+
+.signature-tiles__grid article:nth-of-type(4) {
+  background: var(--signature-b);
+}
+
+.signature-tiles__grid article span {
+  font-size: 0.6rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.signature-tiles__grid article strong {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: clamp(0.62rem, 1.25cqi, 0.9rem);
+  line-height: 1.12;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+/* 17 — evidence-led composition */
+.signature--evidence {
+  display: grid;
+  gap: clamp(1rem, 2.6cqi, 2rem);
+}
+
+.signature-evidence__claim {
+  padding: clamp(1rem, 2.7cqi, 2rem);
+  border-inline-start: 4px solid var(--signature-a);
+}
+
+.signature-evidence__claim > span {
+  color: var(--signature-muted);
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+}
+
+.signature-evidence__claim blockquote {
+  max-inline-size: 20ch;
+  padding-block: 0.8rem 1.6rem;
+  font-family: var(--project-display-font, serif);
+  font-size: clamp(1.8rem, 4.8cqi, 4.4rem);
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.signature-evidence__claim p {
+  max-inline-size: 48ch;
+  color: var(--signature-muted);
+}
+
+/* 18 — visible assembly path */
+.signature-assembly__images {
+  display: grid;
+  gap: clamp(0.6rem, 1.8cqi, 1.4rem);
+  align-items: end;
+  padding-block: clamp(1.1rem, 3cqi, 3rem);
+}
+
+.signature-assembly__images > :nth-child(2) {
+  margin-block-end: clamp(1rem, 5cqi, 4rem);
+}
+
+/* 19 — paired exchange ledger */
+.signature-paired__columns {
+  display: grid;
+  gap: clamp(1rem, 3cqi, 2.6rem);
+  padding-block: clamp(1rem, 3cqi, 2.5rem);
+}
+
+.signature-paired__columns > article {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.signature-paired__columns article > p {
+  max-inline-size: 36ch;
+  color: var(--signature-muted);
+}
+
+.signature-paired__equation {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
+  padding-block: 0.75rem;
+  border-block: 1px solid var(--signature-line);
+  text-align: center;
+}
+
+.signature-paired__equation span {
+  display: grid;
+  inline-size: 2rem;
+  block-size: 2rem;
+  place-items: center;
+  background: var(--signature-a);
+  color: #11110f;
+  border-radius: 50%;
+  font-weight: 800;
+}
+
+/* 20 — mineral material passport */
+.signature-material-passport__macro {
+  margin-block: clamp(1rem, 3cqi, 2.5rem);
+}
+
+.signature-material-passport__record {
+  display: grid;
+  gap: clamp(1rem, 2.5cqi, 2rem);
+  padding-block-start: clamp(1rem, 2.5cqi, 2rem);
+  border-block-start: 2px solid var(--signature-ink);
+}
+
+.signature-material-passport__record dl {
+  border-block-start: 1px solid var(--signature-line);
+}
+
+.signature-material-passport__record dl > div {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  gap: 0.8rem;
+  padding-block: 0.72rem;
+  border-block-end: 1px solid var(--signature-line);
+}
+
+.signature-material-passport__record dt {
+  color: var(--signature-muted);
+  font-size: 0.64rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.signature-material-passport__record > p {
+  max-inline-size: 42ch;
+  align-self: end;
+  font-family: var(--project-display-font, serif);
+  font-size: clamp(1.2rem, 2.3cqi, 2rem);
+  line-height: 1.1;
+}
+
+@container project-signature (min-width: 44rem) {
+  .signature-heading h3 {
+    grid-column: 1;
+  }
+
+  .signature-plate__spread {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  }
+
+  .signature-plate__proof {
+    padding-block-start: 20%;
+  }
+
+  .signature--glyph {
+    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  }
+
+  .signature--glyph > .signature-heading {
+    grid-column: 1 / -1;
+  }
+
+  .signature-glyph__specimens {
+    align-self: stretch;
+  }
+
+  .signature--coordinate {
+    grid-template-columns: minmax(0, 1.5fr) minmax(14rem, 0.5fr);
+  }
+
+  .signature--coordinate > .signature-heading {
+    grid-column: 1 / -1;
+  }
+
+  .signature-coordinate__ledger {
+    align-self: end;
+  }
+
+  .signature-coordinate__ledger > div {
+    grid-template-columns: 1fr;
+  }
+
+  .signature-fold__sheet {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .signature-fold__sheet blockquote {
+    border-block-start: 0;
+    border-inline-start: 1px dashed var(--signature-line);
+  }
+
+  .signature--pressure {
+    grid-template-columns: minmax(0, 1.42fr) minmax(12rem, 0.58fr);
+  }
+
+  .signature--pressure > .signature-heading,
+  .signature-pressure__rule {
+    grid-column: 1 / -1;
+  }
+
+  .signature-pressure__meter {
+    align-self: stretch;
+  }
+
+  .signature--route-map {
+    grid-template-columns: minmax(0, 1.4fr) minmax(14rem, 0.6fr);
+  }
+
+  .signature--route-map > .signature-heading {
+    grid-column: 1 / -1;
+  }
+
+  .signature-route-map__stops {
+    align-self: end;
+  }
+
+  .signature--datum {
+    grid-template-columns: minmax(0, 1.45fr) minmax(12rem, 0.55fr);
+  }
+
+  .signature--datum > .signature-heading {
+    grid-column: 1 / -1;
+  }
+
+  .signature-datum__baseline {
+    align-self: end;
+  }
+
+  .signature--mixer {
+    grid-template-columns: minmax(0, 1.5fr) minmax(12rem, 0.5fr);
+  }
+
+  .signature--mixer > .signature-heading {
+    grid-column: 1 / -1;
+  }
+
+  .signature-bpm__media {
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  }
+
+  .signature-batch__passport {
+    grid-template-columns: minmax(0, 1.25fr) minmax(14rem, 0.75fr);
+  }
+
+  .signature-repair__evidence {
+    grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  }
+
+  .signature--evidence {
+    grid-template-columns: minmax(14rem, 0.72fr) minmax(0, 1.28fr) minmax(10rem, 0.55fr);
+  }
+
+  .signature--evidence > .signature-heading {
+    grid-column: 1 / -1;
+  }
+
+  .signature-evidence__context {
+    padding-block-start: 24%;
+  }
+
+  .signature-assembly__images {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.7fr) minmax(0, 1fr);
+  }
+
+  .signature-paired__columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .signature-paired__columns > article:nth-child(2) {
+    padding-block-start: clamp(2rem, 8cqi, 7rem);
+  }
+
+  .signature-material-passport__record {
+    grid-template-columns: minmax(0, 0.62fr) minmax(12rem, 0.55fr) minmax(14rem, 0.83fr);
+  }
+}
+
+@container project-signature (min-width: 78rem) {
+  .project-signature {
+    padding: clamp(3rem, 4.5cqi, 5.5rem);
+  }
+
+  .signature-heading h3 {
+    max-inline-size: 13ch;
+  }
+
+  .signature-glyph__source {
+    padding-inline-start: 10%;
+  }
+
+  .signature-arch__sequence {
+    padding-inline: 6%;
+  }
+
+  .signature-journey__window {
+    padding-inline: 5%;
+  }
+}
+
+@media (max-width: 24.375rem) {
+  .project-signature {
+    padding: 1rem;
+  }
+
+  .signature-heading {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .signature-heading > span {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .signature-heading h3 {
+    grid-column: 1;
+  }
+
+  .signature-plate__register {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+
+  .signature-plate__register > span[aria-hidden] {
+    display: none;
+  }
+
+  .signature-mixer__channels li {
+    padding: 0.5rem;
+  }
+
+  .signature-repair__ledger li {
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+  }
+
+  .signature-repair__ledger em {
+    grid-column: 2;
+  }
+
+  .signature-dial__reading {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

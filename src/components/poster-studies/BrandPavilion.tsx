@@ -1,28 +1,26 @@
 import { Link } from "@tanstack/react-router";
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 import { MatLayout } from "@/components/MatLayout";
 import { BrandMark, PradaPlaque, type BrandCode } from "@/components/poster-studies/BrandMark";
 import { DesignProjectCover } from "@/components/poster-studies/DesignProjectCover";
 import { ProjectPicture } from "@/components/poster-studies/ProjectPicture";
+import {
+  brandPavilionChoreographies,
+  type BrandPavilionChapter,
+  type PavilionChapterKey,
+  type PavilionStructuralModuleKey,
+} from "@/lib/brand-pavilion-choreography";
 import { getDesignProjectArtDirection } from "@/lib/design-project-art-direction";
 import {
   getBrandPavilion,
   type BrandPavilionImage,
+  type BrandPavilionProfile,
   type BrandPavilionSource,
 } from "@/lib/brand-pavilions";
 import { designProjects, type DesignProject } from "@/lib/design-projects";
 
 type PavilionStyle = CSSProperties & Record<`--${string}`, string | number>;
-
-const pavilionChapters = [
-  { href: "#philosophy", number: "01", label: "Philosophy" },
-  { href: "#values", number: "02", label: "Values" },
-  { href: "#needs", number: "03", label: "Needs" },
-  { href: "#principles", number: "04", label: "Method" },
-  { href: "#design", number: "05", label: "Design" },
-  { href: "#world", number: "06", label: "World" },
-] as const;
 
 const pavilionFigureCodes: Record<BrandPavilionImage["slot"], string> = {
   hero: "H",
@@ -63,6 +61,7 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
     thesis: project.statement,
     codes: pavilion.design.keywords.slice(0, 3),
   };
+  const choreography = brandPavilionChoreographies[pavilion.code];
   const style: PavilionStyle = {
     "--pavilion-paper": direction.surfaces.paper,
     "--pavilion-ink": direction.surfaces.ink,
@@ -128,7 +127,7 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
             <div className="brand-pavilion__hero-thesis">
               <p className="brand-pavilion__hero-statement">{worldview.thesis}</p>
               <p className="brand-pavilion__hero-summary">{pavilion.hero.summary}</p>
-              <a href="#philosophy" className="brand-pavilion__enter pavilion-meta">
+              <a href={`#${choreography[0].id}`} className="brand-pavilion__enter pavilion-meta">
                 Enter the brand world <span aria-hidden="true">↘</span>
               </a>
             </div>
@@ -142,9 +141,9 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
               <span>Brand pavilion</span>
             </a>
             <div className="brand-pavilion__chapter-links">
-              {pavilionChapters.map((chapter) => (
-                <a key={chapter.href} href={chapter.href} className="pavilion-meta">
-                  <span>{chapter.number}</span> {chapter.label}
+              {choreography.map((chapter, index) => (
+                <a key={chapter.id} href={`#${chapter.id}`} className="pavilion-meta">
+                  <span>{String(index + 1).padStart(2, "0")}</span> {chapter.label}
                 </a>
               ))}
             </div>
@@ -158,230 +157,18 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
           summary={pavilion.hero.summary}
         />
 
-        <section className="brand-pavilion__section brand-pavilion__philosophy" id="philosophy">
-          <div className="pavilion-shell">
-            <PavilionSectionHeader
-              code={pavilion.code}
-              number="01"
-              label="Philosophy"
-              detail="Why the brand exists"
+        <div className="brand-pavilion__chapters" data-choreography={pavilion.code}>
+          {choreography.map((chapter, index) => (
+            <PavilionChapterScene
+              key={chapter.id}
+              chapter={chapter}
+              number={String(index + 1).padStart(2, "0")}
+              pavilion={pavilion}
+              project={project}
               worldview={worldview}
             />
-            <PavilionScopeNote
-              label="Official brand evidence"
-              note="Paraphrased from the brand’s published materials"
-              source={pavilion.philosophy.source}
-            />
-            <div className="brand-pavilion__philosophy-grid">
-              <div className="brand-pavilion__philosophy-copy">
-                <p className="brand-pavilion__section-kicker pavilion-meta">
-                  {pavilion.philosophy.label}
-                </p>
-                <h2>{pavilion.philosophy.title}</h2>
-                <p>{pavilion.philosophy.body}</p>
-              </div>
-              <PavilionFigure project={project} image={pavilion.philosophy.image} />
-            </div>
-          </div>
-        </section>
-
-        <section className="brand-pavilion__section brand-pavilion__values" id="values">
-          <div className="pavilion-shell">
-            <PavilionSectionHeader
-              code={pavilion.code}
-              number="02"
-              label="Values"
-              detail="What stays constant"
-              worldview={worldview}
-            />
-            <PavilionScopeNote
-              label="Official brand evidence"
-              note="Published priorities stated in official materials"
-              source={pavilion.valuesSource}
-            />
-            <div className="brand-pavilion__value-ledger">
-              {pavilion.values.map((value) => (
-                <article key={value.number} className="brand-pavilion__value">
-                  <span className="brand-pavilion__value-number pavilion-meta">{value.number}</span>
-                  <h3>{value.title}</h3>
-                  <p>{value.body}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="brand-pavilion__section brand-pavilion__needs" id="needs">
-          <div className="pavilion-shell">
-            <PavilionSectionHeader
-              code={pavilion.code}
-              number="03"
-              label="Audience needs"
-              detail="What the experience must solve"
-              worldview={worldview}
-              inverse
-            />
-            <PavilionScopeNote
-              label="Official brand evidence"
-              note="Customer priorities evidenced in published materials"
-              source={pavilion.needs.source}
-              inverse
-            />
-            <div className="brand-pavilion__needs-grid">
-              <div className="brand-pavilion__needs-copy">
-                <h2>{pavilion.needs.title}</h2>
-                <p className="brand-pavilion__needs-intro">{pavilion.needs.intro}</p>
-                <ol className="brand-pavilion__need-list">
-                  {pavilion.needs.items.map((need, index) => (
-                    <li key={need.title}>
-                      <span className="pavilion-meta">{String(index + 1).padStart(2, "0")}</span>
-                      <div>
-                        <h3>{need.title}</h3>
-                        <p>{need.body}</p>
-                      </div>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-              <div className="brand-pavilion__needs-images">
-                {pavilion.needs.images.map((image) => (
-                  <PavilionFigure key={image.slot} project={project} image={image} />
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="brand-pavilion__section brand-pavilion__principles" id="principles">
-          <div className="pavilion-shell">
-            <PavilionSectionHeader
-              code={pavilion.code}
-              number="04"
-              label={pavilion.principles.label}
-              detail="How ideas become decisions"
-              worldview={worldview}
-            />
-            <PavilionScopeNote
-              label="Official brand evidence"
-              note="Published design and product-development principles"
-              source={pavilion.principles.source}
-            />
-            <div className="brand-pavilion__principles-intro">
-              <h2>{pavilion.principles.title}</h2>
-              <p>{pavilion.principles.intro}</p>
-            </div>
-            <div className="brand-pavilion__principles-stage">
-              <PavilionFigure project={project} image={pavilion.principles.image} />
-              <ol className="brand-pavilion__principle-list">
-                {pavilion.principles.items.map((principle) => (
-                  <li key={principle.key}>
-                    <span className="brand-pavilion__principle-key">{principle.key}</span>
-                    <div>
-                      <h3>{principle.title}</h3>
-                      <p>{principle.body}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          </div>
-        </section>
-
-        <section className="brand-pavilion__section brand-pavilion__design" id="design">
-          <div className="pavilion-shell">
-            <PavilionSectionHeader
-              code={pavilion.code}
-              number="05"
-              label="Design code"
-              detail="Type, colour, material, space"
-              worldview={worldview}
-            />
-            <PavilionScopeNote
-              label="Independent virtual concept response"
-              note="Original art direction, copy, and system design by Isaac Sohn"
-            />
-            <div className="brand-pavilion__design-heading">
-              <h2>{pavilion.design.title}</h2>
-              <p>{pavilion.design.intro}</p>
-            </div>
-
-            <PavilionFigure project={project} image={pavilion.design.image} featured />
-
-            <div className="brand-pavilion__design-system">
-              <div className="brand-pavilion__type-specimen">
-                <p className="pavilion-meta">Official identifier / voice</p>
-                <BrandMark code={pavilion.code} decorative />
-                <span>{worldview.thesis}</span>
-              </div>
-              <div
-                className="brand-pavilion__palette"
-                aria-label={`${project.title} colour system`}
-              >
-                <p className="pavilion-meta">Colour / role</p>
-                <div>
-                  {project.palette.map((swatch) => (
-                    <span key={swatch.name} style={{ backgroundColor: swatch.value }}>
-                      <b>{swatch.name}</b>
-                      <small>{swatch.value}</small>
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <div className="brand-pavilion__materials">
-                <p className="pavilion-meta">Material / behaviour</p>
-                <ol>
-                  {project.materials.map((material, index) => (
-                    <li key={material}>
-                      <span>{material}</span>
-                      <small className="pavilion-meta">0{index + 1}</small>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            </div>
-
-            <div className="brand-pavilion__keyword-rail" aria-label="Design characteristics">
-              {pavilion.design.keywords.map((keyword, index) => (
-                <span key={keyword}>
-                  {keyword}
-                  <small className="pavilion-meta">0{index + 1}</small>
-                </span>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="brand-pavilion__section brand-pavilion__world" id="world">
-          <div className="pavilion-shell">
-            <PavilionSectionHeader
-              code={pavilion.code}
-              number="06"
-              label="Brand world"
-              detail="The system in use"
-              worldview={worldview}
-              inverse
-            />
-            <PavilionScopeNote
-              label="Independent virtual concept response"
-              note="Uncommissioned imagery and applications created for portfolio study"
-              inverse
-            />
-            <div className="brand-pavilion__world-intro">
-              <h2>{pavilion.world.title}</h2>
-              <p>{pavilion.world.intro}</p>
-            </div>
-            <div className="brand-pavilion__world-grid">
-              {pavilion.world.scenes.map((scene, index) => (
-                <PavilionFigure
-                  key={scene.slot}
-                  project={project}
-                  image={scene}
-                  sequence={index + 1}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
+          ))}
+        </div>
 
         <BrandWorldviewClosing
           code={pavilion.code}
@@ -439,6 +226,624 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
   );
 }
 
+type PavilionChapterSceneProps = {
+  chapter: BrandPavilionChapter;
+  number: string;
+  pavilion: BrandPavilionProfile;
+  project: DesignProject;
+  worldview: BrandWorldview;
+};
+
+function PavilionChapterScene({
+  chapter,
+  number,
+  pavilion,
+  project,
+  worldview,
+}: PavilionChapterSceneProps) {
+  const scene = renderChapterScene({ chapter, number, pavilion, project, worldview });
+
+  return (
+    <>
+      {scene}
+      {chapter.moduleAfter ? (
+        <BrandStructuralModule
+          moduleKey={chapter.moduleAfter}
+          pavilion={pavilion}
+          project={project}
+          worldview={worldview}
+        />
+      ) : null}
+    </>
+  );
+}
+
+function renderChapterScene({
+  chapter,
+  number,
+  pavilion,
+  project,
+  worldview,
+}: PavilionChapterSceneProps): ReactNode {
+  const code = pavilion.code;
+  const heading = (
+    <PavilionSectionHeader
+      code={code}
+      number={number}
+      label={chapter.label}
+      detail={chapter.detail}
+      source={getChapterSource(chapter.key, pavilion)}
+    />
+  );
+
+  if (chapter.key === "philosophy") {
+    return (
+      <section
+        className="brand-pavilion__section brand-pavilion__philosophy"
+        id={chapter.id}
+        data-chapter={chapter.key}
+      >
+        <div className="pavilion-shell">
+          {heading}
+          <div className="brand-pavilion__philosophy-grid">
+            <div className="brand-pavilion__philosophy-copy">
+              <p className="brand-pavilion__section-kicker pavilion-meta">
+                {pavilion.philosophy.label}
+              </p>
+              <h2>{pavilion.philosophy.title}</h2>
+              <p>{pavilion.philosophy.body}</p>
+            </div>
+            <PavilionFigure project={project} image={pavilion.philosophy.image} />
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (chapter.key === "values") {
+    return (
+      <section
+        className="brand-pavilion__section brand-pavilion__values"
+        id={chapter.id}
+        data-chapter={chapter.key}
+      >
+        <div className="pavilion-shell">
+          {heading}
+          <div className="brand-pavilion__value-ledger">
+            {pavilion.values.map((value) => (
+              <article key={value.number} className="brand-pavilion__value">
+                <span className="brand-pavilion__value-number pavilion-meta">{value.number}</span>
+                <h3>{value.title}</h3>
+                <p>{value.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (chapter.key === "needs") {
+    return (
+      <section
+        className="brand-pavilion__section brand-pavilion__needs"
+        id={chapter.id}
+        data-chapter={chapter.key}
+      >
+        <div className="pavilion-shell">
+          <PavilionSectionHeader
+            code={code}
+            number={number}
+            label={chapter.label}
+            detail={chapter.detail}
+            source={pavilion.needs.source}
+            inverse
+          />
+          <div className="brand-pavilion__needs-grid">
+            <div className="brand-pavilion__needs-copy">
+              <h2>{pavilion.needs.title}</h2>
+              <p className="brand-pavilion__needs-intro">{pavilion.needs.intro}</p>
+              <ol className="brand-pavilion__need-list">
+                {pavilion.needs.items.map((need, index) => (
+                  <li key={need.title}>
+                    <span className="pavilion-meta">{String(index + 1).padStart(2, "0")}</span>
+                    <div>
+                      <h3>{need.title}</h3>
+                      <p>{need.body}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+            <div className="brand-pavilion__needs-images">
+              {pavilion.needs.images.map((image) => (
+                <PavilionFigure key={image.slot} project={project} image={image} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (chapter.key === "principles") {
+    return (
+      <section
+        className="brand-pavilion__section brand-pavilion__principles"
+        id={chapter.id}
+        data-chapter={chapter.key}
+      >
+        <div className="pavilion-shell">
+          {heading}
+          <div className="brand-pavilion__principles-intro">
+            <h2>{pavilion.principles.title}</h2>
+            <p>{pavilion.principles.intro}</p>
+          </div>
+          <div className="brand-pavilion__principles-stage">
+            <PavilionFigure project={project} image={pavilion.principles.image} />
+            <ol className="brand-pavilion__principle-list">
+              {pavilion.principles.items.map((principle) => (
+                <li key={principle.key}>
+                  <span className="brand-pavilion__principle-key">{principle.key}</span>
+                  <div>
+                    <h3>{principle.title}</h3>
+                    <p>{principle.body}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (chapter.key === "design") {
+    return (
+      <section
+        className="brand-pavilion__section brand-pavilion__design"
+        id={chapter.id}
+        data-chapter={chapter.key}
+      >
+        <div className="pavilion-shell">
+          {heading}
+          <div className="brand-pavilion__design-heading">
+            <h2>{pavilion.design.title}</h2>
+            <p>{pavilion.design.intro}</p>
+          </div>
+
+          <PavilionFigure project={project} image={pavilion.design.image} featured />
+
+          <div className="brand-pavilion__design-system">
+            <div className="brand-pavilion__type-specimen">
+              <p className="pavilion-meta">Official identifier / concept voice</p>
+              <BrandMark code={code} decorative />
+              <span>{worldview.thesis}</span>
+            </div>
+            <div className="brand-pavilion__palette" aria-label={`${project.title} colour system`}>
+              <p className="pavilion-meta">Colour / role</p>
+              <div>
+                {project.palette.map((swatch) => (
+                  <span key={swatch.name} style={{ backgroundColor: swatch.value }}>
+                    <b>{swatch.name}</b>
+                    <small>{swatch.value}</small>
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="brand-pavilion__materials">
+              <p className="pavilion-meta">Material / behaviour</p>
+              <ol>
+                {project.materials.map((material, index) => (
+                  <li key={material}>
+                    <span>{material}</span>
+                    <small className="pavilion-meta">0{index + 1}</small>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+
+          <div className="brand-pavilion__keyword-rail" aria-label="Design characteristics">
+            {pavilion.design.keywords.map((keyword, index) => (
+              <span key={keyword}>
+                {keyword}
+                <small className="pavilion-meta">0{index + 1}</small>
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section
+      className="brand-pavilion__section brand-pavilion__world"
+      id={chapter.id}
+      data-chapter={chapter.key}
+    >
+      <div className="pavilion-shell">
+        <PavilionSectionHeader
+          code={code}
+          number={number}
+          label={chapter.label}
+          detail={chapter.detail}
+          inverse
+        />
+        <div className="brand-pavilion__world-intro">
+          <h2>{pavilion.world.title}</h2>
+          <p>{pavilion.world.intro}</p>
+        </div>
+        <div className="brand-pavilion__world-grid">
+          {pavilion.world.scenes.map((scene, index) => (
+            <PavilionFigure key={scene.slot} project={project} image={scene} sequence={index + 1} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function getChapterSource(
+  chapter: PavilionChapterKey,
+  pavilion: BrandPavilionProfile,
+): BrandPavilionSource | undefined {
+  if (chapter === "philosophy") return pavilion.philosophy.source;
+  if (chapter === "values") return pavilion.valuesSource;
+  if (chapter === "needs") return pavilion.needs.source;
+  if (chapter === "principles") return pavilion.principles.source;
+  return undefined;
+}
+
+function BrandStructuralModule({
+  moduleKey,
+  pavilion,
+  project,
+  worldview,
+}: {
+  moduleKey: PavilionStructuralModuleKey;
+  pavilion: BrandPavilionProfile;
+  project: DesignProject;
+  worldview: BrandWorldview;
+}) {
+  switch (moduleKey) {
+    case "hm-second-life-tag":
+      return <HmSecondLifeTag project={project} worldview={worldview} />;
+    case "hm-circular-rack":
+      return <HmCircularRack pavilion={pavilion} project={project} />;
+    case "zara-negative-space":
+      return <ZaraNegativeSpace pavilion={pavilion} project={project} />;
+    case "zara-air-gap":
+      return <ZaraAirGap pavilion={pavilion} project={project} />;
+    case "uniqlo-comfort-matrix":
+      return <UniqloComfortMatrix pavilion={pavilion} project={project} />;
+    case "uniqlo-feedback-loop":
+      return <UniqloFeedbackLoop pavilion={pavilion} project={project} />;
+    case "prada-code-shift":
+      return <PradaCodeShift pavilion={pavilion} project={project} />;
+    case "prada-movable-wall":
+      return <PradaMovableWall pavilion={pavilion} project={project} />;
+  }
+}
+
+function StructuralModuleShell({
+  brand,
+  moduleName,
+  children,
+}: {
+  brand: BrandCode;
+  moduleName: string;
+  children: ReactNode;
+}) {
+  return (
+    <section
+      className="brand-pavilion__structural-module"
+      data-brand-module={brand}
+      data-module={moduleName}
+      aria-label={`${moduleName.replaceAll("-", " ")} brand system module`}
+    >
+      <div className="pavilion-shell">{children}</div>
+    </section>
+  );
+}
+
+function HmSecondLifeTag({
+  project,
+  worldview,
+}: {
+  project: DesignProject;
+  worldview: BrandWorldview;
+}) {
+  const actions = ["Wear", "Repair", "Rewear", "Return"];
+
+  return (
+    <StructuralModuleShell brand="hm" moduleName="second-life-tag">
+      <div className="hm-second-life-tag">
+        <div className="hm-second-life-tag__image">
+          <ProjectPicture
+            projectSlug={project.slug}
+            slot="tactile"
+            sizes="(min-width: 1024px) 44vw, 100vw"
+          />
+        </div>
+        <div className="hm-second-life-tag__label">
+          <div className="hm-second-life-tag__mark">
+            <BrandMark code="hm" decorative />
+            <span className="pavilion-meta">Second-life garment tag / 2026</span>
+          </div>
+          <h2>{worldview.thesis}</h2>
+          <ol>
+            {actions.map((action, index) => (
+              <li key={action} data-current={index === 2 || undefined}>
+                <span className="pavilion-meta">0{index + 1}</span>
+                <strong>{action}</strong>
+              </li>
+            ))}
+          </ol>
+          <p>{project.rule}</p>
+        </div>
+      </div>
+    </StructuralModuleShell>
+  );
+}
+
+function HmCircularRack({
+  pavilion,
+  project,
+}: {
+  pavilion: BrandPavilionProfile;
+  project: DesignProject;
+}) {
+  return (
+    <StructuralModuleShell brand="hm" moduleName="circular-retail-rack">
+      <div className="hm-circular-rack">
+        <header>
+          <span className="pavilion-meta">Retail activation / one open loop</span>
+          <h2>Choose it. Wear it. Keep it moving.</h2>
+        </header>
+        <div className="hm-circular-rack__stages">
+          {pavilion.world.scenes.slice(0, 3).map((scene, index) => (
+            <article key={scene.slot}>
+              <span className="pavilion-meta">0{index + 1}</span>
+              <strong>{scene.title}</strong>
+              <p>{scene.copy}</p>
+            </article>
+          ))}
+        </div>
+        <ProjectPicture
+          projectSlug={project.slug}
+          slot="spatial"
+          sizes="(min-width: 1024px) 84vw, 100vw"
+        />
+      </div>
+    </StructuralModuleShell>
+  );
+}
+
+function ZaraNegativeSpace({
+  pavilion,
+  project,
+}: {
+  pavilion: BrandPavilionProfile;
+  project: DesignProject;
+}) {
+  return (
+    <StructuralModuleShell brand="zara" moduleName="negative-space-lookbook">
+      <div className="zara-negative-space">
+        <div className="zara-negative-space__image">
+          <ProjectPicture
+            projectSlug={project.slug}
+            slot="editorialA"
+            sizes="(min-width: 1024px) 54vw, 100vw"
+          />
+        </div>
+        <div className="zara-negative-space__copy">
+          <BrandMark code="zara" decorative />
+          <p className="pavilion-meta">Look 01 / atmosphere study</p>
+          <h2>{pavilion.design.keywords[0]}</h2>
+          <p>{project.rule}</p>
+          <dl>
+            <div>
+              <dt className="pavilion-meta">Image</dt>
+              <dd>07 columns</dd>
+            </div>
+            <div>
+              <dt className="pavilion-meta">Air</dt>
+              <dd>05 columns</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </StructuralModuleShell>
+  );
+}
+
+function ZaraAirGap({
+  pavilion,
+  project,
+}: {
+  pavilion: BrandPavilionProfile;
+  project: DesignProject;
+}) {
+  const scenes = pavilion.world.scenes.slice(0, 2);
+
+  return (
+    <StructuralModuleShell brand="zara" moduleName="air-gap-window">
+      <header className="zara-air-gap__header">
+        <p className="pavilion-meta">Window / screen / measured pause</p>
+        <h2>The edit holds because the space between images is deliberate.</h2>
+      </header>
+      <div className="zara-air-gap">
+        {scenes.map((scene, index) => (
+          <figure key={scene.slot} data-plane={index + 1}>
+            <ProjectPicture
+              projectSlug={project.slug}
+              slot={scene.slot}
+              sizes="(min-width: 1024px) 44vw, 100vw"
+            />
+            <figcaption>
+              <span className="pavilion-meta">Plane 0{index + 1}</span>
+              <strong>{scene.title}</strong>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </StructuralModuleShell>
+  );
+}
+
+function UniqloComfortMatrix({
+  pavilion,
+  project,
+}: {
+  pavilion: BrandPavilionProfile;
+  project: DesignProject;
+}) {
+  const states = ["Rest", "Walk", "Commute", "Layer"];
+
+  return (
+    <StructuralModuleShell brand="uniqlo" moduleName="comfort-state-matrix">
+      <div className="uniqlo-comfort-matrix">
+        <header>
+          <BrandMark code="uniqlo" decorative />
+          <div>
+            <p className="pavilion-meta">Life condition / product response</p>
+            <h2>Comfort is tested in the day it has to serve.</h2>
+          </div>
+        </header>
+        <div className="uniqlo-comfort-matrix__grid">
+          {states.map((state, index) => {
+            const need = pavilion.needs.items[index % pavilion.needs.items.length];
+            return (
+              <article key={state}>
+                <span className="pavilion-meta">
+                  0{index + 1} / {state}
+                </span>
+                <strong>{need.title}</strong>
+                <p>{need.body}</p>
+                <small className="pavilion-meta">{project.materials[index]}</small>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </StructuralModuleShell>
+  );
+}
+
+function UniqloFeedbackLoop({
+  pavilion,
+  project,
+}: {
+  pavilion: BrandPavilionProfile;
+  project: DesignProject;
+}) {
+  return (
+    <StructuralModuleShell brand="uniqlo" moduleName="feedback-to-feature-loop">
+      <div className="uniqlo-feedback-loop">
+        <div className="uniqlo-feedback-loop__image">
+          <ProjectPicture
+            projectSlug={project.slug}
+            slot="editorialC"
+            sizes="(min-width: 1024px) 46vw, 100vw"
+          />
+        </div>
+        <div className="uniqlo-feedback-loop__steps">
+          <p className="pavilion-meta">Customer feedback / development cycle</p>
+          <h2>{pavilion.principles.title}</h2>
+          <ol>
+            {pavilion.principles.items.map((principle, index) => (
+              <li key={principle.key}>
+                <span className="pavilion-meta">0{index + 1}</span>
+                <div>
+                  <strong>{principle.title}</strong>
+                  <p>{principle.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </StructuralModuleShell>
+  );
+}
+
+function PradaCodeShift({
+  pavilion,
+  project,
+}: {
+  pavilion: BrandPavilionProfile;
+  project: DesignProject;
+}) {
+  const shifts = ["Crop", "Juxtaposition", "Scale"];
+
+  return (
+    <StructuralModuleShell brand="prada" moduleName="code-shift-table">
+      <div className="prada-code-shift">
+        <header>
+          <PradaPlaque decorative />
+          <div>
+            <p className="pavilion-meta">Observation / one code, changed context</p>
+            <h2>The familiar is held long enough to become strange again.</h2>
+          </div>
+        </header>
+        <div className="prada-code-shift__table">
+          {shifts.map((shift, index) => (
+            <article key={shift}>
+              <span className="pavilion-meta">0{index + 1}</span>
+              <h3>{shift}</h3>
+              <p>{pavilion.design.keywords[index] ?? project.materials[index]}</p>
+            </article>
+          ))}
+        </div>
+        <p className="prada-code-shift__rule">{project.rule}</p>
+      </div>
+    </StructuralModuleShell>
+  );
+}
+
+function PradaMovableWall({
+  pavilion,
+  project,
+}: {
+  pavilion: BrandPavilionProfile;
+  project: DesignProject;
+}) {
+  return (
+    <StructuralModuleShell brand="prada" moduleName="movable-wall-plan">
+      <div className="prada-movable-wall">
+        <div className="prada-movable-wall__image">
+          <ProjectPicture
+            projectSlug={project.slug}
+            slot="spatial"
+            sizes="(min-width: 1024px) 70vw, 100vw"
+          />
+          <div className="prada-movable-wall__planes" aria-hidden="true">
+            {project.materials.map((material, index) => (
+              <span key={material} data-plane={index + 1} />
+            ))}
+          </div>
+        </div>
+        <div className="prada-movable-wall__legend">
+          <div>
+            <p className="pavilion-meta">Exhibition plan / adjustable room</p>
+            <h2>{pavilion.world.title}</h2>
+          </div>
+          <ol>
+            {project.materials.map((material, index) => (
+              <li key={material}>
+                <span className="pavilion-meta">P{index + 1}</span>
+                <strong>{material}</strong>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </StructuralModuleShell>
+  );
+}
+
 function BrandSignature({
   code,
   brand,
@@ -482,14 +887,14 @@ function PavilionSectionHeader({
   number,
   label,
   detail,
-  worldview,
+  source,
   inverse = false,
 }: {
   code: BrandCode;
   number: string;
   label: string;
   detail: string;
-  worldview: BrandWorldview;
+  source?: BrandPavilionSource;
   inverse?: boolean;
 }) {
   return (
@@ -500,16 +905,14 @@ function PavilionSectionHeader({
       >
         <span>{number}</span>
         <span>{label}</span>
-        <span>{detail}</span>
+        <span className="brand-pavilion__section-detail">
+          <span>{detail}</span>
+          {source ? <OfficialSourceLink source={source} /> : null}
+        </span>
         <span className="brand-pavilion__section-brand" aria-hidden="true">
           <BrandMark code={code} decorative />
         </span>
       </header>
-      <aside className="brand-pavilion__section-creed">
-        <span className="pavilion-meta">Worldview / invariant</span>
-        <strong>{worldview.thesis}</strong>
-        <span className="pavilion-meta">{worldview.codes.join(" · ")}</span>
-      </aside>
     </div>
   );
 }
@@ -551,34 +954,6 @@ function BrandWorldviewClosing({
         </ol>
       </div>
     </section>
-  );
-}
-
-function PavilionScopeNote({
-  label,
-  note,
-  source,
-  inverse = false,
-}: {
-  label: string;
-  note: string;
-  source?: BrandPavilionSource;
-  inverse?: boolean;
-}) {
-  return (
-    <div
-      className="brand-pavilion__scope-note flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-b border-current/20 py-3"
-      data-inverse={inverse || undefined}
-    >
-      <p className="m-0 flex min-w-0 items-center gap-2.5">
-        <span className="h-1.5 w-1.5 shrink-0 bg-current opacity-70" aria-hidden="true" />
-        <span className="brand-pavilion__scope-label pavilion-meta font-semibold">{label}</span>
-        <span className="brand-pavilion__scope-detail hidden text-[0.72rem] leading-snug opacity-55 sm:inline">
-          {note}
-        </span>
-      </p>
-      {source ? <OfficialSourceLink source={source} /> : null}
-    </div>
   );
 }
 
