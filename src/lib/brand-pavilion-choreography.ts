@@ -137,7 +137,6 @@ export const brandPavilionChoreographies = {
       id: "engineer",
       label: "Engineer",
       detail: "Feedback becomes construction",
-      moduleAfter: "uniqlo-feedback-loop",
     },
     {
       key: "design",

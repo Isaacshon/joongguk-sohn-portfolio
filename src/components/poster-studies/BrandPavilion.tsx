@@ -47,6 +47,25 @@ type BrandWorldview = {
   codes: readonly string[];
 };
 
+const brandThesisLines: Partial<Record<BrandCode, readonly string[]>> = {
+  uniqlo: ["Comfort is quiet", "because the work happens", "before you notice it."],
+  prada: ["The familiar becomes new", "when its context shifts."],
+};
+
+function BrandThesis({ code, text }: { code: BrandCode; text: string }) {
+  const lines = brandThesisLines[code];
+
+  if (!lines) return <>{text}</>;
+
+  return (
+    <>
+      {lines.map((line) => (
+        <span key={line}>{line}</span>
+      ))}
+    </>
+  );
+}
+
 export function BrandPavilion({ project }: { project: DesignProject }) {
   const pavilion = getBrandPavilion(project.slug);
 
@@ -85,60 +104,12 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
         data-gallery={direction.gallery}
         style={style}
       >
-        <header className="brand-pavilion__hero" id="top">
-          <ProjectPicture
-            projectSlug={project.slug}
-            slot="hero"
-            sizes="100vw"
-            className="brand-pavilion__hero-picture"
-            imageClassName="brand-pavilion__hero-image"
-            style={{ aspectRatio: "auto" }}
-            priority
-            fallback={
-              <DesignProjectCover
-                project={project}
-                variant="hero"
-                className="!absolute !inset-0 !h-full !min-h-0 !aspect-auto"
-              />
-            }
-          />
-          <div className="brand-pavilion__hero-wash" aria-hidden="true" />
-
-          <div className="brand-pavilion__hero-rail pavilion-shell pavilion-meta">
-            <Link to="/poster-studies" className="brand-pavilion__back-link">
-              <span aria-hidden="true">←</span> All design projects
-            </Link>
-            <div className="brand-pavilion__retail-menu" aria-hidden="true">
-              {brandRetailMenus[pavilion.code].map((item) => (
-                <span key={item}>{item}</span>
-              ))}
-            </div>
-            <span>Independent concept · {project.index} / 24 · 2026</span>
-          </div>
-
-          <div className="brand-pavilion__hero-content pavilion-shell">
-            <p className="brand-pavilion__hero-kicker pavilion-meta">{pavilion.hero.kicker}</p>
-            {pavilion.code === "prada" ? (
-              <div className="brand-pavilion__hero-lockup">
-                <h1 className="brand-pavilion__wordmark" aria-label={project.brandStudy.brand}>
-                  <BrandMark code={pavilion.code} decorative />
-                </h1>
-                <PradaPlaque className="brand-pavilion__hero-plaque" decorative />
-              </div>
-            ) : (
-              <h1 className="brand-pavilion__wordmark" aria-label={project.brandStudy.brand}>
-                <BrandMark code={pavilion.code} decorative />
-              </h1>
-            )}
-            <div className="brand-pavilion__hero-thesis">
-              <p className="brand-pavilion__hero-statement">{worldview.thesis}</p>
-              <p className="brand-pavilion__hero-summary">{pavilion.hero.summary}</p>
-              <a href={`#${choreography[0].id}`} className="brand-pavilion__enter pavilion-meta">
-                Enter the brand world <span aria-hidden="true">↘</span>
-              </a>
-            </div>
-          </div>
-        </header>
+        <PavilionHero
+          pavilion={pavilion}
+          project={project}
+          worldview={worldview}
+          firstChapterId={choreography[0].id}
+        />
 
         <nav className="brand-pavilion__chapter-nav" aria-label="Brand pavilion chapters">
           <div className="pavilion-shell brand-pavilion__chapter-nav-inner">
@@ -230,6 +201,111 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
         </footer>
       </article>
     </MatLayout>
+  );
+}
+
+function PavilionHero({
+  pavilion,
+  project,
+  worldview,
+  firstChapterId,
+}: {
+  pavilion: BrandPavilionProfile;
+  project: DesignProject;
+  worldview: BrandWorldview;
+  firstChapterId: string;
+}) {
+  if (pavilion.code === "prada") {
+    return (
+      <header className="brand-pavilion__hero brand-pavilion__hero--prada" id="top">
+        <div className="brand-pavilion__prada-rail pavilion-meta">
+          <Link to="/poster-studies" className="brand-pavilion__back-link">
+            <span aria-hidden="true">←</span> Projects
+          </Link>
+          <h1 className="brand-pavilion__prada-rail-wordmark" aria-label="PRADA">
+            <BrandMark code="prada" decorative />
+          </h1>
+          <span>Independent concept</span>
+        </div>
+
+        <ProjectPicture
+          projectSlug={project.slug}
+          slot="editorialF"
+          sizes="(min-width: 768px) calc(100vw - 40px), calc(100vw - 20px)"
+          className="brand-pavilion__prada-hero-picture"
+          imageClassName="brand-pavilion__prada-hero-image"
+          priority
+          fallback={
+            <DesignProjectCover
+              project={project}
+              variant="hero"
+              className="!absolute !inset-0 !h-full !min-h-0 !aspect-auto"
+            />
+          }
+        />
+
+        <div className="brand-pavilion__prada-intro">
+          <p className="pavilion-meta">PRADA / editorial study / 2026</p>
+          <p className="brand-pavilion__hero-statement brand-pavilion__thesis-lines">
+            <BrandThesis code="prada" text={worldview.thesis} />
+          </p>
+          <p className="brand-pavilion__hero-summary">{pavilion.hero.summary}</p>
+          <a href={`#${firstChapterId}`} className="brand-pavilion__enter pavilion-meta">
+            Enter the brand world <span aria-hidden="true">↘</span>
+          </a>
+        </div>
+      </header>
+    );
+  }
+
+  return (
+    <header className="brand-pavilion__hero" id="top">
+      <ProjectPicture
+        projectSlug={project.slug}
+        slot="hero"
+        sizes="100vw"
+        className="brand-pavilion__hero-picture"
+        imageClassName="brand-pavilion__hero-image"
+        style={{ aspectRatio: "auto" }}
+        priority
+        fallback={
+          <DesignProjectCover
+            project={project}
+            variant="hero"
+            className="!absolute !inset-0 !h-full !min-h-0 !aspect-auto"
+          />
+        }
+      />
+      <div className="brand-pavilion__hero-wash" aria-hidden="true" />
+
+      <div className="brand-pavilion__hero-rail pavilion-shell pavilion-meta">
+        <Link to="/poster-studies" className="brand-pavilion__back-link">
+          <span aria-hidden="true">←</span> All design projects
+        </Link>
+        <div className="brand-pavilion__retail-menu" aria-hidden="true">
+          {brandRetailMenus[pavilion.code].map((item) => (
+            <span key={item}>{item}</span>
+          ))}
+        </div>
+        <span>Independent concept · {project.index} / 24 · 2026</span>
+      </div>
+
+      <div className="brand-pavilion__hero-content pavilion-shell">
+        <p className="brand-pavilion__hero-kicker pavilion-meta">{pavilion.hero.kicker}</p>
+        <h1 className="brand-pavilion__wordmark" aria-label={project.brandStudy?.brand}>
+          <BrandMark code={pavilion.code} decorative />
+        </h1>
+        <div className="brand-pavilion__hero-thesis">
+          <p className="brand-pavilion__hero-statement brand-pavilion__thesis-lines">
+            <BrandThesis code={pavilion.code} text={worldview.thesis} />
+          </p>
+          <p className="brand-pavilion__hero-summary">{pavilion.hero.summary}</p>
+          <a href={`#${firstChapterId}`} className="brand-pavilion__enter pavilion-meta">
+            Enter the brand world <span aria-hidden="true">↘</span>
+          </a>
+        </div>
+      </div>
+    </header>
   );
 }
 
@@ -869,13 +945,16 @@ function BrandSignature({
   return (
     <section className="brand-pavilion__identity" aria-labelledby={headingId}>
       <div className="pavilion-shell brand-pavilion__identity-inner">
-        <div className="brand-pavilion__identity-mark" aria-hidden="true">
-          <BrandMark code={code} decorative />
-          {code === "prada" ? <PradaPlaque decorative /> : null}
-        </div>
+        {code === "prada" ? null : (
+          <div className="brand-pavilion__identity-mark" aria-hidden="true">
+            <BrandMark code={code} decorative />
+          </div>
+        )}
         <div className="brand-pavilion__identity-copy">
           <p className="pavilion-meta">{brand} / one worldview, every touchpoint</p>
-          <h2 id={headingId}>{worldview.thesis}</h2>
+          <h2 id={headingId} className="brand-pavilion__thesis-lines">
+            <BrandThesis code={code} text={worldview.thesis} />
+          </h2>
           <p>{summary}</p>
         </div>
         {code === "prada" ? (
@@ -966,7 +1045,9 @@ function BrandWorldviewClosing({
         </div>
         <div className="brand-pavilion__worldview-closing-copy">
           <p className="pavilion-meta">Return / {brand} worldview</p>
-          <h2 id={headingId}>{worldview.thesis}</h2>
+          <h2 id={headingId} className="brand-pavilion__thesis-lines">
+            <BrandThesis code={code} text={worldview.thesis} />
+          </h2>
           <p>{summary}</p>
         </div>
         <ol aria-label={`${brand} worldview proof sequence`}>

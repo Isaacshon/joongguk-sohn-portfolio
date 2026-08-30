@@ -5,6 +5,7 @@
 @import "./project-choreography.css";
 @import "./brand-pavilions.css";
 @import "./brand-pavilion-identities.css";
+@import "./brand-pavilion-premium.css";
 
 @custom-variant dark (&:is(.dark *));
 
