@@ -78,11 +78,11 @@ const artDirectionByMotif = {
     },
     title: { weight: 400, style: "normal", leading: ".76", tracking: "-.075em", measure: "9ch" },
     surfaces: {
-      paper: "#f8ead6",
+      paper: "#f2f0eb",
       ink: "#15171a",
-      panel: "#e8dbc8",
+      panel: "#dedad2",
       dark: "#15171a",
-      light: "#fff4e3",
+      light: "#fffdf8",
       accent: "#ff5a36",
     },
     labels: {
@@ -109,11 +109,11 @@ const artDirectionByMotif = {
     },
     title: { weight: 900, style: "normal", leading: ".96", tracking: "-.055em", measure: "10ch" },
     surfaces: {
-      paper: "#eee5d2",
+      paper: "#d8ccb4",
       ink: "#191a17",
-      panel: "#d8cbb2",
+      panel: "#bcae93",
       dark: "#191a17",
-      light: "#f8f0df",
+      light: "#f5ecd9",
       accent: "#b73527",
     },
     labels: {
@@ -140,11 +140,11 @@ const artDirectionByMotif = {
     },
     title: { weight: 600, style: "italic", leading: ".82", tracking: "-.045em", measure: "11ch" },
     surfaces: {
-      paper: "#e9e3d3",
+      paper: "#dce2d2",
       ink: "#151714",
-      panel: "#d8d2c2",
+      panel: "#c5ceb9",
       dark: "#151714",
-      light: "#f5f0e3",
+      light: "#f2f6ea",
       accent: "#b9ef32",
     },
     labels: {
@@ -171,11 +171,11 @@ const artDirectionByMotif = {
     },
     title: { weight: 500, style: "italic", leading: ".8", tracking: "-.04em", measure: "12ch" },
     surfaces: {
-      paper: "#efe6d3",
+      paper: "#e6d8d4",
       ink: "#2a2925",
-      panel: "#e3d6be",
+      panel: "#cdbcb7",
       dark: "#2a2925",
-      light: "#fbf2df",
+      light: "#f7eeeb",
       accent: "#762b35",
     },
     labels: {
@@ -331,7 +331,7 @@ const artDirectionByMotif = {
       panel: "#101316",
       dark: "#050607",
       light: "#f3f7f3",
-      accent: "#a4ff36",
+      accent: "#aeb59c",
     },
     labels: {
       challenge: "Input / Noise",

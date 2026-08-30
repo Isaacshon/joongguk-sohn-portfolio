@@ -90,7 +90,7 @@ export const designProjects: DesignProject[] = [
     palette: [
       { name: "Cobalt", value: "#1948cb" },
       { name: "Fluorescent orange", value: "#ff5a36" },
-      { name: "Uncoated stock", value: "#f8ead6" },
+      { name: "Uncoated stock", value: "#f2f0eb" },
       { name: "Press black", value: "#15171a" },
     ],
     applications: ["Poster series", "Festival programme", "Admission ticket", "Motion ident"],
@@ -131,7 +131,7 @@ export const designProjects: DesignProject[] = [
       "Jamo assemble into syllable blocks in reading order; each source tag appears before the completed character.",
     materials: ["Archive board", "Vermilion stamp ink", "Carbon copy", "Hand-labelled folder"],
     palette: [
-      { name: "Paper", value: "#eee5d2" },
+      { name: "Paper", value: "#d8ccb4" },
       { name: "Ink", value: "#191a17" },
       { name: "Vermilion", value: "#b73527" },
       { name: "Archive blue", value: "#394f69" },
@@ -178,7 +178,7 @@ export const designProjects: DesignProject[] = [
       "Recycled index stock",
     ],
     palette: [
-      { name: "Bone paper", value: "#e9e3d3" },
+      { name: "Botanical paper", value: "#dce2d2" },
       { name: "Acid leaf", value: "#b9ef32" },
       { name: "Field ink", value: "#151714" },
       { name: "Dry grass", value: "#c9d47e" },
@@ -220,7 +220,7 @@ export const designProjects: DesignProject[] = [
       "Sentences type to the final unsent word; a fold closes the frame before the routing mark appears.",
     materials: ["Tea-toned paper", "Oxblood ink", "Blind fold", "Numbered glassine"],
     palette: [
-      { name: "Tea ivory", value: "#efe6d3" },
+      { name: "Faded rose stock", value: "#e6d8d4" },
       { name: "Oxblood", value: "#762b35" },
       { name: "Faded blue", value: "#394f69" },
       { name: "Graphite", value: "#2a2925" },
@@ -402,22 +402,22 @@ export const designProjects: DesignProject[] = [
     discipline: "Broadcast motion and spectral identity",
     statement: "A broken signal can still carry a precise message.",
     description:
-      "An identity for an experimental sound broadcast. RGB separation, scan lines, and spectral fields follow fixed channel offsets; essential programme information never distorts.",
+      "An identity for an experimental sound broadcast. Signal decay, scan lines, and frequency bands follow fixed intervals while essential programme information remains stable.",
     challenge:
       "Build expressive interference that still communicates dates, times, accessibility, and programme order immediately.",
     response:
-      "Chromatic channels carry emotion while a separate white information channel remains locked and readable across every frame.",
-    rule: "Cyan moves +3 units, magenta −3, lime marks decoded information; white type never shifts.",
+      "A restrained interference field carries the atmosphere while a separate white information channel remains locked and readable across every frame.",
+    rule: "Noise shifts on fixed intervals, sage marks decoded information, and white type never moves.",
     typography:
       "Neutral broadcast grotesk for facts, expanded display capitals for the signal layer, mono timecode.",
     motion:
-      "Three channels drift by fixed offsets and resolve on the beat; the white information plane does not move.",
+      "Signal bands drift by fixed offsets and resolve on the beat; the white information plane does not move.",
     materials: ["LED field", "Scan-line acetate", "Reflective pass", "Black programme stock"],
     palette: [
       { name: "Black", value: "#050607" },
-      { name: "Cyan", value: "#00e5ff" },
-      { name: "Magenta", value: "#ff2c8c" },
-      { name: "Lime", value: "#a4ff36" },
+      { name: "Chalk", value: "#f3f7f3" },
+      { name: "Receiver grey", value: "#8f9da3" },
+      { name: "Status sage", value: "#aeb59c" },
     ],
     applications: ["Hero poster", "Motion frames", "Broadcast titles", "Social loop"],
     lineage:

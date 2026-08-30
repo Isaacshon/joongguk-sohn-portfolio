@@ -22,7 +22,7 @@
   max-inline-size: 100%;
   margin: 0;
   padding: clamp(1rem, 4.2cqi, 4.5rem);
-  font-family: var(--project-body-font, "Pretendard Variable", "Malgun Gothic", sans-serif);
+  font-family: var(--case-font-body, "Pretendard Variable", "Malgun Gothic", sans-serif);
   font-size: clamp(0.82rem, 1.15cqi, 1rem);
   line-height: 1.48;
   overflow: clip;
@@ -76,7 +76,7 @@
   grid-column: 1 / -1;
   max-inline-size: 15ch;
   color: var(--signature-ink);
-  font-family: var(--project-display-font, inherit);
+  font-family: var(--case-font-display, inherit);
   font-size: clamp(2rem, 6.8cqi, 6.8rem);
   font-weight: 500;
   line-height: 0.93;
@@ -178,7 +178,7 @@
 
 .signature-glyph__specimens strong {
   align-self: end;
-  font-family: var(--project-display-font, serif);
+  font-family: var(--case-font-display, serif);
   font-size: clamp(3rem, 11cqi, 9rem);
   font-weight: 600;
   line-height: 0.8;
@@ -246,7 +246,7 @@
 }
 
 .signature-fold__sheet blockquote p {
-  font-family: var(--project-display-font, serif);
+  font-family: var(--case-font-display, serif);
   font-size: clamp(1.8rem, 4.2cqi, 3.8rem);
   line-height: 1.03;
   text-wrap: balance;
@@ -315,7 +315,7 @@
   grid-column: 1 / -1;
   grid-row: 2;
   color: var(--signature-ink);
-  font-family: var(--project-display-font, inherit);
+  font-family: var(--case-font-display, inherit);
   font-size: clamp(2.5rem, 8cqi, 7rem);
   line-height: 0.85;
   font-variant-numeric: tabular-nums;
@@ -328,7 +328,7 @@
 
 .signature-pressure__rule {
   max-inline-size: 34ch;
-  font-family: var(--project-display-font, serif);
+  font-family: var(--case-font-display, serif);
   font-size: clamp(1.35rem, 2.6cqi, 2.4rem);
   line-height: 1.08;
 }
@@ -353,7 +353,7 @@
 .signature-arch__note {
   margin-inline-start: auto;
   max-inline-size: 24ch;
-  font-family: var(--project-display-font, serif);
+  font-family: var(--case-font-display, serif);
   font-size: clamp(1.6rem, 3.8cqi, 3.5rem);
   line-height: 1;
   text-align: end;
@@ -684,7 +684,7 @@
 }
 
 .signature-dial__reading strong {
-  font-family: var(--project-display-font, inherit);
+  font-family: var(--case-font-display, inherit);
   font-size: clamp(2.8rem, 8cqi, 7rem);
   font-weight: 500;
   line-height: 0.82;
@@ -794,7 +794,7 @@
 .signature-evidence__claim blockquote {
   max-inline-size: 20ch;
   padding-block: 0.8rem 1.6rem;
-  font-family: var(--project-display-font, serif);
+  font-family: var(--case-font-display, serif);
   font-size: clamp(1.8rem, 4.8cqi, 4.4rem);
   line-height: 0.98;
   text-wrap: balance;
@@ -888,7 +888,7 @@
 .signature-material-passport__record > p {
   max-inline-size: 42ch;
   align-self: end;
-  font-family: var(--project-display-font, serif);
+  font-family: var(--case-font-display, serif);
   font-size: clamp(1.2rem, 2.3cqi, 2rem);
   line-height: 1.1;
 }

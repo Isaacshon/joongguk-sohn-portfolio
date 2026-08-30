@@ -841,10 +841,10 @@ export function SoftMachineWorld() {
 function SignalNoisePoster() {
   return (
     <div className="@container relative aspect-[3/4] w-full overflow-hidden bg-[#050607] text-white">
-      <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(255,255,255,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] [background-size:8cqw_8cqw]" />
-      <div className="absolute -left-[16cqw] top-[18cqw] h-[39cqw] w-[82cqw] rotate-[-13deg] bg-[linear-gradient(90deg,transparent_0%,#00e5ff_19%,#a4ff36_45%,#ffea3a_62%,#ff2c8c_82%,transparent_100%)] opacity-90 blur-[1.8cqw]" />
-      <div className="absolute -right-[12cqw] bottom-[23cqw] h-[31cqw] w-[78cqw] rotate-[18deg] bg-[linear-gradient(90deg,transparent_0%,#7549ff_25%,#00e5ff_49%,#ff2c8c_78%,transparent_100%)] opacity-75 blur-[2cqw]" />
-      <div className="absolute inset-0 opacity-25 [background-image:repeating-linear-gradient(to_bottom,transparent_0,transparent_3px,rgba(255,255,255,0.18)_4px)]" />
+      <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(255,255,255,0.13)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:8cqw_8cqw]" />
+      <div className="absolute inset-y-0 left-1/2 w-px bg-white/14" />
+      <div className="absolute inset-x-[5cqw] top-[42cqw] h-[1.2cqw] bg-[#aeb59c]" />
+      <div className="absolute inset-x-[5cqw] top-[44.2cqw] h-px bg-white/30" />
 
       <div className="absolute left-[5cqw] right-[5cqw] top-[5cqw] flex items-center justify-between border-b border-white/35 pb-[2cqw] font-mono text-[max(6px,1.65cqw)] uppercase tracking-[0.18em]">
         <span>S/N—09</span>
@@ -852,60 +852,63 @@ function SignalNoisePoster() {
         <span>108.6 MHz</span>
       </div>
 
-      <div className="absolute left-[5cqw] top-[18cqw] w-[90cqw]">
-        <p className="translate-x-[1.2cqw] font-mono text-[14.8cqw] font-black leading-[0.76] tracking-[-0.11em] text-[#00e5ff] opacity-85">
-          SIGNAL
+      <div className="absolute left-[5cqw] top-[17cqw] w-[90cqw]">
+        <p className="font-mono text-[15.2cqw] font-black leading-[0.74] tracking-[-0.11em] text-white">
+          SIGNAL /
         </p>
-        <p className="-translate-x-[1cqw] -translate-y-[11.4cqw] font-mono text-[14.8cqw] font-black leading-[0.76] tracking-[-0.11em] text-[#ff2c8c] opacity-75 mix-blend-screen">
-          SIGNAL
-        </p>
-        <p className="-translate-y-[22.8cqw] font-mono text-[14.8cqw] font-black leading-[0.76] tracking-[-0.11em] text-white">
-          SIGNAL
-        </p>
-      </div>
-
-      <div className="absolute left-[5cqw] top-[45cqw] h-[25cqw] w-[90cqw] overflow-hidden border-y border-white/45">
-        <p className="absolute -left-[2.6cqw] top-1/2 -translate-y-1/2 font-serif text-[24cqw] font-black italic leading-none tracking-[-0.08em] text-transparent [-webkit-text-stroke:0.35cqw_rgba(255,255,255,0.95)]">
+        <p className="font-mono text-[15.2cqw] font-black leading-[0.74] tracking-[-0.11em] text-white">
           NOISE
         </p>
-        <span className="absolute left-[8cqw] top-[5cqw] h-[2cqw] w-[67cqw] bg-[#a4ff36] mix-blend-screen" />
-        <span className="absolute right-[5cqw] top-[12cqw] h-[1.4cqw] w-[43cqw] bg-[#ff2c8c] mix-blend-screen" />
-        <span className="absolute bottom-[4.5cqw] left-[19cqw] h-[1.6cqw] w-[58cqw] bg-[#00e5ff] mix-blend-screen" />
       </div>
 
-      <div className="absolute bottom-[17cqw] left-[5cqw] right-[5cqw] grid grid-cols-[1fr_auto] gap-[4cqw]">
-        <div className="grid grid-cols-12 items-end gap-[0.75cqw]">
+      <div className="absolute left-[5cqw] right-[5cqw] top-[49cqw] grid grid-cols-[1fr_auto] gap-[5cqw] border-y border-white/35 py-[4cqw]">
+        <div>
+          <p className="font-mono text-[max(6px,1.45cqw)] uppercase tracking-[0.16em] text-[#aeb59c]">
+            Signal integrity / 067
+          </p>
+          <p className="mt-[2.5cqw] max-w-[44cqw] font-serif text-[4.2cqw] italic leading-[0.98]">
+            Meaning arrives imperfectly.
+          </p>
+        </div>
+        <div className="grid grid-cols-8 items-end gap-[0.75cqw]">
           {[
-            "h-[2.9cqw]",
-            "h-[5.1cqw]",
-            "h-[8.4cqw]",
-            "h-[4.1cqw]",
-            "h-[10.3cqw]",
-            "h-[6.5cqw]",
-            "h-[11.4cqw]",
-            "h-[5.8cqw]",
-            "h-[9cqw]",
-            "h-[3.5cqw]",
-            "h-[7.6cqw]",
-            "h-[4.8cqw]",
+            "h-[3cqw]",
+            "h-[7cqw]",
+            "h-[4cqw]",
+            "h-[10cqw]",
+            "h-[6cqw]",
+            "h-[12cqw]",
+            "h-[8cqw]",
+            "h-[5cqw]",
           ].map((height, index) => (
-            <span key={index} className={`block bg-white/85 ${height}`} />
+            <span
+              key={index}
+              className={`block w-[1.7cqw] ${height} ${index === 5 ? "bg-[#aeb59c]" : "bg-white/72"}`}
+            />
           ))}
         </div>
-        <p className="font-mono text-[max(6px,1.6cqw)] uppercase leading-[1.5] tracking-[0.12em] text-white/75">
-          Input 01
-          <br />
-          Decode 67%
-          <br />
-          Carrier lost
-        </p>
+      </div>
+
+      <div className="absolute bottom-[17cqw] left-[5cqw] right-[5cqw] grid grid-cols-3 border border-white/30 font-mono text-[max(6px,1.45cqw)] uppercase tracking-[0.12em]">
+        <div className="border-r border-white/30 p-[3cqw]">
+          <span className="block text-white/45">Input</span>
+          <strong className="mt-[1.5cqw] block text-[3.2cqw]">01</strong>
+        </div>
+        <div className="border-r border-white/30 p-[3cqw]">
+          <span className="block text-white/45">Decode</span>
+          <strong className="mt-[1.5cqw] block text-[3.2cqw] text-[#aeb59c]">67%</strong>
+        </div>
+        <div className="p-[3cqw]">
+          <span className="block text-white/45">Carrier</span>
+          <strong className="mt-[1.5cqw] block text-[3.2cqw]">Lost</strong>
+        </div>
       </div>
 
       <div className="absolute bottom-[5cqw] left-[5cqw] right-[5cqw] flex items-end justify-between border-t border-white/35 pt-[2.4cqw]">
-        <p className="max-w-[55cqw] font-serif text-[3.4cqw] italic leading-[1.05]">
-          Meaning arrives imperfectly.
+        <p className="max-w-[55cqw] font-mono text-[max(6px,1.45cqw)] uppercase leading-[1.4] tracking-[0.14em] text-white/55">
+          White information plane / fixed
         </p>
-        <p className="font-mono text-[max(6px,1.5cqw)] uppercase tracking-[0.16em] text-[#a4ff36]">
+        <p className="font-mono text-[max(6px,1.5cqw)] uppercase tracking-[0.16em] text-[#aeb59c]">
           End of signal
         </p>
       </div>
@@ -916,42 +919,43 @@ function SignalNoisePoster() {
 export function SignalNoiseWorld() {
   return (
     <ArtWorld
-      label="Signal Noise experimental broadcast identity shown as a spectral hero poster, motion frames, and transmission title card"
+      label="Signal Noise experimental broadcast identity shown as a restrained hero poster, motion frames, and transmission title card"
       className="bg-[#08090a] shadow-[0_26px_90px_rgba(0,0,0,0.34)]"
     >
-      <div className="absolute inset-0 opacity-25 [background-image:repeating-linear-gradient(to_bottom,transparent_0,transparent_4px,rgba(255,255,255,.16)_5px)]" />
+      <div className="absolute inset-0 opacity-18 [background-image:repeating-linear-gradient(to_bottom,transparent_0,transparent_4px,rgba(255,255,255,.14)_5px)]" />
       <div className="absolute left-[6%] top-[6%] w-[57%] -rotate-1 shadow-[0_28px_65px_rgba(0,0,0,0.58)] transition-transform duration-700 ease-out motion-safe:group-hover:-translate-y-2 sm:left-[8%] sm:w-[36%]">
         <SignalNoisePoster />
       </div>
 
       <div className="absolute right-[5%] top-[10%] w-[33%] rotate-2 border border-white/25 bg-[#111315] p-[3%] text-white shadow-[0_20px_46px_rgba(0,0,0,0.5)] sm:right-[9%] sm:w-[33%] sm:p-[2.2%]">
         <div className="relative aspect-video overflow-hidden border border-white/25 bg-black">
-          <div className="absolute left-[-10%] top-[24%] h-[36%] w-[84%] -rotate-6 bg-[linear-gradient(90deg,transparent,#00e5ff,#a4ff36,#ff2c8c,transparent)] blur-sm" />
+          <div className="absolute left-0 right-[18%] top-[46%] h-[9%] bg-[#aeb59c]" />
+          <div className="absolute bottom-[18%] left-[10%] right-[8%] h-px bg-white/35" />
           <p className="absolute inset-0 flex items-center justify-center font-mono text-[clamp(14px,2.8vw,38px)] font-black tracking-[-0.08em]">
             S/N
           </p>
         </div>
         <div className="mt-[6%] flex justify-between font-mono text-[clamp(6px,0.74vw,9px)] uppercase">
           <span>Frame 067</span>
-          <span className="text-[#a4ff36]">Carrier found</span>
+          <span className="text-[#aeb59c]">Carrier found</span>
         </div>
       </div>
 
       <div className="absolute bottom-[8%] right-[7%] grid w-[38%] grid-cols-3 gap-[2%] sm:w-[35%]">
-        {["translate-x-0", "translate-x-[3px]", "-translate-x-[3px]"].map((shift, index) => (
+        {["text-left", "text-center", "text-right"].map((align, index) => (
           <div
-            key={shift}
+            key={align}
             className="aspect-[3/4] overflow-hidden border border-white/25 bg-[#111315] p-[8%] text-white shadow-[0_12px_28px_rgba(0,0,0,.4)]"
           >
             <p
-              className={`mt-[55%] font-mono text-[clamp(8px,1.2vw,16px)] font-black leading-[0.8] ${shift} ${index === 1 ? "text-[#00e5ff]" : index === 2 ? "text-[#ff2c8c]" : ""}`}
+              className={`mt-[55%] font-mono text-[clamp(8px,1.2vw,16px)] font-black leading-[0.8] ${align}`}
             >
               SIG
               <br />
               NAL
             </p>
             <span
-              className={`mt-[18%] block h-1 w-full ${index === 0 ? "bg-[#a4ff36]" : index === 1 ? "bg-[#00e5ff]" : "bg-[#ff2c8c]"}`}
+              className={`mt-[18%] block h-1 w-full ${index === 1 ? "bg-[#aeb59c]" : "bg-white/55"}`}
             />
           </div>
         ))}

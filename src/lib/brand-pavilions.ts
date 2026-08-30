@@ -784,6 +784,10 @@ export const brandPavilions = {
         label: "Prada Group — Fall/Winter 2026 Simple Stories",
         href: "https://www.pradagroup.com/en/news-media/news-section/26-07-21-prada-fw-26-campaign.html",
       },
+      {
+        label: "Prada — Spring/Summer 2027 Menswear",
+        href: "https://www.prada.com/ww/en/pradasphere/fashion-shows/2027/ss-menswear.html",
+      },
     ],
   },
 } as const satisfies Record<string, BrandPavilionProfile>;

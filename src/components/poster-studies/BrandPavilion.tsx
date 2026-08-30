@@ -118,12 +118,18 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
 
           <div className="brand-pavilion__hero-content pavilion-shell">
             <p className="brand-pavilion__hero-kicker pavilion-meta">{pavilion.hero.kicker}</p>
-            <h1 className="brand-pavilion__wordmark" aria-label={project.brandStudy.brand}>
-              <BrandMark code={pavilion.code} decorative />
-            </h1>
             {pavilion.code === "prada" ? (
-              <PradaPlaque className="brand-pavilion__hero-plaque" decorative />
-            ) : null}
+              <div className="brand-pavilion__hero-lockup">
+                <h1 className="brand-pavilion__wordmark" aria-label={project.brandStudy.brand}>
+                  <BrandMark code={pavilion.code} decorative />
+                </h1>
+                <PradaPlaque className="brand-pavilion__hero-plaque" decorative />
+              </div>
+            ) : (
+              <h1 className="brand-pavilion__wordmark" aria-label={project.brandStudy.brand}>
+                <BrandMark code={pavilion.code} decorative />
+              </h1>
+            )}
             <div className="brand-pavilion__hero-thesis">
               <p className="brand-pavilion__hero-statement">{worldview.thesis}</p>
               <p className="brand-pavilion__hero-summary">{pavilion.hero.summary}</p>
@@ -153,6 +159,7 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
         <BrandSignature
           code={pavilion.code}
           brand={project.brandStudy.brand}
+          project={project}
           worldview={worldview}
           summary={pavilion.hero.summary}
         />
@@ -847,11 +854,13 @@ function PradaMovableWall({
 function BrandSignature({
   code,
   brand,
+  project,
   worldview,
   summary,
 }: {
   code: BrandCode;
   brand: string;
+  project: DesignProject;
   worldview: BrandWorldview;
   summary: string;
 }) {
@@ -869,6 +878,22 @@ function BrandSignature({
           <h2 id={headingId}>{worldview.thesis}</h2>
           <p>{summary}</p>
         </div>
+        {code === "prada" ? (
+          <figure className="brand-pavilion__identity-editorial">
+            <ProjectPicture
+              projectSlug={project.slug}
+              slot="editorialF"
+              sizes="(min-width: 1280px) 1520px, (min-width: 640px) calc(100vw - 4rem), calc(100vw - 2rem)"
+              className="brand-pavilion__identity-editorial-picture"
+              imageClassName="brand-pavilion__identity-editorial-image"
+              style={{ aspectRatio: "auto" }}
+            />
+            <figcaption className="pavilion-meta">
+              <span>Editorial study / quiet gesture, exact frame</span>
+              <span>Independent concept · 2026</span>
+            </figcaption>
+          </figure>
+        ) : null}
         <ol className="brand-pavilion__identity-codes" aria-label={`${brand} signature codes`}>
           {worldview.codes.map((item, index) => (
             <li key={item}>

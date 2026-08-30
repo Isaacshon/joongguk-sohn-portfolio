@@ -5,7 +5,7 @@ import { BrandProjectMark } from "@/components/poster-studies/BrandMark";
 import { DesignProjectCover } from "@/components/poster-studies/DesignProjectCover";
 import { ProjectPicture } from "@/components/poster-studies/ProjectPicture";
 import type { DesignProjectCoreMediaSlot } from "@/lib/design-project-media";
-import { designProjectCount, designProjects, type DesignProject } from "@/lib/design-projects";
+import { designProjects, type DesignProject } from "@/lib/design-projects";
 import { projects, type Project } from "@/lib/projects";
 
 export const Route = createFileRoute("/work")({
@@ -39,75 +39,30 @@ const featuredBrandProjects = featuredBrandSlugs.flatMap((slug) => {
   return project ? [project] : [];
 });
 
-const designFamilySpecs = [
-  {
-    id: "press-archive",
-    number: "01",
-    title: "Press & Archive",
-    eyebrow: "Ink, memory, evidence",
-    description:
-      "Four systems where physical traces lead the design: registration drift, collected lettering, field specimens, and undelivered correspondence.",
-    surface: "#e9e2d5",
-    ink: "#171713",
-    accent: "#b73527",
-    inverse: false,
-    slugs: ["afterimage", "memory-type", "field-notes-37", "last-letter"],
-  },
-  {
-    id: "sensory-editorial",
-    number: "02",
-    title: "Sensory Editorial",
-    eyebrow: "Surface, night, body, rhythm",
-    description:
-      "Editorial worlds directed by touch and tempo, moving from material pressure to fashion, responsive matter, and measured sound.",
-    surface: "#17171b",
-    ink: "#f5efe5",
-    accent: "#cfe7f6",
-    inverse: true,
-    slugs: ["tactile-forecast", "night-index", "soft-machine", "chroma-tempo"],
-  },
-  {
-    id: "public-signal",
-    number: "03",
-    title: "Public Signal",
-    eyebrow: "Routes, broadcasts, movement",
-    description:
-      "Identity systems tested at public scale: a neighbourhood route, a stable broadcast layer, an electric journey, and a live campus.",
-    surface: "#f1d83d",
-    ink: "#161616",
-    accent: "#2748a8",
-    inverse: false,
-    slugs: ["public-memory", "signal-noise", "79w", "tessera-live"],
-  },
-  {
-    id: "product-ritual",
-    number: "04",
-    title: "Product Ritual",
-    eyebrow: "Stay, source, routine, repair",
-    description:
-      "Products become behaviours through a tide datum, visible food batches, a twenty-four-hour dial, and garment interventions.",
-    surface: "#efe6d8",
-    ink: "#251f1a",
-    accent: "#ef5638",
-    inverse: false,
-    slugs: ["tidehold", "offsort", "horalis", "selv-00"],
-  },
-  {
-    id: "evidence-infrastructure",
-    number: "05",
-    title: "Evidence & Infrastructure",
-    eyebrow: "Proof, assembly, exchange, return",
-    description:
-      "Systems that make their workings visible, from documentary sourcing and reversible buildings to paired ledgers and material cycles.",
-    surface: "#17251f",
-    ink: "#f1eadc",
-    accent: "#e66e43",
-    inverse: true,
-    slugs: ["backmatter", "seamframe", "two-shores", "coldkiln"],
-  },
+const personalDesignProjectSlugs = [
+  "afterimage",
+  "night-index",
+  "public-memory",
+  "soft-machine",
+  "memory-type",
+  "79w",
+  "tactile-forecast",
+  "tessera-live",
+  "field-notes-37",
+  "horalis",
+  "signal-noise",
+  "tidehold",
+  "last-letter",
+  "backmatter",
+  "chroma-tempo",
+  "offsort",
+  "seamframe",
+  "two-shores",
+  "selv-00",
+  "coldkiln",
 ] as const;
 
-type IndependentDesignSlug = (typeof designFamilySpecs)[number]["slugs"][number];
+type IndependentDesignSlug = (typeof personalDesignProjectSlugs)[number];
 type TeaserTitlePlacement = "top-left" | "top-right" | "bottom-left" | "bottom-right";
 type TeaserLayering = "duet" | "inset" | "veil";
 type TeaserSurface = "primary" | "secondary" | "accent" | "support";
@@ -311,18 +266,10 @@ function getRequiredDesignProject(slug: IndependentDesignSlug) {
   return project;
 }
 
-const designFamilies = designFamilySpecs.map((family) => ({
-  ...family,
-  projects: family.slugs.map(getRequiredDesignProject),
-}));
-
-const independentDesignProjectCount = designFamilies.reduce(
-  (total, family) => total + family.projects.length,
-  0,
-);
+const personalDesignProjects = personalDesignProjectSlugs.map(getRequiredDesignProject);
 const portfolioArchiveItems = projects;
-const totalProjectCount =
-  featuredBrandProjects.length + independentDesignProjectCount + portfolioArchiveItems.length;
+const personalProjectCount = personalDesignProjects.length + portfolioArchiveItems.length;
+const visibleProjectCount = featuredBrandProjects.length + personalProjectCount;
 
 function Work() {
   return (
@@ -340,14 +287,15 @@ function Work() {
             </div>
             <div className="max-w-[560px] border-t border-black/30 pt-5 lg:mb-1">
               <p className="max-w-[28ch] text-balance font-serif text-[1.35rem] italic leading-[1.08] tracking-[-.025em] sm:text-[clamp(1.55rem,2.7vw,2.55rem)] sm:leading-[1.04]">
-                {designProjectCount} design systems, each opening into its own complete case study.
+                {visibleProjectCount} projects, each opening into its own complete case study.
               </p>
               <div className="mt-5 grid grid-cols-2 gap-4 border-y border-black/20 py-3 font-mono text-[9px] uppercase tracking-[.14em] text-black/55 sm:mt-7 sm:py-4">
                 <p>
-                  <b className="mr-2 text-[1.1rem] text-black">04</b>New brand worlds
+                  <b className="mr-2 text-[1.1rem] text-black">04</b>Brand projects
                 </p>
                 <p>
-                  <b className="mr-2 text-[1.1rem] text-black">{totalProjectCount}</b>Projects
+                  <b className="mr-2 text-[1.1rem] text-black">{personalProjectCount}</b>Personal
+                  projects
                 </p>
               </div>
               <div className="mt-3 flex items-center justify-end gap-6 sm:mt-5 sm:justify-between">
@@ -367,156 +315,89 @@ function Work() {
 
         <main>
           <section
-            aria-labelledby="latest-brand-worlds"
-            className="border-b border-black/20 bg-[#121512] px-5 py-10 text-[#f4f1e9] sm:px-8 sm:py-12 md:py-16 xl:px-12"
+            aria-labelledby="brand-projects"
+            className="border-b border-black/20 bg-[#121212] px-5 py-10 text-[#f3f1eb] sm:px-8 sm:py-12 md:py-16 xl:px-12"
           >
             <div className="mx-auto max-w-[1520px]">
-              <header className="mb-6 grid gap-4 border-b border-white/20 pb-6 sm:mb-8 sm:gap-6 sm:pb-8 md:mb-10 lg:grid-cols-[1fr_.72fr] lg:items-end lg:gap-12">
-                <div>
-                  <p className="font-mono text-[9px] font-semibold uppercase tracking-[.2em] text-[#9cc3b8]">
-                    Latest brand worlds / 04
-                  </p>
+              <header className="mb-8 flex items-end justify-between gap-8 border-b border-white/24 pb-5 md:mb-11 md:pb-6">
+                <div className="flex min-w-0 items-baseline gap-4 sm:gap-7">
+                  <span className="font-mono text-[9px] font-semibold tabular-nums tracking-[.16em] text-white/48">
+                    01
+                  </span>
                   <h2
-                    id="latest-brand-worlds"
-                    className="mt-3 max-w-[11ch] text-balance font-serif text-[clamp(3rem,6.5vw,7.4rem)] font-medium italic leading-[.78] tracking-[-.055em]"
+                    id="brand-projects"
+                    className="text-balance text-[clamp(2.25rem,5.2vw,5.6rem)] font-semibold leading-[.86] tracking-[-.055em]"
                   >
-                    New work, shown first.
+                    Brand Projects
                   </h2>
                 </div>
-                <div className="hidden max-w-[52ch] sm:block lg:justify-self-end">
-                  <p className="text-pretty text-[15px] leading-[1.65] text-white/72">
-                    Four complete brand environments—each with its own image language, values,
-                    typography, applications, and visual logic.
-                  </p>
-                  <p className="mt-4 font-mono text-[8px] uppercase leading-[1.6] tracking-[.14em] text-white/42">
-                    Independent, unofficial concept studies. All trademarks belong to their
-                    respective owners.
-                  </p>
-                </div>
+                <p className="shrink-0 font-mono text-[9px] uppercase tracking-[.16em] text-white/52">
+                  04 projects
+                </p>
               </header>
 
               <ol className="grid gap-px overflow-hidden border border-white/20 bg-white/20 md:grid-cols-2">
                 {featuredBrandProjects.map((project) => (
-                  <li key={project.slug} className="bg-[#121512] p-3 sm:p-4">
+                  <li key={project.slug} className="bg-[#121212] p-3 sm:p-4">
                     <FeaturedBrandCard project={project} />
                   </li>
                 ))}
               </ol>
+
+              <p className="mt-6 max-w-[60ch] font-mono text-[8px] uppercase leading-[1.65] tracking-[.13em] text-white/40">
+                Independent, unofficial concept studies. All trademarks belong to their respective
+                owners.
+              </p>
             </div>
           </section>
 
-          <section aria-labelledby="independent-design-worlds">
-            <header className="border-b border-black/20 bg-[#f4f1e9] px-5 py-14 sm:px-8 md:py-20 xl:px-12">
-              <div className="mx-auto grid max-w-[1520px] gap-6 md:grid-cols-[1fr_auto] md:items-end md:gap-12">
-                <div>
-                  <p className="font-mono text-[9px] font-semibold uppercase tracking-[.2em] text-primary">
-                    Independent design worlds / {independentDesignProjectCount}
-                  </p>
-                  <h2
-                    id="independent-design-worlds"
-                    className="mt-3 max-w-[12ch] text-balance font-serif text-[clamp(3.2rem,6vw,7rem)] font-medium italic leading-[.8] tracking-[-.05em]"
-                  >
-                    Five families. Twenty distinct systems.
-                  </h2>
-                </div>
-                <p className="max-w-[48ch] text-pretty text-[14px] leading-[1.7] text-black/65 md:text-right">
-                  Each family begins with a different physical or behavioural law. The image crop,
-                  proportion, title position, and cover logic change with the project—not with a
-                  reusable card template.
-                </p>
-              </div>
-            </header>
-
-            {designFamilies.map((family) => {
-              const headingId = `family-${family.id}`;
-
-              return (
-                <section
-                  key={family.id}
-                  aria-labelledby={headingId}
-                  data-theme={family.inverse ? "dark" : "light"}
-                  className="border-b border-black/20 px-5 py-14 sm:px-8 md:py-20 xl:px-12"
-                  style={{ backgroundColor: family.surface, color: family.ink }}
-                >
-                  <div className="mx-auto max-w-[1520px]">
-                    <header
-                      className={`mb-10 grid gap-5 border-b pb-7 md:mb-14 md:grid-cols-[minmax(0,1fr)_minmax(18rem,.62fr)] md:items-end md:gap-12 ${
-                        family.inverse ? "border-white/25" : "border-black/25"
-                      }`}
-                    >
-                      <div>
-                        <p
-                          className="font-mono text-[9px] font-semibold uppercase tracking-[.2em]"
-                          style={{ color: family.accent }}
-                        >
-                          Family {family.number} / 04 projects
-                        </p>
-                        <h3
-                          id={headingId}
-                          className="mt-3 max-w-full text-balance break-keep text-[clamp(2.05rem,9vw,2.5rem)] font-black uppercase leading-[.84] tracking-[-.055em] sm:text-[clamp(2.65rem,5.5vw,6.5rem)] sm:leading-[.82] sm:tracking-[-.065em]"
-                        >
-                          {family.title}
-                        </h3>
-                      </div>
-                      <div className="md:justify-self-end">
-                        <p className="text-balance break-keep font-serif text-[clamp(1.35rem,2.1vw,2.15rem)] italic leading-[1.02] tracking-[-.025em]">
-                          {family.eyebrow}
-                        </p>
-                        <p
-                          className={`mt-4 max-w-[52ch] text-pretty text-[13px] leading-[1.65] ${
-                            family.inverse ? "text-white/66" : "text-black/62"
-                          }`}
-                        >
-                          {family.description}
-                        </p>
-                      </div>
-                    </header>
-
-                    <ol className="grid grid-cols-1 gap-x-6 gap-y-12 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-16">
-                      {family.projects.map((project, index) => (
-                        <li
-                          key={project.slug}
-                          className={index === 0 || index === 3 ? "lg:col-span-7" : "lg:col-span-5"}
-                        >
-                          <DesignWorkCard project={project} inverse={family.inverse} />
-                        </li>
-                      ))}
-                    </ol>
-                  </div>
-                </section>
-              );
-            })}
-          </section>
-
           <section
-            aria-labelledby="practice-archive"
-            className="bg-[#f4f1e9] px-5 py-14 sm:px-8 md:py-20 xl:px-12"
+            aria-labelledby="personal-projects"
+            className="bg-[#eeece6] px-5 py-12 text-[#171713] sm:px-8 sm:py-14 md:py-20 xl:px-12"
           >
             <div className="mx-auto max-w-[1520px]">
-              <header className="mb-10 grid gap-5 border-b border-black/25 pb-7 md:grid-cols-[1fr_auto] md:items-end md:gap-10">
-                <div>
-                  <p className="font-mono text-[9px] font-semibold uppercase tracking-[.2em] text-primary">
-                    Practice archive / {String(portfolioArchiveItems.length).padStart(2, "0")}
-                  </p>
+              <header className="mb-10 flex items-end justify-between gap-8 border-b border-black/24 pb-5 md:mb-14 md:pb-6">
+                <div className="flex min-w-0 items-baseline gap-4 sm:gap-7">
+                  <span className="font-mono text-[9px] font-semibold tabular-nums tracking-[.16em] text-black/42">
+                    02
+                  </span>
                   <h2
-                    id="practice-archive"
-                    className="mt-2 max-w-[12ch] text-balance font-serif text-[clamp(3.2rem,6vw,6.6rem)] font-medium italic leading-[.82] tracking-[-.05em]"
+                    id="personal-projects"
+                    className="text-balance text-[clamp(2.25rem,5.2vw,5.6rem)] font-semibold leading-[.86] tracking-[-.055em]"
                   >
-                    Client, digital, and social practice.
+                    Personal Projects
                   </h2>
                 </div>
-                <p className="max-w-[42ch] text-pretty text-[13px] leading-[1.65] text-black/62 md:text-right">
-                  Six additional portfolio case studies, kept separate from the independent design
-                  worlds above.
+                <p className="shrink-0 font-mono text-[9px] uppercase tracking-[.16em] text-black/48">
+                  {String(personalProjectCount).padStart(2, "0")} projects
                 </p>
               </header>
 
-              <ol className="grid grid-cols-1 gap-x-8 gap-y-14 md:grid-cols-2 min-[1760px]:grid-cols-3">
-                {portfolioArchiveItems.map((project) => (
-                  <li key={project.slug}>
-                    <PortfolioWorkCard project={project} />
+              <ol className="grid grid-cols-1 gap-x-6 gap-y-12 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-16">
+                {personalDesignProjects.map((project, index) => (
+                  <li
+                    key={project.slug}
+                    className={
+                      index % 4 === 0 || index % 4 === 3 ? "lg:col-span-7" : "lg:col-span-5"
+                    }
+                  >
+                    <DesignWorkCard project={project} />
                   </li>
                 ))}
+                {portfolioArchiveItems.map((project, archiveIndex) => {
+                  const index = personalDesignProjects.length + archiveIndex;
+
+                  return (
+                    <li
+                      key={project.slug}
+                      className={
+                        index % 4 === 0 || index % 4 === 3 ? "lg:col-span-7" : "lg:col-span-5"
+                      }
+                    >
+                      <PortfolioWorkCard project={project} />
+                    </li>
+                  );
+                })}
               </ol>
             </div>
           </section>
@@ -579,7 +460,7 @@ function FeaturedBrandCard({ project }: { project: DesignProject }) {
   );
 }
 
-function DesignWorkCard({ project, inverse }: { project: DesignProject; inverse: boolean }) {
+function DesignWorkCard({ project }: { project: DesignProject }) {
   const config = designTeaserRegistry[project.slug as IndependentDesignSlug];
 
   if (!config) return null;
@@ -591,39 +472,32 @@ function DesignWorkCard({ project, inverse }: { project: DesignProject; inverse:
       aria-label={`View ${project.title} case study`}
       className="group block outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4"
       data-teaser-slot={config.slot}
-      data-teaser-layering={config.layering}
-      data-teaser-title={config.titlePlacement}
     >
       <div className="relative overflow-hidden bg-black/10 transition duration-500 group-hover:-translate-y-1">
         <DesignTeaserArtwork project={project} config={config} />
-        <TeaserTitlePanel project={project} config={config} />
-        <div
-          className={`pointer-events-none absolute inset-0 border transition-colors ${
-            inverse
-              ? "border-white/25 group-hover:border-white/70"
-              : "border-black/20 group-hover:border-black/65"
-          }`}
-        />
+        <div className="pointer-events-none absolute inset-0 border border-black/20 transition-colors group-hover:border-black/65" />
       </div>
 
-      <div
-        className={`grid gap-4 border-b py-5 sm:grid-cols-[minmax(0,1fr)_minmax(8rem,.38fr)] sm:items-end sm:gap-8 ${
-          inverse ? "border-white/25" : "border-black/25"
-        }`}
-      >
-        <p className="max-w-[34ch] text-balance break-keep font-serif text-[20px] italic leading-[1.08] tracking-[-.02em] sm:text-[clamp(24px,2.15vw,34px)]">
-          {project.statement}
-        </p>
-        <div className="sm:text-right">
-          <p
-            className={`text-[12px] leading-[1.55] ${inverse ? "text-white/64" : "text-black/62"}`}
-          >
-            {project.discipline}
+      <div className="grid gap-4 border-b border-black/25 py-5 sm:grid-cols-[minmax(0,1fr)_minmax(8rem,.38fr)] sm:items-end sm:gap-8">
+        <div>
+          <p className="font-mono text-[8px] font-semibold uppercase tracking-[.15em] text-black/44">
+            {project.index} / {config.slot}
           </p>
-          <p
-            className="mt-3 font-mono text-[8px] font-semibold uppercase tracking-[.14em]"
-            style={{ color: project.palette[2]?.value }}
+          <h3
+            lang={project.titleLang}
+            className={`mt-2 text-balance break-keep text-[clamp(2rem,3.35vw,4.2rem)] font-semibold leading-[.88] tracking-[-.05em] ${
+              project.titleLang === "ko" ? "font-ko-sans" : ""
+            }`}
           >
+            {project.title}
+          </h3>
+          <p className="mt-3 max-w-[38ch] text-pretty font-serif text-[18px] italic leading-[1.12] tracking-[-.015em] text-black/68 sm:text-[clamp(20px,1.65vw,27px)]">
+            {project.statement}
+          </p>
+        </div>
+        <div className="sm:text-right">
+          <p className="text-[12px] leading-[1.55] text-black/62">{project.discipline}</p>
+          <p className="mt-3 font-mono text-[8px] font-semibold uppercase tracking-[.14em] text-black/48 transition-colors group-hover:text-black">
             Open full case study ↗
           </p>
         </div>
@@ -646,60 +520,6 @@ function DesignTeaserArtwork({
       className="!h-full !min-h-0 !aspect-auto"
     />
   );
-  const cover = (
-    <div aria-hidden="true" className="relative h-full min-h-0 overflow-hidden">
-      <DesignProjectCover
-        project={project}
-        variant={config.coverVariant}
-        showTitle={false}
-        className="!h-full !min-h-0 !aspect-auto"
-      />
-    </div>
-  );
-  const picture = (
-    <ProjectPicture
-      projectSlug={project.slug}
-      slot={config.slot}
-      sizes="(min-width: 1280px) 50vw, (min-width: 1024px) 58vw, calc(100vw - 2.5rem)"
-      className="h-full min-h-0"
-      imageClassName="duration-[900ms] group-hover:scale-[1.04] group-hover:saturate-[1.05]"
-      style={{ aspectRatio: "auto" }}
-      fallback={fallback}
-    />
-  );
-
-  if (config.layering === "duet") {
-    const coverFirst = config.coverSide === "left";
-
-    return (
-      <div
-        className={`grid overflow-hidden ${
-          coverFirst ? "grid-cols-[.38fr_.62fr]" : "grid-cols-[.62fr_.38fr]"
-        }`}
-        style={{ aspectRatio: config.aspectRatio }}
-      >
-        {coverFirst ? cover : picture}
-        {coverFirst ? picture : cover}
-      </div>
-    );
-  }
-
-  if (config.layering === "inset") {
-    return (
-      <div className="relative overflow-hidden" style={{ aspectRatio: config.aspectRatio }}>
-        <div className="absolute inset-0">{cover}</div>
-        <ProjectPicture
-          projectSlug={project.slug}
-          slot={config.slot}
-          sizes="(min-width: 1280px) 44vw, (min-width: 1024px) 50vw, calc(88vw - 2.5rem)"
-          className="!absolute inset-[7%] !h-[86%] !w-[86%] shadow-[0_20px_60px_rgba(0,0,0,.28)]"
-          imageClassName="duration-[900ms] group-hover:scale-[1.035]"
-          style={{ aspectRatio: "auto" }}
-          fallback={fallback}
-        />
-      </div>
-    );
-  }
 
   return (
     <div className="relative overflow-hidden" style={{ aspectRatio: config.aspectRatio }}>
@@ -712,94 +532,8 @@ function DesignTeaserArtwork({
         style={{ aspectRatio: "auto" }}
         fallback={fallback}
       />
-      <div
-        aria-hidden="true"
-        className={`pointer-events-none absolute inset-0 opacity-[.16] ${
-          project.theme === "dark" ? "mix-blend-screen" : "mix-blend-multiply"
-        }`}
-      >
-        <DesignProjectCover
-          project={project}
-          variant={config.coverVariant}
-          showTitle={false}
-          className="!h-full !min-h-0 !aspect-auto"
-        />
-      </div>
     </div>
   );
-}
-
-const teaserTitlePlacementClasses: Record<TeaserTitlePlacement, string> = {
-  "top-left": "left-3 top-3 sm:left-5 sm:top-5",
-  "top-right": "right-3 top-3 text-right sm:right-5 sm:top-5",
-  "bottom-left": "bottom-3 left-3 sm:bottom-5 sm:left-5",
-  "bottom-right": "bottom-3 right-3 text-right sm:bottom-5 sm:right-5",
-};
-
-function TeaserTitlePanel({
-  project,
-  config,
-}: {
-  project: DesignProject;
-  config: DesignTeaserConfig;
-}) {
-  const surface = getTeaserSurface(project, config.titleSurface);
-  const ink = getReadableTeaserInk(surface);
-
-  return (
-    <div
-      className={`absolute z-20 w-[min(78%,28rem)] px-3 py-3 sm:w-[min(68%,34rem)] sm:px-5 sm:py-4 ${teaserTitlePlacementClasses[config.titlePlacement]}`}
-      style={{
-        backgroundColor: surface,
-        color: ink,
-        boxShadow: `inset 0 0 0 1px ${ink}33`,
-      }}
-    >
-      <p className="font-mono text-[8px] font-semibold uppercase tracking-[.15em] opacity-70">
-        {project.index} / {config.slot}
-      </p>
-      <h4
-        lang={project.titleLang}
-        className={`mt-2 text-balance break-keep text-[20px] font-black leading-[.92] tracking-[-.04em] sm:text-[clamp(24px,2.25vw,44px)] ${
-          project.titleLang === "ko" ? "font-ko-sans" : ""
-        }`}
-      >
-        {project.title}
-      </h4>
-    </div>
-  );
-}
-
-function getTeaserSurface(project: DesignProject, surface: TeaserSurface) {
-  const paletteIndex: Record<TeaserSurface, number> = {
-    primary: 0,
-    secondary: 1,
-    accent: 2,
-    support: 3,
-  };
-
-  return project.palette[paletteIndex[surface]]?.value ?? "#f4f1e9";
-}
-
-function getReadableTeaserInk(hex: string) {
-  const value = hex.trim().replace(/^#/, "");
-  const normalized =
-    value.length === 3
-      ? value
-          .split("")
-          .map((character) => `${character}${character}`)
-          .join("")
-      : value;
-
-  if (!/^[\da-f]{6}$/i.test(normalized)) return "#171713";
-
-  const channels = [0, 2, 4].map((offset) => {
-    const channel = Number.parseInt(normalized.slice(offset, offset + 2), 16) / 255;
-    return channel <= 0.04045 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4;
-  });
-  const luminance = channels[0] * 0.2126 + channels[1] * 0.7152 + channels[2] * 0.0722;
-
-  return luminance > 0.18 ? "#171713" : "#fffaf0";
 }
 
 function PortfolioWorkCard({ project }: { project: Project }) {

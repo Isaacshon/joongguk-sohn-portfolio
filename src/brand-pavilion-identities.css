@@ -2111,3 +2111,274 @@
     line-height: 1.08;
   }
 }
+
+/* PRADA / 2026 editorial calibration ---------------------------------------
+   The official campaign language is image-led, centred, and quiet. The
+   wordmark owns one optical axis; the triangle remains a secondary seal. */
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__hero {
+  min-height: min(68rem, 100dvh);
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__hero-image {
+  object-position: 50% 32% !important;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__hero-wash {
+  background:
+    linear-gradient(180deg, rgb(8 8 8 / 0.3) 0%, transparent 36%),
+    linear-gradient(0deg, rgb(8 8 8 / 0.8) 0%, rgb(8 8 8 / 0.22) 50%, transparent 76%);
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__hero-content {
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  gap: clamp(1rem, 2.2cqw, 2.25rem);
+  padding-block: clamp(8rem, 15vh, 11rem) clamp(2.75rem, 6vh, 5rem);
+  text-align: center;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__hero-kicker {
+  grid-column: 1;
+  color: rgb(255 255 255 / 0.68);
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__hero-lockup {
+  display: grid;
+  grid-column: 1;
+  justify-items: center;
+  gap: clamp(0.9rem, 1.8cqw, 1.5rem);
+  width: 100%;
+  transform: translateX(0.6%);
+}
+
+.brand-pavilion[data-layout="error-sixteen"]
+  .brand-pavilion__hero-lockup
+  .brand-pavilion__wordmark {
+  grid-column: auto;
+  width: min(45cqw, 40rem);
+  color: #fff;
+}
+
+.brand-pavilion[data-layout="error-sixteen"]
+  .brand-pavilion__hero-lockup
+  .brand-pavilion__hero-plaque {
+  grid-column: auto;
+  width: clamp(4.25rem, 5.6cqw, 6rem);
+  align-self: auto;
+  justify-self: center;
+  color: #fff;
+  opacity: 0.76;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__hero-thesis {
+  display: grid;
+  grid-column: 1;
+  justify-items: center;
+  max-width: 48rem;
+  gap: 1rem;
+  padding-top: 0;
+  border-top: 0;
+  text-align: center;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__hero-statement {
+  max-width: 18ch;
+  font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(1.8rem, 3.25cqw, 3.25rem);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 0.96;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__hero-summary {
+  max-width: 52ch;
+  margin-inline: auto;
+  font-size: clamp(0.86rem, 1cqw, 1rem);
+  line-height: 1.55;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__enter {
+  margin-inline: auto;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__chapter-nav-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  gap: 0.6rem;
+  padding-block: 0.75rem 0.6rem;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__chapter-brand {
+  display: flex;
+  justify-content: center;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__chapter-brand span {
+  display: none;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__chapter-brand .brand-mark {
+  width: 7.95rem;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__chapter-links {
+  width: 100%;
+  justify-content: center;
+  gap: clamp(1rem, 2cqw, 2.25rem);
+  padding-top: 0.55rem;
+  border-top: 1px solid rgb(16 16 16 / 0.18);
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-inner {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  padding-block: clamp(6rem, 10vw, 9rem) 0;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-mark {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  gap: clamp(1rem, 2cqw, 1.75rem);
+  text-align: center;
+  transform: translateX(0.6%);
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-mark > .brand-mark {
+  width: min(48cqw, 40rem);
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-mark .prada-plaque {
+  width: clamp(4.5rem, 6.5cqw, 6.75rem);
+  opacity: 0.72;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-copy {
+  width: min(100%, 56rem);
+  margin: clamp(2.5rem, 5cqw, 4.5rem) auto 0;
+  text-align: center;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-copy h2 {
+  max-width: 16ch;
+  margin: 1rem auto 0;
+  font-size: clamp(2.35rem, 4.2cqw, 4.4rem);
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-copy > p:last-child {
+  max-width: 54ch;
+  margin: 1.5rem auto 0;
+  color: rgb(255 255 255 / 0.68);
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-editorial {
+  grid-column: 1 / -1;
+  width: 100%;
+  margin: clamp(4rem, 7cqw, 6rem) 0 0;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-editorial-picture {
+  aspect-ratio: 16 / 7 !important;
+  background: #1b1b1b;
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-editorial-image {
+  object-position: 50% 49% !important;
+  filter: saturate(0.88) contrast(1.025);
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-editorial figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.85rem;
+  border-bottom: 1px solid rgb(255 255 255 / 0.36);
+  color: rgb(255 255 255 / 0.58);
+}
+
+.brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-codes {
+  display: none;
+}
+
+@container (max-width: 48rem) {
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__hero {
+    min-height: 47rem;
+  }
+
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__hero-content {
+    padding-block: 7rem 2.5rem;
+  }
+
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__hero-lockup {
+    transform: translateX(0.8%);
+  }
+
+  .brand-pavilion[data-layout="error-sixteen"]
+    .brand-pavilion__hero-lockup
+    .brand-pavilion__wordmark {
+    width: min(78cqw, 25rem);
+  }
+
+  .brand-pavilion[data-layout="error-sixteen"]
+    .brand-pavilion__hero-lockup
+    .brand-pavilion__hero-plaque {
+    display: block;
+    width: 4.25rem;
+  }
+
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__chapter-nav-inner {
+    min-height: 3.5rem;
+    padding-block: 0.85rem;
+  }
+
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__chapter-links {
+    width: max-content;
+    min-width: max-content;
+    flex: none;
+    justify-self: start;
+    justify-content: flex-start;
+    padding-inline: 1rem;
+  }
+
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__chapter-links a {
+    flex: none;
+    white-space: nowrap;
+  }
+
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-inner {
+    padding-block: 5rem 0;
+  }
+
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-mark {
+    transform: translateX(0.8%);
+  }
+
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-mark > .brand-mark {
+    width: min(82cqw, 26rem);
+  }
+
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-copy {
+    margin-top: 2.5rem;
+  }
+
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-editorial {
+    margin-top: 3.5rem;
+  }
+
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-editorial-picture {
+    aspect-ratio: 4 / 5 !important;
+  }
+
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-editorial-image {
+    object-position: 50% 50% !important;
+  }
+
+  .brand-pavilion[data-layout="error-sixteen"] .brand-pavilion__identity-editorial figcaption {
+    display: grid;
+    gap: 0.4rem;
+  }
+}

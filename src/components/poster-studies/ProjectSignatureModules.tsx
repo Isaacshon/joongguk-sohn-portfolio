@@ -24,14 +24,12 @@ type SignatureStyle = CSSProperties & {
 const pictureSizes = "(min-width: 1440px) 52vw, (min-width: 768px) 64vw, 100vw";
 
 function getSignatureStyle(project: DesignProject): SignatureStyle {
-  const isDark = project.theme === "dark";
-
   return {
-    "--signature-paper": isDark ? "#11110f" : "#f3efe6",
-    "--signature-ink": isDark ? "#f4f0e7" : "#11110f",
-    "--signature-a": project.palette[0]?.value ?? (isDark ? "#d9ff45" : "#c7382a"),
-    "--signature-b": project.palette[1]?.value ?? (isDark ? "#f4f0e7" : "#1e3656"),
-    "--signature-c": project.palette[2]?.value ?? (isDark ? "#6c78ff" : "#c9b996"),
+    "--signature-paper": "var(--case-panel)",
+    "--signature-ink": "var(--case-ink)",
+    "--signature-a": project.palette[0]?.value ?? "var(--project-primary)",
+    "--signature-b": project.palette[1]?.value ?? "var(--project-secondary)",
+    "--signature-c": project.palette[2]?.value ?? "var(--project-accent)",
   };
 }
 
