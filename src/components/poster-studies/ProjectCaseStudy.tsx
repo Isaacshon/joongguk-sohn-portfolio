@@ -2,356 +2,259 @@ import { Link } from "@tanstack/react-router";
 import type { CSSProperties } from "react";
 
 import { MatLayout } from "@/components/MatLayout";
-import {
-  BrandEditorialGallery,
-  BrandProjectStatusBand,
-} from "@/components/poster-studies/BrandEditorialGallery";
 import { DesignProjectCover } from "@/components/poster-studies/DesignProjectCover";
-import { ProjectApplicationGallery } from "@/components/poster-studies/ProjectApplicationGallery";
 import { ProjectPicture } from "@/components/poster-studies/ProjectPicture";
-import { ProjectSignatureModule } from "@/components/poster-studies/ProjectSignatureModules";
-import { ProjectVisual } from "@/components/poster-studies/visual-registry";
+import { getDesignProjectArtDirection } from "@/lib/design-project-art-direction";
 import {
-  getDesignProjectArtDirection,
-  type ProjectArtDirection,
-} from "@/lib/design-project-art-direction";
+  getDesignProjectMediaAsset,
+  type DesignProjectCoreMediaSlot,
+} from "@/lib/design-project-media";
 import {
   designProjectCount,
   getAdjacentDesignProjects,
   type DesignProject,
 } from "@/lib/design-projects";
-import {
-  getProjectChoreography,
-  type ProjectChapter,
-  type ProjectChoreography,
-} from "@/lib/project-choreography";
-import { getProjectStatementLockup, getProjectTitleLockup } from "@/lib/project-title-lockups";
+import { getPersonalProjectStory, type PersonalStoryBlock } from "@/lib/personal-project-stories";
+import { getProjectTitleLockup } from "@/lib/project-title-lockups";
 
 import "@/personal-project-premium.css";
 
-type ProjectCaseStyle = CSSProperties & Record<`--${string}`, string | number>;
+type StudioCaseStyle = CSSProperties & Record<`--${string}`, string | number>;
+
+const mediaLabels: Record<DesignProjectCoreMediaSlot, string> = {
+  hero: "Opening image",
+  tactile: "Material detail",
+  spatial: "Spatial application",
+  context: "Context in use",
+};
 
 export function ProjectCaseStudy({ project }: { project: DesignProject }) {
   const { previous, next } = getAdjacentDesignProjects(project.slug);
   const direction = getDesignProjectArtDirection(project);
-  const choreography = getProjectChoreography(project.slug);
+  const story = getPersonalProjectStory(project.slug);
   const titleLockup = getProjectTitleLockup(project.slug, project.title);
-  const statementLockup = getProjectStatementLockup(project.slug, project.statement);
-  const style: ProjectCaseStyle = {
-    "--project-primary": project.palette[0]?.value ?? direction.surfaces.paper,
-    "--project-secondary": project.palette[1]?.value ?? direction.surfaces.ink,
-    "--project-accent": project.palette[2]?.value ?? direction.surfaces.accent,
-    "--project-support": project.palette[3]?.value ?? direction.surfaces.panel,
-    "--case-font-display": direction.fonts.display,
-    "--case-font-accent": direction.fonts.accent,
-    "--case-font-body": direction.fonts.body,
-    "--case-font-meta": direction.fonts.meta,
-    "--case-paper": direction.surfaces.paper,
-    "--case-ink": direction.surfaces.ink,
-    "--case-panel": direction.surfaces.panel,
-    "--case-dark": direction.surfaces.dark,
-    "--case-light": direction.surfaces.light,
-    "--case-accent": direction.surfaces.accent,
-    "--case-title-weight": direction.title.weight,
-    "--case-title-style": direction.title.style,
-    "--case-title-leading": direction.title.leading,
-    "--case-title-tracking": direction.title.tracking,
-    "--case-title-measure": direction.title.measure,
+  const style: StudioCaseStyle = {
+    "--studio-paper": direction.surfaces.paper,
+    "--studio-ink": direction.surfaces.ink,
+    "--studio-panel": direction.surfaces.panel,
+    "--studio-accent": direction.surfaces.accent,
+    "--studio-display": direction.fonts.display,
+    "--studio-accent-font": direction.fonts.accent,
+    "--studio-body": direction.fonts.body,
+    "--studio-meta": direction.fonts.meta,
+    "--studio-title-weight": direction.title.weight,
+    "--studio-title-style": direction.title.style,
+    "--studio-title-leading": direction.title.leading,
+    "--studio-title-tracking": direction.title.tracking,
   };
 
   return (
-    <MatLayout surface="plain" contentClassName="!px-0 !pb-0 !pt-11">
+    <MatLayout immersive surface="plain" contentClassName="!px-0 !pb-0 !pt-11">
       <article
-        className="project-case"
+        className="studio-case"
         data-project={project.slug}
         data-motif={project.motif}
-        data-layout={direction.layout}
-        data-gallery={direction.gallery}
-        data-choreography={choreography.family}
+        data-hero-layout={story.hero.layout}
+        data-hero-shape={getHeroShape(story.hero.ratio)}
         style={style}
       >
-        <header className="project-hero">
-          <div className="project-shell">
-            <div className="project-topline project-meta">
-              <Link
-                to="/poster-studies"
-                activeOptions={{ exact: true }}
-                className="project-back-link"
-              >
-                <span aria-hidden="true">←</span> All design projects
+        <header className="studio-hero">
+          <div className="studio-shell">
+            <div className="studio-topline studio-meta">
+              <Link to="/work" className="studio-back-link">
+                <span aria-hidden="true">←</span> Selected work
               </Link>
               <span>
-                {project.index} / {designProjectCount} · {project.chapter}
+                Project {project.index} / {designProjectCount} · {project.chapter}
               </span>
             </div>
 
-            <div className="project-hero-grid">
-              <div className="project-hero-title-block">
-                <p className="project-kicker project-meta">{project.projectLabel}</p>
-                <h1
-                  lang={project.titleLang}
-                  className="project-title"
-                  data-title={project.title}
-                  aria-label={project.title}
-                >
+            <div className="studio-hero-composition">
+              <div className="studio-hero-copy">
+                <p className="studio-kicker studio-meta">{project.projectLabel}</p>
+                <h1 lang={project.titleLang} className="studio-title" aria-label={project.title}>
                   {titleLockup.map((line) => (
-                    <span key={line} className="project-title__line" aria-hidden="true">
+                    <span key={line} aria-hidden="true">
                       {line}
                     </span>
                   ))}
                 </h1>
-              </div>
-              <div className="project-hero-copy">
-                <p className="project-statement" aria-label={project.statement}>
-                  {statementLockup.map((line) => (
-                    <span key={line} className="project-statement__line" aria-hidden="true">
-                      {line}
-                    </span>
-                  ))}
-                </p>
-                <p className="project-description">{project.description}</p>
-                <dl className="project-facts">
+                <p className="studio-hero-description">{project.description}</p>
+                <dl className="studio-hero-facts">
                   <div>
-                    <dt className="project-meta">Discipline</dt>
+                    <dt className="studio-meta">Discipline</dt>
                     <dd>{project.discipline}</dd>
                   </div>
                   <div>
-                    <dt className="project-meta">Scope</dt>
-                    <dd>{project.applications.length} primary applications</dd>
+                    <dt className="studio-meta">Scope</dt>
+                    <dd>{project.applications.join(" · ")}</dd>
                   </div>
                 </dl>
               </div>
-            </div>
 
-            <div className="project-hero-media">
-              <ProjectPicture
-                projectSlug={project.slug}
-                slot="hero"
-                sizes="(min-width: 1280px) 1140px, (min-width: 640px) calc(100vw - 4rem), calc(100vw - 2.5rem)"
+              <MediaFigure
+                project={project}
+                slot={story.hero.slot}
+                ratio={story.hero.ratio}
+                className="studio-hero-figure"
                 priority
-                fallback={
-                  <DesignProjectCover
-                    project={project}
-                    variant="hero"
-                    className="!absolute !inset-0 !h-full !min-h-0 !aspect-auto"
-                  />
-                }
               />
-              <span className="project-hero-index project-meta" aria-hidden="true">
-                {project.index}
-              </span>
             </div>
-
-            <ProjectOpening project={project} choreography={choreography} />
           </div>
         </header>
 
-        <ProjectSignatureModule project={project} />
+        <main className="studio-story">
+          {story.blocks.map((block, index) => (
+            <StoryBlock
+              key={`${block.type}-${index}`}
+              block={block}
+              project={project}
+              number={String(index + 1).padStart(2, "0")}
+            />
+          ))}
+        </main>
 
-        <ProjectNarrative project={project} direction={direction} choreography={choreography} />
+        <ProjectEndMatter project={project} />
 
-        <ProjectWorldviewClosing project={project} choreography={choreography} />
-
-        <nav aria-label="Adjacent design projects" className="project-adjacent-grid">
-          {previous ? (
-            <AdjacentProject project={previous} direction="previous" hostDirection={direction} />
-          ) : null}
-          {next ? (
-            <AdjacentProject project={next} direction="next" hostDirection={direction} />
-          ) : null}
+        <nav aria-label="Adjacent design projects" className="studio-adjacent">
+          {previous ? <AdjacentProject project={previous} direction="previous" /> : <span />}
+          {next ? <AdjacentProject project={next} direction="next" /> : <span />}
         </nav>
-
-        <BrandProjectStatusBand project={project} />
       </article>
     </MatLayout>
   );
 }
 
-function ProjectNarrative({
+function StoryBlock({
+  block,
   project,
-  direction,
-  choreography,
-}: {
-  project: DesignProject;
-  direction: ProjectArtDirection;
-  choreography: ProjectChoreography;
-}) {
-  return (
-    <div
-      className="project-narrative"
-      data-family={choreography.family}
-      aria-label={project.title + " case-study sequence"}
-    >
-      {choreography.sequence.map((chapter, index) => (
-        <ProjectChapterSection
-          key={chapter}
-          chapter={chapter}
-          number={String(index + 1).padStart(2, "0")}
-          project={project}
-          direction={direction}
-          choreography={choreography}
-        />
-      ))}
-    </div>
-  );
-}
-
-function ProjectChapterSection({
-  chapter,
   number,
-  project,
-  direction,
-  choreography,
 }: {
-  chapter: ProjectChapter;
-  number: string;
+  block: PersonalStoryBlock;
   project: DesignProject;
-  direction: ProjectArtDirection;
-  choreography: ProjectChoreography;
+  number: string;
 }) {
-  const id = project.slug + "-" + chapter;
-
-  if (chapter === "premise") {
+  if (block.type === "media") {
     return (
       <section
-        aria-labelledby={id}
-        className="project-premise project-section"
-        data-chapter={chapter}
+        className="studio-block studio-media-block studio-shell"
+        data-width={block.width}
+        data-align={block.align ?? "center"}
+        aria-label={`${number} ${mediaLabels[block.slot]}`}
       >
-        <div className="project-shell project-premise-grid">
-          <div className="project-premise-lead">
-            <p className="project-section-number project-meta">{number} / Premise</p>
-            <h2 id={id} className="project-premise-title">
-              {direction.headings.premise}
-            </h2>
-            <p className="project-chapter-cue">{choreography.signatureLabel}</p>
-          </div>
-          <div className="project-premise-content">
-            <article className="project-premise-block" data-block="challenge">
-              <p className="project-premise-label project-meta">{direction.labels.challenge}</p>
-              <p className="project-premise-copy">{project.challenge}</p>
-            </article>
-            <article className="project-premise-block" data-block="response">
-              <p className="project-premise-label project-meta">{direction.labels.response}</p>
-              <p className="project-premise-copy">{project.response}</p>
-            </article>
-            <article className="project-premise-block" data-block="rule">
-              <p className="project-premise-label project-meta">{direction.labels.rule}</p>
-              <p className="project-rule-copy">{project.rule}</p>
-            </article>
-          </div>
-        </div>
+        <MediaFigure
+          project={project}
+          slot={block.slot}
+          ratio={block.ratio}
+          captionMode={block.width === "bleed" ? "none" : block.width === "inset" ? "side" : "full"}
+        />
       </section>
     );
   }
 
-  if (chapter === "system") {
+  if (block.type === "spread") {
     return (
       <section
-        aria-labelledby={id}
-        className="project-section project-section--visual"
-        data-chapter={chapter}
+        className="studio-block studio-spread studio-shell"
+        data-split={block.split}
+        data-keep-pair={block.keepPair || undefined}
+        aria-label={`${number} Image study`}
       >
-        <div className="project-shell">
-          <ProjectSectionHeading
-            number={number}
-            label="Signature system"
-            title={direction.headings.system}
-            id={id}
-            choreography={choreography}
+        {block.slots.map((slot, index) => (
+          <MediaFigure
+            key={slot}
+            project={project}
+            slot={slot}
+            ratio={block.ratios?.[index]}
+            captionMode={index === 0 ? "full" : "label"}
           />
-          <div className="project-visual-register">
-            <div className="project-visual-register__label project-meta">
-              <span>{choreography.signatureLabel}</span>
-              <span>Key art + core touchpoints</span>
-            </div>
-            <ProjectVisual project={project} />
-          </div>
-        </div>
+        ))}
       </section>
     );
   }
 
-  if (chapter === "applications") {
+  if (block.type === "statement") {
     return (
       <section
-        aria-labelledby={id}
-        className="project-section project-section--applications"
-        data-chapter={chapter}
+        className="studio-block studio-statement studio-shell"
+        data-align={block.align}
+        data-scale={block.scale}
       >
-        <div className="project-shell">
-          <ProjectSectionHeading
-            number={number}
-            label="In use"
-            title={direction.headings.applications}
-            id={id}
-            choreography={choreography}
-          />
-          <div className="project-applications-grid">
-            <ProjectApplicationGallery project={project} />
-          </div>
-        </div>
+        <p className="studio-statement-index studio-meta">{number} / Project position</p>
+        <h2>{project.statement}</h2>
       </section>
     );
   }
 
-  if (chapter === "material") {
+  if (block.type === "principle") {
+    return (
+      <section className="studio-block studio-principle studio-shell" data-align={block.align}>
+        <p className="studio-meta">{number} / Non-negotiable rule</p>
+        <p className="studio-principle-copy">{project.rule}</p>
+      </section>
+    );
+  }
+
+  if (block.type === "method") {
     return (
       <section
-        aria-labelledby={id}
-        className="project-section project-section--material"
-        data-chapter={chapter}
+        className="studio-block studio-method studio-shell"
+        data-layout={block.layout}
+        aria-labelledby={`${project.slug}-method-${number}`}
       >
-        <div className="project-shell">
-          <ProjectSectionHeading
-            number={number}
-            label="Type, colour, material"
-            title={direction.headings.material}
-            id={id}
-            choreography={choreography}
-            inverse
-          />
-          <div className="project-material-grid">
-            <div className="project-type-panel">
-              <p className="project-material-label project-meta">Typography direction</p>
-              <p className="project-type-direction">{project.typography}</p>
-              <div className="project-type-specimen" aria-label={project.title + " type specimen"}>
-                <p lang={project.titleLang}>{project.title}</p>
-                <p aria-hidden="true">
-                  {project.titleLang === "ko" ? "가나다라 · 0123456789" : "Aa Bb Cc · 0123456789"}
-                </p>
+        <div className="studio-method-heading">
+          <p className="studio-meta">{number} / Intent and response</p>
+          <h2 id={`${project.slug}-method-${number}`}>One idea, resolved with precision.</h2>
+        </div>
+        <article>
+          <p className="studio-meta">The need</p>
+          <p>{project.challenge}</p>
+        </article>
+        <article>
+          <p className="studio-meta">The response</p>
+          <p>{project.response}</p>
+        </article>
+      </section>
+    );
+  }
+
+  if (block.type === "material") {
+    return (
+      <section
+        className="studio-block studio-material"
+        data-layout={block.layout}
+        aria-labelledby={`${project.slug}-material-${number}`}
+      >
+        <div className="studio-shell studio-material-heading">
+          <p className="studio-meta">{number} / Material language</p>
+          <h2 id={`${project.slug}-material-${number}`}>A system you can see and touch.</h2>
+        </div>
+        <div className="studio-shell studio-material-grid">
+          <div className="studio-type-specimen">
+            <span className="studio-meta">Typography</span>
+            <p lang={project.titleLang}>{project.title}</p>
+            <small>{project.typography}</small>
+          </div>
+          <div className="studio-palette" aria-label="Project palette">
+            {project.palette.map((swatch) => (
+              <div
+                key={swatch.name}
+                className="studio-swatch"
+                style={{ backgroundColor: swatch.value, color: getReadableSwatchInk(swatch.value) }}
+              >
+                <span>{swatch.name}</span>
+                <span>{swatch.value}</span>
               </div>
-            </div>
-            <div className="project-palette-panel">
-              <p className="project-material-label project-meta">Working palette</p>
-              <div className="project-palette-grid">
-                {project.palette.map((swatch) => (
-                  <div
-                    key={swatch.name}
-                    className="project-swatch"
-                    style={{
-                      backgroundColor: swatch.value,
-                      color: getReadableSwatchInk(swatch.value),
-                    }}
-                  >
-                    <span className="project-meta">{swatch.name}</span>
-                    <span className="project-meta">{swatch.value}</span>
-                  </div>
-                ))}
-              </div>
-              <p className="project-material-label project-material-label--materials project-meta">
-                Material behaviour
-              </p>
-              <ul className="project-material-list">
-                {project.materials.map((material, index) => (
-                  <li key={material}>
-                    <span>{material}</span>
-                    <span className="project-meta">{String(index + 1).padStart(2, "0")}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            ))}
           </div>
+          <ol className="studio-material-list" aria-label="Project materials">
+            {project.materials.map((material, index) => (
+              <li key={material}>
+                <span className="studio-meta">{String(index + 1).padStart(2, "0")}</span>
+                <span>{material}</span>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
     );
@@ -359,149 +262,23 @@ function ProjectChapterSection({
 
   return (
     <section
-      aria-labelledby={id}
-      className="project-section project-section--motion"
-      data-chapter={chapter}
+      className="studio-block studio-sources studio-shell"
+      data-layout={block.layout}
+      aria-labelledby={`${project.slug}-sources-${number}`}
     >
-      <div className="project-shell">
-        <ProjectSectionHeading
-          number={number}
-          label="Time + references"
-          title={direction.headings.motion}
-          id={id}
-          choreography={choreography}
-        />
-        <div className="project-motion-grid">
-          <div className="project-motion-study">
-            <p className="project-motion-label project-meta">Motion principle</p>
-            <p className="project-motion-copy">{project.motion}</p>
-            <figure className="project-motion-scene">
-              <ProjectPicture
-                projectSlug={project.slug}
-                slot="context"
-                sizes="(min-width: 1024px) 62vw, calc(100vw - 2.5rem)"
-                style={{ aspectRatio: "16 / 10" }}
-                fallback={
-                  <DesignProjectCover
-                    project={project}
-                    variant="screen"
-                    showTitle={false}
-                    className="!absolute !inset-0 !h-full !min-h-0 !aspect-auto"
-                  />
-                }
-              />
-              <figcaption className="project-meta">One system, observed through time</figcaption>
-            </figure>
-            <ol className="project-motion-score" aria-label="Three-part motion logic">
-              <li>
-                <span className="project-meta">01 / Hold</span>
-                <p>{project.rule}</p>
-              </li>
-              <li>
-                <span className="project-meta">02 / Change</span>
-                <p>{project.motion}</p>
-              </li>
-              <li>
-                <span className="project-meta">03 / Resolve</span>
-                <p>{choreography.closingCue}</p>
-              </li>
-            </ol>
-          </div>
-          <aside className="project-lineage">
-            <p className="project-motion-label project-meta">Design lineage</p>
-            <p className="project-lineage-copy">{project.lineage}</p>
-            <p className="project-lineage-note">
-              Research sources inform the method; the identity, copy, layouts, and application
-              system shown here are original self-initiated work.
-            </p>
-            <ul className="project-reference-list">
-              {project.references.map((reference, index) => (
-                <li key={reference.href}>
-                  <a href={reference.href} target="_blank" rel="noreferrer">
-                    <span>
-                      <span className="project-reference-index project-meta">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-                      {reference.label}
-                    </span>
-                    <span aria-hidden="true">↗</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </aside>
-        </div>
+      <div>
+        <p className="studio-meta">{number} / Context and lineage</p>
+        <h2 id={`${project.slug}-sources-${number}`}>Research informs the method.</h2>
       </div>
-    </section>
-  );
-}
-
-function ProjectSectionHeading({
-  number,
-  label,
-  title,
-  id,
-  choreography,
-  inverse = false,
-}: {
-  number: string;
-  label: string;
-  title: string;
-  id: string;
-  choreography: ProjectChoreography;
-  inverse?: boolean;
-}) {
-  return (
-    <div className={inverse ? "project-section-heading is-inverse" : "project-section-heading"}>
-      <p className="project-section-number project-meta">
-        {number} / {label}
-      </p>
-      <h2 id={id}>{title}</h2>
-      <p className="project-section-heading__folio project-meta">{choreography.familyLabel}</p>
-    </div>
-  );
-}
-
-function ProjectOpening({
-  project,
-  choreography,
-}: {
-  project: DesignProject;
-  choreography: ProjectChoreography;
-}) {
-  const headingId = project.slug + "-opening";
-  const laws = [
-    { label: "Form", value: project.rule },
-    { label: "Voice", value: project.typography },
-    { label: "Time", value: project.motion },
-  ];
-
-  return (
-    <section className="project-opening" aria-labelledby={headingId}>
-      <div className="project-opening__rail project-meta">
-        <span>{choreography.familyLabel}</span>
-        <span>{choreography.signatureLabel}</span>
-      </div>
-      <div className="project-opening__statement">
-        <p className="project-meta">Design premise / {choreography.signatureLabel}</p>
-        <h2 id={headingId}>{choreography.openingCue}</h2>
-        <p>{project.statement}</p>
-      </div>
-      <ol className="project-opening__laws">
-        {laws.map((law, index) => (
-          <li key={law.label}>
-            <span className="project-meta">
-              {String(index + 1).padStart(2, "0")} / {law.label}
-            </span>
-            <p>{law.value}</p>
-          </li>
-        ))}
-      </ol>
-      <ol className="project-opening__sequence" aria-label="Case-study reading order">
-        {choreography.sequence.map((chapter, index) => (
-          <li key={chapter} data-chapter={chapter}>
-            <span>{String(index + 1).padStart(2, "0")}</span>
-            <span>{chapter}</span>
+      <p className="studio-lineage">{project.lineage}</p>
+      <ol className="studio-reference-list">
+        {project.references.map((reference, index) => (
+          <li key={reference.href}>
+            <a href={reference.href} target="_blank" rel="noreferrer">
+              <span className="studio-meta">{String(index + 1).padStart(2, "0")}</span>
+              <span>{reference.label}</span>
+              <span aria-hidden="true">↗</span>
+            </a>
           </li>
         ))}
       </ol>
@@ -509,98 +286,112 @@ function ProjectOpening({
   );
 }
 
-function ProjectWorldviewClosing({
+function MediaFigure({
   project,
-  choreography,
+  slot,
+  ratio,
+  className = "",
+  priority = false,
+  captionMode = "full",
 }: {
   project: DesignProject;
-  choreography: ProjectChoreography;
+  slot: DesignProjectCoreMediaSlot;
+  ratio?: string;
+  className?: string;
+  priority?: boolean;
+  captionMode?: "full" | "label" | "side" | "none";
 }) {
-  const headingId = `${project.slug}-final-state`;
+  const asset = getDesignProjectMediaAsset(project.slug, slot);
 
   return (
-    <section className="project-worldview-closing" aria-labelledby={headingId}>
+    <figure className={`studio-figure ${className}`} data-caption={captionMode}>
       <ProjectPicture
         projectSlug={project.slug}
-        slot="context"
-        sizes="100vw"
-        className="project-worldview-closing__picture"
-        imageClassName="project-worldview-closing__image"
-        style={{ aspectRatio: "auto" }}
-        decorative
+        slot={slot}
+        sizes="(min-width: 1440px) 1320px, (min-width: 768px) calc(100vw - 5rem), calc(100vw - 2rem)"
+        style={ratio ? { aspectRatio: ratio } : undefined}
+        priority={priority}
         fallback={
           <DesignProjectCover
             project={project}
-            variant="hero"
+            variant={slot === "hero" ? "hero" : slot === "tactile" ? "poster" : "screen"}
             showTitle={false}
-            className="!absolute !inset-0 !h-full !min-h-0 !aspect-auto"
+            className="absolute inset-0 h-full min-h-0 aspect-auto"
           />
         }
       />
-      <div className="project-worldview-closing__wash" aria-hidden="true" />
-      <div className="project-shell project-worldview-closing__inner">
-        <div className="project-worldview-closing__meta project-meta">
-          <span>06 / Final state</span>
-          <span>{choreography.signatureLabel}</span>
+      {captionMode === "none" ? null : (
+        <figcaption>
+          <span className="studio-meta">{mediaLabels[slot]}</span>
+          <span>{asset?.alt ?? `${project.title} project image`}</span>
+        </figcaption>
+      )}
+    </figure>
+  );
+}
+
+function ProjectEndMatter({ project }: { project: DesignProject }) {
+  return (
+    <footer className="studio-endmatter">
+      <div className="studio-shell studio-endmatter-grid">
+        <div>
+          <p className="studio-meta">Resolved across</p>
+          <h2>{project.title}</h2>
         </div>
-        <h2 id={headingId}>{choreography.closingCue}</h2>
-        <p>{project.rule}</p>
-        <ol aria-label={`${project.title} applications`}>
+        <ol>
           {project.applications.map((application, index) => (
             <li key={application}>
-              <span className="project-meta">0{index + 1}</span>
+              <span className="studio-meta">{String(index + 1).padStart(2, "0")}</span>
               <span>{application}</span>
             </li>
           ))}
         </ol>
+        <p>{project.motion}</p>
       </div>
-    </section>
+    </footer>
   );
 }
 
 function AdjacentProject({
   project,
   direction,
-  hostDirection,
 }: {
   project: DesignProject;
   direction: "previous" | "next";
-  hostDirection: ProjectArtDirection;
 }) {
-  const artDirection = getDesignProjectArtDirection(project);
   const titleLockup = getProjectTitleLockup(project.slug, project.title);
-  const style: ProjectCaseStyle = {
-    "--adjacent-display":
-      project.titleLang === "ko"
-        ? '"Pretendard Variable", "Malgun Gothic", sans-serif'
-        : hostDirection.fonts.display,
-    "--adjacent-meta": hostDirection.fonts.meta,
-    "--adjacent-paper": artDirection.surfaces.paper,
-    "--adjacent-ink": artDirection.surfaces.ink,
-    "--adjacent-accent": artDirection.surfaces.accent,
-  };
 
   return (
     <Link
       to="/poster-studies/$slug"
       params={{ slug: project.slug }}
-      className="project-adjacent-card"
+      className="studio-adjacent-link"
       data-direction={direction}
-      data-layout={artDirection.layout}
-      style={style}
     >
-      <p className="project-adjacent-meta">
-        {direction === "previous" ? "← Previous" : "Next →"} / {project.index}
-      </p>
-      <p lang={project.titleLang} className="project-adjacent-title" aria-label={project.title}>
-        {titleLockup.map((line) => (
-          <span key={line} className="project-adjacent-title__line" aria-hidden="true">
-            {line}
-          </span>
-        ))}
-      </p>
-      <span className="project-adjacent-index" aria-hidden="true">
-        {project.index}
+      <ProjectPicture
+        projectSlug={project.slug}
+        slot="hero"
+        sizes="(min-width: 768px) 50vw, 100vw"
+        style={{ aspectRatio: "16 / 9" }}
+        decorative
+        fallback={
+          <DesignProjectCover
+            project={project}
+            variant="screen"
+            showTitle={false}
+            className="absolute inset-0 h-full min-h-0 aspect-auto"
+          />
+        }
+      />
+      <span className="studio-adjacent-copy">
+        <span className="studio-meta">
+          {direction === "previous" ? "Previous project" : "Next project"} · {project.index}
+        </span>
+        <strong lang={project.titleLang}>
+          {titleLockup.map((line) => (
+            <span key={line}>{line}</span>
+          ))}
+        </strong>
       </span>
     </Link>
   );
@@ -625,4 +416,11 @@ function getReadableSwatchInk(hex: string) {
   const luminance = channels[0] * 0.2126 + channels[1] * 0.7152 + channels[2] * 0.0722;
 
   return luminance > 0.18 ? "#151713" : "#fffaf0";
+}
+
+function getHeroShape(ratio: string) {
+  const [width, height] = ratio.split("/").map((value) => Number.parseFloat(value.trim()));
+  return Number.isFinite(width) && Number.isFinite(height) && width < height
+    ? "portrait"
+    : "landscape";
 }

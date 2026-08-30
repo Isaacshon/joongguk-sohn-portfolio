@@ -80,7 +80,7 @@ const projectMediaDescriptions = {
   },
   "memory-type": {
     hero: {
-      alt: "Archivist documenting the worn lettering of a Seoul awning and neighbourhood wall.",
+      alt: "Suspended archive of painted Hangul stroke fragments arranged above a glass specimen case.",
       focalPoint: "47% 42%",
     },
     tactile: {
@@ -172,7 +172,7 @@ const projectMediaDescriptions = {
   },
   "public-memory": {
     hero: {
-      alt: "Neighbourhood walkers carrying a folded civic map through a Seoul street.",
+      alt: "Civic pavilion with folded red, yellow, and blue route forms reflected in water.",
       focalPoint: "49% 41%",
     },
     tactile: {
