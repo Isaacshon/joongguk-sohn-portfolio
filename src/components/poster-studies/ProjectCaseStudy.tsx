@@ -25,7 +25,9 @@ import {
   type ProjectChapter,
   type ProjectChoreography,
 } from "@/lib/project-choreography";
-import { getProjectTitleLockup } from "@/lib/project-title-lockups";
+import { getProjectStatementLockup, getProjectTitleLockup } from "@/lib/project-title-lockups";
+
+import "@/personal-project-premium.css";
 
 type ProjectCaseStyle = CSSProperties & Record<`--${string}`, string | number>;
 
@@ -34,6 +36,7 @@ export function ProjectCaseStudy({ project }: { project: DesignProject }) {
   const direction = getDesignProjectArtDirection(project);
   const choreography = getProjectChoreography(project.slug);
   const titleLockup = getProjectTitleLockup(project.slug, project.title);
+  const statementLockup = getProjectStatementLockup(project.slug, project.statement);
   const style: ProjectCaseStyle = {
     "--project-primary": project.palette[0]?.value ?? direction.surfaces.paper,
     "--project-secondary": project.palette[1]?.value ?? direction.surfaces.ink,
@@ -99,7 +102,13 @@ export function ProjectCaseStudy({ project }: { project: DesignProject }) {
                 </h1>
               </div>
               <div className="project-hero-copy">
-                <p className="project-statement">{project.statement}</p>
+                <p className="project-statement" aria-label={project.statement}>
+                  {statementLockup.map((line) => (
+                    <span key={line} className="project-statement__line" aria-hidden="true">
+                      {line}
+                    </span>
+                  ))}
+                </p>
                 <p className="project-description">{project.description}</p>
                 <dl className="project-facts">
                   <div>
@@ -474,9 +483,9 @@ function ProjectOpening({
         <span>{choreography.signatureLabel}</span>
       </div>
       <div className="project-opening__statement">
-        <p className="project-meta">{choreography.openingCue}</p>
-        <h2 id={headingId}>{project.statement}</h2>
-        <p>{project.description}</p>
+        <p className="project-meta">Design premise / {choreography.signatureLabel}</p>
+        <h2 id={headingId}>{choreography.openingCue}</h2>
+        <p>{project.statement}</p>
       </div>
       <ol className="project-opening__laws">
         {laws.map((law, index) => (

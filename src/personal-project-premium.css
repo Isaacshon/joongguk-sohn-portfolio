@@ -1,0 +1,1351 @@
+/* Personal project pavilions -------------------------------------------------
+   Final-authority layer for the twenty self-initiated case studies.
+   The shared shell stays calm and readable; each project expresses one visual
+   law through its hero, media rhythm, evidence modules, and closing state. */
+
+.project-case[data-choreography] {
+  --personal-rule: color-mix(in srgb, var(--case-ink) 22%, transparent);
+  --personal-section-space: clamp(5rem, 8vw, 9rem);
+  --personal-display: clamp(3.3rem, 6.2cqw, 6.9rem);
+  --personal-section-title: clamp(2.7rem, 4.7cqw, 5.15rem);
+  --personal-reading: min(100%, 68ch);
+  overflow-x: clip;
+  background-color: var(--case-paper);
+  color: var(--case-ink);
+  container-name: personal-project;
+  container-type: inline-size;
+}
+
+.project-case[data-choreography]::before {
+  opacity: 0.045;
+}
+
+.project-case[data-choreography] :is(h1, h2, h3, p, li, dd, figcaption) {
+  min-width: 0;
+}
+
+.project-case[data-choreography] :is(h1, h2, h3) {
+  overflow-wrap: normal;
+  text-wrap: balance;
+  word-break: normal;
+}
+
+.project-case[data-choreography]
+  :is(.project-description, .project-rule-copy, .project-lineage-copy, .project-lineage-note) {
+  text-wrap: pretty;
+}
+
+.project-case[data-choreography] .project-shell {
+  width: min(100%, 90rem);
+  padding-inline: clamp(1.25rem, 3.2vw, 3.25rem);
+}
+
+/* Hero: proof and proposition, never a second poster wall. */
+.project-case[data-choreography] .project-hero {
+  padding-block: clamp(1.8rem, 3.5vw, 3.75rem) 0;
+}
+
+.project-case[data-choreography] .project-hero > .project-shell {
+  display: grid;
+  grid-template-areas:
+    "topline"
+    "heading"
+    "media"
+    "opening";
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.project-case[data-choreography] .project-topline {
+  grid-area: topline;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--personal-rule);
+}
+
+.project-case[data-choreography] .project-hero-grid {
+  grid-area: heading;
+  gap: clamp(2rem, 4vw, 5rem);
+  padding-block: clamp(3rem, 6vw, 6.5rem);
+  border: 0;
+}
+
+.project-case[data-choreography] .project-hero-title-block,
+.project-case[data-choreography] .project-hero-copy {
+  align-self: end;
+  min-width: 0;
+}
+
+.project-case[data-choreography] .project-kicker {
+  margin: 0 0 clamp(1rem, 2vw, 1.6rem);
+}
+
+.project-case[data-choreography] .project-title {
+  width: auto;
+  max-width: min(100%, var(--case-title-measure));
+  margin: 0;
+  overflow: visible;
+  font-size: var(--personal-display);
+  letter-spacing: max(-0.065em, var(--case-title-tracking));
+  line-height: max(0.82, var(--case-title-leading));
+}
+
+.project-case[data-choreography] .project-title__line,
+.project-case[data-choreography] .project-statement__line {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.project-case[data-choreography] .project-statement {
+  max-width: 29ch;
+  font-size: clamp(1.65rem, 2.65cqw, 2.85rem);
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.project-case[data-choreography] .project-statement__line + .project-statement__line {
+  margin-top: 0.05em;
+}
+
+.project-case[data-choreography] .project-description {
+  max-width: 58ch;
+  margin-top: 1.5rem;
+  font-size: clamp(0.95rem, 1.1cqw, 1.05rem);
+  line-height: 1.68;
+  opacity: 0.68;
+}
+
+.project-case[data-choreography] .project-facts {
+  gap: 1rem 1.5rem;
+  margin-top: 1.8rem;
+  padding-top: 1rem;
+}
+
+.project-case[data-choreography] .project-hero-media {
+  grid-area: media;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  aspect-ratio: 16 / 9 !important;
+}
+
+.project-case[data-choreography] .project-hero-media > [data-project-media] {
+  height: 100%;
+  aspect-ratio: auto !important;
+}
+
+.project-case[data-choreography] .project-hero-media::after {
+  display: none;
+}
+
+.project-case[data-choreography] .project-hero-index {
+  right: 0;
+  bottom: 0;
+  width: 3rem;
+  border: 1px solid var(--personal-rule);
+}
+
+/* Opening: a concise table of contents and three laws. */
+.project-case[data-choreography] .project-opening {
+  grid-area: opening;
+  display: grid;
+  grid-template-columns: minmax(0, 0.94fr) minmax(20rem, 1.06fr);
+  margin-top: clamp(2.25rem, 4vw, 4.25rem);
+  overflow: hidden;
+  border: 1px solid var(--personal-rule);
+  background: color-mix(in srgb, var(--case-paper) 94%, var(--case-panel));
+  background-image: none;
+}
+
+.project-case[data-choreography] .project-opening::after {
+  display: none;
+}
+
+.project-case[data-choreography] .project-opening__rail {
+  grid-column: 1 / -1;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid var(--personal-rule);
+}
+
+.project-case[data-choreography] .project-opening__statement {
+  padding: clamp(2rem, 4vw, 4rem);
+}
+
+.project-case[data-choreography] .project-opening__statement > .project-meta {
+  margin-bottom: clamp(1rem, 2vw, 1.75rem);
+}
+
+.project-case[data-choreography] .project-opening__statement h2 {
+  max-width: 15ch;
+  font-size: clamp(2.35rem, 4.2cqw, 4.5rem);
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+
+.project-case[data-choreography] .project-opening__statement > p:last-child {
+  max-width: 42ch;
+  margin-top: 1.5rem;
+  font-size: clamp(0.96rem, 1.1cqw, 1.05rem);
+  line-height: 1.62;
+  opacity: 0.66;
+}
+
+.project-case[data-choreography] .project-opening__laws {
+  border-top: 0;
+  border-left: 1px solid var(--personal-rule);
+}
+
+.project-case[data-choreography] .project-opening__laws li {
+  padding: clamp(1.2rem, 2vw, 1.8rem);
+  border-color: var(--personal-rule);
+}
+
+.project-case[data-choreography] .project-opening__laws p {
+  margin-top: 0.6rem;
+  font-size: clamp(0.86rem, 0.95cqw, 0.96rem);
+  line-height: 1.52;
+}
+
+.project-case[data-choreography] .project-opening__sequence {
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  border-top: 1px solid var(--personal-rule);
+  background: transparent;
+}
+
+.project-case[data-choreography] .project-opening__sequence li {
+  min-height: 0;
+  padding: 0.72rem 0.85rem;
+  border-right: 1px solid var(--personal-rule);
+  background: transparent;
+  color: inherit;
+}
+
+.project-case[data-choreography] .project-opening__sequence li:last-child {
+  border-right: 0;
+}
+
+/* Chapters: controlled editorial hierarchy. */
+.project-case[data-choreography] .project-section {
+  padding-block: var(--personal-section-space);
+}
+
+.project-case[data-choreography] .project-section::before {
+  display: none;
+}
+
+.project-case[data-choreography] .project-section-heading {
+  grid-template-columns: minmax(6.5rem, 0.18fr) minmax(0, 0.64fr) minmax(7rem, 0.18fr);
+  align-items: start;
+  gap: clamp(1.25rem, 2.5vw, 3rem);
+}
+
+.project-case[data-choreography] .project-section-heading h2 {
+  max-width: 16ch;
+  overflow: visible;
+  font-size: var(--personal-section-title);
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+
+.project-case[data-choreography] .project-premise-grid {
+  grid-template-columns: minmax(0, 0.34fr) minmax(0, 0.66fr);
+  gap: clamp(3rem, 6vw, 6rem);
+}
+
+.project-case[data-choreography] .project-premise-title {
+  max-width: 13ch;
+  overflow: visible;
+  font-size: clamp(2.8rem, 4.7cqw, 5.15rem);
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+
+.project-case[data-choreography] .project-premise-copy {
+  max-width: 31ch;
+  font-size: clamp(1.35rem, 2.05cqw, 2.15rem);
+  line-height: 1.12;
+}
+
+.project-case[data-choreography] .project-rule-copy {
+  font-size: clamp(1.05rem, 1.35cqw, 1.35rem);
+}
+
+.project-case[data-choreography] .project-chapter-cue {
+  max-width: 23ch;
+  margin-top: 1.5rem;
+}
+
+/* Signature system: photographic evidence precedes the legacy poster plate. */
+.project-case[data-choreography] .project-visual-register,
+.project-case[data-choreography] .project-applications-grid {
+  margin-top: clamp(2.5rem, 4.5vw, 4.75rem);
+}
+
+.project-case[data-choreography] .project-visual-story {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.75rem, 3.5vw, 3.5rem);
+}
+
+.project-case[data-choreography] .project-visual-grid {
+  order: 1;
+  grid-template-columns: minmax(0, 1.45fr) minmax(14rem, 0.55fr);
+  gap: clamp(1rem, 1.7vw, 1.6rem);
+}
+
+.project-case[data-choreography] .project-visual-world {
+  order: 2;
+  width: min(100%, 70rem);
+  margin-inline: auto;
+  padding: clamp(0.65rem, 1vw, 0.9rem);
+  border: 1px solid var(--personal-rule);
+  border-radius: 0;
+  box-shadow: none;
+  transform: none;
+}
+
+.project-case[data-choreography] .project-visual-world > :last-child {
+  aspect-ratio: 16 / 10 !important;
+}
+
+.project-case[data-choreography] .project-visual-world__label {
+  grid-template-columns: minmax(8rem, auto) minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.project-case[data-choreography] .project-material-register {
+  min-height: 0;
+  padding: clamp(1rem, 1.6vw, 1.5rem);
+}
+
+.project-case[data-choreography] .project-material-register__title {
+  padding-block: clamp(1.5rem, 2.5vw, 2.5rem);
+  font-size: clamp(1.45rem, 2.25cqw, 2.4rem);
+}
+
+/* Application images read as a proof sequence, with captions below. */
+.project-case[data-choreography] .project-application-gallery {
+  gap: clamp(2rem, 4vw, 4.5rem) clamp(1rem, 2vw, 2rem);
+}
+
+.project-case[data-choreography] .project-application-board {
+  overflow: visible;
+  border: 0;
+  background: transparent !important;
+}
+
+.project-case[data-choreography] .project-application-board > .pointer-events-none {
+  display: none;
+}
+
+.project-case[data-choreography] .project-application-caption {
+  position: static;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  gap: 1rem;
+  padding: 0.9rem 0 0;
+  border-top: 1px solid var(--personal-rule);
+  background: transparent;
+  color: var(--case-ink);
+}
+
+.project-case[data-choreography] .project-application-caption__copy {
+  max-width: 42rem;
+}
+
+.project-case[data-choreography] .project-application-caption__copy > .project-meta {
+  color: var(--case-accent);
+}
+
+.project-case[data-choreography] .project-application-caption__copy > strong {
+  font-size: clamp(1.05rem, 1.6cqw, 1.55rem);
+  line-height: 1.08;
+}
+
+.project-case[data-choreography] .project-application-caption__copy > small {
+  max-width: 54ch;
+  font-size: 0.76rem;
+  line-height: 1.45;
+}
+
+.project-case[data-choreography] .project-application-caption__law {
+  display: none;
+}
+
+/* Type, colour, material: specimens remain legible rather than theatrical. */
+.project-case[data-choreography] .project-material-grid {
+  margin-top: clamp(2.75rem, 5vw, 5rem);
+}
+
+.project-case[data-choreography] .project-type-direction,
+.project-case[data-choreography] .project-motion-copy {
+  max-width: 35ch;
+  font-size: clamp(1.75rem, 3cqw, 3.15rem);
+  line-height: 1.03;
+}
+
+.project-case[data-choreography] .project-type-specimen {
+  margin-top: clamp(2.5rem, 4vw, 4rem);
+  overflow: visible;
+}
+
+.project-case[data-choreography] .project-type-specimen p {
+  width: 100%;
+  max-width: 100%;
+  overflow-wrap: normal;
+  font-size: clamp(3rem, 6.2cqw, 6.4rem);
+  line-height: 0.92;
+  white-space: normal;
+}
+
+.project-case[data-choreography] .project-type-specimen p + p {
+  font-size: clamp(0.88rem, 1.35cqw, 1.25rem);
+  line-height: 1.2;
+}
+
+.project-case[data-choreography] .project-motion-grid {
+  grid-template-columns: minmax(0, 1.18fr) minmax(17rem, 0.82fr);
+  gap: clamp(3rem, 5vw, 5.5rem);
+  margin-top: clamp(2.75rem, 5vw, 5rem);
+}
+
+.project-case[data-choreography] .project-motion-scene {
+  margin-top: clamp(2rem, 3vw, 3rem);
+  overflow: visible;
+  border: 0;
+  background: transparent;
+}
+
+.project-case[data-choreography] .project-motion-scene::after {
+  display: none;
+}
+
+.project-case[data-choreography] .project-motion-scene figcaption {
+  position: static;
+  max-width: 48ch;
+  margin: 0;
+  padding: 0.75rem 0 0;
+  border-top: 1px solid var(--personal-rule);
+  background: transparent;
+  color: var(--case-ink);
+  font-family: var(--case-font-meta);
+  font-size: 0.66rem;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+.project-case[data-choreography] .project-motion-score {
+  margin-top: 1.25rem;
+}
+
+/* A photographic final state with a capped, deliberate claim. */
+.project-case[data-choreography] .project-worldview-closing {
+  min-height: clamp(38rem, 72svh, 52rem);
+}
+
+.project-case[data-choreography] .project-worldview-closing__wash {
+  background:
+    linear-gradient(90deg, rgb(0 0 0 / 0.84) 0 40%, rgb(0 0 0 / 0.42) 72%, rgb(0 0 0 / 0.16)),
+    linear-gradient(to top, rgb(0 0 0 / 0.68), transparent 68%);
+}
+
+.project-case[data-choreography] .project-worldview-closing__inner {
+  padding-block: clamp(2rem, 4vw, 4rem);
+}
+
+.project-case[data-choreography] .project-worldview-closing h2 {
+  max-width: 15ch;
+  margin-top: clamp(4rem, 8vw, 8rem);
+  font-size: clamp(3rem, 5.6cqw, 6rem);
+  letter-spacing: -0.05em;
+  line-height: 0.94;
+}
+
+.project-case[data-choreography] .project-worldview-closing__inner > p {
+  margin-block: clamp(1.5rem, 3vw, 3rem);
+}
+
+.project-case[data-choreography] .project-adjacent-card {
+  min-height: clamp(18rem, 31vw, 27rem);
+}
+
+.project-case[data-choreography] .project-adjacent-title {
+  margin-top: clamp(3rem, 7vw, 5.5rem);
+  font-size: clamp(2.75rem, 5cqw, 5rem);
+  line-height: 0.88;
+}
+
+/* Five reading families --------------------------------------------------- */
+
+/* 01–04 / press and archive: ruled folio, physical evidence, quiet paper. */
+.project-case[data-choreography="press-archive"] .project-hero-media {
+  width: min(92%, 72rem);
+  margin-left: auto;
+  border: 1px solid var(--personal-rule);
+  box-shadow: 0.85rem 0.85rem 0 color-mix(in srgb, var(--case-ink) 8%, transparent);
+  aspect-ratio: 3 / 2 !important;
+}
+
+.project-case[data-choreography="press-archive"] .project-section {
+  border-bottom: 1px solid var(--personal-rule);
+}
+
+.project-case[data-choreography="press-archive"] .project-opening {
+  background-image: none;
+}
+
+.project-case[data-choreography="press-archive"] .project-section-heading h2 {
+  font-family: var(--case-font-accent);
+}
+
+/* 05–08 / sensory editorial: image first, material and light do the work. */
+.project-case[data-choreography="sensory-editorial"] .project-hero > .project-shell {
+  grid-template-areas:
+    "topline"
+    "media"
+    "heading"
+    "opening";
+}
+
+.project-case[data-choreography="sensory-editorial"] .project-hero-media {
+  margin-top: clamp(2.25rem, 4vw, 4rem);
+  aspect-ratio: 16 / 9 !important;
+}
+
+.project-case[data-choreography="sensory-editorial"] .project-hero-grid {
+  position: static;
+  margin: 0;
+  padding: clamp(2.75rem, 5vw, 5rem) 0;
+  background: transparent;
+  color: var(--case-ink);
+  backdrop-filter: none;
+}
+
+.project-case[data-choreography="sensory-editorial"]
+  :is(
+    .project-opening__statement h2,
+    .project-premise-title,
+    .project-type-direction,
+    .project-motion-copy
+  ) {
+  font-family: var(--case-font-accent);
+  font-style: italic;
+}
+
+/* 09–12 / public signal: fixed information rail, one disciplined signal. */
+.project-case[data-choreography="public-signal"] .project-topline {
+  border-width: 1px;
+}
+
+.project-case[data-choreography="public-signal"] .project-hero-grid {
+  position: relative;
+  border: 0;
+}
+
+.project-case[data-choreography="public-signal"] .project-hero-grid::after {
+  position: absolute;
+  inset: auto 0 0;
+  width: min(11rem, 28%);
+  height: 0.42rem;
+  background: var(--case-accent);
+  content: "";
+}
+
+.project-case[data-choreography="public-signal"] .project-opening__sequence {
+  background: var(--case-ink);
+  color: var(--case-paper);
+}
+
+.project-case[data-choreography="public-signal"] .project-opening__sequence li {
+  background: transparent;
+  color: inherit;
+}
+
+/* 13–16 / product ritual: image, routine, specification. */
+.project-case[data-choreography="product-ritual"] .project-hero > .project-shell {
+  grid-template-areas:
+    "topline"
+    "media"
+    "heading"
+    "opening";
+}
+
+.project-case[data-choreography="product-ritual"] .project-hero-media {
+  margin-top: clamp(2.25rem, 4vw, 4rem);
+  aspect-ratio: 16 / 8.5 !important;
+}
+
+.project-case[data-choreography="product-ritual"] .project-hero-grid {
+  padding-block: clamp(2.75rem, 5vw, 5rem);
+}
+
+.project-case[data-choreography="product-ritual"] .project-opening {
+  margin-top: 0;
+}
+
+.project-case[data-choreography="product-ritual"] .project-opening__laws li {
+  grid-template-columns: minmax(4rem, 0.25fr) minmax(0, 0.75fr);
+}
+
+/* 17–20 / evidence infrastructure: claim and proof on a restrained grid. */
+.project-case[data-choreography="evidence-infrastructure"] {
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--case-ink) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--case-ink) 7%, transparent) 1px, transparent 1px);
+  background-size: clamp(3.75rem, 6cqw, 6rem) clamp(3.75rem, 6cqw, 6rem);
+}
+
+.project-case[data-choreography="evidence-infrastructure"] .project-hero-media {
+  width: 100%;
+  margin: 0;
+  border: 1px solid var(--case-ink);
+  box-shadow: none;
+  aspect-ratio: 4 / 5 !important;
+}
+
+.project-case[data-choreography="evidence-infrastructure"] .project-opening {
+  border-width: 1px;
+}
+
+/* Twenty project-specific laws ------------------------------------------- */
+
+/* 01 / AFTERIMAGE — only the image plate drifts. */
+.project-case[data-project="afterimage"] .project-title {
+  letter-spacing: -0.075em;
+  text-shadow:
+    -0.018em 0 var(--case-accent),
+    0.018em 0 #315ed1;
+}
+
+.project-case[data-project="afterimage"] .project-hero-media {
+  clip-path: inset(0 1.4% 0 0);
+}
+
+.project-case[data-project="afterimage"] .project-visual-world {
+  margin-left: 0;
+}
+
+/* 02 / MEMORY TYPE — archive drawer and equal Korean evidence. */
+.project-case[data-project="memory-type"] .project-title {
+  max-width: 7ch;
+  font-size: clamp(4rem, 6.4cqw, 7.1rem);
+  letter-spacing: -0.07em;
+  line-height: 0.9;
+}
+
+.project-case[data-project="memory-type"] .project-opening {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.project-case[data-project="memory-type"] .project-opening__statement {
+  border-bottom: 1px solid var(--personal-rule);
+}
+
+.project-case[data-project="memory-type"] .project-opening__laws {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-left: 0;
+}
+
+.project-case[data-project="memory-type"] .project-opening__laws li {
+  border-right: 1px solid var(--personal-rule);
+  border-bottom: 0;
+}
+
+.project-case[data-project="memory-type"] .project-opening__laws li:last-child {
+  border-right: 0;
+}
+
+/* 03 / FIELD NOTES 37 — one specimen, one coordinate. */
+.project-case[data-project="field-notes-37"] .project-hero-grid {
+  grid-template-columns: minmax(0, 0.68fr) minmax(18rem, 0.32fr);
+  align-items: start;
+}
+
+.project-case[data-project="field-notes-37"] .project-title {
+  max-width: 8ch;
+  font-size: clamp(3.65rem, 5.4cqw, 5.8rem);
+}
+
+.project-case[data-project="field-notes-37"] .project-hero-media {
+  width: min(82%, 60rem);
+  margin-right: auto;
+  margin-left: 0;
+}
+
+/* 04 / THE LAST LETTER — the fold creates the vertical reading edge. */
+.project-case[data-project="last-letter"] .project-hero-grid {
+  grid-template-columns: minmax(0, 0.56fr) minmax(18rem, 0.44fr);
+}
+
+.project-case[data-project="last-letter"] .project-title {
+  max-width: 9ch;
+}
+
+.project-case[data-project="last-letter"] .project-hero-media {
+  width: min(72%, 54rem);
+  margin-inline: auto 0;
+  aspect-ratio: 4 / 5 !important;
+}
+
+.project-case[data-project="last-letter"] .project-opening__statement {
+  border-left: 0.35rem solid var(--case-accent);
+}
+
+/* 05 / TACTILE FORECAST — pressure, surface, controlled darkness. */
+.project-case[data-project="tactile-forecast"] .project-hero-media {
+  aspect-ratio: 16 / 10 !important;
+}
+
+.project-case[data-project="tactile-forecast"] .project-title {
+  max-width: 10ch;
+  font-size: clamp(3.45rem, 5.1cqw, 5.6rem);
+}
+
+.project-case[data-project="tactile-forecast"] .project-opening {
+  border-radius: 1.5rem 0 1.5rem 0;
+}
+
+/* 06 / NIGHT INDEX — aperture and asymmetric nocturne. */
+.project-case[data-project="night-index"] .project-hero-media {
+  width: min(88%, 76rem);
+  margin-left: auto;
+  aspect-ratio: 21 / 10 !important;
+  border-radius: 12rem 12rem 0 0;
+}
+
+.project-case[data-project="night-index"] .project-hero-title-block {
+  padding-left: clamp(0rem, 6vw, 6rem);
+}
+
+.project-case[data-project="night-index"] .project-opening {
+  width: min(92%, 76rem);
+  margin-inline: auto;
+}
+
+/* 07 / PUBLIC MEMORY — signal line stays in its own gutter. */
+.project-case[data-project="public-memory"] {
+  --case-paper: #f4f0df !important;
+  --case-panel: #f0d72b !important;
+  --case-accent: #244fc4 !important;
+}
+
+.project-case[data-project="public-memory"] .project-hero-grid {
+  padding-left: clamp(1.25rem, 3.5vw, 3.5rem);
+  border-left: clamp(0.45rem, 0.8cqw, 0.7rem) solid var(--case-accent);
+}
+
+.project-case[data-project="public-memory"] .project-title {
+  max-width: 9ch;
+  font-size: clamp(3.65rem, 5.8cqw, 6.2rem);
+}
+
+.project-case[data-project="public-memory"] .project-hero-media {
+  aspect-ratio: 21 / 9 !important;
+}
+
+/* 08 / SOFT MACHINE — living form, fixed datum, no black overlay card. */
+.project-case[data-project="soft-machine"] .project-title {
+  max-width: 10ch;
+  font-size: clamp(3.8rem, 5.9cqw, 6.4rem);
+  transform: rotate(-1.2deg);
+}
+
+.project-case[data-project="soft-machine"] .project-hero-media {
+  width: min(86%, 68rem);
+  margin-left: auto;
+  border-radius: 50% 50% 2rem 2rem / 18% 18% 2rem 2rem;
+  aspect-ratio: 4 / 3 !important;
+}
+
+.project-case[data-project="soft-machine"] .project-opening {
+  border-top: 0.38rem solid var(--case-accent);
+}
+
+/* 09 / SIGNAL / NOISE — disturbance never moves the data rail. */
+.project-case[data-project="signal-noise"] .project-title {
+  max-width: 9ch;
+  font-size: clamp(3.65rem, 5.7cqw, 6.2rem);
+}
+
+.project-case[data-project="signal-noise"] .project-hero-media {
+  width: min(94%, 78rem);
+  margin-right: auto;
+  aspect-ratio: 21 / 9 !important;
+  filter: saturate(0.62) contrast(1.08);
+}
+
+.project-case[data-project="signal-noise"] .project-opening__rail {
+  background: var(--case-ink);
+  color: var(--case-paper);
+}
+
+.project-case[data-project="signal-noise"] .project-premise-grid,
+.project-case[data-project="horalis"] .project-premise-grid,
+.project-case[data-project="coldkiln"] .project-premise-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.project-case[data-project="signal-noise"] .project-premise-content,
+.project-case[data-project="horalis"] .project-premise-content,
+.project-case[data-project="coldkiln"] .project-premise-content {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.project-case[data-project="signal-noise"] .project-premise-block,
+.project-case[data-project="horalis"] .project-premise-block,
+.project-case[data-project="coldkiln"] .project-premise-block {
+  padding-inline: clamp(1rem, 2vw, 2rem);
+}
+
+/* 10 / CHROMA TEMPO — a four-beat score, colour follows data. */
+.project-case[data-project="chroma-tempo"] .project-title {
+  max-width: 10ch;
+  font-size: clamp(3.35rem, 5.15cqw, 5.6rem);
+}
+
+.project-case[data-project="chroma-tempo"] .project-hero-media {
+  aspect-ratio: 4 / 3 !important;
+}
+
+.project-case[data-project="chroma-tempo"] .project-opening__sequence li:nth-child(4n + 1) {
+  border-top: 0.34rem solid var(--case-accent);
+}
+
+/* 11 / 79W — one westbound line and clear handoffs. */
+.project-case[data-project="79w"] .project-title {
+  font-size: clamp(5rem, 8.5cqw, 9rem);
+  line-height: 0.78;
+}
+
+.project-case[data-project="79w"] .project-hero-media {
+  aspect-ratio: 24 / 9 !important;
+}
+
+.project-case[data-project="79w"] .project-opening {
+  border-top: 0.5rem solid var(--case-accent);
+}
+
+/* 12 / TIDEHOLD — high and low water share one fixed datum. */
+.project-case[data-project="tidehold"] .project-hero-media {
+  width: min(90%, 74rem);
+  aspect-ratio: 2 / 1 !important;
+  border-bottom: 0.4rem solid var(--case-accent);
+}
+
+.project-case[data-project="tidehold"] .project-opening {
+  border-radius: 1.25rem;
+}
+
+/* 13 / OFFSORT — irregular produce, rigorous batch information. */
+.project-case[data-project="offsort"] .project-title {
+  font-size: clamp(4.15rem, 7.2cqw, 7.6rem);
+  letter-spacing: -0.08em;
+}
+
+.project-case[data-project="offsort"] .project-hero-media {
+  width: min(84%, 68rem);
+  margin-left: 0;
+  clip-path: polygon(0 3%, 97% 0, 100% 93%, 4% 100%);
+  aspect-ratio: 3 / 2 !important;
+}
+
+.project-case[data-project="offsort"] .project-opening__laws li:nth-child(2) {
+  transform: none;
+  background: color-mix(in srgb, var(--case-accent) 10%, transparent);
+}
+
+/* 14 / HORALIS — circular time, fixed routine rail. */
+.project-case[data-project="horalis"] .project-title {
+  font-size: clamp(3.8rem, 6cqw, 6.4rem);
+  letter-spacing: -0.045em;
+}
+
+.project-case[data-project="horalis"] .project-hero-media {
+  width: min(74%, 58rem);
+  margin-inline: auto;
+  border-radius: 50%;
+  aspect-ratio: 1 / 1 !important;
+}
+
+.project-case[data-project="horalis"] .project-opening {
+  border-radius: 99rem;
+}
+
+/* 15 / SELV/00 — repair history remains visible. */
+.project-case[data-project="selv-00"] .project-title {
+  font-size: clamp(3.85rem, 6.3cqw, 6.8rem);
+}
+
+.project-case[data-project="selv-00"] .project-hero-media {
+  width: min(78%, 60rem);
+  margin-right: 0;
+  margin-left: auto;
+  border: 2px dashed var(--case-accent);
+  aspect-ratio: 4 / 5 !important;
+}
+
+.project-case[data-project="selv-00"] .project-opening {
+  border-style: dashed;
+}
+
+/* 16 / TESSERA LIVE — eight fixed cells and one live centre. */
+.project-case[data-project="tessera-live"] .project-title {
+  max-width: 10ch;
+  font-size: clamp(3.35rem, 5.1cqw, 5.55rem);
+}
+
+.project-case[data-project="tessera-live"] .project-hero-media {
+  aspect-ratio: 16 / 8 !important;
+}
+
+.project-case[data-project="tessera-live"] .project-opening__sequence {
+  gap: 0.25rem;
+  padding: 0.25rem;
+  background: var(--case-accent);
+}
+
+.project-case[data-project="tessera-live"] .project-opening__sequence li {
+  border: 0;
+  background: var(--case-paper);
+  color: var(--case-ink);
+}
+
+/* 17 / BACKMATTER — claim always sits beside evidence. */
+.project-case[data-project="backmatter"] .project-hero-grid {
+  border-left: 0.35rem solid var(--case-accent);
+  padding-left: clamp(1.25rem, 3vw, 3rem);
+}
+
+.project-case[data-project="backmatter"] .project-title {
+  max-width: 8ch;
+  font-size: clamp(3.5rem, 5.25cqw, 5.75rem);
+}
+
+.project-case[data-project="backmatter"] .project-opening__laws li {
+  background: color-mix(in srgb, var(--case-panel) 62%, transparent);
+}
+
+.project-case[data-project="backmatter"] .backmatter-press-title {
+  overflow-wrap: normal;
+  font-size: clamp(1rem, 2cqw, 1.75rem);
+  word-break: keep-all;
+}
+
+/* 18 / SEAMFRAME — the assembly grid reads both ways. */
+.project-case[data-project="seamframe"] .project-hero-media {
+  outline: 1px solid var(--case-ink);
+  outline-offset: -0.75rem;
+}
+
+.project-case[data-project="seamframe"] .project-opening {
+  border-width: 0.2rem;
+}
+
+/* 19 / TWO SHORES — equal ledgers on a shared baseline. */
+.project-case[data-project="two-shores"] .project-hero-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.project-case[data-project="two-shores"] .project-hero-title-block,
+.project-case[data-project="two-shores"] .project-hero-copy {
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--case-ink);
+}
+
+.project-case[data-project="two-shores"] .project-opening__laws li:nth-child(even) {
+  transform: none;
+}
+
+/* 20 / COLDKILN — press, cure, install, return. */
+.project-case[data-project="coldkiln"] .project-title {
+  max-width: 8ch;
+  font-size: clamp(3.75rem, 5.8cqw, 6.25rem);
+}
+
+.project-case[data-project="coldkiln"] .project-hero-media {
+  aspect-ratio: 1 / 1 !important;
+  filter: saturate(0.72) contrast(1.06);
+}
+
+.project-case[data-project="coldkiln"] .project-opening {
+  border-top: 0.45rem solid var(--case-accent);
+}
+
+/* Desktop compositions --------------------------------------------------- */
+@container personal-project (min-width: 50rem) {
+  .project-case[data-choreography] .project-hero-grid {
+    grid-template-columns: minmax(0, 1.08fr) minmax(18rem, 0.92fr);
+    align-items: end;
+  }
+
+  .project-case[data-choreography="sensory-editorial"] .project-hero > .project-shell {
+    grid-template-areas:
+      "topline topline"
+      "heading media"
+      "opening opening";
+    grid-template-columns: minmax(20rem, 0.78fr) minmax(24rem, 1.22fr);
+    column-gap: clamp(2.5rem, 5vw, 6rem);
+  }
+
+  .project-case[data-choreography="sensory-editorial"] .project-hero-grid {
+    grid-template-columns: minmax(0, 1fr);
+    align-self: center;
+  }
+
+  .project-case[data-choreography="sensory-editorial"] .project-hero-media {
+    align-self: center;
+    width: 100%;
+    margin: 0;
+    aspect-ratio: 4 / 5 !important;
+  }
+
+  .project-case[data-choreography="product-ritual"] .project-hero > .project-shell {
+    grid-template-areas:
+      "topline topline"
+      "media heading"
+      "opening opening";
+    grid-template-columns: minmax(24rem, 1.16fr) minmax(20rem, 0.84fr);
+    column-gap: clamp(2.5rem, 5vw, 6rem);
+  }
+
+  .project-case[data-choreography="product-ritual"] .project-hero-grid {
+    grid-template-columns: minmax(0, 1fr);
+    align-self: center;
+  }
+
+  .project-case[data-choreography="product-ritual"] .project-hero-media {
+    align-self: center;
+    width: 100%;
+    margin: 0;
+    aspect-ratio: 4 / 3 !important;
+  }
+
+  .project-case[data-choreography="evidence-infrastructure"] .project-hero > .project-shell {
+    grid-template-areas:
+      "topline topline"
+      "heading media"
+      "opening opening";
+    grid-template-columns: minmax(0, 0.9fr) minmax(24rem, 1.1fr);
+    column-gap: clamp(2rem, 5vw, 6rem);
+  }
+
+  .project-case[data-choreography="evidence-infrastructure"] .project-hero-grid {
+    grid-template-columns: minmax(0, 1fr);
+    align-self: center;
+  }
+
+  .project-case[data-project="afterimage"] .project-hero-grid,
+  .project-case[data-project="memory-type"] .project-hero-grid {
+    grid-template-columns: minmax(0, 1.16fr) minmax(18rem, 0.84fr);
+  }
+}
+
+/* Mobile is a recomposition, not a shrunk desktop. */
+@container personal-project (max-width: 49.99rem) {
+  .project-case[data-choreography] {
+    --personal-section-space: clamp(4rem, 15vw, 6rem);
+    --personal-display: clamp(2.8rem, 13.2cqw, 4.15rem);
+    --personal-section-title: clamp(2.25rem, 10cqw, 3.45rem);
+  }
+
+  .project-case[data-choreography] .project-shell {
+    padding-inline: clamp(1rem, 5cqw, 1.35rem);
+  }
+
+  .project-case[data-choreography="sensory-editorial"] .project-hero > .project-shell,
+  .project-case[data-choreography="product-ritual"] .project-hero > .project-shell {
+    grid-template-areas:
+      "topline"
+      "heading"
+      "media"
+      "opening";
+  }
+
+  .project-case[data-choreography] .project-topline {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .project-case[data-choreography] .project-hero-grid,
+  .project-case[data-project="field-notes-37"] .project-hero-grid,
+  .project-case[data-project="last-letter"] .project-hero-grid,
+  .project-case[data-project="two-shores"] .project-hero-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.25rem;
+    padding-block: clamp(2.5rem, 12cqw, 4rem);
+  }
+
+  .project-case[data-choreography] .project-title,
+  .project-case[data-project="memory-type"] .project-title,
+  .project-case[data-project="field-notes-37"] .project-title,
+  .project-case[data-project="tactile-forecast"] .project-title,
+  .project-case[data-project="soft-machine"] .project-title,
+  .project-case[data-project="chroma-tempo"] .project-title,
+  .project-case[data-project="public-memory"] .project-title,
+  .project-case[data-project="signal-noise"] .project-title,
+  .project-case[data-project="tessera-live"] .project-title,
+  .project-case[data-project="backmatter"] .project-title,
+  .project-case[data-project="coldkiln"] .project-title {
+    max-width: 100%;
+    overflow-wrap: normal;
+    font-size: var(--personal-display);
+    line-height: 0.9;
+    word-break: normal;
+  }
+
+  .project-case[data-project="memory-type"] .project-title {
+    max-width: 6ch;
+    font-size: clamp(3.15rem, 15cqw, 4.4rem);
+    word-break: keep-all;
+  }
+
+  .project-case[data-project="79w"] .project-title {
+    font-size: clamp(4.75rem, 23cqw, 7rem);
+  }
+
+  .project-case[data-choreography] .project-statement {
+    max-width: 100%;
+    font-size: clamp(1.45rem, 7.2cqw, 2.05rem);
+    line-height: 1.05;
+  }
+
+  .project-case[data-choreography] .project-statement__line {
+    width: auto;
+  }
+
+  .project-case[data-choreography] .project-facts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .project-case[data-choreography] .project-hero-media,
+  .project-case[data-project="field-notes-37"] .project-hero-media,
+  .project-case[data-project="last-letter"] .project-hero-media,
+  .project-case[data-project="night-index"] .project-hero-media,
+  .project-case[data-project="soft-machine"] .project-hero-media,
+  .project-case[data-project="signal-noise"] .project-hero-media,
+  .project-case[data-project="public-memory"] .project-hero-media,
+  .project-case[data-project="79w"] .project-hero-media,
+  .project-case[data-project="tidehold"] .project-hero-media,
+  .project-case[data-project="offsort"] .project-hero-media,
+  .project-case[data-project="horalis"] .project-hero-media,
+  .project-case[data-project="selv-00"] .project-hero-media,
+  .project-case[data-project="tessera-live"] .project-hero-media,
+  .project-case[data-project="coldkiln"] .project-hero-media {
+    width: 100%;
+    margin-inline: 0;
+    border-radius: 0;
+    clip-path: none;
+    aspect-ratio: 4 / 3 !important;
+  }
+
+  .project-case[data-project="last-letter"] .project-hero-media,
+  .project-case[data-project="soft-machine"] .project-hero-media,
+  .project-case[data-project="selv-00"] .project-hero-media,
+  .project-case[data-choreography="evidence-infrastructure"] .project-hero-media {
+    aspect-ratio: 3 / 4 !important;
+  }
+
+  .project-case[data-project="horalis"] .project-hero-media,
+  .project-case[data-project="coldkiln"] .project-hero-media {
+    aspect-ratio: 1 / 1 !important;
+  }
+
+  .project-case[data-choreography] .project-opening {
+    grid-template-columns: minmax(0, 1fr);
+    margin-top: 1.5rem;
+  }
+
+  .project-case[data-choreography] .project-opening__statement {
+    padding: clamp(1.5rem, 7cqw, 2.25rem);
+    border-bottom: 1px solid var(--personal-rule);
+  }
+
+  .project-case[data-choreography] .project-opening__statement h2 {
+    max-width: 14ch;
+    font-size: clamp(2.2rem, 10.5cqw, 3.35rem);
+    line-height: 1;
+  }
+
+  .project-case[data-choreography] .project-opening__laws,
+  .project-case[data-project="memory-type"] .project-opening__laws {
+    grid-template-columns: minmax(0, 1fr);
+    border-left: 0;
+  }
+
+  .project-case[data-choreography] .project-opening__laws li,
+  .project-case[data-project="memory-type"] .project-opening__laws li {
+    border-right: 0;
+    border-bottom: 1px solid var(--personal-rule);
+  }
+
+  .project-case[data-choreography] .project-opening__sequence {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .project-case[data-choreography] .project-opening__sequence li:last-child {
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--personal-rule);
+  }
+
+  .project-case[data-choreography] .project-section-heading,
+  .project-case[data-choreography] .project-premise-grid,
+  .project-case[data-choreography] .project-premise-content,
+  .project-case[data-choreography] .project-material-grid,
+  .project-case[data-choreography] .project-motion-grid,
+  .project-case[data-choreography] .project-visual-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .project-case[data-choreography] .project-section-heading__folio {
+    display: none;
+  }
+
+  .project-case[data-choreography] .project-section-heading h2,
+  .project-case[data-choreography] .project-premise-title {
+    max-width: 100%;
+    overflow-wrap: normal;
+    line-height: 1;
+    word-break: normal;
+  }
+
+  .project-case[data-choreography] .project-premise-copy {
+    max-width: 100%;
+    font-size: clamp(1.3rem, 6cqw, 1.75rem);
+  }
+
+  .project-case[data-choreography] .project-premise-block,
+  .project-case[data-choreography] .project-premise-block[data-block="challenge"],
+  .project-case[data-choreography] .project-premise-block[data-block="response"] {
+    padding-inline: 0;
+    border-right: 0;
+  }
+
+  .project-case[data-project="signal-noise"] .project-premise-content,
+  .project-case[data-project="horalis"] .project-premise-content,
+  .project-case[data-project="coldkiln"] .project-premise-content {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .project-case[data-project="signal-noise"] .project-premise-block,
+  .project-case[data-project="horalis"] .project-premise-block,
+  .project-case[data-project="coldkiln"] .project-premise-block {
+    padding-inline: 0;
+  }
+
+  .project-case[data-choreography] .project-visual-world {
+    width: 100%;
+    margin: 0;
+  }
+
+  .project-case[data-choreography] .project-visual-world__label {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .project-case[data-choreography] .project-visual-world__label span:last-child {
+    justify-self: start;
+    text-align: left;
+  }
+
+  .project-case[data-choreography] .project-visual-world > :last-child {
+    aspect-ratio: 4 / 5 !important;
+  }
+
+  .project-case[data-choreography] .project-application-gallery {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 3.25rem;
+  }
+
+  .project-case[data-choreography] .project-application-board {
+    grid-column: 1 / -1 !important;
+    margin-top: 0 !important;
+  }
+
+  .project-case[data-choreography] .project-application-caption {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .project-case[data-choreography] .project-application-caption__law {
+    display: none;
+  }
+
+  .project-case[data-choreography] .project-type-panel,
+  .project-case[data-choreography] .project-palette-panel {
+    padding-inline: 0;
+    border-right: 0;
+  }
+
+  .project-case[data-choreography] .project-type-direction,
+  .project-case[data-choreography] .project-motion-copy {
+    max-width: 100%;
+    font-size: clamp(1.65rem, 7.2cqw, 2.4rem);
+  }
+
+  .project-case[data-choreography] .project-motion-score {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .project-case[data-choreography] .project-motion-score li {
+    border-right: 0;
+    border-bottom: 1px solid var(--personal-rule);
+  }
+
+  .project-case[data-choreography] .project-motion-score li:last-child {
+    border-bottom: 0;
+  }
+
+  .project-case[data-choreography] .project-worldview-closing {
+    min-height: 42rem;
+  }
+
+  .project-case[data-choreography] .project-worldview-closing__wash {
+    background: linear-gradient(to top, rgb(0 0 0 / 0.9) 0 58%, rgb(0 0 0 / 0.34));
+  }
+
+  .project-case[data-choreography] .project-worldview-closing h2 {
+    max-width: 100%;
+    margin-top: 5rem;
+    font-size: clamp(2.6rem, 11.5cqw, 4rem);
+    line-height: 0.98;
+  }
+
+  .project-case[data-choreography] .project-worldview-closing ol {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .project-case[data-project="public-memory"] .project-hero-grid {
+    padding-left: 1rem;
+  }
+
+  .project-case[data-project="soft-machine"] .project-title {
+    transform: none;
+  }
+
+  .project-case[data-project="tessera-live"] .project-title {
+    font-size: clamp(2.65rem, 12cqw, 3.55rem);
+  }
+
+  .project-case[data-project="tessera-live"] .project-section-heading h2 {
+    overflow-wrap: anywhere;
+    font-size: clamp(2rem, 8.4cqw, 2.85rem);
+  }
+
+  .project-case[data-project="horalis"] .project-opening {
+    border-radius: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-case[data-choreography] :is(img, .project-title, .project-application-board) {
+    transition: none !important;
+    transform: none;
+  }
+}

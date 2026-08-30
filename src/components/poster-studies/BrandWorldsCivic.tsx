@@ -150,7 +150,7 @@ function BackmatterHero() {
 
       <div className="absolute right-[5%] top-[10%] w-[24%] rotate-2 overflow-hidden bg-[#e24b35] p-[3%] text-[#f2eee5] shadow-[0_18px_40px_rgba(39,31,24,.3)] sm:right-[7%] sm:w-[21%]">
         <p className="font-mono text-[clamp(6px,.65vw,9px)] uppercase">Press screening</p>
-        <p className="mt-[18%] break-words text-[clamp(15px,2.5vw,36px)] font-black leading-[0.78] tracking-[-0.06em]">
+        <p className="backmatter-press-title mt-[18%] text-[clamp(15px,2.5vw,36px)] font-black leading-[0.78] tracking-[-0.06em]">
           BACK
           <br />
           MATTER
