@@ -1308,7 +1308,7 @@ export const designProjects: DesignProject[] = [
       "A cross-sport photographic loop moves through attempt, contact, recovery, feedback, and return in running, wheelchair racing, boxing, and basketball. A waffle-like outsole is the direct material study; Swoosh, Air, and Flyknit remain sourced official histories in the research ledger.",
     rule: "Every scene must name the sport or observation honestly, keep product history separate from the independent image sequence, and avoid fabricated performance results.",
     typography:
-      "A compressed black display face cuts through motion; monospaced field notation records attempts, direction, and time without posing as scientific proof.",
+      "A compressed black display face cuts through motion; compact field notation records attempts, direction, and time without posing as scientific proof.",
     motion:
       "Sprint, wheelchair acceleration, boxing intervals, and basketball cuts move at distinct tempos; recovery portraits interrupt the action before another athlete begins the loop again.",
     materials: [
@@ -1318,10 +1318,10 @@ export const designProjects: DesignProject[] = [
       "Flyknit / official product history",
     ],
     palette: [
-      { name: "Black", value: "#070707" },
-      { name: "Chalk", value: "#f3f2ed" },
-      { name: "Volt", value: "#c7ff18" },
-      { name: "Track red", value: "#df321f" },
+      { name: "Black", value: "#090909" },
+      { name: "White", value: "#ffffff" },
+      { name: "Signal grey", value: "#b8b8b4" },
+      { name: "Asphalt", value: "#4b4b49" },
     ],
     applications: [
       "Live-action campaign",
@@ -1332,15 +1332,19 @@ export const designProjects: DesignProject[] = [
     lineage:
       "Grounded in Nike's mission to bring inspiration and innovation to every athlete, its work to remove barriers to sport, and its history of treating the Swoosh as a symbol of movement.",
     references: [
-      { label: "Nike — Mission", href: "https://about.nike.com/en/mission/" },
       {
-        label: "Nike — Rip the Script",
-        href: "https://about.nike.com/en/newsroom/releases/nike-debuts-rip-the-script-a-step-inside-the-universe-of-nike-football",
+        label: "Nike — Why Do It? campaign",
+        href: "https://about.nike.com/en/newsroom/releases/nike-why-do-it-campaign",
       },
       {
         label: "Nike — Swoosh logo history",
         href: "https://about.nike.com/en/magazine/nike-swoosh-logo-history",
       },
+      {
+        label: "Nike — Bill Bowerman: Original Innovator",
+        href: "https://about.nike.com/en/magazine/bill-bowerman-nike-s-original-innovator",
+      },
+      { label: "Nike — Design stories", href: "https://about.nike.com/en/topics/design" },
     ],
     chapter: "Fashion & Retail",
     motif: "nike-no-second-take",

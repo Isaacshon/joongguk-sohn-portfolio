@@ -97,7 +97,7 @@
 .topbar {
   position: sticky;
   z-index: 30;
-  top: 2.75rem;
+  top: 0;
   display: grid;
   min-height: 4rem;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
@@ -157,8 +157,41 @@
   text-overflow: ellipsis;
 }
 
-.topbarSpacer {
+.chapterNav {
+  display: flex;
   min-width: 0;
+  max-width: min(42rem, 44vw);
+  justify-self: end;
+  gap: clamp(0.85rem, 1.7vw, 1.8rem);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.chapterNav::-webkit-scrollbar {
+  display: none;
+}
+
+.chapterNav a {
+  display: inline-flex;
+  flex: none;
+  gap: 0.35rem;
+  align-items: baseline;
+  opacity: 0.58;
+  font-size: 0.64rem;
+  font-weight: 650;
+  letter-spacing: 0.045em;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.chapterNav a:hover,
+.chapterNav a:focus-visible {
+  opacity: 1;
+}
+
+.chapterNav a > span {
+  opacity: 0.55;
 }
 
 .research {
@@ -343,6 +376,15 @@
   .brandHome :global(.brand-mark__mask),
   .brandHome :global(.brand-mark__image) {
     max-height: 2.15rem;
+  }
+
+  .chapterNav {
+    max-width: 38vw;
+    gap: 0.9rem;
+  }
+
+  .chapterNav a {
+    font-size: 0.59rem;
   }
 
   .research {

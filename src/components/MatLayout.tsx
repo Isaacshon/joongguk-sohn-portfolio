@@ -342,9 +342,9 @@ export function MatLayout({
 
         {surface === "plain" ? (
           <div
-            className={`relative min-h-screen overflow-y-auto bg-background ${
-              immersive ? "" : "border-l border-black/70"
-            }`}
+            className={`relative min-h-screen bg-background ${
+              immersive ? "overflow-x-clip" : "overflow-y-auto"
+            } ${immersive ? "" : "border-l border-black/70"}`}
           >
             {topNav}
             <main className={`px-3 pb-12 pt-16 md:px-3 ${contentClassName}`}>{children}</main>

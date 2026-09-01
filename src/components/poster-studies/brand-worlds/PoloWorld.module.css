@@ -117,7 +117,7 @@
 
 .introduction {
   display: grid;
-  grid-template-columns: minmax(9rem, 0.34fr) minmax(0, 1fr) minmax(17rem, 0.58fr);
+  grid-template-columns: minmax(8rem, 0.28fr) minmax(0, 1.1fr) minmax(17rem, 0.5fr);
   gap: 2rem clamp(2rem, 5vw, 6rem);
   align-items: start;
   padding: clamp(5.5rem, 10vw, 10rem) clamp(1.25rem, 5vw, 6rem);
@@ -136,7 +136,7 @@
 }
 
 .introduction h2 {
-  max-width: 14ch;
+  max-width: 18ch;
   margin: 0;
   font-family: var(--world-display), Georgia, serif;
   font-size: clamp(3rem, 5vw, 5.7rem);
@@ -144,6 +144,10 @@
   letter-spacing: -0.035em;
   line-height: 0.98;
   text-wrap: balance;
+}
+
+.keepTogether {
+  white-space: nowrap;
 }
 
 .introductionCopy {

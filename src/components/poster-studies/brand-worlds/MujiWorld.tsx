@@ -180,7 +180,10 @@ export function MujiWorld({ project, pavilion }: BrandWorldProps) {
           <header className={styles.chapterIntro}>
             <p className={styles.chapterNumber}>04 / Shared life</p>
             <div>
-              <h2 id="muji-shared-title">The object recedes. Life becomes the subject.</h2>
+              <h2 id="muji-shared-title">
+                The object recedes. <span className={styles.keepTogether}>Life becomes</span>{" "}
+                <span className={styles.keepTogether}>the subject.</span>
+              </h2>
               <p>
                 Making, repair, conversation, and a shared table carry the same restraint into
                 public life. Continuity comes from familiar actions, not a decorative house style.

@@ -805,7 +805,7 @@ export const newBrandPavilions = {
     design: {
       title: "A graphic frame that moves out of the athlete's way.",
       intro:
-        "Black, chalk, volt, track red, compressed type, directional cuts, contact-sheet timecodes, and hard-edged image crops create pressure without inventing data. Lineage labels always separate official history from this project's direction, surface, landing, and fit observations.",
+        "Black, white, compressed type, directional cuts, contact-sheet timecodes, and hard-edged image crops create pressure while colour comes only from the photographed court, track, and equipment. Lineage labels always separate official history from this project's direction, surface, landing, and fit observations.",
       keywords: ["Instinctive", "Open", "Committed", "Experimental", "In motion"],
       image: {
         slot: "spatial",
@@ -857,10 +857,13 @@ export const newBrandPavilions = {
       ],
     },
     sources: [
-      { label: "Nike — Mission", href: "https://about.nike.com/en/mission/" },
       {
-        label: "Nike — Rip the Script",
-        href: "https://about.nike.com/en/newsroom/releases/nike-debuts-rip-the-script-a-step-inside-the-universe-of-nike-football",
+        label: "Nike — Why Do It? campaign",
+        href: "https://about.nike.com/en/newsroom/releases/nike-why-do-it-campaign",
+      },
+      {
+        label: "Nike — Bill Bowerman: Original Innovator",
+        href: "https://about.nike.com/en/magazine/bill-bowerman-nike-s-original-innovator",
       },
       {
         label: "Nike — Swoosh logo history",

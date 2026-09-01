@@ -132,7 +132,9 @@ export function PoloWorld({ project, pavilion }: BrandWorldProps) {
       <main>
         <section className={styles.introduction} aria-labelledby="polo-introduction-heading">
           <p className={styles.sectionLabel}>Field / Stable / City / Evening</p>
-          <h2 id="polo-introduction-heading">One wardrobe. A complete American day.</h2>
+          <h2 id="polo-introduction-heading">
+            One wardrobe. <span className={styles.keepTogether}>A complete</span> American day.
+          </h2>
           <div className={styles.introductionCopy}>
             <p>
               Sport, craft, city life, and hospitality move as one continuous world. Familiar pieces

@@ -107,6 +107,7 @@ export function BrandWorldPicture({
 export function BrandWorldShell({
   project,
   pavilion,
+  navigation,
   className,
   children,
 }: BrandWorldProps & {
@@ -151,7 +152,14 @@ export function BrandWorldShell({
           >
             <BrandMark code={pavilion.code} decorative />
           </a>
-          <span className={styles.topbarSpacer} aria-hidden="true" />
+          <span className={styles.chapterNav} role="group" aria-label={`${project.title} chapters`}>
+            {navigation.map((item, index) => (
+              <a href={`#${item.id}`} key={item.id}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                {item.label}
+              </a>
+            ))}
+          </span>
         </nav>
 
         {children}
