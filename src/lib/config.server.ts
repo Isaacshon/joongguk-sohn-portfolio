@@ -27,6 +27,8 @@ export function getServerConfig() {
     instagramAccessToken: process.env.INSTAGRAM_ACCESS_TOKEN,
     instagramApiVersion,
     resendApiKey: process.env.RESEND_API_KEY,
+    contactToEmail: process.env.CONTACT_TO_EMAIL ?? process.env.SIDEQUEST_TO_EMAIL,
+    contactFromEmail: process.env.CONTACT_FROM_EMAIL ?? process.env.SIDEQUEST_FROM_EMAIL,
     sidequestToEmail:
       process.env.SIDEQUEST_TO_EMAIL ?? process.env.CONTACT_TO_EMAIL ?? "thswndrnr80@gmail.com",
     sidequestFromEmail: process.env.SIDEQUEST_FROM_EMAIL ?? "Sidequest <onboarding@resend.dev>",

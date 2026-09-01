@@ -26,7 +26,7 @@ function htmlEscape(value: string) {
 }
 
 export const submitSidequestMeasurement = createServerFn({ method: "POST" })
-  .validator(sidequestSubmissionSchema)
+  .inputValidator(sidequestSubmissionSchema)
   .handler(async ({ data }): Promise<SidequestSubmitResult> => {
     const config = getServerConfig();
     const recipients = (config.sidequestToEmail ?? "")

@@ -18,6 +18,12 @@ dist-ssr
 *.local
 .design-qa/
 
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+!.env.*.example
+
 # Wrangler / Cloudflare
 .wrangler/
 .dev.vars
