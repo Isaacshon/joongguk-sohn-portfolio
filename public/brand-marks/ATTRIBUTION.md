@@ -9,6 +9,8 @@ These marks identify brands discussed in independent, self-initiated, non-commer
 - `polo-ralph-lauren.png` and `polo-ralph-lauren.svg` — official transparent POLO RALPH LAUREN navy wordmark (2500 × 763), losslessly optimized; the SVG is a self-contained wrapper around the same pixels. Official Ralph Lauren media asset: <https://corporate.ralphlauren.com/on/demandware.static/-/Sites-RalphLauren_Corporate-Library/default/dw1a9a1ccd/assets/images/MEDIA_ASSETS/Polo_Ralph_Lauren_navy_on_white_logo.png.zip>. Official logo page: <https://corporate.ralphlauren.com/logos>. POLO RALPH LAUREN is a trademark of Ralph Lauren Corporation and its affiliates.
 - `nike.png` and `nike.svg` — black Swoosh from NIKE, Inc.'s official logo bundle, optimized to 2000 × 702 for the web. The source bundle provides a white-matte JPEG; only that neutral matte was converted to transparency, with the supplied silhouette otherwise unchanged. The SVG is a self-contained wrapper around the transparent derivative. Official bundle: <https://api-new.about.nike.com/v1/bundles/nike-inc-logos_7fd9a0a4.zip>. Official logo collection: <https://about.nike.com/en/newsroom/collections/nike-inc-logos>. NIKE and the Swoosh design are trademarks of NIKE, Inc.
 
+- `levis-housemark.png` — high-resolution primary Housemark isolated from page 42 of Levi Strauss & Co.'s official brand guidelines, without redrawing or changing its proportions: <https://www.b2bportal.levistrauss.com/_files/ugd/e7354f_d4b8db3420654d8d9dba99a05f4ad125.pdf>.
+
 ## Existing marks
 
 - `hm.svg` — H&M official press-site asset: <https://press.hm.com/images/hmlogo.svg>. H&M is a trademark of H & M Hennes & Mauritz AB.

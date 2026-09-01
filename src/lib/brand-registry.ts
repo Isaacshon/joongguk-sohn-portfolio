@@ -32,7 +32,7 @@ export const brandDefinitions = {
   levis: {
     projectSlug: "levis-wear-is-the-record",
     label: "LEVI'S",
-    mark: { src: "/brand-marks/levis.svg", mode: "image" },
+    mark: { src: "/brand-marks/levis-housemark.png", mode: "image" },
     legacy: false,
   },
   polo: {

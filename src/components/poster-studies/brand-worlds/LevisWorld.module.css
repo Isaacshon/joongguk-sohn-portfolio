@@ -26,94 +26,126 @@
 }
 
 .hero {
-  position: relative;
-  min-height: max(46rem, calc(100svh - 2.75rem));
-  overflow: hidden;
-  background: var(--levis-black);
-  color: var(--levis-white);
-  isolation: isolate;
-}
-
-.heroImage {
-  position: absolute !important;
-  inset: 0;
-  width: 100%;
-  height: 100% !important;
-  aspect-ratio: auto !important;
-}
-
-.heroImageAsset {
-  filter: saturate(0.92) contrast(1.05);
-  transform: scale(1.01);
-}
-
-.heroShade {
-  position: absolute;
-  z-index: 1;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.18), transparent 38%, rgba(0, 0, 0, 0.64)),
-    linear-gradient(
-      90deg,
-      rgba(0, 0, 0, 0.18),
-      transparent 35%,
-      transparent 65%,
-      rgba(0, 0, 0, 0.16)
-    );
-}
-
-.heroIdentity {
-  position: absolute;
-  z-index: 2;
-  top: 50%;
-  left: 50%;
-  display: flex;
-  width: min(34rem, calc(100% - 2rem));
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  transform: translate(-50%, -46%);
-}
-
-.heroIdentity h1 {
-  width: min(17rem, 62vw);
-  margin: 0;
-  padding: clamp(1rem, 2vw, 1.5rem) clamp(1.2rem, 2.5vw, 2rem);
+  border-top: 0.72rem solid var(--levis-red);
   background: var(--levis-white);
+  color: var(--levis-black);
 }
 
-.heroIdentity h1 :global(.brand-mark) {
+.heroTitlePlate {
+  display: grid;
+  min-height: clamp(25rem, 42svh, 32rem);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: auto 1fr;
+  gap: clamp(2rem, 3.5vw, 4rem) clamp(1rem, 2vw, 2.5rem);
+  padding: clamp(1.35rem, 2.5vw, 2.75rem) clamp(1.25rem, 4.5vw, 5.5rem) clamp(3.25rem, 6vw, 6.5rem);
+}
+
+.heroSeries {
+  display: flex;
+  grid-column: 1 / -1;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid rgba(10, 10, 10, 0.34);
+}
+
+.heroSeries p {
+  margin: 0;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.heroTitlePlate h1 {
+  width: min(20rem, 100%);
+  grid-column: 1 / 7;
+  align-self: end;
+  margin: 0;
+}
+
+.heroTitlePlate h1 :global(.brand-mark) {
   display: block;
   width: 100%;
 }
 
+.heroThesis {
+  grid-column: 8 / -1;
+  align-self: end;
+  padding-left: clamp(1.25rem, 2.5vw, 3rem);
+  border-left: 0.26rem solid var(--levis-red);
+}
+
 .campaignName {
-  margin: clamp(1.4rem, 2.6vw, 2.2rem) 0 0;
-  font-family: var(--world-display), "Arial Narrow", sans-serif;
-  font-size: clamp(1.1rem, 1.8vw, 1.7rem);
+  margin: 0 0 1.2rem;
+  color: var(--levis-red);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  line-height: 1;
+  letter-spacing: 0.12em;
+  line-height: 1.35;
   text-transform: uppercase;
 }
 
 .campaignLine {
-  margin: 0.75rem 0 0;
-  font-size: clamp(0.88rem, 1vw, 1rem);
-  font-weight: 500;
-  letter-spacing: 0.04em;
+  max-width: 13ch;
+  margin: 0;
+  font-family: var(--world-display), "Arial Narrow", sans-serif;
+  font-size: clamp(3rem, 5.4vw, 5.7rem);
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  line-height: 0.86;
+  text-transform: uppercase;
+  text-wrap: balance;
 }
 
-.heroSeason {
-  position: absolute;
-  z-index: 2;
-  right: clamp(1.25rem, 3.5vw, 4rem);
-  bottom: clamp(1.25rem, 3vw, 3rem);
+.heroPhotograph {
   margin: 0;
+  border-top: 1px solid var(--levis-black);
+}
+
+.heroImage {
+  width: 100%;
+  height: auto !important;
+  aspect-ratio: 16 / 9 !important;
+  background: #9a7456;
+}
+
+.heroImageAsset {
+  filter: saturate(0.93) contrast(1.03);
+}
+
+.heroCaption {
+  display: grid;
+  grid-template-columns: minmax(9rem, 0.35fr) minmax(0, 1fr) auto;
+  gap: 1rem clamp(2rem, 5vw, 6rem);
+  align-items: baseline;
+  padding: 1.15rem clamp(1.25rem, 4.5vw, 5.5rem) 1.25rem;
+  border-bottom: 1px solid var(--levis-black);
+  background: var(--levis-white);
+}
+
+.heroCaption span {
+  font-family: "Courier New", Courier, monospace;
   font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
   text-transform: uppercase;
+}
+
+.heroCaption strong {
+  font-size: clamp(1rem, 1.3vw, 1.25rem);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+.story {
+  min-width: 0;
 }
 
 .introduction {
@@ -306,19 +338,14 @@
   margin: 0 auto;
 }
 
-.constructionHero {
-  grid-column: 1 / 13;
-  min-height: 47rem;
-}
-
 .constructionTable {
-  grid-column: 1 / 9;
-  min-height: 40rem;
+  grid-column: 1 / 8;
+  min-height: 42rem;
 }
 
 .constructionDetail {
-  grid-column: 9 / 13;
-  min-height: 40rem;
+  grid-column: 8 / 13;
+  min-height: 42rem;
 }
 
 .heritageNote {
@@ -520,17 +547,59 @@
 }
 
 @media (max-width: 720px) {
-  .hero {
-    min-height: calc(100svh - 2.75rem);
+  .heroTitlePlate {
+    min-height: 0;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, auto);
+    gap: 1.5rem;
+    padding: 1.1rem 1rem 2.1rem;
   }
 
-  .heroIdentity h1 {
-    width: min(14rem, 58vw);
+  .heroSeries {
+    grid-column: 1;
+    gap: 1rem;
   }
 
-  .heroSeason {
-    right: 1rem;
-    bottom: 1rem;
+  .heroSeries p:last-child {
+    text-align: right;
+  }
+
+  .heroTitlePlate h1 {
+    width: min(11.5rem, 48vw);
+    grid-column: 1;
+    align-self: start;
+    margin-block: 0.8rem;
+  }
+
+  .heroThesis {
+    grid-column: 1;
+    padding: 1.2rem 0 0;
+    border-top: 0.25rem solid var(--levis-red);
+    border-left: 0;
+  }
+
+  .campaignName {
+    margin-bottom: 0.85rem;
+  }
+
+  .campaignLine {
+    max-width: 11ch;
+    font-size: clamp(2.65rem, 12.6vw, 4rem);
+    line-height: 0.88;
+  }
+
+  .heroImage {
+    aspect-ratio: 4 / 3 !important;
+  }
+
+  .heroCaption {
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+    padding: 1rem;
+  }
+
+  .heroCaption span:last-child {
+    color: var(--levis-grey);
   }
 
   .introduction,
@@ -570,7 +639,6 @@
     gap: 0.75rem;
   }
 
-  .constructionHero,
   .constructionTable,
   .constructionDetail,
   .wearPortrait,
@@ -584,7 +652,6 @@
     margin-top: 0;
   }
 
-  .constructionHero,
   .constructionTable,
   .repairBench,
   .repairNeedle {

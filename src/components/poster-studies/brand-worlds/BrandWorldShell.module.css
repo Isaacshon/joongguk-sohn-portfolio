@@ -362,7 +362,9 @@
   }
 
   .topbar {
-    min-height: 3.6rem;
+    min-height: 0;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.65rem 1rem;
     padding: 0.65rem max(1rem, env(safe-area-inset-right)) 0.65rem
       max(1rem, env(safe-area-inset-left));
     font-size: 0.72rem;
@@ -371,6 +373,7 @@
   .brandHome {
     width: clamp(4.8rem, 23vw, 7rem);
     max-height: 2.15rem;
+    justify-self: end;
   }
 
   .brandHome :global(.brand-mark__mask),
@@ -379,8 +382,13 @@
   }
 
   .chapterNav {
-    max-width: 38vw;
+    width: 100%;
+    max-width: none;
+    grid-column: 1 / -1;
+    justify-self: start;
     gap: 0.9rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid color-mix(in srgb, var(--world-ink) 14%, transparent);
   }
 
   .chapterNav a {

@@ -59,18 +59,19 @@ function ChapterHeading({ number, title, line }: { number: string; title: string
 }
 
 export function LevisWorld({ project, pavilion }: BrandWorldProps) {
-  const constructionFrames: CampaignFrame[] = [
-    pavilion.philosophy.image,
-    pavilion.principles.image,
-    pavilion.world.scenes[2],
-  ];
+  const constructionFrames: CampaignFrame[] = [pavilion.principles.image, pavilion.world.scenes[2]];
   const wearFrames: CampaignFrame[] = [pavilion.needs.images[1], pavilion.world.scenes[0]];
   const repairFrames: CampaignFrame[] = [
     pavilion.design.image,
     pavilion.world.scenes[1],
     pavilion.world.scenes[4],
   ];
-  const passOnFrame = pavilion.world.scenes[3];
+  const passOnFrame: CampaignFrame = {
+    slot: "hero",
+    eyebrow: "Record 0147 / handoff",
+    title: "Repair ends. The next life begins.",
+    copy: "The repaired pair leaves the workbench in another wearer's hands, keeping its fades, patch, red tab, and visible intervention in motion.",
+  };
 
   return (
     <BrandWorldShell
@@ -80,28 +81,43 @@ export function LevisWorld({ project, pavilion }: BrandWorldProps) {
       className={styles.levis}
     >
       <header className={styles.hero} id="world-top">
-        <BrandWorldPicture
-          project={project}
-          slot="context"
-          sizes="100vw"
-          className={styles.heroImage}
-          imageClassName={styles.heroImageAsset}
-          priority
-          showContinuity={false}
-        />
-        <div className={styles.heroShade} />
-        <div className={styles.heroIdentity}>
+        <div className={styles.heroTitlePlate}>
+          <div className={styles.heroSeries}>
+            <p>Levi Strauss &amp; Co. / Since 1873</p>
+            <p>Independent brand study / 2026</p>
+          </div>
           <h1>
             <span className={styles.srOnly}>Levi&apos;s</span>
             <BrandMark code="levis" decorative />
           </h1>
-          <p className={styles.campaignName}>Wear Is the Record</p>
-          <p className={styles.campaignLine}>Built to move. Worn your way.</p>
+          <div className={styles.heroThesis}>
+            <p className={styles.campaignName}>Wear is the record.</p>
+            <p className={styles.campaignLine}>
+              One construction.
+              <br />
+              More than one life.
+            </p>
+          </div>
         </div>
-        <p className={styles.heroSeason}>Levi&apos;s / 2026</p>
+        <figure className={styles.heroPhotograph}>
+          <BrandWorldPicture
+            project={project}
+            slot="hero"
+            sizes="100vw"
+            className={styles.heroImage}
+            imageClassName={styles.heroImageAsset}
+            priority
+            showContinuity={false}
+          />
+          <figcaption className={styles.heroCaption}>
+            <span>Record no. 0147</span>
+            <strong>Repair complete. Ready for another life.</strong>
+            <span>San Francisco / 2026</span>
+          </figcaption>
+        </figure>
       </header>
 
-      <main>
+      <div className={styles.story}>
         <section className={styles.introduction} aria-labelledby="levis-introduction-heading">
           <p className={styles.sectionLabel}>Construction / Wear / Repair / Pass on</p>
           <h2 id="levis-introduction-heading">The original changes with every person.</h2>
@@ -134,19 +150,13 @@ export function LevisWorld({ project, pavilion }: BrandWorldProps) {
             <LevisFrame
               project={project}
               frame={constructionFrames[0]}
-              className={styles.constructionHero}
-              sizes="100vw"
+              className={styles.constructionTable}
+              sizes="(min-width: 900px) 58vw, 100vw"
               showCopy
             />
             <LevisFrame
               project={project}
               frame={constructionFrames[1]}
-              className={styles.constructionTable}
-              sizes="(min-width: 900px) 58vw, 100vw"
-            />
-            <LevisFrame
-              project={project}
-              frame={constructionFrames[2]}
               className={styles.constructionDetail}
               sizes="(min-width: 900px) 34vw, 100vw"
             />
@@ -231,7 +241,7 @@ export function LevisWorld({ project, pavilion }: BrandWorldProps) {
           />
           <div className={styles.passOnCopy}>
             <p>04 / Pass on</p>
-            <h2 id="levis-pass-on-heading">Another life begins with the same pair.</h2>
+            <h2 id="levis-pass-on-heading">A new wearer begins another record.</h2>
             <p>
               Care, repair, reuse, and handoff keep the construction in motion while a new wearer
               adds another chapter.
@@ -249,7 +259,7 @@ export function LevisWorld({ project, pavilion }: BrandWorldProps) {
             <p>Wear Is the Record / 2026</p>
           </footer>
         </section>
-      </main>
+      </div>
     </BrandWorldShell>
   );
 }

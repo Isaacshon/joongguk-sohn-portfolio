@@ -1377,8 +1377,10 @@ const verifiedBrandMediaDescriptions = {
   },
   "levis-wear-is-the-record": {
     hero: {
-      alt: "Two men hold a pair of jeans between them in a doorway, showing the back pockets, back patch, and Red Tab above an open suitcase.",
-      focalPoint: "50% 43%",
+      alt: "An older repairer and a younger wearer pass worn blue jeans across an oak workbench, with the back pockets, waistband patch, red tab, repaired knee, and frayed hems visible.",
+      focalPoint: "50% 50%",
+      width: 3200,
+      height: 1800,
     },
     tactile: {
       alt: "Two seated people mark and inspect worn denim legs on a wooden table with patch material, scissors, and a tape measure.",

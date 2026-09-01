@@ -54,10 +54,10 @@ const brandIndexRegistry = {
     layout: "wide",
   },
   "levis-wear-is-the-record": {
-    slot: "context",
-    aspectRatio: "3 / 4",
-    mobileAspectRatio: "3 / 4",
-    layout: "portrait",
+    slot: "hero",
+    aspectRatio: "16 / 9",
+    mobileAspectRatio: "4 / 3",
+    layout: "wide",
   },
   "muji-household-weather": {
     slot: "spatial",
