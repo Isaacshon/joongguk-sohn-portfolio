@@ -1,4 +1,6 @@
 import type { DesignProjectMediaSlot } from "@/lib/design-project-media";
+import type { BrandCode } from "@/lib/brand-registry";
+import { newBrandPavilions } from "@/lib/new-brand-pavilions";
 
 export type BrandPavilionImage = {
   slot: DesignProjectMediaSlot;
@@ -9,7 +11,7 @@ export type BrandPavilionImage = {
 };
 
 export type BrandPavilionProfile = {
-  code: "hm" | "zara" | "uniqlo" | "prada";
+  code: BrandCode;
   hero: {
     kicker: string;
     summary: string;
@@ -790,6 +792,7 @@ export const brandPavilions = {
       },
     ],
   },
+  ...newBrandPavilions,
 } as const satisfies Record<string, BrandPavilionProfile>;
 
 export function getBrandPavilion(slug: string): BrandPavilionProfile | undefined {

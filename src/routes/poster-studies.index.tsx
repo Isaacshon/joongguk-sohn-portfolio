@@ -32,6 +32,11 @@ export const Route = createFileRoute("/poster-studies/")({
   component: DesignProjectIndex,
 });
 
+const brandProjects = designProjects.filter((project) => project.brandStudy);
+const brandProjectNames = brandProjects
+  .map((project) => project.brandStudy?.brand ?? project.title)
+  .join(", ");
+
 function DesignProjectIndex() {
   return (
     <MatLayout surface="plain" contentClassName="!px-0 !pb-0 !pt-11">
@@ -170,9 +175,9 @@ function DesignProjectIndex() {
             </p>
             <div className="max-w-[35rem] md:text-right">
               <p className="mb-6 text-[11px] leading-[1.6] text-white/55">
-                H&amp;M, ZARA, UNIQLO, and PRADA concept studies are independent, self-initiated
-                work. They were not commissioned, approved, sponsored, or endorsed by the named
-                brands. All trademarks belong to their respective owners.
+                The {brandProjects.length} named brand concept studies ({brandProjectNames}) are
+                independent, self-initiated work. They were not commissioned, approved, sponsored,
+                or endorsed by the named brands. All trademarks belong to their respective owners.
               </p>
               <Link
                 to="/work"

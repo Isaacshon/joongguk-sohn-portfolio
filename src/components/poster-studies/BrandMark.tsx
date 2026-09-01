@@ -1,23 +1,11 @@
 import type { CSSProperties } from "react";
 
-export type BrandCode = "hm" | "zara" | "uniqlo" | "prada";
+import { getBrandCodeForProject, getBrandDefinition, type BrandCode } from "@/lib/brand-registry";
+
+export type { BrandCode } from "@/lib/brand-registry";
 
 type BrandMarkStyle = CSSProperties & {
   "--brand-mark-src"?: string;
-};
-
-const brandMarkAssets: Record<BrandCode, { src: string; label: string }> = {
-  hm: { src: "/brand-marks/hm.svg", label: "H&M" },
-  zara: { src: "/brand-marks/zara.svg", label: "ZARA" },
-  uniqlo: { src: "/brand-marks/uniqlo.svg", label: "UNIQLO" },
-  prada: { src: "/brand-marks/prada.svg", label: "PRADA" },
-};
-
-const projectBrandCodes: Record<string, BrandCode> = {
-  "hm-second-sun": "hm",
-  "zara-the-air-between": "zara",
-  "uniqlo-comfort-measured": "uniqlo",
-  "prada-the-quiet-error": "prada",
 };
 
 export function BrandMark({
@@ -29,15 +17,29 @@ export function BrandMark({
   className?: string;
   decorative?: boolean;
 }) {
-  const asset = brandMarkAssets[code];
+  const definition = getBrandDefinition(code);
+  const asset = definition.mark;
   const classes = ["brand-mark", `brand-mark--${code}`, className].filter(Boolean).join(" ");
 
-  if (code === "uniqlo") {
+  if (asset.mode === "text") {
     return (
       <span
         className={classes}
         role={decorative ? undefined : "img"}
-        aria-label={decorative ? undefined : asset.label}
+        aria-label={decorative ? undefined : definition.label}
+        aria-hidden={decorative || undefined}
+      >
+        <span className="brand-mark__text">{definition.label}</span>
+      </span>
+    );
+  }
+
+  if (asset.mode === "image") {
+    return (
+      <span
+        className={classes}
+        role={decorative ? undefined : "img"}
+        aria-label={decorative ? undefined : definition.label}
         aria-hidden={decorative || undefined}
       >
         <img src={asset.src} alt="" className="brand-mark__image" draggable={false} />
@@ -51,7 +53,7 @@ export function BrandMark({
     <span
       className={classes}
       role={decorative ? undefined : "img"}
-      aria-label={decorative ? undefined : asset.label}
+      aria-label={decorative ? undefined : definition.label}
       aria-hidden={decorative || undefined}
     >
       <span className="brand-mark__mask" style={style} />
@@ -66,7 +68,7 @@ export function BrandProjectMark({
   projectSlug: string;
   className?: string;
 }) {
-  const code = projectBrandCodes[projectSlug];
+  const code = getBrandCodeForProject(projectSlug);
 
   if (!code) return null;
 

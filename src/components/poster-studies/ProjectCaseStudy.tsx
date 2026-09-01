@@ -28,6 +28,29 @@ const mediaLabels: Record<DesignProjectCoreMediaSlot, string> = {
   context: "Context in use",
 };
 
+const projectMethodTitles: Record<string, string> = {
+  afterimage: "A delay becomes the signature.",
+  "memory-type": "Evidence enters every letter.",
+  "field-notes-37": "Let the index admit what is missing.",
+  "last-letter": "Interruption carries the message.",
+  "tactile-forecast": "Pressure makes feeling visible.",
+  "night-index": "The frame learns the night.",
+  "public-memory": "Routes become a shared language.",
+  "soft-machine": "Hold the datum. Let the form breathe.",
+  "signal-noise": "Decode without erasing the break.",
+  "chroma-tempo": "Turn sound into a visible measure.",
+  "79w": "One line holds two cities.",
+  tidehold: "Hospitality follows the waterline.",
+  offsort: "Name the value before the flavour.",
+  horalis: "Let the body keep local time.",
+  "selv-00": "Make repair part of the garment.",
+  "tessera-live": "Nine rooms move as one season.",
+  backmatter: "Put the source beside the claim.",
+  seamframe: "Show how the building comes apart.",
+  "two-shores": "Make both sides visible before action.",
+  coldkiln: "Begin with the heat never used.",
+};
+
 export function ProjectCaseStudy({ project }: { project: DesignProject }) {
   const { previous, next } = getAdjacentDesignProjects(project.slug);
   const direction = getDesignProjectArtDirection(project);
@@ -204,7 +227,9 @@ function StoryBlock({
       >
         <div className="studio-method-heading">
           <p className="studio-meta">{number} / Intent and response</p>
-          <h2 id={`${project.slug}-method-${number}`}>One idea, resolved with precision.</h2>
+          <h2 id={`${project.slug}-method-${number}`}>
+            {projectMethodTitles[project.slug] ?? "One rule holds the system together."}
+          </h2>
         </div>
         <article>
           <p className="studio-meta">The need</p>

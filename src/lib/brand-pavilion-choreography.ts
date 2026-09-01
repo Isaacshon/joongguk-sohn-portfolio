@@ -1,5 +1,7 @@
 import type { BrandCode } from "@/components/poster-studies/BrandMark";
 
+export type LegacyBrandCode = Extract<BrandCode, "hm" | "zara" | "uniqlo" | "prada">;
+
 export type PavilionChapterKey =
   | "philosophy"
   | "values"
@@ -191,4 +193,12 @@ export const brandPavilionChoreographies = {
       detail: "Image, object, and space remain adjustable",
     },
   ],
-} satisfies Record<BrandCode, readonly BrandPavilionChapter[]>;
+} satisfies Record<LegacyBrandCode, readonly BrandPavilionChapter[]>;
+
+export function getLegacyBrandPavilionChoreography(
+  code: BrandCode,
+): readonly BrandPavilionChapter[] | undefined {
+  return code in brandPavilionChoreographies
+    ? brandPavilionChoreographies[code as LegacyBrandCode]
+    : undefined;
+}

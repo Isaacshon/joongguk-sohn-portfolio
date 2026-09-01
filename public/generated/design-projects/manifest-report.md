@@ -1,8 +1,8 @@
 # Design project image manifest
 
-Generated: 2026-08-28T21:19:10.251Z
+Generated: 2026-09-01T01:46:39.133Z
 
-Coverage: **115/115** required WebP assets ready.
+Coverage: **165/165** required WebP assets ready.
 
 | Project | Slot | Source | Output | WebP | AVIF | Notes |
 | --- | --- | --- | --- | ---: | ---: | --- |
@@ -121,6 +121,56 @@ Coverage: **115/115** required WebP assets ready.
 | 24 THE QUIET ERROR | editorialD (16:9) | 2048×1152 | 3200×1800 | 843.4 KB | 514.8 KB | low-resolution source allowed (2048x1152; high tier requested at 3200x1800) |
 | 24 THE QUIET ERROR | editorialE (4:5) | 1536×2048 | 2560×3200 | 1065.2 KB | 567.4 KB | aspect mismatch allowed (6.3%); low-resolution source allowed (1536x2048; high tier requested at 2560x3200) |
 | 24 THE QUIET ERROR | editorialF (3:2) | 2016×1344 | 3200×2133 | 734.3 KB | 424.9 KB | low-resolution source allowed (2016x1344; high tier requested at 3200x2133) |
+| 25 MUJI | hero (4:5) | 1536×2048 | 2560×3200 | 979.3 KB | 549.7 KB | aspect mismatch allowed (6.3%); low-resolution source allowed (1536x2048; high tier requested at 2560x3200) |
+| 25 MUJI | tactile (3:2) | 2016×1344 | 3200×2133 | 1025.9 KB | 544.3 KB | low-resolution source allowed (2016x1344; high tier requested at 3200x2133) |
+| 25 MUJI | spatial (16:9) | 2048×1152 | 3200×1800 | 462.6 KB | 310.1 KB | low-resolution source allowed (2048x1152; high tier requested at 3200x1800) |
+| 25 MUJI | context (9:16) | 1536×2048 | 1800×3200 | 664.9 KB | 412.8 KB | aspect mismatch allowed (33.3%); low-resolution source allowed (1536x2048; high tier requested at 1800x3200) |
+| 25 MUJI | editorialA (4:5) | 1536×2048 | 2560×3200 | 1304 KB | 719.7 KB | aspect mismatch allowed (6.3%); low-resolution source allowed (1536x2048; high tier requested at 2560x3200) |
+| 25 MUJI | editorialB (3:2) | 2016×1344 | 3200×2133 | 783.9 KB | 416.4 KB | low-resolution source allowed (2016x1344; high tier requested at 3200x2133) |
+| 25 MUJI | editorialC (4:5) | 2048×1152 | 2560×3200 | 516.3 KB | 289.1 KB | aspect mismatch allowed (122.2%); low-resolution source allowed (2048x1152; high tier requested at 2560x3200) |
+| 25 MUJI | editorialD (16:9) | 2048×1152 | 3200×1800 | 338.8 KB | 230.4 KB | low-resolution source allowed (2048x1152; high tier requested at 3200x1800) |
+| 25 MUJI | editorialE (4:5) | 2048×1152 | 2560×3200 | 982.9 KB | 542.7 KB | aspect mismatch allowed (122.2%); low-resolution source allowed (2048x1152; high tier requested at 2560x3200) |
+| 25 MUJI | editorialF (3:2) | 2048×1152 | 3200×2133 | 1072.5 KB | 564 KB | aspect mismatch allowed (18.5%); low-resolution source allowed (2048x1152; high tier requested at 3200x2133) |
+| 26 LEVI'S | hero (4:5) | 1536×2048 | 2560×3200 | 1190.1 KB | 664.6 KB | aspect mismatch allowed (6.3%); low-resolution source allowed (1536x2048; high tier requested at 2560x3200) |
+| 26 LEVI'S | tactile (3:2) | 2016×1344 | 3200×2133 | 1000.3 KB | 556.3 KB | low-resolution source allowed (2016x1344; high tier requested at 3200x2133) |
+| 26 LEVI'S | spatial (16:9) | 2048×1152 | 3200×1800 | 499.6 KB | 340.6 KB | low-resolution source allowed (2048x1152; high tier requested at 3200x1800) |
+| 26 LEVI'S | context (9:16) | 1536×2048 | 1800×3200 | 636.7 KB | 406.7 KB | aspect mismatch allowed (33.3%); low-resolution source allowed (1536x2048; high tier requested at 1800x3200) |
+| 26 LEVI'S | editorialA (4:5) | 1536×2048 | 2560×3200 | 1316.9 KB | 676.3 KB | aspect mismatch allowed (6.3%); low-resolution source allowed (1536x2048; high tier requested at 2560x3200) |
+| 26 LEVI'S | editorialB (3:2) | 1536×1024 | 3200×2133 | 897.4 KB | 496.9 KB | low-resolution source allowed (1536x1024; high tier requested at 3200x2133) |
+| 26 LEVI'S | editorialC (4:5) | 1536×2048 | 2560×3200 | 1357.7 KB | 732.9 KB | aspect mismatch allowed (6.3%); low-resolution source allowed (1536x2048; high tier requested at 2560x3200) |
+| 26 LEVI'S | editorialD (16:9) | 2016×1344 | 3200×1800 | 705.1 KB | 439.7 KB | aspect mismatch allowed (15.6%); low-resolution source allowed (2016x1344; high tier requested at 3200x1800) |
+| 26 LEVI'S | editorialE (4:5) | 2016×1344 | 2560×3200 | 1290.1 KB | 637.1 KB | aspect mismatch allowed (87.5%); low-resolution source allowed (2016x1344; high tier requested at 2560x3200) |
+| 26 LEVI'S | editorialF (3:2) | 2016×1344 | 3200×2133 | 1021.9 KB | 552.1 KB | low-resolution source allowed (2016x1344; high tier requested at 3200x2133) |
+| 27 POLO RALPH LAUREN | hero (4:5) | 1536×2048 | 2560×3200 | 838.2 KB | 506.7 KB | aspect mismatch allowed (6.3%); low-resolution source allowed (1536x2048; high tier requested at 2560x3200) |
+| 27 POLO RALPH LAUREN | tactile (3:2) | 2016×1344 | 3200×2133 | 975.8 KB | 544.8 KB | low-resolution source allowed (2016x1344; high tier requested at 3200x2133) |
+| 27 POLO RALPH LAUREN | spatial (16:9) | 2048×1152 | 3200×1800 | 716 KB | 455.9 KB | low-resolution source allowed (2048x1152; high tier requested at 3200x1800) |
+| 27 POLO RALPH LAUREN | context (9:16) | 1152×2048 | 1800×3200 | 518.6 KB | 335.9 KB | low-resolution source allowed (1152x2048; high tier requested at 1800x3200) |
+| 27 POLO RALPH LAUREN | editorialA (4:5) | 1536×2048 | 2560×3200 | 856.5 KB | 450.5 KB | aspect mismatch allowed (6.3%); low-resolution source allowed (1536x2048; high tier requested at 2560x3200) |
+| 27 POLO RALPH LAUREN | editorialB (3:2) | 2016×1344 | 3200×2133 | 809.8 KB | 449.9 KB | low-resolution source allowed (2016x1344; high tier requested at 3200x2133) |
+| 27 POLO RALPH LAUREN | editorialC (4:5) | 1536×2048 | 2560×3200 | 995.6 KB | 580.8 KB | aspect mismatch allowed (6.3%); low-resolution source allowed (1536x2048; high tier requested at 2560x3200) |
+| 27 POLO RALPH LAUREN | editorialD (16:9) | 2048×1152 | 3200×1800 | 724.1 KB | 469.5 KB | low-resolution source allowed (2048x1152; high tier requested at 3200x1800) |
+| 27 POLO RALPH LAUREN | editorialE (4:5) | 1536×2048 | 2560×3200 | 1136.4 KB | 613.6 KB | aspect mismatch allowed (6.3%); low-resolution source allowed (1536x2048; high tier requested at 2560x3200) |
+| 27 POLO RALPH LAUREN | editorialF (3:2) | 2016×1344 | 3200×2133 | 1108.1 KB | 621.6 KB | low-resolution source allowed (2016x1344; high tier requested at 3200x2133) |
+| 27 POLO RALPH LAUREN | editorialG (4:5) | 1536×2048 | 2560×3200 | 918.6 KB | 536.6 KB | aspect mismatch allowed (6.3%); low-resolution source allowed (1536x2048; high tier requested at 2560x3200) |
+| 27 POLO RALPH LAUREN | editorialH (3:2) | 2048×1152 | 3200×2133 | 1008 KB | 563.7 KB | aspect mismatch allowed (18.5%); low-resolution source allowed (2048x1152; high tier requested at 3200x2133) |
+| 27 POLO RALPH LAUREN | editorialI (4:5) | 1536×2048 | 2560×3200 | 996.1 KB | 565.6 KB | aspect mismatch allowed (6.3%); low-resolution source allowed (1536x2048; high tier requested at 2560x3200) |
+| 27 POLO RALPH LAUREN | editorialJ (16:9) | 2016×1344 | 3200×1800 | 1011.6 KB | 607.8 KB | aspect mismatch allowed (15.6%); low-resolution source allowed (2016x1344; high tier requested at 3200x1800) |
+| 27 POLO RALPH LAUREN | editorialK (4:5) | 1536×2048 | 2560×3200 | 1372.8 KB | 743.8 KB | aspect mismatch allowed (6.3%); low-resolution source allowed (1536x2048; high tier requested at 2560x3200) |
+| 27 POLO RALPH LAUREN | editorialL (3:2) | 2016×1344 | 3200×2133 | 1067.4 KB | 612.8 KB | low-resolution source allowed (2016x1344; high tier requested at 3200x2133) |
+| 27 POLO RALPH LAUREN | editorialM (4:5) | 1152×2048 | 2560×3200 | 725.6 KB | 405.7 KB | aspect mismatch allowed (29.7%); low-resolution source allowed (1152x2048; high tier requested at 2560x3200) |
+| 27 POLO RALPH LAUREN | editorialN (16:9) | 2048×1152 | 3200×1800 | 707.7 KB | 436.9 KB | low-resolution source allowed (2048x1152; high tier requested at 3200x1800) |
+| 27 POLO RALPH LAUREN | editorialO (1:1) | 2048×2048 | 3200×3200 | 1808.5 KB | 985.9 KB | low-resolution source allowed (2048x2048; high tier requested at 3200x3200) |
+| 27 POLO RALPH LAUREN | editorialP (16:9) | 2048×1152 | 3200×1800 | 714.7 KB | 432 KB | low-resolution source allowed (2048x1152; high tier requested at 3200x1800) |
+| 28 NIKE | hero (4:5) | 1070×1344 | 2560×3200 | 803.1 KB | 438.2 KB | low-resolution source allowed (1070x1344; high tier requested at 2560x3200) |
+| 28 NIKE | tactile (3:2) | 800×1180 | 3200×2133 | 677.7 KB | 373.4 KB | aspect mismatch allowed (54.8%); low-resolution source allowed (800x1180; high tier requested at 3200x2133) |
+| 28 NIKE | spatial (16:9) | 1480×650 | 3200×1800 | 495.3 KB | 315.8 KB | aspect mismatch allowed (28.1%); low-resolution source allowed (1480x650; high tier requested at 3200x1800) |
+| 28 NIKE | context (9:16) | 1536×2048 | 1800×3200 | 749.1 KB | 477.8 KB | aspect mismatch allowed (33.3%); low-resolution source allowed (1536x2048; high tier requested at 1800x3200) |
+| 28 NIKE | editorialA (4:5) | 2048×1152 | 2560×3200 | 471.4 KB | 259.5 KB | aspect mismatch allowed (122.2%); low-resolution source allowed (2048x1152; high tier requested at 2560x3200) |
+| 28 NIKE | editorialB (3:2) | 820×1040 | 3200×2133 | 623 KB | 341.4 KB | aspect mismatch allowed (47.4%); low-resolution source allowed (820x1040; high tier requested at 3200x2133) |
+| 28 NIKE | editorialC (4:5) | 1100×1250 | 2560×3200 | 673.2 KB | 359 KB | aspect mismatch allowed (10%); low-resolution source allowed (1100x1250; high tier requested at 2560x3200) |
+| 28 NIKE | editorialD (16:9) | 1536×2048 | 3200×1800 | 670.6 KB | 399.6 KB | aspect mismatch allowed (57.8%); low-resolution source allowed (1536x2048; high tier requested at 3200x1800) |
+| 28 NIKE | editorialE (4:5) | 1050×1050 | 2560×3200 | 789.8 KB | 428.9 KB | aspect mismatch allowed (25%); low-resolution source allowed (1050x1050; high tier requested at 2560x3200) |
+| 28 NIKE | editorialF (3:2) | 1150×1080 | 3200×2133 | 381.4 KB | 221.8 KB | aspect mismatch allowed (29%); low-resolution source allowed (1150x1080; high tier requested at 3200x2133) |
 
 ## Missing required assets
 

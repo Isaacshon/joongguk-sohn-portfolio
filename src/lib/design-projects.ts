@@ -32,7 +32,11 @@ export type DesignProjectMotif =
   | "hm-edit"
   | "zara-atelier"
   | "uniqlo-life"
-  | "prada-observation";
+  | "prada-observation"
+  | "muji-household"
+  | "levis-record"
+  | "polo-long-match"
+  | "nike-no-second-take";
 
 export type DesignProject = {
   slug: string;
@@ -1119,6 +1123,230 @@ export const designProjects: DesignProject[] = [
     theme: "dark",
     brandStudy: {
       brand: "PRADA",
+      relationship: "unofficial-self-initiated",
+    },
+  },
+  {
+    slug: "muji-household-weather",
+    index: "25",
+    title: "MUJI",
+    projectLabel: "Household observation and product culture / 2026",
+    discipline: "Household editorial, product, and spatial identity",
+    statement: "Useful things should change the weather of a room without asking for attention.",
+    description:
+      "A MUJI brand world called HOUSEHOLD WEATHER, where translucent storage, plain paper, pale textiles, wood, and simple tools support ordinary routines without becoming decorative minimalism.",
+    challenge:
+      "Express MUJI's no-brand quality-goods philosophy as a lived household system, not as a gallery of beige objects or a generic exercise in minimalism.",
+    response:
+      "Storage, laundry, making, repair, arrival, quiet work, and a shared meal form one material-family sequence. The 1984 PP Box and wall-mounted CD player remain sourced official archetypes; only the translucent box appears directly in the photographic study.",
+    rule: "Every scene begins with a household action; material, process, packaging, and copy are reduced only when usefulness remains clear.",
+    typography:
+      "Noto Sans JP provides calm multilingual utility; a restrained serif appears only in long-form observations and never competes with product information.",
+    motion:
+      "Light, curtains, steam, and hands move slowly through fixed rooms while the information layer stays still.",
+    materials: [
+      "Unbleached package / official principle",
+      "Recycled paper / project display stock",
+      "Translucent polypropylene",
+      "Brushed aluminium household tools",
+    ],
+    palette: [
+      { name: "MUJI red", value: "#7f0019" },
+      { name: "Household paper", value: "#e8e3d7" },
+      { name: "Utility ink", value: "#26231f" },
+      { name: "Air grey", value: "#b8b4aa" },
+    ],
+    applications: [
+      "Household field journal",
+      "Material and packaging index",
+      "Room-scale installation",
+      "Seasonal product film",
+    ],
+    lineage:
+      "Grounded in MUJI's published no-brand quality-goods principles, its three product-development viewpoints, and its idea of an empty vessel that adapts to many lives.",
+    references: [
+      { label: "MUJI Singapore — About MUJI", href: "https://www.muji.com/sg/about" },
+      { label: "MUJI Message 2025", href: "https://www.muji.com/jp/message/2025/en/" },
+      {
+        label: "Ryohin Keikaku — Advertising archive",
+        href: "https://www.ryohin-keikaku.jp/en/corporate/ad-archive",
+      },
+    ],
+    chapter: "Fashion & Retail",
+    motif: "muji-household",
+    theme: "light",
+    brandStudy: {
+      brand: "MUJI",
+      relationship: "unofficial-self-initiated",
+    },
+  },
+  {
+    slug: "levis-wear-is-the-record",
+    index: "26",
+    title: "LEVI'S",
+    projectLabel: "Denim archive and lived-wear campaign / 2026",
+    discipline: "Denim archive, editorial campaign, and service identity",
+    statement: "Wear is not damage. It is the record of a life in motion.",
+    description:
+      "A Levi's brand world called WEAR IS THE RECORD, where denim utility, rugged individuality, and self-expression are read through repairs, fades, pockets, seams, and the stories attached to them.",
+    challenge:
+      "Build a contemporary Levi's story without imitating a vintage advertisement or treating heritage as a collection of nostalgic props.",
+    response:
+      "The campaign follows one construction language through many lived examples: copper rivets, straight form, button fly, Arcuate, Two Horse back patch, and Red Tab organise a sequence of movement, washing, inspection, and repair.",
+    rule: "Every frame must connect an official 501 signature to a real action, wearer, or trace of wear without pretending that unrelated jeans are the same physical pair.",
+    typography:
+      "A condensed industrial sans leads headlines and field labels; a plain grotesk records dates, repairs, and oral-history captions.",
+    motion:
+      "Frames advance like contact sheets, then stop on a seam, fade, or gesture long enough for its history to register.",
+    materials: ["Indigo denim", "Red tab cloth", "Kraft archive card", "Copper hardware"],
+    palette: [
+      { name: "Indigo", value: "#102b45" },
+      { name: "Red Tab", value: "#c41230" },
+      { name: "Archive cream", value: "#eee6d5" },
+      { name: "Copper", value: "#a66a43" },
+    ],
+    applications: [
+      "Portrait and oral-history campaign",
+      "Repair record system",
+      "Denim construction archive",
+      "Store-window contact sheet",
+    ],
+    lineage:
+      "Built from Levi's published history of riveted workwear, the Red Tab, arcuate stitching, utility, originality, and the individual stories carried by worn garments.",
+    references: [
+      {
+        label: "Levi Strauss & Co. — Levi's brand",
+        href: "https://www.levistrauss.com/who-we-are/brands/levis/",
+      },
+      {
+        label: "Levi Strauss & Co. — Levi's history",
+        href: "https://www.levistrauss.com/levis-history/",
+      },
+      {
+        label: "Levi Strauss & Co. — Behind Every Original",
+        href: "https://www.levistrauss.com/2026/02/08/levis-behind-every-original/",
+      },
+    ],
+    chapter: "Fashion & Retail",
+    motif: "levis-record",
+    theme: "dark",
+    brandStudy: {
+      brand: "LEVI'S",
+      relationship: "unofficial-self-initiated",
+    },
+  },
+  {
+    slug: "polo-ralph-lauren-the-long-match",
+    index: "27",
+    title: "POLO RALPH LAUREN",
+    projectLabel: "Sporting-life editorial and hospitality world / 2026",
+    discipline: "Sporting-life campaign, publication, and environment",
+    statement: "Style is the part of the match that continues after the score is forgotten.",
+    description:
+      "A Polo Ralph Lauren brand world called THE LONG MATCH, connecting preparation, competition, equestrian care, city life, clubhouse ritual, and blue hour through five recurring object families.",
+    challenge:
+      "Translate authenticity and timeless American style into a contemporary narrative without reducing the brand to crests, club décor, or costume nostalgia.",
+    response:
+      "Twenty editorial frames follow an intergenerational ensemble through cotton piqué, blue oxford, cream cable knit, wooden racquets, and saddle leather. The people and specific objects change; the five families and rituals make the world continuous.",
+    rule: "Every chapter must return to at least one object family or ritual while time, place, social role, and generation are allowed to change.",
+    typography:
+      "A literary old-style serif carries narrative and ceremony; a compact sans handles schedules, scores, garment notes, and wayfinding.",
+    motion:
+      "Morning grain sharpens into match-day pace, then relaxes into long evening dissolves without breaking the editorial timeline.",
+    materials: [
+      "Cotton piqué / 1972 shirt anchor",
+      "Cotton oxford",
+      "Cable-knit wool",
+      "Saddle leather",
+      "Ash wood / leather racquet grip",
+    ],
+    palette: [
+      { name: "Polo navy", value: "#10284d" },
+      { name: "Clubhouse cream", value: "#f0e8d4" },
+      { name: "Burgundy", value: "#6f1d2b" },
+      { name: "Field green", value: "#48573d" },
+    ],
+    applications: [
+      "Seasonal editorial film",
+      "Match-day field journal",
+      "Clubhouse hospitality system",
+      "Travel and evening lookbook",
+    ],
+    lineage:
+      "Draws from Ralph Lauren's published commitment to authenticity and timeless style, and from Polo Ralph Lauren's cinematic interpretation of American sporting life.",
+    references: [
+      {
+        label: "Ralph Lauren Corporation — Polo Ralph Lauren",
+        href: "https://corporate.ralphlauren.com/polo-ralph-lauren",
+      },
+      {
+        label: "Ralph Lauren Corporation — 2025 strategy",
+        href: "https://corporate.ralphlauren.com/2025-strategy.html",
+      },
+      { label: "Ralph Lauren Magazine", href: "https://www.ralphlauren.com/rlmag" },
+    ],
+    chapter: "Fashion & Retail",
+    motif: "polo-long-match",
+    theme: "light",
+    brandStudy: {
+      brand: "POLO RALPH LAUREN",
+      relationship: "unofficial-self-initiated",
+    },
+  },
+  {
+    slug: "nike-no-second-take",
+    index: "28",
+    title: "NIKE",
+    projectLabel: "Performance instinct and live-motion campaign / 2026",
+    discipline: "Performance campaign, motion system, and athlete environment",
+    statement: "The decisive moment does not wait for a second take.",
+    description:
+      "A Nike brand world called NO SECOND TAKE, built around instinct, experimentation, and the unrehearsed decisions that turn movement into performance.",
+    challenge:
+      "Express inspiration and innovation for every athlete without relying on generic victory imagery, fabricated performance statistics, or a montage of famous-product codes.",
+    response:
+      "A cross-sport photographic loop moves through attempt, contact, recovery, feedback, and return in running, wheelchair racing, boxing, and basketball. A waffle-like outsole is the direct material study; Swoosh, Air, and Flyknit remain sourced official histories in the research ledger.",
+    rule: "Every scene must name the sport or observation honestly, keep product history separate from the independent image sequence, and avoid fabricated performance results.",
+    typography:
+      "A compressed black display face cuts through motion; monospaced field notation records attempts, direction, and time without posing as scientific proof.",
+    motion:
+      "Sprint, wheelchair acceleration, boxing intervals, and basketball cuts move at distinct tempos; recovery portraits interrupt the action before another athlete begins the loop again.",
+    materials: [
+      "Waffle-pattern rubber / photographed study",
+      "Swoosh / official mark history",
+      "Nike Air / official product history",
+      "Flyknit / official product history",
+    ],
+    palette: [
+      { name: "Black", value: "#070707" },
+      { name: "Chalk", value: "#f3f2ed" },
+      { name: "Volt", value: "#c7ff18" },
+      { name: "Track red", value: "#df321f" },
+    ],
+    applications: [
+      "Live-action campaign",
+      "Athlete decision journal",
+      "Training-space installation",
+      "Responsive motion identity",
+    ],
+    lineage:
+      "Grounded in Nike's mission to bring inspiration and innovation to every athlete, its work to remove barriers to sport, and its history of treating the Swoosh as a symbol of movement.",
+    references: [
+      { label: "Nike — Mission", href: "https://about.nike.com/en/mission/" },
+      {
+        label: "Nike — Rip the Script",
+        href: "https://about.nike.com/en/newsroom/releases/nike-debuts-rip-the-script-a-step-inside-the-universe-of-nike-football",
+      },
+      {
+        label: "Nike — Swoosh logo history",
+        href: "https://about.nike.com/en/magazine/nike-swoosh-logo-history",
+      },
+    ],
+    chapter: "Fashion & Retail",
+    motif: "nike-no-second-take",
+    theme: "dark",
+    brandStudy: {
+      brand: "NIKE",
       relationship: "unofficial-self-initiated",
     },
   },

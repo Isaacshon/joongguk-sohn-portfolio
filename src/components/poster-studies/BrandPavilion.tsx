@@ -5,8 +5,9 @@ import { MatLayout } from "@/components/MatLayout";
 import { BrandMark, PradaPlaque, type BrandCode } from "@/components/poster-studies/BrandMark";
 import { DesignProjectCover } from "@/components/poster-studies/DesignProjectCover";
 import { ProjectPicture } from "@/components/poster-studies/ProjectPicture";
+import { getNewBrandWorldRenderer } from "@/components/poster-studies/brand-worlds";
 import {
-  brandPavilionChoreographies,
+  getLegacyBrandPavilionChoreography,
   type BrandPavilionChapter,
   type PavilionChapterKey,
   type PavilionStructuralModuleKey,
@@ -18,7 +19,7 @@ import {
   type BrandPavilionProfile,
   type BrandPavilionSource,
 } from "@/lib/brand-pavilions";
-import { designProjects, type DesignProject } from "@/lib/design-projects";
+import { designProjectCount, designProjects, type DesignProject } from "@/lib/design-projects";
 
 type PavilionStyle = CSSProperties & Record<`--${string}`, string | number>;
 
@@ -33,6 +34,16 @@ const pavilionFigureCodes: Record<BrandPavilionImage["slot"], string> = {
   editorialD: "D",
   editorialE: "E",
   editorialF: "F",
+  editorialG: "G",
+  editorialH: "H",
+  editorialI: "I",
+  editorialJ: "J",
+  editorialK: "K",
+  editorialL: "L",
+  editorialM: "M",
+  editorialN: "N",
+  editorialO: "O",
+  editorialP: "P",
 };
 
 const brandRetailMenus: Record<BrandCode, string[]> = {
@@ -40,6 +51,10 @@ const brandRetailMenus: Record<BrandCode, string[]> = {
   zara: ["Woman", "Man", "Kids", "Beauty"],
   uniqlo: ["Women", "Men", "Kids", "Baby"],
   prada: ["Women", "Men", "Bags", "Pradasphere"],
+  muji: ["Household", "Apparel", "Food", "Found MUJI"],
+  levis: ["Denim", "Originals", "Repair", "Archive"],
+  polo: ["Men", "Women", "Home", "RL Magazine"],
+  nike: ["New", "Men", "Women", "Kids", "Sport"],
 };
 
 type BrandWorldview = {
@@ -71,6 +86,16 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
 
   if (!pavilion || !project.brandStudy) return null;
 
+  const NewBrandWorld = getNewBrandWorldRenderer(pavilion.code);
+
+  if (NewBrandWorld) {
+    return <NewBrandWorld project={project} pavilion={pavilion} />;
+  }
+
+  const choreography = getLegacyBrandPavilionChoreography(pavilion.code);
+
+  if (!choreography) return null;
+
   const direction = getDesignProjectArtDirection(project);
   const brandProjects = designProjects.filter((candidate) => candidate.brandStudy);
   const currentIndex = brandProjects.findIndex((candidate) => candidate.slug === project.slug);
@@ -80,7 +105,6 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
     thesis: project.statement,
     codes: pavilion.design.keywords.slice(0, 3),
   };
-  const choreography = brandPavilionChoreographies[pavilion.code];
   const style: PavilionStyle = {
     "--pavilion-paper": direction.surfaces.paper,
     "--pavilion-ink": direction.surfaces.ink,
@@ -287,7 +311,9 @@ function PavilionHero({
             <span key={item}>{item}</span>
           ))}
         </div>
-        <span>Independent concept · {project.index} / 24 · 2026</span>
+        <span>
+          Independent concept · {project.index} / {designProjectCount} · 2026
+        </span>
       </div>
 
       <div className="brand-pavilion__hero-content pavilion-shell">

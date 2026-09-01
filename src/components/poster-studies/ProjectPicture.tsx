@@ -20,6 +20,7 @@ type ProjectPictureProps = {
   alt?: string;
   focalPoint?: string;
   fallback?: ReactNode;
+  overlay?: ReactNode;
 };
 
 export function ProjectPicture({
@@ -35,6 +36,7 @@ export function ProjectPicture({
   alt,
   focalPoint,
   fallback = null,
+  overlay = null,
 }: ProjectPictureProps) {
   const asset = getDesignProjectMediaAsset(projectSlug, slot);
   const [attempt, setAttempt] = useState<{ src: string; state: ImageAttempt } | null>(null);
@@ -58,6 +60,7 @@ export function ProjectPicture({
         data-project-media-state="fallback"
       >
         {fallback}
+        {overlay}
       </div>
     );
   }
@@ -101,6 +104,7 @@ export function ProjectPicture({
           style={{ objectPosition: focalPoint ?? asset.focalPoint }}
         />
       </picture>
+      {overlay}
     </div>
   );
 }

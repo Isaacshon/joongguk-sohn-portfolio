@@ -16,6 +16,59 @@
   height: auto;
 }
 
+.brand-mark__text {
+  display: block;
+  max-width: 100%;
+  font-family: "Arial Narrow", "Helvetica Neue", sans-serif;
+  font-size: 1em;
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  line-height: 0.86;
+  white-space: nowrap;
+}
+
+.brand-mark--muji .brand-mark__text {
+  letter-spacing: 0.075em;
+}
+
+.brand-mark--levis .brand-mark__text {
+  letter-spacing: -0.085em;
+}
+
+.brand-mark--polo .brand-mark__text {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.78em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.brand-mark--nike .brand-mark__text {
+  font-style: italic;
+  letter-spacing: -0.11em;
+}
+
+.brand-mark--muji {
+  aspect-ratio: 152 / 24;
+}
+
+.brand-mark--levis {
+  aspect-ratio: 250 / 103;
+}
+
+.brand-mark--polo .brand-mark__mask {
+  aspect-ratio: 2500 / 763;
+}
+
+.brand-mark--nike .brand-mark__mask {
+  aspect-ratio: 2000 / 702;
+}
+
+.brand-mark--muji .brand-mark__image,
+.brand-mark--levis .brand-mark__image {
+  height: 100%;
+  object-fit: contain;
+}
+
 .brand-mark__mask {
   background: currentColor;
   -webkit-mask: var(--brand-mark-src) center / contain no-repeat;
@@ -81,6 +134,30 @@
 .brand-project-mark[data-brand="prada"] {
   width: clamp(7rem, 10.5vw, 10rem);
   background: rgba(12, 12, 12, 0.88);
+  color: #fff;
+}
+
+.brand-project-mark[data-brand="muji"] {
+  width: clamp(5.2rem, 7vw, 6.6rem);
+  background: rgba(126, 0, 26, 0.95);
+  color: #fff;
+}
+
+.brand-project-mark[data-brand="levis"] {
+  width: clamp(5.5rem, 7.5vw, 7rem);
+  background: rgba(190, 30, 45, 0.95);
+  color: #fff;
+}
+
+.brand-project-mark[data-brand="polo"] {
+  width: clamp(8.5rem, 12vw, 11.5rem);
+  background: rgba(244, 239, 226, 0.95);
+  color: #10274b;
+}
+
+.brand-project-mark[data-brand="nike"] {
+  width: clamp(5rem, 7vw, 6.5rem);
+  background: rgba(8, 8, 8, 0.92);
   color: #fff;
 }
 

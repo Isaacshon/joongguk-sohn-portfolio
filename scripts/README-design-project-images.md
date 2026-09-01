@@ -13,7 +13,7 @@ tmp/higgsfield/01-afterimage/afterimage-01-spatial.png
 tmp/higgsfield/01-afterimage/afterimage-01-context.png
 ```
 
-Each of the 24 slugs is declared in `scripts/design-project-image-rules.mjs`. Every project requires
+Each of the 28 slugs is declared in `scripts/design-project-image-rules.mjs`. Every project requires
 the four core slots below:
 
 | Slot      | Required ratio | Minimum long edge | Purpose                              |
@@ -23,8 +23,9 @@ the four core slots below:
 | `spatial` | 16:9           |           3200 px | Environment / system image           |
 | `context` | 9:16           |           3200 px | Vertical campaign / contextual plate |
 
-The four unofficial brand studies add a typed, variable editorial sequence. Including the four
-core slots, H&M and UNIQLO resolve to 8 pictures, ZARA to 9, and PRADA to 10.
+The eight unofficial brand studies add a typed, variable editorial sequence. Including the four
+core slots, H&M and UNIQLO resolve to 8 pictures, ZARA to 9, PRADA, MUJI, LEVI'S, and NIKE resolve
+to 10, and the POLO RALPH LAUREN flagship resolves to 20.
 
 | Source token  | Generated slot | Required ratio | Minimum long edge | Purpose                     |
 | ------------- | -------------- | -------------- | ----------------: | --------------------------- |
@@ -34,6 +35,16 @@ core slots, H&M and UNIQLO resolve to 8 pictures, ZARA to 9, and PRADA to 10.
 | `editorial-d` | `editorialD`   | 16:9           |           3200 px | Environment / retail system |
 | `editorial-e` | `editorialE`   | 4:5            |           3200 px | Object / publication        |
 | `editorial-f` | `editorialF`   | 3:2            |           3200 px | Motion / sequence plate     |
+| `editorial-g` | `editorialG`   | 4:5            |           3200 px | Dawn preparation portrait   |
+| `editorial-h` | `editorialH`   | 3:2            |           3200 px | Court / field landscape     |
+| `editorial-i` | `editorialI`   | 4:5            |           3200 px | Stable portrait             |
+| `editorial-j` | `editorialJ`   | 16:9           |           3200 px | Stable environment          |
+| `editorial-k` | `editorialK`   | 4:5            |           3200 px | Brownstone / city portrait  |
+| `editorial-l` | `editorialL`   | 3:2            |           3200 px | City-life sequence          |
+| `editorial-m` | `editorialM`   | 4:5            |           3200 px | Generations portrait        |
+| `editorial-n` | `editorialN`   | 16:9           |           3200 px | Clubhouse / family table    |
+| `editorial-o` | `editorialO`   | 1:1            |           3200 px | Object and material study   |
+| `editorial-p` | `editorialP`   | 16:9           |           3200 px | Blue-hour closure           |
 
 Required extras by slug:
 
@@ -41,6 +52,10 @@ Required extras by slug:
 - `zara-the-air-between`: `editorial-a` through `editorial-e` (9 total pictures)
 - `uniqlo-comfort-measured`: `editorial-a` through `editorial-d` (8 total pictures)
 - `prada-the-quiet-error`: `editorial-a` through `editorial-f` (10 total pictures)
+- `muji-household-weather`: `editorial-a` through `editorial-f` (10 total pictures)
+- `levis-wear-is-the-record`: `editorial-a` through `editorial-f` (10 total pictures)
+- `polo-ralph-lauren-the-long-match`: `editorial-a` through `editorial-p` (20 total pictures)
+- `nike-no-second-take`: `editorial-a` through `editorial-f` (10 total pictures)
 
 Use this exact eight-file source contract for project 21:
 
@@ -55,7 +70,7 @@ tmp/higgsfield/21-hm-second-sun/hm-second-sun-21-editorial-c.png
 tmp/higgsfield/21-hm-second-sun/hm-second-sun-21-editorial-d.png
 ```
 
-Replace the folder, slug, and index consistently for projects 22–24, then include the extra slots
+Replace the folder, slug, and index consistently for projects 22–28, then include the extra slots
 listed above. Source tokens are kebab case; generated editorial filenames intentionally use the
 typed camel-case slot names.
 

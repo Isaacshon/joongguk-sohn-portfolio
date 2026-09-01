@@ -60,6 +60,16 @@ Slots and default aspect ratios (project overrides are applied automatically):
   editorial-d 16:9  (selected brand studies; output slot: editorialD)
   editorial-e  4:5  (selected brand studies; output slot: editorialE)
   editorial-f  3:2  (selected brand studies; output slot: editorialF)
+  editorial-g  4:5  (Polo flagship; output slot: editorialG)
+  editorial-h  3:2  (Polo flagship; output slot: editorialH)
+  editorial-i  4:5  (Polo flagship; output slot: editorialI)
+  editorial-j 16:9  (Polo flagship; output slot: editorialJ)
+  editorial-k  4:5  (Polo flagship; output slot: editorialK)
+  editorial-l  3:2  (Polo flagship; output slot: editorialL)
+  editorial-m  4:5  (Polo flagship; output slot: editorialM)
+  editorial-n 16:9  (Polo flagship; output slot: editorialN)
+  editorial-o  1:1  (Polo flagship; output slot: editorialO)
+  editorial-p 16:9  (Polo flagship; output slot: editorialP)
 
 Options:
   --input <path>                Input root (default: tmp/higgsfield)

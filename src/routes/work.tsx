@@ -5,6 +5,7 @@ import { MatLayout } from "@/components/MatLayout";
 import { BrandProjectMark } from "@/components/poster-studies/BrandMark";
 import { DesignProjectCover } from "@/components/poster-studies/DesignProjectCover";
 import { ProjectPicture } from "@/components/poster-studies/ProjectPicture";
+import type { BrandProjectSlug } from "@/lib/brand-registry";
 import type { DesignProjectCoreMediaSlot } from "@/lib/design-project-media";
 import { designProjects, type DesignProject } from "@/lib/design-projects";
 import { projects, type Project } from "@/lib/projects";
@@ -30,37 +31,69 @@ export const Route = createFileRoute("/work")({
   component: Work,
 });
 
-const featuredBrandSlugs = [
-  "hm-second-sun",
-  "zara-the-air-between",
-  "uniqlo-comfort-measured",
-  "prada-the-quiet-error",
-] as const;
-
-type FeaturedBrandSlug = (typeof featuredBrandSlugs)[number];
 type BrandIndexLayout = "lead" | "wide" | "portrait" | "closing";
 
 type BrandIndexConfig = {
   slot: DesignProjectCoreMediaSlot;
   aspectRatio: string;
+  mobileAspectRatio: string;
   layout: BrandIndexLayout;
 };
 
 const brandIndexRegistry = {
-  "hm-second-sun": { slot: "hero", aspectRatio: "16 / 9", layout: "lead" },
-  "zara-the-air-between": { slot: "context", aspectRatio: "3 / 2", layout: "wide" },
-  "uniqlo-comfort-measured": {
+  "nike-no-second-take": {
+    slot: "hero",
+    aspectRatio: "21 / 9",
+    mobileAspectRatio: "16 / 10",
+    layout: "lead",
+  },
+  "polo-ralph-lauren-the-long-match": {
+    slot: "spatial",
+    aspectRatio: "16 / 10",
+    mobileAspectRatio: "4 / 5",
+    layout: "wide",
+  },
+  "levis-wear-is-the-record": {
     slot: "context",
-    aspectRatio: "4 / 5",
+    aspectRatio: "3 / 4",
+    mobileAspectRatio: "3 / 4",
     layout: "portrait",
   },
-  "prada-the-quiet-error": { slot: "hero", aspectRatio: "16 / 10", layout: "closing" },
-} satisfies Record<FeaturedBrandSlug, BrandIndexConfig>;
+  "muji-household-weather": {
+    slot: "spatial",
+    aspectRatio: "4 / 3",
+    mobileAspectRatio: "1 / 1",
+    layout: "closing",
+  },
+  "hm-second-sun": {
+    slot: "hero",
+    aspectRatio: "5 / 3",
+    mobileAspectRatio: "5 / 6",
+    layout: "lead",
+  },
+  "zara-the-air-between": {
+    slot: "context",
+    aspectRatio: "4 / 3",
+    mobileAspectRatio: "4 / 5",
+    layout: "wide",
+  },
+  "uniqlo-comfort-measured": {
+    slot: "context",
+    aspectRatio: "1 / 1",
+    mobileAspectRatio: "1 / 1",
+    layout: "portrait",
+  },
+  "prada-the-quiet-error": {
+    slot: "hero",
+    aspectRatio: "3 / 2",
+    mobileAspectRatio: "3 / 4",
+    layout: "closing",
+  },
+} satisfies Record<BrandProjectSlug, BrandIndexConfig>;
 
-const featuredBrandProjects = featuredBrandSlugs.flatMap((slug) => {
-  const project = designProjects.find((item) => item.slug === slug);
-  return project ? [project] : [];
-});
+const featuredBrandProjects = designProjects
+  .filter((project) => project.brandStudy)
+  .sort((left, right) => Number(right.index) - Number(left.index));
 
 const personalDesignProjectSlugs = [
   "afterimage",
@@ -230,6 +263,7 @@ const designIndexRegistry = {
 
 type WorkMediaStyle = CSSProperties & {
   "--work-media-ratio"?: string;
+  "--work-mobile-media-ratio"?: string;
 };
 
 function getRequiredDesignProject(slug: IndependentDesignSlug) {
@@ -267,7 +301,7 @@ function Work() {
                 <a href="#brand-projects">
                   <span>01</span>
                   Brand projects
-                  <b>04</b>
+                  <b>{String(featuredBrandProjects.length).padStart(2, "0")}</b>
                 </a>
                 <a href="#personal-projects">
                   <span>02</span>
@@ -285,7 +319,7 @@ function Work() {
               <SectionHeading
                 number="01"
                 title="Brand projects"
-                description="Four independent brand worlds, each led by its own imagery, identity, and editorial rhythm."
+                description={`${featuredBrandProjects.length} independent brand worlds, each led by its own imagery, identity, and editorial rhythm.`}
                 headingId="brand-projects-heading"
               />
 
@@ -363,15 +397,21 @@ function SectionHeading({
 }
 
 function FeaturedBrandCard({ project }: { project: DesignProject }) {
-  const slug = project.slug as FeaturedBrandSlug;
+  const slug = project.slug as BrandProjectSlug;
   const config = brandIndexRegistry[slug];
 
   if (!config) return null;
 
-  const mediaStyle: WorkMediaStyle = { "--work-media-ratio": config.aspectRatio };
+  const mediaStyle: WorkMediaStyle = {
+    "--work-media-ratio": config.aspectRatio,
+    "--work-mobile-media-ratio": config.mobileAspectRatio,
+  };
 
   return (
-    <li className={`work-studio__brand-item work-studio__brand-item--${config.layout}`}>
+    <li
+      className={`work-studio__brand-item work-studio__brand-item--${config.layout}`}
+      data-brand={slug}
+    >
       <Link
         to="/poster-studies/$slug"
         params={{ slug: project.slug }}

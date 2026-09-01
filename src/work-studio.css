@@ -826,3 +826,291 @@
     transition: none;
   }
 }
+
+/* Brand cards retain one portfolio grid, but each brand keeps its own crop, mark, and caption voice. */
+.work-studio__brand-item[data-brand="nike-no-second-take"] .work-studio__brand-title h3,
+.work-studio__brand-item[data-brand="levis-wear-is-the-record"] .work-studio__brand-title h3 {
+  font-family: "Archivo Black", "Arial Black", "Helvetica Neue", sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.065em;
+  text-transform: uppercase;
+}
+
+.work-studio__brand-item[data-brand="polo-ralph-lauren-the-long-match"]
+  .work-studio__brand-title
+  h3 {
+  font-family: "Libre Caslon Display", Georgia, "Times New Roman", serif;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+}
+
+.work-studio__brand-item[data-brand="zara-the-air-between"] .work-studio__brand-title h3,
+.work-studio__brand-item[data-brand="prada-the-quiet-error"] .work-studio__brand-title h3 {
+  font-family: "Bodoni Moda", Didot, "Times New Roman", serif;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+}
+
+.work-studio__brand-item[data-brand="muji-household-weather"] .work-studio__brand-title h3,
+.work-studio__brand-item[data-brand="uniqlo-comfort-measured"] .work-studio__brand-title h3 {
+  font-family: "Noto Sans JP", "Helvetica Neue", Arial, sans-serif;
+}
+
+.work-studio__brand-item[data-brand="hm-second-sun"] .work-studio__brand-title h3 {
+  font-family: Manrope, "Helvetica Neue", Arial, sans-serif;
+}
+
+.work-studio__brand-item[data-brand="nike-no-second-take"] .work-studio__brand-mark {
+  inset: clamp(0.85rem, 1.5vw, 1.4rem) clamp(0.85rem, 1.5vw, 1.4rem) auto auto;
+  transform: none;
+}
+
+.work-studio__brand-item[data-brand="polo-ralph-lauren-the-long-match"] .work-studio__brand-mark {
+  inset: clamp(0.9rem, 1.5vw, 1.5rem) auto auto 50%;
+  transform: translateX(-50%);
+}
+
+.work-studio__brand-item[data-brand="levis-wear-is-the-record"] .work-studio__brand-mark {
+  inset: auto clamp(0.8rem, 1.5vw, 1.4rem) clamp(0.8rem, 1.5vw, 1.4rem) auto;
+  transform: none;
+}
+
+.work-studio__brand-item[data-brand="muji-household-weather"] .work-studio__brand-mark {
+  inset: clamp(0.8rem, 1.5vw, 1.4rem) auto auto clamp(0.8rem, 1.5vw, 1.4rem);
+  transform: none;
+}
+
+.work-studio__brand-item[data-brand="zara-the-air-between"] .work-studio__brand-mark {
+  inset: clamp(0.8rem, 1.5vw, 1.4rem) clamp(0.8rem, 1.5vw, 1.4rem) auto auto;
+  transform: none;
+}
+
+.work-studio__brand-item[data-brand="uniqlo-comfort-measured"] .work-studio__brand-mark {
+  inset: auto clamp(0.8rem, 1.5vw, 1.4rem) clamp(0.8rem, 1.5vw, 1.4rem) auto;
+  transform: none;
+}
+
+.work-studio__brand-item[data-brand="prada-the-quiet-error"] .work-studio__brand-mark {
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+}
+
+.work-studio__brand-item[data-brand="levis-wear-is-the-record"] .work-studio__brand-meta,
+.work-studio__brand-item[data-brand="uniqlo-comfort-measured"] .work-studio__brand-meta {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.work-studio__brand-item[data-brand="muji-household-weather"] .work-studio__brand-caption {
+  gap: 0.65rem;
+}
+
+.work-studio__brand-item[data-brand="muji-household-weather"] .work-studio__brand-title h3 {
+  font-size: clamp(1.9rem, 3.8vw, 4.25rem);
+  font-weight: 480;
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+}
+
+.work-studio__brand-item[data-brand="nike-no-second-take"] .work-studio__brand-caption {
+  border-top: 0.42rem solid var(--work-ink);
+}
+
+.work-studio__brand-item[data-brand="prada-the-quiet-error"] .work-studio__brand-title {
+  text-align: center;
+}
+
+@media (min-width: 900px) {
+  .work-studio__brand-grid {
+    grid-auto-flow: row;
+    row-gap: clamp(6rem, 10vw, 11rem);
+  }
+
+  .work-studio__brand-item[data-brand="nike-no-second-take"] {
+    grid-row: 1;
+    grid-column: 1 / -1;
+  }
+
+  .work-studio__brand-item[data-brand="polo-ralph-lauren-the-long-match"] {
+    grid-row: 2;
+    grid-column: 2 / 12;
+  }
+
+  .work-studio__brand-item[data-brand="levis-wear-is-the-record"] {
+    grid-row: 3;
+    grid-column: 1 / 6;
+    align-self: start;
+    padding-top: 0;
+  }
+
+  .work-studio__brand-item[data-brand="muji-household-weather"] {
+    grid-row: 3;
+    grid-column: 7 / -1;
+    align-self: end;
+    padding-top: clamp(8rem, 13vw, 14rem);
+  }
+
+  .work-studio__brand-item[data-brand="hm-second-sun"] {
+    grid-row: 6;
+    grid-column: 2 / 11;
+  }
+
+  .work-studio__brand-item[data-brand="zara-the-air-between"] {
+    grid-row: 5;
+    grid-column: 6 / -1;
+    align-self: end;
+    padding-top: clamp(6rem, 9vw, 10rem);
+  }
+
+  .work-studio__brand-item[data-brand="uniqlo-comfort-measured"] {
+    grid-row: 5;
+    grid-column: 1 / 5;
+    align-self: start;
+    padding-top: 0;
+  }
+
+  .work-studio__brand-item[data-brand="prada-the-quiet-error"] {
+    grid-row: 4;
+    grid-column: 4 / -1;
+    align-self: start;
+    padding-top: 0;
+  }
+
+  .work-studio__brand-item[data-brand="polo-ralph-lauren-the-long-match"]
+    .work-studio__brand-caption,
+  .work-studio__brand-item[data-brand="zara-the-air-between"] .work-studio__brand-caption {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: clamp(1rem, 2vw, 2rem);
+  }
+
+  .work-studio__brand-item[data-brand="polo-ralph-lauren-the-long-match"]
+    .work-studio__brand-title {
+    grid-column: 1 / 6;
+  }
+
+  .work-studio__brand-item[data-brand="polo-ralph-lauren-the-long-match"]
+    .work-studio__brand-statement {
+    grid-column: 6 / 10;
+    align-self: end;
+  }
+
+  .work-studio__brand-item[data-brand="polo-ralph-lauren-the-long-match"] .work-studio__brand-meta {
+    grid-column: 10 / -1;
+    align-self: end;
+  }
+
+  .work-studio__brand-item[data-brand="zara-the-air-between"] .work-studio__brand-title {
+    grid-column: 1 / 7;
+  }
+
+  .work-studio__brand-item[data-brand="zara-the-air-between"] .work-studio__brand-statement {
+    grid-column: 7 / -1;
+    align-self: end;
+  }
+
+  .work-studio__brand-item[data-brand="zara-the-air-between"] .work-studio__brand-meta {
+    grid-column: 1 / -1;
+  }
+
+  .work-studio__brand-item[data-brand="muji-household-weather"] .work-studio__brand-title {
+    grid-column: 1 / 5;
+  }
+
+  .work-studio__brand-item[data-brand="muji-household-weather"] .work-studio__brand-statement {
+    grid-column: 5 / 10;
+    align-self: end;
+  }
+
+  .work-studio__brand-item[data-brand="muji-household-weather"] .work-studio__brand-meta {
+    grid-column: 10 / -1;
+    align-self: end;
+  }
+
+  .work-studio__brand-item[data-brand="prada-the-quiet-error"] .work-studio__brand-title {
+    grid-column: 1 / -1;
+  }
+
+  .work-studio__brand-item[data-brand="prada-the-quiet-error"] .work-studio__brand-statement {
+    grid-column: 2 / 7;
+    align-self: end;
+  }
+
+  .work-studio__brand-item[data-brand="prada-the-quiet-error"] .work-studio__brand-meta {
+    grid-column: 8 / -1;
+    align-self: end;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 899px) {
+  .work-studio__brand-item[data-brand="nike-no-second-take"] {
+    grid-row: 1;
+    grid-column: 1 / -1;
+  }
+
+  .work-studio__brand-item[data-brand="polo-ralph-lauren-the-long-match"] {
+    grid-row: 2;
+    grid-column: 2 / -1;
+  }
+
+  .work-studio__brand-item[data-brand="levis-wear-is-the-record"] {
+    grid-row: 3;
+    grid-column: 1 / 6;
+    padding-top: 0;
+  }
+
+  .work-studio__brand-item[data-brand="muji-household-weather"] {
+    grid-row: 3;
+    grid-column: 7 / -1;
+    align-self: end;
+    padding-top: 6rem;
+  }
+
+  .work-studio__brand-item[data-brand="hm-second-sun"] {
+    grid-row: 6;
+    grid-column: 2 / 11;
+  }
+
+  .work-studio__brand-item[data-brand="zara-the-air-between"] {
+    grid-row: 5;
+    grid-column: 6 / -1;
+    align-self: end;
+    padding-top: 4rem;
+  }
+
+  .work-studio__brand-item[data-brand="uniqlo-comfort-measured"] {
+    grid-row: 5;
+    grid-column: 1 / 6;
+    padding-top: 0;
+  }
+
+  .work-studio__brand-item[data-brand="prada-the-quiet-error"] {
+    grid-row: 4;
+    grid-column: 4 / -1;
+    align-self: start;
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 639px) {
+  .work-studio__brand-media {
+    aspect-ratio: var(--work-mobile-media-ratio, var(--work-media-ratio, 4 / 5));
+  }
+
+  .work-studio__brand-item[data-brand="nike-no-second-take"] .work-studio__brand-title h3,
+  .work-studio__brand-item[data-brand="levis-wear-is-the-record"] .work-studio__brand-title h3 {
+    font-size: clamp(2.2rem, 12vw, 3.3rem);
+    line-height: 0.88;
+  }
+
+  .work-studio__brand-item[data-brand="polo-ralph-lauren-the-long-match"]
+    .work-studio__brand-title
+    h3,
+  .work-studio__brand-item[data-brand="prada-the-quiet-error"] .work-studio__brand-title h3 {
+    font-size: clamp(2.3rem, 12.5vw, 3.5rem);
+    line-height: 0.92;
+  }
+
+  .work-studio__brand-item[data-brand="prada-the-quiet-error"] .work-studio__brand-title {
+    text-align: left;
+  }
+}

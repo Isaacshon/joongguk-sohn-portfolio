@@ -24,7 +24,11 @@ export type CaseStudyLayout =
   | "kinetic-civic"
   | "quiet-fourteen"
   | "comfort-matrix"
-  | "error-sixteen";
+  | "error-sixteen"
+  | "household-grid"
+  | "denim-ledger"
+  | "long-match-spread"
+  | "motion-cut";
 
 export type GalleryLayout = "cascade" | "ledger" | "diptych" | "tiles" | "sequence";
 
@@ -811,6 +815,130 @@ const artDirectionByMotif = {
       motion: "Registration fails on purpose.",
     },
   },
+  "muji-household": {
+    layout: "household-grid",
+    gallery: "ledger",
+    fonts: {
+      display: '"Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif',
+      accent: '"Source Serif 4", Georgia, serif',
+      body: '"Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif',
+      meta: '"IBM Plex Mono", ui-monospace, monospace',
+    },
+    title: { weight: 500, style: "normal", leading: ".9", tracking: "-.045em", measure: "16ch" },
+    surfaces: {
+      paper: "#e8e3d7",
+      ink: "#26231f",
+      panel: "#d8d2c5",
+      dark: "#26231f",
+      light: "#f4f1e9",
+      accent: "#7f0019",
+    },
+    labels: {
+      challenge: "Household need",
+      response: "Reduced response",
+      rule: "Enoughness",
+    },
+    headings: {
+      premise: "The room changes quietly.",
+      system: "Need determines form.",
+      applications: "One household, many lives.",
+      material: "Nothing is hidden by packaging.",
+      motion: "Like water. Like air.",
+    },
+  },
+  "levis-record": {
+    layout: "denim-ledger",
+    gallery: "cascade",
+    fonts: {
+      display: '"Barlow Condensed", "Arial Narrow", sans-serif',
+      accent: '"Roboto Slab", Rockwell, serif',
+      body: '"Libre Franklin", "Helvetica Neue", sans-serif',
+      meta: '"IBM Plex Mono", ui-monospace, monospace',
+    },
+    title: { weight: 700, style: "normal", leading: ".78", tracking: "-.055em", measure: "12ch" },
+    surfaces: {
+      paper: "#eee6d5",
+      ink: "#102b45",
+      panel: "#d8cbb4",
+      dark: "#071b2c",
+      light: "#f5eddc",
+      accent: "#c41230",
+    },
+    labels: {
+      challenge: "First wear",
+      response: "Recorded life",
+      rule: "Repair evidence",
+    },
+    headings: {
+      premise: "Utility becomes personal.",
+      system: "Every fade records a decision.",
+      applications: "The archive returns to the street.",
+      material: "Construction earns its history.",
+      motion: "The contact sheet stops at the seam.",
+    },
+  },
+  "polo-long-match": {
+    layout: "long-match-spread",
+    gallery: "diptych",
+    fonts: {
+      display: '"Cormorant Garamond", Georgia, serif',
+      accent: '"Libre Franklin", "Helvetica Neue", sans-serif',
+      body: '"Libre Franklin", "Helvetica Neue", sans-serif',
+      meta: '"IBM Plex Mono", ui-monospace, monospace',
+    },
+    title: { weight: 500, style: "normal", leading: ".82", tracking: "-.052em", measure: "15ch" },
+    surfaces: {
+      paper: "#f0e8d4",
+      ink: "#10284d",
+      panel: "#dfd3b8",
+      dark: "#10284d",
+      light: "#f7f1e4",
+      accent: "#6f1d2b",
+    },
+    labels: {
+      challenge: "Opening hour",
+      response: "The long day",
+      rule: "Continuity of dress",
+    },
+    headings: {
+      premise: "The match begins before the field.",
+      system: "Style continues across the day.",
+      applications: "Field, road, table, evening.",
+      material: "Clothes gather memory through use.",
+      motion: "Morning grain becomes evening light.",
+    },
+  },
+  "nike-no-second-take": {
+    layout: "motion-cut",
+    gallery: "sequence",
+    fonts: {
+      display: '"Archivo Black", "Arial Black", sans-serif',
+      accent: '"Barlow Condensed", "Arial Narrow", sans-serif',
+      body: '"Archivo", "Helvetica Neue", sans-serif',
+      meta: '"IBM Plex Mono", ui-monospace, monospace',
+    },
+    title: { weight: 400, style: "normal", leading: ".72", tracking: "-.075em", measure: "10ch" },
+    surfaces: {
+      paper: "#f3f2ed",
+      ink: "#070707",
+      panel: "#d9d8d2",
+      dark: "#070707",
+      light: "#f3f2ed",
+      accent: "#c7ff18",
+    },
+    labels: {
+      challenge: "Before impact",
+      response: "Committed action",
+      rule: "No replay",
+    },
+    headings: {
+      premise: "Instinct enters before certainty.",
+      system: "One action changes the frame.",
+      applications: "Every surface stays in motion.",
+      material: "Performance appears at the edge.",
+      motion: "Cut on impact. Begin again elsewhere.",
+    },
+  },
 } satisfies Record<DesignProjectMotif, ProjectArtDirection>;
 
 export function getDesignProjectArtDirection(project: DesignProject): ProjectArtDirection {
@@ -862,6 +990,14 @@ const fontHrefByMotif = {
     "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700;900&display=swap",
   "prada-observation":
     "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Libre+Caslon+Display&display=swap",
+  "muji-household":
+    "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&family=Source+Serif+4:ital,wght@0,400;1,400&display=swap",
+  "levis-record":
+    "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Libre+Franklin:wght@400;500;600&family=Roboto+Slab:wght@500;600&display=swap",
+  "polo-long-match":
+    "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=Libre+Franklin:wght@400;500;600&display=swap",
+  "nike-no-second-take":
+    "https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Archivo+Black&family=Barlow+Condensed:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap",
 } satisfies Record<DesignProjectMotif, string>;
 
 export function getDesignProjectFontHref(project: DesignProject): string {
