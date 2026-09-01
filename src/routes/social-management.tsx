@@ -76,7 +76,11 @@ function RoleList({ items, dark = false }: { items: string[]; dark?: boolean }) 
 
 function SocialManagement() {
   return (
-    <MatLayout surface="plain" contentClassName="!max-w-none !px-0 !pb-0 !pt-11">
+    <MatLayout
+      surface="plain"
+      contentClassName="!max-w-none !px-0 !pb-0 !pt-11"
+      desktopSidebar="flow"
+    >
       <article className="overflow-x-clip bg-[#f4f0e8] text-[#1c1a17]">
         <section className="relative border-b border-black/15 px-5 pb-14 pt-16 sm:px-8 sm:pb-20 sm:pt-24 lg:px-12">
           <div

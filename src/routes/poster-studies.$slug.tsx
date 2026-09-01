@@ -71,7 +71,7 @@ function DesignProjectDetail() {
 
   if (!project) {
     return (
-      <MatLayout surface="plain" contentClassName="pt-16">
+      <MatLayout surface="plain" contentClassName="pt-16" desktopSidebar="flow">
         <div className="mx-auto max-w-4xl py-20">
           <p className="font-mono text-[10px] uppercase tracking-[.18em] text-primary">
             404 / Design project

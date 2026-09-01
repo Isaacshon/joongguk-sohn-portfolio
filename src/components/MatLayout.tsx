@@ -62,6 +62,7 @@ type MatLayoutProps = {
   contentClassName?: string;
   compactMobile?: boolean;
   immersive?: boolean;
+  desktopSidebar?: "sticky" | "flow";
 };
 
 export function MatLayout({
@@ -70,6 +71,7 @@ export function MatLayout({
   contentClassName = "",
   compactMobile = false,
   immersive = false,
+  desktopSidebar = "sticky",
 }: MatLayoutProps) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
@@ -208,6 +210,10 @@ export function MatLayout({
             immersive
               ? "hidden"
               : `grid items-center px-4 lg:flex lg:flex-col lg:items-stretch lg:gap-8 lg:px-10 lg:py-10 ${
+                  desktopSidebar === "sticky"
+                    ? "lg:sticky lg:top-0 lg:z-30 lg:h-dvh lg:max-h-dvh lg:self-start lg:overflow-y-auto lg:overscroll-contain lg:bg-background lg:shadow-[14px_0_32px_-30px_rgba(0,0,0,0.38)]"
+                    : ""
+                } ${
                   compactMobile
                     ? "grid-cols-[56px_minmax(0,1fr)] gap-3 py-3"
                     : "grid-cols-[88px_minmax(0,1fr)] gap-5 py-5"

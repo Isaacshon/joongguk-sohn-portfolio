@@ -31,7 +31,7 @@ function ProjectDetail() {
 
   if (!project) {
     return (
-      <MatLayout surface="plain" contentClassName="pt-14">
+      <MatLayout surface="plain" contentClassName="pt-14" desktopSidebar="flow">
         <div className="max-w-3xl py-8">
           <h1 className="font-serif text-[clamp(48px,8vw,92px)] leading-none">Project not found</h1>
           <a href="/work" className="story-link mt-8 inline-block text-primary">
@@ -45,7 +45,7 @@ function ProjectDetail() {
   const logoTiles = [project.accent, "#f8f4e9", project.dark];
 
   return (
-    <MatLayout surface="plain" contentClassName="pt-14">
+    <MatLayout surface="plain" contentClassName="pt-14" desktopSidebar="flow">
       <article className="pb-16">
         <header className="max-w-5xl">
           <a href="/work" className="story-link mb-3 inline-block text-[14px] text-primary">

@@ -82,7 +82,7 @@ function Figure({
 
 function HanbyulBrand() {
   return (
-    <MatLayout surface="plain" contentClassName="!px-0 !pb-0 !pt-11">
+    <MatLayout surface="plain" contentClassName="!px-0 !pb-0 !pt-11" desktopSidebar="flow">
       <article className="overflow-hidden bg-[#f0ece3] text-[#181713]">
         <header className="relative min-h-[78vh] overflow-hidden bg-[#241710] px-5 py-8 text-[#f2eee5] sm:px-8 lg:px-12 lg:py-12">
           <div

@@ -39,7 +39,7 @@ const brandProjectNames = brandProjects
 
 function DesignProjectIndex() {
   return (
-    <MatLayout surface="plain" contentClassName="!px-0 !pb-0 !pt-11">
+    <MatLayout surface="plain" contentClassName="!px-0 !pb-0 !pt-11" desktopSidebar="flow">
       <div className="min-h-screen bg-[#f0eee8] text-[#171713]">
         <header className="relative overflow-hidden border-b border-black/20 px-5 pb-14 pt-16 sm:px-8 md:pb-20 md:pt-24 xl:px-12">
           <div className="pointer-events-none absolute -right-[.04em] -top-[.25em] font-mono text-[clamp(17rem,39vw,46rem)] font-black leading-none tracking-[-.2em] text-black/[.035]">
