@@ -4,58 +4,10 @@ import { BrandWorldPicture, BrandWorldShell, type BrandWorldProps } from "./Bran
 import styles from "./MujiWorld.module.css";
 
 const navigation = [
-  { id: "direction", label: "Household evidence" },
-  { id: "premise", label: "Empty vessel" },
-  { id: "method", label: "Product archetypes" },
-  { id: "living", label: "Objects in use" },
-  { id: "world", label: "Objects recede" },
-] as const;
-
-const mujiObjectArchive = [
-  {
-    index: "01",
-    date: "1984",
-    family: "Polypropylene storage",
-    evidence: "official",
-    status: "Official product archive",
-    title: "The material stays visible.",
-    body: "MUJI's archive traces the PP Box to 1984: pigment, small dividers, and special-purpose cut-outs were removed so one translucent container could hold many kinds of things.",
-    href: "https://www.muji.com/jp/feature/polypropylene-storage/",
-    source: "PP storage archive",
-  },
-  {
-    index: "02",
-    date: "Archive",
-    family: "Wall-mounted CD player",
-    evidence: "mixed",
-    status: "Official object / project reading",
-    title: "One action explains the object.",
-    body: "The official catalogue records the wall-mounted player. In this independent study, its mounted square and hanging cord become an example of operation made immediately legible.",
-    href: "https://www.muji.com/public/media/jp/doc/7677181/catalog_10ss_fab01.pdf",
-    source: "Official catalogue",
-  },
-  {
-    index: "03",
-    date: "Project",
-    family: "Recycled paper / household tools",
-    evidence: "project",
-    status: "Independent display + prop system",
-    title: "Simple tools keep the task visible.",
-    body: "Recycled paper is this project's exhibition substrate, and the recurring tray, brush, cloth, and kettle are its household prop system. They interpret MUJI's material-selection principle; they are not presented as an official product-history claim.",
-    href: "https://www.muji.com/sg/about",
-    source: "Three principles",
-  },
-  {
-    index: "04",
-    date: "Package",
-    family: "Unbleached paper",
-    evidence: "official",
-    status: "Official production principle",
-    title: "The package stops at protection and information.",
-    body: "MUJI explains that omitting the pulp-bleaching process creates light-beige paper used for packaging and labels: a production decision becomes the visual identity.",
-    href: "https://www.muji.com/sg/about",
-    source: "About MUJI",
-  },
+  { id: "object", label: "Object" },
+  { id: "use", label: "Use" },
+  { id: "room", label: "Room" },
+  { id: "shared-life", label: "Shared life" },
 ] as const;
 
 export function MujiWorld({ project, pavilion }: BrandWorldProps) {
@@ -71,364 +23,215 @@ export function MujiWorld({ project, pavilion }: BrandWorldProps) {
           project={project}
           slot="spatial"
           sizes="100vw"
-          className={styles.heroPicture}
-          imageClassName={styles.heroImage}
+          className={`${styles.picture} ${styles.heroPicture}`}
+          imageClassName={styles.image}
           priority
-          showContinuity={false}
         />
-        <div className={styles.heroVeil} />
-        <div className={styles.heroCopy}>
-          <p>{pavilion.hero.kicker}</p>
-          <BrandMark code="muji" decorative />
-          <h1>HOUSEHOLD WEATHER</h1>
-          <p className={styles.heroStatement}>{project.statement}</p>
+        <div className={styles.heroCard}>
+          <h1 className={styles.srOnly}>MUJI</h1>
+          <BrandMark code={pavilion.code} className={styles.heroBrand} decorative />
+          <p className={styles.campaignTitle}>Household Weather</p>
+          <p className={styles.heroStatement}>
+            Ordinary objects, quiet actions, and rooms that leave space for the people inside them.
+          </p>
         </div>
-        <p className={styles.heroNote}>{pavilion.hero.summary}</p>
       </header>
 
-      <main>
-        <section
-          className={styles.direction}
-          id="direction"
-          aria-labelledby="muji-direction-heading"
-        >
-          <header className={styles.directionHeader}>
-            <div className={styles.sectionLabel}>
-              <span>01</span>
-              <span>Moodboard / photographic rules</span>
+      <main className={styles.story}>
+        <section className={styles.chapter} id="object" aria-labelledby="muji-object-title">
+          <header className={styles.chapterIntro}>
+            <p className={styles.chapterNumber}>01 / Object</p>
+            <div>
+              <h2 id="muji-object-title">Begin with what the hand needs.</h2>
+              <p>
+                Material, proportion, and usefulness come before display. Translucent storage,
+                unbleached paper, and simple tools are photographed at the scale of daily use.
+              </p>
+              <a
+                href="https://atelier.muji.com/jp-en/exhibition/260404_osk/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                MUJI / Nothing, Yet Everything
+              </a>
             </div>
-            <h2 id="muji-direction-heading">The object stays. The household changes.</h2>
-            <p>
-              Household weather is evidence, not styling. Translucent storage, pale cloth, plain
-              paper, wood, and legible actions recur across different rooms and people. Photograph
-              the use before naming the product.
-            </p>
           </header>
-          <div className={styles.moodTable}>
-            <figure className={styles.moodRoom}>
-              <div className={styles.roomDiagram} aria-hidden="true">
-                <div className={styles.roomDatum}>
-                  <span>Household field</span>
-                  <span>08:20 / indirect light</span>
-                </div>
-                <ol>
-                  <li>
-                    <span>01</span>
-                    Store
-                  </li>
-                  <li>
-                    <span>02</span>
-                    Listen
-                  </li>
-                  <li>
-                    <span>03</span>
-                    Prepare
-                  </li>
-                  <li>
-                    <span>04</span>
-                    Rest
-                  </li>
-                </ol>
-                <p>Need → object → room</p>
-              </div>
-              <figcaption>Storage changes contents / the room changes with it</figcaption>
-            </figure>
-            <figure className={styles.moodMaterial}>
-              <BrandWorldPicture
-                project={project}
-                slot="tactile"
-                sizes="(min-width: 900px) 24vw, 62vw"
-                className={styles.coverPicture}
-              />
-              <figcaption>
-                Material field / translucent storage + plain paper + simple tools
-              </figcaption>
-            </figure>
-            <figure className={styles.moodObject}>
-              <div className={styles.objectDiagram} aria-hidden="true">
-                <span className={styles.objectIndex}>Object / 01</span>
-                <div className={styles.storageStudy}>
-                  <span />
-                  <span />
-                  <span />
-                </div>
-                <dl>
-                  <div>
-                    <dt>Need</dt>
-                    <dd>Recurring</dd>
-                  </div>
-                  <div>
-                    <dt>Form</dt>
-                    <dd>Open</dd>
-                  </div>
-                </dl>
-              </div>
-              <figcaption>
-                Design test / one visible action should explain how an object is used
-              </figcaption>
-            </figure>
-            <aside className={styles.directionNotes} aria-label="MUJI visual direction notes">
-              <div className={styles.paletteStrip} aria-label="Project palette">
-                {project.palette.map((colour) => (
-                  <span key={colour.name} style={{ backgroundColor: colour.value }}>
-                    {colour.name}
-                  </span>
-                ))}
-              </div>
-              <dl>
-                <div>
-                  <dt>Light</dt>
-                  <dd>North-window daylight / soft overcast falloff</dd>
-                </div>
-                <div>
-                  <dt>Lens</dt>
-                  <dd>35–50 mm / eye level / normal perspective</dd>
-                </div>
-                <div>
-                  <dt>Material</dt>
-                  <dd>{project.materials.slice(0, 3).join(" / ")}</dd>
-                </div>
-                <div>
-                  <dt>Rule</dt>
-                  <dd>Show the task before the product claim.</dd>
-                </div>
-              </dl>
-            </aside>
-          </div>
-        </section>
 
-        <section className={styles.premise} id="premise" aria-labelledby="muji-premise-heading">
-          <div className={styles.sectionLabel}>
-            <span>02</span>
-            <span>{pavilion.philosophy.label}</span>
-          </div>
-          <div className={styles.premiseCopy}>
-            <h2 id="muji-premise-heading">{pavilion.philosophy.title}</h2>
-            <p>{pavilion.philosophy.body}</p>
-            <a href={pavilion.philosophy.source.href} target="_blank" rel="noreferrer">
-              Official source ↗
-            </a>
-          </div>
-          <figure className={styles.objectPortrait}>
+          <figure className={`${styles.figure} ${styles.figureWide}`}>
+            <BrandWorldPicture
+              project={project}
+              slot="tactile"
+              sizes="(max-width: 720px) 100vw, 86vw"
+              className={`${styles.picture} ${styles.landscape}`}
+              imageClassName={styles.image}
+            />
+            <figcaption>
+              <span>Object 01</span>
+              <p>
+                Plain materials stay legible. Nothing is added to make usefulness look luxurious.
+              </p>
+            </figcaption>
+          </figure>
+
+          <figure className={`${styles.figure} ${styles.figurePortrait} ${styles.alignRight}`}>
             <BrandWorldPicture
               project={project}
               slot="hero"
-              sizes="(min-width: 900px) 38vw, 92vw"
-              className={styles.coverPicture}
+              sizes="(max-width: 720px) 100vw, 56vw"
+              className={`${styles.picture} ${styles.portrait}`}
+              imageClassName={styles.image}
             />
             <figcaption>
-              <span>Independent household sequence / official sources in the ledger below</span>
-              <strong>One material language supports many ordinary routines.</strong>
+              <span>Object 02</span>
+              <p>The object remains quiet enough for posture, air, and movement to stay visible.</p>
             </figcaption>
           </figure>
-          <figure className={styles.singleObject}>
+        </section>
+
+        <section className={styles.chapter} id="use" aria-labelledby="muji-use-title">
+          <header className={styles.chapterIntro}>
+            <p className={styles.chapterNumber}>02 / Use</p>
+            <div>
+              <h2 id="muji-use-title">Use is the clearest form of explanation.</h2>
+              <p>
+                Laundry, folding, and preparation are treated as complete scenes. The action shows
+                why an object has its shape without turning the home into a showroom.
+              </p>
+            </div>
+          </header>
+
+          <figure className={`${styles.figure} ${styles.figureMedium} ${styles.alignLeft}`}>
             <BrandWorldPicture
               project={project}
               slot="editorialA"
-              sizes="(min-width: 900px) 22vw, 58vw"
-              className={styles.coverPicture}
+              sizes="(max-width: 720px) 100vw, 68vw"
+              className={`${styles.picture} ${styles.tallLandscape}`}
+              imageClassName={styles.image}
             />
-            <figcaption>Laundry / cloth, rail, weather, and hand remain fully legible</figcaption>
+            <figcaption>
+              <span>Use 01</span>
+              <p>Fresh air, one shirt, one repeated action. The product supports the rhythm.</p>
+            </figcaption>
+          </figure>
+
+          <figure className={`${styles.figure} ${styles.figurePortrait} ${styles.alignRight}`}>
+            <BrandWorldPicture
+              project={project}
+              slot="editorialB"
+              sizes="(max-width: 720px) 100vw, 58vw"
+              className={`${styles.picture} ${styles.portrait}`}
+              imageClassName={styles.image}
+            />
+            <figcaption>
+              <span>Use 02</span>
+              <p>
+                Texture is shown through handling: cloth, wood, ceramic, and the space between them.
+              </p>
+            </figcaption>
           </figure>
         </section>
 
-        <section className={styles.method} id="method" aria-labelledby="muji-method-heading">
-          <header className={styles.methodHeader}>
-            <div className={styles.sectionLabel}>
-              <span>03</span>
-              <span>Product-development method</span>
+        <section className={styles.chapter} id="room" aria-labelledby="muji-room-title">
+          <header className={styles.chapterIntro}>
+            <p className={styles.chapterNumber}>03 / Room</p>
+            <div>
+              <h2 id="muji-room-title">Let the room remain unfinished.</h2>
+              <p>
+                A useful interior does not prescribe a single life. Light, storage, and furniture
+                establish calm conditions; weather, arrival, and individual habits complete them.
+              </p>
             </div>
-            <h2 id="muji-method-heading">{pavilion.principles.title}</h2>
-            <p>{pavilion.principles.intro}</p>
           </header>
-          <div className={styles.methodLedger}>
-            {pavilion.values.map((value) => (
-              <article key={value.number}>
-                <span>{value.number}</span>
-                <h3>{value.title}</h3>
-                <p>{value.body}</p>
-              </article>
-            ))}
-          </div>
-          <div className={styles.objectArchive} aria-labelledby="muji-object-archive-heading">
-            <header>
-              <p>Object evidence / official anchor + independent use sequence</p>
-              <h3 id="muji-object-archive-heading">Four threads. One home.</h3>
-              <p>
-                Official sources anchor the PP box, wall player, and reduced unbleached package. The
-                recycled-paper display stock, simple tool kit, household cast, and photographic
-                sequence are identified as this independent project&apos;s interpretation.
-              </p>
-            </header>
-            <ol className={styles.objectLedger}>
-              {mujiObjectArchive.map((object) => (
-                <li key={object.family}>
-                  <span>{object.index}</span>
-                  <div className={styles.objectMeta}>
-                    <time>{object.date}</time>
-                    <small data-evidence={object.evidence}>{object.status}</small>
-                    <p>{object.family}</p>
-                  </div>
-                  <div className={styles.objectReason}>
-                    <h4>{object.title}</h4>
-                    <p>{object.body}</p>
-                  </div>
-                  <a href={object.href} target="_blank" rel="noreferrer">
-                    {object.source} <span aria-hidden="true">↗</span>
-                  </a>
-                </li>
-              ))}
-            </ol>
-            <div className={styles.materialKey} aria-label="Independent MUJI material study">
-              <span>Project material study</span>
-              <p>
-                <strong>PP</strong> translucent
-              </p>
-              <p>
-                <strong>UB</strong> unbleached paper
-              </p>
-              <p>
-                <strong>RP</strong> recycled stock
-              </p>
-              <p>
-                <strong>TL</strong> simple tools
-              </p>
-            </div>
-          </div>
-          <div className={styles.materialSpread}>
-            <figure className={styles.materialEvidence}>
-              <div className={styles.materialEvidenceBoard} aria-hidden="true">
-                <p>
-                  <span>Material evidence</span>
-                  <span>Finish only where function asks</span>
-                </p>
-                <ol>
-                  <li>
-                    <span>PP</span>
-                    Translucent
-                  </li>
-                  <li>
-                    <span>UB</span>
-                    Reduced package
-                  </li>
-                  <li>
-                    <span>RP</span>
-                    Project substrate
-                  </li>
-                  <li>
-                    <span>TL</span>
-                    Task before display
-                  </li>
-                </ol>
-              </div>
-              <figcaption>
-                PP / unbleached paper / recycled stock / simple tool / each role stays legible
-              </figcaption>
-            </figure>
-            <figure>
-              <BrandWorldPicture
-                project={project}
-                slot="editorialB"
-                sizes="(min-width: 900px) 34vw, 100vw"
-                className={styles.coverPicture}
-              />
-              <figcaption>
-                Material handling / cloth, ceramics, brush, and wood organised by task
-              </figcaption>
-            </figure>
-          </div>
+
+          <figure className={`${styles.figure} ${styles.figureWide}`}>
+            <BrandWorldPicture
+              project={project}
+              slot="editorialC"
+              sizes="(max-width: 720px) 100vw, 86vw"
+              className={`${styles.picture} ${styles.cinematic}`}
+              imageClassName={styles.image}
+            />
+            <figcaption>
+              <span>Room 01</span>
+              <p>Shared space is organized without demanding the same activity from everyone.</p>
+            </figcaption>
+          </figure>
+
+          <figure className={`${styles.figure} ${styles.figurePortrait} ${styles.alignLeft}`}>
+            <BrandWorldPicture
+              project={project}
+              slot="context"
+              sizes="(max-width: 720px) 100vw, 56vw"
+              className={`${styles.picture} ${styles.portrait}`}
+              imageClassName={styles.image}
+            />
+            <figcaption>
+              <span>Room 02</span>
+              <p>An entrance absorbs the day outside before the household continues within.</p>
+            </figcaption>
+          </figure>
         </section>
 
-        <section className={styles.living} id="living" aria-labelledby="muji-living-heading">
-          <header>
-            <div className={styles.sectionLabel}>
-              <span>04</span>
-              <span>Household life</span>
+        <section
+          className={`${styles.chapter} ${styles.finalChapter}`}
+          id="shared-life"
+          aria-labelledby="muji-shared-title"
+        >
+          <header className={styles.chapterIntro}>
+            <p className={styles.chapterNumber}>04 / Shared life</p>
+            <div>
+              <h2 id="muji-shared-title">The object recedes. Life becomes the subject.</h2>
+              <p>
+                Making, repair, conversation, and a shared table carry the same restraint into
+                public life. Continuity comes from familiar actions, not a decorative house style.
+              </p>
             </div>
-            <h2 id="muji-living-heading">{pavilion.needs.title}</h2>
-            <p>{pavilion.needs.intro}</p>
           </header>
-          <ol className={styles.needList}>
-            {pavilion.needs.items.map((item, index) => (
-              <li key={item.title}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <div>
-                  <h3>{item.title}</h3>
-                  <p>{item.body}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-          <div className={styles.livingImages}>
-            <figure className={styles.lifePortrait}>
-              <BrandWorldPicture
-                project={project}
-                slot="context"
-                sizes="(min-width: 900px) 34vw, 88vw"
-                className={styles.coverPicture}
-              />
-              <figcaption>
-                Arrival / umbrella, entry, and weather make the household need visible
-              </figcaption>
-            </figure>
-            <figure className={styles.morningFrame}>
-              <BrandWorldPicture
-                project={project}
-                slot="editorialC"
-                sizes="(min-width: 900px) 44vw, 92vw"
-                className={styles.coverPicture}
-              />
-              <figcaption>
-                Shared room / reading and writing coexist without competing for attention
-              </figcaption>
-            </figure>
-          </div>
-        </section>
 
-        <section className={styles.worldSection} id="world" aria-labelledby="muji-world-heading">
-          <div className={styles.worldTitle}>
-            <div className={styles.sectionLabel}>
-              <span>05</span>
-              <span>Public / archive / shared</span>
-            </div>
-            <h2 id="muji-world-heading">{pavilion.world.title}</h2>
-            <p>{pavilion.world.intro}</p>
-          </div>
-          <figure className={styles.retailFrame}>
+          <figure className={`${styles.figure} ${styles.figureWide}`}>
             <BrandWorldPicture
               project={project}
               slot="editorialD"
-              sizes="100vw"
-              className={styles.coverPicture}
+              sizes="(max-width: 720px) 100vw, 86vw"
+              className={`${styles.picture} ${styles.cinematic}`}
+              imageClassName={styles.image}
             />
             <figcaption>
-              Workshop / material, joint, tool, and maker remain in the same field of view
+              <span>Shared life 01</span>
+              <p>Care is visible in the joint, the tool, and the time allowed to make well.</p>
             </figcaption>
           </figure>
-          <div className={styles.finalPair}>
-            <figure>
-              <BrandWorldPicture
-                project={project}
-                slot="editorialE"
-                sizes="(min-width: 900px) 30vw, 78vw"
-                className={styles.coverPicture}
-              />
-              <figcaption>
-                Repair counter / folded material, conversation, and a rain-marked arrival
-              </figcaption>
-            </figure>
-            <figure>
-              <BrandWorldPicture
-                project={project}
-                slot="editorialF"
-                sizes="(min-width: 900px) 58vw, 100vw"
-                className={styles.coverPicture}
-              />
-              <figcaption>
-                Shared table / useful objects recede while company becomes the subject
-              </figcaption>
-            </figure>
-          </div>
+
+          <figure className={`${styles.figure} ${styles.figureMedium} ${styles.alignRight}`}>
+            <BrandWorldPicture
+              project={project}
+              slot="editorialE"
+              sizes="(max-width: 720px) 100vw, 70vw"
+              className={`${styles.picture} ${styles.tallLandscape}`}
+              imageClassName={styles.image}
+            />
+            <figcaption>
+              <span>Shared life 02</span>
+              <p>
+                Repair joins material knowledge to conversation instead of hiding the evidence of
+                use.
+              </p>
+            </figcaption>
+          </figure>
+
+          <figure className={`${styles.figure} ${styles.figureWide}`}>
+            <BrandWorldPicture
+              project={project}
+              slot="editorialF"
+              sizes="(max-width: 720px) 100vw, 86vw"
+              className={`${styles.picture} ${styles.cinematic}`}
+              imageClassName={styles.image}
+            />
+            <figcaption>
+              <span>Shared life 03</span>
+              <p>A useful object finishes its story by making room for company.</p>
+            </figcaption>
+          </figure>
         </section>
       </main>
     </BrandWorldShell>

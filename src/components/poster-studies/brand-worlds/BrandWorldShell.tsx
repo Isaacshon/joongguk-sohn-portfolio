@@ -33,6 +33,7 @@ export function BrandWorldPicture({
   sizes,
   className,
   imageClassName,
+  focalPoint,
   priority = false,
   fit = "cover",
   showContinuity = false,
@@ -42,6 +43,7 @@ export function BrandWorldPicture({
   sizes: string;
   className?: string;
   imageClassName?: string;
+  focalPoint?: string;
   priority?: boolean;
   fit?: "cover" | "contain";
   showContinuity?: boolean;
@@ -60,6 +62,7 @@ export function BrandWorldPicture({
       sizes={sizes}
       className={className}
       imageClassName={imageClassName}
+      focalPoint={focalPoint}
       priority={priority}
       fit={fit}
       overlay={
@@ -104,7 +107,6 @@ export function BrandWorldPicture({
 export function BrandWorldShell({
   project,
   pavilion,
-  navigation,
   className,
   children,
 }: BrandWorldProps & {
@@ -138,7 +140,7 @@ export function BrandWorldShell({
         data-project={project.slug}
         style={style}
       >
-        <nav className={styles.topbar} aria-label={`${project.title} brand world navigation`}>
+        <nav className={styles.topbar} aria-label={`${project.title} project navigation`}>
           <Link to="/work" className={styles.backLink}>
             <span aria-hidden="true">&larr;</span> Work
           </Link>
@@ -149,31 +151,19 @@ export function BrandWorldShell({
           >
             <BrandMark code={pavilion.code} decorative />
           </a>
-          <div className={styles.chapterLinks}>
-            {navigation.map((item, index) => (
-              <a key={item.id} href={`#${item.id}`}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                {item.label}
-              </a>
-            ))}
-          </div>
-          <span className={styles.unofficial}>Independent / unofficial concept</span>
+          <span className={styles.topbarSpacer} aria-hidden="true" />
         </nav>
 
         {children}
 
         <section className={styles.research} aria-labelledby={`${pavilion.code}-research-heading`}>
           <div className={styles.researchLead}>
-            <p>Research basis / official primary sources</p>
-            <h2 id={`${pavilion.code}-research-heading`}>
-              The interpretation begins with evidence.
-            </h2>
+            <p>Sources</p>
+            <h2 id={`${pavilion.code}-research-heading`}>Official references</h2>
           </div>
           <div className={styles.researchBody}>
             <p>
-              Official brand and company materials informed the purpose, audience, and design
-              principles. The concept, writing, art direction, layouts, and imagery are Isaac
-              Sohn&apos;s independent portfolio interpretation.
+              Primary materials consulted for factual brand, product, and design-history anchors.
             </p>
             <ol>
               {pavilion.sources.map((source, index) => (
