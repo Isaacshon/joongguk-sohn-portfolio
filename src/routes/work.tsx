@@ -2,12 +2,14 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import type { CSSProperties } from "react";
 
 import { MatLayout } from "@/components/MatLayout";
+import { PortfolioMotionRoot } from "@/components/motion/PortfolioMotionRoot";
 import { BrandProjectMark } from "@/components/poster-studies/BrandMark";
 import { DesignProjectCover } from "@/components/poster-studies/DesignProjectCover";
 import { ProjectPicture } from "@/components/poster-studies/ProjectPicture";
 import type { BrandProjectSlug } from "@/lib/brand-registry";
 import type { DesignProjectCoreMediaSlot } from "@/lib/design-project-media";
 import { designProjects, type DesignProject } from "@/lib/design-projects";
+import { getProjectChoreography } from "@/lib/project-choreography";
 import { projects, type Project } from "@/lib/projects";
 
 import "@/work-studio.css";
@@ -280,7 +282,14 @@ const visibleProjectCount = featuredBrandProjects.length + personalProjectCount;
 function Work() {
   return (
     <MatLayout immersive surface="plain" contentClassName="!px-0 !pb-0 !pt-11">
-      <div className="work-studio">
+      <PortfolioMotionRoot
+        as="div"
+        className="work-studio"
+        profile="work-index"
+        projectId="selected-work"
+        projectLabel="Selected work"
+        sceneSelector=".work-studio__intro-grid, .work-studio__section-heading, .work-studio__brand-item, .work-studio__personal-item, .work-studio__archive-heading, .work-studio__archive-grid > li"
+      >
         <header className="work-studio__intro">
           <div className="work-studio__shell work-studio__intro-grid">
             <div>
@@ -371,7 +380,7 @@ function Work() {
             </div>
           </section>
         </main>
-      </div>
+      </PortfolioMotionRoot>
     </MatLayout>
   );
 }
@@ -411,6 +420,7 @@ function FeaturedBrandCard({ project }: { project: DesignProject }) {
     <li
       className={`work-studio__brand-item work-studio__brand-item--${config.layout}`}
       data-brand={slug}
+      data-motion-role="brand-project"
     >
       <Link
         to="/poster-studies/$slug"
@@ -458,13 +468,19 @@ function FeaturedBrandCard({ project }: { project: DesignProject }) {
 
 function DesignWorkCard({ project }: { project: DesignProject }) {
   const config = designIndexRegistry[project.slug as IndependentDesignSlug];
+  const choreography = getProjectChoreography(project.slug);
 
   if (!config) return null;
 
   const mediaStyle: WorkMediaStyle = { "--work-media-ratio": config.aspectRatio };
 
   return (
-    <li className={`work-studio__personal-item work-studio__personal-item--${config.layout}`}>
+    <li
+      className={`work-studio__personal-item work-studio__personal-item--${config.layout}`}
+      data-motion-role="personal-project"
+      data-motion-family={choreography.family}
+      data-motion-motif={project.motif}
+    >
       <Link
         to="/poster-studies/$slug"
         params={{ slug: project.slug }}

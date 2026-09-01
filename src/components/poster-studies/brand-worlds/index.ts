@@ -1,23 +1,18 @@
-import type { ComponentType } from "react";
+import { lazy, type ComponentType, type LazyExoticComponent } from "react";
 
 import type { BrandCode } from "@/lib/brand-registry";
 
 import type { BrandWorldProps } from "./BrandWorldShell";
-import { LevisWorld } from "./LevisWorld";
-import { MujiWorld } from "./MujiWorld";
-import { NikeWorld } from "./NikeWorld";
-import { PoloWorld } from "./PoloWorld";
-
 const newBrandWorldRenderers = {
-  muji: MujiWorld,
-  levis: LevisWorld,
-  polo: PoloWorld,
-  nike: NikeWorld,
-} satisfies Partial<Record<BrandCode, ComponentType<BrandWorldProps>>>;
+  muji: lazy(() => import("./MujiWorld").then((module) => ({ default: module.MujiWorld }))),
+  levis: lazy(() => import("./LevisWorld").then((module) => ({ default: module.LevisWorld }))),
+  polo: lazy(() => import("./PoloWorld").then((module) => ({ default: module.PoloWorld }))),
+  nike: lazy(() => import("./NikeWorld").then((module) => ({ default: module.NikeWorld }))),
+} satisfies Partial<Record<BrandCode, LazyExoticComponent<ComponentType<BrandWorldProps>>>>;
 
 export function getNewBrandWorldRenderer(
   code: BrandCode,
-): ComponentType<BrandWorldProps> | undefined {
+): LazyExoticComponent<ComponentType<BrandWorldProps>> | undefined {
   return code in newBrandWorldRenderers
     ? newBrandWorldRenderers[code as keyof typeof newBrandWorldRenderers]
     : undefined;

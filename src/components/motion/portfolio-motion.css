@@ -1,0 +1,649 @@
+@layer components {
+  [data-motion-root] {
+    --motion-accent: currentColor;
+    --motion-enter-x: 0px;
+    --motion-enter-y: 18px;
+    --motion-enter-scale: 1;
+    --motion-duration: 620ms;
+    --motion-delay-step: 55ms;
+    --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --motion-pointer-x: 0px;
+    --motion-pointer-y: 0px;
+  }
+
+  .portfolio-motion__progress {
+    position: fixed;
+    z-index: 96;
+    top: calc(2.75rem - 2px);
+    right: 0;
+    left: 0;
+    height: 2px;
+    pointer-events: none;
+    background: var(--motion-accent);
+    opacity: 0.78;
+    transform-origin: 0 50%;
+  }
+
+  .portfolio-motion__preference {
+    position: fixed;
+    z-index: 98;
+    right: max(0.85rem, env(safe-area-inset-right));
+    bottom: max(0.85rem, env(safe-area-inset-bottom));
+    display: grid;
+    grid-template-columns: 1.25rem auto auto;
+    min-height: 2.75rem;
+    align-items: center;
+    gap: 0.42rem;
+    padding: 0.55rem 0.72rem;
+    border: 1px solid color-mix(in srgb, currentColor 38%, transparent);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--motion-control-bg, #f8f6f1) 92%, transparent);
+    box-shadow: 0 0.45rem 1.6rem rgb(0 0 0 / 0.12);
+    color: var(--motion-control-ink, #151515);
+    font-family: var(--motion-meta, ui-monospace, monospace);
+    font-size: 0.65rem;
+    font-weight: 650;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-transform: uppercase;
+    cursor: pointer;
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+
+  .portfolio-motion__preference:hover,
+  .portfolio-motion__preference:focus-visible {
+    border-color: currentColor;
+  }
+
+  .portfolio-motion__preference:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+
+  .portfolio-motion__preference strong {
+    color: var(--motion-accent);
+    font: inherit;
+  }
+
+  .portfolio-motion__preference small {
+    grid-column: 2 / -1;
+    opacity: 0.58;
+    font: inherit;
+    font-size: 0.52rem;
+    letter-spacing: 0.06em;
+  }
+
+  .portfolio-motion__preference-mark {
+    grid-row: 1 / 3;
+    display: flex;
+    height: 1.05rem;
+    align-items: end;
+    gap: 2px;
+  }
+
+  .portfolio-motion__preference-mark i {
+    display: block;
+    width: 3px;
+    background: currentColor;
+    transform-origin: 50% 100%;
+  }
+
+  .portfolio-motion__preference-mark i:nth-child(1) {
+    height: 45%;
+  }
+
+  .portfolio-motion__preference-mark i:nth-child(2) {
+    height: 100%;
+  }
+
+  .portfolio-motion__preference-mark i:nth-child(3) {
+    height: 68%;
+  }
+
+  .portfolio-motion__preference[data-mode="full"]
+    .portfolio-motion__preference-mark
+    i:nth-child(1) {
+    height: 76%;
+  }
+
+  .portfolio-motion__preference[data-mode="full"]
+    .portfolio-motion__preference-mark
+    i:nth-child(2) {
+    height: 100%;
+  }
+
+  .portfolio-motion__preference[data-mode="full"]
+    .portfolio-motion__preference-mark
+    i:nth-child(3) {
+    height: 88%;
+  }
+
+  .portfolio-motion__preference[data-mode="reduced"] .portfolio-motion__preference-mark i {
+    height: 18%;
+  }
+
+  .portfolio-motion__sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  [data-motion-root][data-motion-ready="true"] [data-motion-reveal] {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity var(--motion-duration) var(--motion-ease),
+      transform var(--motion-duration) var(--motion-ease);
+    transition-delay: calc(var(--motion-order, 0) * var(--motion-delay-step));
+  }
+
+  [data-motion-root][data-motion-ready="true"] [data-motion-reveal]:not(.is-motion-visible) {
+    opacity: 0;
+    transform: translate3d(var(--motion-enter-x), var(--motion-enter-y), 0)
+      scale(var(--motion-enter-scale));
+  }
+
+  [data-motion-root] [data-motion-media] {
+    --motion-media-scale: 1;
+    transform: none;
+    transform-origin: 50% 50%;
+    transition: transform 520ms var(--motion-ease);
+  }
+
+  [data-motion-root] [data-motion-media][data-motion-hover="true"] {
+    --motion-media-scale: 1.004;
+    transform: translate(var(--motion-pointer-x), var(--motion-pointer-y))
+      scale(var(--motion-media-scale));
+    will-change: transform;
+    transition-duration: 110ms;
+  }
+
+  [data-motion-root] :where(section[id], header[id]) {
+    scroll-margin-top: 6.25rem;
+  }
+
+  [data-motion-root] :where(nav a[href^="#"]) {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+  }
+
+  [data-motion-root] :where(nav a[aria-current="location"]) {
+    opacity: 1;
+    color: var(--motion-accent);
+    box-shadow: inset 0 -1px currentColor;
+  }
+
+  [data-motion-root] :where(nav a[href^="#"])::after {
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    transition: transform 260ms var(--motion-ease);
+  }
+
+  [data-motion-root] :where(nav a[aria-current="location"])::after {
+    transform: scaleX(1);
+  }
+
+  [data-motion-profile="work-index"] {
+    --motion-accent: #00645f;
+    --motion-enter-y: 24px;
+    --motion-duration: 680ms;
+    --motion-delay-step: 45ms;
+  }
+
+  [data-motion-profile="hm"] {
+    --motion-accent: #e50010;
+    --motion-enter-x: -18px;
+    --motion-enter-y: 0px;
+    --motion-duration: 420ms;
+    --motion-ease: cubic-bezier(0.3, 0.9, 0.25, 1);
+  }
+
+  [data-motion-profile="zara"] {
+    --motion-accent: #111;
+    --motion-enter-x: 0px;
+    --motion-enter-y: 0px;
+    --motion-enter-scale: 0.992;
+    --motion-duration: 760ms;
+    --motion-ease: cubic-bezier(0.76, 0, 0.24, 1);
+  }
+
+  [data-motion-profile="uniqlo"] {
+    --motion-accent: #ff1b2d;
+    --motion-enter-y: 12px;
+    --motion-duration: 380ms;
+    --motion-ease: cubic-bezier(0.2, 0.78, 0.24, 1);
+  }
+
+  [data-motion-profile="prada"] {
+    --motion-accent: #b9ff20;
+    --motion-control-bg: #111;
+    --motion-control-ink: #fff;
+    --motion-enter-x: -12px;
+    --motion-enter-y: 0px;
+    --motion-duration: 820ms;
+    --motion-ease: cubic-bezier(0.77, 0, 0.18, 1);
+  }
+
+  [data-motion-profile="muji"] {
+    --motion-accent: #7f0019;
+    --motion-enter-y: 8px;
+    --motion-duration: 880ms;
+    --motion-ease: cubic-bezier(0.22, 0.72, 0.18, 1);
+  }
+
+  [data-motion-profile="levis"] {
+    --motion-accent: #d6001c;
+    --motion-enter-x: -14px;
+    --motion-enter-y: 0px;
+    --motion-duration: 620ms;
+    --motion-ease: cubic-bezier(0.24, 0.8, 0.22, 1);
+  }
+
+  [data-motion-profile="polo"] {
+    --motion-accent: #c8a96b;
+    --motion-control-bg: #0d2035;
+    --motion-control-ink: #fff9e9;
+    --motion-enter-y: 12px;
+    --motion-enter-scale: 0.996;
+    --motion-duration: 980ms;
+    --motion-ease: cubic-bezier(0.22, 0.72, 0.16, 1);
+  }
+
+  [data-motion-profile="nike"] {
+    --motion-accent: #ff4d00;
+    --motion-control-bg: #0c0c0c;
+    --motion-control-ink: #fff;
+    --motion-enter-y: 22px;
+    --motion-enter-scale: 0.985;
+    --motion-duration: 230ms;
+    --motion-delay-step: 35ms;
+    --motion-ease: cubic-bezier(0.2, 0.9, 0.2, 1);
+  }
+
+  [data-motion-profile="nike"] [id*="recovery"][data-motion-reveal],
+  [data-motion-profile="nike"] [id*="next"][data-motion-reveal] {
+    --motion-duration: 820ms;
+    --motion-enter-scale: 1;
+  }
+
+  [data-motion-profile="hm"] [data-motion-beat="thread"] {
+    --motion-enter-x: -22px;
+  }
+
+  [data-motion-profile="hm"] [data-motion-beat="handoff"] {
+    --motion-enter-x: 22px;
+  }
+
+  [data-motion-profile="zara"] [data-motion-beat="air"] {
+    --motion-enter-scale: 0.986;
+    --motion-delay-step: 0ms;
+  }
+
+  [data-motion-profile="uniqlo"] [data-motion-beat="rest"] {
+    --motion-enter-y: 0px;
+  }
+
+  [data-motion-profile="uniqlo"] [data-motion-beat="walk"] {
+    --motion-enter-y: 10px;
+  }
+
+  [data-motion-profile="uniqlo"] [data-motion-beat="layer"] {
+    --motion-enter-y: 18px;
+  }
+
+  [data-motion-profile="prada"] [data-motion-beat="hold"] {
+    --motion-enter-x: 0px;
+    --motion-enter-scale: 0.995;
+  }
+
+  [data-motion-profile="muji"] [data-motion-beat="subtract"] {
+    --motion-enter-y: 0px;
+    --motion-enter-scale: 0.997;
+  }
+
+  [data-motion-profile="muji"] [data-motion-beat="organise"] {
+    --motion-enter-x: 8px;
+    --motion-enter-y: 0px;
+  }
+
+  [data-motion-profile="levis"] [data-motion-beat="repair"] {
+    --motion-enter-x: 15px;
+  }
+
+  [data-motion-profile="polo"] [data-motion-beat="city"] {
+    --motion-enter-x: 12px;
+    --motion-enter-y: 0px;
+  }
+
+  [data-motion-profile="polo"] [data-motion-beat="evening"] {
+    --motion-duration: 1200ms;
+    --motion-enter-scale: 0.992;
+  }
+
+  [data-motion-profile="nike"] [data-motion-beat="contact"] {
+    --motion-enter-y: 0px;
+    --motion-enter-x: -18px;
+  }
+
+  [data-motion-profile="nike"] [data-motion-beat="recovery"] {
+    --motion-duration: 820ms;
+    --motion-enter-y: 8px;
+    --motion-enter-scale: 1;
+  }
+
+  [data-motion-profile="press-archive"] {
+    --motion-accent: var(--studio-accent, #e94a32);
+    --motion-enter-x: -11px;
+    --motion-enter-y: 0px;
+    --motion-duration: 560ms;
+  }
+
+  [data-motion-profile="sensory-editorial"] {
+    --motion-accent: var(--studio-accent, #ce493b);
+    --motion-enter-y: 16px;
+    --motion-enter-scale: 0.993;
+    --motion-duration: 840ms;
+  }
+
+  [data-motion-profile="public-signal"] {
+    --motion-accent: var(--studio-accent, #0a43ff);
+    --motion-enter-x: -20px;
+    --motion-enter-y: 0px;
+    --motion-duration: 520ms;
+  }
+
+  [data-motion-profile="product-ritual"] {
+    --motion-accent: var(--studio-accent, #ba4b2a);
+    --motion-enter-y: 13px;
+    --motion-duration: 720ms;
+  }
+
+  [data-motion-profile="evidence-infrastructure"] {
+    --motion-accent: var(--studio-accent, #315d56);
+    --motion-enter-x: 13px;
+    --motion-enter-y: 0px;
+    --motion-duration: 640ms;
+  }
+
+  [data-motion-profile="prada"] [data-motion-reveal],
+  [data-motion-profile="zara"] [data-motion-reveal] {
+    transform-origin: 50% 50%;
+    clip-path: inset(0);
+    transition-property: opacity, transform, clip-path;
+  }
+
+  [data-motion-profile="prada"] [data-motion-reveal]:not(.is-motion-visible) {
+    clip-path: inset(0 0 0 2.4%);
+  }
+
+  [data-motion-profile="zara"] [data-motion-reveal]:not(.is-motion-visible) {
+    clip-path: inset(0 2.8%);
+  }
+
+  [data-motion-profile="hm"] [data-motion-reveal]::before,
+  [data-motion-profile="levis"] section[id][data-motion-reveal]::before {
+    transform-origin: 0 50%;
+    transition: transform var(--motion-duration) var(--motion-ease);
+  }
+
+  [data-motion-profile="hm"] [data-motion-reveal]:not(.is-motion-visible)::before,
+  [data-motion-profile="levis"] section[id][data-motion-reveal]:not(.is-motion-visible)::before {
+    transform: scaleX(0);
+  }
+
+  [data-motion-profile="nike"] [data-motion-media][data-motion-hover="true"] {
+    --motion-media-scale: 1.008;
+  }
+
+  [data-motion-profile="polo"] [data-motion-media][data-motion-hover="true"] {
+    --motion-media-scale: 1.006;
+  }
+
+  [data-motion-profile="muji"] [data-motion-media][data-motion-hover="true"],
+  [data-motion-profile="uniqlo"] [data-motion-media][data-motion-hover="true"] {
+    --motion-media-scale: 1.0015;
+  }
+
+  [data-motion-profile="press-archive"][data-motif="misregister"]
+    [data-motion-media][data-motion-hover="true"] {
+    box-shadow:
+      -3px 0 0 color-mix(in srgb, var(--studio-accent) 78%, transparent),
+      3px 0 0 color-mix(in srgb, #1648bd 62%, transparent);
+  }
+
+  [data-motion-profile="public-signal"] [data-motion-media][data-motion-hover="true"] {
+    outline: 1px solid color-mix(in srgb, var(--motion-accent) 72%, transparent);
+    outline-offset: 3px;
+  }
+
+  [data-motion-profile="sensory-editorial"] [data-motion-media][data-motion-hover="true"] {
+    --motion-media-scale: 1.003;
+  }
+
+  [data-motion-root][data-motion-effective="reduced"] .portfolio-motion__progress {
+    display: none;
+  }
+
+  [data-motion-root][data-motion-effective="reduced"] [data-motion-reveal],
+  [data-motion-root][data-motion-effective="reduced"] [data-motion-media] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  [data-motion-root][data-motion-effective="reduced"] *,
+  [data-motion-root][data-motion-effective="reduced"] *::before,
+  [data-motion-root][data-motion-effective="reduced"] *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+
+  [data-motion-root][data-motion-effective="reduced"]
+    :where([data-motion-media]:hover, a:hover [data-motion-media])
+    img,
+  [data-motion-root][data-motion-effective="reduced"]
+    .brand-pavilion__hero:hover
+    .brand-pavilion__hero-image,
+  [data-motion-root][data-motion-effective="reduced"]
+    :where(.work-studio__project-link:hover, .work-studio__archive-link:hover)
+    img {
+    transform: none !important;
+  }
+
+  html[data-motion-preference="full"]
+    [data-motion-root][data-motion-ready="true"]
+    [data-motion-reveal] {
+    transition-duration: var(--motion-duration) !important;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    [data-motion-root] a:focus-visible [data-motion-media]:not([data-motion-hover="true"]),
+    [data-motion-root] a:hover [data-motion-media]:not([data-motion-hover="true"]) {
+      --motion-media-scale: 1.006;
+      transform: scale(var(--motion-media-scale));
+    }
+  }
+
+  @media (max-width: 639px) {
+    .portfolio-motion__progress {
+      top: calc(2.75rem - 1px);
+      height: 1px;
+    }
+
+    .portfolio-motion__preference {
+      width: auto;
+      min-width: 5rem;
+      grid-template-columns: 1.05rem auto;
+      justify-items: center;
+      gap: 0.35rem;
+      padding: 0 0.65rem;
+    }
+
+    .portfolio-motion__preference > strong,
+    .portfolio-motion__preference > small {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+    }
+
+    .portfolio-motion__preference > span:not(.portfolio-motion__preference-mark) {
+      position: static;
+      width: auto;
+      height: auto;
+      overflow: visible;
+      clip: auto;
+      white-space: nowrap;
+    }
+
+    .portfolio-motion__preference-mark {
+      grid-row: auto;
+    }
+
+    [data-motion-root] :where(nav a[href^="#"]) {
+      min-height: 2.75rem;
+      scroll-snap-align: center;
+    }
+
+    [data-motion-profile="polo"] #city > div,
+    [data-motion-profile="levis"] #wear > div,
+    [data-motion-profile="nike"] #contact > div:last-of-type {
+      display: flex !important;
+      width: calc(100% + 2rem);
+      margin-inline: -1rem;
+      padding: 0 1rem 0.8rem;
+      gap: var(--motion-mobile-gallery-gap, 0.85rem);
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      scroll-padding-inline: 1rem;
+      scroll-snap-type: x var(--motion-mobile-gallery-snap, mandatory);
+      scrollbar-width: none;
+    }
+
+    [data-motion-profile="polo"] #city > div::-webkit-scrollbar,
+    [data-motion-profile="levis"] #wear > div::-webkit-scrollbar,
+    [data-motion-profile="nike"] #contact > div:last-of-type::-webkit-scrollbar {
+      display: none;
+    }
+
+    [data-motion-profile="polo"] #city > div > figure,
+    [data-motion-profile="levis"] #wear > div > figure,
+    [data-motion-profile="nike"] #contact > div:last-of-type > figure {
+      flex: 0 0 var(--motion-mobile-gallery-width, 82vw);
+      min-width: 0;
+      margin: 0 !important;
+      scroll-snap-align: center;
+    }
+
+    [data-motion-profile="polo"] #city > div {
+      --motion-mobile-gallery-gap: 0.4rem;
+      --motion-mobile-gallery-snap: proximity;
+      --motion-mobile-gallery-width: 72vw;
+    }
+
+    [data-motion-profile="levis"] #wear > div {
+      --motion-mobile-gallery-gap: 0.3rem;
+      --motion-mobile-gallery-width: 68vw;
+    }
+
+    [data-motion-profile="nike"] #contact > div:last-of-type {
+      --motion-mobile-gallery-gap: 0rem;
+      --motion-mobile-gallery-width: 88vw;
+    }
+
+    [data-motion-profile="muji"] section[id] figure:nth-of-type(odd) {
+      width: calc(100% - 2rem);
+      margin-right: 2rem;
+      margin-left: 0;
+    }
+
+    [data-motion-profile="muji"] section[id] figure:nth-of-type(even) {
+      width: 76%;
+      margin-right: 0;
+      margin-left: auto;
+    }
+
+    [data-motion-profile="hm"] .brand-pavilion__world-grid,
+    [data-motion-profile="uniqlo"] .brand-pavilion__world-grid,
+    [data-motion-profile="prada"] .brand-pavilion__world-grid {
+      display: flex !important;
+      width: calc(100% + 2rem);
+      margin-inline: -1rem;
+      padding-inline: 1rem;
+      gap: var(--motion-mobile-gallery-gap, 0.8rem);
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      scroll-padding-inline: 1rem;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+
+    [data-motion-profile="hm"] .brand-pavilion__world-grid::-webkit-scrollbar,
+    [data-motion-profile="uniqlo"] .brand-pavilion__world-grid::-webkit-scrollbar,
+    [data-motion-profile="prada"] .brand-pavilion__world-grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    [data-motion-profile="hm"] .brand-pavilion__world-grid > *,
+    [data-motion-profile="uniqlo"] .brand-pavilion__world-grid > *,
+    [data-motion-profile="prada"] .brand-pavilion__world-grid > * {
+      flex: 0 0 var(--motion-mobile-gallery-width, 82vw);
+      min-width: 0;
+      scroll-snap-align: center;
+    }
+
+    [data-motion-profile="hm"] .brand-pavilion__world-grid {
+      --motion-mobile-gallery-gap: 0.4rem;
+      --motion-mobile-gallery-width: 76vw;
+    }
+
+    [data-motion-profile="uniqlo"] .brand-pavilion__world-grid {
+      --motion-mobile-gallery-gap: 0.65rem;
+      --motion-mobile-gallery-width: 70vw;
+    }
+
+    [data-motion-profile="prada"] .brand-pavilion__world-grid {
+      --motion-mobile-gallery-gap: 6vw;
+      --motion-mobile-gallery-width: 86vw;
+    }
+
+    [data-motion-profile="zara"] .brand-pavilion__needs-images {
+      display: grid !important;
+      width: calc(100% + 2rem);
+      margin-inline: -1rem;
+      gap: clamp(4rem, 18vw, 7rem);
+      overflow: visible;
+    }
+
+    [data-motion-profile="zara"] .brand-pavilion__needs-images > *:nth-child(odd) {
+      width: 100%;
+      margin-right: auto;
+    }
+
+    [data-motion-profile="zara"] .brand-pavilion__needs-images > *:nth-child(even) {
+      width: 78%;
+      margin-left: auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html:not([data-motion-preference="full"])
+      [data-motion-root]
+      :where([data-motion-reveal], [data-motion-media]) {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+
+    html:not([data-motion-preference="full"]) .portfolio-motion__progress {
+      display: none;
+    }
+  }
+}

@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import type { CSSProperties, ReactNode } from "react";
+import { Suspense, type CSSProperties, type ReactNode } from "react";
 
 import { MatLayout } from "@/components/MatLayout";
+import { PortfolioMotionRoot } from "@/components/motion/PortfolioMotionRoot";
 import { BrandMark, PradaPlaque, type BrandCode } from "@/components/poster-studies/BrandMark";
 import { DesignProjectCover } from "@/components/poster-studies/DesignProjectCover";
 import { ProjectPicture } from "@/components/poster-studies/ProjectPicture";
@@ -89,7 +90,11 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
   const NewBrandWorld = getNewBrandWorldRenderer(pavilion.code);
 
   if (NewBrandWorld) {
-    return <NewBrandWorld project={project} pavilion={pavilion} />;
+    return (
+      <Suspense fallback={<BrandWorldLoading project={project} pavilion={pavilion} />}>
+        <NewBrandWorld project={project} pavilion={pavilion} />
+      </Suspense>
+    );
   }
 
   const choreography = getLegacyBrandPavilionChoreography(pavilion.code);
@@ -120,12 +125,19 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
 
   return (
     <MatLayout surface="plain" contentClassName="!px-0 !pb-0 !pt-11" immersive>
-      <article
+      <PortfolioMotionRoot
         className="brand-pavilion"
-        data-brand={pavilion.code}
-        data-project={project.slug}
-        data-layout={direction.layout}
-        data-gallery={direction.gallery}
+        profile={pavilion.code}
+        projectId={project.slug}
+        projectLabel={project.title}
+        sceneSelector=".brand-pavilion__hero, .brand-pavilion__identity, .brand-pavilion__section, .brand-pavilion__structural-module, .brand-pavilion__worldview-closing, .brand-pavilion__research, .brand-pavilion__adjacent"
+        attributes={{
+          "data-brand": pavilion.code,
+          "data-project": project.slug,
+          "data-layout": direction.layout,
+          "data-gallery": direction.gallery,
+          "data-motion-brand": pavilion.code,
+        }}
         style={style}
       >
         <PavilionHero
@@ -223,7 +235,43 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
             </small>
           </div>
         </footer>
-      </article>
+      </PortfolioMotionRoot>
+    </MatLayout>
+  );
+}
+
+function BrandWorldLoading({
+  project,
+  pavilion,
+}: {
+  project: DesignProject;
+  pavilion: BrandPavilionProfile;
+}) {
+  const direction = getDesignProjectArtDirection(project);
+
+  return (
+    <MatLayout immersive surface="plain" contentClassName="!px-0 !pb-0 !pt-11">
+      <div
+        role="status"
+        aria-live="polite"
+        style={{
+          minHeight: "100svh",
+          display: "grid",
+          placeItems: "center",
+          gap: "1rem",
+          padding: "2rem",
+          background: direction.surfaces.paper,
+          color: direction.surfaces.ink,
+          textAlign: "center",
+        }}
+      >
+        <div>
+          <BrandMark code={pavilion.code} decorative />
+          <p className="mt-5 font-mono text-[10px] uppercase tracking-[.16em] opacity-60">
+            Preparing {project.title}
+          </p>
+        </div>
+      </div>
     </MatLayout>
   );
 }

@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import type { CSSProperties, ReactNode } from "react";
 
 import { MatLayout } from "@/components/MatLayout";
+import { PortfolioMotionRoot } from "@/components/motion/PortfolioMotionRoot";
 import { BrandMark } from "@/components/poster-studies/BrandMark";
 import { DesignProjectCover } from "@/components/poster-studies/DesignProjectCover";
 import { ProjectPicture } from "@/components/poster-studies/ProjectPicture";
@@ -135,10 +136,17 @@ export function BrandWorldShell({
 
   return (
     <MatLayout immersive surface="plain" contentClassName="!px-0 !pb-0 !pt-11">
-      <article
+      <PortfolioMotionRoot
         className={`${styles.world} ${className}`}
-        data-brand={pavilion.code}
-        data-project={project.slug}
+        profile={pavilion.code}
+        projectId={project.slug}
+        projectLabel={project.title}
+        sceneSelector={`header#world-top, section[id], .${styles.research}, .${styles.adjacent}`}
+        attributes={{
+          "data-brand": pavilion.code,
+          "data-project": project.slug,
+          "data-motion-brand": pavilion.code,
+        }}
         style={style}
       >
         <nav className={styles.topbar} aria-label={`${project.title} project navigation`}>
@@ -202,7 +210,7 @@ export function BrandWorldShell({
             endorsed by {project.title}.
           </small>
         </footer>
-      </article>
+      </PortfolioMotionRoot>
     </MatLayout>
   );
 }

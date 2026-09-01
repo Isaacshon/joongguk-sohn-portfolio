@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import type { CSSProperties } from "react";
 
 import { MatLayout } from "@/components/MatLayout";
+import { PortfolioMotionRoot } from "@/components/motion/PortfolioMotionRoot";
 import { DesignProjectCover } from "@/components/poster-studies/DesignProjectCover";
 import { ProjectPicture } from "@/components/poster-studies/ProjectPicture";
 import { getDesignProjectArtDirection } from "@/lib/design-project-art-direction";
@@ -15,6 +16,7 @@ import {
   type DesignProject,
 } from "@/lib/design-projects";
 import { getPersonalProjectStory, type PersonalStoryBlock } from "@/lib/personal-project-stories";
+import { getProjectChoreography } from "@/lib/project-choreography";
 import { getProjectTitleLockup } from "@/lib/project-title-lockups";
 
 import "@/personal-project-premium.css";
@@ -51,10 +53,21 @@ const projectMethodTitles: Record<string, string> = {
   coldkiln: "Begin with the heat never used.",
 };
 
+const storyChapterLabels: Record<PersonalStoryBlock["type"], string> = {
+  media: "Image",
+  spread: "Pair",
+  statement: "Position",
+  principle: "Rule",
+  method: "Method",
+  material: "Materials",
+  sources: "Research",
+};
+
 export function ProjectCaseStudy({ project }: { project: DesignProject }) {
   const { previous, next } = getAdjacentDesignProjects(project.slug);
   const direction = getDesignProjectArtDirection(project);
   const story = getPersonalProjectStory(project.slug);
+  const choreography = getProjectChoreography(project.slug);
   const titleLockup = getProjectTitleLockup(project.slug, project.title);
   const style: StudioCaseStyle = {
     "--studio-paper": direction.surfaces.paper,
@@ -73,15 +86,22 @@ export function ProjectCaseStudy({ project }: { project: DesignProject }) {
 
   return (
     <MatLayout immersive surface="plain" contentClassName="!px-0 !pb-0 !pt-11">
-      <article
+      <PortfolioMotionRoot
         className="studio-case"
-        data-project={project.slug}
-        data-motif={project.motif}
-        data-hero-layout={story.hero.layout}
-        data-hero-shape={getHeroShape(story.hero.ratio)}
+        profile={choreography.family}
+        projectId={project.slug}
+        projectLabel={project.title}
+        sceneSelector=".studio-hero, .studio-story > .studio-block, .studio-endmatter, .studio-adjacent"
+        attributes={{
+          "data-project": project.slug,
+          "data-motif": project.motif,
+          "data-motion-family": choreography.family,
+          "data-hero-layout": story.hero.layout,
+          "data-hero-shape": getHeroShape(story.hero.ratio),
+        }}
         style={style}
       >
-        <header className="studio-hero">
+        <header className="studio-hero" id={`${project.slug}-opening`}>
           <div className="studio-shell">
             <div className="studio-topline studio-meta">
               <Link to="/work" className="studio-back-link">
@@ -126,6 +146,21 @@ export function ProjectCaseStudy({ project }: { project: DesignProject }) {
           </div>
         </header>
 
+        <nav className="studio-chapter-rail" aria-label={`${project.title} project chapters`}>
+          <div role="group" aria-label="Jump to a project chapter">
+            {story.blocks.map((block, index) => {
+              const number = String(index + 1).padStart(2, "0");
+
+              return (
+                <a key={`${block.type}-${number}`} href={`#${project.slug}-chapter-${number}`}>
+                  <span>{number}</span>
+                  <strong>{storyChapterLabels[block.type]}</strong>
+                </a>
+              );
+            })}
+          </div>
+        </nav>
+
         <main className="studio-story">
           {story.blocks.map((block, index) => (
             <StoryBlock
@@ -143,7 +178,7 @@ export function ProjectCaseStudy({ project }: { project: DesignProject }) {
           {previous ? <AdjacentProject project={previous} direction="previous" /> : <span />}
           {next ? <AdjacentProject project={next} direction="next" /> : <span />}
         </nav>
-      </article>
+      </PortfolioMotionRoot>
     </MatLayout>
   );
 }
@@ -160,7 +195,9 @@ function StoryBlock({
   if (block.type === "media") {
     return (
       <section
+        id={`${project.slug}-chapter-${number}`}
         className="studio-block studio-media-block studio-shell"
+        data-motion-role="media"
         data-width={block.width}
         data-align={block.align ?? "center"}
         aria-label={`${number} ${mediaLabels[block.slot]}`}
@@ -178,7 +215,9 @@ function StoryBlock({
   if (block.type === "spread") {
     return (
       <section
+        id={`${project.slug}-chapter-${number}`}
         className="studio-block studio-spread studio-shell"
+        data-motion-role="spread"
         data-split={block.split}
         data-keep-pair={block.keepPair || undefined}
         aria-label={`${number} Image study`}
@@ -199,7 +238,9 @@ function StoryBlock({
   if (block.type === "statement") {
     return (
       <section
+        id={`${project.slug}-chapter-${number}`}
         className="studio-block studio-statement studio-shell"
+        data-motion-role="statement"
         data-align={block.align}
         data-scale={block.scale}
       >
@@ -211,7 +252,12 @@ function StoryBlock({
 
   if (block.type === "principle") {
     return (
-      <section className="studio-block studio-principle studio-shell" data-align={block.align}>
+      <section
+        id={`${project.slug}-chapter-${number}`}
+        className="studio-block studio-principle studio-shell"
+        data-align={block.align}
+        data-motion-role="principle"
+      >
         <p className="studio-meta">{number} / Non-negotiable rule</p>
         <p className="studio-principle-copy">{project.rule}</p>
       </section>
@@ -221,8 +267,10 @@ function StoryBlock({
   if (block.type === "method") {
     return (
       <section
+        id={`${project.slug}-chapter-${number}`}
         className="studio-block studio-method studio-shell"
         data-layout={block.layout}
+        data-motion-role="method"
         aria-labelledby={`${project.slug}-method-${number}`}
       >
         <div className="studio-method-heading">
@@ -246,8 +294,10 @@ function StoryBlock({
   if (block.type === "material") {
     return (
       <section
+        id={`${project.slug}-chapter-${number}`}
         className="studio-block studio-material"
         data-layout={block.layout}
+        data-motion-role="material"
         aria-labelledby={`${project.slug}-material-${number}`}
       >
         <div className="studio-shell studio-material-heading">
@@ -287,8 +337,10 @@ function StoryBlock({
 
   return (
     <section
+      id={`${project.slug}-chapter-${number}`}
       className="studio-block studio-sources studio-shell"
       data-layout={block.layout}
+      data-motion-role="sources"
       aria-labelledby={`${project.slug}-sources-${number}`}
     >
       <div>

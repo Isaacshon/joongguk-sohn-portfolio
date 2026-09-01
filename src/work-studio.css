@@ -233,11 +233,15 @@
 }
 
 .work-studio__image {
-  will-change: transform;
+  transition: transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.work-studio__project-link:hover .work-studio__image {
-  transform: scale(1.018);
+@media (hover: hover) and (pointer: fine) {
+  .work-studio__project-link:hover .work-studio__image,
+  .work-studio__project-link:focus-visible .work-studio__image {
+    transform: scale(1.018);
+    will-change: transform;
+  }
 }
 
 .work-studio__brand-media::after,
@@ -703,8 +707,67 @@
 
   .work-studio__brand-item,
   .work-studio__personal-item {
+    width: 100%;
     margin-bottom: 3.75rem;
     padding-top: 0;
+  }
+
+  .work-studio__brand-item[data-brand="nike-no-second-take"],
+  .work-studio__brand-item[data-brand="hm-second-sun"] {
+    width: calc(100% + 2rem);
+    margin-left: -1rem;
+  }
+
+  .work-studio__brand-item[data-brand="nike-no-second-take"] .work-studio__brand-caption,
+  .work-studio__brand-item[data-brand="hm-second-sun"] .work-studio__brand-caption {
+    padding-inline: 1rem;
+  }
+
+  .work-studio__brand-item[data-brand="polo-ralph-lauren-the-long-match"],
+  .work-studio__brand-item[data-brand="zara-the-air-between"] {
+    width: 88%;
+    margin-right: auto;
+  }
+
+  .work-studio__brand-item[data-brand="levis-wear-is-the-record"],
+  .work-studio__brand-item[data-brand="prada-the-quiet-error"] {
+    width: 82%;
+    margin-left: auto;
+  }
+
+  .work-studio__brand-item[data-brand="muji-household-weather"] {
+    width: 74%;
+    margin-right: auto;
+  }
+
+  .work-studio__brand-item[data-brand="uniqlo-comfort-measured"] {
+    width: 76%;
+    margin-left: auto;
+  }
+
+  .work-studio__personal-item:nth-child(5n + 1) {
+    width: calc(100% + 2rem);
+    margin-left: -1rem;
+  }
+
+  .work-studio__personal-item:nth-child(5n + 1) .work-studio__project-caption {
+    margin-inline: 1rem;
+  }
+
+  .work-studio__personal-item:nth-child(5n + 2),
+  .work-studio__personal-item:nth-child(5n + 5) {
+    width: 78%;
+    margin-left: auto;
+  }
+
+  .work-studio__personal-item:nth-child(5n + 3) {
+    width: 88%;
+    margin-right: auto;
+  }
+
+  .work-studio__personal-item:nth-child(5n + 4) {
+    width: 72%;
+    margin-right: auto;
   }
 
   .work-studio__brand-item:last-child,
