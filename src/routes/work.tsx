@@ -93,6 +93,41 @@ const brandIndexRegistry = {
   },
 } satisfies Record<BrandProjectSlug, BrandIndexConfig>;
 
+const brandMotionSignals = {
+  "nike-no-second-take": {
+    cue: "Test the frame",
+    steps: ["Contact", "Attempt", "Recover"],
+  },
+  "polo-ralph-lauren-the-long-match": {
+    cue: "Follow the day",
+    steps: ["Field", "City", "Evening"],
+  },
+  "levis-wear-is-the-record": {
+    cue: "Read the wear",
+    steps: ["Rivet", "Fade", "Repair"],
+  },
+  "muji-household-weather": {
+    cue: "Notice the use",
+    steps: ["Reduce", "Arrange", "Live"],
+  },
+  "hm-second-sun": {
+    cue: "Trace the remake",
+    steps: ["Thread", "Handoff", "Return"],
+  },
+  "zara-the-air-between": {
+    cue: "Cut to space",
+    steps: ["Silhouette", "Pause", "Crop"],
+  },
+  "uniqlo-comfort-measured": {
+    cue: "Move through use",
+    steps: ["Layer", "Walk", "Rest"],
+  },
+  "prada-the-quiet-error": {
+    cue: "Shift the context",
+    steps: ["Observe", "Reframe", "Question"],
+  },
+} satisfies Record<BrandProjectSlug, { cue: string; steps: [string, string, string] }>;
+
 const featuredBrandProjects = designProjects
   .filter((project) => project.brandStudy)
   .sort((left, right) => Number(right.index) - Number(left.index));
@@ -408,8 +443,9 @@ function SectionHeading({
 function FeaturedBrandCard({ project }: { project: DesignProject }) {
   const slug = project.slug as BrandProjectSlug;
   const config = brandIndexRegistry[slug];
+  const motionSignal = brandMotionSignals[slug];
 
-  if (!config) return null;
+  if (!config || !motionSignal) return null;
 
   const mediaStyle: WorkMediaStyle = {
     "--work-media-ratio": config.aspectRatio,
@@ -421,6 +457,7 @@ function FeaturedBrandCard({ project }: { project: DesignProject }) {
       className={`work-studio__brand-item work-studio__brand-item--${config.layout}`}
       data-brand={slug}
       data-motion-role="brand-project"
+      data-motion-card="brand"
     >
       <Link
         to="/poster-studies/$slug"
@@ -447,6 +484,20 @@ function FeaturedBrandCard({ project }: { project: DesignProject }) {
               }
             />
             <BrandProjectMark projectSlug={project.slug} className="work-studio__brand-mark" />
+            <span className="work-studio__motion-signal" aria-hidden="true">
+              <span className="work-studio__motion-signal-head">
+                <b>{motionSignal.cue}</b>
+                <i />
+              </span>
+              <span className="work-studio__motion-signal-steps">
+                {motionSignal.steps.map((step, index) => (
+                  <em key={step}>
+                    <small>{String(index + 1).padStart(2, "0")}</small>
+                    {step}
+                  </em>
+                ))}
+              </span>
+            </span>
           </div>
 
           <div className="work-studio__brand-caption">
@@ -480,6 +531,7 @@ function DesignWorkCard({ project }: { project: DesignProject }) {
       data-motion-role="personal-project"
       data-motion-family={choreography.family}
       data-motion-motif={project.motif}
+      data-motion-card="personal"
     >
       <Link
         to="/poster-studies/$slug"
@@ -504,6 +556,10 @@ function DesignWorkCard({ project }: { project: DesignProject }) {
                 />
               }
             />
+            <span className="work-studio__personal-signal" aria-hidden="true">
+              <i />
+              <span>Open the system</span>
+            </span>
           </div>
           <ProjectCaption
             index={project.index}

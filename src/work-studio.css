@@ -236,11 +236,304 @@
   transition: transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.work-studio__motion-signal,
+.work-studio__personal-signal {
+  position: absolute;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.work-studio__motion-signal {
+  top: clamp(0.75rem, 1.4vw, 1.25rem);
+  right: clamp(0.75rem, 1.4vw, 1.25rem);
+  display: grid;
+  width: min(17rem, calc(100% - 1.5rem));
+  padding: 0.72rem 0.8rem 0.78rem;
+  color: #fff;
+  background: rgba(12, 12, 12, 0.86);
+  opacity: 0;
+  transform: translate3d(0, 0.7rem, 0);
+  transition:
+    opacity 240ms ease,
+    transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.work-studio__motion-signal-head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.7rem;
+  min-width: 0;
+}
+
+.work-studio__motion-signal-head b,
+.work-studio__motion-signal-steps em,
+.work-studio__personal-signal span {
+  font-family: ui-monospace, "SFMono-Regular", "Cascadia Code", "Roboto Mono", monospace;
+  font-style: normal;
+  text-transform: uppercase;
+}
+
+.work-studio__motion-signal-head b {
+  font-size: 0.58rem;
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: 0.13em;
+}
+
+.work-studio__motion-signal-head i {
+  position: relative;
+  height: 1px;
+  overflow: hidden;
+  background: currentColor;
+  opacity: 0.38;
+}
+
+.work-studio__motion-signal-head i::after {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 32%;
+  background: currentColor;
+  content: "";
+  transform: translateX(-110%);
+}
+
+.work-studio__motion-signal-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem;
+  margin-top: 0.65rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid color-mix(in srgb, currentColor 32%, transparent);
+}
+
+.work-studio__motion-signal-steps em {
+  display: grid;
+  gap: 0.18rem;
+  min-width: 0;
+  font-size: 0.52rem;
+  font-weight: 650;
+  line-height: 1.1;
+  letter-spacing: 0.055em;
+}
+
+.work-studio__motion-signal-steps small {
+  font-size: 0.45rem;
+  font-weight: 500;
+  opacity: 0.48;
+}
+
+.work-studio__personal-signal {
+  right: 0.75rem;
+  bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 0.62rem;
+  color: #fff;
+  background: rgba(15, 15, 15, 0.82);
+  opacity: 0;
+  transform: translate3d(0.5rem, 0, 0);
+  transition:
+    opacity 220ms ease,
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.work-studio__personal-signal i {
+  width: 1.4rem;
+  height: 1px;
+  background: currentColor;
+  transform-origin: left center;
+  transform: scaleX(0.32);
+  transition: transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.work-studio__personal-signal span {
+  font-size: 0.52rem;
+  font-weight: 650;
+  letter-spacing: 0.1em;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .work-studio__project-link:hover .work-studio__image,
   .work-studio__project-link:focus-visible .work-studio__image {
     transform: scale(1.018);
     will-change: transform;
+  }
+
+  .work-studio__project-link:hover .work-studio__motion-signal,
+  .work-studio__project-link:focus-visible .work-studio__motion-signal,
+  .work-studio__project-link:hover .work-studio__personal-signal,
+  .work-studio__project-link:focus-visible .work-studio__personal-signal {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .work-studio__project-link:hover .work-studio__motion-signal-head i::after,
+  .work-studio__project-link:focus-visible .work-studio__motion-signal-head i::after {
+    animation: work-signal-scan 980ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .work-studio__project-link:hover .work-studio__personal-signal i,
+  .work-studio__project-link:focus-visible .work-studio__personal-signal i {
+    transform: scaleX(1);
+  }
+}
+
+.work-studio__project-link:active .work-studio__image {
+  transform: scale(0.992);
+  transition-duration: 120ms;
+}
+
+.work-studio__brand-item[data-brand="nike-no-second-take"] .work-studio__motion-signal {
+  top: auto;
+  bottom: clamp(0.75rem, 1.4vw, 1.25rem);
+  color: #0a0a0a;
+  background: #dfff00;
+}
+
+.work-studio__brand-item[data-brand="nike-no-second-take"] .work-studio__motion-signal-steps {
+  border-top-width: 0.24rem;
+}
+
+.work-studio__brand-item[data-brand="polo-ralph-lauren-the-long-match"]
+  .work-studio__motion-signal {
+  right: auto;
+  left: 50%;
+  width: min(20rem, calc(100% - 2rem));
+  color: #f5ecd8;
+  background: rgba(5, 24, 46, 0.9);
+  transform: translate3d(-50%, -0.55rem, 0);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .work-studio__brand-item[data-brand="polo-ralph-lauren-the-long-match"]
+    .work-studio__project-link:hover
+    .work-studio__motion-signal,
+  .work-studio__brand-item[data-brand="polo-ralph-lauren-the-long-match"]
+    .work-studio__project-link:focus-visible
+    .work-studio__motion-signal {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.work-studio__brand-item[data-brand="levis-wear-is-the-record"] .work-studio__motion-signal {
+  inset: 0 auto 0 0;
+  align-content: end;
+  width: min(13rem, 38%);
+  color: #fff;
+  background: rgba(201, 20, 40, 0.9);
+  transform: translate3d(-1.2rem, 0, 0);
+}
+
+.work-studio__brand-item[data-brand="levis-wear-is-the-record"] .work-studio__motion-signal-steps {
+  grid-template-columns: 1fr;
+}
+
+.work-studio__brand-item[data-brand="muji-household-weather"] .work-studio__motion-signal {
+  color: #2a241e;
+  background: rgba(232, 225, 211, 0.92);
+  border: 1px solid rgba(42, 36, 30, 0.28);
+}
+
+.work-studio__brand-item[data-brand="hm-second-sun"] .work-studio__motion-signal {
+  top: auto;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  color: #fff;
+  background: rgba(220, 0, 35, 0.9);
+  transform: translate3d(0, 100%, 0);
+}
+
+.work-studio__brand-item[data-brand="hm-second-sun"] .work-studio__motion-signal-head i {
+  background: repeating-linear-gradient(90deg, currentColor 0 0.4rem, transparent 0.4rem 0.72rem);
+}
+
+.work-studio__brand-item[data-brand="zara-the-air-between"] .work-studio__motion-signal {
+  top: 50%;
+  right: 0;
+  width: min(14rem, 46%);
+  color: #111;
+  background: rgba(250, 249, 246, 0.94);
+  transform: translate3d(1.1rem, -50%, 0);
+}
+
+.work-studio__brand-item[data-brand="zara-the-air-between"] .work-studio__motion-signal-steps {
+  grid-template-columns: 1fr;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .work-studio__brand-item[data-brand="zara-the-air-between"]
+    .work-studio__project-link:hover
+    .work-studio__motion-signal,
+  .work-studio__brand-item[data-brand="zara-the-air-between"]
+    .work-studio__project-link:focus-visible
+    .work-studio__motion-signal {
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+.work-studio__brand-item[data-brand="uniqlo-comfort-measured"] .work-studio__motion-signal {
+  width: min(13rem, calc(100% - 1.5rem));
+  color: #fff;
+  background: #e60012;
+}
+
+.work-studio__brand-item[data-brand="prada-the-quiet-error"] .work-studio__motion-signal {
+  top: 50%;
+  right: auto;
+  left: 50%;
+  width: min(21rem, calc(100% - 2rem));
+  color: #f3f1eb;
+  background: rgba(10, 10, 10, 0.88);
+  transform: translate3d(-50%, calc(-50% + 0.7rem), 0);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .work-studio__brand-item[data-brand="prada-the-quiet-error"]
+    .work-studio__project-link:hover
+    .work-studio__motion-signal,
+  .work-studio__brand-item[data-brand="prada-the-quiet-error"]
+    .work-studio__project-link:focus-visible
+    .work-studio__motion-signal {
+    transform: translate3d(-50%, -50%, 0);
+  }
+
+  .work-studio__brand-item[data-brand="nike-no-second-take"]
+    .work-studio__project-link:hover
+    .work-studio__image {
+    transform: scale(1.028) translate3d(-0.35%, 0, 0);
+  }
+
+  .work-studio__brand-item[data-brand="polo-ralph-lauren-the-long-match"]
+    .work-studio__project-link:hover
+    .work-studio__image,
+  .work-studio__brand-item[data-brand="muji-household-weather"]
+    .work-studio__project-link:hover
+    .work-studio__image {
+    transform: scale(1.009);
+  }
+
+  .work-studio__brand-item[data-brand="levis-wear-is-the-record"]
+    .work-studio__project-link:hover
+    .work-studio__image {
+    transform: scale(1.024) translate3d(0.35%, 0, 0);
+  }
+
+  .work-studio__brand-item[data-brand="zara-the-air-between"]
+    .work-studio__project-link:hover
+    .work-studio__image {
+    transform: scale(1.026) translate3d(0.55%, 0, 0);
+  }
+}
+
+@keyframes work-signal-scan {
+  0% {
+    transform: translateX(-110%);
+  }
+  100% {
+    transform: translateX(330%);
   }
 }
 
@@ -1155,6 +1448,66 @@
 }
 
 @media (max-width: 639px) {
+  .work-studio__motion-signal {
+    top: 0.65rem;
+    right: 0.65rem;
+    bottom: auto;
+    left: auto;
+    width: auto;
+    max-width: calc(100% - 1.3rem);
+    padding: 0.58rem 0.62rem;
+    opacity: 0.94;
+    transform: none;
+  }
+
+  .work-studio__motion-signal-head {
+    grid-template-columns: auto 1.5rem;
+    gap: 0.5rem;
+  }
+
+  .work-studio__motion-signal-head b {
+    font-size: 0.5rem;
+  }
+
+  .work-studio__motion-signal-steps {
+    display: none;
+  }
+
+  .work-studio__personal-signal {
+    right: 0.62rem;
+    bottom: 0.62rem;
+    padding: 0.48rem 0.52rem;
+    opacity: 0.9;
+    transform: none;
+  }
+
+  .work-studio__personal-signal span {
+    font-size: 0.48rem;
+  }
+
+  .work-studio__brand-item[data-brand="polo-ralph-lauren-the-long-match"]
+    .work-studio__motion-signal {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .work-studio__brand-item[data-brand="levis-wear-is-the-record"] .work-studio__motion-signal,
+  .work-studio__brand-item[data-brand="hm-second-sun"] .work-studio__motion-signal,
+  .work-studio__brand-item[data-brand="zara-the-air-between"] .work-studio__motion-signal {
+    inset: auto 0.65rem 0.65rem auto;
+    width: auto;
+    transform: none;
+  }
+
+  .work-studio__brand-item[data-brand="prada-the-quiet-error"] .work-studio__motion-signal {
+    top: auto;
+    right: auto;
+    bottom: 0.65rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
   .work-studio__brand-media {
     aspect-ratio: var(--work-mobile-media-ratio, var(--work-media-ratio, 4 / 5));
   }

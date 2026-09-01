@@ -9,6 +9,8 @@
     --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
     --motion-pointer-x: 0px;
     --motion-pointer-y: 0px;
+    --motion-chapter-progress: 0;
+    --motion-tactile-ring: color-mix(in srgb, var(--motion-accent) 78%, transparent);
   }
 
   .portfolio-motion__progress {
@@ -167,6 +169,7 @@
   }
 
   [data-motion-root] :where(nav a[href^="#"]) {
+    position: relative;
     display: inline-flex;
     min-height: 2.75rem;
     align-items: center;
@@ -179,13 +182,149 @@
   }
 
   [data-motion-root] :where(nav a[href^="#"])::after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    background: currentColor;
+    content: "";
     transform: scaleX(0);
     transform-origin: 0 50%;
     transition: transform 260ms var(--motion-ease);
   }
 
-  [data-motion-root] :where(nav a[aria-current="location"])::after {
-    transform: scaleX(1);
+  [data-motion-root] :where(nav a[data-motion-chapter-link])::after {
+    transform: scaleX(var(--motion-link-progress, 0));
+  }
+
+  [data-motion-chapter-rail] {
+    --motion-rail-progress: 0;
+  }
+
+  [data-motion-chapter-rail]::after {
+    position: absolute;
+    z-index: 4;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background: var(--motion-accent);
+    content: "";
+    pointer-events: none;
+    transform: scaleX(var(--motion-rail-progress));
+    transform-origin: 0 50%;
+  }
+
+  [data-motion-compare] {
+    --motion-scrub-position: 0%;
+    position: relative;
+    isolation: isolate;
+  }
+
+  [data-motion-compare]::before {
+    position: absolute;
+    z-index: 9;
+    top: 0.6rem;
+    right: 0.6rem;
+    padding: 0.32rem 0.42rem;
+    background: color-mix(in srgb, var(--motion-control-bg, #f8f6f1) 88%, transparent);
+    color: var(--motion-control-ink, #151515);
+    content: attr(data-motion-counter);
+    font-family: var(--motion-meta, ui-monospace, monospace);
+    font-size: 0.58rem;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 160ms ease;
+  }
+
+  [data-motion-compare]::after {
+    position: absolute;
+    z-index: 9;
+    right: auto;
+    bottom: 0;
+    left: 0;
+    width: var(--motion-scrub-position);
+    height: 2px;
+    background: var(--motion-accent);
+    content: "";
+    pointer-events: none;
+  }
+
+  [data-motion-compare][data-motion-engaged="true"]::before,
+  [data-motion-compare]:focus-visible::before {
+    opacity: 1;
+  }
+
+  [data-motion-compare]:focus-visible {
+    outline: 2px solid var(--motion-accent);
+    outline-offset: 4px;
+  }
+
+  [data-motion-compare][data-motion-engaged="true"] [data-motion-media] {
+    opacity: 0.72;
+    transition:
+      opacity 180ms ease,
+      transform 180ms var(--motion-ease);
+  }
+
+  [data-motion-compare][data-motion-engaged="true"] [data-motion-media][data-motion-active="true"] {
+    opacity: 1;
+    outline: 1px solid var(--motion-tactile-ring);
+    outline-offset: -1px;
+  }
+
+  [data-motion-tactile][data-motion-active="true"] {
+    outline: 1px solid var(--motion-tactile-ring);
+    outline-offset: -1px;
+  }
+
+  [data-motion-tactile][data-motion-pressed="true"] {
+    transform: scale(0.994) !important;
+    transition-duration: 70ms !important;
+  }
+
+  [data-motion-value-card] {
+    cursor: pointer;
+    touch-action: manipulation;
+    transition:
+      color 260ms var(--motion-ease),
+      background-color 260ms var(--motion-ease),
+      opacity 260ms var(--motion-ease),
+      transform 260ms var(--motion-ease);
+  }
+
+  [data-motion-value-card]:focus-visible {
+    outline: 2px solid var(--motion-accent);
+    outline-offset: 4px;
+  }
+
+  [data-motion-profile="zara"] [data-motion-value-card]:not([data-motion-value-active="true"]) {
+    opacity: 0.52;
+  }
+
+  [data-motion-profile="zara"] [data-motion-value-card][data-motion-value-active="true"] {
+    opacity: 1;
+    transform: translateY(-0.35rem);
+  }
+
+  [data-motion-profile="hm"] [data-motion-value-card][data-motion-value-active="true"] {
+    box-shadow: inset 4px 0 0 #e50010;
+  }
+
+  [data-motion-profile="uniqlo"] [data-motion-value-card][data-motion-value-active="true"] {
+    box-shadow: inset 0 -3px 0 #ff1b2d;
+  }
+
+  [data-motion-profile="prada"] [data-motion-value-card]:not([data-motion-value-active="true"]) {
+    opacity: 0.46;
+  }
+
+  [data-motion-profile="prada"] [data-motion-value-card][data-motion-value-active="true"] {
+    opacity: 1;
   }
 
   [data-motion-profile="work-index"] {
@@ -201,6 +340,7 @@
     --motion-enter-y: 0px;
     --motion-duration: 420ms;
     --motion-ease: cubic-bezier(0.3, 0.9, 0.25, 1);
+    --motion-tactile-ring: #e50010;
   }
 
   [data-motion-profile="zara"] {
@@ -210,6 +350,7 @@
     --motion-enter-scale: 0.992;
     --motion-duration: 760ms;
     --motion-ease: cubic-bezier(0.76, 0, 0.24, 1);
+    --motion-tactile-ring: rgb(17 17 17 / 0.74);
   }
 
   [data-motion-profile="uniqlo"] {
@@ -217,16 +358,18 @@
     --motion-enter-y: 12px;
     --motion-duration: 380ms;
     --motion-ease: cubic-bezier(0.2, 0.78, 0.24, 1);
+    --motion-tactile-ring: #ff1b2d;
   }
 
   [data-motion-profile="prada"] {
-    --motion-accent: #b9ff20;
+    --motion-accent: #e8e4da;
     --motion-control-bg: #111;
     --motion-control-ink: #fff;
     --motion-enter-x: -12px;
     --motion-enter-y: 0px;
     --motion-duration: 820ms;
     --motion-ease: cubic-bezier(0.77, 0, 0.18, 1);
+    --motion-tactile-ring: #e8e4da;
   }
 
   [data-motion-profile="muji"] {
@@ -234,6 +377,7 @@
     --motion-enter-y: 8px;
     --motion-duration: 880ms;
     --motion-ease: cubic-bezier(0.22, 0.72, 0.18, 1);
+    --motion-tactile-ring: #7f0019;
   }
 
   [data-motion-profile="levis"] {
@@ -242,6 +386,7 @@
     --motion-enter-y: 0px;
     --motion-duration: 620ms;
     --motion-ease: cubic-bezier(0.24, 0.8, 0.22, 1);
+    --motion-tactile-ring: #d6001c;
   }
 
   [data-motion-profile="polo"] {
@@ -252,6 +397,7 @@
     --motion-enter-scale: 0.996;
     --motion-duration: 980ms;
     --motion-ease: cubic-bezier(0.22, 0.72, 0.16, 1);
+    --motion-tactile-ring: #c8a96b;
   }
 
   [data-motion-profile="nike"] {
@@ -263,6 +409,7 @@
     --motion-duration: 230ms;
     --motion-delay-step: 35ms;
     --motion-ease: cubic-bezier(0.2, 0.9, 0.2, 1);
+    --motion-tactile-ring: #ff4d00;
   }
 
   [data-motion-profile="nike"] [id*="recovery"][data-motion-reveal],
@@ -279,7 +426,8 @@
     --motion-enter-x: 22px;
   }
 
-  [data-motion-profile="zara"] [data-motion-beat="air"] {
+  [data-motion-profile="zara"] [data-motion-beat="arrival"],
+  [data-motion-profile="zara"] [data-motion-beat="finale"] {
     --motion-enter-scale: 0.986;
     --motion-delay-step: 0ms;
   }
@@ -296,7 +444,8 @@
     --motion-enter-y: 18px;
   }
 
-  [data-motion-profile="prada"] [data-motion-beat="hold"] {
+  [data-motion-profile="prada"] [data-motion-beat="observe"],
+  [data-motion-profile="prada"] [data-motion-beat="return"] {
     --motion-enter-x: 0px;
     --motion-enter-scale: 0.995;
   }
@@ -311,7 +460,8 @@
     --motion-enter-y: 0px;
   }
 
-  [data-motion-profile="levis"] [data-motion-beat="repair"] {
+  [data-motion-profile="levis"] [data-motion-beat="repaired"],
+  [data-motion-profile="levis"] [data-motion-beat="passed-on"] {
     --motion-enter-x: 15px;
   }
 
@@ -320,7 +470,7 @@
     --motion-enter-y: 0px;
   }
 
-  [data-motion-profile="polo"] [data-motion-beat="evening"] {
+  [data-motion-profile="polo"] [data-motion-beat="clubhouse"] {
     --motion-duration: 1200ms;
     --motion-enter-scale: 0.992;
   }
@@ -510,6 +660,195 @@
     [data-motion-root] :where(nav a[href^="#"]) {
       min-height: 2.75rem;
       scroll-snap-align: center;
+    }
+
+    .brand-pavilion__chapter-nav-inner {
+      position: relative;
+    }
+
+    .brand-pavilion__chapter-nav-inner::after {
+      position: absolute;
+      z-index: 8;
+      top: 0;
+      right: 0;
+      width: 1.6rem;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, var(--pavilion-paper, #f8f6f1));
+      content: "";
+      pointer-events: none;
+    }
+
+    [data-motion-profile="hm"] [data-motion-value-ledger] {
+      display: flex !important;
+      width: calc(100% + 2rem);
+      margin-inline: -1rem;
+      padding: 0.35rem 1rem 0.8rem;
+      gap: 0;
+      overflow-x: auto;
+      background-image: linear-gradient(#e50010, #e50010);
+      background-repeat: no-repeat;
+      background-position: 1rem 0;
+      background-size: calc(100% - 2rem) 3px;
+      overscroll-behavior-inline: contain;
+      scroll-padding-inline: 1rem;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+
+    [data-motion-profile="hm"] [data-motion-value-ledger]::-webkit-scrollbar {
+      display: none;
+    }
+
+    [data-motion-profile="hm"] [data-motion-value-card] {
+      flex: 0 0 78vw !important;
+      min-width: 0;
+      min-height: 22rem;
+      padding: 2.5rem 1.35rem 1.5rem !important;
+      border: 1px solid currentColor !important;
+      border-right: 0 !important;
+      scroll-snap-align: center;
+    }
+
+    [data-motion-profile="hm"] [data-motion-value-card]:last-child {
+      border-right: 1px solid currentColor !important;
+    }
+
+    [data-motion-profile="hm"] [data-motion-value-card][data-motion-value-active="true"] {
+      background: #e50010;
+      box-shadow: none;
+      color: #fff;
+    }
+
+    [data-motion-profile="zara"] [data-motion-value-ledger] {
+      display: grid !important;
+      grid-template-columns: 1fr !important;
+      gap: 0 !important;
+      counter-reset: zara-edit;
+    }
+
+    [data-motion-profile="zara"] [data-motion-value-card] {
+      display: grid !important;
+      min-height: 7rem !important;
+      grid-template-columns: 2.6rem minmax(0, 1fr) !important;
+      align-content: center;
+      padding: 1.2rem 1rem !important;
+      border-top: 1px solid currentColor !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    [data-motion-profile="zara"] [data-motion-value-card] > :not(.brand-pavilion__value-number) {
+      grid-column: 2;
+    }
+
+    [data-motion-profile="zara"] [data-motion-value-card] p {
+      max-height: 0;
+      overflow: hidden;
+      margin-top: 0 !important;
+      opacity: 0;
+      transition:
+        max-height 440ms var(--motion-ease),
+        margin 300ms var(--motion-ease),
+        opacity 220ms ease;
+    }
+
+    [data-motion-profile="zara"] [data-motion-value-card][data-motion-value-active="true"] {
+      min-height: 15rem !important;
+      background: #111 !important;
+      color: #fff !important;
+    }
+
+    [data-motion-profile="zara"] [data-motion-value-card][data-motion-value-active="true"] p {
+      max-height: 12rem;
+      margin-top: 1rem !important;
+      opacity: 0.72;
+    }
+
+    [data-motion-profile="uniqlo"] [data-motion-value-ledger] {
+      display: block !important;
+    }
+
+    [data-motion-profile="uniqlo"] [data-motion-value-card] {
+      display: grid !important;
+      grid-template-columns: 3.25rem minmax(0, 1fr) !important;
+      padding: 1.15rem 0 !important;
+      border-bottom: 1px solid currentColor !important;
+      box-shadow: none !important;
+    }
+
+    [data-motion-profile="uniqlo"] [data-motion-value-card] > :not(.brand-pavilion__value-number) {
+      grid-column: 2;
+    }
+
+    [data-motion-profile="uniqlo"] [data-motion-value-card] p {
+      max-height: 0;
+      overflow: hidden;
+      margin-top: 0 !important;
+      opacity: 0;
+      transition:
+        max-height 360ms var(--motion-ease),
+        margin 260ms var(--motion-ease),
+        opacity 220ms ease;
+    }
+
+    [data-motion-profile="uniqlo"] [data-motion-value-card][data-motion-value-active="true"] {
+      padding-block: 1.8rem !important;
+      box-shadow: inset 4px 0 0 #ff1b2d !important;
+    }
+
+    [data-motion-profile="uniqlo"] [data-motion-value-card][data-motion-value-active="true"] p {
+      max-height: 12rem;
+      margin-top: 0.8rem !important;
+      opacity: 0.72;
+    }
+
+    [data-motion-profile="prada"] [data-motion-value-ledger] {
+      display: flex !important;
+      flex-direction: column;
+      gap: 0 !important;
+    }
+
+    [data-motion-profile="prada"] [data-motion-value-card] {
+      display: grid !important;
+      min-height: 5.25rem !important;
+      grid-template-columns: 2.75rem minmax(0, 1fr) !important;
+      align-content: center;
+      padding: 1.2rem 1rem !important;
+      border-top: 1px solid currentColor !important;
+      opacity: 1 !important;
+    }
+
+    [data-motion-profile="prada"] [data-motion-value-card] > :not(.brand-pavilion__value-number) {
+      grid-column: 2;
+    }
+
+    [data-motion-profile="prada"] [data-motion-value-card] p {
+      max-height: 0;
+      overflow: hidden;
+      margin-top: 0 !important;
+      opacity: 0;
+      transition:
+        max-height 560ms var(--motion-ease),
+        margin 420ms var(--motion-ease),
+        opacity 300ms ease;
+    }
+
+    [data-motion-profile="prada"] [data-motion-value-card][data-motion-value-active="true"] {
+      min-height: 42vh !important;
+      background: var(--pavilion-dark, #111) !important;
+      color: var(--pavilion-light, #f5f2eb) !important;
+    }
+
+    [data-motion-profile="prada"] [data-motion-value-card][data-motion-value-active="true"] p {
+      max-height: 14rem;
+      margin-top: 1.25rem !important;
+      opacity: 0.68;
+    }
+
+    [data-motion-profile="prada"]
+      [data-motion-value-card][data-motion-value-active="true"]
+      :where(.brand-pavilion__value-number, h3, p) {
+      color: inherit !important;
     }
 
     [data-motion-profile="polo"] #city > div,
