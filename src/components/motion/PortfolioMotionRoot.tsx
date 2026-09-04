@@ -69,6 +69,29 @@ function pointerDepth(profile: MotionProfile) {
   }
 }
 
+function chapterTargetsFor(root: HTMLElement) {
+  const linkedTargets = Array.from(root.querySelectorAll<HTMLAnchorElement>('a[href^="#"]'))
+    .map((link) => {
+      const rawId = link.getAttribute("href")?.slice(1);
+      if (!rawId) return null;
+
+      let chapterId = rawId;
+      try {
+        chapterId = decodeURIComponent(rawId);
+      } catch {
+        // Keep the raw fragment when a third-party link contains malformed encoding.
+      }
+
+      const target = document.getElementById(chapterId);
+      return target && root.contains(target) ? target : null;
+    })
+    .filter((target): target is HTMLElement => Boolean(target));
+
+  if (linkedTargets.length) return Array.from(new Set(linkedTargets));
+
+  return Array.from(root.querySelectorAll<HTMLElement>("section[id], header[id]"));
+}
+
 export function PortfolioMotionRoot({
   as = "article",
   className,
@@ -149,7 +172,7 @@ export function PortfolioMotionRoot({
     const revealTargets = Array.from(
       new Set(root.querySelectorAll<HTMLElement>(sceneSelector)),
     ).filter((target) => target !== root);
-    const chapters = Array.from(root.querySelectorAll<HTMLElement>("section[id], header[id]"));
+    const chapters = chapterTargetsFor(root);
     const chapterSet = new Set(chapters);
     const visibleChapters = new Set<HTMLElement>();
     const allObserved = Array.from(new Set([...revealTargets, ...chapters]));
@@ -275,7 +298,7 @@ export function PortfolioMotionRoot({
     const root = rootRef.current;
     if (!root) return;
 
-    const chapters = Array.from(root.querySelectorAll<HTMLElement>("section[id], header[id]"));
+    const chapters = chapterTargetsFor(root);
     const chapterLinks = Array.from(root.querySelectorAll<HTMLAnchorElement>('a[href^="#"]'));
     const media = Array.from(root.querySelectorAll<HTMLElement>("[data-motion-media]"));
     const compareGroups = prepareCompareGroups(root, media);

@@ -1,0 +1,5588 @@
+/* Personal project openings -----------------------------------------------
+   Twenty projects, twenty editorial entry systems. This file intentionally
+   owns only the opening anatomy; every rule continues the organising metaphor
+   already used by the corresponding photographic world below it. */
+
+/* Shared type safety ------------------------------------------------------- */
+
+.personal-world[data-world-layout] .personal-world__opening {
+  position: relative;
+  container-type: inline-size;
+  isolation: isolate;
+}
+
+.personal-world[data-world-layout] .personal-world__title-group h1,
+.personal-world[data-world-layout] .personal-world__position,
+.personal-world[data-world-layout] .personal-world__contract dd,
+.personal-world[data-world-layout] .personal-world__chapters a {
+  overflow-wrap: normal;
+  word-break: keep-all;
+  hyphens: none;
+}
+
+.personal-world[data-world-layout] .personal-world__title-group h1 > span {
+  max-width: 100%;
+}
+
+/* 01 / AFTERIMAGE — two printing plates, deliberately out of register. ---- */
+
+[data-world-layout="overprint-bands"] .personal-world__opening {
+  width: min(calc(100% - clamp(2rem, 5vw, 5rem)), 96rem);
+  padding-bottom: clamp(4rem, 8vw, 8rem);
+}
+
+[data-world-layout="overprint-bands"] .personal-world__topline {
+  grid-template-columns: minmax(10rem, 1fr) auto minmax(10rem, 1fr);
+  border-top: 0.32rem solid var(--studio-ink);
+  border-bottom: 0;
+  padding: 0.85rem 0 0;
+}
+
+[data-world-layout="overprint-bands"] .personal-world__opening-grid {
+  grid-template-columns: repeat(16, minmax(0, 1fr));
+  align-items: start;
+  padding-top: clamp(4.5rem, 9vw, 9rem);
+}
+
+[data-world-layout="overprint-bands"] .personal-world__title-group {
+  position: relative;
+  z-index: 2;
+  grid-column: 1 / span 10;
+  padding-bottom: clamp(2rem, 4vw, 4rem);
+  border-bottom: clamp(0.7rem, 1.25vw, 1.2rem) solid var(--studio-accent);
+}
+
+[data-world-layout="overprint-bands"] .personal-world__title-group::after {
+  position: absolute;
+  z-index: -1;
+  right: -7%;
+  bottom: -2.1rem;
+  left: 9%;
+  height: clamp(0.7rem, 1.25vw, 1.2rem);
+  background: color-mix(in srgb, var(--studio-ink) 80%, transparent);
+  content: "";
+}
+
+[data-world-layout="overprint-bands"] .personal-world__title-group h1 {
+  max-width: none;
+  font-size: clamp(5rem, 12.2vw, 12rem);
+  line-height: 0.7;
+}
+
+[data-world-layout="overprint-bands"] .personal-world__title-group h1 > span:nth-child(2) {
+  margin-left: 0.63em;
+}
+
+[data-world-layout="overprint-bands"] .personal-world__position {
+  grid-column: 11 / -1;
+  margin-top: clamp(5rem, 10vw, 11rem);
+  padding: 1.2rem 0 0 1.5rem;
+  border-top: 0;
+  border-left: 0.42rem solid var(--studio-accent);
+}
+
+[data-world-layout="overprint-bands"] .personal-world__position > p:first-child {
+  max-width: 13ch;
+  font-size: clamp(2rem, 3.4vw, 3.7rem);
+}
+
+[data-world-layout="overprint-bands"] .personal-world__contract {
+  grid-template-columns: 5fr 4fr 7fr;
+  margin-top: clamp(4rem, 7vw, 7rem);
+  border: 0;
+  background-image: linear-gradient(
+    to right,
+    transparent 0 32%,
+    var(--world-line) 32% calc(32% + 1px),
+    transparent calc(32% + 1px) 57%,
+    var(--world-line) 57% calc(57% + 1px),
+    transparent calc(57% + 1px)
+  );
+}
+
+[data-world-layout="overprint-bands"] .personal-world__contract > div {
+  min-height: 9rem;
+  padding: 1rem 1.4rem 1rem 0;
+  border: 0;
+  border-top: 1px solid var(--world-line);
+}
+
+[data-world-layout="overprint-bands"] .personal-world__contract > div:nth-child(2) {
+  transform: translateY(1.4rem);
+}
+
+[data-world-layout="overprint-bands"] .personal-world__contract > div:nth-child(3) {
+  transform: translateY(-1.4rem);
+}
+
+[data-world-layout="overprint-bands"] .personal-world__chapters {
+  grid-template-columns: 2fr 3fr 2fr 5fr;
+  margin-top: 5rem;
+  border: 0;
+  border-bottom: 0.42rem solid var(--studio-ink);
+}
+
+[data-world-layout="overprint-bands"] .personal-world__chapters a {
+  align-items: end;
+  min-height: 5rem;
+  border: 0;
+  border-left: 1px solid var(--world-line);
+}
+
+[data-world-layout="overprint-bands"] .personal-world__chapters a:nth-child(even) {
+  transform: translateY(0.8rem);
+  background: color-mix(in srgb, var(--studio-accent) 10%, transparent);
+}
+
+/* 02 / MEMORY TYPE — an archive drawer and its catalogue tabs. ------------ */
+
+[data-world-layout="archive-cards"] .personal-world__opening {
+  width: min(calc(100% - clamp(2rem, 8vw, 8rem)), 82rem);
+  padding: clamp(1.5rem, 3vw, 3rem) clamp(1rem, 3vw, 3rem) clamp(5rem, 9vw, 9rem);
+  border-right: 1px solid var(--world-line);
+  border-left: 1px solid var(--world-line);
+  box-shadow: 0 1.2rem 0 color-mix(in srgb, var(--studio-ink) 7%, transparent);
+}
+
+[data-world-layout="archive-cards"] .personal-world__topline {
+  grid-template-columns: auto 1fr auto;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--world-line);
+  background: color-mix(in srgb, var(--studio-paper) 72%, var(--studio-panel));
+}
+
+[data-world-layout="archive-cards"] .personal-world__opening-grid {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 0;
+  padding-top: clamp(2.5rem, 5vw, 5rem);
+}
+
+[data-world-layout="archive-cards"] .personal-world__title-group {
+  grid-column: 1 / span 7;
+  padding: clamp(2rem, 4vw, 4rem);
+  border: 1px solid var(--world-line);
+  background: var(--studio-paper);
+  box-shadow: 0.65rem 0.65rem 0 color-mix(in srgb, var(--studio-accent) 64%, transparent);
+}
+
+[data-world-layout="archive-cards"] .personal-world__title-group > p {
+  width: fit-content;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid var(--world-line);
+}
+
+[data-world-layout="archive-cards"] .personal-world__title-group h1 {
+  max-width: 7ch;
+  font-size: clamp(4.2rem, 8.5vw, 8.8rem);
+  line-height: 0.9;
+}
+
+[data-world-layout="archive-cards"] .personal-world__position {
+  grid-column: 8 / -1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: clamp(2rem, 6vw, 6rem) 0 clamp(2rem, 5vw, 5rem) clamp(1.5rem, 3vw, 3rem);
+  padding: 0 0 0 1.2rem;
+  border: 0;
+  border-left: 1px solid var(--world-line);
+}
+
+[data-world-layout="archive-cards"] .personal-world__position > p:first-child {
+  max-width: 10ch;
+  font-size: clamp(1.9rem, 3.1vw, 3.2rem);
+}
+
+[data-world-layout="archive-cards"] .personal-world__contract {
+  display: block;
+  width: calc(100% - clamp(2rem, 8vw, 8rem));
+  margin: clamp(4rem, 7vw, 7rem) auto 0;
+  border: 0;
+}
+
+[data-world-layout="archive-cards"] .personal-world__contract > div {
+  grid-template-columns: minmax(6rem, 0.25fr) minmax(0, 0.75fr);
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--world-line);
+  border-bottom: 0;
+}
+
+[data-world-layout="archive-cards"] .personal-world__contract > div:last-child {
+  border-bottom: 1px solid var(--world-line);
+}
+
+[data-world-layout="archive-cards"] .personal-world__contract > div:nth-child(2) {
+  margin-left: 1.3rem;
+}
+
+[data-world-layout="archive-cards"] .personal-world__contract > div:nth-child(3) {
+  margin-left: 2.6rem;
+}
+
+[data-world-layout="archive-cards"] .personal-world__chapters {
+  display: flex;
+  align-items: flex-end;
+  width: calc(100% - clamp(2rem, 8vw, 8rem));
+  margin: 3rem auto 0;
+  border: 0;
+  border-bottom: 1px solid var(--world-line);
+}
+
+[data-world-layout="archive-cards"] .personal-world__chapters a {
+  flex: 1 1 0;
+  border: 1px solid var(--world-line);
+  border-bottom: 0;
+}
+
+[data-world-layout="archive-cards"] .personal-world__chapters a:nth-child(2) {
+  padding-top: 1.6rem;
+}
+
+[data-world-layout="archive-cards"] .personal-world__chapters a:nth-child(3) {
+  padding-top: 2.3rem;
+}
+
+[data-world-layout="archive-cards"] .personal-world__chapters a:nth-child(4) {
+  padding-top: 3rem;
+}
+
+/* 03 / FIELD NOTES 37 — specimen label plus incomplete evidence grid. ----- */
+
+[data-world-layout="specimen-dossier"] .personal-world__opening {
+  width: min(calc(100% - clamp(2rem, 5vw, 5rem)), 94rem);
+  padding: clamp(2rem, 4vw, 4rem);
+  border: 1px solid var(--world-line);
+  background-image:
+    linear-gradient(var(--world-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--world-line) 1px, transparent 1px);
+  background-size: 4.5rem 4.5rem;
+}
+
+[data-world-layout="specimen-dossier"] .personal-world__topline {
+  grid-template-columns: 1fr auto auto;
+  width: calc(100% - clamp(1rem, 3vw, 3rem));
+  padding: 0 0 0.8rem;
+  border-bottom: 0.2rem solid var(--studio-ink);
+  background: var(--studio-paper);
+}
+
+[data-world-layout="specimen-dossier"] .personal-world__opening-grid {
+  grid-template-columns: repeat(14, minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(1rem, 2vw, 2rem);
+  padding-top: clamp(3rem, 6vw, 6rem);
+}
+
+[data-world-layout="specimen-dossier"] .personal-world__title-group {
+  grid-column: 1 / span 9;
+  padding: clamp(1.5rem, 3vw, 3rem);
+  border: 1px solid var(--world-line);
+  background: var(--studio-paper);
+}
+
+[data-world-layout="specimen-dossier"] .personal-world__title-group h1 {
+  max-width: 9ch;
+  font-size: clamp(4.4rem, 9vw, 9rem);
+  line-height: 0.8;
+}
+
+[data-world-layout="specimen-dossier"] .personal-world__title-group h1 > span:last-child {
+  margin-left: clamp(1rem, 5vw, 5rem);
+}
+
+[data-world-layout="specimen-dossier"] .personal-world__position {
+  grid-column: 10 / -1;
+  margin-top: clamp(7rem, 12vw, 12rem);
+  padding: 1rem;
+  border: 1px solid var(--world-line);
+  background: var(--studio-paper);
+}
+
+[data-world-layout="specimen-dossier"] .personal-world__position > p:first-child {
+  font-size: clamp(1.6rem, 2.4vw, 2.5rem);
+}
+
+[data-world-layout="specimen-dossier"] .personal-world__contract {
+  grid-template-columns: 1fr 1fr 1fr 0.42fr;
+  margin-top: clamp(4rem, 7vw, 7rem);
+  border: 1px solid var(--world-line);
+  background: var(--studio-paper);
+}
+
+[data-world-layout="specimen-dossier"] .personal-world__contract::after {
+  display: grid;
+  place-items: center;
+  min-height: 8rem;
+  border-bottom: 1px solid var(--world-line);
+  color: var(--studio-accent);
+  content: "?";
+  font-family: var(--studio-display);
+  font-size: clamp(2.5rem, 5vw, 5rem);
+}
+
+[data-world-layout="specimen-dossier"] .personal-world__contract > div {
+  border-bottom: 1px solid var(--world-line);
+}
+
+[data-world-layout="specimen-dossier"] .personal-world__chapters {
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 2rem;
+  border: 0;
+  gap: 0.55rem;
+}
+
+[data-world-layout="specimen-dossier"] .personal-world__chapters a {
+  min-height: 4.5rem;
+  border: 1px solid var(--world-line);
+  background: var(--studio-paper);
+}
+
+[data-world-layout="specimen-dossier"] .personal-world__chapters a:last-child {
+  border-style: dashed;
+  background: transparent;
+}
+
+/* 04 / THE LAST LETTER — an intimate sheet with a routed margin. ---------- */
+
+[data-world-layout="correspondence-scroll"] .personal-world__opening {
+  width: min(calc(100% - clamp(2rem, 10vw, 10rem)), 72rem);
+  margin-top: clamp(2rem, 5vw, 5rem);
+  padding: clamp(1.5rem, 3vw, 3rem) clamp(2rem, 7vw, 7rem) clamp(6rem, 11vw, 11rem);
+  border: 1px solid var(--world-line);
+  box-shadow: 0.9rem 1rem 0 color-mix(in srgb, var(--studio-ink) 5%, transparent);
+}
+
+[data-world-layout="correspondence-scroll"] .personal-world__topline {
+  display: flex;
+  justify-content: space-between;
+  border-bottom-style: dashed;
+  padding-bottom: 1.1rem;
+}
+
+[data-world-layout="correspondence-scroll"] .personal-world__topline > span:last-child {
+  max-width: 24ch;
+}
+
+[data-world-layout="correspondence-scroll"] .personal-world__opening-grid {
+  display: block;
+  padding-top: clamp(5rem, 10vw, 10rem);
+}
+
+[data-world-layout="correspondence-scroll"] .personal-world__title-group {
+  width: min(86%, 52rem);
+}
+
+[data-world-layout="correspondence-scroll"] .personal-world__title-group h1 {
+  max-width: 11ch;
+  font-size: clamp(4.5rem, 9vw, 8.8rem);
+  line-height: 0.78;
+}
+
+[data-world-layout="correspondence-scroll"] .personal-world__title-group h1 > span:last-child {
+  margin-left: 0.55em;
+}
+
+[data-world-layout="correspondence-scroll"] .personal-world__position {
+  width: min(62%, 33rem);
+  margin: clamp(5rem, 10vw, 10rem) 0 0 auto;
+  padding: 1.4rem 0 0 clamp(1.5rem, 4vw, 4rem);
+  border-top-style: dashed;
+}
+
+[data-world-layout="correspondence-scroll"] .personal-world__position::before {
+  display: block;
+  width: 2.2rem;
+  height: 2.2rem;
+  margin: -2.55rem 0 1.6rem auto;
+  border: 1px solid var(--studio-accent);
+  border-radius: 50%;
+  content: "";
+}
+
+[data-world-layout="correspondence-scroll"] .personal-world__position > p:first-child {
+  font-size: clamp(2rem, 3.6vw, 3.5rem);
+}
+
+[data-world-layout="correspondence-scroll"] .personal-world__contract {
+  display: block;
+  margin-top: clamp(5rem, 9vw, 9rem);
+  border: 0;
+}
+
+[data-world-layout="correspondence-scroll"] .personal-world__contract > div {
+  grid-template-columns: 9rem minmax(0, 1fr);
+  gap: 2rem;
+  padding: 0.9rem 0;
+  border: 0;
+  border-bottom: 1px solid var(--world-line);
+}
+
+[data-world-layout="correspondence-scroll"] .personal-world__contract dt {
+  color: var(--studio-accent);
+}
+
+[data-world-layout="correspondence-scroll"] .personal-world__chapters {
+  grid-template-columns: 1fr 1.3fr 0.9fr 1.6fr;
+  margin-top: 4.5rem;
+  border: 0;
+  border-top: 1px dashed var(--world-line);
+}
+
+[data-world-layout="correspondence-scroll"] .personal-world__chapters a {
+  border: 0;
+  border-right: 1px dashed var(--world-line);
+}
+
+[data-world-layout="correspondence-scroll"] .personal-world__chapters a:last-child {
+  border-right: 0;
+}
+
+/* 05 / TACTILE FORECAST — a fanned material swatch library. --------------- */
+
+[data-world-layout="material-atlas"] .personal-world__opening {
+  width: min(calc(100% - clamp(2rem, 5vw, 5rem)), 94rem);
+  padding-bottom: clamp(5rem, 10vw, 10rem);
+}
+
+[data-world-layout="material-atlas"] .personal-world__topline {
+  grid-template-columns: auto 1fr auto;
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+[data-world-layout="material-atlas"] .personal-world__topline::after {
+  grid-column: 1 / -1;
+  width: 100%;
+  height: 1px;
+  margin-top: 1rem;
+  background: linear-gradient(90deg, var(--world-line), transparent 72%);
+  content: "";
+}
+
+[data-world-layout="material-atlas"] .personal-world__opening-grid {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: center;
+  min-height: clamp(34rem, 60vw, 55rem);
+  padding-top: 2rem;
+}
+
+[data-world-layout="material-atlas"] .personal-world__title-group {
+  grid-column: 2 / span 8;
+  transform: rotate(-3deg);
+  transform-origin: left bottom;
+}
+
+[data-world-layout="material-atlas"] .personal-world__title-group::before {
+  position: absolute;
+  z-index: -1;
+  inset: -2rem -8% -3rem 4%;
+  border: 1px solid var(--world-line);
+  border-radius: 52% 48% 7% 8%;
+  background: color-mix(in srgb, var(--studio-panel) 64%, transparent);
+  content: "";
+  transform: rotate(4deg);
+}
+
+[data-world-layout="material-atlas"] .personal-world__title-group h1 {
+  max-width: 9ch;
+  font-size: clamp(4.3rem, 9.5vw, 9.7rem);
+  line-height: 0.76;
+}
+
+[data-world-layout="material-atlas"] .personal-world__position {
+  grid-column: 9 / -1;
+  align-self: end;
+  margin-bottom: clamp(2rem, 6vw, 6rem);
+  padding: 1.3rem 1.1rem;
+  border: 1px solid var(--world-line);
+  border-radius: 50% 50% 0 0;
+}
+
+[data-world-layout="material-atlas"] .personal-world__position > p:first-child {
+  font-size: clamp(1.8rem, 2.9vw, 3rem);
+}
+
+[data-world-layout="material-atlas"] .personal-world__contract {
+  display: flex;
+  align-items: flex-end;
+  width: min(88%, 72rem);
+  margin: -2rem auto 0;
+  border: 0;
+}
+
+[data-world-layout="material-atlas"] .personal-world__contract > div {
+  flex: 1 1 0;
+  min-height: 12rem;
+  margin-left: -1px;
+  padding: 1.4rem;
+  border: 1px solid var(--world-line);
+  border-radius: 4rem 4rem 0 0;
+  background: var(--studio-paper);
+  transform-origin: center bottom;
+}
+
+[data-world-layout="material-atlas"] .personal-world__contract > div:first-child {
+  transform: rotate(-7deg);
+}
+
+[data-world-layout="material-atlas"] .personal-world__contract > div:nth-child(2) {
+  transform: translateY(-1.4rem);
+}
+
+[data-world-layout="material-atlas"] .personal-world__contract > div:last-child {
+  transform: rotate(7deg);
+}
+
+[data-world-layout="material-atlas"] .personal-world__chapters {
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-top: 5rem;
+  border: 0;
+}
+
+[data-world-layout="material-atlas"] .personal-world__chapters a {
+  flex: 0 1 11rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  border: 1px solid var(--world-line);
+  border-radius: 999px;
+  text-align: center;
+}
+
+/* 06 / NIGHT INDEX — a strict, ceremonial nocturnal axis. ----------------- */
+
+[data-world-layout="deco-axis"] .personal-world__opening {
+  width: min(calc(100% - clamp(2rem, 5vw, 5rem)), 96rem);
+  padding-bottom: clamp(5rem, 10vw, 10rem);
+}
+
+[data-world-layout="deco-axis"] .personal-world__topline {
+  grid-template-columns: 1fr auto 1fr;
+  border-block: 1px solid var(--world-line);
+  padding-block: 0.75rem;
+}
+
+[data-world-layout="deco-axis"] .personal-world__topline a {
+  justify-self: start;
+}
+
+[data-world-layout="deco-axis"] .personal-world__opening-grid {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  padding-top: clamp(6rem, 12vw, 12rem);
+  text-align: center;
+}
+
+[data-world-layout="deco-axis"] .personal-world__opening-grid::before {
+  position: absolute;
+  z-index: -1;
+  top: 8rem;
+  bottom: 2rem;
+  left: 50%;
+  width: 1px;
+  background: var(--world-line);
+  content: "";
+}
+
+[data-world-layout="deco-axis"] .personal-world__title-group {
+  grid-column: auto;
+  width: min(100%, 68rem);
+}
+
+[data-world-layout="deco-axis"] .personal-world__title-group h1 {
+  max-width: none;
+  font-size: clamp(5.5rem, 12vw, 12rem);
+  line-height: 0.68;
+}
+
+[data-world-layout="deco-axis"] .personal-world__title-group h1 > span {
+  margin-inline: auto;
+}
+
+[data-world-layout="deco-axis"] .personal-world__position {
+  grid-column: auto;
+  width: min(72%, 44rem);
+  margin-top: clamp(6rem, 10vw, 10rem);
+  padding: 2rem clamp(1rem, 4vw, 4rem);
+  border: 1px solid var(--world-line);
+  background: var(--studio-paper);
+}
+
+[data-world-layout="deco-axis"] .personal-world__position > p:first-child {
+  margin-inline: auto;
+  font-size: clamp(2.2rem, 3.8vw, 4rem);
+}
+
+[data-world-layout="deco-axis"] .personal-world__position > p:last-child {
+  margin: 1.5rem auto 0;
+}
+
+[data-world-layout="deco-axis"] .personal-world__contract {
+  grid-template-columns: repeat(3, 1fr);
+  width: min(92%, 76rem);
+  margin-inline: auto;
+  border: 0;
+}
+
+[data-world-layout="deco-axis"] .personal-world__contract > div {
+  place-items: center;
+  min-height: 12rem;
+  padding: 2rem;
+  border: 0;
+  border-right: 1px solid var(--world-line);
+  text-align: center;
+}
+
+[data-world-layout="deco-axis"] .personal-world__contract > div:last-child {
+  border-right: 0;
+}
+
+[data-world-layout="deco-axis"] .personal-world__chapters {
+  grid-template-columns: repeat(4, 1fr);
+  width: min(88%, 70rem);
+  margin: 4rem auto 0;
+  border: 0;
+}
+
+[data-world-layout="deco-axis"] .personal-world__chapters a {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  border: 0;
+}
+
+[data-world-layout="deco-axis"] .personal-world__chapters a::before {
+  width: 0.65rem;
+  height: 0.65rem;
+  border: 1px solid currentColor;
+  content: "";
+  transform: rotate(45deg);
+}
+
+/* 07 / PUBLIC MEMORY — a bilingual route sign and its four stops. --------- */
+
+[data-world-layout="route-sign"] .personal-world__opening {
+  width: min(calc(100% - clamp(2rem, 4vw, 4rem)), 98rem);
+  padding: clamp(1.5rem, 3vw, 3rem) clamp(1.5rem, 4vw, 4rem) clamp(5rem, 9vw, 9rem);
+  border-right: 1px solid var(--world-line);
+  border-left: 1px solid var(--world-line);
+}
+
+[data-world-layout="route-sign"] .personal-world__topline {
+  grid-template-columns: auto auto 1fr;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--world-line);
+}
+
+[data-world-layout="route-sign"] .personal-world__opening-grid {
+  grid-template-columns: repeat(15, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 0;
+  padding-top: clamp(3rem, 6vw, 6rem);
+}
+
+[data-world-layout="route-sign"] .personal-world__title-group {
+  grid-column: 1 / span 10;
+  padding: clamp(2rem, 4vw, 4rem) clamp(1rem, 2vw, 2rem);
+  border: 1px solid var(--world-line);
+  border-left: clamp(0.45rem, 0.8vw, 0.8rem) solid var(--studio-accent);
+}
+
+[data-world-layout="route-sign"] .personal-world__title-group h1 {
+  max-width: 10ch;
+  font-size: clamp(4.8rem, 10vw, 10rem);
+  line-height: 0.77;
+}
+
+[data-world-layout="route-sign"] .personal-world__position {
+  grid-column: 11 / -1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(1.5rem, 3vw, 3rem);
+  border: 1px solid var(--world-line);
+  border-left: 0;
+  background: var(--studio-accent);
+  color: var(--studio-paper);
+}
+
+[data-world-layout="route-sign"] .personal-world__position > p:first-child {
+  font-size: clamp(1.8rem, 3vw, 3.2rem);
+}
+
+[data-world-layout="route-sign"] .personal-world__position > p:last-child {
+  color: inherit;
+}
+
+[data-world-layout="route-sign"] .personal-world__contract {
+  display: block;
+  width: min(74%, 68rem);
+  margin: clamp(4rem, 7vw, 7rem) 0 0 auto;
+  border: 0;
+  border-left: 0.22rem solid var(--studio-accent);
+}
+
+[data-world-layout="route-sign"] .personal-world__contract > div {
+  position: relative;
+  grid-template-columns: minmax(7rem, 0.25fr) minmax(0, 0.75fr);
+  padding: 1.1rem 1.2rem 1.1rem 2.4rem;
+  border: 0;
+  border-bottom: 1px solid var(--world-line);
+}
+
+[data-world-layout="route-sign"] .personal-world__contract > div::before {
+  position: absolute;
+  top: 50%;
+  left: -0.55rem;
+  width: 0.85rem;
+  height: 0.85rem;
+  border: 0.18rem solid var(--studio-paper);
+  border-radius: 50%;
+  background: var(--studio-accent);
+  content: "";
+  transform: translateY(-50%);
+}
+
+[data-world-layout="route-sign"] .personal-world__chapters {
+  display: grid;
+  grid-template-columns: 1.1fr 1.6fr 1fr 1.8fr;
+  margin-top: 4rem;
+  border: 0;
+  border-top: 0.22rem solid var(--studio-accent);
+}
+
+[data-world-layout="route-sign"] .personal-world__chapters a {
+  position: relative;
+  padding: 1.5rem 0.8rem 0;
+  border: 0;
+}
+
+[data-world-layout="route-sign"] .personal-world__chapters a::before {
+  position: absolute;
+  top: -0.42rem;
+  left: 1rem;
+  width: 0.62rem;
+  height: 0.62rem;
+  border-radius: 50%;
+  background: var(--studio-accent);
+  content: "";
+}
+
+/* 08 / SOFT MACHINE — a rigid datum interrupted by responsive matter. ----- */
+
+[data-world-layout="soft-datum"] .personal-world__opening {
+  width: min(calc(100% - clamp(2rem, 5vw, 5rem)), 94rem);
+  min-height: min(61rem, 88dvh);
+  padding-bottom: clamp(5rem, 9vw, 9rem);
+}
+
+[data-world-layout="soft-datum"] .personal-world__topline {
+  grid-template-columns: 1fr auto auto;
+  width: 76%;
+  border-bottom: 0;
+  border-left: 1px solid var(--world-line);
+  padding: 0.3rem 0 0.3rem 1rem;
+}
+
+[data-world-layout="soft-datum"] .personal-world__opening-grid {
+  position: relative;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: center;
+  min-height: clamp(31rem, 52vw, 48rem);
+  padding-top: 2rem;
+}
+
+[data-world-layout="soft-datum"] .personal-world__opening-grid::before {
+  position: absolute;
+  z-index: -1;
+  top: 8%;
+  right: 4%;
+  width: min(42vw, 35rem);
+  aspect-ratio: 1.08;
+  border: 1px solid var(--world-line);
+  border-radius: 48% 52% 61% 39% / 35% 57% 43% 65%;
+  background: color-mix(in srgb, var(--studio-panel) 70%, transparent);
+  content: "";
+  transform: rotate(8deg);
+}
+
+[data-world-layout="soft-datum"] .personal-world__title-group {
+  grid-column: 1 / span 9;
+  align-self: end;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--world-line);
+}
+
+[data-world-layout="soft-datum"] .personal-world__title-group h1 {
+  max-width: 9ch;
+  font-size: clamp(5rem, 11vw, 11rem);
+  line-height: 0.72;
+}
+
+[data-world-layout="soft-datum"] .personal-world__title-group h1 > span:last-child {
+  margin-left: clamp(2rem, 8vw, 8rem);
+}
+
+[data-world-layout="soft-datum"] .personal-world__position {
+  grid-column: 8 / -1;
+  align-self: start;
+  margin-top: clamp(4rem, 7vw, 7rem);
+  padding: 1.5rem;
+  border: 1px solid var(--world-line);
+  border-radius: 2.6rem 2.6rem 0.3rem 2.6rem;
+  background: var(--studio-paper);
+}
+
+[data-world-layout="soft-datum"] .personal-world__position > p:first-child {
+  font-size: clamp(1.8rem, 2.8vw, 3rem);
+}
+
+[data-world-layout="soft-datum"] .personal-world__contract {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  gap: clamp(1rem, 2vw, 2rem);
+  margin-top: 1rem;
+  border: 0;
+}
+
+[data-world-layout="soft-datum"] .personal-world__contract::before {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: var(--world-line);
+  content: "";
+}
+
+[data-world-layout="soft-datum"] .personal-world__contract > div {
+  position: relative;
+  flex: 1 1 0;
+  min-height: 10rem;
+  padding: 1.5rem;
+  border: 1px solid var(--world-line);
+  background: var(--studio-paper);
+}
+
+[data-world-layout="soft-datum"] .personal-world__contract > div:nth-child(2) {
+  border-radius: 2.4rem;
+  transform: translateY(2rem);
+}
+
+[data-world-layout="soft-datum"] .personal-world__chapters {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 5rem;
+  border: 0;
+}
+
+[data-world-layout="soft-datum"] .personal-world__chapters a {
+  flex: 0 1 11rem;
+  border: 1px solid var(--world-line);
+  border-radius: 1.4rem;
+}
+
+/* 09 / SIGNAL / NOISE — an illuminated broadcast control surface. -------- */
+
+[data-world-layout="signal-console"] .personal-world__opening {
+  width: min(calc(100% - clamp(2rem, 4vw, 4rem)), 98rem);
+  padding: clamp(1.2rem, 2vw, 2rem) clamp(1.2rem, 3vw, 3rem) clamp(5rem, 9vw, 9rem);
+  border: 1px solid color-mix(in srgb, var(--studio-paper) 24%, transparent);
+}
+
+[data-world-layout="signal-console"] .personal-world__topline {
+  grid-template-columns: auto 1fr auto;
+  padding: 0.8rem 1rem;
+  border: 1px solid color-mix(in srgb, var(--studio-paper) 24%, transparent);
+}
+
+[data-world-layout="signal-console"] .personal-world__opening-grid {
+  grid-template-columns: repeat(16, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 1px;
+  margin-top: clamp(3rem, 6vw, 6rem);
+  padding: 1px;
+  background: color-mix(in srgb, var(--studio-paper) 24%, transparent);
+}
+
+[data-world-layout="signal-console"] .personal-world__title-group {
+  grid-column: 1 / span 10;
+  padding: clamp(2rem, 4vw, 4rem);
+  background: var(--studio-ink);
+}
+
+[data-world-layout="signal-console"] .personal-world__title-group > p {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+[data-world-layout="signal-console"] .personal-world__title-group > p::before {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: var(--studio-accent);
+  box-shadow: 0 0 0 0.25rem color-mix(in srgb, var(--studio-accent) 20%, transparent);
+  content: "";
+}
+
+[data-world-layout="signal-console"] .personal-world__title-group h1 {
+  max-width: 8ch;
+  font-size: clamp(4.7rem, 9.6vw, 9.8rem);
+  line-height: 0.75;
+}
+
+[data-world-layout="signal-console"] .personal-world__title-group h1 > span:last-child {
+  margin-left: 0.75em;
+  color: var(--studio-accent);
+}
+
+[data-world-layout="signal-console"] .personal-world__position {
+  grid-column: 11 / -1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2rem, 4vw, 4rem);
+  border: 0;
+  background: color-mix(in srgb, var(--studio-paper) 6%, var(--studio-ink));
+}
+
+[data-world-layout="signal-console"] .personal-world__position > p:first-child {
+  font-family: var(--studio-meta);
+  font-size: clamp(1.5rem, 2.5vw, 2.6rem);
+  letter-spacing: 0.03em;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+[data-world-layout="signal-console"] .personal-world__position > p:last-child {
+  color: color-mix(in srgb, var(--studio-paper) 65%, transparent);
+}
+
+[data-world-layout="signal-console"] .personal-world__contract {
+  grid-template-columns: 0.85fr 1.15fr 1fr;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  border: 0;
+}
+
+[data-world-layout="signal-console"] .personal-world__contract > div {
+  position: relative;
+  min-height: 11rem;
+  padding: 1.5rem 1.2rem 3rem;
+  border: 1px solid color-mix(in srgb, var(--studio-paper) 24%, transparent);
+}
+
+[data-world-layout="signal-console"] .personal-world__contract > div::after {
+  position: absolute;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  left: 1.2rem;
+  height: 0.35rem;
+  background: linear-gradient(
+    90deg,
+    var(--studio-accent) 0 var(--meter, 55%),
+    color-mix(in srgb, var(--studio-paper) 15%, transparent) var(--meter, 55%)
+  );
+  content: "";
+}
+
+[data-world-layout="signal-console"] .personal-world__contract > div:nth-child(2) {
+  --meter: 82%;
+}
+
+[data-world-layout="signal-console"] .personal-world__contract > div:nth-child(3) {
+  --meter: 34%;
+}
+
+[data-world-layout="signal-console"] .personal-world__chapters {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.65rem;
+  margin-top: 1rem;
+  border: 0;
+}
+
+[data-world-layout="signal-console"] .personal-world__chapters a {
+  min-height: 4.8rem;
+  border: 1px solid color-mix(in srgb, var(--studio-paper) 24%, transparent);
+  background: color-mix(in srgb, var(--studio-paper) 4%, transparent);
+}
+
+/* 10 / CHROMA TEMPO — a score with tempo, measures, and a loud rest. ------- */
+
+[data-world-layout="score-grid"] .personal-world__opening {
+  width: min(calc(100% - clamp(2rem, 5vw, 5rem)), 96rem);
+  padding-bottom: clamp(5rem, 9vw, 9rem);
+}
+
+[data-world-layout="score-grid"] .personal-world__topline {
+  grid-template-columns: auto auto 1fr;
+  border-top: 1px solid var(--world-line);
+  border-bottom: 0;
+  padding-block: 0.7rem;
+}
+
+[data-world-layout="score-grid"] .personal-world__opening-grid {
+  position: relative;
+  grid-template-columns: repeat(14, minmax(0, 1fr));
+  align-items: start;
+  min-height: clamp(31rem, 48vw, 46rem);
+  padding-top: clamp(4rem, 8vw, 8rem);
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0 3.8rem,
+    var(--world-line) 3.8rem calc(3.8rem + 1px)
+  );
+}
+
+[data-world-layout="score-grid"] .personal-world__title-group {
+  grid-column: 1 / span 11;
+  padding-top: 1.2rem;
+  background: var(--studio-paper);
+}
+
+[data-world-layout="score-grid"] .personal-world__title-group h1 {
+  max-width: none;
+  font-size: clamp(4.7rem, 10.4vw, 10.5rem);
+  line-height: 0.74;
+}
+
+[data-world-layout="score-grid"] .personal-world__title-group h1 > span {
+  display: inline-block;
+}
+
+[data-world-layout="score-grid"] .personal-world__title-group h1 > span + span {
+  margin-left: 0.14em;
+}
+
+[data-world-layout="score-grid"] .personal-world__position {
+  grid-column: 9 / -1;
+  margin-top: clamp(10rem, 18vw, 18rem);
+  padding: 1.2rem 0 1.2rem 1.3rem;
+  border: 0;
+  border-left: 0.45rem solid var(--studio-accent);
+  background: var(--studio-paper);
+}
+
+[data-world-layout="score-grid"] .personal-world__position > p:first-child {
+  font-size: clamp(1.8rem, 3vw, 3.2rem);
+}
+
+[data-world-layout="score-grid"] .personal-world__contract {
+  grid-template-columns: 4fr 7fr 5fr;
+  margin-top: 1rem;
+  border: 0;
+  border-top: 0.2rem solid var(--studio-ink);
+  border-bottom: 0.2rem solid var(--studio-ink);
+}
+
+[data-world-layout="score-grid"] .personal-world__contract > div {
+  min-height: 10rem;
+  border: 0;
+  border-right: 1px solid var(--world-line);
+}
+
+[data-world-layout="score-grid"] .personal-world__chapters {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-top: 3.5rem;
+  border: 0;
+}
+
+[data-world-layout="score-grid"] .personal-world__chapters a {
+  position: relative;
+  flex: 1 1 0;
+  border: 0;
+  border-top: 1px solid var(--world-line);
+}
+
+[data-world-layout="score-grid"] .personal-world__chapters a::before {
+  position: absolute;
+  top: -0.45rem;
+  left: 1rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  background: var(--studio-accent);
+  content: "";
+}
+
+[data-world-layout="score-grid"] .personal-world__chapters a:nth-child(2)::before {
+  width: 1.2rem;
+  height: 1.2rem;
+  top: -0.65rem;
+}
+
+/* 11 / 79W — a continuous westbound transit line. ------------------------ */
+
+[data-world-layout="westbound-line"] .personal-world__opening {
+  width: min(calc(100% - clamp(2rem, 4vw, 4rem)), 98rem);
+  padding-bottom: clamp(5rem, 9vw, 9rem);
+}
+
+[data-world-layout="westbound-line"] .personal-world__topline {
+  grid-template-columns: auto 1fr auto;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--world-line);
+  border-radius: 0.4rem;
+}
+
+[data-world-layout="westbound-line"] .personal-world__opening-grid {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: start;
+  min-height: clamp(28rem, 44vw, 42rem);
+  padding-top: clamp(5rem, 9vw, 9rem);
+}
+
+[data-world-layout="westbound-line"] .personal-world__title-group {
+  grid-column: 1 / span 5;
+  align-self: stretch;
+  padding: clamp(2rem, 4vw, 4rem);
+  border-radius: 0.65rem;
+  background: var(--studio-ink);
+  color: var(--studio-paper);
+}
+
+[data-world-layout="westbound-line"] .personal-world__title-group > p {
+  color: inherit;
+}
+
+[data-world-layout="westbound-line"] .personal-world__title-group h1 {
+  max-width: none;
+  font-family: var(--studio-meta);
+  font-size: clamp(6rem, 13vw, 13rem);
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -0.08em;
+  line-height: 0.75;
+}
+
+[data-world-layout="westbound-line"] .personal-world__position {
+  grid-column: 7 / -1;
+  margin-top: clamp(8rem, 15vw, 15rem);
+  padding: 1.5rem 0 0;
+  border-top: 0.35rem solid var(--studio-accent);
+}
+
+[data-world-layout="westbound-line"] .personal-world__position > p:first-child {
+  max-width: 15ch;
+  font-size: clamp(2rem, 3.4vw, 3.6rem);
+}
+
+[data-world-layout="westbound-line"] .personal-world__contract {
+  position: relative;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 3vw, 3rem);
+  margin-top: clamp(3rem, 6vw, 6rem);
+  border: 0;
+}
+
+[data-world-layout="westbound-line"] .personal-world__contract::before {
+  position: absolute;
+  top: 1.05rem;
+  right: 4%;
+  left: 4%;
+  height: 0.28rem;
+  background: var(--studio-accent);
+  content: "";
+}
+
+[data-world-layout="westbound-line"] .personal-world__contract > div {
+  position: relative;
+  padding: 3rem 1.2rem 1.2rem;
+  border: 0;
+}
+
+[data-world-layout="westbound-line"] .personal-world__contract > div::before {
+  position: absolute;
+  z-index: 1;
+  top: 0.65rem;
+  left: 1.2rem;
+  width: 1rem;
+  height: 1rem;
+  border: 0.2rem solid var(--studio-paper);
+  border-radius: 50%;
+  background: var(--studio-accent);
+  content: "";
+}
+
+[data-world-layout="westbound-line"] .personal-world__chapters {
+  display: flex;
+  margin-top: 3rem;
+  padding: 0.55rem;
+  border: 1px solid var(--world-line);
+  border-radius: 999px;
+}
+
+[data-world-layout="westbound-line"] .personal-world__chapters a {
+  flex: 1 1 0;
+  border: 0;
+  border-radius: 999px;
+}
+
+/* 12 / TIDEHOLD — all information rests against one tidal datum. ---------- */
+
+[data-world-layout="tide-datum"] .personal-world__opening {
+  width: min(calc(100% - clamp(2rem, 5vw, 5rem)), 96rem);
+  padding-bottom: clamp(5rem, 10vw, 10rem);
+}
+
+[data-world-layout="tide-datum"] .personal-world__topline {
+  grid-template-columns: 1fr auto auto;
+  border-bottom: 0;
+  border-top: 1px solid var(--world-line);
+  padding-top: 0.8rem;
+}
+
+[data-world-layout="tide-datum"] .personal-world__opening-grid {
+  position: relative;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: end;
+  min-height: clamp(34rem, 56vw, 54rem);
+  padding-top: 3rem;
+}
+
+[data-world-layout="tide-datum"] .personal-world__opening-grid::after {
+  position: absolute;
+  z-index: -1;
+  right: 0;
+  bottom: 20%;
+  left: 0;
+  height: 28%;
+  border-top: 1px solid var(--studio-accent);
+  background: color-mix(in srgb, var(--studio-panel) 72%, transparent);
+  content: "";
+}
+
+[data-world-layout="tide-datum"] .personal-world__title-group {
+  grid-column: 1 / span 8;
+  padding-bottom: clamp(3rem, 7vw, 7rem);
+}
+
+[data-world-layout="tide-datum"] .personal-world__title-group h1 {
+  max-width: none;
+  font-size: clamp(5.2rem, 11.5vw, 11.6rem);
+  line-height: 0.73;
+}
+
+[data-world-layout="tide-datum"] .personal-world__position {
+  grid-column: 8 / -1;
+  align-self: start;
+  margin-top: clamp(4rem, 8vw, 8rem);
+  padding: 1.3rem 0 0 1.4rem;
+  border: 0;
+  border-left: 1px solid var(--world-line);
+}
+
+[data-world-layout="tide-datum"] .personal-world__position > p:first-child {
+  font-size: clamp(1.9rem, 3vw, 3.2rem);
+}
+
+[data-world-layout="tide-datum"] .personal-world__contract {
+  grid-template-columns: 1fr 1.35fr 1fr;
+  align-items: end;
+  margin-top: 0;
+  border: 0;
+  border-bottom: 1px solid var(--studio-accent);
+}
+
+[data-world-layout="tide-datum"] .personal-world__contract > div {
+  min-height: 10rem;
+  border: 0;
+  border-right: 1px solid var(--world-line);
+}
+
+[data-world-layout="tide-datum"] .personal-world__contract > div:nth-child(2) {
+  min-height: 13rem;
+  background: color-mix(in srgb, var(--studio-panel) 54%, transparent);
+}
+
+[data-world-layout="tide-datum"] .personal-world__chapters {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin-top: 2.5rem;
+  border: 0;
+}
+
+[data-world-layout="tide-datum"] .personal-world__chapters a {
+  align-items: start;
+  min-height: 5rem;
+  border: 0;
+  border-left: 1px solid var(--world-line);
+}
+
+[data-world-layout="tide-datum"] .personal-world__chapters a:nth-child(2),
+[data-world-layout="tide-datum"] .personal-world__chapters a:nth-child(4) {
+  margin-top: 1.2rem;
+}
+
+/* 13 / OFFSORT — stacked batch passports and blunt category stickers. ----- */
+
+[data-world-layout="batch-stack"] .personal-world__opening {
+  width: min(calc(100% - clamp(2rem, 6vw, 6rem)), 90rem);
+  padding-bottom: clamp(6rem, 11vw, 11rem);
+}
+
+[data-world-layout="batch-stack"] .personal-world__topline {
+  grid-template-columns: auto 1fr auto;
+  padding: 0.7rem 1rem;
+  border: 0.16rem solid var(--studio-ink);
+}
+
+[data-world-layout="batch-stack"] .personal-world__opening-grid {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: start;
+  padding-top: clamp(4rem, 8vw, 8rem);
+}
+
+[data-world-layout="batch-stack"] .personal-world__title-group {
+  position: relative;
+  grid-column: 1 / span 8;
+  padding: clamp(2rem, 4vw, 4rem);
+  border: 0.16rem solid var(--studio-ink);
+  background: var(--studio-paper);
+  box-shadow:
+    1rem 1rem 0 color-mix(in srgb, var(--studio-accent) 44%, var(--studio-paper)),
+    2rem 2rem 0 color-mix(in srgb, var(--studio-ink) 11%, var(--studio-paper));
+  transform: rotate(-1.3deg);
+}
+
+[data-world-layout="batch-stack"] .personal-world__title-group h1 {
+  max-width: none;
+  font-size: clamp(5rem, 11.5vw, 11.5rem);
+  line-height: 0.74;
+}
+
+[data-world-layout="batch-stack"] .personal-world__position {
+  grid-column: 9 / -1;
+  margin: clamp(8rem, 15vw, 15rem) 0 0 -1rem;
+  padding: 1.5rem;
+  border: 0.16rem solid var(--studio-ink);
+  background: var(--studio-accent);
+  color: var(--studio-paper);
+  transform: rotate(1.6deg);
+}
+
+[data-world-layout="batch-stack"] .personal-world__position > p:first-child {
+  font-size: clamp(1.8rem, 3vw, 3.2rem);
+}
+
+[data-world-layout="batch-stack"] .personal-world__position > p:last-child {
+  color: inherit;
+}
+
+[data-world-layout="batch-stack"] .personal-world__contract {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: min(78%, 66rem);
+  margin: clamp(6rem, 10vw, 10rem) auto 0;
+  border: 0;
+}
+
+[data-world-layout="batch-stack"] .personal-world__contract > div {
+  grid-template-columns: 9rem minmax(0, 1fr);
+  padding: 1.1rem 1.4rem;
+  border: 0.14rem solid var(--studio-ink);
+  background: var(--studio-paper);
+}
+
+[data-world-layout="batch-stack"] .personal-world__contract > div:nth-child(2) {
+  margin: -0.14rem -1.2rem 0 1.2rem;
+}
+
+[data-world-layout="batch-stack"] .personal-world__contract > div:nth-child(3) {
+  margin: -0.14rem -2.4rem 0 2.4rem;
+}
+
+[data-world-layout="batch-stack"] .personal-world__chapters {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.45rem;
+  margin-top: 4rem;
+  border: 0;
+}
+
+[data-world-layout="batch-stack"] .personal-world__chapters a {
+  flex: 0 1 12rem;
+  border: 0.14rem solid var(--studio-ink);
+  background: var(--studio-paper);
+}
+
+[data-world-layout="batch-stack"] .personal-world__chapters a:nth-child(even) {
+  transform: translateY(0.8rem) rotate(1deg);
+}
+
+/* 14 / HORALIS — a circadian dial with copy orbiting a still centre. ------- */
+
+[data-world-layout="circadian-dial"] .personal-world__opening {
+  width: min(calc(100% - clamp(2rem, 5vw, 5rem)), 94rem);
+  min-height: min(68rem, 96dvh);
+  padding-bottom: clamp(5rem, 9vw, 9rem);
+}
+
+[data-world-layout="circadian-dial"] .personal-world__topline {
+  grid-template-columns: 1fr auto 1fr;
+  border-bottom: 0;
+}
+
+[data-world-layout="circadian-dial"] .personal-world__opening-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: center;
+  min-height: clamp(36rem, 58vw, 56rem);
+  padding-top: 2rem;
+}
+
+[data-world-layout="circadian-dial"] .personal-world__opening-grid::before,
+[data-world-layout="circadian-dial"] .personal-world__opening-grid::after {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  aspect-ratio: 1;
+  border: 1px solid var(--world-line);
+  border-radius: 50%;
+  content: "";
+  transform: translate(-50%, -50%);
+}
+
+[data-world-layout="circadian-dial"] .personal-world__opening-grid::before {
+  width: min(66vw, 48rem);
+}
+
+[data-world-layout="circadian-dial"] .personal-world__opening-grid::after {
+  width: min(42vw, 30rem);
+  border-color: var(--studio-accent);
+}
+
+[data-world-layout="circadian-dial"] .personal-world__title-group {
+  grid-column: 2 / span 10;
+  text-align: center;
+}
+
+[data-world-layout="circadian-dial"] .personal-world__title-group > p {
+  width: fit-content;
+  margin-inline: auto;
+}
+
+[data-world-layout="circadian-dial"] .personal-world__title-group h1 {
+  max-width: none;
+  font-size: clamp(5.5rem, 12vw, 12rem);
+  line-height: 0.72;
+}
+
+[data-world-layout="circadian-dial"] .personal-world__title-group h1 > span {
+  margin-inline: auto;
+}
+
+[data-world-layout="circadian-dial"] .personal-world__position {
+  position: absolute;
+  right: 0;
+  bottom: 10%;
+  width: min(31%, 25rem);
+  padding: 1.2rem;
+  border: 1px solid var(--world-line);
+  border-radius: 50%;
+  background: var(--studio-paper);
+  text-align: center;
+}
+
+[data-world-layout="circadian-dial"] .personal-world__position > p:first-child {
+  font-size: clamp(1.5rem, 2.3vw, 2.4rem);
+}
+
+[data-world-layout="circadian-dial"] .personal-world__contract {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  width: min(90%, 72rem);
+  margin: 1rem auto 0;
+  border: 0;
+}
+
+[data-world-layout="circadian-dial"] .personal-world__contract > div {
+  min-height: 10rem;
+  padding: 1.4rem;
+  border: 1px solid var(--world-line);
+  border-radius: 50%;
+  text-align: center;
+}
+
+[data-world-layout="circadian-dial"] .personal-world__chapters {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  width: min(80%, 64rem);
+  margin: 4rem auto 0;
+  border: 0;
+}
+
+[data-world-layout="circadian-dial"] .personal-world__chapters a {
+  position: relative;
+  flex: 0 1 10rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  align-items: center;
+  border: 0;
+  text-align: center;
+}
+
+[data-world-layout="circadian-dial"] .personal-world__chapters a::before {
+  width: 1px;
+  height: 2.4rem;
+  background: var(--world-line);
+  content: "";
+}
+
+/* 15 / SELV/00 — a cutting table, measurement rail, and repair notches. ---- */
+
+[data-world-layout="pattern-table"] .personal-world__opening {
+  width: min(calc(100% - clamp(2rem, 4vw, 4rem)), 98rem);
+  padding: clamp(1.5rem, 3vw, 3rem) clamp(1rem, 3vw, 3rem) clamp(5rem, 9vw, 9rem);
+  background-image:
+    linear-gradient(var(--world-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--world-line) 1px, transparent 1px);
+  background-size: 3rem 3rem;
+}
+
+[data-world-layout="pattern-table"] .personal-world__topline {
+  grid-template-columns: auto auto 1fr;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--world-line);
+  background: var(--studio-paper);
+}
+
+[data-world-layout="pattern-table"] .personal-world__opening-grid {
+  grid-template-columns: repeat(14, minmax(0, 1fr));
+  align-items: start;
+  padding-top: clamp(3rem, 6vw, 6rem);
+}
+
+[data-world-layout="pattern-table"] .personal-world__title-group {
+  grid-column: 1 / span 9;
+  min-height: clamp(24rem, 40vw, 38rem);
+  padding: clamp(2rem, 4vw, 4rem);
+  border: 1px solid var(--world-line);
+  border-radius: 48% 12% 0 0 / 24% 9% 0 0;
+  background: var(--studio-paper);
+}
+
+[data-world-layout="pattern-table"] .personal-world__title-group h1 {
+  max-width: 8ch;
+  font-size: clamp(5rem, 10.5vw, 10.5rem);
+  line-height: 0.74;
+}
+
+[data-world-layout="pattern-table"] .personal-world__position {
+  grid-column: 10 / -1;
+  margin-top: clamp(8rem, 13vw, 13rem);
+  padding: 1.3rem;
+  border: 1px dashed var(--studio-accent);
+  background: var(--studio-paper);
+}
+
+[data-world-layout="pattern-table"] .personal-world__position > p:first-child {
+  font-size: clamp(1.8rem, 2.8vw, 3rem);
+}
+
+[data-world-layout="pattern-table"] .personal-world__contract {
+  grid-template-columns: 1.2fr 1fr 1.5fr;
+  gap: 1rem;
+  margin-top: -2rem;
+  border: 0;
+}
+
+[data-world-layout="pattern-table"] .personal-world__contract > div {
+  min-height: 10rem;
+  padding: 1.4rem;
+  border: 1px solid var(--world-line);
+  border-radius: 52% 48% 0 0 / 16% 20% 0 0;
+  background: var(--studio-paper);
+}
+
+[data-world-layout="pattern-table"] .personal-world__contract > div:nth-child(2) {
+  transform: translateY(2rem);
+}
+
+[data-world-layout="pattern-table"] .personal-world__chapters {
+  grid-template-columns: 1fr 1.3fr 1fr 1.4fr;
+  margin-top: 5rem;
+  padding-top: 0.7rem;
+  border: 0;
+  border-top: 0.18rem dashed var(--studio-ink);
+}
+
+[data-world-layout="pattern-table"] .personal-world__chapters a {
+  position: relative;
+  border: 0;
+  border-right: 1px solid var(--world-line);
+}
+
+[data-world-layout="pattern-table"] .personal-world__chapters a::before {
+  position: absolute;
+  top: -1rem;
+  left: 1rem;
+  width: 0;
+  height: 0;
+  border-right: 0.35rem solid transparent;
+  border-left: 0.35rem solid transparent;
+  border-bottom: 0.5rem solid var(--studio-ink);
+  content: "";
+}
+
+/* 16 / TESSERA LIVE — nine institutional rooms around a live centre. ------- */
+
+[data-world-layout="live-nine"] .personal-world__opening {
+  width: min(calc(100% - clamp(2rem, 4vw, 4rem)), 98rem);
+  padding: clamp(1.5rem, 3vw, 3rem) clamp(1rem, 2vw, 2rem) clamp(5rem, 9vw, 9rem);
+}
+
+[data-world-layout="live-nine"] .personal-world__topline {
+  grid-template-columns: auto 1fr auto;
+  border: 0;
+  border-bottom: 0.25rem solid var(--studio-ink);
+}
+
+[data-world-layout="live-nine"] .personal-world__opening-grid {
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(8rem, auto));
+  gap: 1px;
+  margin-top: clamp(3rem, 6vw, 6rem);
+  padding: 1px;
+  background: var(--world-line);
+}
+
+[data-world-layout="live-nine"] .personal-world__title-group {
+  grid-column: 1 / span 6;
+  grid-row: 1 / span 2;
+  padding: clamp(1.5rem, 3vw, 3rem);
+  background: var(--studio-paper);
+}
+
+[data-world-layout="live-nine"] .personal-world__title-group h1 {
+  max-width: 10ch;
+  font-size: clamp(4.3rem, 9vw, 9.2rem);
+  line-height: 0.75;
+}
+
+[data-world-layout="live-nine"] .personal-world__position {
+  grid-column: 7 / -1;
+  grid-row: 1 / span 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(1.5rem, 3vw, 3rem);
+  border: 0;
+  background: var(--studio-ink);
+  color: var(--studio-paper);
+}
+
+[data-world-layout="live-nine"] .personal-world__position > p:first-child {
+  font-size: clamp(1.9rem, 3vw, 3.2rem);
+}
+
+[data-world-layout="live-nine"] .personal-world__position > p:last-child {
+  color: color-mix(in srgb, var(--studio-paper) 68%, transparent);
+}
+
+[data-world-layout="live-nine"] .personal-world__contract {
+  display: contents;
+}
+
+[data-world-layout="live-nine"] .personal-world__contract > div {
+  grid-row: 3;
+  min-height: 8rem;
+  padding: 1rem;
+  border: 0;
+  background: var(--studio-paper);
+}
+
+[data-world-layout="live-nine"] .personal-world__contract > div:first-child {
+  grid-column: 1 / span 2;
+}
+
+[data-world-layout="live-nine"] .personal-world__contract > div:nth-child(2) {
+  grid-column: 3 / span 2;
+}
+
+[data-world-layout="live-nine"] .personal-world__contract > div:nth-child(3) {
+  grid-column: 5 / span 2;
+}
+
+[data-world-layout="live-nine"] .personal-world__chapters {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  margin-top: 1px;
+  padding: 1px;
+  border: 0;
+  background: var(--world-line);
+}
+
+[data-world-layout="live-nine"] .personal-world__chapters a {
+  min-height: 5rem;
+  border: 0;
+  background: var(--studio-paper);
+}
+
+/* 17 / BACKMATTER — a source ledger with evidence in the margin. ---------- */
+
+[data-world-layout="evidence-ledger"] .personal-world__opening {
+  width: min(calc(100% - clamp(2rem, 4vw, 4rem)), 98rem);
+  padding: clamp(1.5rem, 3vw, 3rem) clamp(1rem, 3vw, 3rem) clamp(5rem, 9vw, 9rem);
+  border-left: clamp(0.35rem, 0.7vw, 0.7rem) solid var(--studio-ink);
+}
+
+[data-world-layout="evidence-ledger"] .personal-world__topline {
+  grid-template-columns: auto 1fr auto;
+  border-top: 1px solid var(--world-line);
+  border-bottom: 0;
+  padding-top: 0.75rem;
+}
+
+[data-world-layout="evidence-ledger"] .personal-world__opening-grid {
+  grid-template-columns: repeat(16, minmax(0, 1fr));
+  align-items: start;
+  padding-top: clamp(4rem, 8vw, 8rem);
+}
+
+[data-world-layout="evidence-ledger"] .personal-world__title-group {
+  grid-column: 1 / span 10;
+  padding-bottom: 2rem;
+  border-bottom: 0.35rem solid var(--studio-ink);
+}
+
+[data-world-layout="evidence-ledger"] .personal-world__title-group h1 {
+  max-width: 9ch;
+  font-size: clamp(4.8rem, 10vw, 10.2rem);
+  line-height: 0.73;
+}
+
+[data-world-layout="evidence-ledger"] .personal-world__title-group h1 > span:last-child {
+  margin-left: 0.45em;
+}
+
+[data-world-layout="evidence-ledger"] .personal-world__position {
+  grid-column: 12 / -1;
+  margin-top: clamp(3rem, 6vw, 6rem);
+  padding: 0 0 0 1.2rem;
+  border: 0;
+  border-left: 1px solid var(--world-line);
+}
+
+[data-world-layout="evidence-ledger"] .personal-world__position > p:first-child {
+  font-family: var(--studio-meta);
+  font-size: clamp(1.5rem, 2.4vw, 2.5rem);
+  line-height: 1.1;
+}
+
+[data-world-layout="evidence-ledger"] .personal-world__contract {
+  display: block;
+  margin-top: clamp(5rem, 8vw, 8rem);
+  border: 0;
+  border-top: 1px solid var(--studio-ink);
+}
+
+[data-world-layout="evidence-ledger"] .personal-world__contract > div {
+  grid-template-columns: 2.5rem minmax(7rem, 0.24fr) minmax(0, 0.76fr);
+  gap: 1rem;
+  padding: 1rem 0;
+  border: 0;
+  border-bottom: 1px solid var(--world-line);
+  counter-increment: evidence;
+}
+
+[data-world-layout="evidence-ledger"] .personal-world__contract {
+  counter-reset: evidence;
+}
+
+[data-world-layout="evidence-ledger"] .personal-world__contract > div::before {
+  content: "0" counter(evidence);
+  font-family: var(--studio-meta);
+  font-size: 0.64rem;
+  font-weight: 650;
+}
+
+[data-world-layout="evidence-ledger"] .personal-world__chapters {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: min(42%, 34rem);
+  margin: 3.5rem 0 0 auto;
+  border: 0;
+  border-top: 1px solid var(--studio-ink);
+}
+
+[data-world-layout="evidence-ledger"] .personal-world__chapters a {
+  grid-template-columns: 3rem minmax(0, 1fr);
+  padding-inline: 0;
+  border: 0;
+  border-bottom: 1px solid var(--world-line);
+}
+
+/* 18 / SEAMFRAME — an exploded assembly diagram with separated modules. --- */
+
+[data-world-layout="assembly-grid"] .personal-world__opening {
+  width: min(calc(100% - clamp(2rem, 4vw, 4rem)), 98rem);
+  padding-bottom: clamp(6rem, 11vw, 11rem);
+}
+
+[data-world-layout="assembly-grid"] .personal-world__topline {
+  grid-template-columns: auto auto 1fr;
+  border-bottom: 0.22rem solid var(--studio-ink);
+}
+
+[data-world-layout="assembly-grid"] .personal-world__opening-grid {
+  grid-template-columns: repeat(16, minmax(0, 1fr));
+  grid-template-rows: auto auto;
+  align-items: start;
+  min-height: clamp(32rem, 49vw, 48rem);
+  padding-top: clamp(4rem, 8vw, 8rem);
+}
+
+[data-world-layout="assembly-grid"] .personal-world__title-group {
+  grid-column: 1 / span 10;
+  grid-row: 1;
+  padding: clamp(2rem, 4vw, 4rem);
+  border: 1px solid var(--world-line);
+  background: var(--studio-paper);
+}
+
+[data-world-layout="assembly-grid"] .personal-world__title-group h1 {
+  max-width: 9ch;
+  font-size: clamp(5rem, 10.5vw, 10.7rem);
+  line-height: 0.73;
+}
+
+[data-world-layout="assembly-grid"] .personal-world__title-group h1 > span:last-child {
+  margin-left: clamp(1.5rem, 6vw, 6rem);
+}
+
+[data-world-layout="assembly-grid"] .personal-world__position {
+  grid-column: 9 / -1;
+  grid-row: 2;
+  margin-top: -1rem;
+  padding: clamp(1.5rem, 3vw, 3rem);
+  border: 1px solid var(--world-line);
+  background: var(--studio-panel);
+}
+
+[data-world-layout="assembly-grid"] .personal-world__position > p:first-child {
+  font-size: clamp(1.8rem, 3vw, 3.2rem);
+}
+
+[data-world-layout="assembly-grid"] .personal-world__contract {
+  position: relative;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.2rem, 4vw, 4rem);
+  margin-top: clamp(3rem, 6vw, 6rem);
+  border: 0;
+}
+
+[data-world-layout="assembly-grid"] .personal-world__contract > div {
+  position: relative;
+  min-height: 11rem;
+  border: 1px solid var(--world-line);
+  background: var(--studio-paper);
+}
+
+[data-world-layout="assembly-grid"] .personal-world__contract > div::after {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: clamp(1.2rem, 4vw, 4rem);
+  height: 1px;
+  background: var(--studio-accent);
+  content: "";
+}
+
+[data-world-layout="assembly-grid"] .personal-world__contract > div:last-child::after {
+  display: none;
+}
+
+[data-world-layout="assembly-grid"] .personal-world__chapters {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 3.5rem;
+  border: 0;
+}
+
+[data-world-layout="assembly-grid"] .personal-world__chapters a {
+  min-height: 5rem;
+  border: 1px solid var(--world-line);
+  background: var(--studio-paper);
+}
+
+[data-world-layout="assembly-grid"] .personal-world__chapters a:nth-child(even) {
+  transform: translateY(1rem);
+}
+
+/* 19 / TWO SHORES — mirrored records meeting at a shared centre seam. ----- */
+
+[data-world-layout="paired-ledger"] .personal-world__opening {
+  width: min(calc(100% - clamp(2rem, 5vw, 5rem)), 96rem);
+  padding-bottom: clamp(5rem, 10vw, 10rem);
+  background-image: linear-gradient(
+    90deg,
+    transparent calc(50% - 0.5px),
+    var(--world-line) calc(50% - 0.5px) calc(50% + 0.5px),
+    transparent calc(50% + 0.5px)
+  );
+}
+
+[data-world-layout="paired-ledger"] .personal-world__topline {
+  grid-template-columns: 1fr auto 1fr;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--world-line);
+}
+
+[data-world-layout="paired-ledger"] .personal-world__topline a {
+  justify-self: start;
+}
+
+[data-world-layout="paired-ledger"] .personal-world__opening-grid {
+  grid-template-columns: 1fr 1px 1fr;
+  align-items: start;
+  gap: clamp(2rem, 5vw, 5rem);
+  padding-top: clamp(5rem, 9vw, 9rem);
+}
+
+[data-world-layout="paired-ledger"] .personal-world__title-group {
+  grid-column: 1 / -1;
+  width: min(100%, 74rem);
+  margin-inline: auto;
+  text-align: center;
+}
+
+[data-world-layout="paired-ledger"] .personal-world__title-group > p {
+  margin-inline: auto;
+}
+
+[data-world-layout="paired-ledger"] .personal-world__title-group h1 {
+  max-width: none;
+  font-size: clamp(5.2rem, 11.5vw, 11.8rem);
+  line-height: 0.72;
+}
+
+[data-world-layout="paired-ledger"] .personal-world__title-group h1 > span {
+  margin-inline: auto;
+}
+
+[data-world-layout="paired-ledger"] .personal-world__title-group h1 > span:last-child {
+  color: var(--studio-accent);
+}
+
+[data-world-layout="paired-ledger"] .personal-world__position {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem, 8vw, 8rem);
+  width: min(82%, 66rem);
+  margin: clamp(5rem, 9vw, 9rem) auto 0;
+  padding: 0;
+  border: 0;
+}
+
+[data-world-layout="paired-ledger"] .personal-world__position > p:first-child {
+  justify-self: end;
+  max-width: 14ch;
+  text-align: right;
+  font-size: clamp(1.9rem, 3.1vw, 3.3rem);
+}
+
+[data-world-layout="paired-ledger"] .personal-world__position > p:last-child {
+  padding-left: 1.2rem;
+  border-left: 1px solid var(--world-line);
+}
+
+[data-world-layout="paired-ledger"] .personal-world__contract {
+  grid-template-columns: 1fr 0.76fr 1fr;
+  margin-top: clamp(5rem, 8vw, 8rem);
+  border: 0;
+}
+
+[data-world-layout="paired-ledger"] .personal-world__contract > div {
+  min-height: 11rem;
+  border: 1px solid var(--world-line);
+  background: var(--studio-paper);
+}
+
+[data-world-layout="paired-ledger"] .personal-world__contract > div:nth-child(2) {
+  border-radius: 50%;
+  text-align: center;
+  transform: scale(0.86);
+}
+
+[data-world-layout="paired-ledger"] .personal-world__chapters {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin-top: 3rem;
+  border: 0;
+}
+
+[data-world-layout="paired-ledger"] .personal-world__chapters a {
+  border: 0;
+  border-top: 1px solid var(--world-line);
+}
+
+[data-world-layout="paired-ledger"] .personal-world__chapters a:nth-child(-n + 2) {
+  text-align: right;
+}
+
+/* 20 / COLDKILN — a traceable material specification and closed loop. ----- */
+
+[data-world-layout="material-spec"] .personal-world__opening {
+  width: min(calc(100% - clamp(2rem, 4vw, 4rem)), 98rem);
+  padding-bottom: clamp(5rem, 9vw, 9rem);
+}
+
+[data-world-layout="material-spec"] .personal-world__topline {
+  grid-template-columns: auto 1fr auto;
+  padding: 0.7rem 0;
+  border-top: 0.26rem solid var(--studio-ink);
+  border-bottom: 1px solid var(--world-line);
+}
+
+[data-world-layout="material-spec"] .personal-world__opening-grid {
+  grid-template-columns: repeat(15, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 0;
+  padding-top: clamp(4rem, 8vw, 8rem);
+}
+
+[data-world-layout="material-spec"] .personal-world__title-group {
+  grid-column: 8 / -1;
+  grid-row: 1;
+  padding: clamp(2rem, 4vw, 4rem);
+  border: 1px solid var(--world-line);
+}
+
+[data-world-layout="material-spec"] .personal-world__title-group h1 {
+  max-width: 8ch;
+  font-size: clamp(5rem, 10.5vw, 10.7rem);
+  line-height: 0.72;
+}
+
+[data-world-layout="material-spec"] .personal-world__position {
+  grid-column: 1 / span 7;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(2rem, 4vw, 4rem);
+  border: 1px solid var(--world-line);
+  border-right: 0;
+  background: var(--studio-panel);
+}
+
+[data-world-layout="material-spec"] .personal-world__position > p:first-child {
+  max-width: 14ch;
+  font-size: clamp(2rem, 3.3vw, 3.5rem);
+}
+
+[data-world-layout="material-spec"] .personal-world__contract {
+  grid-template-columns: 1.4fr 1fr 1.6fr;
+  margin-top: 0;
+  border: 0;
+}
+
+[data-world-layout="material-spec"] .personal-world__contract > div {
+  min-height: 11rem;
+  border: 0;
+  border-right: 1px solid var(--world-line);
+  border-bottom: 1px solid var(--world-line);
+}
+
+[data-world-layout="material-spec"] .personal-world__contract > div:last-child {
+  border-right: 0;
+}
+
+[data-world-layout="material-spec"] .personal-world__chapters {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 4rem;
+  padding: 0 1.5rem;
+  border: 0;
+}
+
+[data-world-layout="material-spec"] .personal-world__chapters::before {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: var(--studio-ink);
+  content: "";
+}
+
+[data-world-layout="material-spec"] .personal-world__chapters a {
+  position: relative;
+  flex: 0 1 12rem;
+  border: 1px solid var(--world-line);
+  background: var(--studio-paper);
+}
+
+[data-world-layout="material-spec"] .personal-world__chapters a:last-child {
+  border-radius: 999px;
+}
+
+/* Tablet refinements ------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  [data-world-layout="overprint-bands"] .personal-world__title-group,
+  [data-world-layout="route-sign"] .personal-world__title-group,
+  [data-world-layout="signal-console"] .personal-world__title-group,
+  [data-world-layout="evidence-ledger"] .personal-world__title-group,
+  [data-world-layout="assembly-grid"] .personal-world__title-group {
+    grid-column: 1 / span 9;
+  }
+
+  [data-world-layout="overprint-bands"] .personal-world__position,
+  [data-world-layout="route-sign"] .personal-world__position,
+  [data-world-layout="signal-console"] .personal-world__position,
+  [data-world-layout="evidence-ledger"] .personal-world__position {
+    grid-column: 10 / -1;
+  }
+
+  [data-world-layout="archive-cards"] .personal-world__title-group {
+    grid-column: 1 / span 8;
+  }
+
+  [data-world-layout="archive-cards"] .personal-world__position {
+    grid-column: 9 / -1;
+  }
+
+  [data-world-layout="specimen-dossier"] .personal-world__title-group {
+    grid-column: 1 / span 10;
+  }
+
+  [data-world-layout="specimen-dossier"] .personal-world__position {
+    grid-column: 11 / -1;
+  }
+
+  [data-world-layout="circadian-dial"] .personal-world__position {
+    width: 38%;
+  }
+
+  [data-world-layout="live-nine"] .personal-world__opening-grid {
+    grid-template-rows: repeat(3, minmax(6rem, auto));
+  }
+
+  [data-world-layout="material-spec"] .personal-world__title-group {
+    grid-column: 7 / -1;
+  }
+
+  [data-world-layout="material-spec"] .personal-world__position {
+    grid-column: 1 / span 6;
+  }
+}
+
+/* Mobile: each world keeps its metaphor without becoming a repeated stack. */
+
+@media (max-width: 620px) {
+  .personal-world[data-world-layout] .personal-world__opening {
+    width: calc(100% - 2rem);
+    min-height: 0;
+    margin-top: 0;
+    padding-bottom: 4rem;
+  }
+
+  .personal-world[data-world-layout] .personal-world__title-group h1 {
+    max-width: 100%;
+    font-size: clamp(3rem, 15vw, 4.6rem);
+    line-height: 0.82;
+  }
+
+  .personal-world[data-world-layout] .personal-world__title-group h1 > span {
+    width: fit-content;
+  }
+
+  .personal-world[data-world-layout] .personal-world__position > p:first-child {
+    font-size: clamp(1.55rem, 7.2vw, 2.2rem);
+    line-height: 1;
+  }
+
+  /* 01: two plates retain their visible offset. */
+  [data-world-layout="overprint-bands"] .personal-world__opening-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding-top: 3.5rem;
+  }
+
+  [data-world-layout="overprint-bands"] .personal-world__title-group,
+  [data-world-layout="overprint-bands"] .personal-world__position {
+    grid-column: 1;
+  }
+
+  [data-world-layout="overprint-bands"] .personal-world__title-group {
+    width: 92%;
+    padding-bottom: 1.8rem;
+  }
+
+  [data-world-layout="overprint-bands"] .personal-world__title-group h1 > span:nth-child(2) {
+    margin-left: 0.34em;
+  }
+
+  [data-world-layout="overprint-bands"] .personal-world__position {
+    width: 76%;
+    margin: 4.5rem 0 0 auto;
+  }
+
+  [data-world-layout="overprint-bands"] .personal-world__contract {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: none;
+  }
+
+  [data-world-layout="overprint-bands"] .personal-world__contract > div:nth-child(2),
+  [data-world-layout="overprint-bands"] .personal-world__contract > div:nth-child(3) {
+    transform: none;
+  }
+
+  [data-world-layout="overprint-bands"] .personal-world__contract > div:last-child {
+    grid-column: 1 / -1;
+    margin-left: 19%;
+  }
+
+  [data-world-layout="overprint-bands"] .personal-world__chapters {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1.35fr;
+    width: 100%;
+    margin-left: 0;
+    overflow: visible;
+    backdrop-filter: none;
+  }
+
+  [data-world-layout="overprint-bands"] .personal-world__chapters a {
+    min-width: 0;
+  }
+
+  /* 02: drawers step down the screen instead of flattening into cards. */
+  [data-world-layout="archive-cards"] .personal-world__opening {
+    padding: 1rem 0.8rem 4rem;
+  }
+
+  [data-world-layout="archive-cards"] .personal-world__opening-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  [data-world-layout="archive-cards"] .personal-world__title-group,
+  [data-world-layout="archive-cards"] .personal-world__position {
+    grid-column: 1;
+  }
+
+  [data-world-layout="archive-cards"] .personal-world__title-group {
+    width: 91%;
+    padding: 1.5rem;
+  }
+
+  [data-world-layout="archive-cards"] .personal-world__title-group h1 {
+    font-size: clamp(2.9rem, 14vw, 4.2rem);
+  }
+
+  [data-world-layout="archive-cards"] .personal-world__position {
+    width: 74%;
+    margin: 3.5rem 0 0 auto;
+  }
+
+  [data-world-layout="archive-cards"] .personal-world__contract,
+  [data-world-layout="archive-cards"] .personal-world__chapters {
+    width: calc(100% - 1.4rem);
+  }
+
+  [data-world-layout="archive-cards"] .personal-world__contract > div {
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+  }
+
+  [data-world-layout="archive-cards"] .personal-world__chapters {
+    position: static;
+    overflow: visible;
+    backdrop-filter: none;
+  }
+
+  [data-world-layout="archive-cards"] .personal-world__chapters a {
+    min-width: 0;
+    padding: 0.75rem 0.45rem;
+    font-size: 0.55rem;
+  }
+
+  /* 03: the field label remains a compact two-column specimen sheet. */
+  [data-world-layout="specimen-dossier"] .personal-world__opening {
+    padding: 1rem 1rem 4rem;
+    background-size: 2.4rem 2.4rem;
+  }
+
+  [data-world-layout="specimen-dossier"] .personal-world__opening-grid {
+    display: grid;
+    grid-template-columns: 1fr 0.42fr;
+    gap: 1rem;
+  }
+
+  [data-world-layout="specimen-dossier"] .personal-world__title-group {
+    grid-column: 1 / -1;
+    padding: 1.2rem;
+  }
+
+  [data-world-layout="specimen-dossier"] .personal-world__title-group h1 > span:last-child {
+    margin-left: 0.5em;
+  }
+
+  [data-world-layout="specimen-dossier"] .personal-world__position {
+    grid-column: 1 / -1;
+    width: 72%;
+    margin: 0 0 0 auto;
+  }
+
+  [data-world-layout="specimen-dossier"] .personal-world__contract {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  [data-world-layout="specimen-dossier"] .personal-world__contract::after {
+    min-height: 7rem;
+  }
+
+  [data-world-layout="specimen-dossier"] .personal-world__chapters {
+    position: static;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    margin-left: 0;
+    overflow: visible;
+    backdrop-filter: none;
+  }
+
+  [data-world-layout="specimen-dossier"] .personal-world__chapters a {
+    min-width: 0;
+  }
+
+  /* 04: a narrow letter with a routed lower margin. */
+  [data-world-layout="correspondence-scroll"] .personal-world__opening {
+    width: calc(100% - 2.8rem);
+    margin-top: 1rem;
+    padding: 1.1rem 1.25rem 4.5rem;
+  }
+
+  [data-world-layout="correspondence-scroll"] .personal-world__topline {
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
+
+  [data-world-layout="correspondence-scroll"] .personal-world__topline > span:last-child {
+    grid-column: 1 / -1;
+  }
+
+  [data-world-layout="correspondence-scroll"] .personal-world__title-group {
+    width: 100%;
+  }
+
+  [data-world-layout="correspondence-scroll"] .personal-world__title-group h1 {
+    font-size: clamp(3.1rem, 14.8vw, 4.4rem);
+  }
+
+  [data-world-layout="correspondence-scroll"] .personal-world__position {
+    width: 82%;
+    margin-top: 5rem;
+  }
+
+  [data-world-layout="correspondence-scroll"] .personal-world__contract > div {
+    grid-template-columns: 5rem minmax(0, 1fr);
+    gap: 0.8rem;
+  }
+
+  [data-world-layout="correspondence-scroll"] .personal-world__chapters {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    margin-left: 0;
+    overflow: visible;
+    backdrop-filter: none;
+  }
+
+  [data-world-layout="correspondence-scroll"] .personal-world__chapters a {
+    min-width: 0;
+    border-bottom: 1px dashed var(--world-line);
+  }
+
+  /* 05: three tactile samples remain visibly fanned. */
+  [data-world-layout="material-atlas"] .personal-world__opening-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 33rem;
+  }
+
+  [data-world-layout="material-atlas"] .personal-world__title-group,
+  [data-world-layout="material-atlas"] .personal-world__position {
+    grid-column: 1;
+  }
+
+  [data-world-layout="material-atlas"] .personal-world__title-group {
+    width: 90%;
+    margin-left: 3%;
+  }
+
+  [data-world-layout="material-atlas"] .personal-world__position {
+    width: 62%;
+    margin: 5rem 0 0 auto;
+  }
+
+  [data-world-layout="material-atlas"] .personal-world__contract {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  [data-world-layout="material-atlas"] .personal-world__contract > div {
+    min-height: 15rem;
+    padding: 1.1rem 0.75rem;
+  }
+
+  [data-world-layout="material-atlas"] .personal-world__chapters {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    margin-left: 0;
+    overflow: visible;
+    backdrop-filter: none;
+  }
+
+  [data-world-layout="material-atlas"] .personal-world__chapters a {
+    min-width: 0;
+  }
+
+  /* 06: ceremonial axis turns into a centred vertical procession. */
+  [data-world-layout="deco-axis"] .personal-world__opening-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding-top: 5rem;
+  }
+
+  [data-world-layout="deco-axis"] .personal-world__opening-grid::before {
+    top: 6rem;
+  }
+
+  [data-world-layout="deco-axis"] .personal-world__title-group,
+  [data-world-layout="deco-axis"] .personal-world__position {
+    grid-column: 1;
+  }
+
+  [data-world-layout="deco-axis"] .personal-world__position {
+    width: 82%;
+  }
+
+  [data-world-layout="deco-axis"] .personal-world__contract {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 82%;
+  }
+
+  [data-world-layout="deco-axis"] .personal-world__contract > div {
+    min-height: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--world-line);
+  }
+
+  [data-world-layout="deco-axis"] .personal-world__chapters {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: 100%;
+    margin-left: 0;
+    overflow: visible;
+    backdrop-filter: none;
+  }
+
+  [data-world-layout="deco-axis"] .personal-world__chapters a {
+    min-width: 0;
+    padding-inline: 0.2rem;
+    font-size: 0.53rem;
+  }
+
+  /* 07: route line stays fixed while information forms staggered stops. */
+  [data-world-layout="route-sign"] .personal-world__opening {
+    padding: 1rem 1rem 4rem;
+  }
+
+  [data-world-layout="route-sign"] .personal-world__opening-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  [data-world-layout="route-sign"] .personal-world__title-group,
+  [data-world-layout="route-sign"] .personal-world__position {
+    grid-column: 1;
+  }
+
+  [data-world-layout="route-sign"] .personal-world__title-group {
+    padding: 1.5rem 1rem;
+  }
+
+  [data-world-layout="route-sign"] .personal-world__position {
+    width: 78%;
+    margin-left: auto;
+    border: 1px solid var(--world-line);
+    border-top: 0;
+  }
+
+  [data-world-layout="route-sign"] .personal-world__contract {
+    width: calc(100% - 1rem);
+  }
+
+  [data-world-layout="route-sign"] .personal-world__contract > div {
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+    padding-left: 1.7rem;
+  }
+
+  [data-world-layout="route-sign"] .personal-world__chapters {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    margin-left: 0;
+    overflow: visible;
+    backdrop-filter: none;
+  }
+
+  [data-world-layout="route-sign"] .personal-world__chapters a {
+    min-width: 0;
+  }
+
+  /* 08: responsive blob and hard datum stay in opposition. */
+  [data-world-layout="soft-datum"] .personal-world__topline {
+    width: 100%;
+  }
+
+  [data-world-layout="soft-datum"] .personal-world__opening-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 35rem;
+  }
+
+  [data-world-layout="soft-datum"] .personal-world__opening-grid::before {
+    top: 23%;
+    width: 78vw;
+  }
+
+  [data-world-layout="soft-datum"] .personal-world__title-group,
+  [data-world-layout="soft-datum"] .personal-world__position {
+    grid-column: 1;
+  }
+
+  [data-world-layout="soft-datum"] .personal-world__title-group {
+    align-self: start;
+  }
+
+  [data-world-layout="soft-datum"] .personal-world__title-group h1 > span:last-child {
+    margin-left: 0.35em;
+  }
+
+  [data-world-layout="soft-datum"] .personal-world__position {
+    width: 72%;
+    margin: 6rem 0 0 auto;
+  }
+
+  [data-world-layout="soft-datum"] .personal-world__contract {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  [data-world-layout="soft-datum"] .personal-world__contract > div:last-child {
+    grid-column: 1 / -1;
+    width: 74%;
+    margin-left: auto;
+  }
+
+  [data-world-layout="soft-datum"] .personal-world__contract > div:nth-child(2) {
+    transform: translateY(1rem);
+  }
+
+  [data-world-layout="soft-datum"] .personal-world__chapters {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    margin-left: 0;
+    overflow: visible;
+    backdrop-filter: none;
+  }
+
+  [data-world-layout="soft-datum"] .personal-world__chapters a {
+    min-width: 0;
+  }
+
+  /* 09: console becomes two stacked channel banks, not generic cards. */
+  [data-world-layout="signal-console"] .personal-world__opening {
+    padding: 0.8rem 0.8rem 4rem;
+  }
+
+  [data-world-layout="signal-console"] .personal-world__opening-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  [data-world-layout="signal-console"] .personal-world__title-group,
+  [data-world-layout="signal-console"] .personal-world__position {
+    grid-column: 1;
+  }
+
+  [data-world-layout="signal-console"] .personal-world__title-group {
+    padding: 1.4rem;
+  }
+
+  [data-world-layout="signal-console"] .personal-world__title-group h1 > span:last-child {
+    margin-left: 0.35em;
+  }
+
+  [data-world-layout="signal-console"] .personal-world__position {
+    width: 79%;
+    margin-left: auto;
+  }
+
+  [data-world-layout="signal-console"] .personal-world__contract {
+    grid-template-columns: 1fr;
+  }
+
+  [data-world-layout="signal-console"] .personal-world__contract > div {
+    min-height: 8.5rem;
+  }
+
+  [data-world-layout="signal-console"] .personal-world__chapters {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    margin-left: 0;
+    overflow: visible;
+    backdrop-filter: none;
+  }
+
+  [data-world-layout="signal-console"] .personal-world__chapters a {
+    min-width: 0;
+  }
+
+  /* 10: score title runs as one phrase above a syncopated annotation. */
+  [data-world-layout="score-grid"] .personal-world__opening-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 34rem;
+    padding-top: 3rem;
+    background-size: auto 3.2rem;
+  }
+
+  [data-world-layout="score-grid"] .personal-world__title-group,
+  [data-world-layout="score-grid"] .personal-world__position {
+    grid-column: 1;
+  }
+
+  [data-world-layout="score-grid"] .personal-world__title-group h1 {
+    font-size: clamp(2.9rem, 12.6vw, 4rem);
+  }
+
+  [data-world-layout="score-grid"] .personal-world__position {
+    width: 72%;
+    margin: 8rem 0 0 auto;
+  }
+
+  [data-world-layout="score-grid"] .personal-world__contract {
+    grid-template-columns: 1fr;
+  }
+
+  [data-world-layout="score-grid"] .personal-world__contract > div {
+    min-height: 0;
+  }
+
+  [data-world-layout="score-grid"] .personal-world__chapters {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: 100%;
+    margin-left: 0;
+    overflow: visible;
+    backdrop-filter: none;
+  }
+
+  [data-world-layout="score-grid"] .personal-world__chapters a {
+    min-width: 0;
+    padding-inline: 0.25rem;
+    font-size: 0.53rem;
+  }
+
+  /* 11: transit board plus vertical station line. */
+  [data-world-layout="westbound-line"] .personal-world__opening-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 31rem;
+  }
+
+  [data-world-layout="westbound-line"] .personal-world__title-group,
+  [data-world-layout="westbound-line"] .personal-world__position {
+    grid-column: 1;
+  }
+
+  [data-world-layout="westbound-line"] .personal-world__title-group {
+    width: 67%;
+  }
+
+  [data-world-layout="westbound-line"] .personal-world__title-group h1 {
+    font-size: clamp(5.5rem, 24vw, 7.2rem);
+  }
+
+  [data-world-layout="westbound-line"] .personal-world__position {
+    width: 76%;
+    margin: 4rem 0 0 auto;
+  }
+
+  [data-world-layout="westbound-line"] .personal-world__contract {
+    grid-template-columns: 1fr;
+    padding-left: 2rem;
+  }
+
+  [data-world-layout="westbound-line"] .personal-world__contract::before {
+    top: 0;
+    right: auto;
+    bottom: 0;
+    left: 0.55rem;
+    width: 0.25rem;
+    height: auto;
+  }
+
+  [data-world-layout="westbound-line"] .personal-world__contract > div {
+    min-height: 0;
+    padding: 1.2rem;
+  }
+
+  [data-world-layout="westbound-line"] .personal-world__contract > div::before {
+    top: 1.4rem;
+    left: -1.9rem;
+  }
+
+  [data-world-layout="westbound-line"] .personal-world__chapters {
+    position: static;
+    display: flex;
+    width: 100%;
+    margin-left: 0;
+    overflow-x: auto;
+  }
+
+  [data-world-layout="westbound-line"] .personal-world__chapters a {
+    min-width: 8.5rem;
+  }
+
+  /* 12: title meets a visible waterline; copy moves above and below it. */
+  [data-world-layout="tide-datum"] .personal-world__opening-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 39rem;
+  }
+
+  [data-world-layout="tide-datum"] .personal-world__title-group,
+  [data-world-layout="tide-datum"] .personal-world__position {
+    grid-column: 1;
+  }
+
+  [data-world-layout="tide-datum"] .personal-world__title-group {
+    align-self: end;
+    padding-bottom: 5rem;
+  }
+
+  [data-world-layout="tide-datum"] .personal-world__position {
+    width: 74%;
+    margin: 0 0 0 auto;
+  }
+
+  [data-world-layout="tide-datum"] .personal-world__contract {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  [data-world-layout="tide-datum"] .personal-world__contract > div:last-child {
+    grid-column: 1 / -1;
+  }
+
+  [data-world-layout="tide-datum"] .personal-world__chapters {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    margin-left: 0;
+    overflow: visible;
+    backdrop-filter: none;
+  }
+
+  [data-world-layout="tide-datum"] .personal-world__chapters a {
+    min-width: 0;
+  }
+
+  /* 13: passports remain a physical offset stack. */
+  [data-world-layout="batch-stack"] .personal-world__opening-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  [data-world-layout="batch-stack"] .personal-world__title-group,
+  [data-world-layout="batch-stack"] .personal-world__position {
+    grid-column: 1;
+  }
+
+  [data-world-layout="batch-stack"] .personal-world__title-group {
+    width: 88%;
+    padding: 1.4rem;
+    box-shadow:
+      0.6rem 0.6rem 0 color-mix(in srgb, var(--studio-accent) 44%, var(--studio-paper)),
+      1.2rem 1.2rem 0 color-mix(in srgb, var(--studio-ink) 11%, var(--studio-paper));
+  }
+
+  [data-world-layout="batch-stack"] .personal-world__position {
+    width: 74%;
+    margin: 5rem 0 0 auto;
+  }
+
+  [data-world-layout="batch-stack"] .personal-world__contract {
+    width: calc(100% - 2.4rem);
+  }
+
+  [data-world-layout="batch-stack"] .personal-world__contract > div {
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+  }
+
+  [data-world-layout="batch-stack"] .personal-world__chapters {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    margin-left: 0;
+    overflow: visible;
+    backdrop-filter: none;
+  }
+
+  [data-world-layout="batch-stack"] .personal-world__chapters a {
+    min-width: 0;
+  }
+
+  /* 14: nested orbital rings collapse into a readable watch face. */
+  [data-world-layout="circadian-dial"] .personal-world__opening-grid {
+    min-height: 35rem;
+  }
+
+  [data-world-layout="circadian-dial"] .personal-world__opening-grid::before {
+    width: min(88vw, 33rem);
+  }
+
+  [data-world-layout="circadian-dial"] .personal-world__opening-grid::after {
+    width: min(62vw, 23rem);
+  }
+
+  [data-world-layout="circadian-dial"] .personal-world__title-group {
+    grid-column: 1 / -1;
+  }
+
+  [data-world-layout="circadian-dial"] .personal-world__position {
+    right: 0;
+    bottom: 0;
+    width: 66%;
+    border-radius: 2rem 2rem 0 2rem;
+  }
+
+  [data-world-layout="circadian-dial"] .personal-world__contract {
+    grid-template-columns: 1fr;
+    width: 78%;
+    margin-left: 0;
+  }
+
+  [data-world-layout="circadian-dial"] .personal-world__contract > div {
+    min-height: 0;
+    border-radius: 999px;
+  }
+
+  [data-world-layout="circadian-dial"] .personal-world__chapters {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: 100%;
+    margin-left: 0;
+    overflow: visible;
+    backdrop-filter: none;
+  }
+
+  [data-world-layout="circadian-dial"] .personal-world__chapters a {
+    min-width: 0;
+    padding-inline: 0.15rem;
+    font-size: 0.5rem;
+  }
+
+  /* 15: sewing pattern keeps a shaped body and offset measurement cards. */
+  [data-world-layout="pattern-table"] .personal-world__opening {
+    padding: 1rem 0.9rem 4rem;
+    background-size: 2rem 2rem;
+  }
+
+  [data-world-layout="pattern-table"] .personal-world__opening-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  [data-world-layout="pattern-table"] .personal-world__title-group,
+  [data-world-layout="pattern-table"] .personal-world__position {
+    grid-column: 1;
+  }
+
+  [data-world-layout="pattern-table"] .personal-world__title-group {
+    min-height: 20rem;
+    padding: 1.4rem;
+  }
+
+  [data-world-layout="pattern-table"] .personal-world__position {
+    width: 72%;
+    margin: 2rem 0 0 auto;
+  }
+
+  [data-world-layout="pattern-table"] .personal-world__contract {
+    grid-template-columns: 1fr 1fr;
+    margin-top: 2rem;
+  }
+
+  [data-world-layout="pattern-table"] .personal-world__contract > div:last-child {
+    grid-column: 1 / -1;
+    width: 72%;
+    margin-left: auto;
+  }
+
+  [data-world-layout="pattern-table"] .personal-world__chapters {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    margin-left: 0;
+    overflow: visible;
+    backdrop-filter: none;
+  }
+
+  [data-world-layout="pattern-table"] .personal-world__chapters a {
+    min-width: 0;
+  }
+
+  /* 16: nine rooms remain visible as an asymmetric six-plus-three stage. */
+  [data-world-layout="live-nine"] .personal-world__opening-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-rows: auto auto auto;
+  }
+
+  [data-world-layout="live-nine"] .personal-world__title-group {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    padding: 1.3rem;
+  }
+
+  [data-world-layout="live-nine"] .personal-world__title-group h1 {
+    font-size: clamp(2.75rem, 12vw, 3.8rem);
+  }
+
+  [data-world-layout="live-nine"] .personal-world__position {
+    grid-column: 3 / -1;
+    grid-row: 2;
+    min-height: 13rem;
+  }
+
+  [data-world-layout="live-nine"] .personal-world__contract {
+    display: contents;
+  }
+
+  [data-world-layout="live-nine"] .personal-world__contract > div {
+    grid-row: 3;
+  }
+
+  [data-world-layout="live-nine"] .personal-world__contract > div:first-child {
+    grid-column: 1 / span 2;
+  }
+
+  [data-world-layout="live-nine"] .personal-world__contract > div:nth-child(2) {
+    grid-column: 3 / span 2;
+  }
+
+  [data-world-layout="live-nine"] .personal-world__contract > div:nth-child(3) {
+    grid-column: 5 / span 2;
+  }
+
+  [data-world-layout="live-nine"] .personal-world__contract dd {
+    font-size: 0.68rem;
+  }
+
+  [data-world-layout="live-nine"] .personal-world__chapters {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    margin-left: 0;
+    overflow: visible;
+    backdrop-filter: none;
+  }
+
+  [data-world-layout="live-nine"] .personal-world__chapters a {
+    min-width: 0;
+  }
+
+  /* 17: evidence remains a true ledger with a short right-hand index. */
+  [data-world-layout="evidence-ledger"] .personal-world__opening {
+    padding: 1rem 0.8rem 4rem;
+  }
+
+  [data-world-layout="evidence-ledger"] .personal-world__opening-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  [data-world-layout="evidence-ledger"] .personal-world__title-group,
+  [data-world-layout="evidence-ledger"] .personal-world__position {
+    grid-column: 1;
+  }
+
+  [data-world-layout="evidence-ledger"] .personal-world__title-group h1 > span:last-child {
+    margin-left: 0.34em;
+  }
+
+  [data-world-layout="evidence-ledger"] .personal-world__position {
+    width: 69%;
+    margin: 4rem 0 0 auto;
+  }
+
+  [data-world-layout="evidence-ledger"] .personal-world__contract > div {
+    grid-template-columns: 2rem 4.8rem minmax(0, 1fr);
+    gap: 0.6rem;
+  }
+
+  [data-world-layout="evidence-ledger"] .personal-world__chapters {
+    position: static;
+    width: 72%;
+    margin-left: auto;
+    overflow: visible;
+    backdrop-filter: none;
+  }
+
+  [data-world-layout="evidence-ledger"] .personal-world__chapters a {
+    min-width: 0;
+  }
+
+  /* 18: modules step diagonally and keep their visible connection lines. */
+  [data-world-layout="assembly-grid"] .personal-world__opening-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  [data-world-layout="assembly-grid"] .personal-world__title-group,
+  [data-world-layout="assembly-grid"] .personal-world__position {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  [data-world-layout="assembly-grid"] .personal-world__title-group {
+    width: 90%;
+    padding: 1.4rem;
+  }
+
+  [data-world-layout="assembly-grid"] .personal-world__title-group h1 > span:last-child {
+    margin-left: 0.35em;
+  }
+
+  [data-world-layout="assembly-grid"] .personal-world__position {
+    width: 76%;
+    margin: 2rem 0 0 auto;
+  }
+
+  [data-world-layout="assembly-grid"] .personal-world__contract {
+    grid-template-columns: 1fr;
+    width: 82%;
+  }
+
+  [data-world-layout="assembly-grid"] .personal-world__contract > div {
+    min-height: 0;
+  }
+
+  [data-world-layout="assembly-grid"] .personal-world__contract > div:nth-child(2) {
+    margin-left: 9%;
+  }
+
+  [data-world-layout="assembly-grid"] .personal-world__contract > div:nth-child(3) {
+    margin-left: 18%;
+  }
+
+  [data-world-layout="assembly-grid"] .personal-world__contract > div::after {
+    top: 100%;
+    left: 1.5rem;
+    width: 1px;
+    height: 1.2rem;
+  }
+
+  [data-world-layout="assembly-grid"] .personal-world__chapters {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    margin-left: 0;
+    overflow: visible;
+    backdrop-filter: none;
+  }
+
+  [data-world-layout="assembly-grid"] .personal-world__chapters a {
+    min-width: 0;
+  }
+
+  /* 19: two shores stay mirrored around a visible centre seam. */
+  [data-world-layout="paired-ledger"] .personal-world__opening-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  [data-world-layout="paired-ledger"] .personal-world__title-group,
+  [data-world-layout="paired-ledger"] .personal-world__position {
+    grid-column: 1;
+  }
+
+  [data-world-layout="paired-ledger"] .personal-world__position {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  [data-world-layout="paired-ledger"] .personal-world__position > p:first-child {
+    font-size: clamp(1.4rem, 6vw, 1.9rem);
+  }
+
+  [data-world-layout="paired-ledger"] .personal-world__contract {
+    grid-template-columns: 1fr 0.72fr 1fr;
+  }
+
+  [data-world-layout="paired-ledger"] .personal-world__contract > div {
+    min-height: 13rem;
+    padding: 0.8rem;
+  }
+
+  [data-world-layout="paired-ledger"] .personal-world__contract dd {
+    font-size: 0.68rem;
+  }
+
+  [data-world-layout="paired-ledger"] .personal-world__chapters {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    margin-left: 0;
+    overflow: visible;
+    backdrop-filter: none;
+  }
+
+  [data-world-layout="paired-ledger"] .personal-world__chapters a {
+    min-width: 0;
+  }
+
+  /* 20: the specification table becomes a compact closed-cycle record. */
+  [data-world-layout="material-spec"] .personal-world__opening-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  [data-world-layout="material-spec"] .personal-world__title-group,
+  [data-world-layout="material-spec"] .personal-world__position {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  [data-world-layout="material-spec"] .personal-world__position {
+    min-height: 16rem;
+    border-right: 1px solid var(--world-line);
+    border-bottom: 0;
+  }
+
+  [data-world-layout="material-spec"] .personal-world__title-group {
+    width: 82%;
+    margin-left: auto;
+  }
+
+  [data-world-layout="material-spec"] .personal-world__contract {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  [data-world-layout="material-spec"] .personal-world__contract > div:last-child {
+    grid-column: 1 / -1;
+    width: 78%;
+    margin-left: auto;
+  }
+
+  [data-world-layout="material-spec"] .personal-world__chapters {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    margin-left: 0;
+    padding-inline: 0;
+    overflow: visible;
+    backdrop-filter: none;
+  }
+
+  [data-world-layout="material-spec"] .personal-world__chapters::before {
+    display: none;
+  }
+
+  [data-world-layout="material-spec"] .personal-world__chapters a {
+    min-width: 0;
+  }
+}
+
+/* Opening photographs -----------------------------------------------------
+   The first real image is composed as evidence inside each system rather
+   than repeated as a generic hero. Intrinsic image ratios and full captions
+   remain intact at every breakpoint. */
+
+.personal-world[data-world-layout] .personal-world__opening-visual {
+  position: relative;
+  z-index: 1;
+  align-self: start;
+  margin: 0;
+}
+
+.personal-world[data-world-layout] .personal-world__opening-visual > [data-project-media] {
+  border: 1px solid var(--world-line);
+}
+
+.personal-world[data-world-layout] .personal-world__opening-visual figcaption {
+  position: relative;
+  z-index: 2;
+  padding: 0.75rem;
+  background: var(--studio-paper);
+}
+
+/* 01: the photograph is the late-arriving second plate. */
+[data-world-layout="overprint-bands"] .personal-world__title-group {
+  grid-row: 1;
+}
+
+[data-world-layout="overprint-bands"] .personal-world__opening-visual {
+  z-index: 1;
+  grid-column: 8 / -1;
+  grid-row: 1;
+  margin-top: clamp(6rem, 11vw, 11rem);
+  transform: translateX(-1rem);
+}
+
+[data-world-layout="overprint-bands"] .personal-world__opening-visual > [data-project-media] {
+  box-shadow: 0.9rem 0.9rem 0 color-mix(in srgb, var(--studio-accent) 58%, transparent);
+}
+
+[data-world-layout="overprint-bands"] .personal-world__position {
+  grid-row: 2;
+}
+
+/* 02: a field photograph sits in the open archive drawer. */
+[data-world-layout="archive-cards"] .personal-world__title-group {
+  grid-row: 1;
+}
+
+[data-world-layout="archive-cards"] .personal-world__opening-visual {
+  grid-column: 8 / -1;
+  grid-row: 1;
+  margin: clamp(2.5rem, 5vw, 5rem) 0 0 clamp(1.5rem, 3vw, 3rem);
+  padding: 0.8rem;
+  border: 1px solid var(--world-line);
+  background: var(--studio-paper);
+  box-shadow: 0.5rem 0.5rem 0 color-mix(in srgb, var(--studio-ink) 8%, transparent);
+}
+
+[data-world-layout="archive-cards"] .personal-world__opening-visual figcaption {
+  padding-inline: 0;
+}
+
+[data-world-layout="archive-cards"] .personal-world__position {
+  grid-row: 2;
+}
+
+/* 03: documentary proof is pinned beside the specimen heading. */
+[data-world-layout="specimen-dossier"] .personal-world__title-group {
+  grid-row: 1;
+}
+
+[data-world-layout="specimen-dossier"] .personal-world__opening-visual {
+  grid-column: 9 / -1;
+  grid-row: 1;
+  margin: clamp(5rem, 9vw, 9rem) 0 0 -1rem;
+  padding: 0.6rem;
+  border: 1px solid var(--world-line);
+  background: var(--studio-paper);
+  transform: rotate(1.1deg);
+}
+
+[data-world-layout="specimen-dossier"] .personal-world__opening-visual::before {
+  position: absolute;
+  z-index: 3;
+  top: -0.45rem;
+  left: 50%;
+  width: 2.4rem;
+  height: 0.8rem;
+  background: color-mix(in srgb, var(--studio-accent) 74%, transparent);
+  content: "";
+  transform: translateX(-50%) rotate(-3deg);
+}
+
+[data-world-layout="specimen-dossier"] .personal-world__position {
+  grid-row: 2;
+  margin-top: 1rem;
+}
+
+/* 04: a photographic insert occupies the inner fold of the letter. */
+[data-world-layout="correspondence-scroll"] .personal-world__opening-grid {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  align-items: start;
+}
+
+[data-world-layout="correspondence-scroll"] .personal-world__title-group {
+  grid-column: 1 / span 9;
+  grid-row: 1;
+}
+
+[data-world-layout="correspondence-scroll"] .personal-world__opening-visual {
+  grid-column: 2 / span 7;
+  grid-row: 2;
+  margin-top: clamp(4rem, 8vw, 8rem);
+  padding: 0 0 0 1rem;
+  border-left: 1px dashed var(--world-line);
+}
+
+[data-world-layout="correspondence-scroll"] .personal-world__position {
+  grid-column: 6 / -1;
+  grid-row: 3;
+  width: 100%;
+  margin-top: -0.5rem;
+}
+
+/* 05: the image is the largest swatch in the tactile fan. */
+[data-world-layout="material-atlas"] .personal-world__title-group {
+  z-index: 2;
+  grid-row: 1;
+}
+
+[data-world-layout="material-atlas"] .personal-world__opening-visual {
+  grid-column: 5 / -1;
+  grid-row: 1;
+  margin: clamp(8rem, 15vw, 15rem) 0 0 0;
+  padding: 0.75rem;
+  border: 1px solid var(--world-line);
+  border-radius: 48% 48% 0 0 / 14% 14% 0 0;
+  background: var(--studio-panel);
+  transform: rotate(2.4deg);
+}
+
+[data-world-layout="material-atlas"] .personal-world__opening-visual > [data-project-media] {
+  border-radius: 46% 46% 0 0 / 12% 12% 0 0;
+}
+
+[data-world-layout="material-atlas"] .personal-world__position {
+  grid-column: 1 / span 4;
+  grid-row: 2;
+  margin: -4rem 0 0;
+}
+
+/* 06: one nocturnal portrait is held precisely on the central axis. */
+[data-world-layout="deco-axis"] .personal-world__opening-grid {
+  grid-template-rows: auto auto auto;
+}
+
+[data-world-layout="deco-axis"] .personal-world__title-group {
+  grid-row: 1;
+}
+
+[data-world-layout="deco-axis"] .personal-world__opening-visual {
+  grid-column: 1;
+  grid-row: 2;
+  width: min(58%, 42rem);
+  margin: clamp(4rem, 8vw, 8rem) auto 0;
+  padding-inline: clamp(0.7rem, 2vw, 2rem);
+  border-right: 1px solid var(--world-line);
+  border-left: 1px solid var(--world-line);
+}
+
+[data-world-layout="deco-axis"] .personal-world__opening-visual figcaption {
+  text-align: left;
+}
+
+[data-world-layout="deco-axis"] .personal-world__position {
+  grid-row: 3;
+  margin-top: clamp(4rem, 7vw, 7rem);
+}
+
+/* 07: the photograph functions as the destination panel on a route sign. */
+[data-world-layout="route-sign"] .personal-world__title-group {
+  z-index: 2;
+  grid-row: 1;
+}
+
+[data-world-layout="route-sign"] .personal-world__opening-visual {
+  grid-column: 8 / -1;
+  grid-row: 1;
+  margin-top: clamp(9rem, 17vw, 17rem);
+  border: 0.45rem solid var(--studio-accent);
+  background: var(--studio-paper);
+}
+
+[data-world-layout="route-sign"] .personal-world__opening-visual figcaption {
+  padding: 0.8rem;
+  border-top: 0;
+}
+
+[data-world-layout="route-sign"] .personal-world__position {
+  grid-column: 2 / span 5;
+  grid-row: 2;
+  margin-top: 1.5rem;
+  border: 1px solid var(--world-line);
+}
+
+/* 08: the photograph is suspended between the organic form and hard datum. */
+[data-world-layout="soft-datum"] .personal-world__title-group {
+  z-index: 2;
+  grid-row: 1;
+}
+
+[data-world-layout="soft-datum"] .personal-world__opening-visual {
+  grid-column: 7 / -1;
+  grid-row: 1;
+  margin-top: clamp(9rem, 17vw, 17rem);
+  padding: 0.7rem;
+  border: 1px solid var(--world-line);
+  border-radius: 2.8rem 2.8rem 0.4rem 2.8rem;
+  background: var(--studio-paper);
+  transform: rotate(1.5deg);
+}
+
+[data-world-layout="soft-datum"] .personal-world__opening-visual > [data-project-media] {
+  border-radius: 2.2rem 2.2rem 0.2rem 2.2rem;
+}
+
+[data-world-layout="soft-datum"] .personal-world__position {
+  grid-column: 2 / span 5;
+  grid-row: 2;
+  margin-top: -1rem;
+}
+
+/* 09: the image is a live monitor inside the broadcast console. */
+[data-world-layout="signal-console"] .personal-world__title-group {
+  grid-row: 1;
+}
+
+[data-world-layout="signal-console"] .personal-world__opening-visual {
+  grid-column: 10 / -1;
+  grid-row: 1;
+  margin: clamp(3rem, 6vw, 6rem) clamp(1rem, 2vw, 2rem) clamp(1rem, 2vw, 2rem) -2rem;
+  padding: 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--studio-paper) 24%, transparent);
+  background: var(--studio-ink);
+  box-shadow: inset 0 0 0 0.35rem color-mix(in srgb, var(--studio-paper) 5%, transparent);
+}
+
+[data-world-layout="signal-console"] .personal-world__opening-visual figcaption {
+  border-color: color-mix(in srgb, var(--studio-paper) 24%, transparent);
+  background: var(--studio-ink);
+  color: color-mix(in srgb, var(--studio-paper) 65%, transparent);
+}
+
+[data-world-layout="signal-console"] .personal-world__opening-visual figcaption strong {
+  color: var(--studio-paper);
+}
+
+[data-world-layout="signal-console"] .personal-world__position {
+  grid-column: 11 / -1;
+  grid-row: 2;
+}
+
+/* 10: the photograph enters as a visual measure between title and note. */
+[data-world-layout="score-grid"] .personal-world__title-group {
+  grid-row: 1;
+}
+
+[data-world-layout="score-grid"] .personal-world__opening-visual {
+  grid-column: 2 / span 8;
+  grid-row: 2;
+  margin-top: clamp(3rem, 6vw, 6rem);
+  border-left: 0.5rem solid var(--studio-accent);
+}
+
+[data-world-layout="score-grid"] .personal-world__opening-visual figcaption {
+  padding-left: 1rem;
+}
+
+[data-world-layout="score-grid"] .personal-world__position {
+  grid-column: 10 / -1;
+  grid-row: 2;
+  margin-top: clamp(8rem, 14vw, 14rem);
+}
+
+/* 11: the camera view is the window running beside the transit board. */
+[data-world-layout="westbound-line"] .personal-world__title-group {
+  z-index: 2;
+  grid-row: 1;
+}
+
+[data-world-layout="westbound-line"] .personal-world__opening-visual {
+  grid-column: 5 / -1;
+  grid-row: 1;
+  margin-top: clamp(4rem, 8vw, 8rem);
+  padding: 0.7rem;
+  border: 1px solid var(--world-line);
+  border-radius: 0.65rem;
+  background: var(--studio-paper);
+}
+
+[data-world-layout="westbound-line"] .personal-world__opening-visual > [data-project-media] {
+  border-radius: 0.35rem;
+}
+
+[data-world-layout="westbound-line"] .personal-world__position {
+  grid-column: 7 / -1;
+  grid-row: 2;
+  margin-top: 1.5rem;
+}
+
+/* 12: the photograph touches the horizontal waterline. */
+[data-world-layout="tide-datum"] .personal-world__title-group {
+  z-index: 2;
+  grid-row: 1;
+}
+
+[data-world-layout="tide-datum"] .personal-world__opening-visual {
+  grid-column: 6 / -1;
+  grid-row: 1;
+  align-self: end;
+  margin-bottom: clamp(1rem, 3vw, 3rem);
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--studio-accent);
+}
+
+[data-world-layout="tide-datum"] .personal-world__position {
+  grid-column: 8 / -1;
+  grid-row: 2;
+  margin-top: 1rem;
+}
+
+/* 13: the documentary image becomes another offset batch passport. */
+[data-world-layout="batch-stack"] .personal-world__title-group {
+  z-index: 2;
+  grid-row: 1;
+}
+
+[data-world-layout="batch-stack"] .personal-world__opening-visual {
+  grid-column: 6 / -1;
+  grid-row: 1;
+  margin: clamp(8rem, 14vw, 14rem) 0 0 0;
+  padding: 0.7rem;
+  border: 0.16rem solid var(--studio-ink);
+  background: var(--studio-paper);
+  box-shadow: 1rem 1rem 0 color-mix(in srgb, var(--studio-ink) 10%, var(--studio-paper));
+  transform: rotate(1.2deg);
+}
+
+[data-world-layout="batch-stack"] .personal-world__position {
+  grid-column: 2 / span 5;
+  grid-row: 2;
+  margin-top: 1rem;
+}
+
+/* 14: a time-zone photograph crosses the nested clock rings. */
+[data-world-layout="circadian-dial"] .personal-world__title-group {
+  z-index: 2;
+  grid-column: 1 / span 7;
+  grid-row: 1;
+  text-align: left;
+}
+
+[data-world-layout="circadian-dial"] .personal-world__title-group > p,
+[data-world-layout="circadian-dial"] .personal-world__title-group h1 > span {
+  margin-inline: 0;
+}
+
+[data-world-layout="circadian-dial"] .personal-world__opening-visual {
+  grid-column: 7 / -1;
+  grid-row: 1;
+  margin-top: clamp(5rem, 10vw, 10rem);
+  padding: 0.8rem;
+  border: 1px solid var(--world-line);
+  border-radius: 50% 50% 0 0;
+  background: var(--studio-paper);
+}
+
+[data-world-layout="circadian-dial"] .personal-world__opening-visual > [data-project-media] {
+  border-radius: 50% 50% 0 0;
+}
+
+[data-world-layout="circadian-dial"] .personal-world__position {
+  right: auto;
+  bottom: 4%;
+  left: 5%;
+}
+
+/* 15: a garment study is pinned to the cutting pattern. */
+[data-world-layout="pattern-table"] .personal-world__title-group {
+  z-index: 2;
+  grid-row: 1;
+}
+
+[data-world-layout="pattern-table"] .personal-world__opening-visual {
+  grid-column: 7 / -1;
+  grid-row: 1;
+  margin-top: clamp(9rem, 16vw, 16rem);
+  padding: 0.65rem;
+  border: 1px dashed var(--studio-accent);
+  background: var(--studio-paper);
+  transform: rotate(-1deg);
+}
+
+[data-world-layout="pattern-table"] .personal-world__opening-visual::before,
+[data-world-layout="pattern-table"] .personal-world__opening-visual::after {
+  position: absolute;
+  z-index: 3;
+  top: -0.35rem;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: var(--studio-accent);
+  content: "";
+}
+
+[data-world-layout="pattern-table"] .personal-world__opening-visual::before {
+  left: 18%;
+}
+
+[data-world-layout="pattern-table"] .personal-world__opening-visual::after {
+  right: 18%;
+}
+
+[data-world-layout="pattern-table"] .personal-world__position {
+  grid-column: 2 / span 5;
+  grid-row: 2;
+  margin-top: 2rem;
+}
+
+/* 16: the live photograph occupies the active central room. */
+[data-world-layout="live-nine"] .personal-world__opening-grid {
+  grid-template-rows: auto auto;
+}
+
+[data-world-layout="live-nine"] .personal-world__title-group {
+  grid-column: 1 / span 5;
+  grid-row: 1;
+}
+
+[data-world-layout="live-nine"] .personal-world__opening-visual {
+  grid-column: 4 / span 4;
+  grid-row: 2;
+  padding: 1rem;
+  background: var(--studio-paper);
+}
+
+[data-world-layout="live-nine"] .personal-world__position {
+  grid-column: 7 / -1;
+  grid-row: 1 / span 2;
+}
+
+[data-world-layout="live-nine"] .personal-world__contract {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin-top: 1px;
+  border: 0;
+  background: var(--world-line);
+}
+
+[data-world-layout="live-nine"] .personal-world__contract > div,
+[data-world-layout="live-nine"] .personal-world__contract > div:first-child,
+[data-world-layout="live-nine"] .personal-world__contract > div:nth-child(2),
+[data-world-layout="live-nine"] .personal-world__contract > div:nth-child(3) {
+  grid-column: auto;
+  grid-row: auto;
+  min-height: 8rem;
+  background: var(--studio-paper);
+}
+
+/* 17: an observed frame is numbered as the ledger's primary evidence. */
+[data-world-layout="evidence-ledger"] .personal-world__title-group {
+  z-index: 2;
+  grid-row: 1;
+}
+
+[data-world-layout="evidence-ledger"] .personal-world__opening-visual {
+  grid-column: 8 / -1;
+  grid-row: 1;
+  margin-top: clamp(8rem, 15vw, 15rem);
+  padding: 0.8rem 0 0 2.7rem;
+  border-top: 1px solid var(--studio-ink);
+  counter-increment: opening-evidence;
+}
+
+[data-world-layout="evidence-ledger"] .personal-world__opening-visual::before {
+  position: absolute;
+  top: 0.8rem;
+  left: 0;
+  content: "E–01";
+  font-family: var(--studio-meta);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+}
+
+[data-world-layout="evidence-ledger"] .personal-world__position {
+  grid-column: 2 / span 5;
+  grid-row: 2;
+  margin-top: 1.5rem;
+}
+
+/* 18: the photograph is a separated building module in the assembly. */
+[data-world-layout="assembly-grid"] .personal-world__title-group {
+  z-index: 2;
+  grid-row: 1;
+}
+
+[data-world-layout="assembly-grid"] .personal-world__opening-visual {
+  grid-column: 8 / -1;
+  grid-row: 1;
+  margin-top: clamp(8rem, 15vw, 15rem);
+  padding: 0.7rem;
+  border: 1px solid var(--world-line);
+  background: var(--studio-paper);
+  box-shadow: 1.4rem 1.4rem 0 var(--studio-panel);
+}
+
+[data-world-layout="assembly-grid"] .personal-world__position {
+  grid-column: 2 / span 6;
+  grid-row: 2;
+  margin-top: 2rem;
+}
+
+/* 19: one photograph bridges both ledgers across the centre seam. */
+[data-world-layout="paired-ledger"] .personal-world__title-group {
+  grid-row: 1;
+}
+
+[data-world-layout="paired-ledger"] .personal-world__opening-visual {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  width: min(72%, 56rem);
+  margin: clamp(4rem, 8vw, 8rem) auto 0;
+  padding-inline: clamp(1rem, 4vw, 4rem);
+  border-right: 1px solid var(--world-line);
+  border-left: 1px solid var(--world-line);
+  background: var(--studio-paper);
+}
+
+[data-world-layout="paired-ledger"] .personal-world__position {
+  grid-row: 3;
+}
+
+/* 20: the photograph is the first tested sample in the specification. */
+[data-world-layout="material-spec"] .personal-world__opening-grid {
+  grid-template-rows: auto auto;
+}
+
+[data-world-layout="material-spec"] .personal-world__title-group {
+  grid-row: 1;
+}
+
+[data-world-layout="material-spec"] .personal-world__opening-visual {
+  grid-column: 1 / span 7;
+  grid-row: 1;
+  padding: 0 1rem 1rem 0;
+  border-right: 1px solid var(--world-line);
+  border-bottom: 1px solid var(--world-line);
+}
+
+[data-world-layout="material-spec"] .personal-world__opening-visual figcaption {
+  padding-left: 0;
+}
+
+[data-world-layout="material-spec"] .personal-world__position {
+  grid-column: 8 / -1;
+  grid-row: 2;
+  min-height: 14rem;
+  border: 1px solid var(--world-line);
+  border-top: 0;
+}
+
+/* Responsive photograph compositions ------------------------------------- */
+
+@media (max-width: 900px) and (min-width: 621px) {
+  [data-world-layout="overprint-bands"] .personal-world__opening-visual,
+  [data-world-layout="route-sign"] .personal-world__opening-visual,
+  [data-world-layout="signal-console"] .personal-world__opening-visual,
+  [data-world-layout="evidence-ledger"] .personal-world__opening-visual,
+  [data-world-layout="assembly-grid"] .personal-world__opening-visual {
+    grid-column: 8 / -1;
+  }
+
+  [data-world-layout="archive-cards"] .personal-world__opening-visual {
+    grid-column: 7 / -1;
+  }
+
+  [data-world-layout="specimen-dossier"] .personal-world__opening-visual {
+    grid-column: 8 / -1;
+  }
+
+  [data-world-layout="paired-ledger"] .personal-world__opening-visual {
+    width: 82%;
+  }
+}
+
+@media (max-width: 620px) {
+  .personal-world[data-world-layout] .personal-world__opening-visual {
+    transform-origin: center;
+  }
+
+  .personal-world[data-world-layout] .personal-world__opening-visual figcaption {
+    padding: 0.65rem 0.2rem;
+  }
+
+  /* 01 / late plate: title, photograph, then the fixed statement. */
+  [data-world-layout="overprint-bands"] .personal-world__title-group {
+    grid-row: 1;
+  }
+
+  [data-world-layout="overprint-bands"] .personal-world__opening-visual {
+    grid-column: 1;
+    grid-row: 2;
+    width: 88%;
+    margin: 2.8rem 0 0 auto;
+    transform: none;
+  }
+
+  [data-world-layout="overprint-bands"] .personal-world__position {
+    grid-row: 3;
+    margin-top: 3.5rem;
+  }
+
+  /* 02 / archive: image is a narrow drawer above its catalogue note. */
+  [data-world-layout="archive-cards"] .personal-world__title-group {
+    grid-row: 1;
+  }
+
+  [data-world-layout="archive-cards"] .personal-world__opening-visual {
+    grid-column: 1;
+    grid-row: 2;
+    width: 76%;
+    margin: 2.5rem 0 0 auto;
+  }
+
+  [data-world-layout="archive-cards"] .personal-world__position {
+    grid-row: 3;
+    margin-top: 2.5rem;
+  }
+
+  /* 03 / specimen: photograph keeps its pin and slight physical rotation. */
+  [data-world-layout="specimen-dossier"] .personal-world__title-group {
+    grid-row: 1;
+  }
+
+  [data-world-layout="specimen-dossier"] .personal-world__opening-visual {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 82%;
+    margin: 2rem 0 0 auto;
+  }
+
+  [data-world-layout="specimen-dossier"] .personal-world__position {
+    grid-row: 3;
+  }
+
+  /* 04 / letter: inset photograph sits before the routed annotation. */
+  [data-world-layout="correspondence-scroll"] .personal-world__opening-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  [data-world-layout="correspondence-scroll"] .personal-world__title-group,
+  [data-world-layout="correspondence-scroll"] .personal-world__opening-visual,
+  [data-world-layout="correspondence-scroll"] .personal-world__position {
+    grid-column: 1;
+  }
+
+  [data-world-layout="correspondence-scroll"] .personal-world__title-group {
+    grid-row: 1;
+  }
+
+  [data-world-layout="correspondence-scroll"] .personal-world__opening-visual {
+    grid-row: 2;
+    width: 88%;
+    margin: 3rem 0 0 auto;
+  }
+
+  [data-world-layout="correspondence-scroll"] .personal-world__position {
+    grid-row: 3;
+  }
+
+  /* 05 / swatch: title and material photograph overlap as a fanned pair. */
+  [data-world-layout="material-atlas"] .personal-world__title-group {
+    grid-row: 1;
+  }
+
+  [data-world-layout="material-atlas"] .personal-world__opening-visual {
+    grid-column: 1;
+    grid-row: 2;
+    width: 86%;
+    margin: 2rem 0 0 auto;
+    transform: rotate(1.4deg);
+  }
+
+  [data-world-layout="material-atlas"] .personal-world__position {
+    grid-row: 3;
+    margin-top: -1rem;
+  }
+
+  /* 06 / axis: photo stays centred and narrow like a nocturnal portrait. */
+  [data-world-layout="deco-axis"] .personal-world__opening-visual {
+    width: 76%;
+    margin-top: 3.5rem;
+  }
+
+  /* 07 / route: photograph is an offset destination sign. */
+  [data-world-layout="route-sign"] .personal-world__title-group {
+    grid-row: 1;
+  }
+
+  [data-world-layout="route-sign"] .personal-world__opening-visual {
+    grid-column: 1;
+    grid-row: 2;
+    width: 82%;
+    margin: 0 0 0 auto;
+  }
+
+  [data-world-layout="route-sign"] .personal-world__position {
+    grid-row: 3;
+  }
+
+  /* 08 / soft datum: photograph floats against the organic field. */
+  [data-world-layout="soft-datum"] .personal-world__title-group {
+    grid-row: 1;
+  }
+
+  [data-world-layout="soft-datum"] .personal-world__opening-visual {
+    grid-column: 1;
+    grid-row: 2;
+    width: 78%;
+    margin: -1rem 0 0 auto;
+  }
+
+  [data-world-layout="soft-datum"] .personal-world__position {
+    grid-row: 3;
+    margin-top: 2rem;
+  }
+
+  /* 09 / console: image becomes the upper monitor, statement the lower bank. */
+  [data-world-layout="signal-console"] .personal-world__title-group {
+    grid-row: 1;
+  }
+
+  [data-world-layout="signal-console"] .personal-world__opening-visual {
+    grid-column: 1;
+    grid-row: 2;
+    width: 91%;
+    margin: 0 auto;
+  }
+
+  [data-world-layout="signal-console"] .personal-world__position {
+    grid-row: 3;
+    width: 79%;
+  }
+
+  /* 10 / score: photo becomes a full measure before the syncopated note. */
+  [data-world-layout="score-grid"] .personal-world__title-group {
+    grid-row: 1;
+  }
+
+  [data-world-layout="score-grid"] .personal-world__opening-visual {
+    grid-column: 1;
+    grid-row: 2;
+    width: 88%;
+    margin: 3rem 0 0;
+  }
+
+  [data-world-layout="score-grid"] .personal-world__position {
+    grid-row: 3;
+    margin-top: 3.5rem;
+  }
+
+  /* 11 / transit: image remains a wide window beside a compact route code. */
+  [data-world-layout="westbound-line"] .personal-world__title-group {
+    grid-row: 1;
+  }
+
+  [data-world-layout="westbound-line"] .personal-world__opening-visual {
+    grid-column: 1;
+    grid-row: 2;
+    width: 92%;
+    margin: -1rem 0 0 auto;
+  }
+
+  [data-world-layout="westbound-line"] .personal-world__position {
+    grid-row: 3;
+  }
+
+  /* 12 / tide: image and heading meet at the same waterline. */
+  [data-world-layout="tide-datum"] .personal-world__title-group {
+    grid-row: 1;
+  }
+
+  [data-world-layout="tide-datum"] .personal-world__opening-visual {
+    grid-column: 1;
+    grid-row: 2;
+    width: 84%;
+    margin: -2rem 0 0 auto;
+  }
+
+  [data-world-layout="tide-datum"] .personal-world__position {
+    grid-row: 3;
+  }
+
+  /* 13 / batch: one more visibly offset card joins the passport stack. */
+  [data-world-layout="batch-stack"] .personal-world__title-group {
+    grid-row: 1;
+  }
+
+  [data-world-layout="batch-stack"] .personal-world__opening-visual {
+    grid-column: 1;
+    grid-row: 2;
+    width: 82%;
+    margin: 2.8rem 0 0 auto;
+  }
+
+  [data-world-layout="batch-stack"] .personal-world__position {
+    grid-row: 3;
+  }
+
+  /* 14 / dial: the photograph crosses the lower half of the watch face. */
+  [data-world-layout="circadian-dial"] .personal-world__title-group {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  [data-world-layout="circadian-dial"] .personal-world__opening-visual {
+    grid-column: 2 / -1;
+    grid-row: 2;
+    width: 88%;
+    margin: -4rem 0 0 auto;
+  }
+
+  [data-world-layout="circadian-dial"] .personal-world__position {
+    right: auto;
+    bottom: -2rem;
+    left: 0;
+  }
+
+  /* 15 / pattern: the pinned garment study remains offset from the title. */
+  [data-world-layout="pattern-table"] .personal-world__title-group {
+    grid-row: 1;
+  }
+
+  [data-world-layout="pattern-table"] .personal-world__opening-visual {
+    grid-column: 1;
+    grid-row: 2;
+    width: 78%;
+    margin: -2rem 0 0 auto;
+  }
+
+  [data-world-layout="pattern-table"] .personal-world__position {
+    grid-row: 3;
+  }
+
+  /* 16 / live nine: image remains the central active room. */
+  [data-world-layout="live-nine"] .personal-world__opening-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-rows: auto auto auto;
+  }
+
+  [data-world-layout="live-nine"] .personal-world__title-group {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  [data-world-layout="live-nine"] .personal-world__opening-visual {
+    grid-column: 1 / span 5;
+    grid-row: 2;
+  }
+
+  [data-world-layout="live-nine"] .personal-world__position {
+    grid-column: 3 / -1;
+    grid-row: 3;
+  }
+
+  [data-world-layout="live-nine"] .personal-world__contract {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  [data-world-layout="live-nine"] .personal-world__contract > div {
+    min-height: 10rem;
+    padding: 0.8rem;
+  }
+
+  /* 17 / evidence: image is the large first record, index remains narrow. */
+  [data-world-layout="evidence-ledger"] .personal-world__title-group {
+    grid-row: 1;
+  }
+
+  [data-world-layout="evidence-ledger"] .personal-world__opening-visual {
+    grid-column: 1;
+    grid-row: 2;
+    width: 88%;
+    margin: 3rem 0 0 auto;
+  }
+
+  [data-world-layout="evidence-ledger"] .personal-world__position {
+    grid-row: 3;
+  }
+
+  /* 18 / assembly: picture and text are separate, visibly linked modules. */
+  [data-world-layout="assembly-grid"] .personal-world__title-group {
+    grid-row: 1;
+  }
+
+  [data-world-layout="assembly-grid"] .personal-world__opening-visual {
+    grid-column: 1;
+    grid-row: 2;
+    width: 84%;
+    margin: 2.5rem 0 0 auto;
+  }
+
+  [data-world-layout="assembly-grid"] .personal-world__position {
+    grid-row: 3;
+  }
+
+  /* 19 / paired ledger: image remains centred over the bilateral seam. */
+  [data-world-layout="paired-ledger"] .personal-world__title-group {
+    grid-row: 1;
+  }
+
+  [data-world-layout="paired-ledger"] .personal-world__opening-visual {
+    grid-column: 1;
+    grid-row: 2;
+    width: 86%;
+  }
+
+  [data-world-layout="paired-ledger"] .personal-world__position {
+    grid-row: 3;
+  }
+
+  /* 20 / material spec: tested image and claim alternate sides of the sheet. */
+  [data-world-layout="material-spec"] .personal-world__title-group {
+    grid-row: 1;
+  }
+
+  [data-world-layout="material-spec"] .personal-world__opening-visual {
+    grid-column: 1;
+    grid-row: 2;
+    width: 88%;
+    padding: 0.8rem 0.8rem 0.8rem 0;
+  }
+
+  [data-world-layout="material-spec"] .personal-world__position {
+    grid-row: 3;
+    width: 78%;
+    margin-left: auto;
+  }
+}
+
+/* Measured responsive safeguards -----------------------------------------
+   Keep this final in the cascade. Earlier project-specific desktop spans are
+   intentionally reset here so a one-column mobile grid never manufactures
+   implicit 20–50px tracks. The twelve explicit tracks below preserve each
+   composition while guaranteeing a real inline size for every opening item. */
+
+@media (max-width: 620px) {
+  .personal-world[data-world-layout] .personal-world__topline {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) max-content;
+    gap: 0.55rem 1rem;
+    width: 100%;
+  }
+
+  .personal-world[data-world-layout] .personal-world__topline a {
+    min-width: 0;
+  }
+
+  .personal-world[data-world-layout] .personal-world__topline > span:nth-child(2) {
+    grid-column: 2;
+    justify-self: end;
+    width: max-content;
+    white-space: nowrap;
+  }
+
+  .personal-world[data-world-layout] .personal-world__topline > span:last-child {
+    grid-column: 1 / -1;
+    justify-self: start;
+    width: auto;
+    max-width: 32ch;
+    text-align: left;
+  }
+
+  .personal-world[data-world-layout] .personal-world__opening-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-auto-columns: 0;
+    grid-auto-rows: auto;
+    align-items: start;
+    justify-items: stretch;
+    justify-content: stretch;
+    gap: 0;
+    min-height: 0;
+    padding-top: clamp(2rem, 8vw, 3rem);
+  }
+
+  .personal-world[data-world-layout]
+    :is(.personal-world__title-group, .personal-world__opening-visual, .personal-world__position) {
+    position: relative;
+    inset: auto;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .personal-world[data-world-layout] .personal-world__title-group {
+    width: auto;
+    margin-right: 0;
+    margin-left: 0;
+    transform: none;
+  }
+
+  .personal-world[data-world-layout] .personal-world__title-group h1 {
+    width: 100%;
+    max-width: 100%;
+    font-size: clamp(2.9rem, 14.4vw, 4.15rem);
+  }
+
+  .personal-world[data-world-layout] .personal-world__title-group h1 > span {
+    width: fit-content;
+    max-width: 100%;
+    margin-left: 0;
+    white-space: nowrap;
+  }
+
+  .personal-world[data-world-layout] .personal-world__opening-visual {
+    align-self: start;
+    width: auto;
+    margin-top: clamp(1.25rem, 5vw, 2rem);
+    margin-right: 0;
+    margin-bottom: 0;
+    transform: none;
+  }
+
+  .personal-world[data-world-layout] .personal-world__position {
+    align-self: start;
+    width: auto;
+    margin-top: clamp(1.5rem, 6vw, 2.5rem);
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+
+  .personal-world[data-world-layout] .personal-world__contract,
+  .personal-world[data-world-layout] .personal-world__chapters {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  /* 01 / AFTERIMAGE: offset plate, 10-column title and right-shifted image. */
+  [data-world-layout="overprint-bands"] .personal-world__title-group {
+    grid-column: 1 / 11;
+    grid-row: 1;
+  }
+
+  [data-world-layout="overprint-bands"] .personal-world__title-group h1 > span:nth-child(2) {
+    margin-left: 0.22em;
+  }
+
+  [data-world-layout="overprint-bands"] .personal-world__opening-visual {
+    grid-column: 3 / -1;
+    grid-row: 2;
+  }
+
+  [data-world-layout="overprint-bands"] .personal-world__position {
+    grid-column: 2 / 11;
+    grid-row: 3;
+  }
+
+  /* 02 / MEMORY TYPE: full drawer label, then successively inset records. */
+  [data-world-layout="archive-cards"] .personal-world__title-group {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  [data-world-layout="archive-cards"] .personal-world__opening-visual {
+    grid-column: 4 / -1;
+    grid-row: 2;
+  }
+
+  [data-world-layout="archive-cards"] .personal-world__position {
+    grid-column: 3 / 11;
+    grid-row: 3;
+  }
+
+  /* 03 / FIELD NOTES: evidence occupies nine tracks beside an open margin. */
+  [data-world-layout="specimen-dossier"] .personal-world__title-group {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  [data-world-layout="specimen-dossier"] .personal-world__title-group h1 > span:last-child {
+    margin-left: 0.24em;
+  }
+
+  [data-world-layout="specimen-dossier"] .personal-world__opening-visual {
+    grid-column: 4 / -1;
+    grid-row: 2;
+  }
+
+  [data-world-layout="specimen-dossier"] .personal-world__position {
+    grid-column: 1 / 10;
+    grid-row: 3;
+  }
+
+  /* 04 / LAST LETTER: a broad page followed by a narrower photographic insert. */
+  [data-world-layout="correspondence-scroll"] .personal-world__title-group {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  [data-world-layout="correspondence-scroll"] .personal-world__title-group h1 > span:last-child {
+    margin-left: 0.18em;
+  }
+
+  [data-world-layout="correspondence-scroll"] .personal-world__opening-visual {
+    grid-column: 2 / 12;
+    grid-row: 2;
+  }
+
+  [data-world-layout="correspondence-scroll"] .personal-world__position {
+    grid-column: 4 / -1;
+    grid-row: 3;
+  }
+
+  /* 05 / TACTILE FORECAST: swatch body stays broad, note tucks beneath. */
+  [data-world-layout="material-atlas"] .personal-world__title-group {
+    grid-column: 1 / 12;
+    grid-row: 1;
+  }
+
+  [data-world-layout="material-atlas"] .personal-world__opening-visual {
+    grid-column: 3 / -1;
+    grid-row: 2;
+    transform: rotate(1deg);
+  }
+
+  [data-world-layout="material-atlas"] .personal-world__position {
+    grid-column: 1 / 9;
+    grid-row: 3;
+  }
+
+  /* 06 / NIGHT INDEX: everything holds a calm, centred ceremonial axis. */
+  [data-world-layout="deco-axis"] .personal-world__title-group {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  [data-world-layout="deco-axis"] .personal-world__title-group h1 > span {
+    margin-inline: auto;
+  }
+
+  [data-world-layout="deco-axis"] .personal-world__opening-visual {
+    grid-column: 3 / 11;
+    grid-row: 2;
+  }
+
+  [data-world-layout="deco-axis"] .personal-world__position {
+    grid-column: 2 / 12;
+    grid-row: 3;
+  }
+
+  /* 07 / PUBLIC MEMORY: a route sign moves from full title to offset stop. */
+  [data-world-layout="route-sign"] .personal-world__title-group {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  [data-world-layout="route-sign"] .personal-world__opening-visual {
+    grid-column: 3 / -1;
+    grid-row: 2;
+  }
+
+  [data-world-layout="route-sign"] .personal-world__position {
+    grid-column: 1 / 10;
+    grid-row: 3;
+  }
+
+  /* 08 / SOFT MACHINE: rigid title edge, soft right-floating photograph. */
+  [data-world-layout="soft-datum"] .personal-world__title-group {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  [data-world-layout="soft-datum"] .personal-world__title-group h1 > span:last-child {
+    margin-left: 0.18em;
+  }
+
+  [data-world-layout="soft-datum"] .personal-world__opening-visual {
+    grid-column: 4 / -1;
+    grid-row: 2;
+  }
+
+  [data-world-layout="soft-datum"] .personal-world__position {
+    grid-column: 1 / 10;
+    grid-row: 3;
+  }
+
+  /* 09 / SIGNAL NOISE: title and monitor use complete, explicit channel banks. */
+  [data-world-layout="signal-console"] .personal-world__title-group {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  [data-world-layout="signal-console"] .personal-world__title-group h1 > span:last-child {
+    margin-left: 0.2em;
+  }
+
+  [data-world-layout="signal-console"] .personal-world__opening-visual {
+    grid-column: 2 / -1;
+    grid-row: 2;
+  }
+
+  [data-world-layout="signal-console"] .personal-world__position {
+    grid-column: 4 / -1;
+    grid-row: 3;
+  }
+
+  /* 10 / CHROMA TEMPO: compact score title, long visual measure, short annotation. */
+  [data-world-layout="score-grid"] .personal-world__title-group {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  [data-world-layout="score-grid"] .personal-world__title-group h1 {
+    font-size: clamp(2.8rem, 12vw, 3.65rem);
+  }
+
+  [data-world-layout="score-grid"] .personal-world__opening-visual {
+    grid-column: 1 / 11;
+    grid-row: 2;
+  }
+
+  [data-world-layout="score-grid"] .personal-world__position {
+    grid-column: 4 / -1;
+    grid-row: 3;
+  }
+
+  /* 11 / 79W: compact route code beside a wide moving window. */
+  [data-world-layout="westbound-line"] .personal-world__title-group {
+    grid-column: 1 / 9;
+    grid-row: 1;
+  }
+
+  [data-world-layout="westbound-line"] .personal-world__title-group h1 {
+    font-size: clamp(5.1rem, 22vw, 6.6rem);
+  }
+
+  [data-world-layout="westbound-line"] .personal-world__opening-visual {
+    grid-column: 3 / -1;
+    grid-row: 2;
+  }
+
+  [data-world-layout="westbound-line"] .personal-world__position {
+    grid-column: 2 / -1;
+    grid-row: 3;
+  }
+
+  /* 12 / TIDEHOLD: full title meets a photograph offset along the waterline. */
+  [data-world-layout="tide-datum"] .personal-world__title-group {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  [data-world-layout="tide-datum"] .personal-world__opening-visual {
+    grid-column: 3 / -1;
+    grid-row: 2;
+  }
+
+  [data-world-layout="tide-datum"] .personal-world__position {
+    grid-column: 1 / 10;
+    grid-row: 3;
+  }
+
+  /* 13 / OFFSORT: blunt label, offset batch image, then a smaller sticker. */
+  [data-world-layout="batch-stack"] .personal-world__title-group {
+    grid-column: 1 / 12;
+    grid-row: 1;
+  }
+
+  .personal-world[data-world-layout="batch-stack"] .personal-world__title-group h1 {
+    font-size: clamp(2.85rem, 13.8vw, 4rem);
+  }
+
+  [data-world-layout="batch-stack"] .personal-world__opening-visual {
+    grid-column: 3 / -1;
+    grid-row: 2;
+    transform: rotate(0.8deg);
+  }
+
+  [data-world-layout="batch-stack"] .personal-world__position {
+    grid-column: 1 / 10;
+    grid-row: 3;
+    transform: rotate(-0.7deg);
+  }
+
+  /* 14 / HORALIS: centred dial title and lower-right time-zone image. */
+  [data-world-layout="circadian-dial"] .personal-world__title-group {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  [data-world-layout="circadian-dial"] .personal-world__opening-visual {
+    grid-column: 3 / -1;
+    grid-row: 2;
+  }
+
+  [data-world-layout="circadian-dial"] .personal-world__position {
+    grid-column: 1 / 9;
+    grid-row: 3;
+  }
+
+  /* 15 / SELV 00: shaped title field, pinned image, narrow repair note. */
+  [data-world-layout="pattern-table"] .personal-world__title-group {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  [data-world-layout="pattern-table"] .personal-world__opening-visual {
+    grid-column: 4 / -1;
+    grid-row: 2;
+  }
+
+  [data-world-layout="pattern-table"] .personal-world__position {
+    grid-column: 2 / 11;
+    grid-row: 3;
+  }
+
+  /* 16 / TESSERA LIVE: six-column stage retains one active inset room. */
+  [data-world-layout="live-nine"] .personal-world__opening-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  [data-world-layout="live-nine"] .personal-world__title-group {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .personal-world[data-world-layout="live-nine"] .personal-world__title-group h1 {
+    font-size: clamp(2.05rem, 9vw, 2.75rem);
+  }
+
+  [data-world-layout="live-nine"] .personal-world__opening-visual {
+    grid-column: 1 / 11;
+    grid-row: 2;
+  }
+
+  [data-world-layout="live-nine"] .personal-world__position {
+    grid-column: 3 / -1;
+    grid-row: 3;
+  }
+
+  /* 17 / BACKMATTER: complete heading, numbered evidence and right index. */
+  [data-world-layout="evidence-ledger"] .personal-world__title-group {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  [data-world-layout="evidence-ledger"] .personal-world__title-group h1 > span:last-child {
+    margin-left: 0.2em;
+  }
+
+  [data-world-layout="evidence-ledger"] .personal-world__opening-visual {
+    grid-column: 2 / -1;
+    grid-row: 2;
+  }
+
+  [data-world-layout="evidence-ledger"] .personal-world__position {
+    grid-column: 5 / -1;
+    grid-row: 3;
+  }
+
+  /* 18 / SEAMFRAME: staggered modules always span at least nine tracks. */
+  [data-world-layout="assembly-grid"] .personal-world__title-group {
+    grid-column: 1 / 11;
+    grid-row: 1;
+  }
+
+  [data-world-layout="assembly-grid"] .personal-world__title-group h1 > span:last-child {
+    margin-left: 0.18em;
+  }
+
+  [data-world-layout="assembly-grid"] .personal-world__opening-visual {
+    grid-column: 3 / -1;
+    grid-row: 2;
+  }
+
+  [data-world-layout="assembly-grid"] .personal-world__position {
+    grid-column: 1 / 10;
+    grid-row: 3;
+  }
+
+  /* 19 / TWO SHORES: image bridges the seam, copy resolves on opposite sides. */
+  [data-world-layout="paired-ledger"] .personal-world__title-group {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  [data-world-layout="paired-ledger"] .personal-world__title-group h1 > span {
+    margin-inline: auto;
+  }
+
+  [data-world-layout="paired-ledger"] .personal-world__opening-visual {
+    grid-column: 2 / 12;
+    grid-row: 2;
+  }
+
+  [data-world-layout="paired-ledger"] .personal-world__position {
+    grid-column: 1 / -1;
+    grid-row: 3;
+  }
+
+  /* 20 / COLDKILN: title and tested sample alternate across a material sheet. */
+  [data-world-layout="material-spec"] .personal-world__title-group {
+    grid-column: 3 / -1;
+    grid-row: 1;
+  }
+
+  [data-world-layout="material-spec"] .personal-world__opening-visual {
+    grid-column: 1 / 11;
+    grid-row: 2;
+  }
+
+  [data-world-layout="material-spec"] .personal-world__position {
+    grid-column: 4 / -1;
+    grid-row: 3;
+  }
+}
+
+/* The three measured collision cases share explicit non-overlapping regions
+   at tablet and desktop widths while retaining three distinct compositions. */
+@media (min-width: 621px) {
+  [data-world-layout="deco-axis"] .personal-world__opening-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+  }
+
+  [data-world-layout="deco-axis"] .personal-world__title-group,
+  [data-world-layout="deco-axis"] .personal-world__opening-visual,
+  [data-world-layout="deco-axis"] .personal-world__position {
+    grid-column: 1;
+  }
+
+  [data-world-layout="deco-axis"] .personal-world__title-group {
+    grid-row: 1;
+  }
+
+  [data-world-layout="deco-axis"] .personal-world__opening-visual {
+    grid-row: 2;
+    margin-top: clamp(3rem, 6vw, 6rem);
+  }
+
+  [data-world-layout="deco-axis"] .personal-world__position {
+    grid-row: 3;
+    margin-top: clamp(3rem, 6vw, 6rem);
+  }
+
+  [data-world-layout="score-grid"] .personal-world__opening-grid {
+    display: grid;
+    grid-template-columns: repeat(14, minmax(0, 1fr));
+    grid-template-rows: auto auto;
+  }
+
+  [data-world-layout="score-grid"] .personal-world__title-group {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  [data-world-layout="score-grid"] .personal-world__opening-visual {
+    grid-column: 1 / span 9;
+    grid-row: 2;
+    margin-top: clamp(2rem, 4vw, 4rem);
+  }
+
+  [data-world-layout="score-grid"] .personal-world__position {
+    grid-column: 10 / -1;
+    grid-row: 2;
+    margin-top: clamp(5rem, 9vw, 9rem);
+  }
+
+  [data-world-layout="live-nine"] .personal-world__opening-grid {
+    display: grid;
+    grid-template-columns: repeat(9, minmax(0, 1fr));
+    grid-template-rows: auto auto;
+  }
+
+  [data-world-layout="live-nine"] .personal-world__title-group {
+    grid-column: 1 / span 6;
+    grid-row: 1;
+  }
+
+  .personal-world[data-world-layout="live-nine"] .personal-world__title-group h1 {
+    font-size: clamp(3.2rem, 6.8vw, 6.4rem);
+  }
+
+  [data-world-layout="live-nine"] .personal-world__opening-visual {
+    grid-column: 1 / span 6;
+    grid-row: 2;
+  }
+
+  [data-world-layout="live-nine"] .personal-world__position {
+    grid-column: 7 / -1;
+    grid-row: 1 / span 2;
+  }
+}
+
+/* HORALIS keeps the dial composition at tablet size, but its explanatory
+   copy must join the grid instead of inheriting the desktop absolute orbit. */
+@media (min-width: 621px) and (max-width: 900px) {
+  .personal-world[data-world-layout="circadian-dial"] .personal-world__opening-grid {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    grid-template-rows: auto auto;
+    align-items: center;
+  }
+
+  .personal-world[data-world-layout="circadian-dial"] .personal-world__title-group {
+    grid-column: 1 / span 4;
+    grid-row: 1;
+    align-self: center;
+  }
+
+  .personal-world[data-world-layout="circadian-dial"] .personal-world__title-group h1 {
+    font-size: clamp(4rem, 9vw, 4.5rem);
+  }
+
+  .personal-world[data-world-layout="circadian-dial"] .personal-world__opening-visual {
+    grid-column: 5 / -1;
+    grid-row: 1;
+    width: 100%;
+    margin: 2rem 0 0;
+  }
+
+  .personal-world[data-world-layout="circadian-dial"] .personal-world__position {
+    position: relative;
+    inset: auto;
+    grid-column: 1 / span 4;
+    grid-row: 2;
+    align-self: start;
+    width: auto;
+    margin: 2rem 1rem 0 0;
+  }
+}
+
+/* World-specific interaction grammar -------------------------------------
+   Only composite-friendly transforms are animated. Nothing below changes
+   layout dimensions, and keyboard/touch states mirror pointer feedback. */
+
+.personal-world[data-world-layout]
+  :is(
+    .personal-world__title-group h1 > span,
+    .personal-world__opening-visual,
+    .personal-world__position,
+    .personal-world__contract > div,
+    .personal-world__chapters a,
+    .personal-world__chapters a::before,
+    .personal-world__opening-visual::before,
+    .personal-world__opening-visual::after
+  ) {
+  transition-duration: 420ms;
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.22, 0.75, 0.24, 1);
+}
+
+/* 01 / plate drift resolves toward registration. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  [data-world-layout="overprint-bands"] .personal-world__opening-visual:hover,
+  [data-world-layout="overprint-bands"]
+    .personal-world__opening:focus-within
+    .personal-world__opening-visual {
+    transform: translateX(0);
+  }
+
+  [data-world-layout="overprint-bands"] .personal-world__title-group:hover h1 > span:first-child {
+    transform: translateX(0.045em);
+  }
+
+  [data-world-layout="overprint-bands"] .personal-world__title-group:hover h1 > span:last-child {
+    transform: translateX(-0.045em);
+  }
+}
+
+[data-world-layout="overprint-bands"] .personal-world__opening-visual:active {
+  transform: translateX(0.45rem);
+}
+
+[data-world-layout="overprint-bands"] .personal-world__chapters a:focus-visible,
+[data-world-layout="overprint-bands"] .personal-world__chapters a:active {
+  transform: translateY(-0.35rem);
+}
+
+/* 02 / archive drawers open by increasing depth. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  [data-world-layout="archive-cards"] .personal-world__opening-visual:hover {
+    transform: translateX(-0.7rem);
+  }
+
+  [data-world-layout="archive-cards"] .personal-world__contract > div:first-child:hover {
+    transform: translateX(0.55rem);
+  }
+
+  [data-world-layout="archive-cards"] .personal-world__contract > div:nth-child(2):hover {
+    transform: translateX(0.9rem);
+  }
+
+  [data-world-layout="archive-cards"] .personal-world__contract > div:nth-child(3):hover {
+    transform: translateX(1.25rem);
+  }
+}
+
+[data-world-layout="archive-cards"] .personal-world__opening-visual:active {
+  transform: translateX(-0.45rem);
+}
+
+[data-world-layout="archive-cards"] .personal-world__chapters a:focus-visible,
+[data-world-layout="archive-cards"] .personal-world__chapters a:active {
+  transform: translateY(-0.55rem);
+}
+
+/* 03 / specimen evidence settles beneath its pin. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  [data-world-layout="specimen-dossier"] .personal-world__opening-visual:hover {
+    transform: rotate(0deg) translateY(0.35rem);
+  }
+
+  [data-world-layout="specimen-dossier"] .personal-world__opening-visual:hover::before {
+    transform: translateX(-50%) rotate(2deg) scaleX(1.12);
+  }
+
+  [data-world-layout="specimen-dossier"] .personal-world__contract > div:hover {
+    transform: translateY(-0.35rem);
+  }
+}
+
+[data-world-layout="specimen-dossier"] .personal-world__opening-visual:active {
+  transform: rotate(0deg) scale(0.985);
+}
+
+[data-world-layout="specimen-dossier"] .personal-world__chapters a:focus-visible,
+[data-world-layout="specimen-dossier"] .personal-world__chapters a:active {
+  transform: rotate(-0.7deg);
+}
+
+/* 04 / correspondence advances through one deliberate fold. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  [data-world-layout="correspondence-scroll"] .personal-world__opening-visual:hover {
+    transform: translateY(-0.45rem) rotate(-0.35deg);
+  }
+
+  [data-world-layout="correspondence-scroll"] .personal-world__position:hover::before {
+    transform: rotate(34deg) scale(0.92);
+  }
+}
+
+[data-world-layout="correspondence-scroll"] .personal-world__opening-visual:active {
+  transform: translateY(0.25rem) rotate(0.25deg);
+}
+
+[data-world-layout="correspondence-scroll"] .personal-world__chapters a:focus-visible,
+[data-world-layout="correspondence-scroll"] .personal-world__chapters a:active {
+  transform: translateX(0.35rem);
+}
+
+/* 05 / material swatches close into a calibrated fan. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  [data-world-layout="material-atlas"] .personal-world__opening-visual:hover {
+    transform: rotate(0deg) translateY(-0.45rem);
+  }
+
+  [data-world-layout="material-atlas"] .personal-world__contract:hover > div:first-child {
+    transform: rotate(-3deg);
+  }
+
+  [data-world-layout="material-atlas"] .personal-world__contract:hover > div:nth-child(2) {
+    transform: translateY(-2.1rem);
+  }
+
+  [data-world-layout="material-atlas"] .personal-world__contract:hover > div:last-child {
+    transform: rotate(3deg);
+  }
+}
+
+[data-world-layout="material-atlas"] .personal-world__opening-visual:active {
+  transform: rotate(0deg) scale(0.985);
+}
+
+[data-world-layout="material-atlas"] .personal-world__chapters a:focus-visible,
+[data-world-layout="material-atlas"] .personal-world__chapters a:active {
+  transform: translateY(-0.35rem) scale(1.015);
+}
+
+/* 06 / the nocturnal axis answers with a measured inward movement. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  [data-world-layout="deco-axis"] .personal-world__opening-visual:hover {
+    transform: scale(0.988);
+  }
+
+  [data-world-layout="deco-axis"] .personal-world__position:hover {
+    transform: translateY(-0.45rem);
+  }
+
+  [data-world-layout="deco-axis"] .personal-world__chapters a:hover::before {
+    transform: rotate(135deg) scale(1.2);
+  }
+}
+
+[data-world-layout="deco-axis"] .personal-world__opening-visual:active {
+  transform: scale(0.975);
+}
+
+[data-world-layout="deco-axis"] .personal-world__chapters a:focus-visible::before,
+[data-world-layout="deco-axis"] .personal-world__chapters a:active::before {
+  transform: rotate(135deg) scale(1.2);
+}
+
+/* 07 / route stops progress east without moving the information rail. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  [data-world-layout="route-sign"] .personal-world__opening-visual:hover {
+    transform: translateX(0.65rem);
+  }
+
+  [data-world-layout="route-sign"] .personal-world__contract > div:hover::before {
+    transform: translateY(-50%) scale(1.45);
+  }
+
+  [data-world-layout="route-sign"] .personal-world__chapters a:hover::before {
+    transform: scale(1.55);
+  }
+}
+
+[data-world-layout="route-sign"] .personal-world__opening-visual:active {
+  transform: translateX(0.45rem);
+}
+
+[data-world-layout="route-sign"] .personal-world__chapters a:focus-visible,
+[data-world-layout="route-sign"] .personal-world__chapters a:active {
+  transform: translateX(0.3rem);
+}
+
+/* 08 / soft matter yields while the datum remains still. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  [data-world-layout="soft-datum"] .personal-world__opening-visual:hover {
+    transform: rotate(-0.8deg) scale(1.008);
+  }
+
+  [data-world-layout="soft-datum"] .personal-world__contract > div:nth-child(2):hover {
+    transform: translateY(1.4rem) scale(1.025);
+  }
+
+  [data-world-layout="soft-datum"] .personal-world__position:hover {
+    transform: translateY(0.35rem) scale(0.99);
+  }
+}
+
+[data-world-layout="soft-datum"] .personal-world__opening-visual:active {
+  transform: rotate(-0.6deg) scale(0.98);
+}
+
+[data-world-layout="soft-datum"] .personal-world__chapters a:focus-visible,
+[data-world-layout="soft-datum"] .personal-world__chapters a:active {
+  transform: scale(0.97);
+}
+
+/* 09 / signal monitor locks while level meters answer independently. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  [data-world-layout="signal-console"] .personal-world__opening-visual:hover {
+    transform: translateX(-0.35rem) skewX(-0.35deg);
+  }
+
+  [data-world-layout="signal-console"] .personal-world__contract > div:hover::after {
+    transform: scaleX(0.88);
+    transform-origin: left;
+  }
+
+  [data-world-layout="signal-console"] .personal-world__title-group:hover h1 > span:last-child {
+    transform: translateX(-0.06em);
+  }
+}
+
+[data-world-layout="signal-console"] .personal-world__opening-visual:active {
+  transform: skewX(0.5deg) scale(0.985);
+}
+
+[data-world-layout="signal-console"] .personal-world__chapters a:focus-visible,
+[data-world-layout="signal-console"] .personal-world__chapters a:active {
+  transform: translateY(0.24rem);
+}
+
+/* 10 / the visual score answers with syncopated vertical beats. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  [data-world-layout="score-grid"] .personal-world__opening-visual:hover {
+    transform: translateX(0.45rem);
+  }
+
+  [data-world-layout="score-grid"] .personal-world__title-group:hover h1 > span:last-child {
+    transform: translateY(0.11em);
+  }
+
+  [data-world-layout="score-grid"] .personal-world__chapters a:hover::before {
+    transform: translateY(-0.35rem) scale(1.22);
+  }
+}
+
+[data-world-layout="score-grid"] .personal-world__opening-visual:active {
+  transform: translateX(0.28rem) translateY(0.18rem);
+}
+
+[data-world-layout="score-grid"] .personal-world__chapters a:focus-visible,
+[data-world-layout="score-grid"] .personal-world__chapters a:active {
+  transform: translateY(-0.25rem);
+}
+
+/* 11 / the westbound view advances along its station line. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  [data-world-layout="westbound-line"] .personal-world__opening-visual:hover {
+    transform: translateX(0.55rem);
+  }
+
+  [data-world-layout="westbound-line"] .personal-world__contract > div:hover::before {
+    transform: scale(1.45);
+  }
+
+  [data-world-layout="westbound-line"] .personal-world__chapters a:hover {
+    transform: translateX(0.24rem);
+  }
+}
+
+[data-world-layout="westbound-line"] .personal-world__opening-visual:active {
+  transform: translateX(0.38rem);
+}
+
+[data-world-layout="westbound-line"] .personal-world__chapters a:focus-visible,
+[data-world-layout="westbound-line"] .personal-world__chapters a:active {
+  transform: translateX(0.28rem);
+}
+
+/* 12 / tide rises and settles against the fixed datum. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  [data-world-layout="tide-datum"] .personal-world__opening-visual:hover {
+    transform: translateY(-0.55rem);
+  }
+
+  [data-world-layout="tide-datum"] .personal-world__contract > div:nth-child(2):hover {
+    transform: translateY(-0.55rem);
+  }
+
+  [data-world-layout="tide-datum"] .personal-world__chapters a:nth-child(even):hover {
+    transform: translateY(-0.45rem);
+  }
+}
+
+[data-world-layout="tide-datum"] .personal-world__opening-visual:active {
+  transform: translateY(0.3rem);
+}
+
+[data-world-layout="tide-datum"] .personal-world__chapters a:focus-visible,
+[data-world-layout="tide-datum"] .personal-world__chapters a:active {
+  transform: translateY(-0.3rem);
+}
+
+/* 13 / batch records fan apart to reveal provenance. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  [data-world-layout="batch-stack"] .personal-world__opening-visual:hover {
+    transform: rotate(0deg) translate(0.5rem, -0.35rem);
+  }
+
+  [data-world-layout="batch-stack"] .personal-world__contract:hover > div:nth-child(2) {
+    transform: translateX(0.7rem);
+  }
+
+  [data-world-layout="batch-stack"] .personal-world__contract:hover > div:nth-child(3) {
+    transform: translateX(1.4rem);
+  }
+}
+
+[data-world-layout="batch-stack"] .personal-world__opening-visual:active {
+  transform: rotate(0deg) translate(0.35rem, 0.2rem);
+}
+
+[data-world-layout="batch-stack"] .personal-world__chapters a:focus-visible,
+[data-world-layout="batch-stack"] .personal-world__chapters a:active {
+  transform: rotate(-0.8deg) translateY(-0.22rem);
+}
+
+/* 14 / the circadian system turns by one restrained watch tick. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  [data-world-layout="circadian-dial"] .personal-world__opening-visual:hover {
+    transform: rotate(0.7deg) translateY(-0.3rem);
+  }
+
+  [data-world-layout="circadian-dial"] .personal-world__chapters a:hover::before {
+    transform: rotate(9deg) scaleY(1.18);
+  }
+
+  [data-world-layout="circadian-dial"] .personal-world__contract > div:hover {
+    transform: rotate(-1.2deg);
+  }
+}
+
+[data-world-layout="circadian-dial"] .personal-world__opening-visual:active {
+  transform: rotate(1deg) scale(0.985);
+}
+
+[data-world-layout="circadian-dial"] .personal-world__chapters a:focus-visible,
+[data-world-layout="circadian-dial"] .personal-world__chapters a:active {
+  transform: rotate(1.5deg);
+}
+
+/* 15 / pattern pieces pivot around their registration pins. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  [data-world-layout="pattern-table"] .personal-world__opening-visual:hover {
+    transform: rotate(0.8deg) translateY(-0.3rem);
+  }
+
+  [data-world-layout="pattern-table"] .personal-world__opening-visual:hover::before {
+    transform: translateX(-0.2rem);
+  }
+
+  [data-world-layout="pattern-table"] .personal-world__opening-visual:hover::after {
+    transform: translateX(0.2rem);
+  }
+
+  [data-world-layout="pattern-table"] .personal-world__contract > div:hover {
+    transform: translateY(-0.35rem) rotate(-0.35deg);
+  }
+}
+
+[data-world-layout="pattern-table"] .personal-world__opening-visual:active {
+  transform: rotate(0deg) scale(0.985);
+}
+
+[data-world-layout="pattern-table"] .personal-world__chapters a:focus-visible,
+[data-world-layout="pattern-table"] .personal-world__chapters a:active {
+  transform: translateY(-0.28rem);
+}
+
+/* 16 / one live room expands while the institutional grid holds. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  [data-world-layout="live-nine"] .personal-world__opening-visual:hover {
+    transform: scale(1.012);
+  }
+
+  [data-world-layout="live-nine"] .personal-world__contract > div:hover {
+    transform: translateY(-0.4rem);
+  }
+
+  [data-world-layout="live-nine"] .personal-world__chapters a:hover {
+    transform: scale(0.975);
+  }
+}
+
+[data-world-layout="live-nine"] .personal-world__opening-visual:active {
+  transform: scale(0.982);
+}
+
+[data-world-layout="live-nine"] .personal-world__chapters a:focus-visible,
+[data-world-layout="live-nine"] .personal-world__chapters a:active {
+  transform: scale(0.97);
+}
+
+/* 17 / evidence rows advance for inspection, never for decoration. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  [data-world-layout="evidence-ledger"] .personal-world__opening-visual:hover {
+    transform: translateX(-0.45rem);
+  }
+
+  [data-world-layout="evidence-ledger"] .personal-world__contract > div:hover {
+    transform: translateX(0.55rem);
+  }
+
+  [data-world-layout="evidence-ledger"] .personal-world__chapters a:hover {
+    transform: translateX(-0.35rem);
+  }
+}
+
+[data-world-layout="evidence-ledger"] .personal-world__opening-visual:active {
+  transform: translateX(-0.3rem);
+}
+
+[data-world-layout="evidence-ledger"] .personal-world__chapters a:focus-visible,
+[data-world-layout="evidence-ledger"] .personal-world__chapters a:active {
+  transform: translateX(-0.3rem);
+}
+
+/* 18 / separated assembly modules move toward a reversible joint. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  [data-world-layout="assembly-grid"] .personal-world__opening-visual:hover {
+    transform: translate(-0.45rem, -0.45rem);
+  }
+
+  [data-world-layout="assembly-grid"] .personal-world__contract:hover > div:first-child {
+    transform: translateX(0.4rem);
+  }
+
+  [data-world-layout="assembly-grid"] .personal-world__contract:hover > div:nth-child(2) {
+    transform: translateX(-0.2rem);
+  }
+
+  [data-world-layout="assembly-grid"] .personal-world__contract:hover > div:nth-child(3) {
+    transform: translateX(-0.8rem);
+  }
+}
+
+[data-world-layout="assembly-grid"] .personal-world__opening-visual:active {
+  transform: translate(-0.25rem, -0.25rem) scale(0.99);
+}
+
+[data-world-layout="assembly-grid"] .personal-world__chapters a:focus-visible,
+[data-world-layout="assembly-grid"] .personal-world__chapters a:active {
+  transform: translateY(-0.35rem);
+}
+
+/* 19 / both shores answer symmetrically across the shared seam. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  [data-world-layout="paired-ledger"] .personal-world__opening-visual:hover {
+    transform: scale(0.99);
+  }
+
+  [data-world-layout="paired-ledger"] .personal-world__title-group:hover h1 > span:first-child {
+    transform: translateX(-0.045em);
+  }
+
+  [data-world-layout="paired-ledger"] .personal-world__title-group:hover h1 > span:last-child {
+    transform: translateX(0.045em);
+  }
+
+  [data-world-layout="paired-ledger"] .personal-world__contract > div:first-child:hover {
+    transform: translateX(0.35rem);
+  }
+
+  [data-world-layout="paired-ledger"] .personal-world__contract > div:last-child:hover {
+    transform: translateX(-0.35rem);
+  }
+}
+
+[data-world-layout="paired-ledger"] .personal-world__opening-visual:active {
+  transform: scale(0.98);
+}
+
+[data-world-layout="paired-ledger"] .personal-world__chapters a:focus-visible,
+[data-world-layout="paired-ledger"] .personal-world__chapters a:active {
+  transform: translateY(-0.25rem);
+}
+
+/* 20 / tested matter advances through one quiet closed-loop step. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  [data-world-layout="material-spec"] .personal-world__opening-visual:hover {
+    transform: translate(0.45rem, 0.35rem);
+  }
+
+  [data-world-layout="material-spec"] .personal-world__position:hover {
+    transform: translateX(-0.4rem);
+  }
+
+  [data-world-layout="material-spec"] .personal-world__chapters a:last-child:hover {
+    transform: rotate(2deg) scale(1.02);
+  }
+}
+
+[data-world-layout="material-spec"] .personal-world__opening-visual:active {
+  transform: translate(0.3rem, 0.25rem) scale(0.99);
+}
+
+[data-world-layout="material-spec"] .personal-world__chapters a:focus-visible,
+[data-world-layout="material-spec"] .personal-world__chapters a:active {
+  transform: translateX(0.28rem);
+}
+
+/* Progressive scroll response: each opening image enters according to its
+   own physical metaphor. Browsers without view timelines simply ignore it. */
+@supports (animation-timeline: view()) {
+  .personal-world[data-world-layout] .personal-world__opening-visual {
+    animation-duration: 1ms;
+    animation-fill-mode: both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 24%;
+  }
+
+  [data-world-layout="overprint-bands"] .personal-world__opening-visual {
+    animation-name: opening-plate-register;
+  }
+
+  [data-world-layout="archive-cards"] .personal-world__opening-visual {
+    animation-name: opening-drawer-enter;
+  }
+
+  [data-world-layout="specimen-dossier"] .personal-world__opening-visual {
+    animation-name: opening-specimen-pin;
+  }
+
+  [data-world-layout="correspondence-scroll"] .personal-world__opening-visual {
+    animation-name: opening-letter-fold;
+  }
+
+  [data-world-layout="material-atlas"] .personal-world__opening-visual {
+    animation-name: opening-swatch-fan;
+  }
+
+  [data-world-layout="deco-axis"] .personal-world__opening-visual {
+    animation-name: opening-axis-settle;
+  }
+
+  [data-world-layout="route-sign"] .personal-world__opening-visual {
+    animation-name: opening-route-arrive;
+  }
+
+  [data-world-layout="soft-datum"] .personal-world__opening-visual {
+    animation-name: opening-soft-yield;
+  }
+
+  [data-world-layout="signal-console"] .personal-world__opening-visual {
+    animation-name: opening-signal-lock;
+  }
+
+  [data-world-layout="score-grid"] .personal-world__opening-visual {
+    animation-name: opening-score-beat;
+  }
+
+  [data-world-layout="westbound-line"] .personal-world__opening-visual {
+    animation-name: opening-westbound-pass;
+  }
+
+  [data-world-layout="tide-datum"] .personal-world__opening-visual {
+    animation-name: opening-tide-rise;
+  }
+
+  [data-world-layout="batch-stack"] .personal-world__opening-visual {
+    animation-name: opening-batch-place;
+  }
+
+  [data-world-layout="circadian-dial"] .personal-world__opening-visual {
+    animation-name: opening-dial-tick;
+  }
+
+  [data-world-layout="pattern-table"] .personal-world__opening-visual {
+    animation-name: opening-pattern-pin;
+  }
+
+  [data-world-layout="live-nine"] .personal-world__opening-visual {
+    animation-name: opening-room-live;
+  }
+
+  [data-world-layout="evidence-ledger"] .personal-world__opening-visual {
+    animation-name: opening-evidence-file;
+  }
+
+  [data-world-layout="assembly-grid"] .personal-world__opening-visual {
+    animation-name: opening-module-join;
+  }
+
+  [data-world-layout="paired-ledger"] .personal-world__opening-visual {
+    animation-name: opening-pair-balance;
+  }
+
+  [data-world-layout="material-spec"] .personal-world__opening-visual {
+    animation-name: opening-material-test;
+  }
+}
+
+.personal-world[data-world-layout] .personal-world__opening-visual:active {
+  animation: none;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .personal-world[data-world-layout] .personal-world__opening-visual:hover,
+  .personal-world[data-world-layout]
+    .personal-world__opening:focus-within
+    .personal-world__opening-visual {
+    animation: none;
+  }
+}
+
+@keyframes opening-plate-register {
+  from {
+    transform: translateX(-0.75rem);
+  }
+}
+
+@keyframes opening-drawer-enter {
+  from {
+    transform: translateX(0.85rem);
+  }
+}
+
+@keyframes opening-specimen-pin {
+  from {
+    transform: translateY(0.65rem) rotate(2deg);
+  }
+}
+
+@keyframes opening-letter-fold {
+  from {
+    transform: translateY(0.8rem) rotate(-0.65deg);
+  }
+}
+
+@keyframes opening-swatch-fan {
+  from {
+    transform: rotate(4deg) translateY(0.65rem);
+  }
+}
+
+@keyframes opening-axis-settle {
+  from {
+    transform: scale(0.975);
+  }
+}
+
+@keyframes opening-route-arrive {
+  from {
+    transform: translateX(-0.9rem);
+  }
+}
+
+@keyframes opening-soft-yield {
+  from {
+    transform: rotate(2.4deg) scale(0.985);
+  }
+}
+
+@keyframes opening-signal-lock {
+  from {
+    transform: skewX(-1.4deg) translateX(0.6rem);
+  }
+}
+
+@keyframes opening-score-beat {
+  from {
+    transform: translateY(0.7rem);
+  }
+}
+
+@keyframes opening-westbound-pass {
+  from {
+    transform: translateX(-1rem);
+  }
+}
+
+@keyframes opening-tide-rise {
+  from {
+    transform: translateY(0.75rem);
+  }
+}
+
+@keyframes opening-batch-place {
+  from {
+    transform: translate(0.65rem, 0.65rem) rotate(2deg);
+  }
+}
+
+@keyframes opening-dial-tick {
+  from {
+    transform: rotate(-1.1deg);
+  }
+}
+
+@keyframes opening-pattern-pin {
+  from {
+    transform: rotate(-1.8deg) translateY(0.55rem);
+  }
+}
+
+@keyframes opening-room-live {
+  from {
+    transform: scale(0.985);
+  }
+}
+
+@keyframes opening-evidence-file {
+  from {
+    transform: translateX(0.75rem);
+  }
+}
+
+@keyframes opening-module-join {
+  from {
+    transform: translate(0.7rem, 0.7rem);
+  }
+}
+
+@keyframes opening-pair-balance {
+  from {
+    transform: scaleX(0.985);
+  }
+}
+
+@keyframes opening-material-test {
+  from {
+    transform: translate(-0.55rem, -0.4rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:not([data-motion-preference="full"])
+    .personal-world[data-world-layout]
+    :is(
+      .personal-world__title-group h1 > span,
+      .personal-world__opening-visual,
+      .personal-world__position,
+      .personal-world__contract > div,
+      .personal-world__chapters a,
+      .personal-world__chapters a::before,
+      .personal-world__opening-visual::before,
+      .personal-world__opening-visual::after
+    ) {
+    animation: none;
+    transition: none;
+  }
+
+  html:not([data-motion-preference="full"])
+    .personal-world[data-world-layout]
+    .personal-world__opening
+    :is(
+      .personal-world__title-group h1 > span,
+      .personal-world__opening-visual,
+      .personal-world__position,
+      .personal-world__contract > div,
+      .personal-world__chapters a
+    ):is(:hover, :focus-visible, :active) {
+    transform: none;
+  }
+}
+
+/* The in-page preference is authoritative. This also resets the individual
+   transform longhands used by touch worlds when Reduced is chosen manually. */
+html[data-motion-effective="reduced"]
+  .personal-world[data-world-layout]
+  :is(
+    .personal-world__title-group h1 > span,
+    .personal-world__opening-visual,
+    .personal-world__position,
+    .personal-world__contract > div,
+    .personal-world__chapters a,
+    .personal-world__chapters a::before,
+    .personal-world__opening-visual::before,
+    .personal-world__opening-visual::after
+  ) {
+  animation: none !important;
+  transform: none !important;
+  translate: none !important;
+  rotate: none !important;
+  scale: 1 !important;
+  transition: none !important;
+}

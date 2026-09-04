@@ -1,0 +1,1329 @@
+/* Personal project motion direction ---------------------------------------
+   This layer is intentionally scoped to the twenty self-initiated projects.
+   The shared motion engine supplies chapter progress and tactile states; each
+   world translates those signals into its own physical behaviour. */
+
+.studio-case[data-project] .personal-world {
+  --personal-motion-ease: cubic-bezier(0.22, 0.8, 0.22, 1);
+  --personal-motion-snap: cubic-bezier(0.18, 0.88, 0.28, 1.18);
+  --personal-motion-fast: 180ms;
+  --personal-motion-medium: 460ms;
+}
+
+.studio-case[data-project]
+  .personal-world
+  :is(
+    .personal-world__figure,
+    .personal-world__figure > [data-project-media],
+    .personal-world__figure img,
+    .world-archive__drawer,
+    .world-route__stop,
+    .world-nine__tile,
+    .world-paired__row,
+    .world-cycle__stage
+  ) {
+  backface-visibility: hidden;
+}
+
+.studio-case[data-project] .personal-world .personal-world__figure {
+  transition:
+    translate var(--personal-motion-medium) var(--personal-motion-ease),
+    rotate var(--personal-motion-medium) var(--personal-motion-ease),
+    scale var(--personal-motion-fast) var(--personal-motion-ease),
+    opacity var(--personal-motion-medium) ease,
+    filter var(--personal-motion-medium) ease;
+}
+
+.studio-case[data-project]
+  .personal-world
+  .personal-world__figure:is([data-motion-active="true"], [data-motion-hover="true"]) {
+  will-change: translate, rotate, scale;
+}
+
+.studio-case[data-project] .personal-world .personal-world__figure[data-motion-pressed="true"] {
+  transition-duration: 80ms;
+}
+
+.studio-case[data-project] .personal-world .personal-world__figure > [data-project-media] {
+  isolation: isolate;
+  transition:
+    clip-path var(--personal-motion-medium) var(--personal-motion-ease),
+    border-radius var(--personal-motion-medium) var(--personal-motion-ease),
+    box-shadow var(--personal-motion-medium) var(--personal-motion-ease),
+    filter var(--personal-motion-medium) ease;
+}
+
+.studio-case[data-project]
+  .personal-world
+  [data-motion-compare]:focus-visible
+  .personal-world__figure[data-motion-active="true"] {
+  outline-color: var(--studio-accent);
+}
+
+/* Project-specific scene vectors replace the engine's generic entrance. */
+
+.studio-case[data-project="afterimage"]
+  .personal-world
+  [data-motion-reveal]:not(.is-motion-visible) {
+  --motion-enter-x: 14px;
+  --motion-enter-y: 0px;
+}
+
+.studio-case[data-project="memory-type"]
+  .personal-world
+  [data-motion-reveal]:not(.is-motion-visible) {
+  --motion-enter-x: 26px;
+  --motion-enter-y: 0px;
+}
+
+.studio-case[data-project="field-notes-37"]
+  .personal-world
+  [data-motion-reveal]:not(.is-motion-visible) {
+  --motion-enter-y: 18px;
+  --motion-enter-scale: 0.996;
+}
+
+.studio-case[data-project="last-letter"]
+  .personal-world
+  [data-motion-reveal]:not(.is-motion-visible) {
+  --motion-enter-x: -8px;
+  --motion-enter-y: 22px;
+}
+
+.studio-case[data-project="tactile-forecast"]
+  .personal-world
+  [data-motion-reveal]:not(.is-motion-visible) {
+  --motion-enter-y: 12px;
+  --motion-enter-scale: 0.985;
+}
+
+.studio-case[data-project="night-index"]
+  .personal-world
+  [data-motion-reveal]:not(.is-motion-visible) {
+  --motion-enter-y: 0px;
+  --motion-enter-scale: 0.974;
+}
+
+.studio-case[data-project="public-memory"]
+  .personal-world
+  [data-motion-reveal]:not(.is-motion-visible) {
+  --motion-enter-x: -22px;
+  --motion-enter-y: 0px;
+}
+
+.studio-case[data-project="soft-machine"]
+  .personal-world
+  [data-motion-reveal]:not(.is-motion-visible) {
+  --motion-enter-y: 18px;
+  --motion-enter-scale: 0.988;
+}
+
+.studio-case[data-project="signal-noise"]
+  .personal-world
+  [data-motion-reveal]:not(.is-motion-visible) {
+  --motion-enter-x: 8px;
+  --motion-enter-y: 0px;
+}
+
+.studio-case[data-project="chroma-tempo"]
+  .personal-world
+  [data-motion-reveal]:not(.is-motion-visible) {
+  --motion-enter-y: 20px;
+  --motion-enter-scale: 0.994;
+}
+
+.studio-case[data-project="79w"] .personal-world [data-motion-reveal]:not(.is-motion-visible) {
+  --motion-enter-x: 30px;
+  --motion-enter-y: 0px;
+}
+
+.studio-case[data-project="tidehold"] .personal-world [data-motion-reveal]:not(.is-motion-visible) {
+  --motion-enter-y: 22px;
+}
+
+.studio-case[data-project="offsort"] .personal-world [data-motion-reveal]:not(.is-motion-visible) {
+  --motion-enter-x: 14px;
+  --motion-enter-y: 14px;
+}
+
+.studio-case[data-project="horalis"] .personal-world [data-motion-reveal]:not(.is-motion-visible) {
+  --motion-enter-y: 0px;
+  --motion-enter-scale: 0.986;
+}
+
+.studio-case[data-project="selv-00"] .personal-world [data-motion-reveal]:not(.is-motion-visible) {
+  --motion-enter-x: -12px;
+  --motion-enter-y: 8px;
+}
+
+.studio-case[data-project="tessera-live"]
+  .personal-world
+  [data-motion-reveal]:not(.is-motion-visible) {
+  --motion-enter-y: 0px;
+  --motion-enter-scale: 0.98;
+}
+
+.studio-case[data-project="backmatter"]
+  .personal-world
+  [data-motion-reveal]:not(.is-motion-visible) {
+  --motion-enter-x: 18px;
+  --motion-enter-y: 0px;
+}
+
+.studio-case[data-project="seamframe"]
+  .personal-world
+  [data-motion-reveal]:not(.is-motion-visible) {
+  --motion-enter-x: 12px;
+  --motion-enter-y: 12px;
+  --motion-enter-scale: 0.995;
+}
+
+.studio-case[data-project="two-shores"]
+  .personal-world
+  [data-motion-reveal]:not(.is-motion-visible) {
+  --motion-enter-y: 0px;
+  --motion-enter-scale: 0.985;
+}
+
+.studio-case[data-project="coldkiln"] .personal-world [data-motion-reveal]:not(.is-motion-visible) {
+  --motion-enter-y: 12px;
+  --motion-enter-scale: 0.989;
+}
+
+/* 01 / AFTERIMAGE — two colour plates drift, then register. */
+
+.studio-case[data-project="afterimage"] .world-overprint section {
+  position: relative;
+}
+
+.studio-case[data-project="afterimage"] .world-overprint section::after {
+  position: absolute;
+  right: 0;
+  bottom: -1.1rem;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--studio-accent), #315dff 58%, transparent 58%);
+  content: "";
+  pointer-events: none;
+  transform: scaleX(var(--motion-beat-progress, 0));
+  transform-origin: left;
+}
+
+.studio-case[data-project="afterimage"]
+  .world-overprint
+  section[data-motion-active="true"]
+  .personal-world__figure:nth-child(odd) {
+  translate: -0.35rem 0;
+}
+
+.studio-case[data-project="afterimage"]
+  .world-overprint
+  section[data-motion-active="true"]
+  .personal-world__figure:nth-child(even) {
+  translate: 0.35rem 0;
+}
+
+.studio-case[data-project="afterimage"]
+  .world-overprint
+  .personal-world__figure:is([data-motion-hover="true"], [data-motion-active="true"])
+  > [data-project-media] {
+  box-shadow:
+    -3px 0 0 color-mix(in srgb, #315dff 52%, transparent),
+    3px 0 0 color-mix(in srgb, var(--studio-accent) 62%, transparent);
+}
+
+.studio-case[data-project="afterimage"]
+  .world-overprint
+  .personal-world__figure[data-motion-pressed="true"] {
+  translate: 0 0;
+}
+
+/* 02 / MEMORY TYPE — archive drawers open to graduated depths. */
+
+.studio-case[data-project="memory-type"] .world-archive__drawer {
+  transition:
+    translate 560ms var(--personal-motion-ease),
+    box-shadow 560ms var(--personal-motion-ease);
+}
+
+.studio-case[data-project="memory-type"] .world-archive__drawer[data-motion-active="true"] {
+  box-shadow: -0.8rem 0.85rem 0 color-mix(in srgb, var(--studio-accent) 24%, transparent);
+}
+
+.studio-case[data-project="memory-type"] .world-archive__drawer--wide[data-motion-active="true"] {
+  translate: 0.55rem 0;
+}
+
+.studio-case[data-project="memory-type"] .world-archive__drawer--index[data-motion-active="true"] {
+  translate: -0.8rem 0;
+}
+
+.studio-case[data-project="memory-type"] .world-archive__drawer--return[data-motion-active="true"] {
+  translate: 1rem 0;
+}
+
+.studio-case[data-project="memory-type"]
+  .world-archive
+  .personal-world__figure[data-motion-active="true"] {
+  translate: 0 -0.45rem;
+  rotate: -0.35deg;
+}
+
+.studio-case[data-project="memory-type"]
+  .world-archive
+  .personal-world__figure[data-motion-pressed="true"] {
+  translate: 0.3rem 0;
+  scale: 0.992;
+}
+
+/* 03 / FIELD NOTES 37 — a coordinate scan verifies each specimen. */
+
+.studio-case[data-project="field-notes-37"]
+  .world-field
+  .personal-world__figure
+  > [data-project-media]::after {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent 49.8%, var(--studio-accent) 50%, transparent 50.2%),
+    linear-gradient(transparent 49.8%, var(--studio-accent) 50%, transparent 50.2%);
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.92);
+  transition:
+    opacity 160ms ease,
+    transform 520ms var(--personal-motion-ease);
+}
+
+.studio-case[data-project="field-notes-37"]
+  .world-field
+  .personal-world__figure:is([data-motion-hover="true"], [data-motion-active="true"])
+  > [data-project-media]::after {
+  opacity: 0.62;
+  transform: scale(1);
+}
+
+.studio-case[data-project="field-notes-37"]
+  .world-field__specimens[data-motion-active="true"]
+  .personal-world__figure:nth-child(even) {
+  translate: 0 -0.55rem;
+}
+
+.studio-case[data-project="field-notes-37"]
+  .world-field
+  .personal-world__figure[data-motion-pressed="true"] {
+  scale: 0.985;
+  filter: contrast(1.04);
+}
+
+/* 04 / THE LAST LETTER — paper folds expose, then conceal, the route. */
+
+.studio-case[data-project="last-letter"]
+  .world-letter
+  .personal-world__figure
+  > [data-project-media] {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.studio-case[data-project="last-letter"]
+  .world-letter
+  .personal-world__figure:is([data-motion-hover="true"], [data-motion-active="true"])
+  > [data-project-media] {
+  clip-path: polygon(0 0, 91% 0, 100% 9%, 100% 100%, 0 100%);
+  box-shadow: 0.55rem 0.7rem 0 color-mix(in srgb, var(--studio-ink) 10%, transparent);
+}
+
+.studio-case[data-project="last-letter"]
+  .world-letter__route[data-motion-active="true"]
+  .personal-world__figure:nth-child(3n + 1) {
+  translate: -0.35rem 0;
+  rotate: -0.4deg;
+}
+
+.studio-case[data-project="last-letter"]
+  .world-letter__route[data-motion-active="true"]
+  .personal-world__figure:nth-child(3n + 2) {
+  translate: 0.35rem 0;
+  rotate: 0.4deg;
+}
+
+.studio-case[data-project="last-letter"]
+  .world-letter
+  .personal-world__figure[data-motion-pressed="true"] {
+  scale: 0.987;
+  rotate: 0deg;
+}
+
+/* 05 / TACTILE FORECAST — touch compresses a calibrated material fan. */
+
+.studio-case[data-project="tactile-forecast"]
+  .world-material__fan[data-motion-active="true"]
+  .personal-world__figure:nth-child(1) {
+  rotate: -1.4deg;
+  translate: 0.3rem 0;
+}
+
+.studio-case[data-project="tactile-forecast"]
+  .world-material__fan[data-motion-active="true"]
+  .personal-world__figure:nth-child(2) {
+  translate: 0 -0.75rem;
+}
+
+.studio-case[data-project="tactile-forecast"]
+  .world-material__fan[data-motion-active="true"]
+  .personal-world__figure:nth-child(3) {
+  rotate: 1.4deg;
+  translate: -0.3rem 0;
+}
+
+.studio-case[data-project="tactile-forecast"]
+  .world-material
+  .personal-world__figure:is([data-motion-hover="true"], [data-motion-active="true"])
+  > [data-project-media] {
+  border-radius: 0.8rem 0.8rem 2.3rem 0.8rem;
+  box-shadow: 0 1rem 2.4rem color-mix(in srgb, var(--studio-ink) 13%, transparent);
+}
+
+.studio-case[data-project="tactile-forecast"]
+  .world-material
+  .personal-world__figure[data-motion-pressed="true"] {
+  scale: 0.968 0.985;
+}
+
+.studio-case[data-project="tactile-forecast"]
+  .world-material
+  .personal-world__figure[data-motion-pressed="true"]
+  > [data-project-media] {
+  filter: saturate(1.05);
+}
+
+/* 06 / NIGHT INDEX — an iris closes around the active nocturnal frame. */
+
+.studio-case[data-project="night-index"]
+  .world-night
+  .personal-world__figure
+  > [data-project-media]::after {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  background: radial-gradient(circle at 50% 48%, transparent 48%, rgb(0 8 24 / 0.58) 100%);
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 520ms var(--personal-motion-ease);
+}
+
+.studio-case[data-project="night-index"]
+  .world-night
+  .personal-world__figure:is([data-motion-active="true"], [data-motion-hover="true"])
+  > [data-project-media]::after {
+  opacity: 0.72;
+}
+
+.studio-case[data-project="night-index"]
+  .world-night__apertures[data-motion-active="true"]
+  .personal-world__figure:first-child {
+  translate: 0.45rem 0;
+}
+
+.studio-case[data-project="night-index"]
+  .world-night__apertures[data-motion-active="true"]
+  .personal-world__figure:last-child {
+  translate: -0.45rem 0;
+}
+
+.studio-case[data-project="night-index"]
+  .world-night
+  .personal-world__figure[data-motion-pressed="true"] {
+  scale: 0.978;
+}
+
+.studio-case[data-project="night-index"]
+  .world-night
+  .personal-world__figure[data-motion-pressed="true"]
+  > [data-project-media] {
+  filter: brightness(0.92) contrast(1.04);
+}
+
+/* 07 / PUBLIC MEMORY — the route advances stop by stop. */
+
+.studio-case[data-project="public-memory"] .world-route__line {
+  overflow: hidden;
+  background: color-mix(in srgb, var(--studio-accent) 28%, transparent);
+}
+
+.studio-case[data-project="public-memory"] .world-route__line::after {
+  position: absolute;
+  inset: 0;
+  background: var(--studio-accent);
+  content: "";
+  transform: scaleY(var(--motion-chapter-progress, 0));
+  transform-origin: top;
+}
+
+.studio-case[data-project="public-memory"] .world-route__stop {
+  transition:
+    translate 560ms var(--personal-motion-ease),
+    filter 360ms ease;
+}
+
+.studio-case[data-project="public-memory"]
+  .world-route__stops[data-motion-active="true"]
+  .world-route__stop:nth-child(odd) {
+  translate: 0.4rem 0;
+}
+
+.studio-case[data-project="public-memory"]
+  .world-route__stops[data-motion-active="true"]
+  .world-route__stop:nth-child(even) {
+  translate: -0.4rem 0;
+}
+
+.studio-case[data-project="public-memory"]
+  .world-route
+  .personal-world__figure[data-motion-active="true"] {
+  translate: 0.55rem 0;
+}
+
+.studio-case[data-project="public-memory"]
+  .world-route
+  .personal-world__figure[data-motion-pressed="true"] {
+  translate: 0.8rem 0;
+  scale: 0.992;
+}
+
+/* 08 / SOFT MACHINE — the image yields; the datum never moves. */
+
+.studio-case[data-project="soft-machine"]
+  .world-datum
+  .personal-world__figure
+  > [data-project-media] {
+  border-radius: 0.35rem;
+}
+
+.studio-case[data-project="soft-machine"]
+  .world-datum
+  .personal-world__figure:is([data-motion-active="true"], [data-motion-hover="true"])
+  > [data-project-media] {
+  border-radius: 2.4rem 0.6rem 2.4rem 0.6rem;
+  box-shadow: inset 0 -0.5rem 1.4rem color-mix(in srgb, var(--studio-accent) 12%, transparent);
+}
+
+.studio-case[data-project="soft-machine"]
+  .world-datum__states[data-motion-active="true"]
+  .personal-world__figure:nth-child(2) {
+  scale: 1.015 0.975;
+  translate: 0 0.35rem;
+}
+
+.studio-case[data-project="soft-machine"]
+  .world-datum
+  .personal-world__figure[data-motion-pressed="true"] {
+  scale: 1.018 0.948;
+  translate: 0 0.45rem;
+}
+
+.studio-case[data-project="soft-machine"]
+  .world-datum
+  .personal-world__figure[data-motion-intent="keyboard"] {
+  box-shadow: 0 0 0 2px var(--studio-accent);
+}
+
+/* 09 / SIGNAL NOISE — a scan locks the selected carrier. */
+
+.studio-case[data-project="signal-noise"]
+  .world-broadcast
+  .personal-world__figure
+  > [data-project-media]::after {
+  position: absolute;
+  z-index: 4;
+  top: -12%;
+  right: 0;
+  left: 0;
+  height: 12%;
+  background: linear-gradient(transparent, color-mix(in srgb, var(--studio-accent) 62%, white));
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+}
+
+.studio-case[data-project="signal-noise"]
+  .world-broadcast
+  .personal-world__figure:is([data-motion-active="true"], [data-motion-hover="true"])
+  > [data-project-media]::after {
+  animation: personal-signal-scan 620ms steps(5, end) both;
+}
+
+.studio-case[data-project="signal-noise"]
+  .world-broadcast
+  .personal-world__figure[data-motion-active="true"] {
+  translate: 2px 0;
+}
+
+.studio-case[data-project="signal-noise"]
+  .world-broadcast
+  .personal-world__figure[data-motion-active="true"]
+  > [data-project-media] {
+  filter: contrast(1.08) saturate(0.92);
+}
+
+.studio-case[data-project="signal-noise"]
+  .world-broadcast
+  .personal-world__figure[data-motion-pressed="true"] {
+  translate: -2px 1px;
+  scale: 0.992;
+}
+
+@keyframes personal-signal-scan {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  14% {
+    opacity: 0.72;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(940%);
+  }
+}
+
+/* 10 / CHROMA TEMPO — selected frames strike a syncopated score. */
+
+.studio-case[data-project="chroma-tempo"]
+  .world-score__timeline[data-motion-active="true"]
+  .personal-world__figure:nth-child(4n + 1) {
+  animation: personal-tempo-downbeat 520ms var(--personal-motion-snap) both;
+}
+
+.studio-case[data-project="chroma-tempo"]
+  .world-score__timeline[data-motion-active="true"]
+  .personal-world__figure:nth-child(4n + 2) {
+  animation: personal-tempo-offbeat 520ms 80ms var(--personal-motion-snap) both;
+}
+
+.studio-case[data-project="chroma-tempo"]
+  .world-score
+  .personal-world__figure:is([data-motion-active="true"], [data-motion-hover="true"]) {
+  scale: 1.012;
+  box-shadow: 0.4rem 0.4rem 0 color-mix(in srgb, var(--studio-accent) 54%, transparent);
+}
+
+.studio-case[data-project="chroma-tempo"]
+  .world-score
+  .personal-world__figure[data-motion-pressed="true"] {
+  scale: 0.974;
+  translate: 0 0.22rem;
+}
+
+@keyframes personal-tempo-downbeat {
+  0% {
+    translate: 0 0.7rem;
+    scale: 0.985;
+  }
+  100% {
+    translate: 0 0;
+    scale: 1;
+  }
+}
+
+@keyframes personal-tempo-offbeat {
+  0% {
+    translate: 0 -0.45rem;
+    scale: 0.992;
+  }
+  100% {
+    translate: 0 0;
+    scale: 1;
+  }
+}
+
+/* 11 / 79W — the active carriage advances along the measured track. */
+
+.studio-case[data-project="79w"] .world-journey__track {
+  position: relative;
+}
+
+.studio-case[data-project="79w"] .world-journey__track::after {
+  position: absolute;
+  z-index: 5;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: var(--studio-accent);
+  content: "";
+  pointer-events: none;
+  transform: scaleX(var(--motion-beat-progress, 0));
+  transform-origin: left;
+}
+
+.studio-case[data-project="79w"] .world-journey__track[data-motion-engaged="true"] > div {
+  opacity: 0.58;
+  transition:
+    opacity 260ms ease,
+    translate 420ms var(--personal-motion-ease);
+}
+
+.studio-case[data-project="79w"]
+  .world-journey__track[data-motion-engaged="true"]
+  > div:has(.personal-world__figure[data-motion-active="true"]) {
+  z-index: 2;
+  opacity: 1;
+  translate: 0 -0.45rem;
+}
+
+.studio-case[data-project="79w"] .world-journey .personal-world__figure[data-motion-active="true"] {
+  translate: 0.45rem 0;
+}
+
+.studio-case[data-project="79w"]
+  .world-journey
+  .personal-world__figure[data-motion-pressed="true"] {
+  translate: 0.8rem 0;
+  scale: 0.988;
+}
+
+/* 12 / TIDEHOLD — water rises while the centre datum stays fixed. */
+
+.studio-case[data-project="tidehold"] .world-tide__datum {
+  overflow: hidden;
+  background: color-mix(in srgb, var(--studio-accent) 24%, transparent);
+}
+
+.studio-case[data-project="tidehold"] .world-tide__datum::after {
+  position: absolute;
+  inset: 0;
+  background: var(--studio-accent);
+  content: "";
+  transform: scaleY(var(--motion-chapter-progress, 0));
+  transform-origin: bottom;
+}
+
+.studio-case[data-project="tidehold"]
+  .world-tide__shore[data-motion-active="true"]
+  .personal-world__figure[data-motion-active="true"] {
+  translate: 0 -0.55rem;
+}
+
+.studio-case[data-project="tidehold"]
+  .world-tide__guest[data-motion-active="true"]
+  .personal-world__figure[data-motion-active="true"] {
+  translate: 0 0.55rem;
+}
+
+.studio-case[data-project="tidehold"]
+  .world-tide
+  .personal-world__figure:is([data-motion-hover="true"], [data-motion-active="true"])
+  > [data-project-media] {
+  box-shadow: inset 0 -1rem 0 color-mix(in srgb, var(--studio-accent) 22%, transparent);
+}
+
+.studio-case[data-project="tidehold"]
+  .world-tide
+  .personal-world__figure[data-motion-pressed="true"] {
+  translate: 0 0.35rem;
+  scale: 0.992;
+}
+
+/* 13 / OFFSORT — batch passports peel apart and receive a live stamp. */
+
+.studio-case[data-project="offsort"]
+  .world-batch
+  .personal-world__figure
+  > [data-project-media]::after {
+  position: absolute;
+  z-index: 4;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  width: 2.3rem;
+  aspect-ratio: 1;
+  border: 2px solid var(--studio-accent);
+  border-radius: 50%;
+  color: var(--studio-accent);
+  content: "R";
+  display: grid;
+  place-items: center;
+  font: 700 0.7rem/1 var(--studio-meta);
+  opacity: 0;
+  pointer-events: none;
+  rotate: -16deg;
+  scale: 1.35;
+  transition:
+    opacity 120ms ease,
+    rotate 360ms var(--personal-motion-snap),
+    scale 360ms var(--personal-motion-snap);
+}
+
+.studio-case[data-project="offsort"]
+  .world-batch
+  .personal-world__figure:is([data-motion-active="true"], [data-motion-hover="true"])
+  > [data-project-media]::after {
+  opacity: 0.84;
+  rotate: -8deg;
+  scale: 1;
+}
+
+.studio-case[data-project="offsort"]
+  .world-batch__passports[data-motion-active="true"]
+  .personal-world__figure:nth-child(odd) {
+  translate: -0.45rem 0;
+  rotate: -0.55deg;
+}
+
+.studio-case[data-project="offsort"]
+  .world-batch__passports[data-motion-active="true"]
+  .personal-world__figure:nth-child(even) {
+  translate: 0.45rem 0;
+  rotate: 0.55deg;
+}
+
+.studio-case[data-project="offsort"]
+  .world-batch
+  .personal-world__figure[data-motion-pressed="true"] {
+  scale: 0.98;
+  rotate: 0deg;
+}
+
+/* 14 / HORALIS — a restrained dial tick changes the light sequence. */
+
+.studio-case[data-project="horalis"] .world-orbit__dial {
+  rotate: calc(var(--motion-chapter-progress, 0) * 24deg);
+  transition: rotate 180ms linear;
+}
+
+.studio-case[data-project="horalis"] .world-orbit__dial::after {
+  position: absolute;
+  top: -0.3rem;
+  left: 50%;
+  width: 2px;
+  height: 1.4rem;
+  background: var(--studio-accent);
+  content: "";
+  transform: translateX(-50%);
+}
+
+.studio-case[data-project="horalis"]
+  .world-orbit
+  .personal-world__figure[data-motion-active="true"] {
+  rotate: 0.8deg;
+}
+
+.studio-case[data-project="horalis"]
+  .world-orbit
+  .personal-world__figure[data-motion-active="true"]
+  > [data-project-media] {
+  filter: brightness(1.04) saturate(1.03);
+}
+
+.studio-case[data-project="horalis"]
+  .world-orbit__rest
+  .personal-world__figure[data-motion-active="true"] {
+  rotate: -0.8deg;
+  translate: 0 -0.35rem;
+}
+
+.studio-case[data-project="horalis"]
+  .world-orbit
+  .personal-world__figure[data-motion-pressed="true"] {
+  rotate: 2deg;
+  scale: 0.988;
+}
+
+/* 15 / SELV-00 — repair seams open without hiding their history. */
+
+.studio-case[data-project="selv-00"] .world-pattern__seam {
+  position: relative;
+  overflow: hidden;
+}
+
+.studio-case[data-project="selv-00"] .world-pattern__seam::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: repeating-linear-gradient(90deg, currentColor 0 0.6rem, transparent 0.6rem 1rem);
+  content: "";
+  transform: scaleX(var(--motion-chapter-progress, 0));
+  transform-origin: left;
+}
+
+.studio-case[data-project="selv-00"]
+  .world-pattern__cut[data-motion-active="true"]
+  .personal-world__figure:nth-child(odd) {
+  rotate: -0.75deg;
+  translate: -0.25rem 0;
+}
+
+.studio-case[data-project="selv-00"]
+  .world-pattern__cut[data-motion-active="true"]
+  .personal-world__figure:nth-child(even) {
+  rotate: 0.75deg;
+  translate: 0.25rem 0;
+}
+
+.studio-case[data-project="selv-00"]
+  .world-pattern
+  .personal-world__figure:is([data-motion-active="true"], [data-motion-hover="true"])
+  > [data-project-media] {
+  box-shadow: inset 0 0 0 2px var(--studio-accent);
+}
+
+.studio-case[data-project="selv-00"]
+  .world-pattern
+  .personal-world__figure[data-motion-pressed="true"] {
+  rotate: 0deg;
+  scale: 0.986;
+}
+
+/* 16 / TESSERA LIVE — one room comes live while the grid remains exact. */
+
+.studio-case[data-project="tessera-live"] .world-nine__tile {
+  position: relative;
+  transition:
+    background-color 320ms ease,
+    opacity 320ms ease,
+    scale 320ms var(--personal-motion-ease),
+    box-shadow 320ms var(--personal-motion-ease);
+}
+
+.studio-case[data-project="tessera-live"]
+  .world-nine__tile:has(.personal-world__figure[data-motion-active="true"]) {
+  z-index: 3;
+  background: color-mix(in srgb, var(--studio-accent) 12%, var(--studio-paper));
+  box-shadow: 0 0 0 2px var(--studio-accent);
+  scale: 1.012;
+}
+
+.studio-case[data-project="tessera-live"]
+  .world-nine__grid[data-motion-active="true"]
+  .world-nine__tile.is-live {
+  animation: personal-room-live 640ms var(--personal-motion-snap) both;
+}
+
+.studio-case[data-project="tessera-live"]
+  .world-nine
+  .personal-world__figure[data-motion-pressed="true"] {
+  scale: 0.975;
+}
+
+@keyframes personal-room-live {
+  0% {
+    box-shadow: inset 0 0 0 0 var(--studio-accent);
+  }
+  42% {
+    box-shadow: inset 0 0 0 0.55rem var(--studio-accent);
+  }
+  100% {
+    box-shadow: inset 0 0 0 1px var(--studio-accent);
+  }
+}
+
+/* 17 / BACKMATTER — evidence slides into the verification gutter. */
+
+.studio-case[data-project="backmatter"]
+  .world-evidence
+  .personal-world__figure
+  > [data-project-media]::after {
+  position: absolute;
+  z-index: 3;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 1rem;
+  aspect-ratio: 1;
+  border: 1px solid currentColor;
+  background: var(--studio-paper);
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  transform: rotate(-12deg) scale(1.35);
+  transition:
+    opacity 160ms ease,
+    transform 360ms var(--personal-motion-snap);
+}
+
+.studio-case[data-project="backmatter"]
+  .world-evidence
+  .personal-world__figure:is([data-motion-active="true"], [data-motion-hover="true"])
+  > [data-project-media]::after {
+  opacity: 1;
+  transform: rotate(0) scale(1);
+  box-shadow: inset 0 0 0 0.27rem var(--studio-accent);
+}
+
+.studio-case[data-project="backmatter"]
+  .world-evidence__frames[data-motion-active="true"]
+  .personal-world__figure {
+  translate: 0.4rem 0;
+}
+
+.studio-case[data-project="backmatter"]
+  .world-evidence__proof[data-motion-active="true"]
+  .personal-world__figure {
+  translate: -0.4rem 0;
+}
+
+.studio-case[data-project="backmatter"]
+  .world-evidence
+  .personal-world__figure[data-motion-pressed="true"] {
+  translate: 0.7rem 0;
+  scale: 0.992;
+}
+
+/* 18 / SEAMFRAME — exploded components resolve into one reversible joint. */
+
+.studio-case[data-project="seamframe"]
+  .world-assembly__parts[data-motion-active="true"]
+  .personal-world__figure:nth-child(1) {
+  translate: 0.55rem 0.25rem;
+  rotate: 0.65deg;
+}
+
+.studio-case[data-project="seamframe"]
+  .world-assembly__parts[data-motion-active="true"]
+  .personal-world__figure:nth-child(2) {
+  translate: 0 -0.45rem;
+}
+
+.studio-case[data-project="seamframe"]
+  .world-assembly__parts[data-motion-active="true"]
+  .personal-world__figure:nth-child(3) {
+  translate: -0.55rem 0.25rem;
+  rotate: -0.65deg;
+}
+
+.studio-case[data-project="seamframe"]
+  .world-assembly:has(.world-assembly__parts[data-motion-active="true"])
+  .world-assembly__steps
+  li {
+  animation: personal-assembly-step 440ms var(--personal-motion-snap) both;
+}
+
+.studio-case[data-project="seamframe"] .world-assembly__steps li:nth-child(2) {
+  animation-delay: 60ms;
+}
+
+.studio-case[data-project="seamframe"] .world-assembly__steps li:nth-child(3) {
+  animation-delay: 120ms;
+}
+
+.studio-case[data-project="seamframe"] .world-assembly__steps li:nth-child(4) {
+  animation-delay: 180ms;
+}
+
+.studio-case[data-project="seamframe"]
+  .world-assembly
+  .personal-world__figure[data-motion-pressed="true"] {
+  translate: 0.3rem -0.3rem;
+  scale: 0.982;
+}
+
+@keyframes personal-assembly-step {
+  0% {
+    background: var(--studio-accent);
+    color: var(--studio-paper);
+    translate: 0 0.45rem;
+  }
+  100% {
+    background: transparent;
+    color: inherit;
+    translate: 0 0;
+  }
+}
+
+/* 19 / TWO SHORES — paired records move toward a shared spine. */
+
+.studio-case[data-project="two-shores"] .world-paired__row {
+  transition:
+    box-shadow 360ms ease,
+    opacity 360ms ease;
+}
+
+.studio-case[data-project="two-shores"]
+  .world-paired__row:has(.personal-world__figure[data-motion-active="true"]) {
+  box-shadow: 0 0 0 2px var(--studio-accent);
+}
+
+.studio-case[data-project="two-shores"]
+  .world-paired__shore--a
+  .personal-world__figure[data-motion-active="true"] {
+  translate: 0.45rem 0;
+}
+
+.studio-case[data-project="two-shores"]
+  .world-paired__shore--b
+  .personal-world__figure[data-motion-active="true"] {
+  translate: -0.45rem 0;
+}
+
+.studio-case[data-project="two-shores"] .world-paired__spine--row {
+  position: relative;
+  overflow: hidden;
+}
+
+.studio-case[data-project="two-shores"] .world-paired__spine--row::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: var(--studio-accent);
+  content: "";
+  transform: translateX(-50%) scaleY(var(--motion-chapter-progress, 0));
+  transform-origin: top;
+}
+
+.studio-case[data-project="two-shores"]
+  .world-paired
+  .personal-world__figure[data-motion-pressed="true"] {
+  translate: 0 0;
+  scale: 0.982;
+}
+
+/* 20 / COLDKILN — press, cure, install and return stay visibly distinct. */
+
+.studio-case[data-project="coldkiln"] .world-cycle__stage {
+  transition:
+    background-color 360ms ease,
+    box-shadow 360ms ease;
+}
+
+.studio-case[data-project="coldkiln"]
+  .world-cycle__grid[data-motion-active="true"]
+  .world-cycle__stage--1
+  .personal-world__figure {
+  scale: 1 0.975;
+}
+
+.studio-case[data-project="coldkiln"]
+  .world-cycle__grid[data-motion-active="true"]
+  .world-cycle__stage--2
+  .personal-world__figure
+  > [data-project-media] {
+  filter: sepia(0.16) saturate(1.08);
+}
+
+.studio-case[data-project="coldkiln"]
+  .world-cycle__grid[data-motion-active="true"]
+  .world-cycle__stage--2
+  .personal-world__figure {
+  translate: 0 -0.3rem;
+}
+
+.studio-case[data-project="coldkiln"]
+  .world-cycle__grid[data-motion-active="true"]
+  .world-cycle__stage--3
+  .personal-world__figure {
+  rotate: 0.6deg;
+}
+
+.studio-case[data-project="coldkiln"]
+  .world-cycle__grid[data-motion-active="true"]
+  .world-cycle__stage--4
+  .personal-world__figure {
+  translate: 0.35rem 0;
+}
+
+.studio-case[data-project="coldkiln"]
+  .world-cycle__stage:has(.personal-world__figure[data-motion-active="true"]) {
+  background: color-mix(in srgb, var(--studio-accent) 10%, var(--studio-paper));
+  box-shadow: inset 0 -3px 0 var(--studio-accent);
+}
+
+.studio-case[data-project="coldkiln"]
+  .world-cycle
+  .personal-world__figure[data-motion-pressed="true"] {
+  scale: 0.97 0.985;
+  translate: 0 0.28rem;
+}
+
+.studio-case[data-project="coldkiln"]
+  .world-cycle__grid[data-motion-active="true"]
+  + .world-cycle__proof {
+  animation: personal-cycle-proof 620ms var(--personal-motion-ease) both;
+}
+
+@keyframes personal-cycle-proof {
+  from {
+    opacity: 0.68;
+    translate: 0.8rem 0;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+/* Coarse pointers keep the tactile response but reduce travel distances. */
+
+@media (hover: none), (pointer: coarse) {
+  .studio-case[data-project] .personal-world .personal-world__figure[data-motion-active="true"] {
+    --personal-touch-scale: 0.99;
+  }
+
+  .studio-case[data-project] .personal-world .personal-world__figure[data-motion-pressed="true"] {
+    scale: var(--personal-touch-scale, 0.985);
+    translate: 0 0.16rem;
+  }
+
+  .studio-case[data-project="afterimage"]
+    .world-overprint
+    section[data-motion-active="true"]
+    .personal-world__figure,
+  .studio-case[data-project="memory-type"] .world-archive__drawer[data-motion-active="true"],
+  .studio-case[data-project="public-memory"]
+    .world-route__stops[data-motion-active="true"]
+    .world-route__stop,
+  .studio-case[data-project="backmatter"]
+    .world-evidence
+    section[data-motion-active="true"]
+    .personal-world__figure {
+    translate: 0.18rem 0;
+  }
+
+  .studio-case[data-project="tactile-forecast"]
+    .world-material__fan[data-motion-active="true"]
+    .personal-world__figure,
+  .studio-case[data-project="seamframe"]
+    .world-assembly__parts[data-motion-active="true"]
+    .personal-world__figure {
+    translate: 0 0;
+  }
+}
+
+/* Reduced motion keeps all content and selection affordances visible while
+   removing travel, pulses, scans and progress-driven transforms. */
+
+.studio-case[data-motion-effective="reduced"][data-project]
+  .personal-world
+  :is(
+    .personal-world__figure,
+    .world-archive__drawer,
+    .world-route__stop,
+    .world-orbit__dial,
+    .world-nine__tile,
+    .world-paired__row,
+    .world-cycle__stage,
+    .world-assembly__steps li,
+    .world-cycle__proof
+  ) {
+  animation: none !important;
+  translate: none !important;
+  rotate: none !important;
+  scale: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+.studio-case[data-motion-effective="reduced"][data-project]
+  .personal-world
+  .world-overprint
+  section::after,
+.studio-case[data-motion-effective="reduced"][data-project]
+  .personal-world
+  .world-route__line::after,
+.studio-case[data-motion-effective="reduced"][data-project]
+  .personal-world
+  .world-journey__track::after,
+.studio-case[data-motion-effective="reduced"][data-project]
+  .personal-world
+  .world-tide__datum::after,
+.studio-case[data-motion-effective="reduced"][data-project]
+  .personal-world
+  .world-pattern__seam::after,
+.studio-case[data-motion-effective="reduced"][data-project]
+  .personal-world
+  .world-paired__spine--row::after {
+  transform: none !important;
+}
+
+.studio-case[data-motion-effective="reduced"][data-project]
+  .personal-world
+  .personal-world__figure
+  > [data-project-media] {
+  clip-path: none !important;
+  transition-duration: 0.01ms !important;
+}
+
+.studio-case[data-motion-effective="reduced"][data-project]
+  .personal-world
+  .personal-world__figure
+  > [data-project-media]::after {
+  animation: none !important;
+  opacity: 0 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:not([data-motion-preference="full"])
+    .studio-case[data-project]
+    .personal-world
+    :is(
+      .personal-world__figure,
+      .world-archive__drawer,
+      .world-route__stop,
+      .world-orbit__dial,
+      .world-nine__tile,
+      .world-paired__row,
+      .world-cycle__stage,
+      .world-assembly__steps li,
+      .world-cycle__proof
+    ) {
+    animation: none !important;
+    translate: none !important;
+    rotate: none !important;
+    scale: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html:not([data-motion-preference="full"])
+    .studio-case[data-project]
+    .personal-world
+    .world-overprint
+    section::after,
+  html:not([data-motion-preference="full"])
+    .studio-case[data-project]
+    .personal-world
+    .world-route__line::after,
+  html:not([data-motion-preference="full"])
+    .studio-case[data-project]
+    .personal-world
+    .world-journey__track::after,
+  html:not([data-motion-preference="full"])
+    .studio-case[data-project]
+    .personal-world
+    .world-tide__datum::after,
+  html:not([data-motion-preference="full"])
+    .studio-case[data-project]
+    .personal-world
+    .world-pattern__seam::after,
+  html:not([data-motion-preference="full"])
+    .studio-case[data-project]
+    .personal-world
+    .world-paired__spine--row::after {
+    transform: none !important;
+  }
+
+  html:not([data-motion-preference="full"])
+    .studio-case[data-project]
+    .personal-world
+    .personal-world__figure
+    > [data-project-media] {
+    clip-path: none !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html:not([data-motion-preference="full"])
+    .studio-case[data-project]
+    .personal-world
+    .personal-world__figure
+    > [data-project-media]::after {
+    animation: none !important;
+    opacity: 0 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

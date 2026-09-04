@@ -1382,6 +1382,26 @@
     align-self: end;
   }
 
+  /* MUJI is intentionally the narrow, domestic-scale card in the desktop
+     composition. Keep its caption as one calm vertical measure instead of
+     forcing the wide-card 12-column caption into three unusably small cells. */
+  .work-studio__brand-item[data-brand="muji-household-weather"] .work-studio__brand-caption {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  .work-studio__brand-item[data-brand="muji-household-weather"]
+    :is(.work-studio__brand-title, .work-studio__brand-statement, .work-studio__brand-meta) {
+    grid-column: 1;
+    align-self: auto;
+  }
+
+  .work-studio__brand-item[data-brand="muji-household-weather"] .work-studio__brand-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.45rem;
+  }
+
   .work-studio__brand-item[data-brand="prada-the-quiet-error"] .work-studio__brand-title {
     grid-column: 1 / -1;
   }

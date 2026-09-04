@@ -11,6 +11,10 @@ tmp/higgsfield/01-afterimage/afterimage-01-hero.png
 tmp/higgsfield/01-afterimage/afterimage-01-tactile.jpg
 tmp/higgsfield/01-afterimage/afterimage-01-spatial.png
 tmp/higgsfield/01-afterimage/afterimage-01-context.png
+tmp/higgsfield/01-afterimage/afterimage-01-editorial-a.png
+tmp/higgsfield/01-afterimage/afterimage-01-editorial-b.png
+tmp/higgsfield/01-afterimage/afterimage-01-editorial-c.png
+tmp/higgsfield/01-afterimage/afterimage-01-editorial-d.png
 ```
 
 Each of the 28 slugs is declared in `scripts/design-project-image-rules.mjs`. Every project requires
@@ -23,9 +27,10 @@ the four core slots below:
 | `spatial` | 16:9           |           3200 px | Environment / system image           |
 | `context` | 9:16           |           3200 px | Vertical campaign / contextual plate |
 
-The eight unofficial brand studies add a typed, variable editorial sequence. Including the four
-core slots, H&M and UNIQLO resolve to 8 pictures, ZARA to 9, PRADA, MUJI, LEVI'S, and NIKE resolve
-to 10, and the POLO RALPH LAUREN flagship resolves to 20.
+Every personal project adds `editorial-a` through `editorial-d`, resolving to eight distinct source
+pictures. The eight unofficial brand studies retain their typed, variable editorial sequences.
+Including the four core slots, H&M and UNIQLO resolve to 8 pictures, ZARA to 9, PRADA, MUJI,
+LEVI'S, and NIKE resolve to 10, and the POLO RALPH LAUREN flagship resolves to 20.
 
 | Source token  | Generated slot | Required ratio | Minimum long edge | Purpose                     |
 | ------------- | -------------- | -------------- | ----------------: | --------------------------- |
@@ -48,6 +53,8 @@ to 10, and the POLO RALPH LAUREN flagship resolves to 20.
 
 Required extras by slug:
 
+- Personal projects `afterimage` through `coldkiln` (projects 01-20): `editorial-a` through
+  `editorial-d` (8 total pictures each)
 - `hm-second-sun`: `editorial-a` through `editorial-d` (8 total pictures)
 - `zara-the-air-between`: `editorial-a` through `editorial-e` (9 total pictures)
 - `uniqlo-comfort-measured`: `editorial-a` through `editorial-d` (8 total pictures)
@@ -57,7 +64,8 @@ Required extras by slug:
 - `polo-ralph-lauren-the-long-match`: `editorial-a` through `editorial-p` (20 total pictures)
 - `nike-no-second-take`: `editorial-a` through `editorial-f` (10 total pictures)
 
-Use this exact eight-file source contract for project 21:
+Use the same eight-file source contract shown for `afterimage` above for every personal project,
+replacing the folder, slug, and index consistently. Project 21 follows the same eight-file minimum:
 
 ```text
 tmp/higgsfield/21-hm-second-sun/hm-second-sun-21-hero.png
@@ -70,9 +78,10 @@ tmp/higgsfield/21-hm-second-sun/hm-second-sun-21-editorial-c.png
 tmp/higgsfield/21-hm-second-sun/hm-second-sun-21-editorial-d.png
 ```
 
-Replace the folder, slug, and index consistently for projects 22–28, then include the extra slots
+Replace the folder, slug, and index consistently for projects 22-28, then include the extra slots
 listed above. Source tokens are kebab case; generated editorial filenames intentionally use the
-typed camel-case slot names.
+typed camel-case slot names. A responsive crop, alternate format, or colour treatment of one source
+does not count as another picture; each required slot must have a distinct approved master.
 
 The ratio tolerance is 3.5%. The processor rejects duplicate files for the same project and slot.
 The obsolete wrong-account file `afterimage-campaign-pilot.png` is explicitly excluded from discovery.
@@ -112,11 +121,19 @@ public/generated/design-projects/<slug>/<slot>-{960|1600|3200}.avif
 ```
 
 For an editorial extra this resolves to, for example,
-`public/generated/design-projects/hm-second-sun/editorialD-3200.webp`.
+`public/generated/design-projects/afterimage/editorialD-3200.webp`.
 
-The numeric suffix is the target long edge, not an assumed CSS width. Sharp auto-orients the source, applies the centred crop needed to normalise it to the slot ratio, and emits 960, 1600, and 3200 px long-edge variants. By default, undersized masters are rejected; `--allow-low-res` explicitly permits Lanczos3 enlargement and records the exception in both reports. The exact widths therefore match the site's responsive descriptors: 4:5 produces 768/1280/2560 px widths, 3:2 produces 960/1600/3200, 16:9 produces 960/1600/3200, and 9:16 produces 540/900/1800. The default output removes EXIF, ICC, IPTC, XMP, and comments and produces device-independent sRGB pixels. WebP is required; AVIF can be disabled with `--formats webp`.
+The numeric suffix is the target long edge, not an assumed CSS width. Sharp auto-orients the source,
+applies the centred crop needed to normalise it to the slot ratio, and emits 960, 1600, and 3200 px
+long-edge variants. By default, undersized masters are rejected; `--allow-low-res` explicitly permits
+Lanczos3 enlargement and records the exception in both reports. The exact widths therefore match the
+site's responsive descriptors: 4:5 produces 768/1280/2560 px widths, 3:2 produces 960/1600/3200,
+16:9 produces 960/1600/3200, and 9:16 produces 540/900/1800. The default output removes EXIF, ICC,
+IPTC, XMP, and comments and produces device-independent sRGB pixels. WebP is required; AVIF can be
+disabled with `--formats webp`.
 
-Existing generated files are kept by default. After approving a replacement master, use `--force` to replace only its exact generated target with a verified atomic write:
+Existing generated files are kept by default. After approving a replacement master, use `--force`
+to replace only its exact generated target with a verified atomic write:
 
 ```powershell
 .\scripts\process-design-project-images.cmd --projects afterimage --slots hero --force
@@ -128,8 +145,10 @@ The command never deletes or modifies anything under `tmp/higgsfield`.
 
 Every successful write updates:
 
-- `public/generated/design-projects/manifest.json` — machine-readable dimensions, byte sizes, hashes, colour-space and metadata checks.
-- `public/generated/design-projects/manifest-report.md` — human-readable 115-slot coverage and missing-file report.
+- `public/generated/design-projects/manifest.json` — machine-readable dimensions, byte sizes, hashes,
+  colour-space, and metadata checks.
+- `public/generated/design-projects/manifest-report.md` — human-readable 245-slot coverage and
+  missing-file report.
 
 Useful safeguards:
 

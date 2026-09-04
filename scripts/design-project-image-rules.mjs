@@ -232,7 +232,27 @@ export const DESIGN_PROJECT_SLOTS = Object.freeze({
   }),
 });
 
-export const BRAND_EDITORIAL_SLOT_COUNT = Object.freeze({
+export const PROJECT_EDITORIAL_SLOT_COUNT = Object.freeze({
+  afterimage: 4,
+  "memory-type": 4,
+  "field-notes-37": 4,
+  "last-letter": 4,
+  "tactile-forecast": 4,
+  "night-index": 4,
+  "public-memory": 4,
+  "soft-machine": 4,
+  "signal-noise": 4,
+  "chroma-tempo": 4,
+  "79w": 4,
+  tidehold: 4,
+  offsort: 4,
+  horalis: 4,
+  "selv-00": 4,
+  "tessera-live": 4,
+  backmatter: 4,
+  seamframe: 4,
+  "two-shores": 4,
+  coldkiln: 4,
   "hm-second-sun": 4,
   "zara-the-air-between": 5,
   "uniqlo-comfort-measured": 4,
@@ -243,7 +263,9 @@ export const BRAND_EDITORIAL_SLOT_COUNT = Object.freeze({
   "nike-no-second-take": 6,
 });
 
-export const BRAND_EDITORIAL_PROJECT_SLUGS = Object.freeze(Object.keys(BRAND_EDITORIAL_SLOT_COUNT));
+export const PROJECT_EDITORIAL_PROJECT_SLUGS = Object.freeze(
+  Object.keys(PROJECT_EDITORIAL_SLOT_COUNT),
+);
 
 const CORE_SLOTS = Object.freeze(
   Object.keys(DESIGN_PROJECT_SLOTS).filter((slot) => !slot.startsWith("editorial")),
@@ -253,7 +275,7 @@ const EDITORIAL_SLOTS = Object.freeze(
 );
 
 export function getDesignProjectRequiredSlots(projectSlug) {
-  const editorialCount = BRAND_EDITORIAL_SLOT_COUNT[projectSlug] ?? 0;
+  const editorialCount = PROJECT_EDITORIAL_SLOT_COUNT[projectSlug] ?? 0;
   return [...CORE_SLOTS, ...EDITORIAL_SLOTS.slice(0, editorialCount)];
 }
 

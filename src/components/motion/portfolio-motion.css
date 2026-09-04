@@ -412,6 +412,32 @@
     --motion-tactile-ring: #ff4d00;
   }
 
+  /* Custom brand worlds set their own foreground on large wrappers. Keep the
+     fixed motion control optically isolated so it never inherits dark ink. */
+  [data-motion-root][data-motion-profile="polo"] > .portfolio-motion__preference {
+    border-color: rgb(255 249 233 / 0.56);
+    background: rgb(13 32 53 / 0.94);
+    color: #fff9e9 !important;
+  }
+
+  [data-motion-root][data-motion-profile="nike"] > .portfolio-motion__preference {
+    border-color: rgb(255 255 255 / 0.52);
+    background: rgb(12 12 12 / 0.94);
+    color: #fff !important;
+  }
+
+  [data-motion-root][data-motion-profile="polo"]
+    > .portfolio-motion__preference
+    > :is(span, small) {
+    color: #fff9e9 !important;
+  }
+
+  [data-motion-root][data-motion-profile="nike"]
+    > .portfolio-motion__preference
+    > :is(span, small) {
+    color: #fff !important;
+  }
+
   [data-motion-profile="nike"] [id*="recovery"][data-motion-reveal],
   [data-motion-profile="nike"] [id*="next"][data-motion-reveal] {
     --motion-duration: 820ms;
