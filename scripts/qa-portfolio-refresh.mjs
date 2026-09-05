@@ -32,9 +32,9 @@ try {
     assert.equal(await page.locator(".portfolio-home").count(), 0);
     await page.screenshot({ path: path.join(output, `restored-home-${width}.png`) });
     await page.goto(base + "/work", { waitUntil: "networkidle" });
-    await page.locator(".work-studio__display").waitFor();
-    assert.equal(await page.getByRole("button", { name: "Index", exact: true }).count(), 0);
-    await page.screenshot({ path: path.join(output, `restored-work-${width}.png`) });
+    await page.locator(".work-gallery").waitFor();
+    assert.equal(await page.getByRole("button", { name: "Project index", exact: true }).count(), 1);
+    await page.screenshot({ path: path.join(output, `work-gallery-${width}.png`) });
     for (const slug of ["hm-second-sun", "zara-the-air-between", "uniqlo-comfort-measured"]) {
       await page.goto(base + "/poster-studies/" + slug, { waitUntil: "networkidle" });
       const rail = page.locator(".brand-pavilion__hero-rail");
@@ -180,7 +180,7 @@ try {
     results.push({
       width,
       originalHomeRestored: true,
-      originalWorkRestored: true,
+      workOnlyGallery: true,
       nikeSelector: true,
       poloSelector: true,
       poloGallery: 20,
