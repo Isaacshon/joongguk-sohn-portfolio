@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { BrandMark } from "@/components/poster-studies/BrandMark";
 
 import { BrandWorldPicture, BrandWorldShell, type BrandWorldProps } from "./BrandWorldShell";
@@ -11,6 +12,8 @@ const navigation = [
 ] as const;
 
 export function MujiWorld({ project, pavilion }: BrandWorldProps) {
+  const [dailyCondition, setDailyCondition] = useState<"air" | "prepare">("air");
+
   return (
     <BrandWorldShell
       project={project}
@@ -100,35 +103,70 @@ export function MujiWorld({ project, pavilion }: BrandWorldProps) {
             </div>
           </header>
 
-          <figure className={`${styles.figure} ${styles.figureMedium} ${styles.alignLeft}`}>
-            <BrandWorldPicture
-              project={project}
-              slot="editorialA"
-              sizes="(max-width: 720px) 100vw, 68vw"
-              className={`${styles.picture} ${styles.tallLandscape}`}
-              imageClassName={styles.image}
-            />
-            <figcaption>
-              <span>Use 01</span>
-              <p>Fresh air, one shirt, one repeated action. The product supports the rhythm.</p>
-            </figcaption>
-          </figure>
-
-          <figure className={`${styles.figure} ${styles.figurePortrait} ${styles.alignRight}`}>
-            <BrandWorldPicture
-              project={project}
-              slot="editorialB"
-              sizes="(max-width: 720px) 100vw, 58vw"
-              className={`${styles.picture} ${styles.portrait}`}
-              imageClassName={styles.image}
-            />
-            <figcaption>
-              <span>Use 02</span>
-              <p>
-                Texture is shown through handling: cloth, wood, ceramic, and the space between them.
+          <div className={styles.useLibrary}>
+            <div className={styles.useIndex}>
+              <p>A change in the day</p>
+              <div role="group" aria-label="Choose a daily condition" className={styles.useChoices}>
+                <button
+                  type="button"
+                  aria-pressed={dailyCondition === "air"}
+                  aria-controls="muji-use-air"
+                  onClick={() => setDailyCondition("air")}
+                >
+                  <span>01</span>
+                  <strong>Air &amp; drying</strong>
+                </button>
+                <button
+                  type="button"
+                  aria-pressed={dailyCondition === "prepare"}
+                  aria-controls="muji-use-prepare"
+                  onClick={() => setDailyCondition("prepare")}
+                >
+                  <span>02</span>
+                  <strong>Fold &amp; prepare</strong>
+                </button>
+              </div>
+              <p className={styles.useObservation} aria-live="polite">
+                {dailyCondition === "air"
+                  ? "A rail, a shirt, and outside air. The action explains the object."
+                  : "Cloth is folded and returned to the shelf. Its place follows the task."}
               </p>
-            </figcaption>
-          </figure>
+            </div>
+            <figure id="muji-use-air" className={styles.useScene} hidden={dailyCondition !== "air"}>
+              <BrandWorldPicture
+                project={project}
+                slot="editorialA"
+                sizes="(max-width: 720px) 100vw, 68vw"
+                className={`${styles.picture} ${styles.usePicture}`}
+                imageClassName={styles.image}
+              />
+              <figcaption>
+                <span>Use 01</span>
+                <p>Fresh air, one shirt, one repeated action. The product supports the rhythm.</p>
+              </figcaption>
+            </figure>
+
+            <figure
+              id="muji-use-prepare"
+              className={styles.useScene}
+              hidden={dailyCondition !== "prepare"}
+            >
+              <BrandWorldPicture
+                project={project}
+                slot="editorialB"
+                sizes="(max-width: 720px) 100vw, 58vw"
+                className={`${styles.picture} ${styles.usePicture}`}
+                imageClassName={styles.image}
+              />
+              <figcaption>
+                <span>Use 02</span>
+                <p>
+                  Texture is shown through handling: cloth, wood, ceramic, and the space between
+                  them.
+                </p>
+              </figcaption>
+            </figure>
+          </div>
         </section>
 
         <section className={styles.chapter} id="room" aria-labelledby="muji-room-title">

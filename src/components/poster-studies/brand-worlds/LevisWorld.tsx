@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { BrandMark } from "@/components/poster-studies/BrandMark";
 import type { DesignProjectMediaSlot } from "@/lib/design-project-media";
 
@@ -59,6 +60,7 @@ function ChapterHeading({ number, title, line }: { number: string; title: string
 }
 
 export function LevisWorld({ project, pavilion }: BrandWorldProps) {
+  const [inspection, setInspection] = useState(0);
   const constructionFrames: CampaignFrame[] = [pavilion.principles.image, pavilion.world.scenes[2]];
   const wearFrames: CampaignFrame[] = [pavilion.needs.images[1], pavilion.world.scenes[0]];
   const repairFrames: CampaignFrame[] = [
@@ -72,6 +74,34 @@ export function LevisWorld({ project, pavilion }: BrandWorldProps) {
     title: "Repair ends. The next life begins.",
     copy: "The repaired pair leaves the workbench in another wearer's hands, keeping its fades, patch, red tab, and visible intervention in motion.",
   };
+  const inspectionFrames = [
+    {
+      label: "Detail",
+      frame: {
+        ...constructionFrames[0],
+        title: "Read the construction.",
+        copy: "Denim is laid out, marked, and inspected. Begin with what is visible in the cloth.",
+      },
+    },
+    {
+      label: "Wear",
+      frame: {
+        slot: "context",
+        eyebrow: "Street / movement",
+        title: "Read it in motion.",
+        copy: "Loose denim crosses a city street. The silhouette is understood through the body, not a fit diagram.",
+      },
+    },
+    {
+      label: "Repair",
+      frame: {
+        slot: "editorialB",
+        eyebrow: "Workbench / stitching",
+        title: "Read the intervention.",
+        copy: "Hands guide layered denim beneath the needle. The next stage is made, not concealed.",
+      },
+    },
+  ] satisfies { label: string; frame: CampaignFrame }[];
 
   return (
     <BrandWorldShell
@@ -147,13 +177,45 @@ export function LevisWorld({ project, pavilion }: BrandWorldProps) {
             line="Copper rivets, five pockets, a straight leg, button fly, Arcuate, Two Horse patch, and Red Tab make the 501 readable before styling begins."
           />
           <div className={styles.constructionLayout}>
-            <LevisFrame
-              project={project}
-              frame={constructionFrames[0]}
-              className={styles.constructionTable}
-              sizes="(min-width: 900px) 58vw, 100vw"
-              showCopy
-            />
+            <div className={`${styles.constructionTable} ${styles.recordViewer}`}>
+              <div
+                className={styles.recordControls}
+                role="group"
+                aria-label="Inspect the denim record"
+              >
+                {inspectionFrames.map((item, index) => (
+                  <button
+                    key={item.label}
+                    type="button"
+                    aria-pressed={inspection === index}
+                    aria-controls="levis-record-frame"
+                    onClick={() => setInspection(index)}
+                  >
+                    <span>0{index + 1}</span>
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+              <div id="levis-record-frame" className={styles.recordStage}>
+                {inspectionFrames.map((item, index) => (
+                  <div
+                    key={item.label}
+                    hidden={inspection !== index}
+                    className={styles.recordScene}
+                  >
+                    <LevisFrame
+                      project={project}
+                      frame={item.frame}
+                      className={styles.recordImage}
+                      sizes="(min-width: 900px) 58vw, 100vw"
+                    />
+                  </div>
+                ))}
+              </div>
+              <p className={styles.recordReading} aria-live="polite">
+                {inspectionFrames[inspection].frame.copy}
+              </p>
+            </div>
             <LevisFrame
               project={project}
               frame={constructionFrames[1]}

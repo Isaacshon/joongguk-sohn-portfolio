@@ -6,6 +6,8 @@ import { PortfolioMotionRoot } from "@/components/motion/PortfolioMotionRoot";
 import { BrandMark } from "@/components/poster-studies/BrandMark";
 import { DesignProjectCover } from "@/components/poster-studies/DesignProjectCover";
 import { ProjectPicture } from "@/components/poster-studies/ProjectPicture";
+import { ProjectGalleryTrigger } from "../ProjectImageGallery";
+import { ProjectReferenceNote } from "../ProjectReferenceNote";
 import { getDesignProjectArtDirection } from "@/lib/design-project-art-direction";
 import {
   getDesignProjectMediaAsset,
@@ -49,7 +51,8 @@ export function BrandWorldPicture({
   fit?: "cover" | "contain";
   showContinuity?: boolean;
 }) {
-  const continuity = getDesignProjectMediaAsset(project.slug, slot)?.continuity;
+  const mediaAsset = getDesignProjectMediaAsset(project.slug, slot);
+  const continuity = mediaAsset?.continuity;
   const objectLabel = continuity
     ? `${continuity.objectIds.slice(0, 2).join(" + ")}${
         continuity.objectIds.length > 2 ? ` +${continuity.objectIds.length - 2}` : ""
@@ -67,32 +70,35 @@ export function BrandWorldPicture({
       priority={priority}
       fit={fit}
       overlay={
-        continuity && showContinuity ? (
-          <div
-            className={styles.continuityTag}
-            data-source-basis={continuity.sourceBasis}
-            role="note"
-            aria-label={`Visual continuity ${continuity.beat}. Objects: ${continuity.objectIds.join(
-              ", ",
-            )}. Cast: ${continuity.castIds.join(", ") || "object-only"}. Wardrobe: ${
-              continuity.wardrobeIds.join(", ") || "not applicable"
-            }. State: ${continuity.state}. Required evidence: ${continuity.visualProof}`}
-          >
-            <span className={styles.continuityMeta}>
-              <b>{continuity.beat}</b>
-              <i>
-                {continuity.sourceBasis === "official-object/project-sequence"
-                  ? "Official anchor / independent sequence"
-                  : "Independent project reading"}
-              </i>
-            </span>
-            <strong>{objectLabel}</strong>
-            <small>
-              {continuity.state}
-              {continuity.returnsTo ? ` / returns to ${continuity.returnsTo}` : ""}
-            </small>
-          </div>
-        ) : null
+        <>
+          <ProjectGalleryTrigger slot={slot} overlay label={mediaAsset?.alt} />
+          {continuity && showContinuity ? (
+            <div
+              className={styles.continuityTag}
+              data-source-basis={continuity.sourceBasis}
+              role="note"
+              aria-label={`Visual continuity ${continuity.beat}. Objects: ${continuity.objectIds.join(
+                ", ",
+              )}. Cast: ${continuity.castIds.join(", ") || "object-only"}. Wardrobe: ${
+                continuity.wardrobeIds.join(", ") || "not applicable"
+              }. State: ${continuity.state}. Required evidence: ${continuity.visualProof}`}
+            >
+              <span className={styles.continuityMeta}>
+                <b>{continuity.beat}</b>
+                <i>
+                  {continuity.sourceBasis === "official-object/project-sequence"
+                    ? "Official anchor / independent sequence"
+                    : "Independent project reading"}
+                </i>
+              </span>
+              <strong>{objectLabel}</strong>
+              <small>
+                {continuity.state}
+                {continuity.returnsTo ? ` / returns to ${continuity.returnsTo}` : ""}
+              </small>
+            </div>
+          ) : null}
+        </>
       }
       fallback={
         <DesignProjectCover
@@ -150,9 +156,12 @@ export function BrandWorldShell({
         style={style}
       >
         <nav className={styles.topbar} aria-label={`${project.title} project navigation`}>
-          <Link to="/work" className={styles.backLink}>
-            <span aria-hidden="true">&larr;</span> Work
-          </Link>
+          <div className={styles.backTools}>
+            <Link to="/work" className={styles.backLink}>
+              <span aria-hidden="true">&larr;</span> Work
+            </Link>
+            <ProjectGalleryTrigger />
+          </div>
           <a
             href="#world-top"
             className={styles.brandHome}
@@ -178,6 +187,7 @@ export function BrandWorldShell({
             <h2 id={`${pavilion.code}-research-heading`}>Official references</h2>
           </div>
           <div className={styles.researchBody}>
+            <ProjectReferenceNote slug={project.slug} />
             <p>
               Primary materials consulted for factual brand, product, and design-history anchors.
             </p>

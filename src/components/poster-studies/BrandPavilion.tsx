@@ -6,6 +6,9 @@ import { PortfolioMotionRoot } from "@/components/motion/PortfolioMotionRoot";
 import { BrandMark, PradaPlaque, type BrandCode } from "@/components/poster-studies/BrandMark";
 import { DesignProjectCover } from "@/components/poster-studies/DesignProjectCover";
 import { ProjectPicture } from "@/components/poster-studies/ProjectPicture";
+import { BrandProjectGallery } from "./BrandProjectGallery";
+import { ProjectGalleryTrigger } from "./ProjectImageGallery";
+import { ProjectReferenceNote } from "./ProjectReferenceNote";
 import { getNewBrandWorldRenderer } from "@/components/poster-studies/brand-worlds";
 import {
   getLegacyBrandPavilionChoreography,
@@ -20,7 +23,8 @@ import {
   type BrandPavilionProfile,
   type BrandPavilionSource,
 } from "@/lib/brand-pavilions";
-import { designProjectCount, designProjects, type DesignProject } from "@/lib/design-projects";
+import { designProjects, type DesignProject } from "@/lib/design-projects";
+import "@/brand-reference-refinement.css";
 
 type PavilionStyle = CSSProperties & Record<`--${string}`, string | number>;
 
@@ -45,17 +49,6 @@ const pavilionFigureCodes: Record<BrandPavilionImage["slot"], string> = {
   editorialN: "N",
   editorialO: "O",
   editorialP: "P",
-};
-
-const brandRetailMenus: Record<BrandCode, string[]> = {
-  hm: ["Women", "Men", "Kids", "Home", "Studio"],
-  zara: ["Woman", "Man", "Kids", "Beauty"],
-  uniqlo: ["Women", "Men", "Kids", "Baby"],
-  prada: ["Women", "Men", "Bags", "Pradasphere"],
-  muji: ["Household", "Apparel", "Food", "Found MUJI"],
-  levis: ["Denim", "Originals", "Repair", "Archive"],
-  polo: ["Men", "Women", "Home", "RL Magazine"],
-  nike: ["New", "Men", "Women", "Kids", "Sport"],
 };
 
 type BrandWorldview = {
@@ -83,6 +76,14 @@ function BrandThesis({ code, text }: { code: BrandCode; text: string }) {
 }
 
 export function BrandPavilion({ project }: { project: DesignProject }) {
+  return (
+    <BrandProjectGallery project={project}>
+      <BrandPavilionContent project={project} />
+    </BrandProjectGallery>
+  );
+}
+
+function BrandPavilionContent({ project }: { project: DesignProject }) {
   const pavilion = getBrandPavilion(project.slug);
 
   if (!pavilion || !project.brandStudy) return null;
@@ -149,6 +150,7 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
 
         <nav className="brand-pavilion__chapter-nav" aria-label="Brand pavilion chapters">
           <div className="pavilion-shell brand-pavilion__chapter-nav-inner">
+            <ProjectGalleryTrigger />
             <a href="#top" className="brand-pavilion__chapter-brand pavilion-meta">
               <BrandMark code={pavilion.code} decorative />
               <span>Brand pavilion</span>
@@ -197,6 +199,7 @@ export function BrandPavilion({ project }: { project: DesignProject }) {
             <div>
               <p className="pavilion-meta">Research basis / official primary sources</p>
               <h2 id="research-basis">The strategy begins with evidence.</h2>
+              <ProjectReferenceNote slug={project.slug} />
             </div>
             <div>
               <p>
@@ -297,7 +300,7 @@ function PavilionHero({
           <h1 className="brand-pavilion__prada-rail-wordmark" aria-label="PRADA">
             <BrandMark code="prada" decorative />
           </h1>
-          <span>Independent concept</span>
+          <span>2026</span>
         </div>
 
         <ProjectPicture
@@ -354,14 +357,10 @@ function PavilionHero({
         <Link to="/poster-studies" className="brand-pavilion__back-link">
           <span aria-hidden="true">←</span> All design projects
         </Link>
-        <div className="brand-pavilion__retail-menu" aria-hidden="true">
-          {brandRetailMenus[pavilion.code].map((item) => (
-            <span key={item}>{item}</span>
-          ))}
-        </div>
-        <span>
-          Independent concept · {project.index} / {designProjectCount} · 2026
+        <span className="brand-pavilion__hero-rail-mark" aria-hidden="true">
+          <BrandMark code={pavilion.code} decorative />
         </span>
+        <span>2026</span>
       </div>
 
       <div className="brand-pavilion__hero-content pavilion-shell">
@@ -1186,6 +1185,7 @@ function PavilionFigure({
             : "(min-width: 1280px) 36vw, (min-width: 768px) 48vw, 100vw"
         }
         imageClassName="brand-pavilion__figure-image"
+        overlay={<ProjectGalleryTrigger slot={image.slot} overlay label={image.title} />}
         fallback={
           <DesignProjectCover
             project={project}

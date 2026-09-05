@@ -1,0 +1,380 @@
+/* Content-specific manipulators. Type is the fixed information layer. */
+.project-signature :is(button, input[type="range"]):focus-visible {
+  outline: 2px solid var(--signature-ink);
+  outline-offset: 5px;
+}
+
+.project-signature
+  :is(.signature-registration__control, .signature-score__tempo)
+  input[type="range"] {
+  display: block;
+  inline-size: 100%;
+  min-block-size: 44px;
+  margin: 0;
+  accent-color: var(--signature-ink);
+  cursor: ew-resize;
+}
+
+.signature-control__sr-only {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* AFTERIMAGE: a movable raster proof, not moving captions. */
+.signature-registration__proof {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+}
+
+.signature-registration__pass {
+  position: absolute;
+  inset: 0;
+  opacity: 0.58;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.signature-registration__datum {
+  position: absolute;
+  inset: 1rem;
+  border: 1px solid rgb(255 255 255 / 75%);
+  pointer-events: none;
+}
+
+.signature-registration__desk {
+  padding-block: clamp(1rem, 2.4cqi, 2rem);
+  border-block: 1px solid var(--signature-line);
+}
+
+.signature-registration__label {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.signature-registration__label label,
+.signature-score__tempo label {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.signature-registration__label output,
+.signature-score__tempo output {
+  font-size: clamp(1.5rem, 3cqi, 2.6rem);
+  font-weight: 550;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.signature-registration__label output span,
+.signature-score__tempo output span {
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.signature-registration__control {
+  display: grid;
+  grid-template-columns: auto minmax(4rem, 1fr) auto;
+  gap: clamp(0.7rem, 2cqi, 2rem);
+  align-items: center;
+}
+
+.signature-registration__control > span {
+  font-size: 0.66rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.signature-registration__desk > p,
+.signature-score__note {
+  color: var(--signature-muted);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+/* MEMORY TYPE: title-letter index and one readable inspection sheet. */
+.signature-glyph__inspection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.signature-glyph__instruction {
+  font-size: 0.84rem;
+  color: var(--signature-muted);
+}
+
+.signature-glyph__choices {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.35rem;
+}
+
+.signature-glyph__choices button {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 1rem;
+  min-block-size: 7rem;
+  padding: 0.65rem;
+  color: var(--signature-ink);
+  border: 1px solid var(--signature-line);
+  border-radius: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: start;
+}
+
+.signature-glyph__choices button[aria-pressed="true"] {
+  color: var(--signature-paper);
+  border-color: var(--signature-ink);
+  background: var(--signature-ink);
+}
+
+.signature-glyph__choices button span {
+  font-size: 0.62rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.signature-glyph__choices button strong {
+  font-family: var(--case-font-display, "Malgun Gothic", sans-serif);
+  font-size: clamp(1.65rem, 4.5cqi, 3.25rem);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.signature-glyph__detail {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(1.3rem, 3cqi, 3rem);
+  align-items: center;
+  padding-block: clamp(1rem, 3cqi, 2.5rem);
+  border-block: 1px solid var(--signature-line);
+}
+
+.signature-glyph__selected {
+  color: var(--signature-ink);
+  font-family: var(--case-font-display, "Malgun Gothic", sans-serif);
+  font-size: clamp(5rem, 16cqi, 11rem);
+  font-weight: 500;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.signature-glyph__record > span {
+  font-size: 0.66rem;
+  color: var(--signature-muted);
+}
+
+.signature-glyph__record h4 {
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+  margin: 0.8rem 0 1.25rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.signature-glyph__record h4 > span:last-child {
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.signature-glyph__record dl > div {
+  display: grid;
+  grid-template-columns: minmax(5.5rem, 0.8fr) minmax(0, 1.2fr);
+  gap: 0.65rem;
+  padding-block: 0.55rem;
+  border-block-start: 1px solid var(--signature-line);
+  font-size: 0.8rem;
+}
+
+.signature-glyph__record dt {
+  color: var(--signature-muted);
+}
+
+.signature-glyph__record dd[lang="ko"] {
+  font-family: "Malgun Gothic", "Noto Sans KR", sans-serif;
+  font-size: 1.1rem;
+}
+
+.signature-glyph__record > p {
+  max-inline-size: 43ch;
+  margin-block-start: 1rem;
+  color: var(--signature-muted);
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
+/* CHROMA TEMPO: one complete bar, controllable without sound. */
+.signature-score__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 3rem;
+  padding-block: 1.3rem;
+  border-block-start: 1px solid var(--signature-line);
+}
+
+.signature-score__tempo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.4rem 1rem;
+  align-items: baseline;
+  flex: 1 1 15rem;
+  max-inline-size: 30rem;
+}
+
+.signature-score__tempo input {
+  grid-column: 1 / -1;
+}
+
+.signature-score__transport {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.signature-score__transport button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  min-block-size: 44px;
+  padding: 0.65rem 1rem;
+  color: var(--signature-ink);
+  border: 1px solid var(--signature-line);
+  border-radius: 0;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8rem;
+}
+
+.signature-score__transport button[aria-pressed="true"] {
+  color: var(--signature-paper);
+  background: var(--signature-ink);
+  border-color: var(--signature-ink);
+}
+
+.signature-score__beats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.5rem, 1.5cqi, 1.5rem);
+  padding: 0;
+  list-style: none;
+}
+
+.signature-score__graphic {
+  position: relative;
+  block-size: clamp(7rem, 24cqi, 18rem);
+  overflow: clip;
+  background: color-mix(in srgb, var(--signature-ink) 5%, var(--signature-paper));
+  border-block-end: 1px solid var(--signature-line);
+}
+
+.signature-score__graphic i {
+  display: block;
+  position: absolute;
+  inset: 0;
+  transform: scaleY(var(--score-rest));
+  transform-origin: center bottom;
+}
+
+.signature-score[data-score-mode="playback"] .signature-score__graphic i {
+  animation: signature-reference-beat var(--score-cycle) ease-in-out var(--score-delay) infinite
+    both;
+  animation-play-state: paused;
+}
+
+.signature-score[data-score-mode="playback"][data-score-running="true"]
+  .signature-score__graphic
+  i {
+  animation-play-state: running;
+}
+
+.signature-score__caption {
+  display: grid;
+  gap: 0.5rem;
+  padding-block: 0.7rem 1rem;
+  color: var(--signature-ink);
+}
+
+.signature-score__caption > span {
+  font-size: 0.65rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.signature-score__caption strong {
+  font-size: clamp(0.68rem, 1.2cqi, 0.85rem);
+  line-height: 1.3;
+  font-weight: 500;
+}
+
+.signature-score__note {
+  padding-block-start: 0.6rem;
+}
+
+@keyframes signature-reference-beat {
+  0%,
+  24%,
+  100% {
+    transform: scaleY(0.24);
+  }
+  10% {
+    transform: scaleY(1);
+  }
+}
+
+@container project-signature (min-width: 34rem) {
+  .signature-glyph__detail {
+    grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+  }
+}
+
+@container project-signature (max-width: 28rem) {
+  .signature-glyph__choices {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .signature-glyph__choices button {
+    min-block-size: 6rem;
+  }
+}
+
+@container project-signature (min-width: 44rem) {
+  .signature--glyph .signature-glyph__source .signature-picture {
+    aspect-ratio: 4 / 5 !important;
+  }
+
+  .signature-glyph__detail {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@container project-signature (min-width: 70rem) {
+  .signature-glyph__detail {
+    grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+  }
+}
+
+@media (hover: hover) {
+  .signature-glyph__choices button:not([aria-pressed="true"]):hover,
+  .signature-score__transport button:not([aria-pressed="true"]):hover {
+    background: color-mix(in srgb, var(--signature-ink) 8%, var(--signature-paper));
+    border-color: var(--signature-ink);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signature-score[data-score-mode="playback"] .signature-score__graphic i {
+    animation: none;
+  }
+}

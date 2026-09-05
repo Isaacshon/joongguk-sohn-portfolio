@@ -2,6 +2,11 @@ import { Link } from "@tanstack/react-router";
 import type { ComponentType, CSSProperties } from "react";
 
 import { ProjectPicture } from "@/components/poster-studies/ProjectPicture";
+import { ProjectReferenceNote } from "./ProjectReferenceNote";
+import {
+  ProjectGalleryTrigger,
+  ProjectImageGallery,
+} from "@/components/poster-studies/ProjectImageGallery";
 import { ProjectSignatureModule } from "@/components/poster-studies/ProjectSignatureModules";
 import {
   getDesignProjectMediaAsset,
@@ -15,6 +20,7 @@ import "@/personal-project-worlds.css";
 import "@/personal-project-openings.css";
 import "@/personal-project-mobile-worlds.css";
 import "@/personal-project-motion.css";
+import "@/personal-project-reading.css";
 
 type WorldRendererProps = {
   project: DesignProject;
@@ -117,23 +123,25 @@ export function PersonalProjectWorld({ project }: { project: DesignProject }) {
     .filter((slot) => !signatureMedia.has(slot));
 
   return (
-    <article
-      className="personal-world"
-      data-world-layout={spec.layout}
-      data-world-project={project.slug}
-      style={
-        {
-          "--case-panel": "var(--studio-panel)",
-          "--case-ink": "var(--studio-ink)",
-          "--case-font-body": "var(--studio-body)",
-          "--case-font-display": "var(--studio-display)",
-        } as CSSProperties
-      }
-    >
-      <WorldOpening project={project} spec={spec} openingSlot={openingSlot} />
-      <Renderer project={project} spec={spec} slots={remainingSlots} />
-      <WorldSources project={project} label={spec.chapterLabels[3]} />
-    </article>
+    <ProjectImageGallery key={project.slug} project={project} spec={spec}>
+      <article
+        className="personal-world"
+        data-world-layout={spec.layout}
+        data-world-project={project.slug}
+        style={
+          {
+            "--case-panel": "var(--studio-panel)",
+            "--case-ink": "var(--studio-ink)",
+            "--case-font-body": "var(--studio-body)",
+            "--case-font-display": "var(--studio-display)",
+          } as CSSProperties
+        }
+      >
+        <WorldOpening project={project} spec={spec} openingSlot={openingSlot} />
+        <Renderer project={project} spec={spec} slots={remainingSlots} />
+        <WorldSources project={project} label={spec.chapterLabels[3]} />
+      </article>
+    </ProjectImageGallery>
   );
 }
 
@@ -169,7 +177,7 @@ function WorldOpening({
         </div>
         <div className="personal-world__position">
           <p>{spec.message}</p>
-          <p>{spec.worldview}</p>
+          <ProjectGalleryTrigger />
         </div>
         <WorldFigure
           project={project}
@@ -178,20 +186,33 @@ function WorldOpening({
           priority
         />
       </div>
-      <dl className="personal-world__contract">
-        <div>
-          <dt>Setting</dt>
-          <dd>{spec.setting}</dd>
+      <details className="personal-world__notes">
+        <summary>
+          <span>Project notes</span>
+          <span className="personal-world__notes-preview">Idea, setting & design approach</span>
+          <span className="personal-world__notes-toggle" aria-hidden="true">
+            +
+          </span>
+        </summary>
+        <div className="personal-world__notes-content">
+          <p className="personal-world__notes-intro">{spec.worldview}</p>
+          <ProjectReferenceNote slug={project.slug} />
+          <dl className="personal-world__notes-facts">
+            <div>
+              <dt>Setting</dt>
+              <dd>{spec.setting}</dd>
+            </div>
+            <div>
+              <dt>Core value</dt>
+              <dd>{spec.coreValue}</dd>
+            </div>
+            <div>
+              <dt>Tension</dt>
+              <dd>{spec.tension}</dd>
+            </div>
+          </dl>
         </div>
-        <div>
-          <dt>Core value</dt>
-          <dd>{spec.coreValue}</dd>
-        </div>
-        <div>
-          <dt>Tension</dt>
-          <dd>{spec.tension}</dd>
-        </div>
-      </dl>
+      </details>
       <nav className="personal-world__chapters" aria-label={`${project.title} chapters`}>
         {spec.chapterLabels.map((label, index) => (
           <a key={label} href={`#${chapterTargets[index]}`}>
@@ -234,6 +255,11 @@ function WorldFigure({
         slot={slot}
         sizes="(min-width: 1440px) 1240px, (min-width: 768px) 72vw, 92vw"
         priority={priority}
+        overlay={
+          asset ? (
+            <ProjectGalleryTrigger slot={slot} overlay label={beat?.title ?? asset.alt} />
+          ) : undefined
+        }
         fallback={
           <div
             className="personal-world__missing"

@@ -393,6 +393,71 @@
   min-height: 43rem;
 }
 
+.wardrobeIndex {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto auto;
+  min-width: 0;
+  background: #fff;
+  color: var(--polo-navy);
+}
+.wardrobeFrame {
+  min-height: 30rem;
+  width: 100%;
+}
+.wardrobeFrame figcaption {
+  display: none;
+}
+.wardrobeControls {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 18px 0 8px;
+  border-bottom: 1px solid #c6c9ce;
+}
+.wardrobeControls button {
+  min-height: 44px;
+  padding: 6px 0;
+  border: none;
+  border-bottom: 1px solid transparent;
+  background: none;
+  color: inherit;
+  font:
+    400 10px/1.4 "Helvetica Neue",
+    Arial,
+    sans-serif;
+  letter-spacing: 0.035em;
+  cursor: pointer;
+}
+.wardrobeControls button[aria-pressed="true"] {
+  border-bottom-color: currentColor;
+}
+.wardrobeControls button:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 4px;
+}
+.wardrobeCaption {
+  min-height: 3.8em;
+  margin-top: 12px !important;
+  font:
+    400 16px/1.35 Georgia,
+    serif;
+}
+@media (max-width: 720px) {
+  .wardrobeIndex.eveningObjects {
+    aspect-ratio: auto;
+  }
+  .wardrobeFrame {
+    min-height: 0;
+    aspect-ratio: 4 / 5;
+  }
+  .wardrobeControls {
+    gap: 12px;
+  }
+  .wardrobeControls button {
+    font-size: 11px;
+  }
+}
+
 .eveningBlueHour {
   grid-column: 1 / 13;
   min-height: 52rem;

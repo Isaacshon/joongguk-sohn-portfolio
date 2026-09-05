@@ -245,6 +245,145 @@
   background-image: none;
 }
 
+/* A useful choice changes the scene; the interface stays quiet. */
+.useLibrary {
+  display: grid;
+  grid-template-columns: minmax(11rem, 0.3fr) minmax(0, 0.7fr);
+  gap: clamp(2rem, 5vw, 5.5rem);
+  max-width: 78rem;
+  margin: clamp(3rem, 6vw, 6rem) auto 0;
+  align-items: start;
+}
+
+.useIndex > p:first-child {
+  padding-block: 0.8rem;
+  border-top: 1px solid #bcbcb5;
+  color: #62625c;
+  font-size: 0.72rem;
+}
+
+.useChoices {
+  display: grid;
+}
+
+.useChoices button {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: 0.5rem;
+  align-items: baseline;
+  min-height: 60px;
+  padding: 1rem 0.5rem;
+  border: 0;
+  border-bottom: 1px solid #deded9;
+  border-radius: 0;
+  background: #fff;
+  color: #555550;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.useChoices button > span {
+  font-size: 0.65rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.useChoices button strong {
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.useChoices button[aria-pressed="true"] {
+  border-bottom-color: #7f0019;
+  color: #7f0019;
+  background: #f7f7f4;
+}
+
+.useChoices button:focus-visible {
+  outline: 2px solid #7f0019;
+  outline-offset: 3px;
+}
+
+.useIndex .useObservation {
+  max-width: 27ch;
+  margin-top: 1.5rem;
+  color: #62625c;
+  font-size: 0.84rem;
+  line-height: 1.65;
+}
+
+.useScene {
+  min-width: 0;
+  margin: 0;
+  animation: use-scene-arrive 240ms ease-out;
+}
+
+.useScene[hidden] {
+  display: none;
+}
+
+.usePicture {
+  aspect-ratio: 5 / 4 !important;
+}
+
+.useScene figcaption {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1.5rem;
+  padding-top: 1rem;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: #555550;
+}
+
+.useScene figcaption > span {
+  color: #7f0019;
+  font-size: 0.68rem;
+  white-space: nowrap;
+}
+
+@keyframes use-scene-arrive {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 680px) {
+  .useLibrary {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+
+  .useChoices {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  .useChoices button {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.45rem;
+  }
+
+  .useIndex .useObservation {
+    max-width: 40ch;
+    margin-top: 1rem;
+  }
+
+  .usePicture {
+    aspect-ratio: 4 / 5 !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .useScene {
+    animation: none;
+  }
+}
+
 @media (max-width: 960px) {
   .hero {
     min-height: 42rem;

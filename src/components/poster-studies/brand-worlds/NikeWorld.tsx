@@ -1,4 +1,5 @@
 import { BrandMark } from "@/components/poster-studies/BrandMark";
+import { useState } from "react";
 
 import { BrandWorldPicture, BrandWorldShell, type BrandWorldProps } from "./BrandWorldShell";
 import styles from "./NikeWorld.module.css";
@@ -34,6 +35,21 @@ const technologies = [
 ] as const;
 
 export function NikeWorld({ project, pavilion }: BrandWorldProps) {
+  const attemptFrames = [
+    { slot: "editorialC", label: "Load", copy: "A low stance holds the moment before movement." },
+    {
+      slot: "hero",
+      label: "Commit",
+      copy: "The player drives into the space as defenders close in.",
+    },
+    {
+      slot: "editorialF",
+      label: "Go again",
+      copy: "A change of direction becomes the next decision.",
+    },
+  ] as const;
+  const [attempt, setAttempt] = useState(1);
+  const selectedAttempt = attemptFrames[attempt];
   return (
     <BrandWorldShell
       project={project}
@@ -101,21 +117,37 @@ export function NikeWorld({ project, pavilion }: BrandWorldProps) {
             <figure className={`${styles.figure} ${styles.attemptLead}`}>
               <BrandWorldPicture
                 project={project}
-                slot="hero"
+                slot={selectedAttempt.slot}
                 sizes="(max-width: 720px) 100vw, 76vw"
                 className={`${styles.picture} ${styles.cinematic}`}
                 imageClassName={styles.image}
               />
               <figcaption>
-                <span>Attempt 01 / Commit</span>
-                <p>The lane closes. The body decides before the outcome can be known.</p>
+                <span>Attempt / {selectedAttempt.label}</span>
+                <p aria-live="polite">{selectedAttempt.copy}</p>
               </figcaption>
             </figure>
 
-            <div className={styles.attemptCounter} aria-hidden="true">
+            <div className={styles.attemptCounter}>
               <span>Attempt</span>
-              <strong>001</strong>
-              <i>00:00:01</i>
+              <strong aria-hidden="true">{String(attempt + 1).padStart(3, "0")}</strong>
+              <i>Choose the instant</i>
+              <div
+                className={styles.attemptSelector}
+                role="group"
+                aria-label="Explore the basketball attempt"
+              >
+                {attemptFrames.map((frame, index) => (
+                  <button
+                    type="button"
+                    key={frame.slot}
+                    aria-pressed={attempt === index}
+                    onClick={() => setAttempt(index)}
+                  >
+                    <span>0{index + 1}</span> {frame.label} <span aria-hidden="true">↗</span>
+                  </button>
+                ))}
+              </div>
             </div>
 
             <figure className={`${styles.figure} ${styles.attemptDetail}`}>

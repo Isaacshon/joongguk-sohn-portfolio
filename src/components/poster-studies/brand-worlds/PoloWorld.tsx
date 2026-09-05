@@ -1,4 +1,5 @@
 import { BrandMark } from "@/components/poster-studies/BrandMark";
+import { useState } from "react";
 import type { DesignProjectMediaSlot } from "@/lib/design-project-media";
 
 import { BrandWorldPicture, BrandWorldShell, type BrandWorldProps } from "./BrandWorldShell";
@@ -59,6 +60,7 @@ function ChapterHeading({ number, title, line }: { number: string; title: string
 }
 
 export function PoloWorld({ project, pavilion }: BrandWorldProps) {
+  const [wardrobe, setWardrobe] = useState(0);
   const [
     cityPortrait,
     brownstone,
@@ -99,6 +101,7 @@ export function PoloWorld({ project, pavilion }: BrandWorldProps) {
     generations,
   ];
   const eveningFrames: CampaignFrame[] = [clubhouse, eveningDeparture, objectStudy, blueHour];
+  const wardrobeFrames = [objectStudy, colourArchive, saddleCare];
 
   return (
     <BrandWorldShell
@@ -296,12 +299,33 @@ export function PoloWorld({ project, pavilion }: BrandWorldProps) {
               className={styles.eveningDeparture}
               sizes="(min-width: 900px) 62vw, 100vw"
             />
-            <PoloFrame
-              project={project}
-              frame={eveningFrames[2]}
-              className={styles.eveningObjects}
-              sizes="(min-width: 900px) 30vw, 100vw"
-            />
+            <div className={`${styles.eveningObjects} ${styles.wardrobeIndex}`}>
+              <PoloFrame
+                project={project}
+                frame={wardrobeFrames[wardrobe]}
+                className={styles.wardrobeFrame}
+                sizes="(min-width: 900px) 30vw, 100vw"
+              />
+              <div
+                className={styles.wardrobeControls}
+                role="group"
+                aria-label="Explore Polo wardrobe icons"
+              >
+                {["The collection", "Polo shirts", "Saddle leather"].map((label, index) => (
+                  <button
+                    type="button"
+                    key={label}
+                    aria-pressed={wardrobe === index}
+                    onClick={() => setWardrobe(index)}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+              <p className={styles.wardrobeCaption} aria-live="polite">
+                {wardrobeFrames[wardrobe].title}
+              </p>
+            </div>
             <PoloFrame
               project={project}
               frame={eveningFrames[3]}

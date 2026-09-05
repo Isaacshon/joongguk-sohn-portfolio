@@ -1,11 +1,22 @@
 /* eslint-disable react-refresh/only-export-components -- this module intentionally exports the renderer registry with its components */
-import type { ComponentType, CSSProperties, ReactNode } from "react";
+import { m, useInView, useReducedMotion } from "framer-motion";
+import {
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  useSyncExternalStore,
+  type ComponentType,
+  type CSSProperties,
+  type ReactNode,
+} from "react";
 
 import { ProjectPicture } from "@/components/poster-studies/ProjectPicture";
 import type { DesignProjectCoreMediaSlot } from "@/lib/design-project-media";
 import type { DesignProject } from "@/lib/design-projects";
 
 import "@/project-signature-modules.css";
+import "@/reference-signature-interactions.css";
 
 type SignatureProps = {
   project: DesignProject;
@@ -38,11 +49,13 @@ function SignaturePicture({
   slot,
   className = "",
   aspectRatio,
+  decorative = false,
 }: {
   project: DesignProject;
   slot: DesignProjectCoreMediaSlot;
   className?: string;
   aspectRatio?: string;
+  decorative?: boolean;
 }) {
   return (
     <ProjectPicture
@@ -51,6 +64,7 @@ function SignaturePicture({
       sizes={pictureSizes}
       className={`signature-picture ${className}`.trim()}
       style={aspectRatio ? { aspectRatio } : undefined}
+      decorative={decorative}
     />
   );
 }
@@ -77,6 +91,16 @@ function itemAt(items: readonly string[], index: number, fallback: string) {
   return items[index] ?? fallback;
 }
 
+function subscribeScoreMotionPreference(onChange: () => void) {
+  const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+  preference.addEventListener("change", onChange);
+  return () => preference.removeEventListener("change", onChange);
+}
+
+function getScoreMotionPreference() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
 function SignatureSection({
   project,
   signature,
@@ -99,6 +123,10 @@ function SignatureSection({
 }
 
 export function AfterimagePlateRegistration({ project }: SignatureProps) {
+  const [drift, setDrift] = useState(2);
+  const controlId = useId();
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <SignatureSection project={project} signature="plate-registration" className="signature--plate">
       <SignatureHeading
@@ -112,23 +140,60 @@ export function AfterimagePlateRegistration({ project }: SignatureProps) {
           <figcaption>Plate A / cobalt image</figcaption>
         </figure>
         <figure className="signature-figure signature-plate__proof">
-          <SignaturePicture project={project} slot="tactile" aspectRatio="4 / 3" />
-          <figcaption>Plate B / fluorescent proof</figcaption>
+          <div className="signature-registration__proof" id={`${controlId}-proof`}>
+            <SignaturePicture project={project} slot="tactile" aspectRatio="4 / 3" />
+            <m.div
+              className="signature-registration__pass"
+              aria-hidden="true"
+              initial={false}
+              animate={{ x: `${drift}%`, y: `${drift / 2}%` }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.16, ease: "easeOut" }}
+            >
+              <SignaturePicture project={project} slot="tactile" aspectRatio="4 / 3" decorative />
+            </m.div>
+            <span className="signature-registration__datum" aria-hidden="true" />
+          </div>
+          <figcaption>Plate B / interactive registration proof</figcaption>
         </figure>
       </div>
-      <div className="signature-plate__register" aria-label="Registration rule">
-        <strong>00</strong>
-        <span>aligned</span>
-        <span aria-hidden="true" />
-        <strong>04</strong>
-        <span>maximum drift</span>
+      <div className="signature-registration__desk">
+        <div className="signature-registration__label">
+          <label htmlFor={controlId}>Move the second pass</label>
+          <output htmlFor={controlId}>
+            {drift.toFixed(1)}% <span>drift</span>
+          </output>
+        </div>
+        <div className="signature-registration__control">
+          <span aria-hidden="true">00 / aligned</span>
+          <input
+            id={controlId}
+            type="range"
+            min="0"
+            max="4"
+            step="0.1"
+            value={drift}
+            onChange={(event) => setDrift(Number(event.currentTarget.value))}
+            aria-valuetext={`${drift.toFixed(1)} percent registration drift`}
+            aria-describedby={`${controlId}-description`}
+            aria-controls={`${controlId}-proof`}
+          />
+          <span aria-hidden="true">04 / offset</span>
+        </div>
+        <p id={`${controlId}-description`}>
+          Only the image pass moves. The information stays registered.
+        </p>
       </div>
     </SignatureSection>
   );
 }
 
 export function MemoryTypeGlyphSource({ project }: SignatureProps) {
-  const glyphs = project.title.replace(/\s/g, "").slice(0, 4).split("");
+  const glyphs = Array.from(project.title.replace(/\s/g, ""));
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const detailId = useId();
+  const selectedGlyph = glyphs[selectedIndex] ?? glyphs[0] ?? "";
+  const components = Array.from(selectedGlyph.normalize("NFD"));
+  const unicode = selectedGlyph.codePointAt(0)?.toString(16).toUpperCase().padStart(4, "0");
 
   return (
     <SignatureSection project={project} signature="glyph-source" className="signature--glyph">
@@ -141,13 +206,53 @@ export function MemoryTypeGlyphSource({ project }: SignatureProps) {
         <SignaturePicture project={project} slot="context" aspectRatio="3 / 4" />
         <figcaption>{project.description}</figcaption>
       </figure>
-      <div className="signature-glyph__specimens" aria-label="Collected glyph specimens">
-        {glyphs.map((glyph, index) => (
-          <article key={`${glyph}-${index}`}>
-            <span>0{index + 1}</span>
-            <strong lang="ko">{glyph}</strong>
-          </article>
-        ))}
+      <div className="signature-glyph__inspection">
+        <p className="signature-glyph__instruction">Select a letter to inspect its construction.</p>
+        <div className="signature-glyph__choices" role="group" aria-label="Title glyph specimens">
+          {glyphs.map((glyph, index) => (
+            <button
+              type="button"
+              key={`${glyph}-${index}`}
+              aria-label={`Inspect ${glyph}, letter ${index + 1}`}
+              aria-pressed={selectedIndex === index}
+              aria-controls={detailId}
+              onClick={() => setSelectedIndex(index)}
+            >
+              <span>0{index + 1}</span>
+              <strong lang="ko">{glyph}</strong>
+            </button>
+          ))}
+        </div>
+        <div
+          className="signature-glyph__detail"
+          id={detailId}
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          <div className="signature-glyph__selected" lang="ko" aria-hidden="true">
+            {selectedGlyph}
+          </div>
+          <div className="signature-glyph__record">
+            <span>Title specimen / 0{selectedIndex + 1}</span>
+            <h4>
+              <span lang="ko">{selectedGlyph}</span> <span>U+{unicode}</span>
+            </h4>
+            <dl>
+              <div>
+                <dt>Construction</dt>
+                <dd lang="ko">{components.join(" + ")}</dd>
+              </div>
+              <div>
+                <dt>Reading order</dt>
+                <dd>{components.length === 3 ? "Initial / vowel / final" : "Initial / vowel"}</dd>
+              </div>
+            </dl>
+            <p>
+              A digital specimen from the project title. The letter components are Unicode
+              Hangul—not a claimed historical original.
+            </p>
+          </div>
+        </div>
       </div>
     </SignatureSection>
   );
@@ -346,6 +451,29 @@ export function SignalNoiseChannelMixer({ project }: SignatureProps) {
 }
 
 export function ChromaTempoBpmScore({ project }: SignatureProps) {
+  const [tempo, setTempo] = useState(96);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [scoreMode, setScoreMode] = useState<"manual" | "playback">("manual");
+  const [selectedBeat, setSelectedBeat] = useState(0);
+  const [isDocumentVisible, setIsDocumentVisible] = useState(true);
+  const scoreRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(scoreRef, { amount: 0.25 });
+  const reduceScoreMotion = useSyncExternalStore(
+    subscribeScoreMotionPreference,
+    getScoreMotionPreference,
+    () => false,
+  );
+  const controlId = useId();
+  const beats = project.palette.slice(0, 4);
+  const isRunning = isPlaying && isInView && isDocumentVisible && !reduceScoreMotion;
+
+  useEffect(() => {
+    const updateVisibility = () => setIsDocumentVisible(document.visibilityState === "visible");
+    updateVisibility();
+    document.addEventListener("visibilitychange", updateVisibility);
+    return () => document.removeEventListener("visibilitychange", updateVisibility);
+  }, []);
+
   return (
     <SignatureSection project={project} signature="bpm-score" className="signature--bpm">
       <SignatureHeading
@@ -357,14 +485,98 @@ export function ChromaTempoBpmScore({ project }: SignatureProps) {
         <SignaturePicture project={project} slot="hero" aspectRatio="4 / 5" />
         <SignaturePicture project={project} slot="spatial" aspectRatio="4 / 3" />
       </div>
-      <ol className="signature-bpm__beats" aria-label="Four-beat chromatic score">
-        {project.palette.slice(0, 4).map((swatch, index) => (
-          <li key={swatch.name} style={{ backgroundColor: swatch.value }}>
-            <span>0{index + 1}</span>
-            <strong>{swatch.name}</strong>
-          </li>
-        ))}
-      </ol>
+      <div
+        ref={scoreRef}
+        className="signature-score"
+        data-score-mode={reduceScoreMotion ? "manual" : scoreMode}
+        data-score-running={isRunning}
+        style={{ "--score-cycle": `${(60 / tempo) * beats.length}s` } as CSSProperties}
+      >
+        <div className="signature-score__controls">
+          <div className="signature-score__tempo">
+            <label htmlFor={controlId}>Set the tempo</label>
+            <output htmlFor={controlId}>
+              {tempo} <span>BPM</span>
+            </output>
+            <input
+              id={controlId}
+              type="range"
+              min="48"
+              max="144"
+              step="1"
+              value={tempo}
+              onChange={(event) => setTempo(Number(event.currentTarget.value))}
+              aria-valuetext={`${tempo} beats per minute`}
+              aria-describedby={`${controlId}-description`}
+              aria-controls={`${controlId}-score`}
+            />
+          </div>
+          <div className="signature-score__transport">
+            {!reduceScoreMotion ? (
+              <button
+                type="button"
+                aria-pressed={isPlaying}
+                aria-controls={`${controlId}-score`}
+                onClick={() => {
+                  setScoreMode("playback");
+                  setIsPlaying((value) => !value);
+                }}
+              >
+                <span aria-hidden="true">{isPlaying ? "Ⅱ" : "▶"}</span>
+                {isPlaying ? "Pause score" : "Play score"}
+              </button>
+            ) : null}
+            <button
+              type="button"
+              aria-controls={`${controlId}-score`}
+              onClick={() => {
+                setIsPlaying(false);
+                setScoreMode("manual");
+                setSelectedBeat((value) => (value + 1) % beats.length);
+              }}
+            >
+              Next beat <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
+        <ol
+          className="signature-score__beats"
+          id={`${controlId}-score`}
+          aria-label="Four-beat chromatic score"
+        >
+          {beats.map((swatch, index) => (
+            <li key={swatch.name}>
+              <div className="signature-score__graphic" aria-hidden="true">
+                <i
+                  style={
+                    {
+                      backgroundColor: swatch.value,
+                      "--score-delay": `${(60 / tempo) * index}s`,
+                      "--score-rest": selectedBeat === index ? 1 : 0.24,
+                    } as CSSProperties
+                  }
+                />
+              </div>
+              <div className="signature-score__caption">
+                <span>0{index + 1}</span>
+                <strong>{swatch.name}</strong>
+              </div>
+            </li>
+          ))}
+        </ol>
+        <p className="signature-score__note" id={`${controlId}-description`}>
+          {reduceScoreMotion
+            ? "Reduced motion is on. Step through each beat as a still."
+            : "A silent visual score. Start, pause, or inspect one beat at a time."}
+        </p>
+        <span className="signature-control__sr-only" role="status">
+          {scoreMode === "manual" || reduceScoreMotion
+            ? `Beat ${selectedBeat + 1} of ${beats.length}: ${beats[selectedBeat]?.name}`
+            : isPlaying
+              ? `Score playing at ${tempo} beats per minute`
+              : "Score paused"}
+        </span>
+      </div>
     </SignatureSection>
   );
 }

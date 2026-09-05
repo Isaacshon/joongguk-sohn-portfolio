@@ -1,0 +1,364 @@
+/* Reading layer, not a new template. Each project's title, typeface, palette,
+   image position and chapter composition remain owned by its world stylesheet. */
+.personal-world[data-world-layout] .personal-world__opening-grid {
+  padding-top: clamp(2.25rem, 4.5vw, 4.75rem);
+  min-height: 0;
+  row-gap: clamp(1.5rem, 3vw, 3rem);
+}
+
+.personal-world[data-world-layout] .personal-world__opening {
+  min-height: 0;
+  padding-bottom: clamp(3rem, 5vw, 5rem);
+}
+
+.personal-world[data-world-layout] .personal-world__position {
+  min-height: 0;
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+}
+
+.personal-world[data-world-layout] .personal-world__chapters {
+  margin-top: 2rem;
+}
+
+.personal-world[data-world-layout] .personal-world__position > p:first-child {
+  max-width: 28ch;
+  font-size: clamp(1.35rem, 2.1vw, 2.15rem);
+  line-height: 1.18;
+  letter-spacing: -0.025em;
+  text-wrap: pretty;
+}
+
+.personal-world[data-world-layout] .personal-world__position .personal-world__view-images {
+  width: fit-content;
+  align-self: start;
+  margin-top: 0.5rem;
+}
+
+.personal-world__notes {
+  margin-top: clamp(2rem, 3vw, 3rem);
+  border-top: 1px solid var(--world-line);
+  border-bottom: 1px solid var(--world-line);
+  color: var(--studio-ink);
+  background: var(--studio-paper);
+}
+
+.personal-world__notes summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 1.5rem;
+  min-height: 3.5rem;
+  padding: 0.8rem 0;
+  list-style: none;
+  cursor: pointer;
+  font-family: var(--studio-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.personal-world__notes summary::-webkit-details-marker {
+  display: none;
+}
+.personal-world__notes summary:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 5px;
+}
+.personal-world__notes-preview {
+  color: var(--world-muted);
+  font-size: 0.7rem;
+  font-weight: 400;
+}
+.personal-world__notes-toggle {
+  font-size: 1.35rem;
+  line-height: 1;
+  transition: transform 180ms ease;
+}
+.personal-world__notes[open] .personal-world__notes-toggle {
+  transform: rotate(45deg);
+}
+.personal-world__notes-content {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1fr);
+  gap: 2rem clamp(2rem, 6vw, 6rem);
+  padding-block: 1.25rem 2rem;
+}
+.personal-world__notes-intro {
+  max-width: 42ch;
+  font-family: var(--studio-body);
+  font-size: clamp(1rem, 1.5vw, 1.3rem);
+  line-height: 1.5;
+}
+.personal-world__notes-facts {
+  display: grid;
+  gap: 1.3rem;
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
+.personal-world__notes-content > .project-reference-note {
+  grid-column: 1;
+}
+
+/* Optical corrections retain twenty compositions. Tall photographs no longer
+   push an unrelated sentence an entire screen below its title. */
+@media (min-width: 901px) {
+  .personal-world[data-world-layout] .personal-world__title-group {
+    align-self: start;
+  }
+
+  .personal-world[data-world-project="afterimage"] .personal-world__title-group {
+    grid-column: 1 / span 7;
+  }
+  .personal-world[data-world-project="afterimage"] .personal-world__title-group h1 {
+    font-size: clamp(4rem, 8.25vw, 8rem);
+  }
+  .personal-world[data-world-project="afterimage"] .personal-world__opening-visual {
+    grid-column: 9 / -1;
+    grid-row: 1 / span 2;
+    transform: none;
+  }
+  .personal-world[data-world-project="afterimage"] .personal-world__position {
+    grid-column: 2 / span 6;
+    grid-row: 2;
+    align-self: start;
+  }
+
+  .personal-world[data-world-project="memory-type"] .personal-world__opening-visual {
+    grid-row: 1 / span 2;
+  }
+  .personal-world[data-world-project="memory-type"] .personal-world__title-group h1 {
+    font-size: clamp(4rem, 7.25vw, 7.5rem);
+  }
+  .personal-world[data-world-project="memory-type"] .personal-world__position {
+    grid-column: 2 / span 5;
+    grid-row: 2;
+    margin: 1rem 2rem 0 0;
+    align-self: start;
+    justify-content: start;
+    gap: 1.25rem;
+  }
+
+  .personal-world[data-world-project="last-letter"] .personal-world__opening-visual {
+    grid-column: 2 / span 5;
+    max-width: 30rem;
+  }
+  .personal-world[data-world-project="last-letter"] .personal-world__position {
+    grid-column: 7 / -1;
+    grid-row: 2;
+    align-self: end;
+    padding-inline: 1rem;
+  }
+
+  .personal-world[data-world-project="night-index"] .personal-world__title-group h1 {
+    font-size: clamp(5rem, 9.5vw, 9rem);
+  }
+  .personal-world[data-world-project="night-index"] .personal-world__opening-visual {
+    width: min(42%, 28rem);
+    margin-inline: auto;
+  }
+  .personal-world[data-world-project="night-index"] .personal-world__position {
+    padding: 1.25rem 2rem;
+  }
+  .personal-world[data-world-project="night-index"] .personal-world__view-images {
+    justify-self: center;
+  }
+
+  .personal-world[data-world-project="tactile-forecast"] .personal-world__title-group {
+    grid-column: 1 / span 6;
+  }
+  .personal-world[data-world-project="tactile-forecast"] .personal-world__title-group h1 {
+    font-size: clamp(3.75rem, 7vw, 7rem);
+  }
+  .personal-world[data-world-project="tactile-forecast"] .personal-world__opening-visual {
+    grid-column: 7 / -1;
+    grid-row: 1 / span 2;
+  }
+  .personal-world[data-world-project="tactile-forecast"] .personal-world__position {
+    grid-column: 1 / span 5;
+    grid-row: 2;
+    align-self: start;
+  }
+
+  .personal-world[data-world-project="public-memory"] .personal-world__title-group {
+    grid-column: 1 / span 7;
+  }
+  .personal-world[data-world-project="public-memory"] .personal-world__title-group h1 {
+    font-size: clamp(3.4rem, 6.3vw, 6.5rem);
+  }
+  .personal-world[data-world-project="public-memory"] .personal-world__opening-visual {
+    grid-row: 1 / span 2;
+  }
+
+  .personal-world[data-world-project="soft-machine"] .personal-world__title-group {
+    grid-column: 1 / span 6;
+  }
+  .personal-world[data-world-project="soft-machine"] .personal-world__title-group h1 {
+    font-size: clamp(3.8rem, 6.8vw, 6.5rem);
+  }
+  .personal-world[data-world-project="soft-machine"]
+    .personal-world__title-group
+    h1
+    > span:last-child {
+    margin-left: 0.3em;
+  }
+  .personal-world[data-world-project="soft-machine"] .personal-world__opening-visual {
+    grid-row: 1 / span 2;
+  }
+  .personal-world[data-world-project="soft-machine"] .personal-world__position {
+    grid-column: 2 / span 4;
+    grid-row: 2;
+    align-self: start;
+  }
+
+  .personal-world[data-world-project="79w"] .personal-world__title-group {
+    grid-column: 1 / span 4;
+    padding: 2rem;
+  }
+  .personal-world[data-world-project="79w"] .personal-world__title-group h1 {
+    font-size: clamp(5rem, 10vw, 9rem);
+  }
+  .personal-world[data-world-project="79w"] .personal-world__opening-visual {
+    grid-column: 5 / -1;
+    grid-row: 1 / span 2;
+    max-width: 38rem;
+    width: 100%;
+    justify-self: end;
+  }
+  .personal-world[data-world-project="79w"] .personal-world__position {
+    grid-column: 1 / span 4;
+    grid-row: 2;
+    align-self: start;
+  }
+
+  .personal-world[data-world-project="offsort"] .personal-world__opening-visual {
+    grid-column: 8 / -1;
+    grid-row: 1 / span 2;
+    width: 100%;
+    max-width: 32rem;
+    justify-self: end;
+  }
+  .personal-world[data-world-project="offsort"] .personal-world__title-group {
+    grid-column: 1 / span 6;
+    padding: 2rem;
+  }
+  .personal-world[data-world-project="offsort"] .personal-world__title-group h1 {
+    font-size: clamp(3.4rem, 7vw, 7rem);
+  }
+  .personal-world[data-world-project="offsort"] .personal-world__position {
+    grid-column: 2 / span 5;
+    grid-row: 2;
+    align-self: start;
+  }
+  .personal-world[data-world-project="selv-00"] .personal-world__title-group {
+    min-height: 0;
+  }
+  .personal-world[data-world-project="selv-00"] .personal-world__opening-visual {
+    width: 100%;
+    max-width: 34rem;
+    justify-self: end;
+  }
+
+  .personal-world[data-world-project="horalis"] .personal-world__title-group {
+    grid-column: 1 / span 6;
+  }
+  .personal-world[data-world-project="horalis"] .personal-world__title-group h1 {
+    font-size: clamp(4.25rem, 7.8vw, 7.5rem);
+    line-height: 1;
+    margin-top: 1.25rem;
+  }
+  .personal-world[data-world-project="horalis"] .personal-world__opening-visual {
+    grid-column: 8 / -1;
+    grid-row: 1 / span 2;
+  }
+  .personal-world[data-world-project="horalis"] .personal-world__position {
+    position: static;
+    grid-column: 2 / span 4;
+    grid-row: 2;
+    width: 100%;
+    border-radius: 50% / 22%;
+  }
+
+  .personal-world[data-world-project="backmatter"] .personal-world__title-group {
+    grid-column: 1 / span 8;
+  }
+  .personal-world[data-world-project="backmatter"] .personal-world__title-group h1 {
+    font-size: clamp(4rem, 7.5vw, 7.5rem);
+  }
+  .personal-world[data-world-project="backmatter"] .personal-world__opening-visual {
+    grid-column: 10 / -1;
+    grid-row: 1 / span 2;
+  }
+  .personal-world[data-world-project="backmatter"] .personal-world__position {
+    grid-column: 2 / span 6;
+    grid-row: 2;
+    align-self: start;
+  }
+
+  .personal-world[data-world-project="two-shores"] .personal-world__opening-visual {
+    width: min(66%, 34rem);
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+  .personal-world[data-world-project="two-shores"] .personal-world__title-group h1 {
+    font-size: clamp(4.5rem, 9vw, 9rem);
+  }
+}
+.personal-world__notes-facts > div {
+  display: grid;
+  grid-template-columns: minmax(5rem, 0.28fr) minmax(0, 1fr);
+  gap: 1rem;
+}
+.personal-world__notes-facts dt {
+  padding-top: 0.2rem;
+  color: var(--world-muted);
+  font-family: var(--studio-meta);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.035em;
+  line-height: 1.5;
+}
+.personal-world__notes-facts dd {
+  max-width: 54ch;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 620px) {
+  .personal-world[data-world-layout] .personal-world__position > p:first-child {
+    font-size: clamp(1.25rem, 5.1vw, 1.7rem);
+    line-height: 1.2;
+  }
+  .personal-world__notes summary {
+    gap: 0.7rem;
+  }
+  .personal-world__notes-preview {
+    font-size: 0.61rem;
+    max-width: 16ch;
+  }
+  .personal-world__notes-content {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+  .personal-world__notes-facts,
+  .personal-world__notes-content > .project-reference-note {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .personal-world__notes-intro {
+    max-width: 38ch;
+  }
+  .personal-world__notes-facts > div {
+    grid-template-columns: 5rem minmax(0, 1fr);
+    gap: 0.65rem;
+  }
+  .personal-world__notes-facts dd {
+    font-size: 0.76rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .personal-world__notes-toggle {
+    transition: none;
+  }
+}

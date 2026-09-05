@@ -25,8 +25,8 @@ import medal20 from "@/assets/medals/medal-20.png";
 import medal21 from "@/assets/medals/medal-21.png";
 
 const navLinks: { to: LinkProps["to"]; label: string }[] = [
-  { to: "/", label: "About Me" },
   { to: "/work", label: "Work" },
+  { to: "/about", label: "About" },
   { to: "/model", label: "Model" },
   { to: "/writer", label: "Book" },
   { to: "/services", label: "Services" },
@@ -120,9 +120,9 @@ export function MatLayout({
       ox: offset.x,
       oy: offset.y,
       moved: false,
-      intent: e.pointerType === "touch" ? "pending" : "pan",
+      intent: "pan",
     };
-    setDragging(e.pointerType !== "touch");
+    setDragging(true);
     wrapRef.current?.setPointerCapture(e.pointerId);
   };
 
@@ -178,9 +178,17 @@ export function MatLayout({
 
   const topNav = (
     <nav
-      className="pointer-events-auto absolute inset-x-0 top-0 z-40 flex h-11 items-center justify-start gap-5 overflow-x-auto whitespace-nowrap bg-background px-4 text-[16px] font-normal text-foreground [scrollbar-width:none] sm:gap-8 sm:text-[18px] [&::-webkit-scrollbar]:hidden"
+      className="pointer-events-auto absolute inset-x-0 top-0 z-40 flex h-11 items-center justify-start gap-5 overflow-x-auto whitespace-nowrap border-b border-black/10 bg-white px-4 text-[12px] font-normal text-[#171717] [scrollbar-width:none] sm:gap-7 sm:text-[13px] [&::-webkit-scrollbar]:hidden"
       aria-label="Primary navigation"
     >
+      <Link
+        to="/"
+        data-no-pan
+        className="mr-auto font-semibold tracking-tight"
+        aria-label="Isaac Sohn — home"
+      >
+        Isaac Sohn
+      </Link>
       {navLinks.map((link) => (
         <Link
           key={link.label}

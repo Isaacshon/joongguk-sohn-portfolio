@@ -119,6 +119,26 @@
   text-decoration: none;
 }
 
+.backTools {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 2vw, 30px);
+  min-width: 0;
+}
+.backTools :global(.personal-world__view-images) {
+  font:
+    500 11px/1.3 Arial,
+    sans-serif;
+  gap: 6px;
+  border: none;
+  white-space: nowrap;
+}
+@media (max-width: 600px) {
+  .backTools :global(.personal-world__view-images) {
+    display: none;
+  }
+}
+
 .backLink {
   display: inline-flex;
   width: fit-content;
