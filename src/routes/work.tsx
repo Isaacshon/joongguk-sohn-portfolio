@@ -1,21 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useRef, useState } from "react";
-import {
-  ArrowDown,
-  ArrowLeft,
-  ArrowRight,
-  ArrowUpRight,
-  Grid2X2,
-  List,
-  Layers2,
-} from "lucide-react";
+import type { CSSProperties } from "react";
+
 import { MatLayout } from "@/components/MatLayout";
 import { PortfolioMotionRoot } from "@/components/motion/PortfolioMotionRoot";
 import { BrandProjectMark } from "@/components/poster-studies/BrandMark";
+import { DesignProjectCover } from "@/components/poster-studies/DesignProjectCover";
 import { ProjectPicture } from "@/components/poster-studies/ProjectPicture";
-import type { DesignProjectMediaSlot } from "@/lib/design-project-media";
+import type { BrandProjectSlug } from "@/lib/brand-registry";
+import type { DesignProjectCoreMediaSlot } from "@/lib/design-project-media";
 import { designProjects, type DesignProject } from "@/lib/design-projects";
+import { getProjectChoreography } from "@/lib/project-choreography";
 import { projects, type Project } from "@/lib/projects";
+
 import "@/work-studio.css";
 
 export const Route = createFileRoute("/work")({
@@ -25,98 +21,118 @@ export const Route = createFileRoute("/work")({
       {
         name: "description",
         content:
-          "Brand worlds, visual identities, editorial systems and digital experiences. Explore the portfolio of Isaac Sohn.",
+          "Independent brand, editorial, art direction, digital, social, and visual design projects by Isaac Sohn.",
       },
       { property: "og:title", content: "Work — Isaac Sohn" },
       {
         property: "og:description",
-        content: "A collection of brand and personal projects by Isaac Sohn.",
+        content: "Individual projects and complete case studies by Isaac Sohn.",
       },
     ],
   }),
   component: Work,
 });
 
-type ViewMode = "gallery" | "index";
-type ProjectEdit = { cover: DesignProjectMediaSlot; detail: DesignProjectMediaSlot; label: string };
-// One quiet reading frame for the index; the individual projects retain their own visual worlds.
-const projectEdits: Record<string, ProjectEdit> = {
-  "nike-no-second-take": { cover: "hero", detail: "tactile", label: "Sport / Motion / Campaign" },
+type BrandIndexLayout = "lead" | "wide" | "portrait" | "closing";
+
+type BrandIndexConfig = {
+  slot: DesignProjectCoreMediaSlot;
+  aspectRatio: string;
+  mobileAspectRatio: string;
+  layout: BrandIndexLayout;
+};
+
+const brandIndexRegistry = {
+  "nike-no-second-take": {
+    slot: "hero",
+    aspectRatio: "21 / 9",
+    mobileAspectRatio: "16 / 10",
+    layout: "lead",
+  },
   "polo-ralph-lauren-the-long-match": {
-    cover: "spatial",
-    detail: "editorialJ",
-    label: "Fashion / Editorial / Lifestyle",
+    slot: "spatial",
+    aspectRatio: "16 / 10",
+    mobileAspectRatio: "4 / 5",
+    layout: "wide",
   },
   "levis-wear-is-the-record": {
-    cover: "hero",
-    detail: "tactile",
-    label: "Denim / Identity / Campaign",
+    slot: "hero",
+    aspectRatio: "16 / 9",
+    mobileAspectRatio: "4 / 3",
+    layout: "wide",
   },
   "muji-household-weather": {
-    cover: "spatial",
-    detail: "tactile",
-    label: "Objects / Everyday life / Editorial",
-  },
-  "prada-the-quiet-error": {
-    cover: "hero",
-    detail: "editorialB",
-    label: "Fashion / Art direction / Exhibition",
-  },
-  "zara-the-air-between": {
-    cover: "context",
-    detail: "tactile",
-    label: "Fashion / Image / Editorial",
-  },
-  "uniqlo-comfort-measured": {
-    cover: "context",
-    detail: "tactile",
-    label: "LifeWear / Product / Information",
+    slot: "spatial",
+    aspectRatio: "4 / 3",
+    mobileAspectRatio: "1 / 1",
+    layout: "closing",
   },
   "hm-second-sun": {
-    cover: "hero",
-    detail: "editorialB",
-    label: "Fashion / Campaign / Circularity",
+    slot: "hero",
+    aspectRatio: "5 / 3",
+    mobileAspectRatio: "5 / 6",
+    layout: "lead",
   },
-  afterimage: { cover: "tactile", detail: "spatial", label: "Festival identity / Print" },
-  "night-index": { cover: "hero", detail: "spatial", label: "Hospitality / Art direction" },
-  "public-memory": { cover: "spatial", detail: "editorialB", label: "Culture / Wayfinding" },
-  "soft-machine": { cover: "tactile", detail: "hero", label: "Material research / Identity" },
-  "memory-type": { cover: "hero", detail: "editorialB", label: "Hangul / Community archive" },
-  "79w": { cover: "hero", detail: "spatial", label: "Travel / Editorial" },
-  "tactile-forecast": {
-    cover: "tactile",
-    detail: "editorialA",
-    label: "Materials / Sensory identity",
+  "zara-the-air-between": {
+    slot: "context",
+    aspectRatio: "4 / 3",
+    mobileAspectRatio: "4 / 5",
+    layout: "wide",
   },
-  "tessera-live": {
-    cover: "spatial",
-    detail: "editorialD",
-    label: "Live culture / Digital system",
+  "uniqlo-comfort-measured": {
+    slot: "context",
+    aspectRatio: "1 / 1",
+    mobileAspectRatio: "1 / 1",
+    layout: "portrait",
   },
-  "field-notes-37": { cover: "context", detail: "tactile", label: "Ecology / Specimen archive" },
-  horalis: { cover: "tactile", detail: "editorialA", label: "Time / Product identity" },
-  "signal-noise": { cover: "context", detail: "editorialB", label: "Broadcast / Motion identity" },
-  tidehold: { cover: "hero", detail: "spatial", label: "Coast / Hospitality" },
-  "last-letter": { cover: "tactile", detail: "editorialB", label: "Correspondence / Editorial" },
-  backmatter: { cover: "context", detail: "editorialB", label: "Publishing / Archive" },
-  "chroma-tempo": { cover: "context", detail: "spatial", label: "Music / Visual identity" },
-  offsort: { cover: "tactile", detail: "editorialA", label: "Circular products / Identity" },
-  seamframe: { cover: "tactile", detail: "spatial", label: "Architecture / Assembly" },
-  "two-shores": { cover: "hero", detail: "editorialB", label: "Culture / Bilingual editorial" },
-  "selv-00": { cover: "hero", detail: "tactile", label: "Fashion / Pattern system" },
-  coldkiln: { cover: "tactile", detail: "spatial", label: "Ceramics / Material identity" },
-};
-const brandOrder = [
-  "nike-no-second-take",
-  "polo-ralph-lauren-the-long-match",
-  "levis-wear-is-the-record",
-  "muji-household-weather",
-  "prada-the-quiet-error",
-  "zara-the-air-between",
-  "uniqlo-comfort-measured",
-  "hm-second-sun",
-];
-const personalOrder = [
+  "prada-the-quiet-error": {
+    slot: "hero",
+    aspectRatio: "3 / 2",
+    mobileAspectRatio: "3 / 4",
+    layout: "closing",
+  },
+} satisfies Record<BrandProjectSlug, BrandIndexConfig>;
+
+const brandMotionSignals = {
+  "nike-no-second-take": {
+    cue: "Test the frame",
+    steps: ["Contact", "Attempt", "Recover"],
+  },
+  "polo-ralph-lauren-the-long-match": {
+    cue: "Follow the day",
+    steps: ["Field", "City", "Evening"],
+  },
+  "levis-wear-is-the-record": {
+    cue: "Read the wear",
+    steps: ["Rivet", "Fade", "Repair"],
+  },
+  "muji-household-weather": {
+    cue: "Notice the use",
+    steps: ["Reduce", "Arrange", "Live"],
+  },
+  "hm-second-sun": {
+    cue: "Trace the remake",
+    steps: ["Thread", "Handoff", "Return"],
+  },
+  "zara-the-air-between": {
+    cue: "Cut to space",
+    steps: ["Silhouette", "Pause", "Crop"],
+  },
+  "uniqlo-comfort-measured": {
+    cue: "Move through use",
+    steps: ["Layer", "Walk", "Rest"],
+  },
+  "prada-the-quiet-error": {
+    cue: "Shift the context",
+    steps: ["Observe", "Reframe", "Question"],
+  },
+} satisfies Record<BrandProjectSlug, { cue: string; steps: [string, string, string] }>;
+
+const featuredBrandProjects = designProjects
+  .filter((project) => project.brandStudy)
+  .sort((left, right) => Number(right.index) - Number(left.index));
+
+const personalDesignProjectSlugs = [
   "afterimage",
   "night-index",
   "public-memory",
@@ -137,32 +153,168 @@ const personalOrder = [
   "two-shores",
   "selv-00",
   "coldkiln",
-];
-function resolveProjects(slugs: string[]) {
-  return slugs.map((slug) => {
-    const project = designProjects.find((item) => item.slug === slug);
-    if (!project) throw new Error(`Missing work index project: ${slug}`);
-    return project;
-  });
+] as const;
+
+type IndependentDesignSlug = (typeof personalDesignProjectSlugs)[number];
+type PersonalIndexLayout =
+  | "feature-left"
+  | "portrait-right"
+  | "compact-left"
+  | "wide-right"
+  | "full"
+  | "portrait-left"
+  | "feature-right"
+  | "wide-left"
+  | "compact-right"
+  | "center";
+
+type DesignIndexConfig = {
+  slot: DesignProjectCoreMediaSlot;
+  aspectRatio: string;
+  layout: PersonalIndexLayout;
+  coverVariant: "card" | "poster" | "screen";
+};
+
+const designIndexRegistry = {
+  afterimage: {
+    slot: "tactile",
+    aspectRatio: "16 / 10",
+    layout: "feature-left",
+    coverVariant: "screen",
+  },
+  "night-index": {
+    slot: "hero",
+    aspectRatio: "4 / 5",
+    layout: "portrait-right",
+    coverVariant: "poster",
+  },
+  "public-memory": {
+    slot: "spatial",
+    aspectRatio: "4 / 3",
+    layout: "compact-left",
+    coverVariant: "screen",
+  },
+  "soft-machine": {
+    slot: "tactile",
+    aspectRatio: "3 / 2",
+    layout: "wide-right",
+    coverVariant: "screen",
+  },
+  "memory-type": {
+    slot: "hero",
+    aspectRatio: "16 / 9",
+    layout: "full",
+    coverVariant: "poster",
+  },
+  "79w": {
+    slot: "hero",
+    aspectRatio: "4 / 5",
+    layout: "portrait-left",
+    coverVariant: "screen",
+  },
+  "tactile-forecast": {
+    slot: "tactile",
+    aspectRatio: "16 / 10",
+    layout: "feature-right",
+    coverVariant: "screen",
+  },
+  "tessera-live": {
+    slot: "spatial",
+    aspectRatio: "3 / 2",
+    layout: "wide-left",
+    coverVariant: "card",
+  },
+  "field-notes-37": {
+    slot: "context",
+    aspectRatio: "4 / 5",
+    layout: "compact-right",
+    coverVariant: "poster",
+  },
+  horalis: {
+    slot: "tactile",
+    aspectRatio: "16 / 9",
+    layout: "center",
+    coverVariant: "screen",
+  },
+  "signal-noise": {
+    slot: "context",
+    aspectRatio: "4 / 5",
+    layout: "portrait-left",
+    coverVariant: "screen",
+  },
+  tidehold: {
+    slot: "hero",
+    aspectRatio: "16 / 10",
+    layout: "feature-right",
+    coverVariant: "screen",
+  },
+  "last-letter": {
+    slot: "tactile",
+    aspectRatio: "3 / 2",
+    layout: "wide-left",
+    coverVariant: "poster",
+  },
+  backmatter: {
+    slot: "context",
+    aspectRatio: "4 / 5",
+    layout: "compact-right",
+    coverVariant: "poster",
+  },
+  "chroma-tempo": {
+    slot: "context",
+    aspectRatio: "16 / 9",
+    layout: "full",
+    coverVariant: "poster",
+  },
+  offsort: {
+    slot: "tactile",
+    aspectRatio: "1 / 1",
+    layout: "compact-left",
+    coverVariant: "card",
+  },
+  seamframe: {
+    slot: "tactile",
+    aspectRatio: "3 / 2",
+    layout: "wide-right",
+    coverVariant: "screen",
+  },
+  "two-shores": {
+    slot: "hero",
+    aspectRatio: "4 / 5",
+    layout: "portrait-left",
+    coverVariant: "poster",
+  },
+  "selv-00": {
+    slot: "hero",
+    aspectRatio: "16 / 10",
+    layout: "feature-right",
+    coverVariant: "poster",
+  },
+  coldkiln: {
+    slot: "tactile",
+    aspectRatio: "16 / 9",
+    layout: "center",
+    coverVariant: "screen",
+  },
+} satisfies Record<IndependentDesignSlug, DesignIndexConfig>;
+
+type WorkMediaStyle = CSSProperties & {
+  "--work-media-ratio"?: string;
+  "--work-mobile-media-ratio"?: string;
+};
+
+function getRequiredDesignProject(slug: IndependentDesignSlug) {
+  const project = designProjects.find((item) => item.slug === slug);
+  if (!project) throw new Error(`Missing design project: ${slug}`);
+  return project;
 }
-const brandProjects = resolveProjects(brandOrder);
-const personalProjects = resolveProjects(personalOrder);
-const totalProjects = brandProjects.length + personalProjects.length + projects.length;
-const pad = (value: number) => String(value).padStart(2, "0");
+
+const personalDesignProjects = personalDesignProjectSlugs.map(getRequiredDesignProject);
+const portfolioArchiveItems = projects;
+const personalProjectCount = personalDesignProjects.length + portfolioArchiveItems.length;
+const visibleProjectCount = featuredBrandProjects.length + personalProjectCount;
 
 function Work() {
-  const [view, setView] = useState<ViewMode>("gallery");
-  const brandRail = useRef<HTMLOListElement>(null);
-  const [railPage, setRailPage] = useState(0);
-  function moveRail(direction: number) {
-    const rail = brandRail.current;
-    if (!rail) return;
-    const step = rail.firstElementChild?.getBoundingClientRect().width ?? rail.clientWidth;
-    rail.scrollBy({
-      left: direction * (step + 16),
-      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
-    });
-  }
   return (
     <MatLayout immersive surface="plain" contentClassName="!px-0 !pb-0 !pt-11">
       <PortfolioMotionRoot
@@ -171,174 +323,97 @@ function Work() {
         profile="work-index"
         projectId="selected-work"
         projectLabel="Selected work"
-        sceneSelector=".work-studio__header, .work-studio__section-heading"
-        attributes={{ "data-view": view }}
+        sceneSelector=".work-studio__intro-grid, .work-studio__section-heading, .work-studio__brand-item, .work-studio__personal-item, .work-studio__archive-heading, .work-studio__archive-grid > li"
       >
-        <header id="work-top" className="work-studio__header work-studio__shell">
-          <div className="work-studio__heading-line">
-            <p className="work-studio__eyebrow">Isaac Sohn / Portfolio</p>
-            <span className="work-studio__edition">Selected projects · 2026</span>
-          </div>
-          <div className="work-studio__introduction">
-            <h1>
-              Work<span className="work-studio__total">({totalProjects})</span>
-            </h1>
-            <p>
-              Identity, image, and interaction.
-              <br />A different world in every project.
-            </p>
-          </div>
-        </header>
-        <div className="work-studio__toolbar">
-          <div className="work-studio__shell work-studio__toolbar-inner">
-            <nav className="work-studio__categories" aria-label="Project categories">
-              <a href="#brand-projects">
-                Brand projects <span>{pad(brandProjects.length)}</span>
-              </a>
-              <a href="#personal-projects">
-                Personal projects <span>{pad(personalProjects.length + projects.length)}</span>
-              </a>
-            </nav>
-            <div className="work-studio__view-toggle" role="group" aria-label="Portfolio view">
-              <button
-                type="button"
-                aria-pressed={view === "gallery"}
-                onClick={() => {
-                  setView("gallery");
-                  setRailPage(0);
-                }}
-              >
-                <Grid2X2 size={15} aria-hidden="true" />
-                <span>Gallery</span>
-              </button>
-              <button
-                type="button"
-                aria-pressed={view === "index"}
-                onClick={() => setView("index")}
-              >
-                <List size={17} aria-hidden="true" />
-                <span>Index</span>
-              </button>
+        <header className="work-studio__intro">
+          <div className="work-studio__shell work-studio__intro-grid">
+            <div>
+              <p className="work-studio__eyebrow">Isaac Sohn / Selected work</p>
+              <h1 className="work-studio__display">Work</h1>
+            </div>
+
+            <div className="work-studio__intro-copy">
+              <p className="work-studio__lede">
+                Brand worlds, visual systems, and independently authored projects, shown through the
+                work itself.
+              </p>
+              <p className="work-studio__intro-note">
+                {visibleProjectCount} complete case studies across identity, fashion, editorial,
+                digital, and art direction.
+              </p>
+              <nav className="work-studio__jump-nav" aria-label="Work sections">
+                <a href="#brand-projects">
+                  <span>01</span>
+                  Brand projects
+                  <b>{String(featuredBrandProjects.length).padStart(2, "0")}</b>
+                </a>
+                <a href="#personal-projects">
+                  <span>02</span>
+                  Personal projects
+                  <b>{String(personalProjectCount).padStart(2, "0")}</b>
+                </a>
+              </nav>
             </div>
           </div>
-        </div>
+        </header>
+
         <main>
-          <section
-            className="work-studio__section work-studio__shell"
-            id="brand-projects"
-            aria-labelledby="brand-projects-heading"
-          >
-            <SectionHeading
-              id="brand-projects-heading"
-              title="Brand projects"
-              number="01"
-              count={brandProjects.length}
-              note="Fashion, culture, and everyday life."
-            />
-            {view === "gallery" ? (
-              <>
-                <div className="work-studio__rail-controls">
-                  <span>
-                    Explore the brand worlds <ArrowRight size={14} aria-hidden="true" />
-                  </span>
-                  <div>
-                    <span aria-live="polite">
-                      {pad(railPage + 1)} / {pad(brandProjects.length)}
-                    </span>
-                    <button
-                      type="button"
-                      aria-label="Previous brand project"
-                      disabled={railPage === 0}
-                      onClick={() => moveRail(-1)}
-                    >
-                      <ArrowLeft size={17} />
-                    </button>
-                    <button
-                      type="button"
-                      aria-label="Next brand project"
-                      disabled={railPage === brandProjects.length - 1}
-                      onClick={() => moveRail(1)}
-                    >
-                      <ArrowRight size={17} />
-                    </button>
-                  </div>
-                </div>
-                <ol
-                  ref={brandRail}
-                  className="work-studio__brand-gallery"
-                  aria-label="Brand projects gallery"
-                  onScroll={(event) => {
-                    const rail = event.currentTarget;
-                    const step = (rail.firstElementChild?.getBoundingClientRect().width ?? 1) + 16;
-                    setRailPage(
-                      Math.min(brandProjects.length - 1, Math.round(rail.scrollLeft / step)),
-                    );
-                  }}
-                >
-                  {brandProjects.map((project, index) => (
-                    <ProjectCard
-                      key={project.slug}
-                      project={project}
-                      index={index}
-                      brand
-                      priority={index < 2}
-                    />
-                  ))}
-                </ol>
-              </>
-            ) : (
-              <ProjectIndex items={brandProjects} brand />
-            )}
-            <p className="work-studio__legal">
-              가상 프로젝트 · Independent concept projects. Not commissioned by or affiliated with
-              the brands shown. Trademarks belong to their respective owners.
-            </p>
+          <section id="brand-projects" aria-labelledby="brand-projects-heading">
+            <div className="work-studio__shell work-studio__section-shell">
+              <SectionHeading
+                number="01"
+                title="Brand projects"
+                description={`${featuredBrandProjects.length} independent brand worlds, each led by its own imagery, identity, and editorial rhythm.`}
+                headingId="brand-projects-heading"
+              />
+
+              <ol className="work-studio__brand-grid">
+                {featuredBrandProjects.map((project) => (
+                  <FeaturedBrandCard key={project.slug} project={project} />
+                ))}
+              </ol>
+
+              <p className="work-studio__legal">
+                Independent, unofficial concept studies created for portfolio presentation. All
+                trademarks and brand identifiers belong to their respective owners.
+              </p>
+            </div>
           </section>
+
           <section
-            className="work-studio__section work-studio__section--personal work-studio__shell"
             id="personal-projects"
             aria-labelledby="personal-projects-heading"
+            className="work-studio__personal-section"
           >
-            <SectionHeading
-              id="personal-projects-heading"
-              title="Personal projects"
-              number="02"
-              count={personalProjects.length}
-              note="Independent ideas, developed into visual systems."
-            />
-            {view === "gallery" ? (
-              <ol className="work-studio__personal-gallery">
-                {personalProjects.map((project, index) => (
-                  <ProjectCard key={project.slug} project={project} index={index} />
+            <div className="work-studio__shell work-studio__section-shell">
+              <SectionHeading
+                number="02"
+                title="Personal projects"
+                description="Twenty distinct visual systems. Image, scale, proportion, and pacing change with each idea—not with a reusable card template."
+                headingId="personal-projects-heading"
+              />
+
+              <ol className="work-studio__personal-grid">
+                {personalDesignProjects.map((project) => (
+                  <DesignWorkCard key={project.slug} project={project} />
                 ))}
               </ol>
-            ) : (
-              <ProjectIndex items={personalProjects} />
-            )}
-            <section className="work-studio__applied" aria-labelledby="applied-work-heading">
-              <div className="work-studio__applied-heading">
-                <h3 id="applied-work-heading">Client &amp; digital work</h3>
-                <span>{pad(projects.length)} projects</span>
-              </div>
-              <ol>
-                {projects.map((project, index) => (
-                  <li key={project.slug}>
-                    <AppliedWork project={project} index={index} />
-                  </li>
-                ))}
-              </ol>
-            </section>
+
+              <section className="work-studio__archive" aria-labelledby="applied-work-heading">
+                <header className="work-studio__archive-heading">
+                  <p className="work-studio__eyebrow">Applied practice</p>
+                  <h3 id="applied-work-heading">Selected client &amp; digital work</h3>
+                </header>
+                <ol className="work-studio__archive-grid">
+                  {portfolioArchiveItems.map((project, index) => (
+                    <li key={project.slug}>
+                      <PortfolioWorkRow project={project} index={index + 1} />
+                    </li>
+                  ))}
+                </ol>
+              </section>
+            </div>
           </section>
-          <footer className="work-studio__footer work-studio__shell">
-            <p>Have something in mind?</p>
-            <Link to="/services">
-              Let’s make it happen.
-              <ArrowUpRight aria-hidden="true" />
-            </Link>
-            <a className="work-studio__back-top" href="#work-top">
-              Back to top <ArrowDown aria-hidden="true" size={14} />
-            </a>
-          </footer>
         </main>
       </PortfolioMotionRoot>
     </MatLayout>
@@ -346,184 +421,203 @@ function Work() {
 }
 
 function SectionHeading({
-  id,
-  title,
   number,
-  count,
-  note,
+  title,
+  description,
+  headingId,
 }: {
-  id: string;
-  title: string;
   number: string;
-  count: number;
-  note: string;
+  title: string;
+  description: string;
+  headingId: string;
 }) {
   return (
     <header className="work-studio__section-heading">
-      <div>
-        <span className="work-studio__eyebrow">
-          {number} / {pad(count)}
-        </span>
-        <h2 id={id}>{title}</h2>
-      </div>
-      <p>{note}</p>
+      <p className="work-studio__section-number">{number}</p>
+      <h2 id={headingId}>{title}</h2>
+      <p>{description}</p>
     </header>
   );
 }
 
-function ProjectCard({
-  project,
-  index,
-  brand = false,
-  priority = false,
-}: {
-  project: DesignProject;
-  index: number;
-  brand?: boolean;
-  priority?: boolean;
-}) {
-  const edit = projectEdits[project.slug];
-  const [preview, setPreview] = useState(false);
-  const [hovered, setHovered] = useState(false);
-  const showDetail = preview || hovered;
-  const sizes = brand
-    ? "(min-width: 1700px) 800px, (min-width: 700px) 47vw, 85vw"
-    : "(min-width: 1700px) 800px, (min-width: 700px) 47vw, 50vw";
+function FeaturedBrandCard({ project }: { project: DesignProject }) {
+  const slug = project.slug as BrandProjectSlug;
+  const config = brandIndexRegistry[slug];
+  const motionSignal = brandMotionSignals[slug];
+
+  if (!config || !motionSignal) return null;
+
+  const mediaStyle: WorkMediaStyle = {
+    "--work-media-ratio": config.aspectRatio,
+    "--work-mobile-media-ratio": config.mobileAspectRatio,
+  };
+
   return (
     <li
-      className={`work-studio__card${brand ? " work-studio__card--brand" : ""}`}
-      data-preview={showDetail}
-      data-project={project.slug}
+      className={`work-studio__brand-item work-studio__brand-item--${config.layout}`}
+      data-brand={slug}
+      data-motion-role="brand-project"
+      data-motion-card="brand"
     >
       <Link
         to="/poster-studies/$slug"
         params={{ slug: project.slug }}
+        aria-label={`View the ${project.title} brand project`}
         className="work-studio__project-link"
-        aria-label={`View ${project.title} project`}
-        onPointerEnter={(event) => {
-          if (event.pointerType === "mouse") setHovered(true);
-        }}
-        onPointerLeave={() => setHovered(false)}
-        onFocus={() => setHovered(true)}
-        onBlur={() => setHovered(false)}
       >
-        <div className="work-studio__frame">
-          <ProjectPicture
-            projectSlug={project.slug}
-            slot={edit.cover}
-            focalPoint={project.slug === "nike-no-second-take" ? "50% 20%" : undefined}
-            sizes={sizes}
-            className="work-studio__picture work-studio__picture--cover"
-            priority={priority}
-            style={{ aspectRatio: "auto" }}
-          />
-          <ProjectPicture
-            projectSlug={project.slug}
-            slot={edit.detail}
-            sizes={sizes}
-            className="work-studio__picture work-studio__picture--detail"
-            decorative
-            style={{ aspectRatio: "auto" }}
-          />
-          <span className="work-studio__open">
-            <ArrowUpRight size={21} aria-hidden="true" />
-          </span>
-        </div>
-        <div className="work-studio__caption">
-          <div>
-            <h3 lang={project.titleLang}>{project.title}</h3>
-            <p>{edit.label}</p>
-          </div>
-          {brand ? (
+        <article>
+          <div className="work-studio__media work-studio__brand-media" style={mediaStyle}>
+            <ProjectPicture
+              projectSlug={project.slug}
+              slot={config.slot}
+              sizes="(min-width: 1500px) 1400px, (min-width: 900px) 92vw, calc(100vw - 2rem)"
+              priority={config.layout === "lead"}
+              className="work-studio__picture"
+              imageClassName="work-studio__image"
+              style={{ aspectRatio: "auto" }}
+              fallback={
+                <DesignProjectCover
+                  project={project}
+                  variant="card"
+                  className="!absolute !inset-0 !h-full !min-h-0 !aspect-auto"
+                />
+              }
+            />
             <BrandProjectMark projectSlug={project.slug} className="work-studio__brand-mark" />
-          ) : (
-            <span className="work-studio__card-number">{pad(index + 1)}</span>
-          )}
-        </div>
+            <span className="work-studio__motion-signal" aria-hidden="true">
+              <span className="work-studio__motion-signal-head">
+                <b>{motionSignal.cue}</b>
+                <i />
+              </span>
+              <span className="work-studio__motion-signal-steps">
+                {motionSignal.steps.map((step, index) => (
+                  <em key={step}>
+                    <small>{String(index + 1).padStart(2, "0")}</small>
+                    {step}
+                  </em>
+                ))}
+              </span>
+            </span>
+          </div>
+
+          <div className="work-studio__brand-caption">
+            <div className="work-studio__brand-title">
+              <p>{project.index} / Independent brand project</p>
+              <h3>{project.title}</h3>
+            </div>
+            <p className="work-studio__brand-statement">{project.statement}</p>
+            <div className="work-studio__brand-meta">
+              <p>{project.discipline}</p>
+              <span>View project ↗</span>
+            </div>
+          </div>
+        </article>
       </Link>
-      <button
-        className="work-studio__preview-button"
-        type="button"
-        aria-label={`${preview ? "Show cover" : "Preview another image"} — ${project.title}`}
-        aria-pressed={preview}
-        onClick={() => setPreview(!preview)}
-      >
-        <Layers2 size={13} aria-hidden="true" />
-        <span>{showDetail ? "02" : "01"} / 02</span>
-      </button>
     </li>
   );
 }
 
-function ProjectIndex({ items, brand = false }: { items: DesignProject[]; brand?: boolean }) {
-  const [activeSlug, setActiveSlug] = useState(items[0].slug);
-  const activeProject = items.find((project) => project.slug === activeSlug) ?? items[0];
+function DesignWorkCard({ project }: { project: DesignProject }) {
+  const config = designIndexRegistry[project.slug as IndependentDesignSlug];
+  const choreography = getProjectChoreography(project.slug);
+
+  if (!config) return null;
+
+  const mediaStyle: WorkMediaStyle = { "--work-media-ratio": config.aspectRatio };
+
   return (
-    <div className="work-studio__index-layout">
-      <ol className="work-studio__index-list">
-        {items.map((project, index) => (
-          <li key={project.slug} data-active={project.slug === activeProject.slug}>
-            <Link
-              to="/poster-studies/$slug"
-              params={{ slug: project.slug }}
-              onPointerEnter={() => setActiveSlug(project.slug)}
-              onFocus={() => setActiveSlug(project.slug)}
-            >
-              <span className="work-studio__index-number">{pad(index + 1)}</span>
-              <ProjectPicture
-                projectSlug={project.slug}
-                slot={projectEdits[project.slug].cover}
-                sizes="80px"
-                decorative
-                className="work-studio__index-thumb"
-                style={{ aspectRatio: "1 / 1" }}
-              />
-              <span className="work-studio__index-copy">
-                <strong lang={project.titleLang}>{project.title}</strong>
-                <small>{projectEdits[project.slug].label}</small>
-              </span>
-              <ArrowUpRight size={19} aria-hidden="true" />
-            </Link>
-          </li>
-        ))}
-      </ol>
-      <aside className="work-studio__index-preview" aria-label="Project preview" aria-hidden="true">
-        <div className="work-studio__index-preview-media">
-          <ProjectPicture
-            key={activeProject.slug}
-            projectSlug={activeProject.slug}
-            slot={projectEdits[activeProject.slug].cover}
-            sizes="(min-width: 1700px) 640px, 42vw"
-            decorative
-            priority
-            className="work-studio__picture"
-            style={{ aspectRatio: "auto" }}
-          />
-        </div>
-        <div className="work-studio__index-preview-heading">
-          <span>{activeProject.title}</span>
-          {brand ? (
-            <BrandProjectMark
-              projectSlug={activeProject.slug}
-              className="work-studio__brand-mark"
+    <li
+      className={`work-studio__personal-item work-studio__personal-item--${config.layout}`}
+      data-motion-role="personal-project"
+      data-motion-family={choreography.family}
+      data-motion-motif={project.motif}
+      data-motion-card="personal"
+    >
+      <Link
+        to="/poster-studies/$slug"
+        params={{ slug: project.slug }}
+        aria-label={`View ${project.title} case study`}
+        className="work-studio__project-link"
+      >
+        <article>
+          <div className="work-studio__media work-studio__personal-media" style={mediaStyle}>
+            <ProjectPicture
+              projectSlug={project.slug}
+              slot={config.slot}
+              sizes="(min-width: 1500px) 920px, (min-width: 900px) 60vw, calc(100vw - 2rem)"
+              className="work-studio__picture"
+              imageClassName="work-studio__image"
+              style={{ aspectRatio: "auto" }}
+              fallback={
+                <DesignProjectCover
+                  project={project}
+                  variant={config.coverVariant}
+                  className="!absolute !inset-0 !h-full !min-h-0 !aspect-auto"
+                />
+              }
             />
-          ) : null}
-        </div>
-        <p>{activeProject.statement}</p>
-      </aside>
-    </div>
+            <span className="work-studio__personal-signal" aria-hidden="true">
+              <i />
+              <span>Open the system</span>
+            </span>
+          </div>
+          <ProjectCaption
+            index={project.index}
+            title={project.title}
+            titleLang={project.titleLang}
+            category={project.discipline}
+          />
+        </article>
+      </Link>
+    </li>
   );
 }
 
-function AppliedWork({ project, index }: { project: Project; index: number }) {
+function PortfolioWorkRow({ project, index }: { project: Project; index: number }) {
   return (
-    <a href={project.href ?? `/project/${project.slug}`} className="work-studio__applied-link">
-      <span className="work-studio__index-number">{pad(index + 1)}</span>
-      <span>
+    <a
+      href={project.href ?? `/project/${project.slug}`}
+      aria-label={`View ${project.title} case study`}
+      className="work-studio__archive-link"
+    >
+      <span className="work-studio__archive-number">{String(index).padStart(2, "0")}</span>
+      <span className="work-studio__archive-thumb" style={{ background: project.cover }}>
+        {project.coverImage ? (
+          <img src={project.coverImage} alt="" aria-hidden loading="lazy" />
+        ) : null}
+      </span>
+      <span className="work-studio__archive-copy">
         <strong>{project.title}</strong>
         <small>{project.category}</small>
       </span>
-      <ArrowUpRight size={20} aria-hidden="true" />
+      <span className="work-studio__archive-arrow" aria-hidden="true">
+        ↗
+      </span>
     </a>
+  );
+}
+
+function ProjectCaption({
+  index,
+  title,
+  titleLang,
+  category,
+}: {
+  index: string;
+  title: string;
+  titleLang?: "ko";
+  category: string;
+}) {
+  return (
+    <div className="work-studio__project-caption">
+      <span className="work-studio__caption-index">{index}</span>
+      <div>
+        <h3 lang={titleLang}>{title}</h3>
+        <p>{category}</p>
+      </div>
+      <span className="work-studio__caption-arrow" aria-hidden="true">
+        ↗
+      </span>
+    </div>
   );
 }

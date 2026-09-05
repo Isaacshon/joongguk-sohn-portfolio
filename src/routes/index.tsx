@@ -1,257 +1,234 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MatLayout } from "@/components/MatLayout";
-import { ProjectPicture } from "@/components/poster-studies/ProjectPicture";
-import type { DesignProjectMediaSlot } from "@/lib/design-project-media";
-import "@/portfolio-home.css";
+import { DraggablePolaroid } from "@/components/DraggablePolaroid";
+import { WindupAirplane } from "@/components/WindupAirplane";
+import { WindupCar } from "@/components/WindupCar";
+import airplane from "@/assets/airplane.png";
+import carboard from "@/assets/carboard.png";
+import cross from "@/assets/cross.png";
+import crossShadow from "@/assets/crossshadow.png";
+import homeClouds from "@/assets/home-board/home-clouds.webp";
+import homeMoon from "@/assets/home-board/home-moon.webp";
+import homePortrait from "@/assets/home-board/home-portrait.webp";
+import selfiePortrait from "@/assets/home-board/home-selfie.webp";
+import pushpins from "@/assets/pushpins.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Isaac Sohn — Independent Designer & Art Director" },
+      { title: "Isaac Sohn - Multi-disciplinary Creative" },
       {
         name: "description",
         content:
-          "Selected identities, brand worlds, editorial systems and digital experiences by Isaac Sohn.",
+          "Portfolio of Isaac Sohn - web design, app design, visual artwork, and creative direction.",
       },
-      { property: "og:title", content: "Isaac Sohn — Selected Work" },
+      { property: "og:title", content: "Isaac Sohn" },
       {
         property: "og:description",
-        content: "Independent design, from the first idea to the complete experience.",
+        content: "Web design, app design, visual artwork, and creative direction.",
       },
     ],
   }),
-  component: PortfolioHome,
+  component: Index,
 });
 
-const selections = [
+const polaroids = [
   {
-    slug: "polo-ralph-lauren-the-long-match",
-    title: "Polo Ralph Lauren",
-    field: "Brand world / Art direction",
-    note: "An editorial journey through sporting life, familiar rituals and the details that endure.",
-    slot: "hero",
-    detail: "tactile",
+    src: homePortrait,
+    alt: "Isaac Sohn standing on a sunlit street",
+    top: 7,
+    left: 8,
+    width: "clamp(148px, 16vw, 218px)",
+    rotate: -6,
   },
   {
-    slug: "prada-the-quiet-error",
-    title: "PRADA",
-    field: "Fashion / Editorial",
-    note: "A study of familiar objects, precise framing and a change of context.",
-    slot: "hero",
-    detail: "context",
+    src: homeMoon,
+    alt: "A pale crescent moon in a clear blue daytime sky",
+    top: 8,
+    left: 72,
+    width: "clamp(132px, 14vw, 184px)",
+    rotate: 5,
   },
   {
-    slug: "afterimage",
-    title: "Afterimage",
-    field: "Cultural identity / Print",
-    note: "Colour plates, registration and the impression an image leaves behind.",
-    slot: "hero",
-    detail: "tactile",
+    src: homeClouds,
+    alt: "Golden evening clouds against a blue-gray sky",
+    top: 66,
+    left: 9,
+    width: "clamp(144px, 15vw, 206px)",
+    rotate: -7,
   },
   {
-    slug: "memory-type",
-    title: "기억의 활자",
-    field: "Typography / Archive",
-    note: "A neighbourhood's visual memory, collected through the shapes of its letters.",
-    slot: "hero",
-    detail: "editorialB",
+    src: selfiePortrait,
+    alt: "Isaac Sohn taking a mirror selfie",
+    top: 63,
+    left: 72,
+    width: "clamp(132px, 14vw, 184px)",
+    rotate: 5,
   },
-  {
-    slug: "nike-no-second-take",
-    title: "Nike",
-    field: "Sport / Campaign",
-    note: "The moments around an attempt: preparation, contact, recovery and the next start.",
-    slot: "hero",
-    detail: "context",
-  },
-] satisfies Array<{
-  slug: string;
-  title: string;
-  field: string;
-  note: string;
-  slot: DesignProjectMediaSlot;
-  detail: DesignProjectMediaSlot;
-}>;
+];
 
-const perspectives = [
-  {
-    slug: "soft-machine",
-    title: "Soft Machine",
-    discipline: "Material exploration",
-    slot: "tactile",
-  },
-  {
-    slug: "public-memory",
-    title: "Public Memory",
-    discipline: "Culture in public space",
-    slot: "spatial",
-  },
-  { slug: "tidehold", title: "Tidehold", discipline: "Coastal hospitality", slot: "hero" },
-] satisfies Array<{
-  slug: string;
-  title: string;
-  discipline: string;
-  slot: DesignProjectMediaSlot;
-}>;
+function CrossRelic({ onTrigger }: { onTrigger: () => void }) {
+  return (
+    <button
+      type="button"
+      data-no-pan
+      aria-label="Trigger cross animation"
+      onClick={(event) => {
+        event.stopPropagation();
+        onTrigger();
+      }}
+      className="cross-relic absolute left-[50%] top-[79%] z-[24] h-[112px] w-[112px] select-none"
+    >
+      <img
+        src={crossShadow}
+        alt=""
+        aria-hidden
+        draggable={false}
+        className="cross-relic-shadow pointer-events-none absolute left-1/2 top-1/2 h-auto w-[250px] max-w-none"
+      />
+      <img
+        src={cross}
+        alt=""
+        aria-hidden
+        draggable={false}
+        className="cross-relic-cross pointer-events-none absolute left-1/2 top-1/2 h-auto w-[250px] max-w-none"
+      />
+    </button>
+  );
+}
 
-function PortfolioHome() {
-  const [selected, setSelected] = useState(0);
-  const [detail, setDetail] = useState(false);
-  const active = selections[selected];
-  const choose = (index: number) => {
-    setSelected(index);
-    setDetail(false);
-  };
-  const advance = (amount: number) =>
-    choose((selected + amount + selections.length) % selections.length);
+function BoardDimEvent({ onDone }: { onDone: () => void }) {
+  useEffect(() => {
+    const timer = window.setTimeout(onDone, 3400);
+    return () => window.clearTimeout(timer);
+  }, [onDone]);
 
   return (
-    <MatLayout immersive surface="plain" contentClassName="!px-0 !pb-0 !pt-11">
-      <div className="portfolio-home">
-        <header className="portfolio-home__intro">
-          <div>
-            <p className="portfolio-home__eyebrow">Independent designer &amp; art director</p>
-            <h1>
-              Isaac Sohn<span aria-hidden="true">.</span>
-            </h1>
-          </div>
-          <div className="portfolio-home__intro-copy">
-            <p>
-              Identities, images, and experiences.
-              <br />A distinct point of view for each.
-            </p>
-            <Link to="/work">
-              Explore all work <span aria-hidden="true">↗</span>
-            </Link>
-          </div>
-        </header>
+    <div
+      className="cross-board-dim"
+      aria-hidden
+      style={{
+        left: "-220px",
+        right: "-220px",
+        top: "-264px",
+        bottom: "-220px",
+      }}
+    />
+  );
+}
 
-        <section className="portfolio-home__spotlight" aria-label="Selected project preview">
-          <div className="portfolio-home__stage">
-            <Link
-              className="portfolio-home__image-link"
-              to="/poster-studies/$slug"
-              params={{ slug: active.slug }}
-              aria-label={`Open ${active.title} project`}
-            >
-              <ProjectPicture
-                key={`${active.slug}-${detail}`}
-                projectSlug={active.slug}
-                slot={detail ? active.detail : active.slot}
-                sizes="(min-width: 1100px) 72vw, 100vw"
-                priority
-                className="portfolio-home__image"
-                style={{ aspectRatio: "auto" }}
-              />
-              <span className="portfolio-home__enter">
-                View project <span aria-hidden="true">↗</span>
-              </span>
-            </Link>
-            <div className="portfolio-home__stage-controls">
-              <span>
-                {String(selected + 1).padStart(2, "0")} /{" "}
-                {String(selections.length).padStart(2, "0")}
-              </span>
-              <div className="portfolio-home__frame-switch" role="group" aria-label="Image view">
-                <button type="button" aria-pressed={!detail} onClick={() => setDetail(false)}>
-                  Overview
-                </button>
-                <button type="button" aria-pressed={detail} onClick={() => setDetail(true)}>
-                  Another frame
-                </button>
-              </div>
-              <div className="portfolio-home__arrows">
-                <button
-                  type="button"
-                  aria-label="Previous featured project"
-                  onClick={() => advance(-1)}
-                >
-                  ←
-                </button>
-                <button type="button" aria-label="Next featured project" onClick={() => advance(1)}>
-                  →
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="portfolio-home__selection">
-            <div className="portfolio-home__project-info" aria-live="polite" aria-atomic="true">
-              <p className="portfolio-home__eyebrow">{active.field}</p>
-              <h2>
-                <Link to="/poster-studies/$slug" params={{ slug: active.slug }}>
-                  {active.title}
-                </Link>
-              </h2>
-              <p>{active.note}</p>
-            </div>
-            <nav className="portfolio-home__project-list" aria-label="Featured projects">
-              {selections.map((item, index) => (
-                <button
-                  type="button"
-                  key={item.slug}
-                  aria-pressed={index === selected}
-                  onClick={() => choose(index)}
-                >
-                  <span>{String(index + 1).padStart(2, "0")}</span>
-                  <span>{item.title}</span>
-                  <span aria-hidden="true">{index === selected ? "↗" : "＋"}</span>
-                </button>
-              ))}
-            </nav>
-          </div>
-        </section>
+function Index() {
+  const [tearEvent, setTearEvent] = useState({ run: 0, targetIndex: 0 });
+  const [dimRun, setDimRun] = useState(0);
 
-        <section className="portfolio-home__perspectives" aria-labelledby="perspectives-heading">
-          <header>
-            <h2 id="perspectives-heading">Personal projects</h2>
-            <Link to="/work" hash="personal-projects">
-              View the collection <span aria-hidden="true">↗</span>
-            </Link>
-          </header>
-          <div className="portfolio-home__perspectives-grid">
-            {perspectives.map((item) => (
-              <Link
-                key={item.slug}
-                to="/poster-studies/$slug"
-                params={{ slug: item.slug }}
-                className="portfolio-home__perspective"
-              >
-                <ProjectPicture
-                  projectSlug={item.slug}
-                  slot={item.slot}
-                  sizes="(min-width: 800px) 33vw, 85vw"
-                  style={{ aspectRatio: "4 / 3" }}
-                />
-                <div>
-                  <h3>{item.title}</h3>
-                  <span aria-hidden="true">↗</span>
-                </div>
-                <p>{item.discipline}</p>
-              </Link>
-            ))}
-          </div>
-        </section>
+  const triggerCrossEvent = () => {
+    setTearEvent((current) => {
+      let targetIndex = Math.floor(Math.random() * polaroids.length);
 
-        <footer className="portfolio-home__footer">
-          <div>
-            <p className="portfolio-home__eyebrow">Behind the work</p>
-            <p>I work across brand systems, digital experiences, visual art, and writing.</p>
-            <Link to="/about">
-              Visit my desk <span aria-hidden="true">↗</span>
-            </Link>
-          </div>
-          <div className="portfolio-home__contact">
-            <p>Have something in mind?</p>
-            <Link to="/services">
-              Let's work together <span aria-hidden="true">↗</span>
-            </Link>
-          </div>
-          <small>
-            © {new Date().getFullYear()} Isaac Sohn. Brand studies are independent, unofficial
-            portfolio projects.
-          </small>
-        </footer>
+      if (polaroids.length > 1 && targetIndex === current.targetIndex) {
+        targetIndex =
+          (targetIndex + 1 + Math.floor(Math.random() * (polaroids.length - 1))) % polaroids.length;
+      }
+
+      return { run: current.run + 1, targetIndex };
+    });
+    setDimRun((current) => current + 1);
+  };
+
+  return (
+    <MatLayout>
+      {polaroids.map((p, i) => (
+        <DraggablePolaroid
+          key={i}
+          {...p}
+          z={i + 1}
+          delay={i * 120}
+          tearRun={i === tearEvent.targetIndex ? tearEvent.run : 0}
+        />
+      ))}
+
+      <WindupCar
+        src={carboard}
+        alt="Wind-up toy car"
+        top={52}
+        left={87}
+        width="clamp(96px, 26vw, 126px)"
+        heading={126}
+        z={60}
+        delay={420}
+      />
+
+      <WindupAirplane
+        src={airplane}
+        alt="Wind-up toy airplane"
+        top={28}
+        left={50}
+        width="clamp(104px, 28vw, 138px)"
+        heading={-30}
+        z={61}
+        delay={520}
+      />
+
+      <CrossRelic onTrigger={triggerCrossEvent} />
+      {dimRun > 0 && <BoardDimEvent key={dimRun} onDone={() => setDimRun(0)} />}
+
+      <img
+        src={pushpins}
+        alt=""
+        aria-hidden
+        width={140}
+        height={140}
+        loading="lazy"
+        className="pin-wobble pointer-events-none absolute left-[59%] top-[55%] w-[72px] drop-shadow-[0_18px_12px_rgba(0,0,0,0.4)]"
+      />
+
+      <div className="pointer-events-none absolute inset-0 z-30 flex flex-col items-center justify-center text-center">
+        <h1
+          className="title-in font-serif text-[clamp(3rem,9vw,8rem)] font-medium italic leading-none text-[#f5efe2]"
+          style={{ textShadow: "0 2px 14px rgba(0,0,0,0.35)" }}
+        >
+          Isaac Sohn
+        </h1>
+
+        <Link
+          to="/work"
+          className="pointer-events-auto group relative mt-6 inline-flex items-center justify-center px-8 py-3 font-serif text-2xl italic tracking-wide text-[#f5efe2] transition-all duration-300 hover:scale-110 hover:-rotate-2"
+        >
+          <svg
+            viewBox="0 0 220 70"
+            className="absolute inset-0 h-full w-full transition-transform duration-500 group-hover:rotate-3"
+            preserveAspectRatio="none"
+            aria-hidden
+          >
+            <ellipse
+              cx="110"
+              cy="35"
+              rx="100"
+              ry="26"
+              fill="none"
+              stroke="#f5efe2"
+              strokeWidth="2"
+              strokeLinecap="round"
+              transform="rotate(-2 110 35)"
+            />
+            <ellipse
+              cx="112"
+              cy="36"
+              rx="98"
+              ry="24"
+              fill="none"
+              stroke="#f5efe2"
+              strokeWidth="1.5"
+              opacity="0.7"
+              transform="rotate(1 112 36)"
+            />
+          </svg>
+          <span className="relative tracking-[0.15em]">VIEW WORK</span>
+          <span className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 opacity-0 transition-all duration-300 group-hover:right-[-28px] group-hover:opacity-100">
+            -&gt;
+          </span>
+        </Link>
       </div>
     </MatLayout>
   );

@@ -10,10 +10,10 @@ The registry deliberately separates `observedPrinciple` (a concise paraphrase su
 
 The main agent is using Chrome for visual research. This registry adds exact studio and brand source pages verified through web research, so references do not stop at unattributed Pinterest images. Seasonal retail pages are volatile: ZARA uses its stable official SS25 campaign PDF as the primary anchor, not a redirected SS26 store link. The UNIQLO LifeWear page is an enduring brand explanation, not a claim to be its newest issue.
 
-## Portfolio-wide direction
+## Project-detail direction and scope boundary
 
-- Put the work before the self-description. The opening viewport should offer meaningful project imagery and a clear route into a case study.
-- Keep the portfolio index calm enough to reveal the projects' differences. Brand projects first; personal projects second. Avoid a universal beige world or a decorative taxonomy.
+- Preserve the existing portfolio home, Work index, navigation, and overall site identity. The user explicitly limited redesign to individual project pages; earlier home/index redesign directions are withdrawn.
+- Within each project detail, the opening viewport should offer meaningful project imagery and a clear route through that case study. Avoid imposing a universal beige world or decorative taxonomy across projects.
 - Present a world through visual evidence. A large claim followed by a small image is not automatically editorial design.
 - Every project needs one recognisable behaviour tied to its subject. Registration, inspection, tuning, route navigation, repair comparison, and room selection are different actions, not renamed scroll reveals.
 - On mobile, preserve the action and the narrative. Use an accessible selector, image strip, or compact map where appropriate; do not simply collapse every desktop column into the same stack.

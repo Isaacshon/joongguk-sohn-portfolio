@@ -20,7 +20,6 @@ import { Route as InteractiveRouteImport } from './routes/interactive'
 import { Route as HanbyulBrandRouteImport } from './routes/hanbyul-brand'
 import { Route as FliersRouteImport } from './routes/fliers'
 import { Route as BookRouteImport } from './routes/book'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PosterStudiesIndexRouteImport } from './routes/poster-studies.index'
 import { Route as ProjectSlugRouteImport } from './routes/project.$slug'
@@ -81,11 +80,6 @@ const BookRoute = BookRouteImport.update({
   path: '/book',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -109,7 +103,6 @@ const PosterStudiesSlugRoute = PosterStudiesSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
   '/book': typeof BookRoute
   '/fliers': typeof FliersRoute
   '/hanbyul-brand': typeof HanbyulBrandRoute
@@ -127,7 +120,6 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
   '/book': typeof BookRoute
   '/fliers': typeof FliersRoute
   '/hanbyul-brand': typeof HanbyulBrandRoute
@@ -145,7 +137,6 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
   '/book': typeof BookRoute
   '/fliers': typeof FliersRoute
   '/hanbyul-brand': typeof HanbyulBrandRoute
@@ -165,7 +156,6 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/about'
     | '/book'
     | '/fliers'
     | '/hanbyul-brand'
@@ -183,7 +173,6 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/about'
     | '/book'
     | '/fliers'
     | '/hanbyul-brand'
@@ -200,7 +189,6 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/about'
     | '/book'
     | '/fliers'
     | '/hanbyul-brand'
@@ -219,7 +207,6 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
   BookRoute: typeof BookRoute
   FliersRoute: typeof FliersRoute
   HanbyulBrandRoute: typeof HanbyulBrandRoute
@@ -313,13 +300,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BookRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -367,7 +347,6 @@ const PosterStudiesRouteWithChildren = PosterStudiesRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
   BookRoute: BookRoute,
   FliersRoute: FliersRoute,
   HanbyulBrandRoute: HanbyulBrandRoute,

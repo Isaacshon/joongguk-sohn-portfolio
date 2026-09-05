@@ -1,854 +1,1552 @@
-/* Image-first catalogue: a quiet, consistent reading frame for distinct project worlds. */
 .work-studio {
-  --work-ink: #171817;
-  --work-muted: #686b68;
-  --work-line: #d9dbd7;
+  --work-paper: #f6f5f1;
+  --work-paper-soft: #ecebe6;
+  --work-ink: #141414;
+  --work-muted: rgba(20, 20, 20, 0.58);
+  --work-line: rgba(20, 20, 20, 0.24);
   min-width: 0;
-  background: #fff;
+  min-height: 100vh;
+  overflow-x: clip;
+  background: var(--work-paper);
   color: var(--work-ink);
-  font-family: "Manrope", "Pretendard", "Helvetica Neue", sans-serif;
 }
+
 .work-studio *,
 .work-studio *::before,
 .work-studio *::after {
   box-sizing: border-box;
 }
-.work-studio :is(ol, ul) {
+
+.work-studio a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.work-studio ol,
+.work-studio ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-.work-studio :is(a, button) {
-  color: inherit;
-}
-.work-studio a {
-  text-decoration: none;
-}
-.work-studio button {
-  font: inherit;
-  cursor: pointer;
-}
-.work-studio :is(a, button):focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: 5px;
-}
-.work-studio .work-studio__shell {
-  width: min(100% - clamp(2.25rem, 6vw, 7rem), 100rem);
+
+.work-studio__shell {
+  width: min(100% - clamp(2rem, 6vw, 7.5rem), 96rem);
   margin-inline: auto;
 }
-.work-studio__header {
-  padding-block: clamp(1.75rem, 3vw, 3rem) clamp(2rem, 3.5vw, 3.5rem);
+
+.work-studio__intro {
+  padding-block: clamp(2.5rem, 6vw, 6.75rem) clamp(2.1rem, 4.5vw, 5rem);
 }
-.work-studio__heading-line {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
+
+.work-studio__intro-grid {
+  display: grid;
+  grid-template-columns: minmax(15rem, 0.8fr) minmax(22rem, 1.2fr);
+  align-items: end;
+  gap: clamp(3rem, 9vw, 10rem);
 }
+
 .work-studio__eyebrow,
-.work-studio__edition {
+.work-studio__section-number,
+.work-studio__brand-title > p,
+.work-studio__legal,
+.work-studio__archive-number,
+.work-studio__caption-index {
   margin: 0;
-  font-size: 0.7rem;
-  font-weight: 500;
-  line-height: 1.5;
-  letter-spacing: 0.045em;
-}
-.work-studio__edition {
-  color: var(--work-muted);
-}
-.work-studio__introduction {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  align-items: end;
-  gap: 2rem;
-  margin-top: 1.75rem;
-}
-.work-studio__introduction h1 {
-  display: flex;
-  align-items: start;
-  gap: 1rem;
-  margin: 0;
-  font-size: clamp(4.5rem, 7vw, 7rem);
-  font-weight: 500;
-  line-height: 0.92;
-  letter-spacing: -0.075em;
-}
-.work-studio__total {
-  padding-top: 0.35em;
-  font-size: clamp(0.9rem, 1.5vw, 1.35rem);
-  font-weight: 450;
-  letter-spacing: -0.03em;
-}
-.work-studio__introduction > p {
-  max-width: 34ch;
-  margin: 0 0 0.1rem;
-  font-size: clamp(1.05rem, 1.6vw, 1.55rem);
-  font-weight: 450;
-  line-height: 1.42;
-  letter-spacing: -0.03em;
-}
-.work-studio__toolbar {
-  position: sticky;
-  z-index: 25;
-  top: 0;
-  border-block: 1px solid var(--work-line);
-  background: rgba(255, 255, 255, 0.98);
-}
-.work-studio__toolbar-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1.5rem;
-  min-height: 4.25rem;
-}
-.work-studio__categories {
-  display: flex;
-  align-items: center;
-  gap: clamp(1.2rem, 3.2vw, 3.75rem);
-}
-.work-studio__categories a {
-  display: flex;
-  align-items: baseline;
-  gap: 0.6rem;
-  font-size: 0.85rem;
-  font-weight: 550;
-  line-height: 1.5;
-}
-.work-studio__categories a:hover {
-  text-decoration: underline;
-  text-underline-offset: 5px;
-}
-.work-studio__categories span {
-  color: var(--work-muted);
+  font-family: ui-monospace, "SFMono-Regular", "Cascadia Code", "Roboto Mono", monospace;
   font-size: 0.65rem;
-  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
-.work-studio__view-toggle {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-.work-studio__view-toggle button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  min-height: 2.6rem;
-  padding: 0.5rem 0.7rem;
-  border: 0;
-  background: transparent;
+
+.work-studio__eyebrow {
   color: var(--work-muted);
-  font-size: 0.75rem;
 }
-.work-studio__view-toggle button[aria-pressed="true"] {
-  background: #ededeb;
-  color: var(--work-ink);
+
+.work-studio__display {
+  max-width: 8ch;
+  margin: clamp(1rem, 2.5vw, 2.25rem) 0 0;
+  font-size: clamp(4.4rem, 8.4vw, 8.8rem);
+  font-weight: 650;
+  line-height: 0.78;
+  letter-spacing: -0.072em;
 }
-.work-studio__view-toggle button:hover {
-  color: var(--work-ink);
+
+.work-studio__intro-copy {
+  min-width: 0;
+  border-top: 1px solid var(--work-ink);
+  padding-top: clamp(1rem, 2vw, 1.65rem);
 }
-.work-studio__section {
-  padding-top: clamp(1.75rem, 3vw, 3rem);
-  scroll-margin-top: 5rem;
-}
-.work-studio__section-heading {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 2rem;
-  margin-bottom: clamp(1.5rem, 2.5vw, 2.5rem);
-}
-.work-studio__section-heading > div {
-  display: flex;
-  align-items: baseline;
-  gap: 1.25rem;
-}
-.work-studio__section-heading .work-studio__eyebrow {
-  color: var(--work-muted);
-  font-variant-numeric: tabular-nums;
-}
-.work-studio__section-heading h2 {
+
+.work-studio__lede {
+  max-width: 34ch;
   margin: 0;
-  font-size: clamp(1.35rem, 2vw, 2rem);
+  font-size: clamp(1.35rem, 2.4vw, 2.25rem);
   font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: -0.04em;
-}
-.work-studio__section-heading > p {
-  max-width: 40ch;
-  margin: 0;
-  color: var(--work-muted);
-  font-size: 0.78rem;
-  line-height: 1.5;
-}
-.work-studio .work-studio__brand-gallery,
-.work-studio .work-studio__personal-gallery {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: clamp(1rem, 2.1vw, 2.25rem);
-  row-gap: clamp(2rem, 4vw, 4rem);
-  align-items: start;
-}
-.work-studio__card {
-  position: relative;
-  min-width: 0;
-}
-.work-studio__project-link {
-  display: block;
-}
-.work-studio__frame {
-  position: relative;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  background: #eee;
-}
-.work-studio .work-studio__picture {
-  position: absolute;
-  inset: 0;
-  height: 100%;
-  width: 100%;
-}
-.work-studio__picture--detail {
-  opacity: 0;
-  transition: opacity 300ms ease;
-}
-.work-studio__picture--cover {
-  opacity: 1;
-  transition: opacity 300ms ease;
-}
-.work-studio__card[data-preview="true"] .work-studio__picture--detail {
-  opacity: 1;
-}
-.work-studio__card[data-preview="true"] .work-studio__picture--cover {
-  opacity: 0;
-}
-.work-studio__picture img {
-  transition: transform 500ms cubic-bezier(0.2, 0.65, 0.35, 1);
-}
-.work-studio__project-link:hover .work-studio__picture img {
-  transform: scale(1.018);
-}
-.work-studio__open {
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
-  display: grid;
-  width: 2.6rem;
-  height: 2.6rem;
-  place-items: center;
-  background: #fff;
-  color: var(--work-ink);
-  opacity: 0;
-  transform: translateY(0.35rem);
-  transition:
-    opacity 180ms,
-    transform 180ms;
-}
-.work-studio__project-link:is(:hover, :focus-visible) .work-studio__open {
-  opacity: 1;
-  transform: none;
-}
-.work-studio__caption {
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-  gap: 1rem;
-  min-width: 0;
-  padding-top: 1.1rem;
-}
-.work-studio__caption > div {
-  min-width: 0;
-}
-.work-studio__caption h3 {
-  max-width: 31ch;
-  margin: 0;
-  font-size: clamp(1rem, 1.5vw, 1.45rem);
-  font-weight: 550;
-  line-height: 1.3;
+  line-height: 1.08;
   letter-spacing: -0.035em;
   text-wrap: balance;
 }
-.work-studio__caption p {
-  margin: 0.3rem 0 0;
+
+.work-studio__intro-note {
+  max-width: 48ch;
+  margin: 1rem 0 0;
   color: var(--work-muted);
-  font-size: clamp(0.69rem, 0.85vw, 0.83rem);
-  line-height: 1.5;
-  text-wrap: pretty;
-}
-.work-studio__card-number {
-  flex-shrink: 0;
-  padding-top: 0.3rem;
-  color: var(--work-muted);
-  font-size: 0.65rem;
-  font-variant-numeric: tabular-nums;
-}
-.work-studio .work-studio__brand-mark.brand-project-mark {
-  position: static;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  flex: 0 0 6rem;
-  width: 6rem;
-  height: 2.35rem;
-  min-height: 0;
-  margin: 0;
-  padding: 0;
-  background: none;
-  color: #161616;
-  box-shadow: none;
-  backdrop-filter: none;
-}
-.work-studio .work-studio__brand-mark > .brand-mark {
-  width: 100%;
-  max-height: 100%;
-}
-.work-studio .work-studio__brand-mark[data-brand="hm"] > .brand-mark {
-  width: 2.7rem;
-  color: #e50010;
-}
-.work-studio .work-studio__brand-mark[data-brand="nike"] > .brand-mark {
-  width: 4.3rem;
-}
-.work-studio .work-studio__brand-mark[data-brand="zara"] > .brand-mark {
-  width: 4.8rem;
-}
-.work-studio .work-studio__brand-mark[data-brand="uniqlo"] > .brand-mark,
-.work-studio .work-studio__brand-mark[data-brand="levis"] > .brand-mark {
-  width: 5rem;
-}
-.work-studio__preview-button {
-  position: absolute;
-  top: 0.8rem;
-  left: 0.8rem;
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  min-height: 2.1rem;
-  padding: 0.4rem 0.6rem;
-  border: 0;
-  background: rgba(255, 255, 255, 0.94);
-  font-size: 0.58rem !important;
-  font-weight: 600 !important;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.025em;
-}
-.work-studio__preview-button[aria-pressed="true"] {
-  background: #171817;
-  color: #fff;
-}
-.work-studio__legal {
-  max-width: 110ch;
-  margin: 2.5rem 0 0;
-  color: var(--work-muted);
-  font-size: 0.64rem;
-  line-height: 1.65;
-}
-.work-studio__section--personal {
-  margin-top: clamp(3rem, 6vw, 6rem);
-  border-top: 1px solid var(--work-line);
-}
-.work-studio__rail-controls {
-  display: none;
-}
-.work-studio__index-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-  align-items: start;
-  gap: clamp(2rem, 6vw, 7rem);
-}
-.work-studio__index-list {
-  border-top: 1px solid var(--work-line);
-}
-.work-studio__index-list li {
-  border-bottom: 1px solid var(--work-line);
-}
-.work-studio__index-list a {
-  display: grid;
-  grid-template-columns: 2rem minmax(0, 1fr) 1.5rem;
-  align-items: center;
-  gap: 1rem;
-  min-height: 6rem;
-  padding: 1rem 0.5rem;
-  transition: background 160ms;
-}
-.work-studio__index-list li[data-active="true"] a {
-  background: #f2f3f0;
-}
-.work-studio__index-number {
-  color: var(--work-muted);
-  font-size: 0.67rem;
-  font-variant-numeric: tabular-nums;
-}
-.work-studio .work-studio__index-thumb {
-  display: none;
-}
-.work-studio__index-copy {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  min-width: 0;
-}
-.work-studio__index-copy strong {
-  font-size: clamp(1rem, 1.5vw, 1.45rem);
-  font-weight: 500;
-  line-height: 1.3;
-  letter-spacing: -0.035em;
-}
-.work-studio__index-copy small {
-  color: var(--work-muted);
-  font-size: 0.73rem;
-  line-height: 1.5;
-}
-.work-studio__index-preview {
-  position: sticky;
-  top: 6rem;
-  min-width: 0;
-}
-.work-studio__index-preview-media {
-  position: relative;
-  aspect-ratio: 4 / 5;
-  background: #eee;
-}
-.work-studio__index-preview-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 1rem;
-  font-size: 1rem;
-  font-weight: 550;
-}
-.work-studio__index-preview > p {
-  max-width: 40ch;
-  margin: 0.7rem 0 0;
-  color: var(--work-muted);
-  font-size: 0.9rem;
-  line-height: 1.5;
-  text-wrap: pretty;
-}
-.work-studio__applied {
-  margin-top: clamp(4rem, 7vw, 7rem);
-}
-.work-studio__applied-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 1rem;
-  margin-bottom: 1.4rem;
-}
-.work-studio__applied-heading h3 {
-  margin: 0;
-  font-size: 1.4rem;
-  font-weight: 500;
-  letter-spacing: -0.035em;
-}
-.work-studio__applied-heading > span {
-  color: var(--work-muted);
-  font-size: 0.7rem;
-}
-.work-studio__applied ol {
-  border-top: 1px solid var(--work-line);
-}
-.work-studio__applied li {
-  border-bottom: 1px solid var(--work-line);
-}
-.work-studio__applied-link {
-  display: grid;
-  grid-template-columns: 3rem minmax(0, 1fr) 1.5rem;
-  align-items: center;
-  gap: 1.5rem;
-  min-height: 5rem;
-  padding: 1.1rem 0.5rem;
-  transition: background 180ms;
-}
-.work-studio__applied-link:hover {
-  background: #f2f3f0;
-}
-.work-studio__applied-link > span:nth-child(2) {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  align-items: baseline;
-  gap: 1rem;
-}
-.work-studio__applied-link strong {
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.4;
-}
-.work-studio__applied-link small {
-  color: var(--work-muted);
-  font-size: 0.75rem;
-  line-height: 1.5;
-}
-.work-studio__footer {
-  position: relative;
-  margin-top: clamp(4rem, 8vw, 8rem);
-  border-top: 1px solid var(--work-line);
-  padding-block: 2.5rem 4rem;
-}
-.work-studio__footer > p {
-  margin: 0 0 1.5rem;
-  color: var(--work-muted);
-  font-size: 0.8rem;
-}
-.work-studio__footer > a:not(.work-studio__back-top) {
-  display: inline-flex;
-  align-items: center;
-  gap: 1.5rem;
-  font-size: clamp(1.8rem, 4vw, 4rem);
-  letter-spacing: -0.055em;
-  line-height: 1.2;
-}
-.work-studio__footer > a:not(.work-studio__back-top) svg {
-  width: 1em;
-  height: 1em;
-}
-.work-studio__back-top {
-  position: absolute;
-  bottom: 4.3rem;
-  right: 0;
-  display: flex;
-  gap: 0.7rem;
-  align-items: center;
-  font-size: 0.75rem;
-}
-.work-studio__back-top svg {
-  transform: rotate(180deg);
+  font-size: 0.86rem;
+  line-height: 1.55;
 }
 
-@media (min-width: 1200px) {
-  .work-studio .work-studio__brand-gallery {
-    grid-template-columns: 1.08fr 1fr;
+.work-studio__jump-nav {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: clamp(1.35rem, 3vw, 2.4rem);
+  border-top: 1px solid var(--work-line);
+  border-bottom: 1px solid var(--work-line);
+}
+
+.work-studio__jump-nav a {
+  display: grid;
+  grid-template-columns: 1.6rem minmax(0, 1fr) auto;
+  align-items: center;
+  min-width: 0;
+  gap: 0.65rem;
+  padding: 0.9rem 0;
+  font-size: 0.74rem;
+  font-weight: 650;
+  line-height: 1.2;
+}
+
+.work-studio__jump-nav a + a {
+  border-left: 1px solid var(--work-line);
+  padding-left: clamp(0.8rem, 2vw, 1.5rem);
+}
+
+.work-studio__jump-nav span,
+.work-studio__jump-nav b {
+  font-family: ui-monospace, "SFMono-Regular", "Cascadia Code", "Roboto Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+}
+
+.work-studio__jump-nav span {
+  color: var(--work-muted);
+}
+
+.work-studio__jump-nav b {
+  font-weight: 600;
+}
+
+.work-studio__section-shell {
+  padding-block: clamp(2.5rem, 5vw, 5.5rem) clamp(5rem, 10vw, 11rem);
+}
+
+.work-studio__section-heading {
+  display: grid;
+  grid-template-columns: 3rem minmax(16rem, 1fr) minmax(16rem, 0.7fr);
+  align-items: end;
+  gap: clamp(1rem, 2.5vw, 2.75rem);
+  margin-bottom: clamp(2.5rem, 5vw, 5.5rem);
+  border-top: 1px solid var(--work-ink);
+  padding-top: clamp(0.85rem, 1.6vw, 1.35rem);
+}
+
+.work-studio__section-number {
+  align-self: start;
+  padding-top: 0.35rem;
+  color: var(--work-muted);
+}
+
+.work-studio__section-heading h2 {
+  max-width: 12ch;
+  margin: 0;
+  font-size: clamp(2.7rem, 6vw, 6.5rem);
+  font-weight: 620;
+  line-height: 0.86;
+  letter-spacing: -0.062em;
+  text-wrap: balance;
+}
+
+.work-studio__section-heading > p:last-child {
+  max-width: 48ch;
+  margin: 0;
+  color: var(--work-muted);
+  font-size: clamp(0.85rem, 1.1vw, 1rem);
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+.work-studio__brand-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(4rem, 8vw, 9rem) clamp(1.4rem, 3vw, 3.75rem);
+}
+
+.work-studio__brand-item,
+.work-studio__personal-item {
+  min-width: 0;
+}
+
+.work-studio__brand-item--lead {
+  grid-column: 1 / -1;
+}
+
+.work-studio__brand-item--wide {
+  grid-column: 1 / span 7;
+}
+
+.work-studio__brand-item--portrait {
+  grid-column: 9 / -1;
+  align-self: end;
+  padding-top: clamp(4rem, 9vw, 9.5rem);
+}
+
+.work-studio__brand-item--closing {
+  grid-column: 3 / -1;
+}
+
+.work-studio__project-link {
+  display: block;
+  min-width: 0;
+  outline: none;
+}
+
+.work-studio__project-link:focus-visible,
+.work-studio__archive-link:focus-visible,
+.work-studio__jump-nav a:focus-visible {
+  outline: 2px solid var(--work-ink);
+  outline-offset: 5px;
+}
+
+.work-studio__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--work-media-ratio, 4 / 3);
+  overflow: hidden;
+  background: #deddd7;
+}
+
+.work-studio__picture {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+}
+
+.work-studio__image {
+  transition: transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.work-studio__motion-signal,
+.work-studio__personal-signal {
+  position: absolute;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.work-studio__motion-signal {
+  top: clamp(0.75rem, 1.4vw, 1.25rem);
+  right: clamp(0.75rem, 1.4vw, 1.25rem);
+  display: grid;
+  width: min(17rem, calc(100% - 1.5rem));
+  padding: 0.72rem 0.8rem 0.78rem;
+  color: #fff;
+  background: rgba(12, 12, 12, 0.86);
+  opacity: 0;
+  transform: translate3d(0, 0.7rem, 0);
+  transition:
+    opacity 240ms ease,
+    transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.work-studio__motion-signal-head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.7rem;
+  min-width: 0;
+}
+
+.work-studio__motion-signal-head b,
+.work-studio__motion-signal-steps em,
+.work-studio__personal-signal span {
+  font-family: ui-monospace, "SFMono-Regular", "Cascadia Code", "Roboto Mono", monospace;
+  font-style: normal;
+  text-transform: uppercase;
+}
+
+.work-studio__motion-signal-head b {
+  font-size: 0.58rem;
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: 0.13em;
+}
+
+.work-studio__motion-signal-head i {
+  position: relative;
+  height: 1px;
+  overflow: hidden;
+  background: currentColor;
+  opacity: 0.38;
+}
+
+.work-studio__motion-signal-head i::after {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 32%;
+  background: currentColor;
+  content: "";
+  transform: translateX(-110%);
+}
+
+.work-studio__motion-signal-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem;
+  margin-top: 0.65rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid color-mix(in srgb, currentColor 32%, transparent);
+}
+
+.work-studio__motion-signal-steps em {
+  display: grid;
+  gap: 0.18rem;
+  min-width: 0;
+  font-size: 0.52rem;
+  font-weight: 650;
+  line-height: 1.1;
+  letter-spacing: 0.055em;
+}
+
+.work-studio__motion-signal-steps small {
+  font-size: 0.45rem;
+  font-weight: 500;
+  opacity: 0.48;
+}
+
+.work-studio__personal-signal {
+  right: 0.75rem;
+  bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 0.62rem;
+  color: #fff;
+  background: rgba(15, 15, 15, 0.82);
+  opacity: 0;
+  transform: translate3d(0.5rem, 0, 0);
+  transition:
+    opacity 220ms ease,
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.work-studio__personal-signal i {
+  width: 1.4rem;
+  height: 1px;
+  background: currentColor;
+  transform-origin: left center;
+  transform: scaleX(0.32);
+  transition: transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.work-studio__personal-signal span {
+  font-size: 0.52rem;
+  font-weight: 650;
+  letter-spacing: 0.1em;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .work-studio__project-link:hover .work-studio__image,
+  .work-studio__project-link:focus-visible .work-studio__image {
+    transform: scale(1.018);
+    will-change: transform;
   }
-  .work-studio__brand-gallery .work-studio__card:nth-child(odd) .work-studio__frame {
-    aspect-ratio: 1.44;
+
+  .work-studio__project-link:hover .work-studio__motion-signal,
+  .work-studio__project-link:focus-visible .work-studio__motion-signal,
+  .work-studio__project-link:hover .work-studio__personal-signal,
+  .work-studio__project-link:focus-visible .work-studio__personal-signal {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
-  .work-studio__brand-gallery .work-studio__card:nth-child(even) .work-studio__frame {
-    aspect-ratio: 4 / 3;
+
+  .work-studio__project-link:hover .work-studio__motion-signal-head i::after,
+  .work-studio__project-link:focus-visible .work-studio__motion-signal-head i::after {
+    animation: work-signal-scan 980ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .work-studio__project-link:hover .work-studio__personal-signal i,
+  .work-studio__project-link:focus-visible .work-studio__personal-signal i {
+    transform: scaleX(1);
   }
 }
+
+.work-studio__project-link:active .work-studio__image {
+  transform: scale(0.992);
+  transition-duration: 120ms;
+}
+
+.work-studio__brand-item[data-brand="nike-no-second-take"] .work-studio__motion-signal {
+  top: auto;
+  bottom: clamp(0.75rem, 1.4vw, 1.25rem);
+  color: #0a0a0a;
+  background: #dfff00;
+}
+
+.work-studio__brand-item[data-brand="nike-no-second-take"] .work-studio__motion-signal-steps {
+  border-top-width: 0.24rem;
+}
+
+.work-studio__brand-item[data-brand="polo-ralph-lauren-the-long-match"]
+  .work-studio__motion-signal {
+  right: auto;
+  left: 50%;
+  width: min(20rem, calc(100% - 2rem));
+  color: #f5ecd8;
+  background: rgba(5, 24, 46, 0.9);
+  transform: translate3d(-50%, -0.55rem, 0);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .work-studio__brand-item[data-brand="polo-ralph-lauren-the-long-match"]
+    .work-studio__project-link:hover
+    .work-studio__motion-signal,
+  .work-studio__brand-item[data-brand="polo-ralph-lauren-the-long-match"]
+    .work-studio__project-link:focus-visible
+    .work-studio__motion-signal {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.work-studio__brand-item[data-brand="levis-wear-is-the-record"] .work-studio__motion-signal {
+  inset: 0 auto 0 0;
+  align-content: end;
+  width: min(13rem, 38%);
+  color: #fff;
+  background: rgba(201, 20, 40, 0.9);
+  transform: translate3d(-1.2rem, 0, 0);
+}
+
+.work-studio__brand-item[data-brand="levis-wear-is-the-record"] .work-studio__motion-signal-steps {
+  grid-template-columns: 1fr;
+}
+
+.work-studio__brand-item[data-brand="muji-household-weather"] .work-studio__motion-signal {
+  color: #2a241e;
+  background: rgba(232, 225, 211, 0.92);
+  border: 1px solid rgba(42, 36, 30, 0.28);
+}
+
+.work-studio__brand-item[data-brand="hm-second-sun"] .work-studio__motion-signal {
+  top: auto;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  color: #fff;
+  background: rgba(220, 0, 35, 0.9);
+  transform: translate3d(0, 100%, 0);
+}
+
+.work-studio__brand-item[data-brand="hm-second-sun"] .work-studio__motion-signal-head i {
+  background: repeating-linear-gradient(90deg, currentColor 0 0.4rem, transparent 0.4rem 0.72rem);
+}
+
+.work-studio__brand-item[data-brand="zara-the-air-between"] .work-studio__motion-signal {
+  top: 50%;
+  right: 0;
+  width: min(14rem, 46%);
+  color: #111;
+  background: rgba(250, 249, 246, 0.94);
+  transform: translate3d(1.1rem, -50%, 0);
+}
+
+.work-studio__brand-item[data-brand="zara-the-air-between"] .work-studio__motion-signal-steps {
+  grid-template-columns: 1fr;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .work-studio__brand-item[data-brand="zara-the-air-between"]
+    .work-studio__project-link:hover
+    .work-studio__motion-signal,
+  .work-studio__brand-item[data-brand="zara-the-air-between"]
+    .work-studio__project-link:focus-visible
+    .work-studio__motion-signal {
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+.work-studio__brand-item[data-brand="uniqlo-comfort-measured"] .work-studio__motion-signal {
+  width: min(13rem, calc(100% - 1.5rem));
+  color: #fff;
+  background: #e60012;
+}
+
+.work-studio__brand-item[data-brand="prada-the-quiet-error"] .work-studio__motion-signal {
+  top: 50%;
+  right: auto;
+  left: 50%;
+  width: min(21rem, calc(100% - 2rem));
+  color: #f3f1eb;
+  background: rgba(10, 10, 10, 0.88);
+  transform: translate3d(-50%, calc(-50% + 0.7rem), 0);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .work-studio__brand-item[data-brand="prada-the-quiet-error"]
+    .work-studio__project-link:hover
+    .work-studio__motion-signal,
+  .work-studio__brand-item[data-brand="prada-the-quiet-error"]
+    .work-studio__project-link:focus-visible
+    .work-studio__motion-signal {
+    transform: translate3d(-50%, -50%, 0);
+  }
+
+  .work-studio__brand-item[data-brand="nike-no-second-take"]
+    .work-studio__project-link:hover
+    .work-studio__image {
+    transform: scale(1.028) translate3d(-0.35%, 0, 0);
+  }
+
+  .work-studio__brand-item[data-brand="polo-ralph-lauren-the-long-match"]
+    .work-studio__project-link:hover
+    .work-studio__image,
+  .work-studio__brand-item[data-brand="muji-household-weather"]
+    .work-studio__project-link:hover
+    .work-studio__image {
+    transform: scale(1.009);
+  }
+
+  .work-studio__brand-item[data-brand="levis-wear-is-the-record"]
+    .work-studio__project-link:hover
+    .work-studio__image {
+    transform: scale(1.024) translate3d(0.35%, 0, 0);
+  }
+
+  .work-studio__brand-item[data-brand="zara-the-air-between"]
+    .work-studio__project-link:hover
+    .work-studio__image {
+    transform: scale(1.026) translate3d(0.55%, 0, 0);
+  }
+}
+
+@keyframes work-signal-scan {
+  0% {
+    transform: translateX(-110%);
+  }
+  100% {
+    transform: translateX(330%);
+  }
+}
+
+.work-studio__brand-media::after,
+.work-studio__personal-media::after {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  border: 1px solid rgba(20, 20, 20, 0.12);
+  content: "";
+  pointer-events: none;
+}
+
+.work-studio__brand-mark {
+  bottom: clamp(0.8rem, 1.5vw, 1.4rem);
+  left: clamp(0.8rem, 1.5vw, 1.4rem);
+  box-shadow: 0 0.3rem 1.8rem rgba(0, 0, 0, 0.1);
+}
+
+.work-studio__brand-item--closing .work-studio__brand-mark {
+  right: auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.work-studio__brand-caption {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  border-bottom: 1px solid var(--work-line);
+  padding: 1rem 0 1.2rem;
+}
+
+.work-studio__brand-title > p {
+  color: var(--work-muted);
+}
+
+.work-studio__brand-title h3 {
+  margin: 0.55rem 0 0;
+  font-size: clamp(2.25rem, 5vw, 5.2rem);
+  font-weight: 620;
+  line-height: 0.9;
+  letter-spacing: -0.058em;
+  text-wrap: balance;
+}
+
+.work-studio__brand-statement {
+  max-width: 28ch;
+  margin: 0;
+  font-size: clamp(1.05rem, 1.8vw, 1.55rem);
+  font-weight: 480;
+  line-height: 1.17;
+  letter-spacing: -0.026em;
+  text-wrap: balance;
+}
+
+.work-studio__brand-meta {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--work-muted);
+  font-size: 0.75rem;
+  line-height: 1.45;
+}
+
+.work-studio__brand-meta p {
+  max-width: 29ch;
+  margin: 0;
+}
+
+.work-studio__brand-meta span {
+  flex: none;
+  padding-bottom: 0.12rem;
+  border-bottom: 1px solid currentColor;
+  color: var(--work-ink);
+  font-size: 0.7rem;
+  font-weight: 650;
+}
+
+.work-studio__brand-item--lead .work-studio__brand-caption,
+.work-studio__brand-item--closing .work-studio__brand-caption {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(1rem, 2.4vw, 2.5rem);
+  padding-block: clamp(1.1rem, 2vw, 1.7rem);
+}
+
+.work-studio__brand-item--lead .work-studio__brand-title,
+.work-studio__brand-item--closing .work-studio__brand-title {
+  grid-column: 1 / span 3;
+}
+
+.work-studio__brand-item--lead .work-studio__brand-statement,
+.work-studio__brand-item--closing .work-studio__brand-statement {
+  grid-column: 5 / span 4;
+  align-self: end;
+}
+
+.work-studio__brand-item--lead .work-studio__brand-meta,
+.work-studio__brand-item--closing .work-studio__brand-meta {
+  grid-column: 10 / -1;
+  align-self: end;
+}
+
+.work-studio__legal {
+  max-width: 78ch;
+  margin: clamp(3rem, 6vw, 6rem) 0 0;
+  color: rgba(20, 20, 20, 0.42);
+  line-height: 1.65;
+}
+
+.work-studio__personal-section {
+  border-top: 1px solid var(--work-line);
+  background: var(--work-paper-soft);
+}
+
+.work-studio__personal-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-auto-flow: row;
+  align-items: start;
+  gap: clamp(4.5rem, 9vw, 10rem) clamp(1.4rem, 3vw, 3.75rem);
+}
+
+.work-studio__personal-item--feature-left {
+  grid-column: 1 / span 8;
+}
+
+.work-studio__personal-item--portrait-right {
+  grid-column: 9 / -1;
+  align-self: end;
+  padding-top: clamp(4rem, 10vw, 10rem);
+}
+
+.work-studio__personal-item--compact-left {
+  grid-column: 1 / span 5;
+}
+
+.work-studio__personal-item--wide-right {
+  grid-column: 6 / -1;
+  align-self: end;
+}
+
+.work-studio__personal-item--full {
+  grid-column: 1 / -1;
+}
+
+.work-studio__personal-item--portrait-left {
+  grid-column: 1 / span 4;
+}
+
+.work-studio__personal-item--feature-right {
+  grid-column: 5 / -1;
+  align-self: end;
+}
+
+.work-studio__personal-item--wide-left {
+  grid-column: 1 / span 7;
+}
+
+.work-studio__personal-item--compact-right {
+  grid-column: 9 / -1;
+  align-self: end;
+  padding-top: clamp(2rem, 6vw, 6rem);
+}
+
+.work-studio__personal-item--center {
+  grid-column: 3 / span 8;
+}
+
+.work-studio__project-caption {
+  display: grid;
+  grid-template-columns: 2.2rem minmax(0, 1fr) 1.4rem;
+  gap: clamp(0.7rem, 1.4vw, 1.25rem);
+  align-items: start;
+  border-bottom: 1px solid var(--work-line);
+  padding: clamp(0.85rem, 1.5vw, 1.25rem) 0 1rem;
+}
+
+.work-studio__caption-index {
+  padding-top: 0.25rem;
+  color: var(--work-muted);
+}
+
+.work-studio__project-caption h3 {
+  max-width: 20ch;
+  margin: 0;
+  overflow-wrap: break-word;
+  font-size: clamp(1.45rem, 2.45vw, 2.8rem);
+  font-weight: 620;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.work-studio__project-caption h3[lang="ko"] {
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
+.work-studio__project-caption p {
+  max-width: 44ch;
+  margin: 0.55rem 0 0;
+  color: var(--work-muted);
+  font-size: 0.73rem;
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+.work-studio__caption-arrow {
+  justify-self: end;
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform 220ms ease;
+}
+
+.work-studio__project-link:hover .work-studio__caption-arrow,
+.work-studio__archive-link:hover .work-studio__archive-arrow {
+  transform: translate(0.16rem, -0.16rem);
+}
+
+.work-studio__archive {
+  margin-top: clamp(7rem, 14vw, 15rem);
+  border-top: 1px solid var(--work-ink);
+  padding-top: clamp(1.5rem, 3vw, 3rem);
+}
+
+.work-studio__archive-heading {
+  display: grid;
+  grid-template-columns: minmax(12rem, 0.7fr) minmax(0, 1.3fr);
+  align-items: start;
+  gap: clamp(1rem, 3vw, 3rem);
+  margin-bottom: clamp(2rem, 4vw, 4rem);
+}
+
+.work-studio__archive-heading h3 {
+  max-width: 13ch;
+  margin: 0;
+  font-size: clamp(2rem, 4.4vw, 4.8rem);
+  font-weight: 620;
+  line-height: 0.92;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+}
+
+.work-studio__archive-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(2rem, 5vw, 6rem);
+  border-top: 1px solid var(--work-line);
+}
+
+.work-studio__archive-link {
+  display: grid;
+  grid-template-columns: 2rem 5rem minmax(0, 1fr) 1.3rem;
+  align-items: center;
+  min-width: 0;
+  gap: clamp(0.75rem, 1.6vw, 1.35rem);
+  min-height: 7rem;
+  border-bottom: 1px solid var(--work-line);
+  outline: none;
+}
+
+.work-studio__archive-number {
+  color: var(--work-muted);
+}
+
+.work-studio__archive-thumb {
+  position: relative;
+  display: block;
+  width: 5rem;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #d7d5ce;
+}
+
+.work-studio__archive-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 500ms ease;
+}
+
+.work-studio__archive-link:hover .work-studio__archive-thumb img {
+  transform: scale(1.035);
+}
+
+.work-studio__archive-copy {
+  min-width: 0;
+}
+
+.work-studio__archive-copy strong,
+.work-studio__archive-copy small {
+  display: block;
+}
+
+.work-studio__archive-copy strong {
+  overflow-wrap: break-word;
+  font-size: clamp(1.1rem, 1.75vw, 1.6rem);
+  font-weight: 620;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.work-studio__archive-copy small {
+  margin-top: 0.45rem;
+  color: var(--work-muted);
+  font-size: 0.68rem;
+  line-height: 1.35;
+}
+
+.work-studio__archive-arrow {
+  justify-self: end;
+  transition: transform 220ms ease;
+}
+
 @media (max-width: 899px) {
-  .work-studio__index-layout {
+  .work-studio__intro-grid {
+    grid-template-columns: minmax(11rem, 0.7fr) minmax(20rem, 1.3fr);
     gap: 2rem;
   }
-  .work-studio__section-heading > p {
-    max-width: 27ch;
+
+  .work-studio__display {
+    font-size: clamp(4rem, 11vw, 6.5rem);
   }
-  .work-studio__index-list a {
-    grid-template-columns: 1.25rem minmax(0, 1fr) 1rem;
-    gap: 0.6rem;
-  }
-  .work-studio__index-copy small {
-    font-size: 0.65rem;
-  }
-  .work-studio__applied-link > span:nth-child(2) {
-    grid-template-columns: 1fr;
-    gap: 0.2rem;
-  }
-}
-@media (max-width: 699px) {
-  .work-studio .work-studio__shell {
-    width: calc(100% - 2rem);
-  }
-  .work-studio__header {
-    padding-block: 1.2rem 1.4rem;
-  }
-  .work-studio__eyebrow,
-  .work-studio__edition {
-    font-size: 0.6rem;
-  }
-  .work-studio__introduction {
-    grid-template-columns: 1fr;
-    gap: 0.9rem;
-    margin-top: 1.1rem;
-  }
-  .work-studio__introduction h1 {
-    font-size: clamp(4.25rem, 18vw, 6rem);
-    gap: 0.8rem;
-  }
-  .work-studio__introduction > p {
-    font-size: 1rem;
-    line-height: 1.45;
-  }
-  .work-studio__toolbar-inner {
-    min-height: 3.5rem;
-    gap: 0.7rem;
-  }
-  .work-studio__categories {
-    gap: 1rem;
-  }
-  .work-studio__categories a {
-    gap: 0.3rem;
-    font-size: 0.71rem;
-  }
-  .work-studio__categories span {
-    font-size: 0.55rem;
-  }
-  .work-studio__view-toggle {
-    gap: 0.1rem;
-  }
-  .work-studio__view-toggle button {
-    width: 2.2rem;
-    min-height: 2.35rem;
-    padding: 0.35rem;
-  }
-  .work-studio__view-toggle button > span {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
-  .work-studio__section {
-    padding-top: 1.75rem;
-    scroll-margin-top: 4.5rem;
-  }
+
   .work-studio__section-heading {
-    align-items: start;
-    margin-bottom: 1.4rem;
-    gap: 1rem;
+    grid-template-columns: 2rem minmax(0, 1fr);
   }
-  .work-studio__section-heading > div {
-    display: block;
+
+  .work-studio__section-heading > p:last-child {
+    grid-column: 2;
+    max-width: 42rem;
   }
-  .work-studio__section-heading h2 {
-    margin-top: 0.5rem;
-    font-size: 1.45rem;
+
+  .work-studio__brand-grid,
+  .work-studio__personal-grid {
+    gap: 4.5rem 1.5rem;
   }
-  .work-studio__section-heading > p {
-    max-width: 19ch;
-    padding-top: 1.25rem;
-    font-size: 0.68rem;
-    line-height: 1.55;
+
+  .work-studio__brand-item--wide {
+    grid-column: 1 / span 8;
   }
-  .work-studio__rail-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.8rem;
-    font-size: 0.6rem;
+
+  .work-studio__brand-item--portrait {
+    grid-column: 9 / -1;
   }
-  .work-studio__rail-controls > span,
-  .work-studio__rail-controls > div {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+
+  .work-studio__brand-item--closing {
+    grid-column: 2 / -1;
   }
-  .work-studio__rail-controls > div > span {
-    min-width: 2.65rem;
-    font-variant-numeric: tabular-nums;
+
+  .work-studio__brand-item--lead .work-studio__brand-caption,
+  .work-studio__brand-item--closing .work-studio__brand-caption {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .work-studio__rail-controls button {
-    display: grid;
-    place-items: center;
-    width: 2rem;
-    height: 2rem;
-    border: 1px solid var(--work-line);
-    background: #fff;
+
+  .work-studio__brand-item--lead .work-studio__brand-title,
+  .work-studio__brand-item--closing .work-studio__brand-title,
+  .work-studio__brand-item--lead .work-studio__brand-statement,
+  .work-studio__brand-item--closing .work-studio__brand-statement,
+  .work-studio__brand-item--lead .work-studio__brand-meta,
+  .work-studio__brand-item--closing .work-studio__brand-meta {
+    grid-column: auto;
   }
-  .work-studio__rail-controls button:disabled {
-    color: #c1c1c1;
-    cursor: default;
-  }
-  .work-studio .work-studio__brand-gallery {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 86%;
-    grid-template-columns: none;
-    align-items: start;
-    gap: 1rem;
-    margin-inline: -1rem;
-    padding-inline: 1rem;
-    padding-bottom: 1rem;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: 1rem;
-    scrollbar-width: thin;
-    scrollbar-color: #a4a5a1 #f2f2f0;
-  }
-  .work-studio__brand-gallery .work-studio__card {
-    scroll-snap-align: start;
-  }
-  .work-studio__brand-gallery .work-studio__frame {
-    aspect-ratio: 4 / 5;
-  }
-  .work-studio__caption {
-    gap: 0.65rem;
-    padding-top: 0.85rem;
-  }
-  .work-studio__caption h3 {
-    font-size: 0.97rem;
-    line-height: 1.35;
-  }
-  .work-studio__caption p {
-    margin-top: 0.25rem;
-    font-size: 0.64rem;
-    line-height: 1.5;
-  }
-  .work-studio .work-studio__brand-mark.brand-project-mark {
-    flex-basis: 3.6rem;
-    width: 3.6rem;
-    height: 1.6rem;
-  }
-  .work-studio .work-studio__brand-mark[data-brand="hm"] > .brand-mark {
-    width: 2rem;
-  }
-  .work-studio .work-studio__brand-mark > .brand-mark {
-    max-width: 100%;
-  }
-  .work-studio__preview-button {
-    top: 0.6rem;
-    left: 0.6rem;
-    min-height: 2rem;
-    padding: 0.3rem 0.45rem;
-    gap: 0.35rem;
-    font-size: 0.52rem !important;
-  }
-  .work-studio__open {
-    display: none;
-  }
-  .work-studio__legal {
-    margin-top: 1rem;
-    font-size: 0.59rem;
-    line-height: 1.65;
-  }
-  .work-studio__section--personal {
-    margin-top: 2.5rem;
-  }
-  .work-studio .work-studio__personal-gallery {
-    gap: 1.75rem 0.8rem;
-  }
-  .work-studio__personal-gallery .work-studio__card:nth-child(6n + 1) {
+
+  .work-studio__brand-item--lead .work-studio__brand-meta,
+  .work-studio__brand-item--closing .work-studio__brand-meta {
     grid-column: 1 / -1;
   }
-  .work-studio__personal-gallery .work-studio__card:nth-child(6n + 1) .work-studio__frame {
-    aspect-ratio: 3 / 2;
+
+  .work-studio__archive-grid {
+    grid-template-columns: minmax(0, 1fr);
   }
-  .work-studio__personal-gallery .work-studio__card .work-studio__frame {
-    aspect-ratio: 4 / 5;
+}
+
+@media (max-width: 639px) {
+  .work-studio__shell {
+    width: auto;
+    margin-inline: 1rem;
   }
-  .work-studio__personal-gallery .work-studio__preview-button {
-    top: 0.5rem;
-    left: 0.5rem;
+
+  .work-studio__intro {
+    padding-block: 1.8rem 1.55rem;
   }
-  .work-studio__personal-gallery .work-studio__caption {
-    gap: 0.25rem;
+
+  .work-studio__intro-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.35rem;
   }
-  .work-studio__personal-gallery .work-studio__caption h3 {
-    font-size: 0.85rem;
-    letter-spacing: -0.025em;
+
+  .work-studio__display {
+    margin-top: 0.75rem;
+    font-size: clamp(3.5rem, 18vw, 5rem);
+    line-height: 0.82;
   }
-  .work-studio__personal-gallery .work-studio__caption p {
-    font-size: 0.62rem;
+
+  .work-studio__intro-copy {
+    padding-top: 0.9rem;
   }
-  .work-studio__personal-gallery .work-studio__card:nth-child(6n + 1) h3 {
-    font-size: 1.1rem;
+
+  .work-studio__lede {
+    max-width: 29ch;
+    font-size: 1.12rem;
+    line-height: 1.13;
   }
-  .work-studio__card-number {
-    font-size: 0.55rem;
-    padding-top: 0.1rem;
+
+  .work-studio__intro-note {
+    margin-top: 0.65rem;
+    font-size: 0.73rem;
   }
-  .work-studio__index-layout {
-    grid-template-columns: 1fr;
-    gap: 0;
+
+  .work-studio__jump-nav {
+    margin-top: 1rem;
   }
-  .work-studio__index-preview {
-    display: none;
+
+  .work-studio__jump-nav a {
+    grid-template-columns: 1fr auto;
+    gap: 0.3rem 0.5rem;
+    padding-block: 0.7rem;
+    font-size: 0.66rem;
   }
-  .work-studio__index-list a {
-    grid-template-columns: 1.2rem 3rem minmax(0, 1fr) 1rem;
-    gap: 0.65rem;
-    min-height: 5.2rem;
-    padding: 0.75rem 0.2rem;
+
+  .work-studio__jump-nav a + a {
+    padding-left: 0.7rem;
   }
-  .work-studio .work-studio__index-thumb {
-    display: block;
-    width: 3rem;
+
+  .work-studio__jump-nav span {
+    grid-column: 1 / -1;
   }
-  .work-studio__index-copy strong {
-    font-size: 0.87rem;
-    line-height: 1.4;
+
+  .work-studio__section-shell {
+    padding-block: 2rem 5rem;
   }
-  .work-studio__index-copy small {
-    font-size: 0.59rem;
+
+  .work-studio__section-heading {
+    grid-template-columns: 1.65rem minmax(0, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    padding-top: 0.7rem;
+  }
+
+  .work-studio__section-number {
+    padding-top: 0.2rem;
+  }
+
+  .work-studio__section-heading h2 {
+    max-width: 100%;
+    font-size: clamp(2.1rem, 11vw, 3rem);
+    line-height: 0.92;
+  }
+
+  .work-studio__section-heading > p:last-child {
+    grid-column: 2;
+    font-size: 0.75rem;
     line-height: 1.5;
   }
-  .work-studio__index-number {
-    font-size: 0.6rem;
+
+  .work-studio__brand-grid,
+  .work-studio__personal-grid {
+    display: block;
   }
-  .work-studio__applied {
-    margin-top: 3rem;
+
+  .work-studio__brand-item,
+  .work-studio__personal-item {
+    width: 100%;
+    margin-bottom: 3.75rem;
+    padding-top: 0;
   }
-  .work-studio__applied-heading h3 {
-    font-size: 1.15rem;
+
+  .work-studio__brand-item[data-brand="nike-no-second-take"],
+  .work-studio__brand-item[data-brand="hm-second-sun"] {
+    width: calc(100% + 2rem);
+    margin-left: -1rem;
   }
-  .work-studio__applied-heading > span {
-    font-size: 0.62rem;
+
+  .work-studio__brand-item[data-brand="nike-no-second-take"] .work-studio__brand-caption,
+  .work-studio__brand-item[data-brand="hm-second-sun"] .work-studio__brand-caption {
+    padding-inline: 1rem;
   }
-  .work-studio__applied-link {
-    grid-template-columns: 1.3rem minmax(0, 1fr) 1rem;
-    gap: 0.65rem;
-    min-height: 5.2rem;
-    padding-inline: 0.2rem;
+
+  .work-studio__brand-item[data-brand="polo-ralph-lauren-the-long-match"],
+  .work-studio__brand-item[data-brand="zara-the-air-between"] {
+    width: 88%;
+    margin-right: auto;
   }
-  .work-studio__applied-link strong {
-    font-size: 0.94rem;
+
+  .work-studio__brand-item[data-brand="levis-wear-is-the-record"],
+  .work-studio__brand-item[data-brand="prada-the-quiet-error"] {
+    width: 82%;
+    margin-left: auto;
   }
-  .work-studio__applied-link small {
-    font-size: 0.66rem;
+
+  .work-studio__brand-item[data-brand="muji-household-weather"] {
+    width: 74%;
+    margin-right: auto;
   }
-  .work-studio__footer {
-    padding-block: 2rem 5rem;
-    margin-top: 3.5rem;
+
+  .work-studio__brand-item[data-brand="uniqlo-comfort-measured"] {
+    width: 76%;
+    margin-left: auto;
   }
-  .work-studio__footer > p {
-    margin-bottom: 1rem;
+
+  .work-studio__personal-item:nth-child(5n + 1) {
+    width: calc(100% + 2rem);
+    margin-left: -1rem;
   }
-  .work-studio__footer > a:not(.work-studio__back-top) {
-    gap: 0.5rem;
-    font-size: clamp(1.7rem, 7.5vw, 3rem);
+
+  .work-studio__personal-item:nth-child(5n + 1) .work-studio__project-caption {
+    margin-inline: 1rem;
   }
-  .work-studio__back-top {
-    left: 0;
-    right: auto;
-    bottom: 2.1rem;
+
+  .work-studio__personal-item:nth-child(5n + 2),
+  .work-studio__personal-item:nth-child(5n + 5) {
+    width: 78%;
+    margin-left: auto;
+  }
+
+  .work-studio__personal-item:nth-child(5n + 3) {
+    width: 88%;
+    margin-right: auto;
+  }
+
+  .work-studio__personal-item:nth-child(5n + 4) {
+    width: 72%;
+    margin-right: auto;
+  }
+
+  .work-studio__brand-item:last-child,
+  .work-studio__personal-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .work-studio__brand-media {
+    aspect-ratio: 4 / 5;
+  }
+
+  .work-studio__brand-item--lead .work-studio__brand-caption,
+  .work-studio__brand-item--closing .work-studio__brand-caption,
+  .work-studio__brand-caption {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.8rem;
+    padding-block: 0.85rem 1rem;
+  }
+
+  .work-studio__brand-item--lead .work-studio__brand-title,
+  .work-studio__brand-item--closing .work-studio__brand-title,
+  .work-studio__brand-item--lead .work-studio__brand-statement,
+  .work-studio__brand-item--closing .work-studio__brand-statement,
+  .work-studio__brand-item--lead .work-studio__brand-meta,
+  .work-studio__brand-item--closing .work-studio__brand-meta {
+    grid-column: 1;
+  }
+
+  .work-studio__brand-title h3 {
+    margin-top: 0.35rem;
+    font-size: clamp(2.15rem, 12vw, 3.35rem);
+  }
+
+  .work-studio__brand-statement {
+    max-width: 31ch;
+    font-size: 1rem;
+  }
+
+  .work-studio__brand-meta {
+    align-items: start;
     font-size: 0.68rem;
   }
+
+  .work-studio__brand-meta p {
+    max-width: 22ch;
+  }
+
+  .work-studio__legal {
+    margin-top: 2.5rem;
+    font-size: 0.55rem;
+  }
+
+  .work-studio__personal-item--full .work-studio__personal-media,
+  .work-studio__personal-item--center .work-studio__personal-media {
+    aspect-ratio: 4 / 3;
+  }
+
+  .work-studio__project-caption {
+    grid-template-columns: 1.7rem minmax(0, 1fr) 1rem;
+    gap: 0.6rem;
+    padding-top: 0.75rem;
+  }
+
+  .work-studio__project-caption h3 {
+    max-width: 18ch;
+    font-size: clamp(1.45rem, 7.5vw, 2rem);
+  }
+
+  .work-studio__project-caption p {
+    margin-top: 0.4rem;
+    font-size: 0.68rem;
+  }
+
+  .work-studio__archive {
+    margin-top: 7rem;
+    padding-top: 1rem;
+  }
+
+  .work-studio__archive-heading {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.8rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .work-studio__archive-heading h3 {
+    max-width: 12ch;
+    font-size: clamp(2.2rem, 12vw, 3.2rem);
+  }
+
+  .work-studio__archive-link {
+    grid-template-columns: 1.65rem 3.7rem minmax(0, 1fr) 1rem;
+    gap: 0.65rem;
+    min-height: 5.8rem;
+  }
+
+  .work-studio__archive-thumb {
+    width: 3.7rem;
+  }
+
+  .work-studio__archive-copy strong {
+    font-size: 1rem;
+  }
+
+  .work-studio__archive-copy small {
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: 0.62rem;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
 }
-@media (max-width: 359px) {
-  .work-studio__categories {
-    gap: 0.55rem;
+
+@media (prefers-reduced-motion: reduce) {
+  .work-studio__image,
+  .work-studio__caption-arrow,
+  .work-studio__archive-arrow,
+  .work-studio__archive-thumb img {
+    transition: none;
   }
-  .work-studio__categories a {
-    font-size: 0.66rem;
+}
+
+/* Brand cards retain one portfolio grid, but each brand keeps its own crop, mark, and caption voice. */
+.work-studio__brand-item[data-brand="nike-no-second-take"] .work-studio__brand-title h3,
+.work-studio__brand-item[data-brand="levis-wear-is-the-record"] .work-studio__brand-title h3 {
+  font-family: "Archivo Black", "Arial Black", "Helvetica Neue", sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.065em;
+  text-transform: uppercase;
+}
+
+.work-studio__brand-item[data-brand="polo-ralph-lauren-the-long-match"]
+  .work-studio__brand-title
+  h3 {
+  font-family: "Libre Caslon Display", Georgia, "Times New Roman", serif;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+}
+
+.work-studio__brand-item[data-brand="zara-the-air-between"] .work-studio__brand-title h3,
+.work-studio__brand-item[data-brand="prada-the-quiet-error"] .work-studio__brand-title h3 {
+  font-family: "Bodoni Moda", Didot, "Times New Roman", serif;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+}
+
+.work-studio__brand-item[data-brand="muji-household-weather"] .work-studio__brand-title h3,
+.work-studio__brand-item[data-brand="uniqlo-comfort-measured"] .work-studio__brand-title h3 {
+  font-family: "Noto Sans JP", "Helvetica Neue", Arial, sans-serif;
+}
+
+.work-studio__brand-item[data-brand="hm-second-sun"] .work-studio__brand-title h3 {
+  font-family: Manrope, "Helvetica Neue", Arial, sans-serif;
+}
+
+.work-studio__brand-item[data-brand="nike-no-second-take"] .work-studio__brand-mark {
+  inset: clamp(0.85rem, 1.5vw, 1.4rem) clamp(0.85rem, 1.5vw, 1.4rem) auto auto;
+  transform: none;
+}
+
+.work-studio__brand-item[data-brand="polo-ralph-lauren-the-long-match"] .work-studio__brand-mark {
+  inset: clamp(0.9rem, 1.5vw, 1.5rem) auto auto 50%;
+  transform: translateX(-50%);
+}
+
+.work-studio__brand-item[data-brand="levis-wear-is-the-record"] .work-studio__brand-mark {
+  inset: auto clamp(0.8rem, 1.5vw, 1.4rem) clamp(0.8rem, 1.5vw, 1.4rem) auto;
+  transform: none;
+}
+
+.work-studio__brand-item[data-brand="muji-household-weather"] .work-studio__brand-mark {
+  inset: clamp(0.8rem, 1.5vw, 1.4rem) auto auto clamp(0.8rem, 1.5vw, 1.4rem);
+  transform: none;
+}
+
+.work-studio__brand-item[data-brand="zara-the-air-between"] .work-studio__brand-mark {
+  inset: clamp(0.8rem, 1.5vw, 1.4rem) clamp(0.8rem, 1.5vw, 1.4rem) auto auto;
+  transform: none;
+}
+
+.work-studio__brand-item[data-brand="uniqlo-comfort-measured"] .work-studio__brand-mark {
+  inset: auto clamp(0.8rem, 1.5vw, 1.4rem) clamp(0.8rem, 1.5vw, 1.4rem) auto;
+  transform: none;
+}
+
+.work-studio__brand-item[data-brand="prada-the-quiet-error"] .work-studio__brand-mark {
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+}
+
+.work-studio__brand-item[data-brand="levis-wear-is-the-record"] .work-studio__brand-meta,
+.work-studio__brand-item[data-brand="uniqlo-comfort-measured"] .work-studio__brand-meta {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.work-studio__brand-item[data-brand="muji-household-weather"] .work-studio__brand-caption {
+  gap: 0.65rem;
+}
+
+.work-studio__brand-item[data-brand="muji-household-weather"] .work-studio__brand-title h3 {
+  font-size: clamp(1.9rem, 3.8vw, 4.25rem);
+  font-weight: 480;
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+}
+
+.work-studio__brand-item[data-brand="nike-no-second-take"] .work-studio__brand-caption {
+  border-top: 0.42rem solid var(--work-ink);
+}
+
+.work-studio__brand-item[data-brand="prada-the-quiet-error"] .work-studio__brand-title {
+  text-align: center;
+}
+
+@media (min-width: 900px) {
+  .work-studio__brand-grid {
+    grid-auto-flow: row;
+    row-gap: clamp(6rem, 10vw, 11rem);
   }
-  .work-studio__categories span {
+
+  .work-studio__brand-item[data-brand="nike-no-second-take"] {
+    grid-row: 1;
+    grid-column: 1 / -1;
+  }
+
+  .work-studio__brand-item[data-brand="polo-ralph-lauren-the-long-match"] {
+    grid-row: 2;
+    grid-column: 2 / 12;
+  }
+
+  .work-studio__brand-item[data-brand="levis-wear-is-the-record"] {
+    grid-row: 3;
+    grid-column: 1 / 8;
+    align-self: start;
+    padding-top: 0;
+  }
+
+  .work-studio__brand-item[data-brand="muji-household-weather"] {
+    grid-row: 3;
+    grid-column: 9 / -1;
+    align-self: end;
+    padding-top: clamp(8rem, 13vw, 14rem);
+  }
+
+  .work-studio__brand-item[data-brand="hm-second-sun"] {
+    grid-row: 6;
+    grid-column: 2 / 11;
+  }
+
+  .work-studio__brand-item[data-brand="zara-the-air-between"] {
+    grid-row: 5;
+    grid-column: 6 / -1;
+    align-self: end;
+    padding-top: clamp(6rem, 9vw, 10rem);
+  }
+
+  .work-studio__brand-item[data-brand="uniqlo-comfort-measured"] {
+    grid-row: 5;
+    grid-column: 1 / 5;
+    align-self: start;
+    padding-top: 0;
+  }
+
+  .work-studio__brand-item[data-brand="prada-the-quiet-error"] {
+    grid-row: 4;
+    grid-column: 4 / -1;
+    align-self: start;
+    padding-top: 0;
+  }
+
+  .work-studio__brand-item[data-brand="polo-ralph-lauren-the-long-match"]
+    .work-studio__brand-caption,
+  .work-studio__brand-item[data-brand="zara-the-air-between"] .work-studio__brand-caption {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: clamp(1rem, 2vw, 2rem);
+  }
+
+  .work-studio__brand-item[data-brand="polo-ralph-lauren-the-long-match"]
+    .work-studio__brand-title {
+    grid-column: 1 / 6;
+  }
+
+  .work-studio__brand-item[data-brand="polo-ralph-lauren-the-long-match"]
+    .work-studio__brand-statement {
+    grid-column: 6 / 10;
+    align-self: end;
+  }
+
+  .work-studio__brand-item[data-brand="polo-ralph-lauren-the-long-match"] .work-studio__brand-meta {
+    grid-column: 10 / -1;
+    align-self: end;
+  }
+
+  .work-studio__brand-item[data-brand="zara-the-air-between"] .work-studio__brand-title {
+    grid-column: 1 / 7;
+  }
+
+  .work-studio__brand-item[data-brand="zara-the-air-between"] .work-studio__brand-statement {
+    grid-column: 7 / -1;
+    align-self: end;
+  }
+
+  .work-studio__brand-item[data-brand="zara-the-air-between"] .work-studio__brand-meta {
+    grid-column: 1 / -1;
+  }
+
+  .work-studio__brand-item[data-brand="muji-household-weather"] .work-studio__brand-title {
+    grid-column: 1 / 5;
+  }
+
+  .work-studio__brand-item[data-brand="muji-household-weather"] .work-studio__brand-statement {
+    grid-column: 5 / 10;
+    align-self: end;
+  }
+
+  .work-studio__brand-item[data-brand="muji-household-weather"] .work-studio__brand-meta {
+    grid-column: 10 / -1;
+    align-self: end;
+  }
+
+  /* MUJI is intentionally the narrow, domestic-scale card in the desktop
+     composition. Keep its caption as one calm vertical measure instead of
+     forcing the wide-card 12-column caption into three unusably small cells. */
+  .work-studio__brand-item[data-brand="muji-household-weather"] .work-studio__brand-caption {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  .work-studio__brand-item[data-brand="muji-household-weather"]
+    :is(.work-studio__brand-title, .work-studio__brand-statement, .work-studio__brand-meta) {
+    grid-column: 1;
+    align-self: auto;
+  }
+
+  .work-studio__brand-item[data-brand="muji-household-weather"] .work-studio__brand-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.45rem;
+  }
+
+  .work-studio__brand-item[data-brand="prada-the-quiet-error"] .work-studio__brand-title {
+    grid-column: 1 / -1;
+  }
+
+  .work-studio__brand-item[data-brand="prada-the-quiet-error"] .work-studio__brand-statement {
+    grid-column: 2 / 7;
+    align-self: end;
+  }
+
+  .work-studio__brand-item[data-brand="prada-the-quiet-error"] .work-studio__brand-meta {
+    grid-column: 8 / -1;
+    align-self: end;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 899px) {
+  .work-studio__brand-item[data-brand="nike-no-second-take"] {
+    grid-row: 1;
+    grid-column: 1 / -1;
+  }
+
+  .work-studio__brand-item[data-brand="polo-ralph-lauren-the-long-match"] {
+    grid-row: 2;
+    grid-column: 2 / -1;
+  }
+
+  .work-studio__brand-item[data-brand="levis-wear-is-the-record"] {
+    grid-row: 3;
+    grid-column: 1 / 6;
+    padding-top: 0;
+  }
+
+  .work-studio__brand-item[data-brand="muji-household-weather"] {
+    grid-row: 3;
+    grid-column: 7 / -1;
+    align-self: end;
+    padding-top: 6rem;
+  }
+
+  .work-studio__brand-item[data-brand="hm-second-sun"] {
+    grid-row: 6;
+    grid-column: 2 / 11;
+  }
+
+  .work-studio__brand-item[data-brand="zara-the-air-between"] {
+    grid-row: 5;
+    grid-column: 6 / -1;
+    align-self: end;
+    padding-top: 4rem;
+  }
+
+  .work-studio__brand-item[data-brand="uniqlo-comfort-measured"] {
+    grid-row: 5;
+    grid-column: 1 / 6;
+    padding-top: 0;
+  }
+
+  .work-studio__brand-item[data-brand="prada-the-quiet-error"] {
+    grid-row: 4;
+    grid-column: 4 / -1;
+    align-self: start;
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 639px) {
+  .work-studio__motion-signal {
+    top: 0.65rem;
+    right: 0.65rem;
+    bottom: auto;
+    left: auto;
+    width: auto;
+    max-width: calc(100% - 1.3rem);
+    padding: 0.58rem 0.62rem;
+    opacity: 0.94;
+    transform: none;
+  }
+
+  .work-studio__motion-signal-head {
+    grid-template-columns: auto 1.5rem;
+    gap: 0.5rem;
+  }
+
+  .work-studio__motion-signal-head b {
+    font-size: 0.5rem;
+  }
+
+  .work-studio__motion-signal-steps {
     display: none;
   }
-  .work-studio__edition {
-    max-width: 12ch;
-    text-align: right;
-  }
-  .work-studio__section-heading > p {
-    max-width: 17ch;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .work-studio *,
-  .work-studio *::before,
-  .work-studio *::after {
-    scroll-behavior: auto !important;
-    transition: none !important;
-    animation: none !important;
-  }
-  .work-studio__project-link:hover .work-studio__picture img {
+
+  .work-studio__personal-signal {
+    right: 0.62rem;
+    bottom: 0.62rem;
+    padding: 0.48rem 0.52rem;
+    opacity: 0.9;
     transform: none;
+  }
+
+  .work-studio__personal-signal span {
+    font-size: 0.48rem;
+  }
+
+  .work-studio__brand-item[data-brand="polo-ralph-lauren-the-long-match"]
+    .work-studio__motion-signal {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .work-studio__brand-item[data-brand="levis-wear-is-the-record"] .work-studio__motion-signal,
+  .work-studio__brand-item[data-brand="hm-second-sun"] .work-studio__motion-signal,
+  .work-studio__brand-item[data-brand="zara-the-air-between"] .work-studio__motion-signal {
+    inset: auto 0.65rem 0.65rem auto;
+    width: auto;
+    transform: none;
+  }
+
+  .work-studio__brand-item[data-brand="prada-the-quiet-error"] .work-studio__motion-signal {
+    top: auto;
+    right: auto;
+    bottom: 0.65rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .work-studio__brand-media {
+    aspect-ratio: var(--work-mobile-media-ratio, var(--work-media-ratio, 4 / 5));
+  }
+
+  .work-studio__brand-item[data-brand="nike-no-second-take"] .work-studio__brand-title h3,
+  .work-studio__brand-item[data-brand="levis-wear-is-the-record"] .work-studio__brand-title h3 {
+    font-size: clamp(2.2rem, 12vw, 3.3rem);
+    line-height: 0.88;
+  }
+
+  .work-studio__brand-item[data-brand="polo-ralph-lauren-the-long-match"]
+    .work-studio__brand-title
+    h3,
+  .work-studio__brand-item[data-brand="prada-the-quiet-error"] .work-studio__brand-title h3 {
+    font-size: clamp(2.3rem, 12.5vw, 3.5rem);
+    line-height: 0.92;
+  }
+
+  .work-studio__brand-item[data-brand="prada-the-quiet-error"] .work-studio__brand-title {
+    text-align: left;
   }
 }

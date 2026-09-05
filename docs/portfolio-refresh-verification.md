@@ -1,9 +1,14 @@
 # Portfolio refresh — 2026-09-05
 
-## Delivered
+## Scope correction requested by the user
 
-- Portfolio-first home with five selectable projects, a second-frame control, and direct case-study links. The original interactive desk is preserved at `/about`.
-- Work gallery and compact index, eight brand projects first, twenty personal projects next, and existing applied client work retained. Mobile brand rail has both native swipe and visible navigation buttons.
+The portfolio shell, original home, Work index, navigation and routing are restored exactly to `eda2c71`. The extra `/about` route and new portfolio-home stylesheet have been removed; the original desk remains at `/`. Only the project-detail improvements and their source/QA documentation remain from the refresh. The delivery notes below describe the prior iteration and are superseded for home, Work and navigation. `qa-portfolio-refresh.mjs` now checks the restored shell before exercising the retained project interactions.
+
+Restoration validation: the five restored files match `eda2c71` with no content diff. The updated serial regression passes at 390 and 1440px for the original home and Work markers plus the retained brand controls, Polo's 20-image gallery and project source notes, with no page errors. The restored desktop desk and mobile Work were visually inspected. Project-detail implementation files were not changed by the restoration.
+
+## Project-detail improvements retained after scope correction
+
+- Original portfolio home, Work index and navigation are preserved at their original routes. The temporary portfolio-first home, gallery/index switch and extra About route have been withdrawn.
 - One source anchor for each of the 28 design projects. Brand anchors are official brand publications; studio references guide presentation rather than inventing brand values. Public notes only show observed source principles. Proposed directions remain internal in `portfolio-reference-direction.md` and are not claims of completed features.
 - H&M, ZARA, UNIQLO and PRADA opening/readability refinements, including visible marks, image-first hierarchy and scoped brand colors. Their layouts remain separate from MUJI, Levi's, Polo and Nike.
 - New working controls: Nike attempt frames, Polo wardrobe icons, MUJI daily conditions, Levi's denim details, Afterimage plate registration, Memory Type glyph selection, and Chroma Tempo playback/manual beats.
@@ -14,7 +19,7 @@
 
 Chrome was used to inspect Pinterest discovery results, Pentagram's work index, COLLINS' San Francisco Symphony case study/gallery, Studio Dumbar's DEMO page, PORTO ROCHA's QUILO page, and Prada Group's FW26 Simple Stories publication. No source artwork was copied into the project. Existing project images were retained.
 
-## Validation
+## Validation of the earlier iteration (before shell restoration)
 
 - Work review at 390, 768 and 1440px: 28 design cards, 28 index rows, selection and mobile rail controls, no horizontal page overflow.
 - Twenty personal project routes at 390 and 1440px: eight unique images each, no broken loaded images or horizontal page overflow.

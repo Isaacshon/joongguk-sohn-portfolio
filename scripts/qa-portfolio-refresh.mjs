@@ -22,23 +22,19 @@ try {
     const errors = [];
     page.on("pageerror", (error) => errors.push(error.message));
     await page.goto(base, { waitUntil: "networkidle" });
-    await page.getByRole("heading", { name: "Isaac Sohn", exact: true }).waitFor();
+    await page.getByRole("button", { name: "Trigger cross animation", exact: true }).waitFor();
+    await page.getByRole("link", { name: "About Me", exact: true }).waitFor();
     assert.equal(
       await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1),
       false,
       "Home overflow",
     );
-    await page.getByRole("button", { name: "Next featured project", exact: true }).click();
-    await page.getByRole("heading", { name: "PRADA", exact: true }).waitFor();
-    await page.getByRole("button", { name: "Another frame", exact: true }).click();
-    assert.equal(
-      await page
-        .getByRole("button", { name: "Another frame", exact: true })
-        .getAttribute("aria-pressed"),
-      "true",
-    );
-    await page.locator(".portfolio-home__image img").evaluate((image) => image.decode());
-    await page.screenshot({ path: path.join(output, `home-${width}.png`) });
+    assert.equal(await page.locator(".portfolio-home").count(), 0);
+    await page.screenshot({ path: path.join(output, `restored-home-${width}.png`) });
+    await page.goto(base + "/work", { waitUntil: "networkidle" });
+    await page.locator(".work-studio__display").waitFor();
+    assert.equal(await page.getByRole("button", { name: "Index", exact: true }).count(), 0);
+    await page.screenshot({ path: path.join(output, `restored-work-${width}.png`) });
     for (const slug of ["hm-second-sun", "zara-the-air-between", "uniqlo-comfort-measured"]) {
       await page.goto(base + "/poster-studies/" + slug, { waitUntil: "networkidle" });
       const rail = page.locator(".brand-pavilion__hero-rail");
@@ -183,7 +179,8 @@ try {
     }
     results.push({
       width,
-      homeSwitch: true,
+      originalHomeRestored: true,
+      originalWorkRestored: true,
       nikeSelector: true,
       poloSelector: true,
       poloGallery: 20,
